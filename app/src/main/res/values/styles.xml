@@ -1,0 +1,239 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"> <!-- change to .NoActionBar when integrating Toolbar-->
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+           -->
+
+
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:windowBackground">@color/background_color</item>
+
+        <!--<item name="android:colorPrimary">@color/primary_color</item>-->
+        <!--<item name="android:colorPrimaryDark">@color/dark_primary_color</item>-->
+        <!--<item name="android:colorAccent">@color/accent_color</item>-->
+
+        <!--Appcompat Theme Omits the android prefix -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_primary_color</item>
+        <item name="colorAccent">@color/accent_color</item>
+
+        <item name="popupMenuStyle">@style/PopupMenuStyle</item>
+        <item name="dropDownListViewStyle">@style/DropDownListViewStyle</item>
+        <item name="actionDropDownStyle">@style/DropDownNavStyle</item>
+
+        <item name="android:spinnerItemStyle">@style/SpinnerItemStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemStyle</item>
+
+        <item name="actionModeBackground">@drawable/primary_drawable</item>
+        <item name="actionModeSplitBackground">@drawable/primary_drawable</item>
+        <item name="actionBarItemBackground">@drawable/primary_drawable</item>
+
+        <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNavStyle</item>
+
+        <item name="android:actionModeBackground">@drawable/primary_drawable</item>
+        <item name="android:actionModeSplitBackground">@drawable/primary_drawable</item>
+        <item name="android:actionBarItemBackground">@drawable/primary_drawable</item>
+
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="SpinnerStyle">
+        <item name="android:textAppearance">@style/SpinnerItemTextAppearance</item>
+    </style>
+
+    <style name="SpinnerItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textAppearance">@style/text_medium.color_states_enabled</item>
+    </style>
+
+    <style name="SpinnerDropDownItemStyle" parent="SpinnerItemStyle">
+        <item name="android:minWidth">50dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textAppearance">@style/text_medium</item>
+    </style>
+
+    <style name="SpinnerItemTextAppearance" parent="AppTheme">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="PopupMenuStyle" parent="@style/AppTheme">
+        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:background">@drawable/primary_drawable</item>
+    </style>
+
+    <style name="DropDownListViewStyle" parent="@style/AppTheme">
+        <item name="android:listSelector">@drawable/primary_drawable</item>
+    </style>
+
+    <style name="DropDownNavStyle" parent="@style/AppTheme">
+        <item name="android:background">@drawable/primary_drawable</item>
+        <item name="android:popupBackground">@drawable/primary_drawable</item>
+        <item name="android:dropDownSelector">@drawable/primary_drawable</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/AppTheme">
+        <item name="android:background">@drawable/clicked_states_primary</item>
+        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:height">36dp</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUD TO REDUCE OVERDRAW -->
+    <style name="FullScreenActivity" parent = "AppTheme">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+    <!-- Begin styles for lists -->
+
+    <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:id">@android:id/list</item>
+        <item name="android:divider">@color/divider_color</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:scrollingCache">false</item>
+        <item name="android:animationCache">false</item>
+        <item name="android:fastScrollEnabled">true</item>
+    </style>
+
+    <style name="damage_table_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">32dp</item>
+    </style>
+
+    <style name="expandable_list" parent="@style/list">
+        <item name="android:groupIndicator">@null</item>
+    </style>
+
+    <style name="expandable_group" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/subheading_color</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+
+    </style>
+
+    <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/clicked_states_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--Results in a more dense list. Adheres to the android material design spec. -->
+    <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/clicked_states_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="list_sub_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
+    <style name="list_item_large" parent="@style/list_item">
+        <item name="android:layout_height">64dp</item>
+    </style>
+
+    <style name="text_large" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/color_states_enabled</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="text_medium" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="text_medium.color_states_enabled">
+        <item name="android:textColor">@color/color_states_enabled</item>
+    </style>
+
+    <style name="text_medium_alt" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="text_small" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="text_small_secondary" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/text_color_secondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="text_small.color_states_enabled">
+        <item name="android:textColor">@color/color_states_enabled</item>
+    </style>
+
+    <style name="main_image" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="large_image" parent="@style/main_image">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">48dp</item>
+    </style>
+
+    <style name="small_image" parent="@style/main_image">
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="tiny_image" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
+    <!-- End styles for elevated lists -->
+
+</resources>

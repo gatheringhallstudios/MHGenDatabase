@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity" >
+
+    <item android:id="@+id/universal_search"
+        android:title="@string/search"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/send_feedback"
+        android:showAsAction="never"
+        android:title="Send Feedback"/>
+
+    <item
+        android:id="@+id/change_log"
+        android:showAsAction="never"
+        android:title="Change Log"/>
+
+    <item
+        android:id="@+id/about"
+        android:showAsAction="never"
+        android:title="@string/about"/>
+
+</menu>
