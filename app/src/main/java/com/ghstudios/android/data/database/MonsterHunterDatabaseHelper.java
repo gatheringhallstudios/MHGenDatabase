@@ -1699,7 +1699,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = null;
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
+        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
@@ -1719,7 +1719,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"1"};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
+        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
@@ -1765,7 +1765,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"0"};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
+        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
