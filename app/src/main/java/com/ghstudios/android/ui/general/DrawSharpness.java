@@ -45,7 +45,8 @@ public class DrawSharpness extends View {
     private final int maxsharpness = 40;
 
 	int orangeColor = Color.rgb(255, 150, 0);
-	int purpleColor = Color.rgb(120, 81, 169);
+	//int purpleColor = Color.rgb(120, 81, 169);
+    int blueColor = Color.rgb(0,96,210);
 
 	Paint paint = new Paint();
 
@@ -178,7 +179,7 @@ public class DrawSharpness extends View {
 
         start = end;
         end = end + (int) (iblue*scalefactor);
-        paint.setColor(Color.BLUE);
+        paint.setColor(blueColor);
         canvas.drawRect(start, bartop, end, barbottom, paint);
 
         start = end;

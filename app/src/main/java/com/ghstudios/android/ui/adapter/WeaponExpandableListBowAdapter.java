@@ -105,13 +105,18 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
         holder.slimev.setVisibility(View.GONE);
         holder.paintv.setVisibility(View.GONE);
 
-
-        String[] coatings = weapon.getCoatingsArray();
+        //TODO:make the actual field in the db an int.
+        int coatings = Integer.parseInt(weapon.getCoatings());
 
         Bitmap bitmap = null;
 
+        //Power 1 and 2 are bits 11,10
+        boolean power = ((coatings & 0x0400)>0) || ((coatings & 0x0200)>0);
+        //Elemental 1 and 2 are bits 9,8
+        boolean elemental = ((coatings & 0x0100)>0) || ((coatings & 0x0080)>0);
+
         try {
-            if (!coatings[0].equals("-")) {
+            if (power) {
                 holder.powerv.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Red.png");
                 if (bitmap != null) {
@@ -121,7 +126,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.powerv.setVisibility(View.VISIBLE);
             }
-            if (!coatings[1].equals("-")) {
+            if ((coatings & 0x20)>0) {
                 holder.poisonv.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Purple.png");
                 if (bitmap != null) {
@@ -131,7 +136,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.poisonv.setVisibility(View.VISIBLE);
             }
-            if (!coatings[2].equals("-")) {
+            if ((coatings & 0x10)>0) {
                 holder.parav.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Yellow.png");
                 if (bitmap != null) {
@@ -141,7 +146,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.parav.setVisibility(View.VISIBLE);
             }
-            if (!coatings[3].equals("-")) {
+            if ((coatings & 0x08)>0) {
                 holder.sleepv.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Cyan.png");
                 if (bitmap != null) {
@@ -151,7 +156,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.sleepv.setVisibility(View.VISIBLE);
             }
-            if (!coatings[4].equals("-")) {
+            if ((coatings & 0x40)>0) {
                 holder.crangev.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-White.png");
                 if (bitmap != null) {
@@ -161,12 +166,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.crangev.setVisibility(View.VISIBLE);
             }
-        /*if (!coatings[5].equals("-")) {
-            holder.paintv.setTag(weapon.getId());
-            new LoadImage(holder.paintv, "icons_items/Bottle-Pink.png").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            holder.paintv.setVisibility(View.VISIBLE);
-        }*/
-            if (!coatings[6].equals("-")) {
+            if ((coatings & 0x04)>0) {
                 holder.exhaustv.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Blue.png");
                 if (bitmap != null) {
@@ -176,7 +176,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
                 }
                 holder.exhaustv.setVisibility(View.VISIBLE);
             }
-            if (!coatings[7].equals("-")) {
+            if ((coatings & 0x02)>0) {
                 holder.slimev.setTag(weapon.getId());
                 bitmap = getBitmapFromMemCache("icons_items/Bottle-Orange.png");
                 if (bitmap != null) {
