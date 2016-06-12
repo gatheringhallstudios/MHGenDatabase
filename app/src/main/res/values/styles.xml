@@ -149,7 +149,7 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <!--Results in a more dense list. Adheres to the android material design spec. -->
+    <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
     <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">@drawable/clicked_states_white</item>
         <item name="android:clickable">true</item>
@@ -188,7 +188,7 @@
     </style>
 
     <style name="text_medium_alt" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
     </style>
@@ -207,6 +207,10 @@
 
     <style name="text_small.color_states_enabled">
         <item name="android:textColor">@color/color_states_enabled</item>
+    </style>
+
+    <style name="ammo_default" parent="text_small_secondary">
+        <item name="android:textColor">@color/text_color_unavailable</item>
     </style>
 
     <style name="main_image" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -235,5 +239,27 @@
 
 
     <!-- End styles for elevated lists -->
+
+    <!-- Style for ammo table -->
+    <style name="ammo_table_header_row">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+
+    <style name="ammo_table_row">
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <!-- Style for list section header -->
+    <style name="section_header" parent="text_small">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">?android:attr/listPreferredItemPaddingLeft</item>
+        <item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
+    </style>
 
 </resources>

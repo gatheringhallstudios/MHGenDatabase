@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,11 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 	private TextView mWeaponReloadTextView, mWeaponRecoilTextView,
 			mWeaponSteadinessTextView, mWeaponSpecialTypeTextView;
 
-	private TextView mNormal1, mNormal2, mNormal3, mPierce1, mPierce2, mPierce3,
-			mPellet1, mPellet2, mPellet3, mCrag1, mCrag2, mCrag3, mClust1,
-			mClust2, mClust3, mFlaming, mWater, mThunder, mFreeze, mDragon,
-			mPoison1, mPoison2, mPara1, mPara2, mSleep1, mSleep2, mSub1, mSub2,
-			mExhaust1, mExhaust2, mSlicing, mWyvernfire, mBlast, mRecov1, mRecov2,
-			mDemon, mArmor, mPaint, mTranq;
-	
 	private TextView mSpecial1, mSpecial2, mSpecial3, mSpecial4, mSpecial5,
 			mValue1, mValue2, mValue3, mValue4, mValue5;
-	
+
+	TextView[] mAmmoTextViews;
+
 	public static WeaponBowgunDetailFragment newInstance(long weaponId) {
 		Bundle args = new Bundle();
 		args.putLong(WeaponDetailFragment.ARG_WEAPON_ID, weaponId);
@@ -67,44 +63,37 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 				.findViewById(R.id.detail_weapon_bowgun_steadiness);
 		mWeaponSpecialTypeTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_bowgun_special);
-		
-		mNormal1 = (TextView) view.findViewById(R.id.normal1);
-		mNormal2 = (TextView) view.findViewById(R.id.normal2);
-		mNormal3 = (TextView) view.findViewById(R.id.normal3);
-		mPierce1 = (TextView) view.findViewById(R.id.pierce1);
-		mPierce2 = (TextView) view.findViewById(R.id.pierce2);
-		mPierce3 = (TextView) view.findViewById(R.id.pierce3);
-		mPellet1 = (TextView) view.findViewById(R.id.pellet1);
-		mPellet2 = (TextView) view.findViewById(R.id.pellet2);
-		mPellet3 = (TextView) view.findViewById(R.id.pellet3);
-		mCrag1 = (TextView) view.findViewById(R.id.crag1);
-		mCrag2 = (TextView) view.findViewById(R.id.crag2);
-		mCrag3 = (TextView) view.findViewById(R.id.crag3);
-		mClust1 = (TextView) view.findViewById(R.id.clust1);
-		mClust2 = (TextView) view.findViewById(R.id.clust2);
-		mClust3 = (TextView) view.findViewById(R.id.clust3);
-		mFlaming = (TextView) view.findViewById(R.id.flaming);
-		mWater = (TextView) view.findViewById(R.id.water);
-		mThunder = (TextView) view.findViewById(R.id.thunder);
-		mFreeze = (TextView) view.findViewById(R.id.freeze);
-		mDragon = (TextView) view.findViewById(R.id.dragon);
-		mPoison1 = (TextView) view.findViewById(R.id.poison1);
-		mPoison2 = (TextView) view.findViewById(R.id.poison2);
-		mPara1 = (TextView) view.findViewById(R.id.para1);
-		mPara2 = (TextView) view.findViewById(R.id.para2);
-		mSleep1 = (TextView) view.findViewById(R.id.sleep1);
-		mSleep2 = (TextView) view.findViewById(R.id.sleep2);
-		mExhaust1 = (TextView) view.findViewById(R.id.exhaust1);
-		mExhaust2 = (TextView) view.findViewById(R.id.exhaust2);
-		mSlicing = (TextView) view.findViewById(R.id.slicing);
-		mWyvernfire = (TextView) view.findViewById(R.id.wyvernfire);
-		mBlast = (TextView) view.findViewById(R.id.blast);
-		mRecov1 = (TextView) view.findViewById(R.id.recov1);
-		mRecov2 = (TextView) view.findViewById(R.id.recov2);
-		mDemon = (TextView) view.findViewById(R.id.demon);
-		mArmor = (TextView) view.findViewById(R.id.armor);
-		mPaint = (TextView) view.findViewById(R.id.paint);
-		mTranq = (TextView) view.findViewById(R.id.tranq);
+
+		mAmmoTextViews = new TextView[]{
+				(TextView) view.findViewById(R.id.normal1),
+				(TextView) view.findViewById(R.id.normal2),
+				(TextView) view.findViewById(R.id.normal3),
+				(TextView) view.findViewById(R.id.pierce1),
+				(TextView) view.findViewById(R.id.pierce2),
+				(TextView) view.findViewById(R.id.pierce3),
+				(TextView) view.findViewById(R.id.pellet1),
+				(TextView) view.findViewById(R.id.pellet2),
+				(TextView) view.findViewById(R.id.pellet3),
+				(TextView) view.findViewById(R.id.crag1),
+				(TextView) view.findViewById(R.id.crag2),
+				(TextView) view.findViewById(R.id.crag3),
+				(TextView) view.findViewById(R.id.clust1),
+				(TextView) view.findViewById(R.id.clust2),
+				(TextView) view.findViewById(R.id.clust3),
+				(TextView) view.findViewById(R.id.flaming),
+				(TextView) view.findViewById(R.id.water),
+				(TextView) view.findViewById(R.id.thunder),
+				(TextView) view.findViewById(R.id.freeze),
+				(TextView) view.findViewById(R.id.dragon),
+				(TextView) view.findViewById(R.id.poison1),
+				(TextView) view.findViewById(R.id.poison2),
+				(TextView) view.findViewById(R.id.para1),
+				(TextView) view.findViewById(R.id.para2),
+				(TextView) view.findViewById(R.id.sleep1),
+				(TextView) view.findViewById(R.id.sleep2),
+				(TextView) view.findViewById(R.id.exhaust1),
+				(TextView) view.findViewById(R.id.exhaust2)
+		};
 		
 		mSpecial1 = (TextView) view.findViewById(R.id.special1);
 		mSpecial2 = (TextView) view.findViewById(R.id.special2);
@@ -133,9 +122,9 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 
         TextView ammoView;
 		
-		for(String a : ammos) {
-            ammoView = getAmmoType(a);
-			setAmmoText(a, ammoView);
+		for(int i=0;i<mAmmoTextViews.length;i++) {
+            ammoView = mAmmoTextViews[i];
+			setAmmoText(ammos[i], ammoView);
 		}
 
 		if (mWeapon.getWtype().equals("Light Bowgun")) {
@@ -145,177 +134,56 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 			mWeaponSpecialTypeTextView.setText("Crouching Fire:");
 		}
 
-		if (!mWeapon.getSpecialAmmo().isEmpty()) {
-			String[] specials = mWeapon.getSpecialAmmo().split("\\|");
-			int numSpecial = specials.length;
-
-			if (numSpecial >= 1) {
-				String[] tempSpecial = specials[0].split(" ");
-				mSpecial1.setText(tempSpecial[0]);
-				mValue1.setText(tempSpecial[1]);
-			}
-			if (numSpecial >= 2) {
-				String[] tempSpecial = specials[1].split(" ");
-				mSpecial2.setText(tempSpecial[0]);
-				mValue2.setText(tempSpecial[1]);
-			}
-			if (numSpecial >= 3) {
-				String[] tempSpecial = specials[2].split(" ");
-				mSpecial3.setText(tempSpecial[0]);
-				mValue3.setText(tempSpecial[1]);
-			}
-			if (numSpecial >= 4) {
-				String[] tempSpecial = specials[3].split(" ");
-				mSpecial4.setText(tempSpecial[0]);
-				mValue4.setText(tempSpecial[1]);
-			}
-			if (numSpecial == 5) {
-				String[] tempSpecial = specials[4].split(" ");
-				mSpecial5.setText(tempSpecial[0]);
-				mValue5.setText(tempSpecial[1]);
-			}
-		}
-		else
-		{
-			mWeaponSpecialTypeTextView.setText("");
-		}
+//		if (!mWeapon.getSpecialAmmo().isEmpty()) {
+//			String[] specials = mWeapon.getSpecialAmmo().split("\\|");
+//			int numSpecial = specials.length;
+//
+//			if (numSpecial >= 1) {
+//				String[] tempSpecial = specials[0].split(" ");
+//				mSpecial1.setText(tempSpecial[0]);
+//				mValue1.setText(tempSpecial[1]);
+//			}
+//			if (numSpecial >= 2) {
+//				String[] tempSpecial = specials[1].split(" ");
+//				mSpecial2.setText(tempSpecial[0]);
+//				mValue2.setText(tempSpecial[1]);
+//			}
+//			if (numSpecial >= 3) {
+//				String[] tempSpecial = specials[2].split(" ");
+//				mSpecial3.setText(tempSpecial[0]);
+//				mValue3.setText(tempSpecial[1]);
+//			}
+//			if (numSpecial >= 4) {
+//				String[] tempSpecial = specials[3].split(" ");
+//				mSpecial4.setText(tempSpecial[0]);
+//				mValue4.setText(tempSpecial[1]);
+//			}
+//			if (numSpecial == 5) {
+//				String[] tempSpecial = specials[4].split(" ");
+//				mSpecial5.setText(tempSpecial[0]);
+//				mValue5.setText(tempSpecial[1]);
+//			}
+//		}
+//		else
+//		{
+//			mWeaponSpecialTypeTextView.setText("");
+//		}
 	}
-    
-    private TextView getAmmoType(String a)
-    {
-        TextView ammoView;
-        String[] temp = a.split(" ");
-        String ammo = temp[0];
-
-        if (ammo.equals("Normal1")) {
-            return mNormal1;
-        }
-        else if (ammo.equals("Normal2")) {
-            return mNormal2;
-        }
-        else if (ammo.equals("Normal3")) {
-            return mNormal3;
-        }
-        else if (ammo.equals("Pierce1")) {
-            return mPierce1;
-        }
-        else if (ammo.equals("Pierce2")) {
-            return mPierce2;
-        }
-        else if (ammo.equals("Pierce3")) {
-            return mPierce3;
-        }
-        else if (ammo.equals("Pellet1")) {
-            return mPellet1;
-        }
-        else if (ammo.equals("Pellet2")) {
-            return mPellet2;
-        }
-        else if (ammo.equals("Pellet3")) {
-            return mPellet3;
-        }
-        else if (ammo.equals("Crag1")) {
-            return mCrag1;
-        }
-        else if (ammo.equals("Crag2")) {
-            return mCrag2;
-        }
-        else if (ammo.equals("Crag3")) {
-            return mCrag3;
-        }
-        else if (ammo.equals("Clust1")) {
-            return mClust1;
-        }
-        else if (ammo.equals("Clust2")) {
-            return mClust2;
-        }
-        else if (ammo.equals("Clust3")) {
-            return mClust3;
-        }
-        else if (ammo.equals("Flaming")) {
-            return mFlaming;
-        }
-        else if (ammo.equals("Water")) {
-            return mWater;
-        }
-        else if (ammo.equals("Thunder")) {
-            return mThunder;
-        }
-        else if (ammo.equals("Freeze")) {
-            return mFreeze;
-        }
-        else if (ammo.equals("Dragon")) {
-            return mDragon;
-        }
-        else if (ammo.equals("Poison1")) {
-            return mPoison1;
-        }
-        else if (ammo.equals("Poison2")) {
-            return mPoison2;
-        }
-        else if (ammo.equals("Para1")) {
-            return mPara1;
-        }
-        else if (ammo.equals("Para2")) {
-            return mPara2;
-        }
-        else if (ammo.equals("Sleep1")) {
-            return mSleep1;
-        }
-        else if (ammo.equals("Sleep2")) {
-            return mSleep2;
-        }
-        else if (ammo.equals("Exhaust1")) {
-            return mExhaust1;
-        }
-        else if (ammo.equals("Exhaust2")) {
-            return mExhaust2;
-        }
-        else if (ammo.equals("Slicing")) {
-            return mSlicing;
-        }
-        else if (ammo.equals("WyvernFire")) {
-            return mWyvernfire;
-        }
-        else if (ammo.equals("Blast")) {
-            return mBlast;
-        }
-        else if (ammo.equals("Recov1")) {
-            return mRecov1;
-        }
-        else if (ammo.equals("Recov2")) {
-            return mRecov2;
-        }
-        else if (ammo.equals("Demon")) {
-            return mDemon;
-        }
-        else if (ammo.equals("Armor")) {
-            return mArmor;
-        }
-        else if (ammo.equals("Paint")) {
-            return mPaint;
-        }
-        else {
-            return mTranq;
-        }
-    }
 	
 	private void setAmmoText(String a, TextView ammoView) {
-		String[] temp = a.split(" ");
-		String ammo = temp[0];
-		String amt = temp[1];
         Boolean loadUp = false;
 
-        if (amt.contains("*"))
+        if (a.contains("*"))
         {
             loadUp = true;
-            amt = amt.substring(0,amt.length()-1);
+            a = a.substring(0,a.length()-1);
         }
 
-        ammoView.setText(amt);
+        ammoView.setText(a);
 
-        if (loadUp == true) {
+        if (loadUp) {
             ammoView.setTypeface(null, Typeface.BOLD);
+			ammoView.setTextColor(ContextCompat.getColor(getContext(),R.color.text_color_focused));
         }
 	}
 }
