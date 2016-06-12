@@ -1341,125 +1341,6 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     }
 
     /**
-     * ****************************** HUNTING FLEET QUERIES *****************************************
-     */
-	
-	/*
-	 * Get all hunting fleets
-	 */
-    public HuntingFleetCursor queryHuntingFleets() {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Table = S.TABLE_HUNTING_FLEET;
-        qh.Selection = null;
-        qh.SelectionArgs = null;
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new HuntingFleetCursor(wrapJoinHelper(builderHuntingFleet(), qh));
-    }
-
-    /*
-     * Get a specific hunting fleet
-     */
-    public HuntingFleetCursor queryHuntingFleet(long id) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Table = S.TABLE_HUNTING_FLEET;
-        qh.Selection = "h." + S.COLUMN_HUNTING_FLEET_ID + " = ?";
-        qh.SelectionArgs = new String[]{String.valueOf(id)};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = "1";
-
-        return new HuntingFleetCursor(wrapJoinHelper(builderHuntingFleet(), qh));
-    }
-
-    /*
-     * Get a specific hunting fleet based on type
-     */
-    public HuntingFleetCursor queryHuntingFleetType(String type) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Table = S.TABLE_HUNTING_FLEET;
-        qh.Selection = "h." + S.COLUMN_HUNTING_FLEET_TYPE + " = ?";
-        qh.SelectionArgs = new String[]{type};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new HuntingFleetCursor(wrapJoinHelper(builderHuntingFleet(), qh));
-    }
-
-    /*
-     * Get a specific hunting fleet based on location
-     */
-    public HuntingFleetCursor queryHuntingFleetLocation(String location) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Selection = "h." + S.COLUMN_HUNTING_FLEET_LOCATION + " = ?";
-        qh.SelectionArgs = new String[]{location};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new HuntingFleetCursor(wrapJoinHelper(builderHuntingFleet(), qh));
-    }
-
-    /*
-     * Helper method to query for hunting fleets
-     */
-    private SQLiteQueryBuilder builderHuntingFleet() {
-//		SELECT h._id AS _id, h.type AS htype, h.level, h.location, h.amount, h.percentage, h.rank,
-//		h.item_id, i.name, i.jpn_name, i.type, i.rarity, i.carry_capacity, i.buy, i.sell,
-//		i.description, i.icon_name, i.armor_dupe_name_fix
-//		FROM hunting_fleet AS h LEFT OUTER JOIN items AS i ON h.item_id = i._id;
-
-        String h = "h";
-        String i = "i";
-
-        HashMap<String, String> projectionMap = new HashMap<String, String>();
-
-        projectionMap.put("_id", h + "." + S.COLUMN_HUNTING_FLEET_ID + " AS " + "_id");
-        projectionMap.put(h + S.COLUMN_HUNTING_FLEET_TYPE, h + "." + S.COLUMN_HUNTING_FLEET_TYPE + " AS " + h + S.COLUMN_HUNTING_FLEET_TYPE);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_LEVEL, h + "." + S.COLUMN_HUNTING_FLEET_LEVEL);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_LOCATION, h + "." + S.COLUMN_HUNTING_FLEET_LOCATION);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_AMOUNT, h + "." + S.COLUMN_HUNTING_FLEET_AMOUNT);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_PERCENTAGE, h + "." + S.COLUMN_HUNTING_FLEET_PERCENTAGE);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_RANK, h + "." + S.COLUMN_HUNTING_FLEET_RANK);
-        projectionMap.put(S.COLUMN_HUNTING_FLEET_ITEM_ID, h + "." + S.COLUMN_HUNTING_FLEET_ITEM_ID);
-
-        projectionMap.put(S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME);
-        projectionMap.put(S.COLUMN_ITEMS_JPN_NAME, i + "." + S.COLUMN_ITEMS_JPN_NAME);
-        projectionMap.put(i + S.COLUMN_ITEMS_TYPE, i + "." + S.COLUMN_ITEMS_TYPE + " AS " + i + S.COLUMN_ITEMS_TYPE);
-        projectionMap.put(S.COLUMN_ITEMS_RARITY, i + "." + S.COLUMN_ITEMS_RARITY);
-        projectionMap.put(S.COLUMN_ITEMS_CARRY_CAPACITY, i + "." + S.COLUMN_ITEMS_CARRY_CAPACITY);
-        projectionMap.put(S.COLUMN_ITEMS_BUY, i + "." + S.COLUMN_ITEMS_BUY);
-        projectionMap.put(S.COLUMN_ITEMS_SELL, i + "." + S.COLUMN_ITEMS_SELL);
-        projectionMap.put(S.COLUMN_ITEMS_DESCRIPTION, i + "." + S.COLUMN_ITEMS_DESCRIPTION);
-        projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
-        projectionMap.put(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX, i + "." + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX);
-
-        //Create new querybuilder
-        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
-
-        QB.setTables(S.TABLE_HUNTING_FLEET + " AS h" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "h." +
-                S.COLUMN_HUNTING_FLEET_ITEM_ID + " = " + "i." + S.COLUMN_ITEMS_ID);
-
-        QB.setProjectionMap(projectionMap);
-        return QB;
-    }
-
-    /**
      * ****************************** HUNTING REWARD QUERIES *****************************************
      */
 	
@@ -1801,106 +1682,6 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     }
 
     /**
-     * ****************************** MOGA WOODS REWARD QUERIES *****************************************
-     */
-	
-	/*
-	 * Get all moga woods reward monsters based on item
-	 */
-    public MogaWoodsRewardCursor queryMogaWoodsRewardItem(long id) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Table = S.TABLE_MOGA_WOODS_REWARDS;
-        qh.Selection = "mwr." + S.COLUMN_MOGA_WOODS_REWARDS_ITEM_ID + " = ? ";
-        qh.SelectionArgs = new String[]{"" + id};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new MogaWoodsRewardCursor(wrapJoinHelper(builderMogaWoodsReward(), qh));
-    }
-
-    /*
-     * Get all moga woods reward items based on monster
-     */
-    public MogaWoodsRewardCursor queryMogaWoodsRewardMonster(long id) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Selection = "mwr." + S.COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID + " = ? ";
-        qh.SelectionArgs = new String[]{"" + id};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new MogaWoodsRewardCursor(wrapJoinHelper(builderMogaWoodsReward(), qh));
-    }
-
-    /*
-     * Get all moga woods reward items based on monster and time
-     */
-    public MogaWoodsRewardCursor queryMogaWoodsRewardMonsterTime(long id, String time) {
-
-        QueryHelper qh = new QueryHelper();
-        qh.Columns = null;
-        qh.Table = S.TABLE_MOGA_WOODS_REWARDS;
-        qh.Selection = "mwr." + S.COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID + " = ? " + "AND " +
-                "mwr." + S.COLUMN_MOGA_WOODS_REWARDS_TIME + " = ? ";
-        qh.SelectionArgs = new String[]{"" + id, time};
-        qh.GroupBy = null;
-        qh.Having = null;
-        qh.OrderBy = null;
-        qh.Limit = null;
-
-        return new MogaWoodsRewardCursor(wrapJoinHelper(builderMogaWoodsReward(), qh));
-    }
-
-    /*
-     * Helper method to query for MogaWoods
-     */
-    private SQLiteQueryBuilder builderMogaWoodsReward() {
-//		SELECT mwr._id AS _id, mwr.monster_id, mwr.item_id,
-//		mwr.time, mwr.commodity_stars, mwr.kill_percentage,
-//		mwr.capture_percentage, 
-//		i.name AS iname, m.name AS mname 
-//		FROM moga_woods_rewards AS mwr
-//		LEFT OUTER JOIN monsters AS m ON mwr.monster_id = m._id 
-//		LEFT OUTER JOIN items AS i ON mwr.item_id = i._id;
-
-        String mwr = "mwr";
-        String i = "i";
-        String m = "m";
-
-        HashMap<String, String> projectionMap = new HashMap<String, String>();
-
-        projectionMap.put("_id", mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_ID + " AS " + "_id");
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_ITEM_ID, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_ITEM_ID);
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID);
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_TIME, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_TIME);
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_COMMODITY_STARS, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_COMMODITY_STARS);
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_KILL_PERCENTAGE, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_KILL_PERCENTAGE);
-        projectionMap.put(S.COLUMN_MOGA_WOODS_REWARDS_CAPTURE_PERCENTAGE, mwr + "." + S.COLUMN_MOGA_WOODS_REWARDS_CAPTURE_PERCENTAGE);
-
-        projectionMap.put(i + S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME);
-        projectionMap.put(i + S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + i + S.COLUMN_ITEMS_ICON_NAME);
-        projectionMap.put(m + S.COLUMN_MONSTERS_NAME, m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME);
-        projectionMap.put(m + S.COLUMN_MONSTERS_FILE_LOCATION, m + "." + S.COLUMN_MONSTERS_FILE_LOCATION + " AS " + m + S.COLUMN_MONSTERS_FILE_LOCATION);
-
-        //Create new querybuilder
-        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
-
-        QB.setTables(S.TABLE_MOGA_WOODS_REWARDS + " AS mwr" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "mwr." +
-                S.COLUMN_MOGA_WOODS_REWARDS_ITEM_ID + " = " + "i." + S.COLUMN_ITEMS_ID + " LEFT OUTER JOIN " + S.TABLE_MONSTERS +
-                " AS m " + " ON " + "mwr." + S.COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID + " = " + "m." + S.COLUMN_MONSTERS_ID);
-
-        QB.setProjectionMap(projectionMap);
-        return QB;
-    }
-
-    /**
      * ****************************** MONSTER QUERIES *****************************************
      */
 	
@@ -1918,7 +1699,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = null;
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
@@ -1938,7 +1719,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"1"};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
@@ -1984,7 +1765,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"0"};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = S.COLUMN_MONSTERS_NAME;
         qh.Limit = null;
 
         return new MonsterCursor(wrapHelper(qh));
