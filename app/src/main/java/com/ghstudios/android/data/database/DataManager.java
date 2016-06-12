@@ -346,34 +346,7 @@ public class DataManager {
 		cursor.close();
 		return gatherings;
 	}
-	
-/********************************* HUNTING FLEET QUERIES ******************************************/	
-	/* Get a Cursor that has a list of all HuntingFleets */
-	public HuntingFleetCursor queryHuntingFleets() {
-		return mHelper.queryHuntingFleets();
-	}
-	
-	/* Get a specific HuntingFleet */
-	public HuntingFleet getHuntingFleet(long id) {
-		HuntingFleet huntingFleet = null;
-		HuntingFleetCursor cursor = mHelper.queryHuntingFleet(id);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			huntingFleet = cursor.getHuntingFleet();
-		cursor.close();
-		return huntingFleet;
-	}
-	
-	/* Get a Cursor that has a list of HuntingFleet based on type */
-	public HuntingFleetCursor queryHuntingFleetType(String type) {
-		return mHelper.queryHuntingFleetType(type);
-	}
 
-	/* Get a Cursor that has a list of HuntingFleet based on location */
-	public HuntingFleetCursor queryHuntingFleetLocation(String location) {
-		return mHelper.queryHuntingFleetLocation(location);
-	}
 	
 /********************************* HUNTING REWARD QUERIES ******************************************/
 	/* Helper method: Get an array of all ids for a certain Monster 
@@ -555,64 +528,6 @@ public class DataManager {
     }
 
 
-/********************************* MOGA WOODS REWARD QUERIES ******************************************/
-	/* Get a Cursor that has a list of MogaWoodsReward based on Item */
-	public MogaWoodsRewardCursor queryMogaWoodsRewardItem(long id) {
-		return mHelper.queryMogaWoodsRewardItem(id);
-	}
-	
-	/* Get a Cursor that has a list of MogaWoodsReward based on Monster */
-	public MogaWoodsRewardCursor queryMogaWoodsRewardMonster(long id) {
-		return mHelper.queryMogaWoodsRewardMonster(id);
-	}
-
-	/* Get a Cursor that has a list of MogaWoodsReward based on Monster and time */
-	public MogaWoodsRewardCursor queryMogaWoodsRewardMonsterTime(long id, String time) {
-		return mHelper.queryMogaWoodsRewardMonsterTime(id, time);
-	}
-
-	/* Get an array of MogaWoodsReward based on Item */
-	public ArrayList<MogaWoodsReward> queryMogaWoodsRewardArrayItem(long id) {
-		ArrayList<MogaWoodsReward> rewards = new ArrayList<MogaWoodsReward>();
-		MogaWoodsRewardCursor cursor = mHelper.queryMogaWoodsRewardItem(id);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getMogaWoodsReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
-	}
-
-	/* Get an array of MogaWoodsReward based on Monster */
-	public ArrayList<MogaWoodsReward> queryMogaWoodsRewardArrayMonster(long id) {
-		ArrayList<MogaWoodsReward> rewards = new ArrayList<MogaWoodsReward>();
-		MogaWoodsRewardCursor cursor = mHelper.queryMogaWoodsRewardMonster(id);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getMogaWoodsReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
-	}
-
-	/* Get an array of MogaWoodsReward based on Monster and time */
-	public ArrayList<MogaWoodsReward> queryHuntingRewardArrayMonsterTime(long id, String time) {
-		ArrayList<MogaWoodsReward> rewards = new ArrayList<MogaWoodsReward>();
-		MogaWoodsRewardCursor cursor = mHelper.queryMogaWoodsRewardMonsterTime(id, time);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getMogaWoodsReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
-	}
-	
 /********************************* MONSTER QUERIES ******************************************/
 	/* Get a Cursor that has a list of all Monster */
 	public MonsterCursor queryMonsters() {
