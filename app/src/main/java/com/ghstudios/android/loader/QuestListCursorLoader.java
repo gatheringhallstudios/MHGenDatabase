@@ -10,7 +10,7 @@ import com.ghstudios.android.data.database.DataManager;
  *  how to call this loader
  */
 public class QuestListCursorLoader extends SQLiteCursorLoader {
-	public static String HUB_CARAVAN = "Caravan";
+	public static String HUB_CARAVAN = "Village";
 	public static String HUB_GUILD = "Guild";
 	public static String HUB_EVENT = "Event";
 	

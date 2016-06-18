@@ -126,16 +126,10 @@ public class QuestMonsterFragment extends ListFragment implements
 			
 			String cellMonsterText = monsterToQuest.getMonster().getName();
 			String cellTraitText = monsterToQuest.getMonster().getTrait(); 
-			String cellUnstableText = monsterToQuest.getUnstable();
+			String cellUnstableText = monsterToQuest.getUnstable()==1?"Unstable":"";
 			
 			if (!cellTraitText.equals("")) {
 				cellMonsterText = cellMonsterText + " (" + cellTraitText + ")";
-			}
-			if (cellUnstableText.equals("no")) {
-				cellUnstableText = "";
-			}
-			else {
-				cellUnstableText = "Unstable";
 			}
 			
 			monsterTextView.setText(cellMonsterText);
