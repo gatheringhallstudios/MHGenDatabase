@@ -6,7 +6,15 @@ package com.ghstudios.android.data.classes;
  * Note: Subclass of Item
  */
 public class Armor extends Equipment {
-	
+
+	public static int ARMOR_TYPE_BLADEMASTER = 0;
+	public static int ARMOR_TYPE_GUNNER = 1;
+	public static int ARMOR_TYPE_BOTH = 0;
+
+	public static int GENDER_MALE = 0;
+	public static int GENDER_FEMALE = 1;
+	public static int GENDER_BOTH = 2;
+
 	private String slot;			// Equipment type
 	private int defense;			// Base defense
 	private int max_defense;		// Max defense
@@ -15,8 +23,8 @@ public class Armor extends Equipment {
 	private int dragon_res;			// Dragon resistance
 	private int water_res;			// Water resistance
 	private int ice_res;			// Ice resistance
-	private String gender;			// Which gender can equip
-	private String hunter_type;		// Which hunter type can equip: Blademaster/Gunner
+	private int gender;				// Which gender can equip (0 = Male Only,1=Female Only,2 = Both)
+	private int hunter_type;		// Which hunter type can equip: Blademaster/Gunner (0 = Blademaster,1 = Gunner, 2 = Both)
 	private String mSlotString;		// unicode version of number of slots
 	
 	/* Default Constructor */
@@ -29,8 +37,8 @@ public class Armor extends Equipment {
 		this.fire_res = -1;
 		this.thunder_res = -1;
 		this.water_res = -1;
-		this.gender = "";
-		this.hunter_type = "";
+		this.gender = 2;
+		this.hunter_type = 2;
 	}
 
 	/* Getters and Setters */
@@ -98,19 +106,19 @@ public class Armor extends Equipment {
 		this.ice_res = ice_res;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
-	public String getHunterType() {
+	public int getHunterType() {
 		return hunter_type;
 	}
 
-	public void setHunterType(String hunter_type) {
+	public void setHunterType(int hunter_type) {
 		this.hunter_type = hunter_type;
 	}
 
