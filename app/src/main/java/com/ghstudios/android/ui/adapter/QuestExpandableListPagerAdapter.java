@@ -25,7 +25,7 @@ public class QuestExpandableListPagerAdapter extends FragmentPagerAdapter {
 		switch (index) {
 		case 0:
 			// Village Quests
-			return QuestExpandableListFragment.newInstance("Caravan");
+			return QuestExpandableListFragment.newInstance("Village");
 		case 1:
 			// Port Quests
 			return QuestExpandableListFragment.newInstance("Guild");

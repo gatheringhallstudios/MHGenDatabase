@@ -34,8 +34,8 @@ public class ArmorCursor extends CursorWrapper {
 		int dragon_res = getInt(getColumnIndex(S.COLUMN_ARMOR_DRAGON_RES));
 		int water_res = getInt(getColumnIndex(S.COLUMN_ARMOR_WATER_RES));
 		int ice_res = getInt(getColumnIndex(S.COLUMN_ARMOR_ICE_RES));
-		String gender = getString(getColumnIndex(S.COLUMN_ARMOR_GENDER));
-		String hunter_type = getString(getColumnIndex(S.COLUMN_ARMOR_HUNTER_TYPE));
+		int gender = getInt(getColumnIndex(S.COLUMN_ARMOR_GENDER));
+		int hunter_type = getInt(getColumnIndex(S.COLUMN_ARMOR_HUNTER_TYPE));
 		int num_slots = getInt(getColumnIndex(S.COLUMN_ARMOR_NUM_SLOTS));
 		
 		armor.setSlot(slot);

@@ -35,6 +35,14 @@ public class SkillTreeListFragment extends ListFragment implements
 	}
 
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+							 Bundle savedInstanceState) {
+
+		return inflater
+				.inflate(R.layout.fragment_generic_list, parent, false);
+	}
+
+	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		// You only ever load the runs, so assume this is the case
 		return new SkillTreeListCursorLoader(getActivity());

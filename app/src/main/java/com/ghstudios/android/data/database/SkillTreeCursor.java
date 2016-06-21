@@ -28,11 +28,11 @@ public class SkillTreeCursor extends CursorWrapper {
 
 		long skillTreeId = getLong(getColumnIndex(S.COLUMN_SKILL_TREES_ID));
 		String name = getString(getColumnIndex(S.COLUMN_SKILL_TREES_NAME));
-		String jpnName = getString(getColumnIndex(S.COLUMN_SKILL_TREES_JPN_NAME));
+		//String jpnName = getString(getColumnIndex(S.COLUMN_SKILL_TREES_JPN_NAME));
 		
 		skillTree.setId(skillTreeId);
 		skillTree.setName(name);
-		skillTree.setJpnName(jpnName);
+		//skillTree.setJpnName(jpnName);
 
 		return skillTree;
 	}

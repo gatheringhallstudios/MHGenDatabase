@@ -31,14 +31,11 @@ public class QuestExpandableListFragment extends Fragment {
     private String mHub;
     private static final String ARG_HUB = "QUEST_HUB";
     private ArrayList<Quest> quests;
-    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
 
-    private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
 
-    private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
 
     private ArrayList<ArrayList<Quest>> children;
 
@@ -132,7 +129,7 @@ public class QuestExpandableListFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
         ExpandableListView elv = (ExpandableListView) v
                 .findViewById(R.id.expandableListView);
-        if (mHub.equals("Caravan")) {
+        if (mHub.equals("Village")) {
             elv.setAdapter(new QuestListAdapter(caravan));
         } else if(mHub.equals("Guild")) {
             elv.setAdapter(new QuestListAdapter(guild));
@@ -247,10 +244,7 @@ public class QuestExpandableListFragment extends Fragment {
 
             questChildTextView.setText(getChild(i, i1).toString());
 
-            String key = ((Quest) getChild(i, i1)).getType();
-            if (key.equals("Normal")) {
-                key = "";
-            }
+            String key = ((Quest) getChild(i, i1)).getTypeText();
             keyChildTextView.setText(key);
 
             long questId = ((Quest) getChild(i, i1)).getId();

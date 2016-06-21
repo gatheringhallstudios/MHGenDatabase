@@ -109,7 +109,7 @@ public class S {
 	static final String TABLE_ITEMS = "items";
 	static final String COLUMN_ITEMS_ID = "_id";
 	static final String COLUMN_ITEMS_NAME = "name";
-	static final String COLUMN_ITEMS_JPN_NAME = "name_jp";
+	static final String COLUMN_ITEMS_JPN_NAME = "name_ja";
 	static final String COLUMN_ITEMS_TYPE = "type";
     static final String COLUMN_ITEMS_SUB_TYPE = "sub_type";
 	static final String COLUMN_ITEMS_RARITY = "rarity";
@@ -276,14 +276,14 @@ public class S {
 	static final String COLUMN_SKILLS_SKILL_TREE_ID = "skill_tree_id";
 	static final String COLUMN_SKILLS_REQUIRED_SKILL_TREE_POINTS = "required_skill_tree_points";
 	static final String COLUMN_SKILLS_NAME = "name";
-	static final String COLUMN_SKILLS_JPN_NAME = "name_jp";
+	static final String COLUMN_SKILLS_JPN_NAME = "name_ja";
 	static final String COLUMN_SKILLS_DESCRIPTION = "description";
 	
 	// Skill Trees
 	static final String TABLE_SKILL_TREES = "skill_trees";
 	static final String COLUMN_SKILL_TREES_ID = "_id";
 	static final String COLUMN_SKILL_TREES_NAME = "name";
-	static final String COLUMN_SKILL_TREES_JPN_NAME = "name_jp";
+	static final String COLUMN_SKILL_TREES_JPN_NAME = "name_ja";
 	
 	// Trading
 	static final String TABLE_TRADING = "trading";

@@ -8,14 +8,14 @@ public class MonsterToQuest {
 	private long id;			// id
 	private Monster monster;	// Monster
 	private Quest quest;		// Quest
-	private String unstable;	// Unstable or not
+	private int unstable;	// Unstable or not
 	
 	/* Default Constructors */
 	public MonsterToQuest() {
 		this.id = -1;
 		this.monster = null;
 		this.quest = null;
-		this.unstable = null;
+		this.unstable = 0;
 	}
 
 	/* Getters and Setters */
@@ -43,11 +43,11 @@ public class MonsterToQuest {
 		this.quest = quest;
 	}
 
-	public String getUnstable() {
+	public int getUnstable() {
 		return unstable;
 	}
 
-	public void setUnstable(String unstable) {
+	public void setUnstable(int unstable) {
 		this.unstable = unstable;
 	}
 }

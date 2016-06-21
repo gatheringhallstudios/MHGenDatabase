@@ -29,10 +29,11 @@ public class MonsterToQuestCursor extends CursorWrapper {
 		MonsterToQuest monster_to_quest = new MonsterToQuest();
 		
 		long id = getLong(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_ID));
-		String unstable = getString(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_UNSTABLE));
+		int unstable = getInt(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_UNSTABLE));
 
 		monster_to_quest.setId(id);
 		monster_to_quest.setUnstable(unstable);
+
 
 		// Get the Quest
 		Quest quest = new Quest();

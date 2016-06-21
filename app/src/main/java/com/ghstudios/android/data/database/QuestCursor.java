@@ -32,7 +32,7 @@ public class QuestCursor extends CursorWrapper {
 		String name = getString(getColumnIndex("q" + S.COLUMN_QUESTS_NAME));
 		String goal = getString(getColumnIndex(S.COLUMN_QUESTS_GOAL));
 		String hub = getString(getColumnIndex(S.COLUMN_QUESTS_HUB));
-		String type = getString(getColumnIndex(S.COLUMN_QUESTS_TYPE));
+		int type = getInt(getColumnIndex(S.COLUMN_QUESTS_TYPE));	//0=Normal,1=Key,2=Urgent
 		String stars = getString(getColumnIndex(S.COLUMN_QUESTS_STARS));
 		long locationId = getLong(getColumnIndex(S.COLUMN_QUESTS_LOCATION_ID));
 		//String locationTime = getString(getColumnIndex(S.COLUMN_QUESTS_LOCATION_TIME));

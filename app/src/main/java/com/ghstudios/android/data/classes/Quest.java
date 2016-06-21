@@ -9,9 +9,10 @@ public class Quest {
 	private String name;		// Quest name
 	private String goal;		// Clear condition
 	private String hub;			// Port or village
-	private String type;		// Key quest or not
+	private int type;			// 0=Normal,1=Key,2=Urgent
 	private String stars;		// # of stars
 	private Location location;	// Location
+	private int hunter_type;	// 0 = Hunter / 1 = Cat
 	//private String locationTime;// Day or Night
 	private int time_limit;		// Time limit
 	private int fee;			// Quest fee
@@ -27,7 +28,7 @@ public class Quest {
 		this.name = "";
 		this.goal = "";
 		this.hub = "";
-		this.type = "";
+		this.type = 0;
 		this.stars = "";
 		this.location = null;
 		//this.locationTime = "";
@@ -73,13 +74,24 @@ public class Quest {
 		this.hub = hub;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
+
+	public String getTypeText(){
+		String keyText;
+		if(type == 0)keyText = "";
+		else if(type == 1)keyText = "Key";
+		else keyText = "Urgent";
+		return keyText;
+	}
+
+	public int getHunterType(){return hunter_type;}
+	public void setHunterType(int ht){hunter_type = ht;}
 
 	public String getStars() {
 		return stars;

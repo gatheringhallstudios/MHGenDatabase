@@ -142,7 +142,7 @@ public class DataManager {
 	}
 	
 	/* Get an array of Armor based on hunter type */
-	public ArrayList<Armor> queryArmorArrayType(String type) {
+	public ArrayList<Armor> queryArmorArrayType(int type) {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		ArmorCursor cursor = mHelper.queryArmorType(type);
 		cursor.moveToFirst();
@@ -156,7 +156,7 @@ public class DataManager {
 	}
 	
 	/* Get a Cursor that has a list of Armor based on hunter type */
-	public ArmorCursor queryArmorType(String type) {
+	public ArmorCursor queryArmorType(int type) {
 		return mHelper.queryArmorType(type);
 	}
 
