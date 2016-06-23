@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/list_item_large"
     android:layout_width="match_parent"
-    android:background="@drawable/clicked_states_context"
     android:clickable="false"
     android:orientation="horizontal">
 

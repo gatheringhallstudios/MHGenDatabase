@@ -112,6 +112,7 @@
     <!-- Begin styles for lists -->
 
     <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:id">@android:id/list</item>
@@ -140,7 +141,7 @@
     </style>
 
     <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/clicked_states_white</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -151,13 +152,13 @@
 
     <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
     <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/clicked_states_white</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="list_sub_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -165,10 +166,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="list_item_large" parent="@style/list_item">
         <item name="android:layout_height">64dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="text_large" parent="@style/Theme.AppCompat.Light.NoActionBar">
