@@ -303,7 +303,7 @@ public class WishlistListFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_list_view_generic,
+			return inflater.inflate(R.layout.fragment_list_view_generic, //TODO Create custom wishlist layout
 					parent, false);
 		}
 
