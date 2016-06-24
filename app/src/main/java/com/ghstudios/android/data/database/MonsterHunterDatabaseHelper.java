@@ -1039,7 +1039,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"" + id};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = "c.type";
         qh.Limit = null;
 
         return new ComponentCursor(wrapJoinHelper(builderComponent(), qh));
