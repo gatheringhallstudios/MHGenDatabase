@@ -31,11 +31,13 @@ public class QuestExpandableListFragment extends Fragment {
     private String mHub;
     private static final String ARG_HUB = "QUEST_HUB";
     private ArrayList<Quest> quests;
-    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
+    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 "};
 
     private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
 
     private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
+
+    private String[] permit = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ","8","9","10"};
 
     private ArrayList<ArrayList<Quest>> children;
 
@@ -133,7 +135,10 @@ public class QuestExpandableListFragment extends Fragment {
             elv.setAdapter(new QuestListAdapter(caravan));
         } else if(mHub.equals("Guild")) {
             elv.setAdapter(new QuestListAdapter(guild));
-        } else {
+        } else if(mHub.equals("Permit")){
+            elv.setAdapter(new QuestListAdapter(permit));
+        }
+        else{
             elv.setAdapter(new QuestListAdapter(event));
         }
 

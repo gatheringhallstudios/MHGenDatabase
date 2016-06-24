@@ -13,6 +13,7 @@ public class QuestListCursorLoader extends SQLiteCursorLoader {
 	public static String HUB_CARAVAN = "Village";
 	public static String HUB_GUILD = "Guild";
 	public static String HUB_EVENT = "Event";
+	public static String HUB_PERMIT = "Permit";
 	
 	private String hub; 	// "Village", "Port", or "DLC"
 	private String stars; 	// "1", "2", "3", "4", "5", "6", "7", "8", or
