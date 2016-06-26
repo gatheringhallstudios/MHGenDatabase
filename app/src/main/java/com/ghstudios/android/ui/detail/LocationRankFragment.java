@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.monxalo.android.widget.SectionCursorAdapter;
@@ -118,6 +119,16 @@ public class LocationRankFragment extends ListFragment implements
 		}
 
 		@Override
+		protected String getCustomGroup(Cursor c) {
+			Gathering g = ((GatheringCursor)c).getGathering();
+			return g.getArea() +" "
+					+(g.isFixed()?"Fixed ":"Random ")
+					+g.getSite() + " "
+					+g.getGroup()
+					+(g.isFixed()?"":(g.isRare()?" [Rare]":" [Normal]"));
+		}
+
+		@Override
 		public View newView(Context context, Cursor cursor, ViewGroup parent) {
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
@@ -132,25 +143,21 @@ public class LocationRankFragment extends ListFragment implements
 			Gathering gathering = mGatheringCursor.getGathering();
 
 			// Set up the text view
-			LinearLayout itemLayout = (LinearLayout) view
+			RelativeLayout itemLayout = (RelativeLayout) view
 					.findViewById(R.id.listitem);
 			ImageView itemImageView = (ImageView) view
 					.findViewById(R.id.item_image);
 
 			TextView itemTextView = (TextView) view.findViewById(R.id.item);
-			TextView areaTextView = (TextView) view.findViewById(R.id.area);
-			TextView methodTextView = (TextView) view.findViewById(R.id.method);
-            TextView rateTextView = (TextView) view.findViewById(R.id.rate);
+            TextView rateTextView = (TextView) view.findViewById(R.id.percentage);
+			TextView amountTextView = (TextView)view.findViewById(R.id.amount);
 
 			String cellItemText = gathering.getItem().getName();
-			String cellAreaText = gathering.getArea();
-			String cellMethodText = gathering.getSite();
             long rate = (long) gathering.getRate();
 
 			itemTextView.setText(cellItemText);
-			areaTextView.setText(cellAreaText);
-			methodTextView.setText(cellMethodText);
             rateTextView.setText(Long.toString(rate) + "%");
+			amountTextView.setText("x" + gathering.getQuantity());
 
 			Drawable i = null;
 			String cellImage = "icons_items/"

@@ -82,8 +82,12 @@ public class S {
 	static final String COLUMN_GATHERING_AREA = "area";
 	static final String COLUMN_GATHERING_SITE = "site";
 	static final String COLUMN_GATHERING_RANK = "rank";
+	static final String COLUMN_GATHERING_GROUP = "group_num";
+	static final String COLUMN_GATHERING_FIXED = "fixed";
+	static final String COLUMN_GATHERING_RARE = "rare";
     static final String COLUMN_GATHERING_RATE = "percentage";
-	
+    static final String COLUMN_GATHERING_QUANTITY = "quantity";
+
 	// Hunting Fleet
 	static final String TABLE_HUNTING_FLEET = "hunting_fleet";
 	static final String COLUMN_HUNTING_FLEET_ID = "_id";
