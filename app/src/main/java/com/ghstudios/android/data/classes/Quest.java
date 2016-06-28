@@ -21,6 +21,15 @@ public class Quest {
     private String sub_goal;		// Subquest Clear condition
     private int sub_reward;			// Subquest reward in zenny
     private int sub_hrp;			// Subquest Hunting rank points
+
+	private int goal_type;			//Quest goal -> one of the following constants:
+
+	public static final int QUEST_GOAL_HUNT=0;
+	public static final int QUEST_GOAL_SLAY=1;
+	public static final int QUEST_GOAL_CAPTURE=2;
+	public static final int QUEST_GOAL_DELIVER=3;
+	public static final int QUEST_GOAL_HUNTATHON=4;
+	public static final int QUEST_GOAL_MARATHON=5;
 	
 	/* Default Constructor */
 	public Quest() {
@@ -39,6 +48,7 @@ public class Quest {
         this.sub_goal = "";
         this.sub_reward = -1;
         this.sub_hrp = -1;
+		this.goal_type = QUEST_GOAL_HUNT;
 	}
 
 	/* Getters and Setters */
@@ -172,7 +182,10 @@ public class Quest {
     public void setSubHrp(int sub_hrp) {
         this.sub_hrp = sub_hrp;
     }
-	
+
+	public int getGoalType(){return goal_type;}
+	public void setGoalType(int gt){goal_type = gt;}
+
 	@Override
 	public String toString(){
 		return this.name;

@@ -258,6 +258,8 @@ public class S {
     static final String COLUMN_QUESTS_SUB_GOAL = "sub_goal";
     static final String COLUMN_QUESTS_SUB_REWARD = "sub_reward";
     static final String COLUMN_QUESTS_SUB_HRP = "sub_hrp";
+    static final String COLUMN_QUESTS_GOAL_TYPE = "goal_type";
+	static final String COLUMN_QUESTS_HUNTER_TYPE = "hunter_type";
 
     // Quest Pre-Requirements
     static final String TABLE_QUEST_PREREQS = "quest_prereqs";

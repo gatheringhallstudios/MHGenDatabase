@@ -243,9 +243,21 @@ public class QuestExpandableListFragment extends Fragment {
                     R.layout.fragment_quest_expandablelist_child_item,
                     viewGroup, false);
 
+            ImageView iv = (ImageView)v.findViewById(R.id.item_image);
             TextView questChildTextView = (TextView) v.findViewById(R.id.name_text);
             TextView keyChildTextView = (TextView) v.findViewById(R.id.key);
             LinearLayout root = (LinearLayout) v.findViewById(R.id.root);
+
+            Quest q = (Quest)getChild(i,i1);
+
+            if(q.getHunterType() == 1)
+                iv.setImageResource(R.drawable.quest_cat);
+            else if(q.getGoalType() == Quest.QUEST_GOAL_DELIVER)
+                iv.setImageResource(R.drawable.quest_icon_green);
+            else if(q.getGoalType() == Quest.QUEST_GOAL_CAPTURE)
+                iv.setImageResource(R.drawable.quest_icon_grey);
+            else
+                iv.setImageResource(R.drawable.quest_icon_red);
 
             questChildTextView.setText(getChild(i, i1).toString());
 
