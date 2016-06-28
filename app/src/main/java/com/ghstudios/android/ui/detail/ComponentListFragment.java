@@ -86,7 +86,7 @@ public class ComponentListFragment extends ListFragment implements
 		private ComponentCursor mComponentCursor;
 
 		public ComponentListCursorAdapter(Context context, ComponentCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header,11);
+			super(context, cursor, R.layout.listview_generic_header,11);
 			mComponentCursor = cursor;
 		}
 

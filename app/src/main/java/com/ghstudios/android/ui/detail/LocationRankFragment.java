@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -114,7 +113,7 @@ public class LocationRankFragment extends ListFragment implements
 
 		public GatheringListCursorAdapter(Context context,
 				GatheringCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header, "area");
+			super(context, cursor, R.layout.listview_generic_header, "area");
 			mGatheringCursor = cursor;
 		}
 
