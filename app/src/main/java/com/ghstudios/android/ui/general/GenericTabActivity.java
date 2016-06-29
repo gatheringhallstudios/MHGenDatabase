@@ -33,7 +33,7 @@ public abstract class GenericTabActivity extends GenericActionBarActivity {
 
         // Set up tabs
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setCustomTabView(R.layout.sliding_tab_layout, R.id.text1);
+        //mSlidingTabLayout.setCustomTabView(R.layout.sliding_tab_layout, R.id.text1);
 
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
