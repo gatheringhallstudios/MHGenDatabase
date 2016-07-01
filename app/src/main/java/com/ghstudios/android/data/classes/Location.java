@@ -43,7 +43,7 @@ public class Location {
 	}
 
     public String getFileLocationMini() {
-        return file_location_mini;
+        return file_location;
     }
 
     public void setFileLocationMini(String file_location_mini) {
