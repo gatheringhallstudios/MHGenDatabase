@@ -46,7 +46,7 @@ public class DrawSharpness extends View {
 
 	int orangeColor = Color.rgb(255, 150, 0);
 	//int purpleColor = Color.rgb(120, 81, 169);
-    int blueColor = Color.rgb(0,96,210);
+    int blueColor = Color.rgb(20,131,208);
 
 	Paint paint = new Paint();
 
@@ -135,18 +135,18 @@ public class DrawSharpness extends View {
         // Draw top bar
         int bartop = outer_margin;
         int barbottom = (int) Math.floor(outer_margin+mainBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop, barbottom,
+        drawBar(canvas, outer_margin, scalefactor, bartop, barbottom,
                 mRed1, mOrange1, mYellow1, mGreen1, mBlue1, mWhite1, mPurple1);
 
         // Draw bottom bar
         int bartop2 = (int) Math.floor(barbottom+inner_margin);
         int barbottom2 = (int) Math.floor(bartop2+subBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop2, barbottom2,
+        drawBar(canvas, outer_margin, scalefactor, bartop2, barbottom2,
                 mRed2, mOrange2, mYellow2, mGreen2, mBlue2, mWhite2, mPurple2);
 
         int bartop3 = (int) Math.floor(barbottom2+inner_margin);
         int barbottom3 = (int) Math.floor(bartop3+subBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop3, barbottom3,
+        drawBar(canvas, outer_margin, scalefactor, bartop3, barbottom3,
                 mRed3, mOrange3, mYellow3, mGreen3, mBlue3, mWhite3, mPurple3);
 
 	}
