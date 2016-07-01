@@ -1,833 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tool="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false"
-        android:orientation="vertical" >
-
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/section_header"
-            android:text="Basic Info" />
-
+        android:layout_height="wrap_content"
+        android:background="#223322">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            style="@style/main_image"/>
+        <TextView
+            android:id="@+id/detail_weapon_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="26sp"
+            android:textColor="@color/text_primary_color"
+            android:text="Bowgun"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".3"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin" >
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/detail_weapon_attack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:text="180"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textSize="34sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name:"
-                    style="@style/text_small"
-                    android:textColor="@color/text_color" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Attack"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type"
-                    android:textColor="@color/text_color" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/detail_weapon_affinity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:text="5%"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textSize="34sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Attack:"
-                    android:textColor="@color/text_color" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Affinity"
+                        android:textStyle="bold"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/detail_weapon_slot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:text="---"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textSize="34sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rarity:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Slots:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Affinity:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Defense:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Creation Cost:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Upgrade Cost:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reload:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recoil:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Steadiness:"
-                    android:textColor="@color/text_color" />
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Slots"
+                        android:textStyle="bold"
+                        android:textColor="@color/weapon_header_property_color"
+                        android:textSize="16sp"/>
+                </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/text_color_secondary"></LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".7"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
 
+                <!--Special Value-->
                 <TextView
-                    android:id="@+id/detail_weapon_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_attack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_rarity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_slot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_affinity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_defense"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_creation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_upgrade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/detail_weapon_bowgun_reload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Recoil"/>
                 <TextView
                     android:id="@+id/detail_weapon_bowgun_recoil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
+                    style="@style/weapon_detail_property_value"
+                    android:text="Average"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Recoil"/>
+                <TextView
+                    android:id="@+id/detail_weapon_bowgun_reload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/weapon_detail_property_value"
+                    android:text="Faster"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Deviation"/>
                 <TextView
                     android:id="@+id/detail_weapon_bowgun_steadiness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/section_header"
-            android:text="Ammo" />
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_header_row"
-                android:background="@color/subheading_color">
-
+                    style="@style/weapon_detail_property_value"
+                    android:text="None"/>
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Lvl"
-                    android:textColor="@color/text_color_secondary" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text="1"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text="2"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text="3"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text=""
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text="1"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text="2"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.165"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@color/text_color" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_row">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Normal"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/normal1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    tool:text="2"
-                    style="@style/ammo_default" />
-
-                <TextView
-                    android:id="@+id/normal2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/normal3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Poison"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/poison1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/poison2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Fire"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/flaming"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_row">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Pierce"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/pierce1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    tool:text="8"
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/pierce2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/pierce3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Paralysis"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/para1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/para2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Water"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/water"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_row">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Pellet"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/pellet1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/pellet2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/pellet3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Sleep"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/sleep1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/sleep2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Thunder"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/thunder"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_row">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Crag"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/crag1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/crag2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/crag3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Exhaust"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/exhaust1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/exhaust2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Ice"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/freeze"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ammo_table_row">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:gravity="left"
-                    android:text="Clust"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/clust1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default" />
-
-                <TextView
-                    android:id="@+id/clust2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/clust3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Recovery"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/recov1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:id="@+id/recov2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.125"
-                    android:gravity="left"
-                    android:text="Dragon"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/dragon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.04"
-                    android:gravity="left"
-                    android:text=""
-                    style="@style/ammo_default"  />
-
-
-            </TableRow>
-
-        </TableLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:id="@+id/detail_weapon_bowgun_special"
+                    android:id="@+id/detail_weapon_defense_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/special1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"
-                            android:textColor="@color/text_color" />
-
-                        <TextView
-                            android:id="@+id/value1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/text_color" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/special2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"
-                            android:textColor="@color/text_color" />
-
-                        <TextView
-                            android:id="@+id/value2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/text_color" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/special3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"
-                            android:textColor="@color/text_color" />
-
-                        <TextView
-                            android:id="@+id/value3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/text_color" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/special4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"
-                            android:textColor="@color/text_color" />
-
-                        <TextView
-                            android:id="@+id/value4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/text_color" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/special5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"
-                            android:textColor="@color/text_color" />
-
-                        <TextView
-                            android:id="@+id/value5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/text_color" />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Defense"/>
+                <TextView
+                    android:id="@+id/detail_weapon_defense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/weapon_detail_property_value"
+                    android:text="10"/>
+                <!--Upgrade Cost-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Upgrade Cost"/>
+                <TextView
+                    android:id="@+id/detail_weapon_upgrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/weapon_detail_property_value"
+                    android:text="48000z"/>
+                <!--Creation Cost-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Creation Cost"/>
+                <TextView
+                    android:id="@+id/detail_weapon_creation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/weapon_detail_property_value"
+                    android:text="-"/>
+                <!--Creation Cost-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Rarity"/>
+                <TextView
+                    android:id="@+id/detail_weapon_rarity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/weapon_detail_property_value"
+                    android:text="5"/>
+                <!--Creation Cost-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_small_secondary"
+                    android:layout_marginBottom="4dp"
+                    android:text="Description"/>
+                <TextView
+                    android:id="@+id/detail_weapon_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_medium"
+                    android:textColor="@color/weapon_property_color"
+                    android:layout_marginBottom="8dp"
+                    android:text="5"/>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

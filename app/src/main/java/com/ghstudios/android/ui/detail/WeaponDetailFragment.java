@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
@@ -19,9 +20,9 @@ public class WeaponDetailFragment extends Fragment {
 	protected Weapon mWeapon;
 
 	protected TextView mWeaponLabelTextView, mWeaponTypeTextView,
-			mWeaponAttackTextView,
+			mWeaponAttackTextView,mWeaponDescription,
 			mWeaponRarityTextView, mWeaponSlotTextView,
-			mWeaponAffinityTextView, mWeaponDefenseTextView,
+			mWeaponAffinityTextView, mWeaponDefenseTextView,mWeaponDefenseTextTextView,
 			mWeaponCreationTextView, mWeaponUpgradeTextView;
 
 	public static WeaponDetailFragment newInstance(long weaponId) {
@@ -50,24 +51,23 @@ public class WeaponDetailFragment extends Fragment {
 	}
 	
 	protected void updateUI() throws IOException {
-		mWeaponLabelTextView.setText(mWeapon.getName());
+		//mWeaponLabelTextView.setText(mWeapon.getName());
 		mWeaponTypeTextView.setText(mWeapon.getWtype());
 		mWeaponAttackTextView.setText("" + mWeapon.getAttack());
 		mWeaponRarityTextView.setText("" + mWeapon.getRarity());
 		mWeaponSlotTextView.setText("" + mWeapon.getSlotString());
-		mWeaponDefenseTextView.setText("" + mWeapon.getDefense());
+		mWeaponDescription.setText(mWeapon.getDescription());
 
-        String affinity;
-        if(!mWeapon.getAffinity().equals(""))
-        {
-            affinity = mWeapon.getAffinity();
-        }
-        else
-        {
-            affinity = "0";
-        }
+		if(mWeapon.getDefense()==0)
+		{
+			mWeaponDefenseTextTextView.setVisibility(View.GONE);
+			mWeaponDefenseTextView.setVisibility(View.GONE);
+		}
+		else
+			mWeaponDefenseTextView.setText("" + mWeapon.getDefense());
 
-        mWeaponAffinityTextView.setText("" + affinity + "%");
+		mWeaponAffinityTextView.setText(mWeapon.getAffinity()+"%");
+
 		
 		String createCost = "" + mWeapon.getCreationCost() + "z";
 		String upgradeCost = "" + mWeapon.getUpgradeCost() + "z";
@@ -82,30 +82,6 @@ public class WeaponDetailFragment extends Fragment {
 		mWeaponCreationTextView.setText(createCost);
 		mWeaponUpgradeTextView.setText(upgradeCost);
 		}
-
-	protected String getElementData(String element) {
-		if (element.startsWith("FI")) {
-			return "Fire " + element.substring(2);
-		} else if (element.startsWith("WA")) {
-			return "Water " + element.substring(2);
-		} else if (element.startsWith("IC")) {
-			return "Ice " + element.substring(2);
-		} else if (element.startsWith("TH")) {
-			return "Thunder " + element.substring(2);
-		} else if (element.startsWith("DR")) {
-			return "Dragon " + element.substring(2);
-		} else if (element.startsWith("PA")) {
-			return "Paralysis " + element.substring(2);
-		} else if (element.startsWith("PO")) {
-			return "Poison " + element.substring(2);
-		} else if (element.startsWith("SL")) {
-			return "Sleep " + element.substring(3);
-		} else if (element.startsWith("BL")) {
-			return "Blast " + element.substring(3);
-		} else {
-			return "";
-		}
-	}
 
 	public class WeaponLoaderCallbacks implements LoaderCallbacks<Weapon> {
 

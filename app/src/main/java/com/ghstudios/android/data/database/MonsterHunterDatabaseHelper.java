@@ -2518,6 +2518,19 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         return new WeaponCursor(wrapJoinHelper(builderWeapon(), qh));
     }
 
+    public Cursor queryWeaponTypeForWeapon(long id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = new String[]{S.COLUMN_WEAPONS_WTYPE};
+        qh.Table = S.TABLE_WEAPONS;
+        qh.Selection = S.COLUMN_WEAPONS_ID + " = ? ";
+        qh.SelectionArgs = new String[]{Long.toString(id)};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = null;
+        qh.Limit = null;
+        return getWritableDatabase().query(qh.Table,qh.Columns, qh.Selection, qh.SelectionArgs, qh.GroupBy, qh.Having, qh.OrderBy, qh.Limit);
+    }
+
     /*
      * Get a specific weapon based on weapon type
      */

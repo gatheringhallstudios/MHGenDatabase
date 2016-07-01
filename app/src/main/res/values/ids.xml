@@ -58,7 +58,8 @@
     <item name="combining_list_fragment" type="id"/>
     <item name="decoration_list_fragment" type="id"/>
     <item name="horn_melodies_list_fragment" type="id"/>
-    <item name="hunting_fleet_list_fragment" type="id"/>
+    <item name="bowgun_ammo_fragment" type="id"/>
+    <item name="bow_coating_fragment" type="id"/>
     <item name="item_list_fragment" type="id"/>
     <item name="location_grid_fragment" type="id"/>
     <item name="monster_grid_fragment" type="id"/>
