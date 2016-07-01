@@ -358,34 +358,6 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
         return "";
     }
 
-    private class HornMelodiesLoaderCallbacks implements LoaderManager.LoaderCallbacks<Cursor> {
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-            // Pass empty string if HornNotes is null
-            return new HornMelodyListCursorLoader(getActivity(), (mWeapon.getHornNotes() == null) ? "" : mWeapon.getHornNotes());
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            // Assign adapter to horn songs listview only if weapon is horn
-            WeaponBladeDetailFragment.HornMelodiesCursorAdapter adapter = new WeaponBladeDetailFragment.HornMelodiesCursorAdapter(
-                    getActivity(), (HornMelodiesCursor) cursor);
-            mWeaponHornMelodiesListView.setAdapter(adapter);
-
-            // Resize listview so its height is based on number of items
-            // If this starts getting bugged you need to replace the entire ListView
-            // with a dynamically populated LinearLayout. Example in MonsterDamageFragment.java
-            MHUtils.setListViewHeightBasedOnChildren(mWeaponHornMelodiesListView);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {
-            // Stop using the cursor (via the adapter)
-            mWeaponHornMelodiesListView.setAdapter(null);
-        }
-    }
-
-
     // This class is replicating the one from WeaponDetailFragment so we can load HornMelodiesLoaderCallbacks afterwards
     public class WeaponLoaderCallbacks2 implements LoaderManager.LoaderCallbacks<Weapon> {
 

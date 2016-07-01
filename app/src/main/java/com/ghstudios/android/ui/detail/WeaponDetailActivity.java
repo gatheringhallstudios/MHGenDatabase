@@ -29,6 +29,7 @@ public class WeaponDetailActivity extends GenericTabActivity {
 
     private long id;
     private String name;
+    String wtype;
 
 
     @Override
@@ -38,10 +39,24 @@ public class WeaponDetailActivity extends GenericTabActivity {
         id = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
         name = DataManager.get(getApplicationContext()).getWeapon(id).getName();
         setTitle(name);
+
+        //JOE: This is so we can add/remove tabs as needed based on type.
+        //Goes against the design of doing queries on the UI Thread, but
+        //this query is super fast and won't cause issues.
+        //
+        //Possible redesign is to pass in the wtype, almost all links here should know it.
+        wtype = DataManager.get(this).getWeaponType(id);
+
+
         // Initialization
         viewPager = (ViewPager) findViewById(R.id.pager);
-        mAdapter = new WeaponDetailPagerAdapter(getSupportFragmentManager(), getApplicationContext(), id);
+        mAdapter = new WeaponDetailPagerAdapter(getSupportFragmentManager(), getApplicationContext(), id,wtype);
         viewPager.setAdapter(mAdapter);
+
+        //If we have a lot of tabs
+        if(mAdapter.getCount()>3)
+            mSlidingTabLayout.setDistributeEvenly(false);
+
 
         mSlidingTabLayout.setViewPager(viewPager);
     }
