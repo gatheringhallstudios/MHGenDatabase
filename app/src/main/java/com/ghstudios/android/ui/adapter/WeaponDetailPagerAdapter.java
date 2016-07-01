@@ -10,6 +10,7 @@ import com.ghstudios.android.ui.detail.ComponentListFragment;
 import com.ghstudios.android.ui.detail.WeaponBladeDetailFragment;
 import com.ghstudios.android.ui.detail.WeaponBowDetailFragment;
 import com.ghstudios.android.ui.detail.WeaponBowgunDetailFragment;
+import com.ghstudios.android.ui.detail.WeaponDetailAmmoFragment;
 import com.ghstudios.android.ui.detail.WeaponSongFragment;
 import com.ghstudios.android.ui.detail.WeaponTreeFragment;
 
@@ -30,6 +31,8 @@ public class WeaponDetailPagerAdapter extends FragmentPagerAdapter {
 
 		if(wtype.equals("Hunting Horn")){
 			tabs = new String[]{"Detail","Melodies","Family Tree","Components"};
+		}else if(wtype.contains("Bowgun")){
+			tabs = new String[]{"Detail","Ammo","Family Tree","Components"};
 		}
 
 	}
@@ -58,6 +61,8 @@ public class WeaponDetailPagerAdapter extends FragmentPagerAdapter {
 			return ComponentListFragment.newInstance(weaponId);
 		case "Melodies":
 			return WeaponSongFragment.newInstance(weaponId);
+		case "Ammo":
+			return WeaponDetailAmmoFragment.newInstance(weaponId);
 		default:
 			return null;
 		}

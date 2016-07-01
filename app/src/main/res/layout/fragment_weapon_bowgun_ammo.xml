@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/section_header"
+        android:text="Ammo" />
+
+    <TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center_horizontal">
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_header_row"
+        android:background="@color/subheading_color">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Lvl"
+            android:textColor="@color/text_color_secondary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text="1"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text="2"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text="3"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text=""
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text="1"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text="2"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.165"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/text_color" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Normal"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/normal1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            tool:text="2"
+            style="@style/ammo_default" />
+
+        <TextView
+            android:id="@+id/normal2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/normal3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Poison"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/poison1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/poison2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Fire"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/flaming"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Pierce"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/pierce1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            tool:text="8"
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/pierce2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/pierce3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Paralysis"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/para1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/para2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Water"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/water"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Pellet"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/pellet1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/pellet2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/pellet3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Sleep"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/sleep1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/sleep2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Thunder"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/thunder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Crag"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/crag1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/crag2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/crag3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Exhaust"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/exhaust1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/exhaust2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Ice"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/freeze"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ammo_table_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="left"
+            android:text="Clust"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/clust1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default" />
+
+        <TextView
+            android:id="@+id/clust2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/clust3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Recovery"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/recov1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:id="@+id/recov2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.125"
+            android:gravity="left"
+            android:text="Dragon"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/dragon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.04"
+            android:gravity="left"
+            android:text=""
+            style="@style/ammo_default"  />
+
+
+    </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
