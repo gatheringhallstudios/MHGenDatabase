@@ -28,6 +28,9 @@
     <color name="transparentlight">#20D7CCC8</color>
     <color name="transparentDark">#82434343</color>
 
+    <!--Styling for weapon detail-->
+    <color name="weapon_property_color">#565656</color>
+
     <!-- RARITY COLORS -->
     <color name="rare_1">#757575</color>
     <color name="rare_2">#B53BC6</color>

@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,11 +33,12 @@ import com.ghstudios.android.loader.HornMelodyListCursorLoader;
 public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 
 	private TextView mWeaponSpecialTypeTextView, mWeaponSpecialTextView,
-            mWeaponElementTextView;
+            mWeaponElementTextView,mWeaponElementTypeTextView,mWeaponNoteText;
 	private ImageView mWeaponNote1ImageView,
 			mWeaponNote2ImageView, mWeaponNote3ImageView;
     private DrawSharpness mWeaponSharpnessDrawnView;
     private View DividerView;
+    View NoteContainer;
 
     // Public because this needs to be accessed by superclass WeaponDetailFragment
     public  ListView mWeaponHornMelodiesListView;
@@ -73,17 +75,20 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_weapon_blade_detail,
+		View view = inflater.inflate(R.layout.weapon_style_test,
 				container, false);
 
-		mWeaponLabelTextView = (TextView) view
-				.findViewById(R.id.detail_weapon_name);
+		//mWeaponLabelTextView = (TextView) view
+		//		.findViewById(R.id.detail_weapon_name);
+        mWeaponDescription = (TextView) view
+                .findViewById(R.id.detail_weapon_description);
 		mWeaponTypeTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_type);
 		mWeaponAttackTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_attack);
 		mWeaponElementTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_element);
+        mWeaponElementTypeTextView = (TextView)view.findViewById(R.id.detail_weapon_element_text);
 		mWeaponSharpnessDrawnView = (DrawSharpness) view
 				.findViewById(R.id.detail_weapon_blade_sharpness);
 		mWeaponRarityTextView = (TextView) view
@@ -94,6 +99,8 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 				.findViewById(R.id.detail_weapon_affinity);
 		mWeaponDefenseTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_defense);
+        mWeaponDefenseTextTextView=(TextView) view
+                .findViewById(R.id.detail_weapon_defense_text);
 		mWeaponCreationTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_creation);
 		mWeaponUpgradeTextView = (TextView) view
@@ -102,18 +109,19 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 				.findViewById(R.id.detail_weapon_blade_special);
 		mWeaponSpecialTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_blade_special_value);
-		
+        mWeaponNoteText = (TextView)view.findViewById(R.id.detail_weapon_blade_note_text);
+		NoteContainer = view.findViewById(R.id.detail_weapon_note_container);
 		mWeaponNote1ImageView = (ImageView) view
-				.findViewById(R.id.detail_weapon_blade_note1);		
+				.findViewById(R.id.detail_weapon_blade_note1);
 		mWeaponNote2ImageView = (ImageView) view
-				.findViewById(R.id.detail_weapon_blade_note2);		
+				.findViewById(R.id.detail_weapon_blade_note2);
 		mWeaponNote3ImageView = (ImageView) view
 				.findViewById(R.id.detail_weapon_blade_note3);
 
-		mWeaponHornMelodiesListView = (ListView) view
-                .findViewById(R.id.horn_melodies_list);
+	//	mWeaponHornMelodiesListView = (ListView) view
+      //          .findViewById(R.id.horn_melodies_list);
 
-        DividerView = view.findViewById(R.id.divider);
+        //DividerView = view.findViewById(R.id.divider);
 
 		return view;
 	}
@@ -137,9 +145,9 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 		
 		/* Hunting Horn notes */
 		if (mWeapon.getWtype().equals("Hunting Horn")) {
-            DividerView.setVisibility(View.VISIBLE);
-
-			mWeaponSpecialTypeTextView.setText("Horn Notes:");
+//            DividerView.setVisibility(View.VISIBLE);
+//
+//			mWeaponSpecialTypeTextView.setText("Horn Notes:");
 			
 			notes = mWeapon.getHornNotes();
 			
@@ -163,44 +171,50 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 				}
 			}
 		}
+        else
+        {
+            mWeaponNoteText.setVisibility(View.GONE);
+            NoteContainer.setVisibility(View.GONE);
+        }
 		
 		/* Gunlance */
-		else if (mWeapon.getWtype().equals("Gunlance")) {
-			mWeaponSpecialTypeTextView.setText("Shelling:");
+		if (mWeapon.getWtype().equals("Gunlance")) {
+			mWeaponSpecialTypeTextView.setText("Shelling");
 			mWeaponSpecialTextView.setText(mWeapon.getShellingType());
 		}
 
         /* Switch Axe */
 		else if (mWeapon.getWtype().equals("Switch Axe")) {
-			mWeaponSpecialTypeTextView.setText("Phial:");
+			mWeaponSpecialTypeTextView.setText("Phial");
 			mWeaponSpecialTextView.setText(mWeapon.getPhial());
 		}
+        else if(mWeapon.getWtype().equals("Charge Blade")){
+            mWeaponSpecialTypeTextView.setText("Phial");
+            mWeaponSpecialTextView.setText(mWeapon.getPhial());
+        }
+        else{
+            mWeaponSpecialTextView.setVisibility(View.GONE);
+            mWeaponSpecialTypeTextView.setVisibility(View.GONE);
+        }
 
         /* Element */
         String element = "";
         if (!mWeapon.getElement().equals(""))
         {
-            element = mWeapon.getElement() + " " + mWeapon.getElementAttack();
-        }
-        else if (!mWeapon.getAwaken().equals(""))
-        {
-            element = mWeapon.getAwaken() + " " + mWeapon.getAwakenAttack();
+            mWeaponElementTextView.setText(Long.toString(mWeapon.getElementAttack()));
+            mWeaponElementTypeTextView.setText(mWeapon.getElement());
         }
         else
         {
-            element = "None";
+            mWeaponElementTextView.setText("0");
+            mWeaponElementTypeTextView.setText("None");
         }
 
         if (!"".equals(mWeapon.getElement2())) {
-            element = element + ", " + mWeapon.getElement2() + " " + mWeapon.getElement2Attack();
+            mWeaponElementTypeTextView.setText(mWeapon.getElement() + " " +mWeapon.getElement2());
+            mWeaponElementTextView.setText(mWeapon.getElementAttack() + " " + mWeapon.getElement2Attack());
         }
 
-        if (!mWeapon.getAwaken().equals(""))
-        {
-            element = "(" + element + ")";
-        }
-
-        mWeaponElementTextView.setText(element);
 	}
 
     public static class HornMelodiesCursorAdapter extends CursorAdapter {
@@ -391,10 +405,10 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
                 e.printStackTrace();
             }
 
-            if(mWeapon.getWtype().equals("Hunting Horn")) {
-                // Initialize the loader to load the list horn melodies
-                getLoaderManager().initLoader(R.id.horn_melodies_list, null, new HornMelodiesLoaderCallbacks());
-            }
+//            if(mWeapon.getWtype().equals("Hunting Horn")) {
+//                // Initialize the loader to load the list horn melodies
+//                getLoaderManager().initLoader(R.id.horn_melodies_list, null, new HornMelodiesLoaderCallbacks());
+//            }
         }
 
         @Override
