@@ -19,6 +19,7 @@ import com.ghstudios.android.data.database.QuestRewardCursor;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
+import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 public class ItemQuestFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -73,14 +74,20 @@ public class ItemQuestFragment extends ListFragment implements
 		setListAdapter(null);
 	}
 
-	private static class QuestRewardListCursorAdapter extends CursorAdapter {
+	private static class QuestRewardListCursorAdapter extends SectionCursorAdapter {
 
 		private QuestRewardCursor mQuestRewardCursor;
 
 		public QuestRewardListCursorAdapter(Context context,
 				QuestRewardCursor cursor) {
-			super(context, cursor, 0);
+			super(context, cursor, R.layout.listview_generic_header,1);
 			mQuestRewardCursor = cursor;
+		}
+
+		@Override
+		protected String getCustomGroup(Cursor c) {
+			QuestReward questReward = ((QuestRewardCursor)c).getQuestReward();
+			return questReward.getQuest().getHub();
 		}
 
 		@Override
@@ -101,15 +108,15 @@ public class ItemQuestFragment extends ListFragment implements
 			LinearLayout itemLayout = (LinearLayout) view
 					.findViewById(R.id.listitem);
 
-			TextView questTextView = (TextView) view.findViewById(R.id.quest);
-			TextView levelTextView = (TextView) view.findViewById(R.id.level);
+			TextView questTextView = (TextView) view.findViewById(R.id.quest_name);
+			TextView levelTextView = (TextView) view.findViewById(R.id.quest_stars);
 			TextView slotTextView = (TextView) view.findViewById(R.id.slot);
 			TextView amountTextView = (TextView) view.findViewById(R.id.amount);
 			TextView percentageTextView = (TextView) view
 					.findViewById(R.id.percentage);
 
 			String cellQuestText = questReward.getQuest().getName();
-			String cellLevelText = questReward.getQuest().getHub() + " " + questReward.getQuest().getStars();
+			String cellLevelText = questReward.getQuest().getStars();
 			String cellSlotText = questReward.getRewardSlot();
 			int cellAmountText = questReward.getStackSize();
 			int cellPercentageText = questReward.getPercentage();
@@ -117,7 +124,7 @@ public class ItemQuestFragment extends ListFragment implements
 			questTextView.setText(cellQuestText);
 			levelTextView.setText(cellLevelText);
 			slotTextView.setText(cellSlotText);
-			amountTextView.setText("" + cellAmountText);
+			amountTextView.setText("x" + cellAmountText);
 
 			String percent = "" + cellPercentageText + "%";
 			percentageTextView.setText(percent);

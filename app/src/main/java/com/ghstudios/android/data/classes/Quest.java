@@ -9,9 +9,10 @@ public class Quest {
 	private String name;		// Quest name
 	private String goal;		// Clear condition
 	private String hub;			// Port or village
-	private String type;		// Key quest or not
+	private int type;			// 0=Normal,1=Key,2=Urgent
 	private String stars;		// # of stars
 	private Location location;	// Location
+	private int hunter_type;	// 0 = Hunter / 1 = Cat
 	//private String locationTime;// Day or Night
 	private int time_limit;		// Time limit
 	private int fee;			// Quest fee
@@ -20,6 +21,15 @@ public class Quest {
     private String sub_goal;		// Subquest Clear condition
     private int sub_reward;			// Subquest reward in zenny
     private int sub_hrp;			// Subquest Hunting rank points
+
+	private int goal_type;			//Quest goal -> one of the following constants:
+
+	public static final int QUEST_GOAL_HUNT=0;
+	public static final int QUEST_GOAL_SLAY=1;
+	public static final int QUEST_GOAL_CAPTURE=2;
+	public static final int QUEST_GOAL_DELIVER=3;
+	public static final int QUEST_GOAL_HUNTATHON=4;
+	public static final int QUEST_GOAL_MARATHON=5;
 	
 	/* Default Constructor */
 	public Quest() {
@@ -27,7 +37,7 @@ public class Quest {
 		this.name = "";
 		this.goal = "";
 		this.hub = "";
-		this.type = "";
+		this.type = 0;
 		this.stars = "";
 		this.location = null;
 		//this.locationTime = "";
@@ -38,6 +48,7 @@ public class Quest {
         this.sub_goal = "";
         this.sub_reward = -1;
         this.sub_hrp = -1;
+		this.goal_type = QUEST_GOAL_HUNT;
 	}
 
 	/* Getters and Setters */
@@ -73,13 +84,24 @@ public class Quest {
 		this.hub = hub;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
+
+	public String getTypeText(){
+		String keyText;
+		if(type == 0)keyText = "";
+		else if(type == 1)keyText = "Key";
+		else keyText = "Urgent";
+		return keyText;
+	}
+
+	public int getHunterType(){return hunter_type;}
+	public void setHunterType(int ht){hunter_type = ht;}
 
 	public String getStars() {
 		return stars;
@@ -160,7 +182,10 @@ public class Quest {
     public void setSubHrp(int sub_hrp) {
         this.sub_hrp = sub_hrp;
     }
-	
+
+	public int getGoalType(){return goal_type;}
+	public void setGoalType(int gt){goal_type = gt;}
+
 	@Override
 	public String toString(){
 		return this.name;

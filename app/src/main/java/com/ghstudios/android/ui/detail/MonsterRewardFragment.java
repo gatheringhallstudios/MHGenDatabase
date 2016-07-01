@@ -118,7 +118,7 @@ public class MonsterRewardFragment extends ListFragment implements
 		private HuntingRewardCursor mHuntingRewardCursor;
 
 		public MonsterHuntingRewardListCursorAdapter(Context context, HuntingRewardCursor cursor) {
-			super(context, cursor,R.layout.listview_reward_header, cursor.getColumnIndex(S.COLUMN_HUNTING_REWARDS_CONDITION));
+			super(context, cursor,R.layout.listview_generic_header, cursor.getColumnIndex(S.COLUMN_HUNTING_REWARDS_CONDITION));
 			mHuntingRewardCursor = cursor;
 		}
 

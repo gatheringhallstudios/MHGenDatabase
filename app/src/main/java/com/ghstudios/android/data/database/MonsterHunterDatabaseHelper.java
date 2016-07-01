@@ -802,14 +802,14 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     /*
      * Get a specific armor based on hunter type
      */
-    public ArmorCursor queryArmorType(String type) {
+    public ArmorCursor queryArmorType(int type) {
 
         QueryHelper qh = new QueryHelper();
         qh.Columns = null;
         qh.Table = S.TABLE_ARMOR;
         qh.Selection = "a." + S.COLUMN_ARMOR_HUNTER_TYPE + " = ? " + " OR " +
-                "a." + S.COLUMN_ARMOR_HUNTER_TYPE + " = 'Both'";
-        qh.SelectionArgs = new String[]{type};
+                "a." + S.COLUMN_ARMOR_HUNTER_TYPE + " = 2";
+        qh.SelectionArgs = new String[]{Integer.toString(type)};
         qh.GroupBy = null;
         qh.Having = null;
         qh.OrderBy = null;
@@ -823,7 +823,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
      */
     public ArmorCursor queryArmorSlot(String slot) {
 
-        QueryHelper qh = new QueryHelper();
+        QueryHelper qh = new QueryHelper( );
         qh.Columns = null;
         qh.Table = S.TABLE_ARMOR;
         qh.Selection = "a." + S.COLUMN_ARMOR_SLOT + " = ?";
@@ -1039,7 +1039,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"" + id};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = "c.type";
         qh.Limit = null;
 
         return new ComponentCursor(wrapJoinHelper(builderComponent(), qh));
@@ -1323,6 +1323,10 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         projectionMap.put(S.COLUMN_GATHERING_SITE, g + "." + S.COLUMN_GATHERING_SITE);
         projectionMap.put(S.COLUMN_GATHERING_RANK, g + "." + S.COLUMN_GATHERING_RANK);
         projectionMap.put(S.COLUMN_GATHERING_RATE, g + "." + S.COLUMN_GATHERING_RATE);
+        projectionMap.put(S.COLUMN_GATHERING_GROUP, g + "." + S.COLUMN_GATHERING_GROUP);
+        projectionMap.put(S.COLUMN_GATHERING_FIXED, g + "." + S.COLUMN_GATHERING_FIXED);
+        projectionMap.put(S.COLUMN_GATHERING_RARE, g + "." + S.COLUMN_GATHERING_RARE);
+        projectionMap.put(S.COLUMN_GATHERING_QUANTITY, g + "." + S.COLUMN_GATHERING_QUANTITY);
 
         projectionMap.put(i + S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME);
         projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
@@ -2271,6 +2275,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         projectionMap.put(S.COLUMN_QUESTS_SUB_GOAL, q + "." + S.COLUMN_QUESTS_SUB_GOAL);
         projectionMap.put(S.COLUMN_QUESTS_SUB_REWARD, q + "." + S.COLUMN_QUESTS_SUB_REWARD);
         projectionMap.put(S.COLUMN_QUESTS_SUB_HRP, q + "." + S.COLUMN_QUESTS_SUB_HRP);
+        projectionMap.put(S.COLUMN_QUESTS_GOAL_TYPE, q + "." + S.COLUMN_QUESTS_GOAL_TYPE);
+        projectionMap.put(S.COLUMN_QUESTS_HUNTER_TYPE, q + "." + S.COLUMN_QUESTS_HUNTER_TYPE);
         projectionMap.put(l + S.COLUMN_LOCATIONS_NAME, l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME);
         projectionMap.put(S.COLUMN_LOCATIONS_MAP, l + "." + S.COLUMN_LOCATIONS_MAP);
 

@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +18,7 @@ import com.ghstudios.android.data.database.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.LocationClickListener;
+import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 public class ItemLocationFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -76,14 +75,20 @@ public class ItemLocationFragment extends ListFragment implements
 		setListAdapter(null);
 	}
 
-	private static class GatheringListCursorAdapter extends CursorAdapter {
+	private static class GatheringListCursorAdapter extends SectionCursorAdapter {
 
 		private GatheringCursor mGatheringCursor;
 
 		public GatheringListCursorAdapter(Context context,
 				GatheringCursor cursor) {
-			super(context, cursor, 0);
+			super(context, cursor,R.layout.listview_generic_header,1);
 			mGatheringCursor = cursor;
+		}
+
+		@Override
+		protected String getCustomGroup(Cursor c) {
+			Gathering g  = ((GatheringCursor)c).getGathering();
+			return g.getRank() + " " + g.getLocation().getName();
 		}
 
 		@Override
@@ -105,11 +110,11 @@ public class ItemLocationFragment extends ListFragment implements
 					.findViewById(R.id.listitem);
 
 			TextView mapTextView = (TextView) view.findViewById(R.id.map);
-			TextView rankTextView = (TextView) view.findViewById(R.id.rank);
-			TextView areaTextView = (TextView) view.findViewById(R.id.area);
+			//TextView rankTextView = (TextView) view.findViewById(R.id.rank);
+			//TextView areaTextView = (TextView) view.findViewById(R.id.area);
 			TextView methodTextView = (TextView) view.findViewById(R.id.method);
             TextView rateTextView = (TextView) view.findViewById(R.id.rate);
-            ImageView mapView = (ImageView) view.findViewById(R.id.map_image);
+            //ImageView mapView = (ImageView) view.findViewById(R.id.map_image);
 
 			
 			String mapName = gathering.getLocation().getName();
@@ -118,9 +123,9 @@ public class ItemLocationFragment extends ListFragment implements
 			String method = gathering.getSite();
             long rate = (long) gathering.getRate();
 			
-			mapTextView.setText(mapName);
-			rankTextView.setText(rank);
-			areaTextView.setText(area);
+			mapTextView.setText(gathering.getArea());
+			//rankTextView.setText(rank);
+			//areaTextView.setText(area);
 			methodTextView.setText(method);
             rateTextView.setText(Long.toString(rate) + "%");
 			

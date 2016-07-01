@@ -31,14 +31,13 @@ public class QuestExpandableListFragment extends Fragment {
     private String mHub;
     private static final String ARG_HUB = "QUEST_HUB";
     private ArrayList<Quest> quests;
-    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 "};
 
-    private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
 
-    private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ",
-            "8 ", "9 ", "10 "};
+    private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
+
+    private String[] permit = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ","8","9","10"};
 
     private ArrayList<ArrayList<Quest>> children;
 
@@ -132,11 +131,14 @@ public class QuestExpandableListFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
         ExpandableListView elv = (ExpandableListView) v
                 .findViewById(R.id.expandableListView);
-        if (mHub.equals("Caravan")) {
+        if (mHub.equals("Village")) {
             elv.setAdapter(new QuestListAdapter(caravan));
         } else if(mHub.equals("Guild")) {
             elv.setAdapter(new QuestListAdapter(guild));
-        } else {
+        } else if(mHub.equals("Permit")){
+            elv.setAdapter(new QuestListAdapter(permit));
+        }
+        else{
             elv.setAdapter(new QuestListAdapter(event));
         }
 
@@ -241,16 +243,25 @@ public class QuestExpandableListFragment extends Fragment {
                     R.layout.fragment_quest_expandablelist_child_item,
                     viewGroup, false);
 
+            ImageView iv = (ImageView)v.findViewById(R.id.item_image);
             TextView questChildTextView = (TextView) v.findViewById(R.id.name_text);
             TextView keyChildTextView = (TextView) v.findViewById(R.id.key);
             LinearLayout root = (LinearLayout) v.findViewById(R.id.root);
 
+            Quest q = (Quest)getChild(i,i1);
+
+            if(q.getHunterType() == 1)
+                iv.setImageResource(R.drawable.quest_cat);
+            else if(q.getGoalType() == Quest.QUEST_GOAL_DELIVER)
+                iv.setImageResource(R.drawable.quest_icon_green);
+            else if(q.getGoalType() == Quest.QUEST_GOAL_CAPTURE)
+                iv.setImageResource(R.drawable.quest_icon_grey);
+            else
+                iv.setImageResource(R.drawable.quest_icon_red);
+
             questChildTextView.setText(getChild(i, i1).toString());
 
-            String key = ((Quest) getChild(i, i1)).getType();
-            if (key.equals("Normal")) {
-                key = "";
-            }
+            String key = ((Quest) getChild(i, i1)).getTypeText();
             keyChildTextView.setText(key);
 
             long questId = ((Quest) getChild(i, i1)).getId();

@@ -28,10 +28,11 @@
         android:id="@+id/description"
         android:layout_width="216dp"
         android:layout_height="wrap_content"
-        style="@style/text_small"
+        style="@style/text_small_secondary"
         android:text="Unlocks latent weapon elements, and powers up elemental and abnormal status attacks."
         android:layout_below="@+id/skill"
         android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:paddingBottom="8dp" />
 
 </RelativeLayout>

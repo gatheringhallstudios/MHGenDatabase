@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listitem"
-    style="@style/list_item"
+    style="@style/list_item_dense"
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/quest"
+        android:id="@+id/quest_stars"
+        android:layout_width="26dp"
+        android:minWidth="26dp"
+        android:layout_marginLeft="-14dp"
+        android:layout_marginRight="1dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|right"
+        android:textColor="@color/text_color"
+        android:text="10"
+        style="@style/text_small"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="1dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_color"
+        android:text="★"
+        style="@style/text_small"/>
+
+    <TextView
+        android:id="@+id/quest_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".75"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_color"
         style="@style/text_medium"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical" />
+        android:layout_weight="0.75">
+    </TextView>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:layout_gravity="center_vertical">
-
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal"
+        android:layout_weight="0.25">
         <TextView
-            android:id="@+id/level"
+            android:id="@id/slot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:gravity="center|right"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:text="test" />
-
+            style="@style/text_small_secondary"
+            android:layout_gravity="center_vertical|left"
+            android:gravity="left"
+            android:text="A"/>
         <TextView
-            android:id="@+id/slot"
+            android:id="@id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:gravity="center|right"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:layout_toLeftOf="@+id/amount"
-            android:layout_alignTop="@+id/amount"
-            android:text="A" />
-
-        <TextView
-            android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".05"
-            android:gravity="center|right"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:layout_alignTop="@+id/percentage"
-            android:layout_toLeftOf="@+id/percentage"
-            android:text="test"
-            android:layout_marginLeft="8dp" />
-
+            android:minWidth="24dp"
+            style="@style/text_small_secondary"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="x1"/>
         <TextView
             android:id="@+id/percentage"
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:layout_weight="0.1"
+            android:minWidth="34dp"
+            android:layout_gravity="center_vertical|right"
             style="@style/text_small"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/level"
             android:text="100%"
-            android:gravity="right"
-            android:layout_marginLeft="8dp" />
-    </RelativeLayout>
+            android:gravity="right">
+        </TextView>
+    </LinearLayout>
 
 </LinearLayout>

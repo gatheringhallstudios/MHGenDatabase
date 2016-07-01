@@ -1,72 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listitem"
-    style="@style/list_item"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    style="@style/list_item_dense">
 
-    <LinearLayout
-        android:id="@+id/item_layout"
-        android:layout_width="0dp"
+    <ImageView
+        style="@style/main_image"
+        android:id="@+id/item_image"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/item"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight=".7"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/item_image"
-            style="@style/main_image" />
-
-        <TextView
-            android:id="@+id/item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            style="@style/text_medium" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        style="@style/text_medium"
+        android:text="Akantor Carapace"
+        android:layout_toRightOf="@+id/item_image"
+        android:layout_centerVertical="true" />
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="4dp"
+        style="@style/text_small_secondary"
+        android:text="x1"
+        android:layout_toRightOf="@+id/item" />
 
     <RelativeLayout
-        android:layout_width="0dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_centerVertical="true">
+
 
         <TextView
-            android:id="@+id/area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".1"
-            android:gravity="center|center_vertical"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:text="test" />
-
-        <TextView
-            android:id="@+id/method"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:layout_weight="0.1"
-            android:gravity="center|center_vertical"
-            style="@style/text_small"
-            android:layout_alignTop="@+id/rate"
-            android:layout_toLeftOf="@+id/rate"
-            android:text="test" />
-
-        <TextView
-            android:id="@+id/rate"
+            android:id="@+id/percentage"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:gravity="center_vertical|right"
+            android:layout_gravity="center"
             style="@style/text_small"
-            android:layout_gravity="center_vertical"
+            android:text="4%"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/area"
-            android:text="100%"
-            android:layout_marginLeft="4dp" />
+            android:gravity="right" />
+
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

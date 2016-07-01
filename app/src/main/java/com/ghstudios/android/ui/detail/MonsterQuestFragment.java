@@ -81,7 +81,7 @@ public class MonsterQuestFragment extends ListFragment implements
 
 		public MonsterToQuestListCursorAdapter(Context context,
 				MonsterToQuestCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header, S.COLUMN_QUESTS_HUB);
+			super(context, cursor, R.layout.listview_generic_header, S.COLUMN_QUESTS_HUB);
 			mMonsterToQuestCursor = cursor;
 		}
 
@@ -112,15 +112,9 @@ public class MonsterQuestFragment extends ListFragment implements
 
 			String cellQuestText = monsterToQuest.getQuest().getName();
 			String starsText = monsterToQuest.getQuest().getStars();
-			String cellUnstableText = monsterToQuest.getUnstable();
-			
-			if (cellUnstableText.equals("no")) {
-                unstableTextView.setVisibility(View.GONE);
-			}
-			else {
-				cellUnstableText = "Unstable";
-                unstableTextView.setText(cellUnstableText);
-			}
+			String cellUnstableText = (monsterToQuest.getUnstable()==1?"Unstable":"");
+
+			unstableTextView.setText(cellUnstableText);
 			
 			questTextView.setText(cellQuestText);
 			starsTextView.setText(starsText);

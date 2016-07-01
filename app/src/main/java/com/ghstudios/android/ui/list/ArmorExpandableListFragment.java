@@ -44,7 +44,7 @@ public class ArmorExpandableListFragment extends Fragment {
     private static final String DIALOG_FILTER = "filter";
     private static final int REQUEST_FILTER = 0;
 
-    private String mType;
+    private int mType;
     private ArrayList<Armor> armors;
     private String[] slots = {"Head", "Body", "Arms", "Waist", "Legs"};
 
@@ -55,9 +55,9 @@ public class ArmorExpandableListFragment extends Fragment {
 
     private ArmorFilter filter;
 
-    public static ArmorExpandableListFragment newInstance(String type) {
+    public static ArmorExpandableListFragment newInstance(int type) {
         Bundle args = new Bundle();
-        args.putString(ARG_TYPE, type);
+        args.putInt(ARG_TYPE, type);
         ArmorExpandableListFragment f = new ArmorExpandableListFragment();
         f.setArguments(args);
         return f;
@@ -67,10 +67,10 @@ public class ArmorExpandableListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mType = null;
+        mType = Armor.ARMOR_TYPE_BOTH;
         Bundle args = getArguments();
         if (args != null) {
-            mType = args.getString(ARG_TYPE);
+            mType = args.getInt(ARG_TYPE);
         }
 
         filter = new ArmorFilter();
