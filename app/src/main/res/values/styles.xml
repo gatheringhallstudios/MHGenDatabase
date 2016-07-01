@@ -243,6 +243,12 @@
 
     <!-- End styles for elevated lists -->
 
+    <!-- Styles for weapon detail lists -->
+    <style name="weapon_detail_property_value" parent="text_large">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/weapon_property_color</item>
+    </style>
+
     <!-- Style for ammo table -->
     <style name="ammo_table_header_row">
         <item name="android:paddingLeft">10dp</item>

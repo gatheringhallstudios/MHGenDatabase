@@ -51,7 +51,7 @@ public class WeaponSongFragment extends ListFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.horn_melodies_list, getArguments(), this);
+        getLoaderManager().initLoader(R.id.horn_melodies_list_fragment, getArguments(), this);
     }
 
     @Override

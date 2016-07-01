@@ -26,14 +26,14 @@ import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.database.HornMelodiesCursor;
 import com.ghstudios.android.loader.WeaponLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.MHUtils;
 import com.ghstudios.android.ui.general.DrawSharpness;
-import com.ghstudios.android.loader.HornMelodyListCursorLoader;
 
 public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 
 	private TextView mWeaponSpecialTypeTextView, mWeaponSpecialTextView,
-            mWeaponElementTextView,mWeaponElementTypeTextView,mWeaponNoteText;
+            mWeaponElementTextView,mWeaponElementTypeTextView,mWeaponNoteText,
+            mWeaponElement2TextView,mWeaponElement2TypeTextView;
+    LinearLayout mWeaponElementLayout,mWeaponElement2Layout;
 	private ImageView mWeaponNote1ImageView,
 			mWeaponNote2ImageView, mWeaponNote3ImageView;
     private DrawSharpness mWeaponSharpnessDrawnView;
@@ -75,7 +75,7 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.weapon_style_test,
+		View view = inflater.inflate(R.layout.fragment_weapon_blade_detail,
 				container, false);
 
 		//mWeaponLabelTextView = (TextView) view
@@ -89,6 +89,11 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 		mWeaponElementTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_element);
         mWeaponElementTypeTextView = (TextView)view.findViewById(R.id.detail_weapon_element_text);
+        mWeaponElement2TextView = (TextView) view
+                .findViewById(R.id.detail_weapon_element_2);
+        mWeaponElement2TypeTextView = (TextView)view.findViewById(R.id.detail_weapon_element_2_text);
+        mWeaponElementLayout = (LinearLayout)view.findViewById(R.id.weapon_detail_element_layout);
+        mWeaponElement2Layout = (LinearLayout)view.findViewById(R.id.weapon_detail_element_2_layout);
 		mWeaponSharpnessDrawnView = (DrawSharpness) view
 				.findViewById(R.id.detail_weapon_blade_sharpness);
 		mWeaponRarityTextView = (TextView) view
@@ -197,6 +202,7 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
             mWeaponSpecialTypeTextView.setVisibility(View.GONE);
         }
 
+
         /* Element */
         String element = "";
         if (!mWeapon.getElement().equals(""))
@@ -211,8 +217,12 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
         }
 
         if (!"".equals(mWeapon.getElement2())) {
-            mWeaponElementTypeTextView.setText(mWeapon.getElement() + " " +mWeapon.getElement2());
-            mWeaponElementTextView.setText(mWeapon.getElementAttack() + " " + mWeapon.getElement2Attack());
+            mWeaponElement2TypeTextView.setText(mWeapon.getElement2());
+            mWeaponElement2TextView.setText(Long.toString(mWeapon.getElement2Attack()));
+        }else{
+            mWeaponElement2Layout.setVisibility(View.GONE);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mWeaponElementLayout.getLayoutParams();
+            lp.setMargins(0,0,0,0);
         }
 
 	}
