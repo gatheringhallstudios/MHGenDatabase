@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.ghstudios.android.data.classes.*;
 import com.ghstudios.android.data.classes.ArenaQuest;
@@ -880,6 +881,15 @@ public class DataManager {
 	/* Get a Cursor that has a list of Weapons based on weapon type */
 	public WeaponCursor queryWeaponType(String type) {
 		return mHelper.queryWeaponType(type, false);
+	}
+
+
+	public String getWeaponType(long id){
+		Cursor c = mHelper.queryWeaponTypeForWeapon(id);
+		c.moveToFirst();
+		String wtype = c.getString(0);
+		c.close();
+		return wtype;
 	}
 
     /* Get an array that has a list of Weapons based on weapon type
