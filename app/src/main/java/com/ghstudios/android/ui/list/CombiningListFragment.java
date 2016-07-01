@@ -33,6 +33,7 @@ public class CombiningListFragment extends ListFragment implements
 
 		// Initialize the loader to load the list of runs
 		getLoaderManager().initLoader(R.id.combining_list_fragment, getArguments(), this);
+
 	}
 
     public static CombiningListFragment newInstance(long id) {
@@ -62,7 +63,7 @@ public class CombiningListFragment extends ListFragment implements
 		CombiningListCursorAdapter adapter = new CombiningListCursorAdapter(
 				getActivity(), (CombiningCursor) cursor);
 		setListAdapter(adapter);
-
+		//getListView().setEmptyView(getListView().findViewById(R.id.list_empty));
 	}
 
 	@Override

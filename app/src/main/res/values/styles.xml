@@ -102,7 +102,7 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
-    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUD TO REDUCE OVERDRAW -->
+    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
     <style name="FullScreenActivity" parent = "AppTheme">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -218,6 +218,11 @@
         <item name="android:layout_width">28dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="extra_large_image" parent="@style/main_image">
+        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_width">96dp</item>
     </style>
 
     <style name="large_image" parent="@style/main_image">
