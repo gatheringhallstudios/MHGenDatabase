@@ -1630,12 +1630,12 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Distinct = true;
         qh.Table = S.TABLE_LOCATIONS;
         qh.Columns = null;
-        qh.Selection = null;
+        qh.Selection = "_id<100";
         qh.SelectionArgs = null;
         qh.GroupBy = null;
         qh.Having = null;
         //Night versions have an _id + 100, so to keep them together we need to modify the sort.
-        qh.OrderBy = "CASE WHEN _id>100 THEN _id-100 ELSE _id END";
+        qh.OrderBy = null;//"CASE WHEN _id>100 THEN _id-100 ELSE _id END";
         qh.Limit = null;
 
         return new LocationCursor(wrapHelper(qh));

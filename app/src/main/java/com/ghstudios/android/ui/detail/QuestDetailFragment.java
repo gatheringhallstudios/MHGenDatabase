@@ -84,7 +84,9 @@ public class QuestDetailFragment extends Fragment {
 				// The id argument will be the Monster ID; CursorAdapter gives us this
 				// for free
 				Intent i = new Intent(getActivity(), LocationDetailActivity.class);
-				i.putExtra(LocationDetailActivity.EXTRA_LOCATION_ID, (long) v.getTag());
+				long id = (long)v.getTag();
+				if(id>100) id = id-100;
+				i.putExtra(LocationDetailActivity.EXTRA_LOCATION_ID, id);
 				startActivity(i);
 		    }
 		});
