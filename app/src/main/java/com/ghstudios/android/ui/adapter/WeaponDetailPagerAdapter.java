@@ -11,6 +11,7 @@ import com.ghstudios.android.ui.detail.WeaponBladeDetailFragment;
 import com.ghstudios.android.ui.detail.WeaponBowDetailFragment;
 import com.ghstudios.android.ui.detail.WeaponBowgunDetailFragment;
 import com.ghstudios.android.ui.detail.WeaponDetailAmmoFragment;
+import com.ghstudios.android.ui.detail.WeaponDetailCoatingFragment;
 import com.ghstudios.android.ui.detail.WeaponSongFragment;
 import com.ghstudios.android.ui.detail.WeaponTreeFragment;
 
@@ -33,14 +34,14 @@ public class WeaponDetailPagerAdapter extends FragmentPagerAdapter {
 			tabs = new String[]{"Detail","Melodies","Family Tree","Components"};
 		}else if(wtype.contains("Bowgun")){
 			tabs = new String[]{"Detail","Ammo","Family Tree","Components"};
+		}else if(wtype.equals("Bow")){
+			tabs = new String[]{"Detail","Coatings","Family Tree","Components"};
 		}
 
 	}
 
 	@Override
 	public Fragment getItem(int index) {
-
-        //String wtype = DataManager.get(mcontext).getWeapon(weaponId).getWtype();
 
 		switch (tabs[index]) {
 		case "Detail":
@@ -63,6 +64,8 @@ public class WeaponDetailPagerAdapter extends FragmentPagerAdapter {
 			return WeaponSongFragment.newInstance(weaponId);
 		case "Ammo":
 			return WeaponDetailAmmoFragment.newInstance(weaponId);
+		case "Coatings":
+			return WeaponDetailCoatingFragment.newInstance(weaponId);
 		default:
 			return null;
 		}

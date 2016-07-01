@@ -1,34 +1,20 @@
 package com.ghstudios.android.ui.detail;
 
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ghstudios.android.data.classes.Melody;
 import com.ghstudios.android.data.classes.Weapon;
-import com.ghstudios.android.data.database.HornMelodiesCursor;
-import com.ghstudios.android.loader.HornMelodyListCursorLoader;
 import com.ghstudios.android.loader.WeaponLoader;
 import com.ghstudios.android.mhgendatabase.R;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Joseph on 7/1/2016.

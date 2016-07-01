@@ -21,20 +21,7 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 
 	private TextView mWeaponArcTextView, mWeaponCharge1TextView,
 			mWeaponCharge2TextView, mWeaponCharge3TextView,
-			mWeaponCharge4TextView, mWeaponElementTextView;
-
-	private ImageView mWeaponCoating1ImageView, mWeaponCoating2ImageView,
-			mWeaponCoating3ImageView, mWeaponCoating4ImageView,
-			mWeaponCoating5ImageView, mWeaponCoating6ImageView,
-			mWeaponCoating7ImageView, mWeaponCoating8ImageView;
-
-	private TextView mPower1TextView, mPower2TextView,
-			mElemental1TextView, mElemental2TextView,
-			mCRangeTextView, mPoisonTextView,
-			mParaTextView, mSleepTextView,
-			mExhaustTextView,mBlastTextView,mPaintTextView;
-
-	TextView[] mCoatingTextViews;
+			mWeaponCharge4TextView, mWeaponElementTextView,mWeaponElementTypeTextView;
 
 	public static WeaponBowDetailFragment newInstance(long weaponId) {
 		Bundle args = new Bundle();
@@ -50,14 +37,14 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 		View view = inflater.inflate(R.layout.fragment_weapon_bow_detail,
 				container, false);
 
-		mWeaponLabelTextView = (TextView) view
-				.findViewById(R.id.detail_weapon_name);
 		mWeaponTypeTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_type);
 		mWeaponAttackTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_attack);
 		mWeaponElementTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_element);
+		mWeaponElementTypeTextView = (TextView) view
+				.findViewById(R.id.detail_weapon_element_text);
 		mWeaponRarityTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_rarity);
 		mWeaponSlotTextView = (TextView) view
@@ -66,6 +53,8 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 				.findViewById(R.id.detail_weapon_affinity);
 		mWeaponDefenseTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_defense);
+		mWeaponDefenseTextTextView = (TextView) view
+				.findViewById(R.id.detail_weapon_defense_text);
 		mWeaponCreationTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_creation);
 		mWeaponUpgradeTextView = (TextView) view
@@ -81,20 +70,7 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 				.findViewById(R.id.detail_weapon_bow_charge3);
 		mWeaponCharge4TextView = (TextView) view
 				.findViewById(R.id.detail_weapon_bow_charge4);
-
-		mCoatingTextViews = new TextView[]{
-				(TextView)view.findViewById(R.id.power_1_text),
-				(TextView)view.findViewById(R.id.power_2_text),
-				(TextView)view.findViewById(R.id.element_1_text),
-				(TextView)view.findViewById(R.id.element_2_text),
-				(TextView)view.findViewById(R.id.crange_text),
-				(TextView)view.findViewById(R.id.poison_text),
-				(TextView)view.findViewById(R.id.para_text),
-				(TextView)view.findViewById(R.id.sleep_text),
-				(TextView)view.findViewById(R.id.exhaust_text),
-				(TextView)view.findViewById(R.id.blast_text),
-				(TextView)view.findViewById(R.id.paint_text)
-		};
+		mWeaponDescription = (TextView)view.findViewById(R.id.detail_weapon_description);
 
 
 		return view;
@@ -144,41 +120,16 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 		InputStream open = null;
 		Bitmap bitmap = null;
 
-		/* Coatings */
-		int coatings = Integer.parseInt(mWeapon.getCoatings());
-
-		for(int i=10;i>=0;i--){
-			boolean show = (coatings & (1 << i))>0;
-			if(show){
-				mCoatingTextViews[10-i].setTextColor(ContextCompat.getColor(getContext(),R.color.text_color_focused));
-				mCoatingTextViews[10-i].setTypeface(null,Typeface.BOLD);
-			}
-		}
-
         /* Element */
-        String element = "";
-        if (!mWeapon.getElement().equals(""))
-        {
-            element = mWeapon.getElement() + " " + mWeapon.getElementAttack();
-        }
-        else if (!mWeapon.getAwaken().equals(""))
-        {
-            element = mWeapon.getAwaken() + " " + mWeapon.getAwakenAttack();
-        }
-        else
-        {
-            element = "None";
-        }
-
-        if (!"".equals(mWeapon.getElement2())) {
-            element = element + ", " + mWeapon.getElement2() + " " + mWeapon.getElement2Attack();
-        }
-
-        if (!mWeapon.getAwaken().equals(""))
-        {
-            element = "(" + element + ")";
-        }
-
-        mWeaponElementTextView.setText(element);
+		if (!mWeapon.getElement().equals(""))
+		{
+			mWeaponElementTextView.setText(Long.toString(mWeapon.getElementAttack()));
+			mWeaponElementTypeTextView.setText(mWeapon.getElement());
+		}
+		else
+		{
+			mWeaponElementTextView.setText("0");
+			mWeaponElementTypeTextView.setText("None");
+		}
 	}
 }
