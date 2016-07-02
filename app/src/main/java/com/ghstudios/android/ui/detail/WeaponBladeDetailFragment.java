@@ -32,7 +32,7 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 	private TextView mWeaponSpecialTypeTextView, mWeaponSpecialTextView,
             mWeaponElementTextView,mWeaponElementTypeTextView,mWeaponNoteText,
             mWeaponElement2TextView,mWeaponElement2TypeTextView;
-    LinearLayout mWeaponElementLayout,mWeaponElement2Layout;
+    LinearLayout mWeaponElementLayout,mWeaponElement2Layout,mElementParentLayout;
 	private ImageView mWeaponNote1ImageView,
 			mWeaponNote2ImageView, mWeaponNote3ImageView;
     private DrawSharpness mWeaponSharpnessDrawnView;
@@ -68,6 +68,7 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
         mWeaponElement2TypeTextView = (TextView)view.findViewById(R.id.detail_weapon_element_2_text);
         mWeaponElementLayout = (LinearLayout)view.findViewById(R.id.weapon_detail_element_layout);
         mWeaponElement2Layout = (LinearLayout)view.findViewById(R.id.weapon_detail_element_2_layout);
+		mElementParentLayout = (LinearLayout)view.findViewById(R.id.weapon_detail_element_parent_layout);
 		mWeaponSharpnessDrawnView = (DrawSharpness) view
 				.findViewById(R.id.detail_weapon_blade_sharpness);
 		mWeaponRarityTextView = (TextView) view
@@ -183,6 +184,10 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
         if (!"".equals(mWeapon.getElement2())) {
             mWeaponElement2TypeTextView.setText(mWeapon.getElement2());
             mWeaponElement2TextView.setText(Long.toString(mWeapon.getElement2Attack()));
+
+			//On Small displays, dual element might cause problems, increase the weight slightly
+			LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mElementParentLayout.getLayoutParams();
+			lp.weight = 1.5f;
         }else{
             mWeaponElement2Layout.setVisibility(View.GONE);
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mWeaponElementLayout.getLayoutParams();

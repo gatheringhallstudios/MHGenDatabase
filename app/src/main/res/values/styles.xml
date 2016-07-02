@@ -254,6 +254,17 @@
         <item name="android:textColor">@color/weapon_property_color</item>
     </style>
 
+    <style name="detail_header_text">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="detail_subheader_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
     <!-- Style for ammo table -->
     <style name="ammo_table_header_row">
         <item name="android:paddingLeft">10dp</item>
