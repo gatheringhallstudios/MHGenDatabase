@@ -9,6 +9,8 @@ buildscript {
 }
 
 allprojects {
+    // Set shorter build directory to avoid "File path too long..." errors
+    buildDir = "C:/tmp/GatheringHallStudios/MHGenDatabase"
     repositories {
         jcenter()
     }
