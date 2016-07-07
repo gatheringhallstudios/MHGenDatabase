@@ -85,6 +85,25 @@ public class MonsterStatusFragment extends Fragment {
             duration = Long.toString(currentStatus.getDuration());
             damage = Long.toString(currentStatus.getDamage());
 
+            String DefaultString = "-";
+
+            if(currentStatus.getInitial()==0)
+                initial=DefaultString;
+
+            if(currentStatus.getIncrease()==0)
+                increase = DefaultString;
+
+            if(currentStatus.getMax()==0)
+                max = DefaultString;
+
+            if(currentStatus.getDuration()==0)
+                duration = DefaultString;
+            else
+                duration += "s";
+
+            if(currentStatus.getDamage()==0)
+                damage = DefaultString;
+
             ImageView statusImage = (ImageView) wdRow.findViewById(R.id.statusImage);
             TextView initialView = (TextView) wdRow.findViewById(R.id.initial);
             TextView increaseView = (TextView) wdRow.findViewById(R.id.increase);
