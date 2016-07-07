@@ -16,7 +16,6 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -65,10 +64,14 @@ public class WishlistListFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_list_generic, container, false);
+		View v = inflater.inflate(R.layout.fragment_generic_list, container, false);
 		
 		mListView = (ListView) v.findViewById(android.R.id.list);
-		
+
+		// Register view for context menu (single item long press menu)
+		registerForContextMenu(mListView);
+
+		/*
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 			// Use floating context menus on Froyo and Gingerbread
 			registerForContextMenu(mListView);
@@ -91,9 +94,25 @@ public class WishlistListFragment extends ListFragment implements
 			        }
 			});
 		}
-		
+		*/
 		return v;
 	}
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        // The id argument will be the Wishlist ID; CursorAdapter gives us this for free
+        if (mActionMode == null) {
+            mListView.setItemChecked(position, false);
+            Intent i = new Intent(getActivity(), WishlistDetailActivity.class);
+            i.putExtra(WishlistDetailActivity.EXTRA_WISHLIST_ID, id);
+            startActivity(i);
+        }
+        // Contextual action bar options
+        else {
+            highlightSelection(position);
+            mActionMode.setTag(position);
+        }
+    }
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -272,21 +291,7 @@ public class WishlistListFragment extends ListFragment implements
 	    }
 	}
 	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		// The id argument will be the Skill ID; CursorAdapter gives us this for free
-		if (mActionMode == null) {
-            mListView.setItemChecked(position, false);
-			Intent i = new Intent(getActivity(), WishlistDetailActivity.class);
-			i.putExtra(WishlistDetailActivity.EXTRA_WISHLIST_ID, id);
-			startActivity(i);
-		} 
-		// Contextual action bar options
-		else {
-            highlightSelection(position);
-            mActionMode.setTag(position);
-		}
-	}
+
 
 	private static class WishlistListCursorAdapter extends CursorAdapter {
 
@@ -303,7 +308,7 @@ public class WishlistListFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_list_view_generic, //TODO Create custom wishlist layout
+			return inflater.inflate(R.layout.fragment_list_item_basic, //TODO Add more wishlist details
 					parent, false);
 		}
 
@@ -312,10 +317,21 @@ public class WishlistListFragment extends ListFragment implements
 			// Get the skill for the current row
 			Wishlist wishlist = mWishlistCursor.getWishlist();
 
-			// Set up the text view
-			TextView wishlistNameTextView = (TextView) view;
+			// Set up the views
+			TextView wishlistNameTextView = (TextView) view.findViewById(R.id.item_label);
+			view.findViewById(R.id.item_image).setVisibility(View.GONE);
+			//RelativeLayout itemLayout = (RelativeLayout) view.findViewById(R.id.listitem);
+
+			// Bind views
 			String cellText = wishlist.getName();
 			wishlistNameTextView.setText(cellText);
+			//itemLayout.setId((int)wishlist.getId());
+
+            // Block view clicks so ListView handles it's own onListItemClick implementation
+            view.setFocusable(false);
+            view.setClickable(false);
+
+
 		}
 	}
 
