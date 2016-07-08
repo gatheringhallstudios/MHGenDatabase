@@ -130,7 +130,14 @@ public class S {
 	static final String COLUMN_ITEM_TO_SKILL_TREE_ITEM_ID = "item_id";
 	static final String COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID = "skill_tree_id";
 	static final String COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE = "point_value";
-	
+
+	// Item to Materials
+	static final String TABLE_ITEM_TO_MATERIAL = "item_to_material";
+	static final String COLUMN_ITEM_TO_MATERIAL_ID = "_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID = "material_item_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_ITEM_ID = "item_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_AMOUNT = "amount";
+
 	// Locations
 	static final String TABLE_LOCATIONS = "locations";
 	static final String COLUMN_LOCATIONS_ID = "_id";

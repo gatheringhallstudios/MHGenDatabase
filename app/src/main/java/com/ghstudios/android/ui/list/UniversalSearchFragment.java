@@ -23,6 +23,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
 import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
@@ -182,6 +183,8 @@ public class UniversalSearchFragment extends ListFragment implements
                         return new ArmorClickListener(getActivity(), obj.getId());
                     case "Decoration":
                         return new DecorationClickListener(getActivity(), obj.getId());
+                    case "Materials":
+                        return new MaterialClickListener(getActivity(),obj.getId());
                     default:
                         return new ItemClickListener(getActivity(), obj.getId());
                 }

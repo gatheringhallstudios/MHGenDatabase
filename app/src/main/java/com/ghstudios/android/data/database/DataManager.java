@@ -502,7 +502,12 @@ public class DataManager {
 		cursor.close();
 		return itst;
 	}
-		
+/********************************* ITEM TO MATERIAL QUERIES ******************************************/
+
+	public ItemToMaterialCursor queryItemsForMaterial(long mat_item_id){
+		return mHelper.queryItemsForMaterial(mat_item_id);
+	}
+
 /********************************* LOCATION QUERIES ******************************************/
 	/* Get a Cursor that has a list of all Locations */
 	public LocationCursor queryLocations() {

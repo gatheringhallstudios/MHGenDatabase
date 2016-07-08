@@ -25,6 +25,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 import java.io.IOException;
@@ -220,6 +221,9 @@ public class ItemListFragment extends ListFragment implements
                     break;
                 case "Decoration":
                     clickView.setOnClickListener(new DecorationClickListener(context, id));
+                    break;
+                case "Materials":
+                    clickView.setOnClickListener(new MaterialClickListener(context,id));
                     break;
                 default:
                     clickView.setOnClickListener(new ItemClickListener(context, id));

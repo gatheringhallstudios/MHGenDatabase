@@ -25,6 +25,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 public class ItemComponentFragment extends ListFragment implements
@@ -214,6 +215,9 @@ public class ItemComponentFragment extends ListFragment implements
                 case "Decoration":
                     itemLayout.setOnClickListener(new DecorationClickListener(context, createdId));
                     break;
+				case "Materials":
+					itemLayout.setOnClickListener(new MaterialClickListener(context,createdId));
+					break;
                 default:
                     itemLayout.setOnClickListener(new ItemClickListener(context, createdId));
                     break;

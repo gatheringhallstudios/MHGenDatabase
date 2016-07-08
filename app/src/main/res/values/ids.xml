@@ -65,6 +65,7 @@
     <item name="monster_grid_fragment" type="id"/>
     <item name="skill_tree_list_fragment" type="id"/>
     <item name="weapon_list_fragment" type="id"/>
+    <item name="material_item_list_fragment" type="id"/>
     <item name="wishlist_list_fragment" type="id"/>
     <item name="wyporium_trade_list_fragment" type="id"/>
     <item name="asb_skills_list_fragment" type="id"/>
