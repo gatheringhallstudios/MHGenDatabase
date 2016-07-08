@@ -3,9 +3,9 @@
     tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity" >
 
     <item
-        android:id="@+id/wishlist_add"
+        android:id="@+id/create_new_wishlist"
         android:icon="@drawable/ic_menu_add"
         android:showAsAction="ifRoom"
-        android:title="@string/option_wishlist_data_add"/>
+        android:title="@string/option_wishlist_add"/>
 
 </menu>

@@ -46,6 +46,14 @@ public class WishlistDetailActivity extends GenericTabActivity {
         return MenuSection.WISH_LISTS;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+//		MenuInflater inflater = getMenuInflater();
+//		inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
     // Implement menu actions on this wishlist
 /*    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

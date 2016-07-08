@@ -99,7 +99,7 @@ public class WishlistListFragment extends ListFragment implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.wishlist_add:
+			case R.id.create_new_wishlist:
 				FragmentManager fm = getActivity().getSupportFragmentManager();
 				WishlistAddDialogFragment dialog = new WishlistAddDialogFragment();
 				dialog.setTargetFragment(WishlistListFragment.this, REQUEST_ADD);

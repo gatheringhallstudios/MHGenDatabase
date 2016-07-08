@@ -119,11 +119,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.menu_wishlist_edit, menu);
-		
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
-		     MenuItem item_down = menu.findItem(R.id.wishlist_edit);
-		     item_down.setVisible(false);
-		}
 	}
 	
 	@Override
