@@ -3,6 +3,9 @@ package com.ghstudios.android.ui.list.adapter;
 /**
  * 2015
  * Created by habibokanla on 01/03/15.
+ *
+ * Provides index values for each Navigation drawer item.
+ * Used by each activity/fragment to return its index to GenericActionBarActivity
  */
 public enum MenuSection {
 

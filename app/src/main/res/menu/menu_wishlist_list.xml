@@ -7,10 +7,5 @@
         android:icon="@drawable/ic_menu_add"
         android:showAsAction="ifRoom"
         android:title="@string/option_wishlist_data_add"/>
-    <item
-        android:id="@+id/wishlist_edit"
-        android:icon="@drawable/ic_menu_edit"
-        android:showAsAction="ifRoom"
-        android:title="@string/option_wishlist_edit"/>
 
 </menu>

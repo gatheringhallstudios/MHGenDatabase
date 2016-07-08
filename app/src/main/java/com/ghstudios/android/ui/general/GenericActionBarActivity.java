@@ -376,6 +376,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         int layoutResourceId;
         String[] items;
 
+        // Show which drawer item is selected
         public void setSelectedIndex(int selectedIndex) {
             this.selectedIndex = selectedIndex;
         }
@@ -411,7 +412,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
 
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
-            holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text));
+            holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text, getTheme()));
 
             // Attempt to retrieve drawable
             Drawable i = null;
