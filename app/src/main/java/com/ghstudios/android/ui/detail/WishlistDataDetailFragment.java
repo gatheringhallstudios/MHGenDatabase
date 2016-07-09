@@ -33,11 +33,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ghstudios.android.data.classes.WishlistData;
+import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.WishlistDataDeleteDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDataEditDialogFragment;
+import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
+import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
+import com.ghstudios.android.ui.list.WishlistListFragment;
 
 public class WishlistDataDetailFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -75,6 +79,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		
 		// Initialize the loader to load the list of runs
 		getLoaderManager().initLoader(R.id.wishlist_data_detail_fragment, getArguments(), this);
+
 	}
 	
 	@Override
@@ -119,24 +124,35 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_wishlist_edit, menu);
-
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
-		     MenuItem item_down = menu.findItem(R.id.wishlist_edit);
-		     item_down.setVisible(false);
-		}
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+
 		switch (item.getItemId()) {
-			case R.id.wishlist_edit:
+			case R.id.wishlist_edit: // Not going to be used
 				if (mListView.getAdapter().getCount() > 0) {
 					mActionMode = getActivity().startActionMode(new mActionModeCallback());
 		            mActionMode.setTag(0);
 					mListView.setItemChecked(0, true);
 				}
 				return true;
+            case R.id.wishlist_rename: // Rename current wishlist
+                WishlistRenameDialogFragment dialog = WishlistRenameDialogFragment.newInstance(
+                        getArguments().getLong(ARG_ID, -1),
+                        (String) getActivity().getTitle());
+                dialog.setTargetFragment(this, WishlistListFragment.REQUEST_RENAME);
+                dialog.show(fm, WishlistListFragment.DIALOG_WISHLIST_RENAME);
+                return true;
+            case R.id.menu_item_delete_wishlist:
+                WishlistDeleteDialogFragment dialogDelete = WishlistDeleteDialogFragment.newInstance(
+                        getArguments().getLong(ARG_ID, -1),
+                        (String) getActivity().getTitle());
+                dialogDelete.setTargetFragment(this, WishlistListFragment.REQUEST_DELETE);
+                dialogDelete.show(fm, WishlistListFragment.DIALOG_WISHLIST_DELETE);
+                return true;
 			default:
 				return super.onOptionsItemSelected(item);
 			}
@@ -150,18 +166,18 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != Activity.RESULT_OK) return;
-		if (requestCode == REQUEST_REFRESH) {
+/*		if (requestCode == WishlistListFragment.REQUEST_REFRESH) {
 			if(data.getBooleanExtra(WishlistDataComponentFragment.EXTRA_COMPONENT_REFRESH, false)) {
 				fromOtherTab = true;
 				updateUI();
 			}
 		}
-		else if (requestCode == REQUEST_EDIT) {
+		else if (requestCode == WishlistListFragment.REQUEST_EDIT) {
 			if(data.getBooleanExtra(WishlistDataEditDialogFragment.EXTRA_EDIT, false)) {
 				updateUI();
 			}
 		}
-		else if (requestCode == REQUEST_DELETE) {
+		else */if (requestCode == WishlistListFragment.REQUEST_DELETE) {
 			if(data.getBooleanExtra(WishlistDataDeleteDialogFragment.EXTRA_DELETE, false)) {
 				updateUI();
 			}

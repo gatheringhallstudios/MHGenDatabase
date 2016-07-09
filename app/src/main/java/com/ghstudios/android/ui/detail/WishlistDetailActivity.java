@@ -3,8 +3,11 @@ package com.ghstudios.android.ui.detail;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
@@ -20,6 +23,7 @@ public class WishlistDetailActivity extends GenericTabActivity {
      */
     public static final String EXTRA_WISHLIST_ID =
             "com.daviancorp.android.android.ui.detail.wishlist_id";
+
 
     private ViewPager viewPager;
     private WishlistDetailPagerAdapter mAdapter;
@@ -49,9 +53,15 @@ public class WishlistDetailActivity extends GenericTabActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-//		MenuInflater inflater = getMenuInflater();
-//		inflater.inflate(R.menu.main, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_wishlist_details, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
     }
 
     // Implement menu actions on this wishlist

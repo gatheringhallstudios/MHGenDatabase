@@ -37,14 +37,14 @@ import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
 public class WishlistListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
 
-	private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
-	private static final String DIALOG_WISHLIST_RENAME = "wishlist_rename"; // not used here
-	private static final String DIALOG_WISHLIST_COPY = "wishlist_copy"; // may be used here
-	private static final String DIALOG_WISHLIST_DELETE = "wishlist_delete"; // not used here
-	private static final int REQUEST_ADD = 0;
-	private static final int REQUEST_RENAME = 1;
-	private static final int REQUEST_COPY = 2;
-	private static final int REQUEST_DELETE = 3;
+	public static final String DIALOG_WISHLIST_ADD = "wishlist_add";
+	public static final String DIALOG_WISHLIST_COPY = "wishlist_copy";
+	public static final String DIALOG_WISHLIST_DELETE = "wishlist_delete";
+	public static final String DIALOG_WISHLIST_RENAME = "wishlist_rename";
+	public static final int REQUEST_ADD = 0;
+	public static final int REQUEST_RENAME = 1;
+	public static final int REQUEST_COPY = 2;
+	public static final int REQUEST_DELETE = 3;
 
     private int lastSelectionIndex = 0;
     private ActionMode mActionMode;
