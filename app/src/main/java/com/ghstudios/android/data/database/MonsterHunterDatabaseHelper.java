@@ -1617,6 +1617,53 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     }
 
     /**
+     * ****************************** ITEM TO MATERIAL QUERIES *****************************************
+     */
+
+    public ItemToMaterialCursor queryItemsForMaterial(long material_item_id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Selection = "itm." + S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID + " = ? ";
+        qh.SelectionArgs = new String[]{"" + material_item_id};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = "itm.amount DESC";
+        qh.Limit = null;
+
+        return new ItemToMaterialCursor(wrapJoinHelper(builderItemToMaterial(), qh));
+    }
+
+    private SQLiteQueryBuilder builderItemToMaterial() {
+
+        String itm = "itm";
+        String i = "i";
+
+        HashMap<String, String> projectionMap = new HashMap<>();
+
+        //Material Mapping
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_ID);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_AMOUNT, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_AMOUNT);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID);
+
+        //Item
+        projectionMap.put(i + S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_TYPE, i + "." + S.COLUMN_ITEMS_TYPE);
+        projectionMap.put(S.COLUMN_ITEMS_SUB_TYPE, i + "." + S.COLUMN_ITEMS_SUB_TYPE);
+        projectionMap.put(S.COLUMN_ITEMS_RARITY, i + "." + S.COLUMN_ITEMS_RARITY);
+
+        //Create new querybuilder
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+
+        QB.setTables(S.TABLE_ITEM_TO_MATERIAL + " AS itm" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "itm." +
+                S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID + " = " + "i." + S.COLUMN_ITEMS_ID);
+
+        QB.setProjectionMap(projectionMap);
+        return QB;
+    }
+
+    /**
      * ****************************** LOCATION QUERIES *****************************************
      */
 	

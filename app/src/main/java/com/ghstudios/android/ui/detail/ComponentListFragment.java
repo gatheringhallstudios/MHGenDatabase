@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.database.ComponentCursor;
@@ -205,6 +206,9 @@ public class ComponentListFragment extends ListFragment implements
                     break;
                 case "Decoration":
                     itemLayout.setOnClickListener(new DecorationClickListener(context, id));
+                    break;
+                case "Materials":
+                    itemLayout.setOnClickListener(new MaterialClickListener(context,id));
                     break;
                 default:
                     itemLayout.setOnClickListener(new ItemClickListener(context, id));

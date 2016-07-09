@@ -16,6 +16,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
+        <activity android:name="com.ghstudios.android.ui.detail.MaterialDetailActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
         <!-- MONSTER LIST SECTION -->
         <activity
             android:name="com.ghstudios.android.ui.list.MonsterListActivity"
