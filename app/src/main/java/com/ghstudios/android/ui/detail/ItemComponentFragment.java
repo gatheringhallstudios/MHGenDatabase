@@ -192,6 +192,9 @@ public class ItemComponentFragment extends ListFragment implements
                     cellImage = "icons_items/" + created.getFileLocation();
             }
 
+			if(created.getType().equals("Palico Weapon"))
+				cellImage = "icons_weapons/"+created.getFileLocation();
+
 			try {
 				i = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);

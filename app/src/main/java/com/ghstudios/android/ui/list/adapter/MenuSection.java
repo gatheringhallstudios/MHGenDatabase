@@ -4,25 +4,20 @@ package com.ghstudios.android.ui.list.adapter;
  * 2015
  * Created by habibokanla on 01/03/15.
  */
-public enum MenuSection {
 
-    UNLISTED(-1),
-    MONSTERS(0),
-    WEAPONS(1),
-    ARMOR(2),
-    QUESTS(3),
-    ITEMS(4),
-    COMBINING(5),
-    LOCATIONS(6),
-    DECORATION(7),
-    SKILL_TREES(8),
-    WISH_LISTS(9),
-    WYPORIUM_TRADE(10),
-    ARMOR_SET_BUILDER(11);
+public class MenuSection {
 
-    public int menuListPosition;
+    public static final int MONSTERS = 0;
+    public static final int WEAPONS = 1;
+    public static final int ARMOR = 2;
+    public static final int QUESTS = 3;
+    public static final int ITEMS = 4;
+    public static final int PALICOS = 5;
+    public static final int COMBINING = 6;
+    public static final int LOCATIONS = 7;
+    public static final int DECORATION = 8;
+    public static final int SKILL_TREES = 9;
+    public static final int WISH_LISTS = 10;
+    public static final int ARMOR_SET_BUILDER = 11;
 
-    MenuSection(int position) {
-        this.menuListPosition = position;
-    }
 }

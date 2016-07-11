@@ -20,6 +20,12 @@
             android:label=""
             android:screenOrientation="portrait"/>
 
+        <activity android:name="com.ghstudios.android.ui.list.PalicoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.ghstudios.android.ui.detail.PalicoWeaponDetailActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- MONSTER LIST SECTION -->
         <activity
             android:name="com.ghstudios.android.ui.list.MonsterListActivity"

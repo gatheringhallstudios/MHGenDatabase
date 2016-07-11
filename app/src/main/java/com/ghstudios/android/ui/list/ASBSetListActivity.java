@@ -19,7 +19,7 @@ public class ASBSetListActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.ARMOR_SET_BUILDER;
     }
 

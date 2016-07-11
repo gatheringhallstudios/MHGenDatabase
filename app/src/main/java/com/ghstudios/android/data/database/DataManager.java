@@ -1008,6 +1008,18 @@ public class DataManager {
 		return mHelper.queryWeapons(idArray);
 		
 	}
+
+	public PalicoWeaponCursor queryPalicoWeapons(){
+		return mHelper.queryPalicoWeapons();
+	}
+
+	public PalicoWeapon getPalicoWeapon(long id){
+		PalicoWeaponCursor cursor = mHelper.queryPalicoWeapon(id);
+		cursor.moveToFirst();
+		PalicoWeapon w = cursor.getWeapon();
+		cursor.close();
+		return w;
+	}
 	
 /********************************* WISHLIST QUERIES ******************************************/	
 	/* Get a Cursor that has a list of all Wishlists */

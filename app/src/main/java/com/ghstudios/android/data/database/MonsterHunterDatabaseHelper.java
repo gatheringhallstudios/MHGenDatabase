@@ -17,6 +17,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
+import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -2670,6 +2671,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         return QB;
     }
 
+
+
     /**
      * ****************************** WEAPON TREE QUERIES *****************************************
      */
@@ -2775,6 +2778,72 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
                         "c." + S.COLUMN_COMPONENTS_CREATED_ITEM_ID + " LEFT OUTER JOIN " + S.TABLE_ITEMS +
                         " AS i2" + " ON " + "i2." + S.COLUMN_ITEMS_ID + " = " + "w2." + S.COLUMN_WEAPONS_ID
         );
+
+        QB.setProjectionMap(projectionMap);
+        return QB;
+    }
+    /**
+     * ****************************** PALICO WEAPON QUERIES *****************************************
+     */
+
+    public PalicoWeaponCursor queryPalicoWeapons() {
+
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Table = S.TABLE_PALICO_WEAPONS;
+        qh.Selection = null;
+        qh.SelectionArgs = null;
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = S.COLUMN_ITEMS_RARITY;
+        qh.Limit = null;
+
+        return new PalicoWeaponCursor(wrapJoinHelper(builderPalicoWeapon(), qh));
+    }
+
+    public PalicoWeaponCursor queryPalicoWeapon(long id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Table = S.TABLE_PALICO_WEAPONS;
+        qh.Selection = "w."+S.COLUMN_PALICO_WEAPONS_ID + "=?";
+        qh.SelectionArgs = new String[]{Long.toString(id)};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = S.COLUMN_ITEMS_RARITY;
+        qh.Limit = null;
+        return new PalicoWeaponCursor(wrapJoinHelper(builderPalicoWeapon(), qh));
+    }
+
+    private SQLiteQueryBuilder builderPalicoWeapon() {
+        String w = "w";
+        String i = "i";
+
+        HashMap<String, String> projectionMap = new HashMap<String, String>();
+
+        projectionMap.put("_id", w + "." + S.COLUMN_PALICO_WEAPONS_ID + " AS " + "_id");
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_CREATION_COST, w + "." + S.COLUMN_PALICO_WEAPONS_CREATION_COST);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ATTACK_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_ATTACK_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ATTACK_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_ATTACK_RANGED);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT_RANGED);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_BLUNT, w + "." + S.COLUMN_PALICO_WEAPONS_BLUNT);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_BALANCE, w + "." + S.COLUMN_PALICO_WEAPONS_BALANCE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_DEFENSE, w + "." + S.COLUMN_PALICO_WEAPONS_DEFENSE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_SHARPNESS, w + "." + S.COLUMN_PALICO_WEAPONS_SHARPNESS);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED);
+
+        projectionMap.put(S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_RARITY, i + "." + S.COLUMN_ITEMS_RARITY);
+        projectionMap.put(S.COLUMN_ITEMS_DESCRIPTION, i + "." + S.COLUMN_ITEMS_DESCRIPTION);
+        projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
+
+        //Create new querybuilder
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+
+        QB.setTables(S.TABLE_PALICO_WEAPONS + " AS w" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "w." +
+                S.COLUMN_PALICO_WEAPONS_ID + " = " + "i." + S.COLUMN_ITEMS_ID);
 
         QB.setProjectionMap(projectionMap);
         return QB;

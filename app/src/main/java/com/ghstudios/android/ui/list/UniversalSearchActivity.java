@@ -27,8 +27,8 @@ public class UniversalSearchActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
-        return MenuSection.UNLISTED; // todo: something else?
+    protected int getSelectedSection() {
+        return -1; // todo: something else?
     }
 
     public void performSearch(String query) {

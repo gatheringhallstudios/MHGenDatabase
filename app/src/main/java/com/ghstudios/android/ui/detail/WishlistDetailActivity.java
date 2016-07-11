@@ -37,7 +37,7 @@ public class WishlistDetailActivity extends GenericTabActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.WISH_LISTS;
     }
 

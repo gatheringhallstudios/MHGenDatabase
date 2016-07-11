@@ -28,7 +28,7 @@ public class WishlistListActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.WISH_LISTS;
     }
 
