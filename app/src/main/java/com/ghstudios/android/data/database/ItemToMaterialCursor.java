@@ -7,7 +7,7 @@ import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToMaterial;
 
 /**
- * Created by E410474 on 7/7/2016.
+ * Created by Joseph on 7/7/2016.
  */
 public class ItemToMaterialCursor extends CursorWrapper {
     /**

@@ -31,7 +31,7 @@ public class LocationDetailActivity extends GenericTabActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new LocationDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
-        mSlidingTabLayout.setDistributeEvenly(true);
+        mSlidingTabLayout.setDistributeEvenly(false);   //JOE:Too many tabs
         mSlidingTabLayout.setViewPager(viewPager);
     }
 

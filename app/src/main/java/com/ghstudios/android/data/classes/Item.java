@@ -144,6 +144,75 @@ public class  Item {
 		this.file_location = file_location;
 	}
 
+	public String getItemImage(){
+		String cellImage;
+		switch(this.getSubType()){
+			case "Head":
+				cellImage = "icons_armor/icons_head/head" + this.getRarity() + ".png";
+				break;
+			case "Body":
+				cellImage = "icons_armor/icons_body/body" + this.getRarity() + ".png";
+				break;
+			case "Arms":
+				cellImage = "icons_armor/icons_arms/arms" + this.getRarity() + ".png";
+				break;
+			case "Waist":
+				cellImage = "icons_armor/icons_waist/waist" + this.getRarity() + ".png";
+				break;
+			case "Legs":
+				cellImage = "icons_armor/icons_legs/legs" + this.getRarity() + ".png";
+				break;
+			case "Great Sword":
+				cellImage = "icons_weapons/icons_great_sword/great_sword" + this.getRarity() + ".png";
+				break;
+			case "Long Sword":
+				cellImage = "icons_weapons/icons_long_sword/long_sword" + this.getRarity() + ".png";
+				break;
+			case "Sword and Shield":
+				cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + this.getRarity() + ".png";
+				break;
+			case "Dual Blades":
+				cellImage = "icons_weapons/icons_dual_blades/dual_blades" + this.getRarity() + ".png";
+				break;
+			case "Hammer":
+				cellImage = "icons_weapons/icons_hammer/hammer" + this.getRarity() + ".png";
+				break;
+			case "Hunting Horn":
+				cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + this.getRarity() + ".png";
+				break;
+			case "Lance":
+				cellImage = "icons_weapons/icons_lance/lance" + this.getRarity() + ".png";
+				break;
+			case "Gunlance":
+				cellImage = "icons_weapons/icons_gunlance/gunlance" + this.getRarity() + ".png";
+				break;
+			case "Switch Axe":
+				cellImage = "icons_weapons/icons_switch_axe/switch_axe" + this.getRarity() + ".png";
+				break;
+			case "Charge Blade":
+				cellImage = "icons_weapons/icons_charge_blade/charge_blade" + this.getRarity() + ".png";
+				break;
+			case "Insect Glaive":
+				cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + this.getRarity() + ".png";
+				break;
+			case "Light Bowgun":
+				cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + this.getRarity() + ".png";
+				break;
+			case "Heavy Bowgun":
+				cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + this.getRarity() + ".png";
+				break;
+			case "Bow":
+				cellImage = "icons_weapons/icons_bow/bow" + this.getRarity() + ".png";
+				break;
+			default: {
+				if(this.type.equals("Palico Weapon"))
+					cellImage = "icons_weapons/"+this.getFileLocation();
+				else
+					cellImage = "icons_items/" + this.getFileLocation();
+			}
+		}
+		return cellImage;
+	}
 
 	public String getArmorDupeNameFix() {
 		return armor_dupe_name_fix;

@@ -28,7 +28,7 @@ import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 import java.io.IOException;
 
 /**
- * Created by E410474 on 7/7/2016.
+ * Created by Joseph on 7/7/2016.
  */
 public class MaterialDetailItemFragment extends ListFragment implements
         LoaderManager.LoaderCallbacks<Cursor> {

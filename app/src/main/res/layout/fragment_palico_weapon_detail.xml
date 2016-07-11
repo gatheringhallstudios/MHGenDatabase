@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,103 +31,134 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center_horizontal">
-                <LinearLayout
+                android:layout_height="wrap_content">
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Melee"
-                        android:textStyle="bold"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="16sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Ranged"
-                        android:textStyle="bold"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="16sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textStyle="bold"
-                        android:textSize="16sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_melee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        android:text="40"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
-                    <TextView
-                        android:id="@+id/detail_weapon_ranged"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        android:text="40"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:text="Attack"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textStyle="bold"
-                        android:textSize="16sp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_element_melee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="18"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
-                    <TextView
-                        android:id="@+id/detail_weapon_element_ranged"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="18"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
+                    android:minWidth="70dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="16sp"
+                    android:text="Melee"/>
+                <TextView
+                    android:id="@+id/detail_weapon_melee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="40"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/detail_weapon_element_melee"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="18"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/detail_weapon_affinity_melee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="5%"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="16sp"
+                    android:text="Ranged"/>
+                <TextView
+                    android:id="@+id/detail_weapon_ranged"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="40"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/detail_weapon_element_ranged"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="18"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/detail_weapon_affinity_ranged"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="5%"
+
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="30sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="70dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="Attack"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|bottom">
                     <TextView
                         android:id="@+id/detail_weapon_element_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Poison"
+                        tools:text="Poison"
                         android:textColor="@color/weapon_header_property_color"
                         android:textSize="10sp"/>
                     <TextView
@@ -138,40 +170,15 @@
                         android:textColor="@color/weapon_header_property_color"
                         android:textSize="16sp"/>
                 </LinearLayout>
-                <LinearLayout
+                <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_affinity_melee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        android:text="5%"
-                        android:layout_marginBottom="6dp"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
-                    <TextView
-                        android:id="@+id/detail_weapon_affinity_ranged"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        android:text="5%"
-                        android:layout_marginBottom="6dp"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="30sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:text="Affinity"
-                        android:textStyle="bold"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="16sp"/>
-                </LinearLayout>
+                    android:gravity="center_horizontal|bottom"
+                    android:text="Affinity"
+                    android:textStyle="bold"
+                    android:textColor="@color/weapon_header_property_color"
+                    android:textSize="16sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -205,11 +212,10 @@
                         android:layout_height="match_parent"
                         android:layout_margin="2dp"
                         android:id="@+id/detail_weapon_sharpness"
-                        android:background="#FF0000"/>
+                        android:background="#000000"/>
                     </LinearLayout>
                 <!--Special Value-->
                 <TextView
-                    android:id="@+id/detail_weapon_blade_special"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/text_small_secondary"
@@ -220,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/weapon_detail_property_value"
-                    android:text="Blunt"/>
+                    tools:text="Blunt"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -232,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/weapon_detail_property_value"
-                    android:text="Balanced"/>
+                    tools:text="Balanced"/>
                 <TextView
                     android:id="@+id/detail_weapon_defense_text"
                     android:layout_width="wrap_content"
@@ -245,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/weapon_detail_property_value"
-                    android:text="10"/>
+                    tools:text="10"/>
                 <!--Upgrade Cost-->
                 <TextView
                     android:layout_width="wrap_content"
@@ -258,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/weapon_detail_property_value"
-                    android:text="48000z"/>
+                    tools:text="48000z"/>
                 <!--Creation Cost-->
                 <TextView
                     android:layout_width="wrap_content"
@@ -271,7 +277,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/weapon_detail_property_value"
-                    android:text="5"/>
+                    tools:text="5"/>
                 <!--Creation Cost-->
                 <TextView
                     android:layout_width="wrap_content"
@@ -286,7 +292,7 @@
                     style="@style/text_medium"
                     android:textColor="@color/weapon_property_color"
                     android:layout_marginBottom="8dp"
-                    android:text="5"/>
+                    tools:text="This is a description"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -33,6 +33,7 @@
     <item name="skill_tree_detail_fragment" type="id"/>
     <item name="weapon_detail_fragment" type="id"/>
     <item name="weapon_tree_fragment" type="id"/>
+    <item name="palico_weapon_detail_fragment" type="id"/>
     <item name="wishlist_data_component_fragment" type="id"/>
     <item name="wishlist_data_detail_fragment" type="id"/>
     <item name="asb_set_activity" type="id"/>

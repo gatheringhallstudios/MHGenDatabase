@@ -72,9 +72,9 @@ public class PalicoWeapon {
 
     public String getBalanceString(){
         switch (balance){
-            case 0:return "[Balanced]";
-            case 1:return "[Melee+]";
-            default:return "[Boomerang+]";
+            case 0:return "Balanced";
+            case 1:return "Melee+";
+            default:return "Boomerang+";
         }
     }
     public void setBalance(int balance) {

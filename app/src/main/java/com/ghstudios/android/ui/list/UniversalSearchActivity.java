@@ -48,6 +48,7 @@ public class UniversalSearchActivity extends GenericActivity {
         searchView.setIconifiedByDefault(false);
         searchView.setSubmitButtonEnabled(false);
         searchView.setQueryHint(getString(R.string.search_hint));
+        searchView.setIconified(false);
 
         // Perform searches on text change
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
