@@ -39,7 +39,7 @@ public class SkillTreeDetailActivity extends GenericTabActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.SKILL_TREES;
     }
 

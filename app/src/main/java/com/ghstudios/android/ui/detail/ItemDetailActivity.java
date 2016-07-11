@@ -38,7 +38,7 @@ public class ItemDetailActivity extends GenericTabActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.ITEMS;
     }
 

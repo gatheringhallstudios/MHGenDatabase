@@ -9,7 +9,7 @@ import com.ghstudios.android.ui.general.GenericActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 /**
- * Created by E410474 on 7/7/2016.
+ * Created by Joseph on 7/7/2016.
  */
 public class MaterialDetailActivity extends GenericActivity {
 
@@ -33,7 +33,7 @@ public class MaterialDetailActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.ITEMS;
     }
 }
