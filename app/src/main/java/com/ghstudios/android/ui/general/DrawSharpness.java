@@ -44,9 +44,9 @@ public class DrawSharpness extends View {
 
     private final int maxsharpness = 40;
 
-	int orangeColor = Color.rgb(255, 150, 0);
+	public static int orangeColor = Color.rgb(255, 150, 0);
 	//int purpleColor = Color.rgb(120, 81, 169);
-    int blueColor = Color.rgb(20,131,208);
+    public static int blueColor = Color.rgb(20,131,208);
 
 	Paint paint = new Paint();
 

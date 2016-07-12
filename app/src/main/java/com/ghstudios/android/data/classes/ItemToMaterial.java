@@ -1,7 +1,7 @@
 package com.ghstudios.android.data.classes;
 
 /**
- * Created by E410474 on 7/7/2016.
+ * Created by Joseph on 7/7/2016.
  */
 public class ItemToMaterial {
     private int amount;
