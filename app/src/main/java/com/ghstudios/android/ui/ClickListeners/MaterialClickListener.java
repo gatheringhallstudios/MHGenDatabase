@@ -7,7 +7,7 @@ import android.view.View;
 import com.ghstudios.android.ui.detail.MaterialDetailActivity;
 
 /**
- * Created by E410474 on 7/7/2016.
+ * Created by Joseph on 7/7/2016.
  */
 public class MaterialClickListener implements View.OnClickListener {
     private Context c;

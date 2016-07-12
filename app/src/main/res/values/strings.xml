@@ -63,12 +63,12 @@
         <item>"Armor,icons_armor/icons_body/body1.png"</item>
         <item>"Quests,icons_items/Quest-Icon-White.png"</item>
         <item>"Items,icons_items/Ore-White.png"</item>
+        <item>"Palicos,icons_weapons/cutting1.png</item>
         <item>"Combining,icons_items/Liquid-White.png"</item>
         <item>"Locations,icons_items/Map-Icon-White.png"</item>
         <item>"Decorations,icons_items/Jewel-White.png"</item>
         <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
         <item>"Wishlists,icons_items/Mantle-White.png"</item>
-        <!--<item>"Wyporium Trade,icons_items/Carapace-White.png"</item>-->
         <item>"Armor Set Builder,icons_items/Talisman-White.png"</item>
     </string-array>
 
@@ -84,6 +84,7 @@
     <string name="option_wishlist_data_delete">Delete from wishlist</string>
     <string name="search_title">Search item</string>
     <string name="monsters">Monsters</string>
+    <string name="palicos">Palicos</string>
     <string name="items">Items</string>
     <string name="locations">Locations</string>
     <string name="combining">Combining</string>
