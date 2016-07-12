@@ -166,6 +166,13 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != Activity.RESULT_OK) return;
+		if (requestCode == WishlistListFragment.REQUEST_RENAME) {
+			if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
+                // Cast parent activity in order to call refresh title method
+                ((WishlistDetailActivity) getActivity()).refreshTitle();
+				updateUI();
+			}
+		}
 /*		if (requestCode == WishlistListFragment.REQUEST_REFRESH) {
 			if(data.getBooleanExtra(WishlistDataComponentFragment.EXTRA_COMPONENT_REFRESH, false)) {
 				fromOtherTab = true;
@@ -177,7 +184,8 @@ public class WishlistDataDetailFragment extends ListFragment implements
 				updateUI();
 			}
 		}
-		else */if (requestCode == WishlistListFragment.REQUEST_DELETE) {
+		*/
+		else if (requestCode == WishlistListFragment.REQUEST_DELETE) {
 			if(data.getBooleanExtra(WishlistDataDeleteDialogFragment.EXTRA_DELETE, false)) {
 				updateUI();
 			}
@@ -480,4 +488,9 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	        mActionMode = null;
 	    }
 	}
+
+    // Define interface WishlistDetailActivity must implement to refresh it's title
+    public interface RefreshActivityTitle{
+        void refreshTitle();
+    }
 }

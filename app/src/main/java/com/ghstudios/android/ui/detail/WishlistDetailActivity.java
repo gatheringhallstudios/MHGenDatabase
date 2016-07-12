@@ -17,7 +17,7 @@ import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
-public class WishlistDetailActivity extends GenericTabActivity {
+public class WishlistDetailActivity extends GenericTabActivity implements WishlistDataDetailFragment.RefreshActivityTitle{
     /**
      * A key for passing a wishlist ID as a long
      */
@@ -32,6 +32,7 @@ public class WishlistDetailActivity extends GenericTabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Set Title
         long id = getIntent().getLongExtra(EXTRA_WISHLIST_ID, -1);
         setTitle(DataManager.get(getApplicationContext()).getWishlist(id).getName());
 
@@ -118,6 +119,13 @@ public class WishlistDetailActivity extends GenericTabActivity {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void refreshTitle(){
+        // Set again after wishlist is renamed
+        long id = getIntent().getLongExtra(EXTRA_WISHLIST_ID, -1);
+        setTitle(DataManager.get(getApplicationContext()).getWishlist(id).getName());
     }
 
 }
