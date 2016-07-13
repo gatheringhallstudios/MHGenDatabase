@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -262,6 +262,13 @@
 
     <style name="detail_subheader_text">
         <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="detail_value_element_text" parent="text_small">
+        <item name="android:layout_marginTop">-4dp</item>
+        <item name="android:textSize">8sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 

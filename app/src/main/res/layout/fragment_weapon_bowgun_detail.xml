@@ -33,7 +33,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:layout_gravity="center_horizontal">
                 <LinearLayout
                     android:layout_width="0dp"
@@ -47,19 +50,15 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
                         android:text="180"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="34sp"/>
+                        style="@style/detail_header_text"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_gravity="center_horizontal"
                         android:text="Attack"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        style="@style/detail_subheader_text"/>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -68,22 +67,17 @@
                     <TextView
                         android:id="@+id/detail_weapon_affinity"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="5%"
-                        android:layout_marginBottom="6dp"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="34sp"/>
+                        style="@style/detail_header_text"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_gravity="center_horizontal"
                         android:text="Affinity"
-                        android:textStyle="bold"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="16sp"/>
+                        style="@style/detail_subheader_text"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -97,27 +91,24 @@
                         android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
                         android:text="---"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="34sp"/>
+                        style="@style/detail_header_text"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|bottom"
                         android:text="Slots"
-                        android:textStyle="bold"
-                        android:textColor="@color/weapon_header_property_color"
-                        android:textSize="16sp"/>
+                        style="@style/detail_subheader_text"/>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/text_color_secondary"></LinearLayout>
+                android:background="@color/text_color_secondary"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

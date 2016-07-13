@@ -33,8 +33,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:layout_gravity="center_horizontal">
                 <LinearLayout
                     android:layout_width="0dp"
@@ -53,38 +55,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_gravity="center_horizontal"
                         android:text="Attack"
                         style="@style/detail_subheader_text"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/weapon_detail_element_layout"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/detail_weapon_element"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="18"
-                            style="@style/detail_header_text"/>
-                        <TextView
-                            android:id="@+id/detail_weapon_element_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="-4dp"
-                            android:text="Poison"
-                            android:textColor="@color/weapon_header_property_color"
-                            android:textSize="10sp"/>
                     <TextView
+                        android:id="@+id/detail_weapon_element"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:text="28"
+                        style="@style/detail_header_text"/>
+                    <TextView
+                        android:id="@+id/detail_weapon_element_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Element"
+                        android:text="Fire"
                         style="@style/detail_subheader_text"/>
                 </LinearLayout>
                 <LinearLayout
@@ -95,17 +89,15 @@
                     <TextView
                         android:id="@+id/detail_weapon_affinity"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="5%"
-                        android:layout_marginBottom="6dp"
                         style="@style/detail_header_text"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_gravity="center_horizontal"
                         android:text="Affinity"
                         style="@style/detail_subheader_text"/>
                 </LinearLayout>
