@@ -63,11 +63,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        style="@style/text_small"
+        style="@style/text_small_secondary"
         android:layout_toLeftOf="@+id/percentage"
         android:layout_alignTop="@+id/percentage"
         android:gravity="center_vertical|right"
-        android:text="3"
+        android:text="x3"
         android:layout_centerVertical="true" />
 
     <TextView
@@ -78,7 +78,8 @@
         style="@style/text_small"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical|right"
-        android:paddingLeft="16dp"
+        android:minWidth="40dp"
+        android:layout_marginLeft="4dp"
         android:text="25%"
         android:layout_centerVertical="true" />
 

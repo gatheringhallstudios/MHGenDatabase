@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -413,6 +414,12 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
             holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text));
+
+            View v = (View)holder.txtTitle.getParent();
+            if(position == selectedIndex)
+                v.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.navigationSelectedColor));
+//            else
+//                v.setBackgroundColor(Color.TRANSPARENT);
 
             // Attempt to retrieve drawable
             Drawable i = null;

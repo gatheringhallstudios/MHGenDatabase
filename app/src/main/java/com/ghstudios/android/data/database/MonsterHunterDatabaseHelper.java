@@ -77,7 +77,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         // See this article for more information: http://bit.ly/6LRzfx
         if (mInstance == null) {
             //JOE:This will force database to be copied.
-            c.getApplicationContext().deleteDatabase(DATABASE_NAME);
+            //c.getApplicationContext().deleteDatabase(DATABASE_NAME);
             mInstance = new MonsterHunterDatabaseHelper(c.getApplicationContext());
         }
         return mInstance;

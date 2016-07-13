@@ -63,6 +63,7 @@ public class CombiningListFragment extends ListFragment implements
 		CombiningListCursorAdapter adapter = new CombiningListCursorAdapter(
 				getActivity(), (CombiningCursor) cursor);
 		setListAdapter(adapter);
+
 		//getListView().setEmptyView(getListView().findViewById(R.id.list_empty));
 	}
 
