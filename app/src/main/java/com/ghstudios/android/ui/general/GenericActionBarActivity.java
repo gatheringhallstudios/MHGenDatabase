@@ -96,9 +96,10 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
 
         // Display changelog on first run after update
         ChangeLog cl = new ChangeLog(this);
-        //if (cl.isFirstRun()) {
-        //    cl.getLogDialog().show(); TODO fix changelog
-        //}
+        if (cl.isFirstRun()) {
+            //If this broke
+            cl.getLogDialog().show();
+        }
 
         // Handler to implement drawer delay and runnable
         mHandler = new Handler();
