@@ -26,7 +26,7 @@ public class PalicoWeaponDetailActivity extends GenericTabActivity {
 
         long id = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
         PalicoWeapon wep = DataManager.get(getApplicationContext()).getPalicoWeapon(id);
-        setTitle(wep.getItem().getName());
+        setTitle(R.string.palicos);
 
         // Initialization
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

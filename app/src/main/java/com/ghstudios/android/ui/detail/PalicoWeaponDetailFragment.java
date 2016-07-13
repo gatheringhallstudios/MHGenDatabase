@@ -34,7 +34,7 @@ public class PalicoWeaponDetailFragment extends Fragment implements
         return f;
     }
 
-    TextView _attackMelee,_attackRanged,_elementMelee,_elementRanged,_elementText,
+    TextView _titleBar, _attackMelee,_attackRanged,_elementMelee,_elementRanged,_elementText,
             _affinityMelee,_affinityRanged,_defenseText,_defenseValue,_blunt,_balance,_creationCost,
             _rarity,_description;
     LinearLayout _sharpnessLayout;
@@ -45,6 +45,7 @@ public class PalicoWeaponDetailFragment extends Fragment implements
         View v = inflater.inflate(R.layout.fragment_palico_weapon_detail, parent, false);
 
         //Get all needed views
+        _titleBar = (TextView) v.findViewById(R.id.detail_title_bar_text);
         _attackMelee = (TextView)v.findViewById(R.id.detail_weapon_melee);
         _attackRanged = (TextView)v.findViewById(R.id.detail_weapon_ranged);
         _elementMelee = (TextView)v.findViewById(R.id.detail_weapon_element_melee);
@@ -89,6 +90,7 @@ public class PalicoWeaponDetailFragment extends Fragment implements
 
     void updateUI(PalicoWeapon wep){
 
+        _titleBar.setText(wep.getItem().getName());
         _attackMelee.setText(Integer.toString(wep.getAttackMelee()));
         _attackRanged.setText(Integer.toString(wep.getAttackRanged()));
         _elementMelee.setText(Integer.toString(wep.getElementMelee()));
