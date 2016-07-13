@@ -2,9 +2,7 @@ package com.ghstudios.android.ui.detail;
 
 import java.io.IOException;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +37,7 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 		//mWeaponLabelTextView = (TextView) view
 		//		.findViewById(R.id.detail_weapon_name);
 		mWeaponTypeTextView = (TextView) view
-				.findViewById(R.id.detail_weapon_type);
+				.findViewById(R.id.detail_title_bar_text);
 		mWeaponDescription = (TextView)view.findViewById(R.id.detail_weapon_description);
 		mWeaponAttackTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_attack);

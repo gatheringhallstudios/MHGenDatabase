@@ -38,7 +38,7 @@ public class WeaponDetailActivity extends GenericTabActivity {
 
         id = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
         name = DataManager.get(getApplicationContext()).getWeapon(id).getName();
-        setTitle(name);
+
 
         //JOE: This is so we can add/remove tabs as needed based on type.
         //Goes against the design of doing queries on the UI Thread, but
@@ -47,6 +47,8 @@ public class WeaponDetailActivity extends GenericTabActivity {
         //Possible redesign is to pass in the wtype, almost all links here should know it.
         wtype = DataManager.get(this).getWeaponType(id);
 
+        // Set activity title to display weapon type
+        setTitle(wtype);
 
         // Initialization
         viewPager = (ViewPager) findViewById(R.id.pager);

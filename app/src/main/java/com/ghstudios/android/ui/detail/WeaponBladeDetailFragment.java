@@ -3,27 +3,17 @@ package com.ghstudios.android.ui.detail;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.content.Context;
-import android.support.v4.content.Loader;
 import android.content.res.AssetManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ghstudios.android.data.classes.Melody;
-import com.ghstudios.android.data.classes.Weapon;
-import com.ghstudios.android.data.database.HornMelodiesCursor;
-import com.ghstudios.android.loader.WeaponLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.general.DrawSharpness;
 
@@ -57,7 +47,7 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment{
         mWeaponDescription = (TextView) view
                 .findViewById(R.id.detail_weapon_description);
 		mWeaponTypeTextView = (TextView) view
-				.findViewById(R.id.detail_weapon_type);
+				.findViewById(R.id.detail_title_bar_text);
 		mWeaponAttackTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_attack);
 		mWeaponElementTextView = (TextView) view
