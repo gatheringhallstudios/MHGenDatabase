@@ -137,7 +137,7 @@
                     android:id="@+id/detail_weapon_bowgun_recoil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="Average"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:id="@+id/detail_weapon_bowgun_reload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="Faster"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                     android:id="@+id/detail_weapon_bowgun_steadiness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="None"/>
                 <TextView
                     android:id="@+id/detail_weapon_defense_text"
@@ -174,7 +174,7 @@
                     android:id="@+id/detail_weapon_defense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="10"/>
                 <!--Upgrade Cost-->
                 <TextView
@@ -187,7 +187,7 @@
                     android:id="@+id/detail_weapon_upgrade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="48000z"/>
                 <!--Creation Cost-->
                 <TextView
@@ -200,7 +200,7 @@
                     android:id="@+id/detail_weapon_creation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="-"/>
                 <!--Creation Cost-->
                 <TextView
@@ -213,7 +213,7 @@
                     android:id="@+id/detail_weapon_rarity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/weapon_detail_property_value"
+                    style="@style/detail_value_text"
                     android:text="5"/>
                 <!--Creation Cost-->
                 <TextView
