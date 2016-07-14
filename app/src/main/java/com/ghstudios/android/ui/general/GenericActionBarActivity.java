@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -97,6 +98,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         // Display changelog on first run after update
         ChangeLog cl = new ChangeLog(this);
         if (cl.isFirstRun()) {
+            //If this broke
             cl.getLogDialog().show();
         }
 
@@ -170,40 +172,40 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         Intent intent = new Intent();
 
         switch (itemId) {
-            case 0: // Monsters
+            case MenuSection.MONSTERS: // Monsters
                 intent = new Intent(GenericActionBarActivity.this, MonsterListActivity.class);
                 break;
-            case 1: // Weapons
+            case MenuSection.WEAPONS: // Weapons
                 intent = new Intent(GenericActionBarActivity.this, WeaponSelectionListActivity.class);
                 break;
-            case 2: // Armor
+            case MenuSection.ARMOR: // Armor
                 intent = new Intent(GenericActionBarActivity.this, ArmorListActivity.class);
                 break;
-            case 3: // Quests
+            case MenuSection.QUESTS: // Quests
                 intent = new Intent(GenericActionBarActivity.this, QuestListActivity.class);
                 break;
-            case 4: // Items
+            case MenuSection.ITEMS: // Items
                 intent = new Intent(GenericActionBarActivity.this, ItemListActivity.class);
                 break;
-            case 5: // Combining
+            case MenuSection.PALICOS:
+                intent = new Intent(GenericActionBarActivity.this, PalicoActivity.class);
+                break;
+            case MenuSection.COMBINING: // Combining
                 intent = new Intent(GenericActionBarActivity.this, CombiningListActivity.class);
                 break;
-            case 6: // Locations
+            case MenuSection.LOCATIONS: // Locations
                 intent = new Intent(GenericActionBarActivity.this, LocationListActivity.class);
                 break;
-            case 7: // Decorations
+            case MenuSection.DECORATION: // Decorations
                 intent = new Intent(GenericActionBarActivity.this, DecorationListActivity.class);
                 break;
-            case 8: // Skill Trees
+            case MenuSection.SKILL_TREES: // Skill Trees
                 intent = new Intent(GenericActionBarActivity.this, SkillTreeListActivity.class);
                 break;
-            case 9: // Wishlists
-                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
-                break;
-//            case 10: // Wyporium Trade
-//                intent = new Intent(GenericActionBarActivity.this, WyporiumTradeListActivity.class);
+//            case MenuSection.WISH_LISTS: // Wishlists
+//                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
 //                break;
-            case 10:
+            case MenuSection.ARMOR_SET_BUILDER:
                 intent = new Intent(GenericActionBarActivity.this, ASBSetListActivity.class);
                 break;
         }
@@ -251,11 +253,11 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (mDrawerAdapter != null) {
-            mDrawerAdapter.setSelectedIndex(getSelectedSection().menuListPosition);
+            mDrawerAdapter.setSelectedIndex(getSelectedSection());
         }
     }
 
-    protected abstract MenuSection getSelectedSection();
+    protected abstract int getSelectedSection();
 
     // Handle toggle state sync across configuration changes (rotation)
     @Override
@@ -302,7 +304,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.setType("text/email");
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "MH4U Database Feedback");
+                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
                 startActivity(Intent.createChooser(email, "Send Feedback:"));
 
             default:
@@ -412,6 +414,12 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
             holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text));
+
+            View v = (View)holder.txtTitle.getParent();
+            if(position == selectedIndex)
+                v.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.navigationSelectedColor));
+            else
+                v.setBackgroundColor(Color.TRANSPARENT);
 
             // Attempt to retrieve drawable
             Drawable i = null;

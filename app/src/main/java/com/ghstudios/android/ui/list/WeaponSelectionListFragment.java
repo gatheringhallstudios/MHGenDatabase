@@ -92,15 +92,12 @@ public class WeaponSelectionListFragment extends ListFragment {
 		}
 
 		@Override
-		public boolean isEnabled(int position) {
-			return false;
-		}
-
-		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = getActivity().getLayoutInflater().inflate(
-						R.layout.fragment_list_item_basic, parent, false);
+				LayoutInflater inflater = (LayoutInflater) getContext()
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				convertView = inflater.inflate(R.layout.fragment_list_item_basic,
+						parent, false);
 			}
 
 			Drawable item = getItem(position);

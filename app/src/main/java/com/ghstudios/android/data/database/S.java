@@ -67,7 +67,7 @@ public class S {
 	static final String COLUMN_COMPONENTS_CREATED_ITEM_ID = "created_item_id";
 	static final String COLUMN_COMPONENTS_COMPONENT_ITEM_ID = "component_item_id";
 	static final String COLUMN_COMPONENTS_QUANTITY = "quantity";
-	static final String COLUMN_COMPONENTS_TYPE = "type";
+	public static final String COLUMN_COMPONENTS_TYPE = "type";
 	
 	// Decorations
 	static final String TABLE_DECORATIONS = "decorations";
@@ -82,8 +82,12 @@ public class S {
 	static final String COLUMN_GATHERING_AREA = "area";
 	static final String COLUMN_GATHERING_SITE = "site";
 	static final String COLUMN_GATHERING_RANK = "rank";
+	static final String COLUMN_GATHERING_GROUP = "group_num";
+	static final String COLUMN_GATHERING_FIXED = "fixed";
+	static final String COLUMN_GATHERING_RARE = "rare";
     static final String COLUMN_GATHERING_RATE = "percentage";
-	
+    static final String COLUMN_GATHERING_QUANTITY = "quantity";
+
 	// Hunting Fleet
 	static final String TABLE_HUNTING_FLEET = "hunting_fleet";
 	static final String COLUMN_HUNTING_FLEET_ID = "_id";
@@ -126,7 +130,14 @@ public class S {
 	static final String COLUMN_ITEM_TO_SKILL_TREE_ITEM_ID = "item_id";
 	static final String COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID = "skill_tree_id";
 	static final String COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE = "point_value";
-	
+
+	// Item to Materials
+	static final String TABLE_ITEM_TO_MATERIAL = "item_to_material";
+	static final String COLUMN_ITEM_TO_MATERIAL_ID = "_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID = "material_item_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_ITEM_ID = "item_id";
+	static final String COLUMN_ITEM_TO_MATERIAL_AMOUNT = "amount";
+
 	// Locations
 	static final String TABLE_LOCATIONS = "locations";
 	static final String COLUMN_LOCATIONS_ID = "_id";
@@ -254,6 +265,8 @@ public class S {
     static final String COLUMN_QUESTS_SUB_GOAL = "sub_goal";
     static final String COLUMN_QUESTS_SUB_REWARD = "sub_reward";
     static final String COLUMN_QUESTS_SUB_HRP = "sub_hrp";
+    static final String COLUMN_QUESTS_GOAL_TYPE = "goal_type";
+	static final String COLUMN_QUESTS_HUNTER_TYPE = "hunter_type";
 
     // Quest Pre-Requirements
     static final String TABLE_QUEST_PREREQS = "quest_prereqs";
@@ -326,6 +339,22 @@ public class S {
     static final String COLUMN_WEAPONS_TREE_DEPTH = "tree_depth";
     static final String COLUMN_WEAPONS_PARENT_ID = "parent_id";
 
+	// Weapons
+	static final String TABLE_PALICO_WEAPONS = "palico_weapons";
+	static final String COLUMN_PALICO_WEAPONS_ID = "_id";
+	static final String COLUMN_PALICO_WEAPONS_CREATION_COST = "creation_cost";
+	static final String COLUMN_PALICO_WEAPONS_ATTACK_MELEE = "attack_melee";
+	static final String COLUMN_PALICO_WEAPONS_ATTACK_RANGED = "attack_ranged";
+	static final String COLUMN_PALICO_WEAPONS_ELEMENT = "element";
+	static final String COLUMN_PALICO_WEAPONS_ELEMENT_MELEE = "element_melee";
+	static final String COLUMN_PALICO_WEAPONS_ELEMENT_RANGED = "element_ranged";
+	static final String COLUMN_PALICO_WEAPONS_DEFENSE = "defense";
+	static final String COLUMN_PALICO_WEAPONS_SHARPNESS = "sharpness";
+	static final String COLUMN_PALICO_WEAPONS_AFFINITY_MELEE = "affinity_melee";
+	static final String COLUMN_PALICO_WEAPONS_AFFINITY_RANGED = "affinity_ranged";
+	static final String COLUMN_PALICO_WEAPONS_BLUNT = "blunt";
+	static final String COLUMN_PALICO_WEAPONS_BALANCE = "balance";
+	
     // Horn Melodies
     static final String TABLE_HORN_MELODIES = "horn_melodies";
     static final String COLUMN_HORN_MELODIES_ID = "_id";

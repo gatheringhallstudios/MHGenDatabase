@@ -21,7 +21,7 @@ public class LocationListActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.LOCATIONS;
     }
 

@@ -21,7 +21,7 @@ public class WeaponSelectionListActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.WEAPONS;
     }
 

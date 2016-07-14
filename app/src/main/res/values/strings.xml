@@ -2,28 +2,30 @@
 <resources>
 
     <string name="app_name">MHGen Database</string>
+    <string name="app_name_launcher">MHGen DB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
     <string name="about">About</string>
     <string name="action_settings">Settings</string>
-    <string name="about_message">MH4U Database v1.08
+    <string name="about_message">
+                                MHGen Database v1.00
+                                \n\n
+                                Developed by Gathering Hall Studios\n
+                                http://gatheringhallstudios.com
                                 \n\n
                                 Contribute at:\n
-                                https://github.com/kamegami13/MonsterHunter4UDatabase
+                                https://github.com/gatheringhallstudios/MHGenDatabase
                                 \n\n
-                                Based on data from:\n
-                                Ping\'s Dex\n
-                                monsterhunter.wikia.com\n
-                                kiranico.com\n
-                                wiki.mh4g.org\n
-                                aegil.net
-                                \n\n
-                                A Special Thanks to:\n
+                                Special Thanks to:\n
                                 Kiranico\n
-                                Kogath at Monster Hunter Wikia\n
-                                kaiiboraka\n
-                                Ping\n
-                                Aegil
+                                Ping
+                                \n\n
+                                Uses the following open source libraries:\n
+                                * android-section-adapter\n
+                                * android-sqlite-asset-helper\n
+                                * multilevelexpindlistview\n
+                                * pagerslidingtabstrip\n
+                                * android-flowlayout
         						</string>
     <string name="alert_button">Close</string>
     <string name="alert_rate">Rate!</string>
@@ -34,6 +36,7 @@
 
     <string name="placeholder_unknown">Unknown</string>
     <string name="filter_final_option">Final Only</string>
+    <string name="list_empty_message">Insufficient materials.</string>
 
     <string name="dialog_message_delete">\"%s\" will be deleted.</string>
     <string name="dialog_message_delete_multi">These %d items will be deleted.</string>
@@ -61,12 +64,12 @@
         <item>"Armor,icons_armor/icons_body/body1.png"</item>
         <item>"Quests,icons_items/Quest-Icon-White.png"</item>
         <item>"Items,icons_items/Ore-White.png"</item>
+        <item>"Palicos,icons_weapons/cutting1.png</item>
         <item>"Combining,icons_items/Liquid-White.png"</item>
         <item>"Locations,icons_items/Map-Icon-White.png"</item>
         <item>"Decorations,icons_items/Jewel-White.png"</item>
         <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
-        <item>"Wishlists,icons_items/Mantle-White.png"</item>
-        <!--<item>"Wyporium Trade,icons_items/Carapace-White.png"</item>-->
+        <!--<item>"Wishlists,icons_items/Mantle-White.png"</item>-->
         <item>"Armor Set Builder,icons_items/Talisman-White.png"</item>
     </string-array>
 
@@ -82,6 +85,7 @@
     <string name="option_wishlist_data_delete">Delete from wishlist</string>
     <string name="search_title">Search item</string>
     <string name="monsters">Monsters</string>
+    <string name="palicos">Palicos</string>
     <string name="items">Items</string>
     <string name="locations">Locations</string>
     <string name="combining">Combining</string>
@@ -182,6 +186,7 @@
     <string name="asb_dialog_title_delete_set_multi">Delete sets?</string>
     <string name="asb_dialog_title_copy_set">Copy this set?</string>
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
+    <string name="monster_normal_state">Normal State</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>

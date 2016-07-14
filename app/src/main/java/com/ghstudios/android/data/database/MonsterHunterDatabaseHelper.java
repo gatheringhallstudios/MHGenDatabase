@@ -17,6 +17,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
+import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -58,7 +59,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     private static MonsterHunterDatabaseHelper mInstance = null;
 
     private static final String DATABASE_NAME = "mhgen.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 1;
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;
@@ -76,7 +77,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         // See this article for more information: http://bit.ly/6LRzfx
         if (mInstance == null) {
             //JOE:This will force database to be copied.
-            c.getApplicationContext().deleteDatabase(DATABASE_NAME);
+            //c.getApplicationContext().deleteDatabase(DATABASE_NAME);
             mInstance = new MonsterHunterDatabaseHelper(c.getApplicationContext());
         }
         return mInstance;
@@ -1039,7 +1040,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = new String[]{"" + id};
         qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = null;
+        qh.OrderBy = "c.type";
         qh.Limit = null;
 
         return new ComponentCursor(wrapJoinHelper(builderComponent(), qh));
@@ -1323,6 +1324,10 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         projectionMap.put(S.COLUMN_GATHERING_SITE, g + "." + S.COLUMN_GATHERING_SITE);
         projectionMap.put(S.COLUMN_GATHERING_RANK, g + "." + S.COLUMN_GATHERING_RANK);
         projectionMap.put(S.COLUMN_GATHERING_RATE, g + "." + S.COLUMN_GATHERING_RATE);
+        projectionMap.put(S.COLUMN_GATHERING_GROUP, g + "." + S.COLUMN_GATHERING_GROUP);
+        projectionMap.put(S.COLUMN_GATHERING_FIXED, g + "." + S.COLUMN_GATHERING_FIXED);
+        projectionMap.put(S.COLUMN_GATHERING_RARE, g + "." + S.COLUMN_GATHERING_RARE);
+        projectionMap.put(S.COLUMN_GATHERING_QUANTITY, g + "." + S.COLUMN_GATHERING_QUANTITY);
 
         projectionMap.put(i + S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME);
         projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
@@ -1613,6 +1618,53 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     }
 
     /**
+     * ****************************** ITEM TO MATERIAL QUERIES *****************************************
+     */
+
+    public ItemToMaterialCursor queryItemsForMaterial(long material_item_id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Selection = "itm." + S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID + " = ? ";
+        qh.SelectionArgs = new String[]{"" + material_item_id};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = "itm.amount DESC";
+        qh.Limit = null;
+
+        return new ItemToMaterialCursor(wrapJoinHelper(builderItemToMaterial(), qh));
+    }
+
+    private SQLiteQueryBuilder builderItemToMaterial() {
+
+        String itm = "itm";
+        String i = "i";
+
+        HashMap<String, String> projectionMap = new HashMap<>();
+
+        //Material Mapping
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_ID);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_AMOUNT, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_AMOUNT);
+        projectionMap.put(S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID, itm + "." + S.COLUMN_ITEM_TO_MATERIAL_MATERIAL_ID);
+
+        //Item
+        projectionMap.put(i + S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_TYPE, i + "." + S.COLUMN_ITEMS_TYPE);
+        projectionMap.put(S.COLUMN_ITEMS_SUB_TYPE, i + "." + S.COLUMN_ITEMS_SUB_TYPE);
+        projectionMap.put(S.COLUMN_ITEMS_RARITY, i + "." + S.COLUMN_ITEMS_RARITY);
+
+        //Create new querybuilder
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+
+        QB.setTables(S.TABLE_ITEM_TO_MATERIAL + " AS itm" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "itm." +
+                S.COLUMN_ITEM_TO_MATERIAL_ITEM_ID + " = " + "i." + S.COLUMN_ITEMS_ID);
+
+        QB.setProjectionMap(projectionMap);
+        return QB;
+    }
+
+    /**
      * ****************************** LOCATION QUERIES *****************************************
      */
 	
@@ -1626,12 +1678,12 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Distinct = true;
         qh.Table = S.TABLE_LOCATIONS;
         qh.Columns = null;
-        qh.Selection = null;
+        qh.Selection = "_id<100";
         qh.SelectionArgs = null;
         qh.GroupBy = null;
         qh.Having = null;
         //Night versions have an _id + 100, so to keep them together we need to modify the sort.
-        qh.OrderBy = "CASE WHEN _id>100 THEN _id-100 ELSE _id END";
+        qh.OrderBy = null;//"CASE WHEN _id>100 THEN _id-100 ELSE _id END";
         qh.Limit = null;
 
         return new LocationCursor(wrapHelper(qh));
@@ -2271,6 +2323,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         projectionMap.put(S.COLUMN_QUESTS_SUB_GOAL, q + "." + S.COLUMN_QUESTS_SUB_GOAL);
         projectionMap.put(S.COLUMN_QUESTS_SUB_REWARD, q + "." + S.COLUMN_QUESTS_SUB_REWARD);
         projectionMap.put(S.COLUMN_QUESTS_SUB_HRP, q + "." + S.COLUMN_QUESTS_SUB_HRP);
+        projectionMap.put(S.COLUMN_QUESTS_GOAL_TYPE, q + "." + S.COLUMN_QUESTS_GOAL_TYPE);
+        projectionMap.put(S.COLUMN_QUESTS_HUNTER_TYPE, q + "." + S.COLUMN_QUESTS_HUNTER_TYPE);
         projectionMap.put(l + S.COLUMN_LOCATIONS_NAME, l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME);
         projectionMap.put(S.COLUMN_LOCATIONS_MAP, l + "." + S.COLUMN_LOCATIONS_MAP);
 
@@ -2512,6 +2566,19 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         return new WeaponCursor(wrapJoinHelper(builderWeapon(), qh));
     }
 
+    public Cursor queryWeaponTypeForWeapon(long id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = new String[]{S.COLUMN_WEAPONS_WTYPE};
+        qh.Table = S.TABLE_WEAPONS;
+        qh.Selection = S.COLUMN_WEAPONS_ID + " = ? ";
+        qh.SelectionArgs = new String[]{Long.toString(id)};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = null;
+        qh.Limit = null;
+        return getWritableDatabase().query(qh.Table,qh.Columns, qh.Selection, qh.SelectionArgs, qh.GroupBy, qh.Having, qh.OrderBy, qh.Limit);
+    }
+
     /*
      * Get a specific weapon based on weapon type
      */
@@ -2603,6 +2670,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         QB.setProjectionMap(projectionMap);
         return QB;
     }
+
+
 
     /**
      * ****************************** WEAPON TREE QUERIES *****************************************
@@ -2709,6 +2778,72 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
                         "c." + S.COLUMN_COMPONENTS_CREATED_ITEM_ID + " LEFT OUTER JOIN " + S.TABLE_ITEMS +
                         " AS i2" + " ON " + "i2." + S.COLUMN_ITEMS_ID + " = " + "w2." + S.COLUMN_WEAPONS_ID
         );
+
+        QB.setProjectionMap(projectionMap);
+        return QB;
+    }
+    /**
+     * ****************************** PALICO WEAPON QUERIES *****************************************
+     */
+
+    public PalicoWeaponCursor queryPalicoWeapons() {
+
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Table = S.TABLE_PALICO_WEAPONS;
+        qh.Selection = null;
+        qh.SelectionArgs = null;
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = S.COLUMN_ITEMS_RARITY;
+        qh.Limit = null;
+
+        return new PalicoWeaponCursor(wrapJoinHelper(builderPalicoWeapon(), qh));
+    }
+
+    public PalicoWeaponCursor queryPalicoWeapon(long id){
+        QueryHelper qh = new QueryHelper();
+        qh.Columns = null;
+        qh.Table = S.TABLE_PALICO_WEAPONS;
+        qh.Selection = "w."+S.COLUMN_PALICO_WEAPONS_ID + "=?";
+        qh.SelectionArgs = new String[]{Long.toString(id)};
+        qh.GroupBy = null;
+        qh.Having = null;
+        qh.OrderBy = S.COLUMN_ITEMS_RARITY;
+        qh.Limit = null;
+        return new PalicoWeaponCursor(wrapJoinHelper(builderPalicoWeapon(), qh));
+    }
+
+    private SQLiteQueryBuilder builderPalicoWeapon() {
+        String w = "w";
+        String i = "i";
+
+        HashMap<String, String> projectionMap = new HashMap<String, String>();
+
+        projectionMap.put("_id", w + "." + S.COLUMN_PALICO_WEAPONS_ID + " AS " + "_id");
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_CREATION_COST, w + "." + S.COLUMN_PALICO_WEAPONS_CREATION_COST);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ATTACK_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_ATTACK_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ATTACK_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_ATTACK_RANGED);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_ELEMENT_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_ELEMENT_RANGED);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_BLUNT, w + "." + S.COLUMN_PALICO_WEAPONS_BLUNT);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_BALANCE, w + "." + S.COLUMN_PALICO_WEAPONS_BALANCE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_DEFENSE, w + "." + S.COLUMN_PALICO_WEAPONS_DEFENSE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_SHARPNESS, w + "." + S.COLUMN_PALICO_WEAPONS_SHARPNESS);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE, w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE);
+        projectionMap.put(S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED, w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED);
+
+        projectionMap.put(S.COLUMN_ITEMS_NAME, i + "." + S.COLUMN_ITEMS_NAME);
+        projectionMap.put(S.COLUMN_ITEMS_RARITY, i + "." + S.COLUMN_ITEMS_RARITY);
+        projectionMap.put(S.COLUMN_ITEMS_DESCRIPTION, i + "." + S.COLUMN_ITEMS_DESCRIPTION);
+        projectionMap.put(S.COLUMN_ITEMS_ICON_NAME, i + "." + S.COLUMN_ITEMS_ICON_NAME);
+
+        //Create new querybuilder
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+
+        QB.setTables(S.TABLE_PALICO_WEAPONS + " AS w" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "w." +
+                S.COLUMN_PALICO_WEAPONS_ID + " = " + "i." + S.COLUMN_ITEMS_ID);
 
         QB.setProjectionMap(projectionMap);
         return QB;

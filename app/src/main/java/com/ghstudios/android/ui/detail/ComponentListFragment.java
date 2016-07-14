@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.database.S;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.database.ComponentCursor;
@@ -86,7 +88,7 @@ public class ComponentListFragment extends ListFragment implements
 		private ComponentCursor mComponentCursor;
 
 		public ComponentListCursorAdapter(Context context, ComponentCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header,11);
+			super(context, cursor, R.layout.listview_generic_header,cursor.getColumnIndex(S.COLUMN_COMPONENTS_TYPE));
 			mComponentCursor = cursor;
 		}
 
@@ -119,7 +121,7 @@ public class ComponentListFragment extends ListFragment implements
 			
 			Drawable i = null;
             String cellImage;
-            
+
             String sub_type = component.getComponent().getSubType();
 
             switch(sub_type){
@@ -206,6 +208,9 @@ public class ComponentListFragment extends ListFragment implements
                 case "Decoration":
                     itemLayout.setOnClickListener(new DecorationClickListener(context, id));
                     break;
+                case "Materials":
+                    itemLayout.setOnClickListener(new MaterialClickListener(context,id));
+
                 default:
                     itemLayout.setOnClickListener(new ItemClickListener(context, id));
                     break;

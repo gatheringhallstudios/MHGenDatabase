@@ -43,6 +43,8 @@ public class QuestCursor extends CursorWrapper {
         String sub_goal = getString(getColumnIndex(S.COLUMN_QUESTS_SUB_GOAL));
         int sub_reward = getInt(getColumnIndex(S.COLUMN_QUESTS_SUB_REWARD));
         int sub_hrp = getInt(getColumnIndex(S.COLUMN_QUESTS_SUB_HRP));
+		int goal_type = getInt(getColumnIndex(S.COLUMN_QUESTS_GOAL_TYPE));
+		int hunter_type = getInt(getColumnIndex(S.COLUMN_QUESTS_HUNTER_TYPE));
 
 		quest.setId(questId);
 		quest.setName(name);
@@ -57,7 +59,9 @@ public class QuestCursor extends CursorWrapper {
         quest.setSubGoal(sub_goal);
         quest.setSubReward(sub_reward);
         quest.setSubHrp(sub_hrp);
+		quest.setHunterType(hunter_type);
 		//quest.setLocationTime(locationTime);
+		quest.setGoalType(goal_type);
 		location.setId(locationId);
 		
 		String locName = getString(getColumnIndex("l" + S.COLUMN_LOCATIONS_NAME));

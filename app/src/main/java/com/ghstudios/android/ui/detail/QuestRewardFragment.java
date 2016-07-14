@@ -90,7 +90,7 @@ public class QuestRewardFragment extends ListFragment implements
 		private QuestRewardCursor mQuestRewardCursor;
 
 		public QuestRewardListCursorAdapter(Context context, QuestRewardCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header, S.COLUMN_QUEST_REWARDS_REWARD_SLOT);
+			super(context, cursor, R.layout.listview_generic_header, S.COLUMN_QUEST_REWARDS_REWARD_SLOT);
 			mQuestRewardCursor = cursor;
 		}
 

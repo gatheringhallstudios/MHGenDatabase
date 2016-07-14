@@ -23,7 +23,9 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
+import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
@@ -96,71 +98,7 @@ public class UniversalSearchFragment extends ListFragment implements
         mHandlers.put(Item.class, new ResultHandler<Item>() {
             @Override
             public String getImage(Item item) {
-                // todo: refactor how images are selected, this is a repeat of ItemListFragment
-                String cellImage;
-                switch(item.getSubType()){
-                    case "Head":
-                        cellImage = "icons_armor/icons_head/head" + item.getRarity() + ".png";
-                        break;
-                    case "Body":
-                        cellImage = "icons_armor/icons_body/body" + item.getRarity() + ".png";
-                        break;
-                    case "Arms":
-                        cellImage = "icons_armor/icons_arms/arms" + item.getRarity() + ".png";
-                        break;
-                    case "Waist":
-                        cellImage = "icons_armor/icons_waist/waist" + item.getRarity() + ".png";
-                        break;
-                    case "Legs":
-                        cellImage = "icons_armor/icons_legs/legs" + item.getRarity() + ".png";
-                        break;
-                    case "Great Sword":
-                        cellImage = "icons_weapons/icons_great_sword/great_sword" + item.getRarity() + ".png";
-                        break;
-                    case "Long Sword":
-                        cellImage = "icons_weapons/icons_long_sword/long_sword" + item.getRarity() + ".png";
-                        break;
-                    case "Sword and Shield":
-                        cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + item.getRarity() + ".png";
-                        break;
-                    case "Dual Blades":
-                        cellImage = "icons_weapons/icons_dual_blades/dual_blades" + item.getRarity() + ".png";
-                        break;
-                    case "Hammer":
-                        cellImage = "icons_weapons/icons_hammer/hammer" + item.getRarity() + ".png";
-                        break;
-                    case "Hunting Horn":
-                        cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + item.getRarity() + ".png";
-                        break;
-                    case "Lance":
-                        cellImage = "icons_weapons/icons_lance/lance" + item.getRarity() + ".png";
-                        break;
-                    case "Gunlance":
-                        cellImage = "icons_weapons/icons_gunlance/gunlance" + item.getRarity() + ".png";
-                        break;
-                    case "Switch Axe":
-                        cellImage = "icons_weapons/icons_switch_axe/switch_axe" + item.getRarity() + ".png";
-                        break;
-                    case "Charge Blade":
-                        cellImage = "icons_weapons/icons_charge_blade/charge_blade" + item.getRarity() + ".png";
-                        break;
-                    case "Insect Glaive":
-                        cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + item.getRarity() + ".png";
-                        break;
-                    case "Light Bowgun":
-                        cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + item.getRarity() + ".png";
-                        break;
-                    case "Heavy Bowgun":
-                        cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + item.getRarity() + ".png";
-                        break;
-                    case "Bow":
-                        cellImage = "icons_weapons/icons_bow/bow" + item.getRarity() + ".png";
-                        break;
-                    default:
-                        cellImage = "icons_items/" + item.getFileLocation();
-                }
-
-                return cellImage;
+                return item.getItemImage();
             }
 
             @Override
@@ -182,6 +120,10 @@ public class UniversalSearchFragment extends ListFragment implements
                         return new ArmorClickListener(getActivity(), obj.getId());
                     case "Decoration":
                         return new DecorationClickListener(getActivity(), obj.getId());
+                    case "Materials":
+                        return new MaterialClickListener(getActivity(),obj.getId());
+                    case "Palico Weapon":
+                        return new PalicoWeaponClickListener(getActivity(),obj.getId());
                     default:
                         return new ItemClickListener(getActivity(), obj.getId());
                 }

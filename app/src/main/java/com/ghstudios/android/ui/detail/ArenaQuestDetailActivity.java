@@ -37,7 +37,7 @@ public class ArenaQuestDetailActivity extends GenericTabActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
+    protected int getSelectedSection() {
         return MenuSection.QUESTS;
     }
 

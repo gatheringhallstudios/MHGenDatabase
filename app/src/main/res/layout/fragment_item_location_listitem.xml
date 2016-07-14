@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/list_item"
+    style="@style/list_item_dense"
     android:id="@+id/listitem"
     android:orientation="horizontal" >
     <!--
@@ -24,29 +24,18 @@
         android:layout_gravity="center_vertical|right">
 
         <TextView
-            android:id="@+id/area"
+            android:id="@+id/rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="34dp"
             android:layout_weight=".2"
             android:layout_gravity="center"
             style="@style/text_small"
-            android:text="test"
-            android:layout_alignTop="@+id/rank"
+            android:text="0%"
+            android:layout_alignTop="@+id/method"
             android:layout_alignParentRight="true"
             android:paddingLeft="4dp"
-            android:gravity="right" />
-
-        <TextView
-            android:id="@+id/rank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:text="test"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="false"
-            android:layout_toLeftOf="@+id/area"
+            android:layout_centerInParent="true"
             android:gravity="right" />
 
         <TextView
@@ -55,24 +44,14 @@
             android:layout_height="wrap_content"
             android:layout_weight=".2"
             android:layout_gravity="center"
-            style="@style/text_small"
-            android:text="test"
-            android:gravity="right"
+            style="@style/text_small_secondary"
+            android:text="mine"
+            android:layout_marginRight="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="false"
             android:layout_toLeftOf="@+id/rate"
-            android:layout_alignTop="@+id/rate" />
-
-        <TextView
-            android:id="@+id/rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:text="test"
-            android:gravity="right"
-            android:layout_below="@+id/area"
-            android:layout_alignRight="@+id/area"
-            android:paddingLeft="4dp" />
+            android:layout_centerInParent="true"
+            android:gravity="right" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -33,6 +33,7 @@ public class CombiningListFragment extends ListFragment implements
 
 		// Initialize the loader to load the list of runs
 		getLoaderManager().initLoader(R.id.combining_list_fragment, getArguments(), this);
+
 	}
 
     public static CombiningListFragment newInstance(long id) {
@@ -46,7 +47,11 @@ public class CombiningListFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_generic_list, container,false);
+		View v = inflater.inflate(R.layout.fragment_generic_list, container, false);
+		//JOE:This list is never empty, so remove empty view to prevent flash
+		View emptyView = v.findViewById(android.R.id.empty);
+		((ViewGroup)emptyView.getParent()).removeView(emptyView);
+		return v;
 	}
 
 	@Override
@@ -63,6 +68,7 @@ public class CombiningListFragment extends ListFragment implements
 				getActivity(), (CombiningCursor) cursor);
 		setListAdapter(adapter);
 
+		//getListView().setEmptyView(getListView().findViewById(R.id.list_empty));
 	}
 
 	@Override

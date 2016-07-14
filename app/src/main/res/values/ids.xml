@@ -33,6 +33,7 @@
     <item name="skill_tree_detail_fragment" type="id"/>
     <item name="weapon_detail_fragment" type="id"/>
     <item name="weapon_tree_fragment" type="id"/>
+    <item name="palico_weapon_detail_fragment" type="id"/>
     <item name="wishlist_data_component_fragment" type="id"/>
     <item name="wishlist_data_detail_fragment" type="id"/>
     <item name="asb_set_activity" type="id"/>
@@ -58,12 +59,15 @@
     <item name="combining_list_fragment" type="id"/>
     <item name="decoration_list_fragment" type="id"/>
     <item name="horn_melodies_list_fragment" type="id"/>
-    <item name="hunting_fleet_list_fragment" type="id"/>
+    <item name="palico_weapon_list_fragment" type="id"/>
+    <item name="bowgun_ammo_fragment" type="id"/>
+    <item name="bow_coating_fragment" type="id"/>
     <item name="item_list_fragment" type="id"/>
     <item name="location_grid_fragment" type="id"/>
     <item name="monster_grid_fragment" type="id"/>
     <item name="skill_tree_list_fragment" type="id"/>
     <item name="weapon_list_fragment" type="id"/>
+    <item name="material_item_list_fragment" type="id"/>
     <item name="wishlist_list_fragment" type="id"/>
     <item name="wyporium_trade_list_fragment" type="id"/>
     <item name="asb_skills_list_fragment" type="id"/>

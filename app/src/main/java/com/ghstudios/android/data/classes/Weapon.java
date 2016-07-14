@@ -265,16 +265,16 @@ public class Weapon extends Item{
         String slot = "";
 
         // Unicode White Circle \u25CB
-        // Unicode Dash \u2015
+        // Unicode FIGURE DASH \u2012
         switch (this.num_slots) {
             case 0:
-                slot = "\u2015\u2015\u2015";
+                slot = "\u2012\u2012\u2012";
                 break;
             case 1:
-                slot = "\u25CB\u2015\u2015";
+                slot = "\u25CB\u2012\u2012";
                 break;
             case 2:
-                slot = "\u25CB\u25CB\u2015";
+                slot = "\u25CB\u25CB\u2012";
                 break;
             case 3:
                 slot = "\u25CB\u25CB\u25CB";

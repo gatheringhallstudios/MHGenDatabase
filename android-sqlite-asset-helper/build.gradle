@@ -3,7 +3,7 @@ import com.android.builder.core.BuilderConstants
 apply plugin: 'android-library'
 
 android {
-    buildToolsVersion "23.0.0"
+    buildToolsVersion "23.0.2"
     compileSdkVersion 23
 
     defaultConfig {

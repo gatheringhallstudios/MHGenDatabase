@@ -12,6 +12,12 @@ public class Gathering {
 	private String site;		// Type of gathering node; bug, mine, fish, etc.
 	private String rank;		// Quest Rank found in
     private float rate;         // Gather rate
+
+	int group;					//What group is it a part of, (Unique within an area)
+	boolean fixed;				//is this a fixed gathering point
+	boolean rare;				//Is it a rare point
+
+	int quantity;
 	
 	/* Default Constructor */
 	public Gathering() {
@@ -22,6 +28,10 @@ public class Gathering {
 		this.site = "";
 		this.rank = "";
         this.rate = 0;
+		this.group = 0;
+		this.fixed = true;
+		this.rare = false;
+		this.quantity = 1;
 	}
 
 	/* Getters and Setters */
@@ -80,5 +90,13 @@ public class Gathering {
     public void setRate(float rate) {
         this.rate = rate;
     }
-	
+
+	public void setGroup(int group){this.group = group;}
+	public int getGroup(){return this.group;}
+	public void setFixed(boolean fixed){this.fixed = fixed;}
+	public boolean isFixed(){return this.fixed;}
+	public void setRare(boolean rare){this.rare = rare;}
+	public boolean isRare(){return this.rare;}
+	public void setQuantity(int quantity){this.quantity=quantity;}
+	public int getQuantity(){return this.quantity;}
 }

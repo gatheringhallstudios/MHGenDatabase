@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ghstudios.android.mhgendatabase"
-    android:versionCode="13"
-    android:versionName="1.08">
+    package="com.ghstudios.android.mhgendatabase">
 
     <application
         android:allowBackup="true"
@@ -16,10 +14,20 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
+        <activity android:name="com.ghstudios.android.ui.detail.MaterialDetailActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.ghstudios.android.ui.list.PalicoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.ghstudios.android.ui.detail.PalicoWeaponDetailActivity"
+            android:screenOrientation="portrait"/>
+
         <!-- MONSTER LIST SECTION -->
         <activity
             android:name="com.ghstudios.android.ui.list.MonsterListActivity"
-            android:label="@string/app_name"
+            android:label="@string/app_name_launcher"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

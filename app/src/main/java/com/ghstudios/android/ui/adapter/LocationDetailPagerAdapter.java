@@ -14,7 +14,7 @@ public class LocationDetailPagerAdapter extends FragmentPagerAdapter {
 	private long locationId;
 
     // Tab titles
-    private String[] tabs = { "Map" ,"Monsters", "Low Rank" , "High Rank" , "G Rank" };
+    private String[] tabs = { "Map" ,"Monsters", "Low Rank" , "High Rank" };
 
 	public LocationDetailPagerAdapter(FragmentManager fm, long id) {
 		super(fm);
@@ -37,9 +37,6 @@ public class LocationDetailPagerAdapter extends FragmentPagerAdapter {
 		case 3:
 			// High-rank items
 			return LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_HR);
-		case 4:
-			// G-rank items
-			return LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_G);
 		default:
 			return null;
 		}
@@ -53,7 +50,7 @@ public class LocationDetailPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// get item count - equal to number of tabs
-		return 5;
+		return tabs.length;
 	}
 
 }

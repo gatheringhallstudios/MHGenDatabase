@@ -27,8 +27,8 @@ public class UniversalSearchActivity extends GenericActivity {
     }
 
     @Override
-    protected MenuSection getSelectedSection() {
-        return MenuSection.UNLISTED; // todo: something else?
+    protected int getSelectedSection() {
+        return -1; // todo: something else?
     }
 
     public void performSearch(String query) {
@@ -44,16 +44,18 @@ public class UniversalSearchActivity extends GenericActivity {
         inflater.inflate(R.menu.menu_search, menu);
 
         // Get the SearchView and perform some setup
-        SearchView searchView = (SearchView) menu.findItem(R.id.universal_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.universal_search).getActionView();
         searchView.setIconifiedByDefault(false);
         searchView.setSubmitButtonEnabled(false);
         searchView.setQueryHint(getString(R.string.search_hint));
+        searchView.setIconified(false);
 
         // Perform searches on text change
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 performSearch(s);
+                searchView.clearFocus();
                 return true;
             }
 

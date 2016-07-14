@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.ghstudios.android.data.classes.*;
 import com.ghstudios.android.data.classes.ArenaQuest;
@@ -501,7 +502,12 @@ public class DataManager {
 		cursor.close();
 		return itst;
 	}
-		
+/********************************* ITEM TO MATERIAL QUERIES ******************************************/
+
+	public ItemToMaterialCursor queryItemsForMaterial(long mat_item_id){
+		return mHelper.queryItemsForMaterial(mat_item_id);
+	}
+
 /********************************* LOCATION QUERIES ******************************************/
 	/* Get a Cursor that has a list of all Locations */
 	public LocationCursor queryLocations() {
@@ -882,6 +888,15 @@ public class DataManager {
 		return mHelper.queryWeaponType(type, false);
 	}
 
+
+	public String getWeaponType(long id){
+		Cursor c = mHelper.queryWeaponTypeForWeapon(id);
+		c.moveToFirst();
+		String wtype = c.getString(0);
+		c.close();
+		return wtype;
+	}
+
     /* Get an array that has a list of Weapons based on weapon type
     * This method is for preloading info for weapons to prevent lots of
     * work in binding a view to a list */
@@ -992,6 +1007,18 @@ public class DataManager {
 
 		return mHelper.queryWeapons(idArray);
 		
+	}
+
+	public PalicoWeaponCursor queryPalicoWeapons(){
+		return mHelper.queryPalicoWeapons();
+	}
+
+	public PalicoWeapon getPalicoWeapon(long id){
+		PalicoWeaponCursor cursor = mHelper.queryPalicoWeapon(id);
+		cursor.moveToFirst();
+		PalicoWeapon w = cursor.getWeapon();
+		cursor.close();
+		return w;
 	}
 	
 /********************************* WISHLIST QUERIES ******************************************/	

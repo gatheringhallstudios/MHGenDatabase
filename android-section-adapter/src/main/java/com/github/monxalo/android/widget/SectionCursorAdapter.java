@@ -95,8 +95,8 @@ public abstract class SectionCursorAdapter extends CursorAdapter {
      * @param groupData
      * @return
      */
-    protected String getCustomGroup(String groupData) {
-        return groupData;
+    protected String getCustomGroup(Cursor c) {
+        return c.getString(mGroupColumn);
     }
 
     private void calculateSectionHeaders() {
@@ -116,7 +116,7 @@ public abstract class SectionCursorAdapter extends CursorAdapter {
         c.moveToPosition(-1);
 
         while (c.moveToNext()) {
-            final String group = getCustomGroup(c.getString(mGroupColumn));
+            final String group = getCustomGroup(c);
 
             if (!previous.equals(group)) {
                 mSectionsIndexer.put(i + count, group);
@@ -159,28 +159,31 @@ public abstract class SectionCursorAdapter extends CursorAdapter {
             if (convertView == null) {
                 if (LOGV)
                     Log.v(TAG, "Creating new view for section");
-
-                holder = new ViewHolder();
-                convertView = mLayoutInflater.inflate(mHeaderRes, parent, false);
-                holder.textView = (TextView) convertView;
-
-                convertView.setTag(holder);
-            } else {
-                if (LOGV)
-                    Log.v(TAG, "Reusing view for section");
-
-                holder = (ViewHolder) convertView.getTag();
+                convertView = newHeaderView(mContext,mCursor,parent);
             }
 
-            TextView sectionText = holder.textView;
+            bindHeaderView(convertView,mContext,mCursor,position);
 
-            final String group = mSectionsIndexer.get(position);
-            final String customFormat = getGroupCustomFormat(group);
-
-            sectionText.setText(customFormat == null ? group : customFormat);
-
-            return sectionText;
+            return convertView;
         }
+    }
+
+    protected View newHeaderView(Context context, Cursor cursor, ViewGroup parent){
+        ViewHolder holder = new ViewHolder();
+        View v = mLayoutInflater.inflate(mHeaderRes, parent, false);
+        holder.textView = (TextView) v;
+        v.setTag(holder);
+        return v;
+    }
+
+    protected void bindHeaderView(View view, Context context, Cursor cursor,int position){
+        ViewHolder holder = (ViewHolder) view.getTag();
+        TextView sectionText = holder.textView;
+
+        final String group = mSectionsIndexer.get(position);
+        final String customFormat = getGroupCustomFormat(group);
+
+        sectionText.setText(customFormat == null ? group : customFormat);
     }
 
     @Override

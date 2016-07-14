@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -102,7 +102,7 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
-    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUD TO REDUCE OVERDRAW -->
+    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
     <style name="FullScreenActivity" parent = "AppTheme">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -112,11 +112,13 @@
     <!-- Begin styles for lists -->
 
     <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/clicked_states_white</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:id">@android:id/list</item>
         <item name="android:divider">@color/divider_color</item>
         <item name="android:dividerHeight">1dp</item>
+        <item name="android:footerDividersEnabled">false</item>
         <item name="android:scrollingCache">false</item>
         <item name="android:animationCache">false</item>
         <item name="android:fastScrollEnabled">true</item>
@@ -140,7 +142,7 @@
     </style>
 
     <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/clicked_states_white</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -151,13 +153,13 @@
 
     <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
     <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/clicked_states_white</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="list_sub_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -165,10 +167,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="list_item_large" parent="@style/list_item">
         <item name="android:layout_height">64dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="text_large" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -220,6 +224,11 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="extra_large_image" parent="@style/main_image">
+        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_width">96dp</item>
+    </style>
+
     <style name="large_image" parent="@style/main_image">
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">48dp</item>
@@ -239,6 +248,44 @@
 
 
     <!-- End styles for elevated lists -->
+
+    <!-- Styles for weapon/item detail pages -->
+    <style name="title_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:background">@color/background_title_color</item>
+    </style>
+
+    <style name="title_bar_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/text_primary_color</item>
+    </style>
+
+    <style name="detail_value_text" parent="text_medium">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/weapon_property_color</item>
+    </style>
+
+    <style name="detail_header_text">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="detail_subheader_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="detail_value_element_text" parent="text_small">
+        <item name="android:layout_marginTop">-4dp</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
 
     <!-- Style for ammo table -->
     <style name="ammo_table_header_row">

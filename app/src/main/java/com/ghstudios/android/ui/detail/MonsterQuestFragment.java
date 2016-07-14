@@ -81,7 +81,7 @@ public class MonsterQuestFragment extends ListFragment implements
 
 		public MonsterToQuestListCursorAdapter(Context context,
 				MonsterToQuestCursor cursor) {
-			super(context, cursor, R.layout.listview_reward_header, S.COLUMN_QUESTS_HUB);
+			super(context, cursor, R.layout.listview_generic_header, S.COLUMN_QUESTS_HUB);
 			mMonsterToQuestCursor = cursor;
 		}
 

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -64,9 +65,11 @@ public class MonsterListFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
-
-        return inflater
-                .inflate(R.layout.fragment_generic_list, parent, false);
+        View v = inflater.inflate(R.layout.fragment_generic_list, parent, false);
+		//JOE:This list is never empty, so remove empty view to prevent flash
+		View emptyView = v.findViewById(android.R.id.empty);
+		((ViewGroup)emptyView.getParent()).removeView(emptyView);
+		return v;
 	}
 
 	@Override

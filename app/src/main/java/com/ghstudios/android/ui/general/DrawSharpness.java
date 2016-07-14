@@ -44,9 +44,9 @@ public class DrawSharpness extends View {
 
     private final int maxsharpness = 40;
 
-	int orangeColor = Color.rgb(255, 150, 0);
+	public static int orangeColor = Color.rgb(255, 150, 0);
 	//int purpleColor = Color.rgb(120, 81, 169);
-    int blueColor = Color.rgb(0,96,210);
+    public static int blueColor = Color.rgb(20,131,208);
 
 	Paint paint = new Paint();
 
@@ -111,7 +111,7 @@ public class DrawSharpness extends View {
         super.onDraw(canvas);
 
         // Margins are defined by height/7. 7 can be changed.
-        int margins = (int) Math.floor(mheight/7);
+        int margins = (int) Math.floor(mheight/8);
 
         int outer_margin = margins;   //Margin on the outside
         int inner_margin = 3;   //Margin between elements
@@ -121,11 +121,35 @@ public class DrawSharpness extends View {
         float scalefactor = (float) (mwidth-(outer_margin*2))/maxsharpness;
         // specify the width of each bar
         int barwidth = (int) (scalefactor * maxsharpness) + (outer_margin*2);
-        int barheight = (int)(mheight - (2*outer_margin) - (2*inner_margin))/3;
 
-        //This will make the main bar appear more prominent.
-        int mainBarHeight = barheight+4;
-        int subBarHeight = barheight-2;
+        int totalBarHeight = (mheight - (2*outer_margin) - (2*inner_margin));
+        int barheight = 0;
+        int mainBarHeight = 0;
+        int subBarHeight = 0;
+
+        //3 Possible cases of rounding
+        //The number of pixels available to the 3 bars is
+        //   No extra pixels - Perfect (We give 2 pixels from each of the sub bars to the main bar)
+        //   1 Extra pixel - We give the extra pixel to the main bar
+        //   2 Extra pixels - give an extra pixel to each of the sub bars, reducing the diff in size)
+        if(totalBarHeight % 3 == 0) {
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+4;
+            subBarHeight = barheight-2;
+        }
+        else if(totalBarHeight % 3 == 1){
+            //1 Extra Pixed - Give it to main bar
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+5;
+            subBarHeight = barheight-2;
+        }
+        else if(totalBarHeight % 3 == 2){
+            //2 Extra pixel
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+4;
+            subBarHeight = barheight-1;
+        }
+
 
         // Draw the background
         paint.setColor(Color.BLACK);
@@ -135,18 +159,18 @@ public class DrawSharpness extends View {
         // Draw top bar
         int bartop = outer_margin;
         int barbottom = (int) Math.floor(outer_margin+mainBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop, barbottom,
+        drawBar(canvas, outer_margin, scalefactor, bartop, barbottom,
                 mRed1, mOrange1, mYellow1, mGreen1, mBlue1, mWhite1, mPurple1);
 
         // Draw bottom bar
         int bartop2 = (int) Math.floor(barbottom+inner_margin);
         int barbottom2 = (int) Math.floor(bartop2+subBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop2, barbottom2,
+        drawBar(canvas, outer_margin, scalefactor, bartop2, barbottom2,
                 mRed2, mOrange2, mYellow2, mGreen2, mBlue2, mWhite2, mPurple2);
 
         int bartop3 = (int) Math.floor(barbottom2+inner_margin);
         int barbottom3 = (int) Math.floor(bartop3+subBarHeight);
-        drawBar(canvas, margins, scalefactor, bartop3, barbottom3,
+        drawBar(canvas, outer_margin, scalefactor, bartop3, barbottom3,
                 mRed3, mOrange3, mYellow3, mGreen3, mBlue3, mWhite3, mPurple3);
 
 	}
