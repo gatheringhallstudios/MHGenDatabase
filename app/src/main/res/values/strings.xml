@@ -7,24 +7,23 @@
     <string name="search_hint">Search Database</string>
     <string name="about">About</string>
     <string name="action_settings">Settings</string>
-    <string name="about_message">MH4U Database v1.08
+    <string name="about_message">MHGen Database v1.00
                                 \n\n
+                                Developed by Gathering Hall Studios\n
+                                \n
                                 Contribute at:\n
-                                https://github.com/kamegami13/MonsterHunter4UDatabase
+                                https://github.com/gatheringhallstudios/MHGenDatabase
                                 \n\n
-                                Based on data from:\n
-                                Ping\'s Dex\n
-                                monsterhunter.wikia.com\n
-                                kiranico.com\n
-                                wiki.mh4g.org\n
-                                aegil.net
-                                \n\n
-                                A Special Thanks to:\n
+                                Special Thanks to:\n
                                 Kiranico\n
-                                Kogath at Monster Hunter Wikia\n
-                                kaiiboraka\n
-                                Ping\n
-                                Aegil
+                                Ping
+                                \n\n
+                                Uses the following open source libraries:\n
+                                * android-section-adapter\n
+                                * android-sqlite-asset-helper\n
+                                * multilevelexpindlistview\n
+                                * pagerslidingtabstrip\n
+                                * android-flowlayout
         						</string>
     <string name="alert_button">Close</string>
     <string name="alert_rate">Rate!</string>
