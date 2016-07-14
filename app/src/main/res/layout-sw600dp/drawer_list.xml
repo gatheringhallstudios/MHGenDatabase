@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:layout_marginRight="56dp"
+    android:layout_width="300dp"
     android:orientation="vertical"
     android:layout_gravity="left|start">
     <ImageView
@@ -11,7 +10,6 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:layout_gravity="center"
-
         android:clickable="true"
         android:src="@drawable/drawer_img"
         android:contentDescription="@string/logo_description"/>
