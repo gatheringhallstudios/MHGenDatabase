@@ -202,9 +202,9 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             case MenuSection.SKILL_TREES: // Skill Trees
                 intent = new Intent(GenericActionBarActivity.this, SkillTreeListActivity.class);
                 break;
-            case MenuSection.WISH_LISTS: // Wishlists
-                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
-                break;
+//            case MenuSection.WISH_LISTS: // Wishlists
+//                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
+//                break;
             case MenuSection.ARMOR_SET_BUILDER:
                 intent = new Intent(GenericActionBarActivity.this, ASBSetListActivity.class);
                 break;

@@ -50,8 +50,8 @@ public class MonsterSummaryFragment extends Fragment {
 	private FlowLayout mWeaknessModData, mTrapModData, mBombModData;
 	private LinearLayout mWeaknessMod, mTrapMod, mBombMod;
 	private View mWeaknessModDiv, mTrapModDiv, mBombModDiv;
-	private TextView mWeaknessModText, mTrapModText, mBombModText, mMovesData;
-	private LinearLayout mAilments;
+	private TextView mWeaknessModText, mTrapModText, mBombModText, mMovesData,mModStateText;
+	private LinearLayout mAilments,mModStateHeader;
 
 	// Need to add dividers
     //private View mDividerView;
@@ -109,6 +109,8 @@ public class MonsterSummaryFragment extends Fragment {
 		mWeaknessMod = (LinearLayout) view.findViewById(R.id.weaknesses_mod);
 		mTrapMod = (LinearLayout) view.findViewById(R.id.trap_mod);
 		mBombMod = (LinearLayout) view.findViewById(R.id.bombs_mod);
+		mModStateHeader = (LinearLayout)view.findViewById(R.id.monster_summary_mod_state_header);
+		mModStateText = (TextView)view.findViewById(R.id.monster_mod_state);
 
 		// Text titles
 		mWeaknessModText = (TextView) view.findViewById(R.id.weakness_mod_text);
@@ -161,45 +163,47 @@ public class MonsterSummaryFragment extends Fragment {
 		// Load ArrayList of weaknesses without using a loader
 		ArrayList<MonsterWeakness> weaknesses = DataManager.get(getActivity()).queryMonsterWeaknessArray(mMonster.getId());
 
+		if(weaknesses.size()==0)return;
+
 		// Get "Normal" weaknesses
-//		mWeakness = weaknesses.get(0);
-//
-//		// Fire
-//		evalWeakness(mWeakness.getFire(), mWeaknessData, getResources().getString(R.string.image_location_fire));
-//		// Water
-//		evalWeakness(mWeakness.getWater(), mWeaknessData, getResources().getString(R.string.image_location_water));
-//		// Thunder
-//		evalWeakness(mWeakness.getThunder(), mWeaknessData, getResources().getString(R.string.image_location_thunder));
-//		// Ice
-//		evalWeakness(mWeakness.getIce(), mWeaknessData, getResources().getString(R.string.image_location_ice));
-//		// Dragon
-//		evalWeakness(mWeakness.getDragon(), mWeaknessData, getResources().getString(R.string.image_location_dragon));
-//		// Poison
-//		evalWeakness(mWeakness.getPoison(), mWeaknessData, getResources().getString(R.string.image_location_poison));
-//		// Paralysis
-//		evalWeakness(mWeakness.getParalysis(), mWeaknessData, getResources().getString(R.string.image_location_paralysis));
-//		// Sleep
-//		evalWeakness(mWeakness.getSleep(), mWeaknessData, getResources().getString(R.string.image_location_sleep));
-//
-//		// Pitfall Trap
-//		if(mWeakness.getPitfalltrap() != 0)
-//			addIcon(mTrapData, getResources().getString(R.string.image_location_pitfall_trap), null);
-//		// Shock Trap
-//		if(mWeakness.getShocktrap() != 0)
-//			addIcon(mTrapData, getResources().getString(R.string.image_location_shock_trap), null);
-//		// Meat
-//		if(mWeakness.getMeat() != 0)
-//			addIcon(mTrapData, getResources().getString(R.string.image_location_meat), null);
-//
-//		// Flash Bomb
-//		if(mWeakness.getFlashbomb() != 0)
-//			addIcon(mBombData, getResources().getString(R.string.image_location_flash_bomb), null);
-//		// Sonic Bomb
-//		if(mWeakness.getSonicbomb() != 0)
-//			addIcon(mBombData, getResources().getString(R.string.image_location_sonic_bomb), null);
-//		// Dung Bomb
-//		if(mWeakness.getDungbomb() != 0)
-//			addIcon(mBombData, getResources().getString(R.string.image_location_dung_bomb), null);
+		mWeakness = weaknesses.get(0);
+
+		// Fire
+		evalWeakness(mWeakness.getFire(), mWeaknessData, getResources().getString(R.string.image_location_fire));
+		// Water
+		evalWeakness(mWeakness.getWater(), mWeaknessData, getResources().getString(R.string.image_location_water));
+		// Thunder
+		evalWeakness(mWeakness.getThunder(), mWeaknessData, getResources().getString(R.string.image_location_thunder));
+		// Ice
+		evalWeakness(mWeakness.getIce(), mWeaknessData, getResources().getString(R.string.image_location_ice));
+		// Dragon
+		evalWeakness(mWeakness.getDragon(), mWeaknessData, getResources().getString(R.string.image_location_dragon));
+		// Poison
+		evalWeakness(mWeakness.getPoison(), mWeaknessData, getResources().getString(R.string.image_location_poison));
+		// Paralysis
+		evalWeakness(mWeakness.getParalysis(), mWeaknessData, getResources().getString(R.string.image_location_paralysis));
+		// Sleep
+		evalWeakness(mWeakness.getSleep(), mWeaknessData, getResources().getString(R.string.image_location_sleep));
+
+		// Pitfall Trap
+		if(mWeakness.getPitfalltrap() != 0)
+			addIcon(mTrapData, getResources().getString(R.string.image_location_pitfall_trap), null);
+		// Shock Trap
+		if(mWeakness.getShocktrap() != 0)
+			addIcon(mTrapData, getResources().getString(R.string.image_location_shock_trap), null);
+		// Meat
+		if(mWeakness.getMeat() != 0)
+			addIcon(mTrapData, getResources().getString(R.string.image_location_meat), null);
+
+		// Flash Bomb
+		if(mWeakness.getFlashbomb() != 0)
+			addIcon(mBombData, getResources().getString(R.string.image_location_flash_bomb), null);
+		// Sonic Bomb
+		if(mWeakness.getSonicbomb() != 0)
+			addIcon(mBombData, getResources().getString(R.string.image_location_sonic_bomb), null);
+		// Dung Bomb
+		if(mWeakness.getDungbomb() != 0)
+			addIcon(mBombData, getResources().getString(R.string.image_location_dung_bomb), null);
 
 
 		// Apply CHARGED or ENRAGED weaknesses if applicable. Only supports one more state right now.
@@ -208,7 +212,10 @@ public class MonsterSummaryFragment extends Fragment {
 
 			String mState = mWeakness.getState();
 
+			mModStateText.setText(mState);
+
 			// Make all mod layouts and dividers visible
+			mModStateHeader.setVisibility(View.VISIBLE);
 			mWeaknessMod.setVisibility(View.VISIBLE);
 			mTrapMod.setVisibility(View.VISIBLE);
 			mBombMod.setVisibility(View.VISIBLE);
@@ -217,9 +224,9 @@ public class MonsterSummaryFragment extends Fragment {
 			mBombModDiv.setVisibility(View.VISIBLE);
 
 			// Set new section names
-			mWeaknessModText.setText("(" + mState + ")");
-			mTrapModText.setText("(" + mState + ")");
-			mBombModText.setText("(" + mState + ")");
+//			mWeaknessModText.setText("(" + mState + ")");
+//			mTrapModText.setText("(" + mState + ")");
+//			mBombModText.setText("(" + mState + ")");
 
 			// Set Data
 			// Fire
