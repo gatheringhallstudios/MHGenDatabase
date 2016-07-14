@@ -50,13 +50,13 @@ public class ArmorDetailActivity extends GenericTabActivity {
         return MenuSection.ARMOR;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = new MenuInflater(getApplicationContext());
-        inflater.inflate(R.menu.menu_wishlist_add, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        MenuInflater inflater = new MenuInflater(getApplicationContext());
+//        inflater.inflate(R.menu.menu_wishlist_add, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
