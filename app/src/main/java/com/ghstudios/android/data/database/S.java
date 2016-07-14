@@ -67,7 +67,7 @@ public class S {
 	static final String COLUMN_COMPONENTS_CREATED_ITEM_ID = "created_item_id";
 	static final String COLUMN_COMPONENTS_COMPONENT_ITEM_ID = "component_item_id";
 	static final String COLUMN_COMPONENTS_QUANTITY = "quantity";
-	static final String COLUMN_COMPONENTS_TYPE = "type";
+	public static final String COLUMN_COMPONENTS_TYPE = "type";
 	
 	// Decorations
 	static final String TABLE_DECORATIONS = "decorations";

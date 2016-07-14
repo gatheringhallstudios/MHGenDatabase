@@ -418,8 +418,8 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             View v = (View)holder.txtTitle.getParent();
             if(position == selectedIndex)
                 v.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.navigationSelectedColor));
-//            else
-//                v.setBackgroundColor(Color.TRANSPARENT);
+            else
+                v.setBackgroundColor(Color.TRANSPARENT);
 
             // Attempt to retrieve drawable
             Drawable i = null;

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Component;
@@ -87,7 +88,7 @@ public class ComponentListFragment extends ListFragment implements
 		private ComponentCursor mComponentCursor;
 
 		public ComponentListCursorAdapter(Context context, ComponentCursor cursor) {
-			super(context, cursor, R.layout.listview_generic_header,11);
+			super(context, cursor, R.layout.listview_generic_header,cursor.getColumnIndex(S.COLUMN_COMPONENTS_TYPE));
 			mComponentCursor = cursor;
 		}
 
