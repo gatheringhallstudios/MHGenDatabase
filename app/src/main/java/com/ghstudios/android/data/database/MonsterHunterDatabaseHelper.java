@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
@@ -59,7 +60,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     private static MonsterHunterDatabaseHelper mInstance = null;
 
     private static final String DATABASE_NAME = "mhgen.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;
