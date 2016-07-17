@@ -2110,9 +2110,10 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Columns = null;
         qh.Selection = "mtq." + S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID + " = ? ";
         qh.SelectionArgs = new String[]{"" + id};
-        qh.GroupBy = "q." + S.COLUMN_QUESTS_NAME;
+        qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = "q." + S.COLUMN_QUESTS_HUB + " ASC, " + "q." + S.COLUMN_QUESTS_STARS + " ASC";
+        //JOE: Order them specifically Village - Guild - Permit - (Any others in alphabetical order by concating them with 3)
+        qh.OrderBy = "CASE q." + S.COLUMN_QUESTS_HUB + " WHEN 'Village' THEN 0 WHEN 'Guild' THEN 1 WHEN 'Permit' THEN 2 ELSE (3||q."+S.COLUMN_QUESTS_HUB+") END, " + "q." + S.COLUMN_QUESTS_STARS + " ASC";
         qh.Limit = null;
 
         return new MonsterToQuestCursor(wrapJoinHelper(builderMonsterToQuest(qh.Distinct), qh));

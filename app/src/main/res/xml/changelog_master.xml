@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
-    <release version="1.00" versioncode="1">
+    <release version="1.0.1" versioncode="2">
+        <change>Nothing Yet</change>
+    </release>
+
+    <release version="1.0.0" versioncode="1">
         <change>Initial Release</change>
     </release>
 
