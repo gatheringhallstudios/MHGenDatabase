@@ -210,7 +210,7 @@ public class ComponentListFragment extends ListFragment implements
                     break;
                 case "Materials":
                     itemLayout.setOnClickListener(new MaterialClickListener(context,id));
-
+                    break;
                 default:
                     itemLayout.setOnClickListener(new ItemClickListener(context, id));
                     break;
