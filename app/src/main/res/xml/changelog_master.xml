@@ -2,7 +2,9 @@
 <changelog>
 
     <release version="1.0.1" versioncode="2">
-        <change>Nothing Yet</change>
+        <change>Fix Subquest Rewards</change>
+        <change>Fix Monster Quest Bug</change>
+        <change>Add Alternate State Damages</change>
     </release>
 
     <release version="1.0.0" versioncode="1">
