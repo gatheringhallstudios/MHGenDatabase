@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,16 +140,7 @@ public class MonsterDamageFragment extends Fragment {
 			  
 			damage = damages.get(i);
 			
-			body_part = checkDamageValue(damage.getBodyPart());
-			cut = checkDamageValue("" + damage.getCut());
-			impact = checkDamageValue("" + damage.getImpact());
-			shot = checkDamageValue("" + damage.getShot());
-			ko = checkDamageValue("" + damage.getKo());
-			fire = checkDamageValue("" + damage.getFire());
-			water = checkDamageValue("" + damage.getWater());
-			ice = checkDamageValue("" + damage.getIce());
-			thunder = checkDamageValue("" + damage.getThunder());
-			dragon = checkDamageValue("" + damage.getDragon());
+			body_part = damage.getBodyPart();
 
 			// Table 1
 			TextView body_part_tv1 = (TextView) wdRow.findViewById(R.id.body_part);
@@ -161,18 +157,34 @@ public class MonsterDamageFragment extends Fragment {
 			TextView ice_tv = (TextView) edRow.findViewById(R.id.dmg3);
 			TextView thunder_tv = (TextView) edRow.findViewById(R.id.dmg4);
 			TextView dragon_tv = (TextView) edRow.findViewById(R.id.dmg5);
-			
-			body_part_tv1.setText(body_part);
-			body_part_tv2.setText(body_part);
-			cut_tv.setText(cut);
-			impact_tv.setText(impact);
-			shot_tv.setText(shot);
-			ko_tv.setText(ko);
-			fire_tv.setText(fire);
-			water_tv.setText(water);
-			ice_tv.setText(ice);
-			thunder_tv.setText(thunder);
-			dragon_tv.setText(dragon);
+
+
+			SpannableString s = new SpannableString(body_part);
+
+			if(body_part.contains("("))
+			{
+				int start = body_part.indexOf("(");
+				int end = body_part.length();
+				s.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.text_color_secondary)),start,end,0);
+				s.setSpan(new RelativeSizeSpan(.8f),start,end,0);
+			}
+
+
+			body_part_tv1.setText(s);
+			body_part_tv2.setText(s);
+
+
+			checkDamageValue(damage.getCut(),cut_tv,false,false);
+			checkDamageValue(damage.getImpact(),impact_tv,false,false);
+			checkDamageValue(damage.getShot(),shot_tv,false,false);
+			checkDamageValue(damage.getKo(),ko_tv,false,true);
+
+			checkDamageValue(damage.getFire(),fire_tv,true,false);
+			checkDamageValue(damage.getWater(),water_tv,true,false);
+			checkDamageValue(damage.getIce(),ice_tv,true,false);
+			checkDamageValue(damage.getThunder(),thunder_tv,true,false);
+			checkDamageValue(damage.getDragon(),dragon_tv,true,false);
+
 			dummy_tv.setText("");
 
 			mWeaponDamageTL.addView(wdRow);
@@ -204,14 +216,16 @@ public class MonsterDamageFragment extends Fragment {
 		}
 	}
 	
-	private String checkDamageValue(String damage) {
-		String ret = damage;
-		if (ret.equals("-1")) {
-			ret = "--";
-		}
-		else if (ret.equals("-2")) {
-			ret = "?";
-		}
+	private String checkDamageValue(int damage,TextView tv, boolean element, boolean isKO) {
+		String ret = Integer.toString(damage);
+		if(damage<=0)
+			ret = "-";
+
+		tv.setText(ret);
+
+		if(!isKO && (!element && damage>=45) || (element && damage>=25))
+			tv.setTypeface(null,Typeface.BOLD);
+
 		return ret;
 	}
 }

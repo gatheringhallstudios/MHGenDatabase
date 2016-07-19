@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
@@ -59,7 +60,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     private static MonsterHunterDatabaseHelper mInstance = null;
 
     private static final String DATABASE_NAME = "mhgen.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;
@@ -2110,9 +2111,10 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Columns = null;
         qh.Selection = "mtq." + S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID + " = ? ";
         qh.SelectionArgs = new String[]{"" + id};
-        qh.GroupBy = "q." + S.COLUMN_QUESTS_NAME;
+        qh.GroupBy = null;
         qh.Having = null;
-        qh.OrderBy = "q." + S.COLUMN_QUESTS_HUB + " ASC, " + "q." + S.COLUMN_QUESTS_STARS + " ASC";
+        //JOE: Order them specifically Village - Guild - Permit - (Any others in alphabetical order by concating them with 3)
+        qh.OrderBy = "CASE q." + S.COLUMN_QUESTS_HUB + " WHEN 'Village' THEN 0 WHEN 'Guild' THEN 1 WHEN 'Permit' THEN 2 ELSE (3||q."+S.COLUMN_QUESTS_HUB+") END, " + "q." + S.COLUMN_QUESTS_STARS + " ASC";
         qh.Limit = null;
 
         return new MonsterToQuestCursor(wrapJoinHelper(builderMonsterToQuest(qh.Distinct), qh));
