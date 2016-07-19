@@ -7,21 +7,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import android.support.v4.app.ListFragment;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.database.WishlistCursor;
@@ -136,7 +135,18 @@ public class WishlistListFragment extends ListFragment implements
 			}
 		}
 	}
-	
+
+	@Override
+	public void onResume() {
+		// Check for dataset changes when the activity is resumed. Not the best practice but the list will
+		// always be small.
+		super.onResume();
+		// Only do this if data has been previously loaded
+		if(getListView().getAdapter() != null){
+			updateUI();
+		}
+	}
+
 	private void updateUI() {
 		getLoaderManager().getLoader( R.id.wishlist_list_fragment ).forceLoad();
 		WishlistListCursorAdapter adapter = (WishlistListCursorAdapter) getListAdapter();

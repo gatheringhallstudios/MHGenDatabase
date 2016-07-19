@@ -1,7 +1,5 @@
 package com.ghstudios.android.ui.detail;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +9,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,14 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import android.support.v4.app.ListFragment;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.ghstudios.android.data.classes.WishlistData;
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
@@ -41,7 +37,10 @@ import com.ghstudios.android.ui.dialog.WishlistDataDeleteDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDataEditDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
+import com.ghstudios.android.ui.list.WishlistListActivity;
 import com.ghstudios.android.ui.list.WishlistListFragment;
+
+import java.io.IOException;
 
 public class WishlistDataDetailFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -139,14 +138,14 @@ public class WishlistDataDetailFragment extends ListFragment implements
 					mListView.setItemChecked(0, true);
 				}
 				return true;
-            case R.id.wishlist_rename: // Rename current wishlist
+            case R.id.wishlist_rename: // Launch Rename Wishlist dialog
                 WishlistRenameDialogFragment dialog = WishlistRenameDialogFragment.newInstance(
                         getArguments().getLong(ARG_ID, -1),
                         (String) getActivity().getTitle());
                 dialog.setTargetFragment(this, WishlistListFragment.REQUEST_RENAME);
                 dialog.show(fm, WishlistListFragment.DIALOG_WISHLIST_RENAME);
                 return true;
-            case R.id.menu_item_delete_wishlist:
+            case R.id.wishlist_delete:// Launch Delete Wishlist dialog
                 WishlistDeleteDialogFragment dialogDelete = WishlistDeleteDialogFragment.newInstance(
                         getArguments().getLong(ARG_ID, -1),
                         (String) getActivity().getTitle());
@@ -165,15 +164,30 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode != Activity.RESULT_OK) return;
-		if (requestCode == WishlistListFragment.REQUEST_RENAME) {
-			if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
-                // Cast parent activity in order to call refresh title method
-                ((WishlistDetailActivity) getActivity()).refreshTitle();
-				updateUI();
-			}
+
+		// Return nothing if result is failed
+		if(resultCode != Activity.RESULT_OK) return;
+
+		switch (requestCode){
+			case WishlistListFragment.REQUEST_RENAME: // After wishlist is renamed
+				if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
+					// Cast parent activity in order to call refresh title method
+					((WishlistDetailActivity) getActivity()).refreshTitle();
+					updateUI();
+				}
+				return;
+			case WishlistListFragment.REQUEST_DELETE: // After wishlist is deleted
+				if(data.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
+					// Exit current activity
+                    Intent intent = new Intent(getActivity(), WishlistListActivity.class);
+                    startActivity(intent);
+					getActivity().finish();
+				}
+				return;
 		}
-/*		if (requestCode == WishlistListFragment.REQUEST_REFRESH) {
+
+	}
+		/*		if (requestCode == WishlistListFragment.REQUEST_REFRESH) {
 			if(data.getBooleanExtra(WishlistDataComponentFragment.EXTRA_COMPONENT_REFRESH, false)) {
 				fromOtherTab = true;
 				updateUI();
@@ -185,12 +199,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			}
 		}
 		*/
-		else if (requestCode == WishlistListFragment.REQUEST_DELETE) {
-			if(data.getBooleanExtra(WishlistDataDeleteDialogFragment.EXTRA_DELETE, false)) {
-				updateUI();
-			}
-		}
-	}
 	
 	private void updateUI() {
 		if (started) {
