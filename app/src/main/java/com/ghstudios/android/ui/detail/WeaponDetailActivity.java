@@ -68,13 +68,13 @@ public class WeaponDetailActivity extends GenericTabActivity {
         return MenuSection.WEAPONS;
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        MenuInflater inflater = new MenuInflater(getApplicationContext());
-//        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = new MenuInflater(getApplicationContext());
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

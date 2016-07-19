@@ -69,8 +69,8 @@
         <item>"Locations,icons_items/Map-Icon-White.png"</item>
         <item>"Decorations,icons_items/Jewel-White.png"</item>
         <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
-        <!--<item>"Wishlists,icons_items/Mantle-White.png"</item>-->
         <item>"Armor Set Builder,icons_items/Talisman-White.png"</item>
+        <item>"Wishlists,icons_items/Mantle-White.png"</item>
     </string-array>
 
     <string name="option_list">List</string>
