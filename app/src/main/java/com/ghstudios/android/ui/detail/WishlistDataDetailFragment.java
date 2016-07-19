@@ -33,6 +33,12 @@ import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
+import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
+import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 import com.ghstudios.android.ui.dialog.WishlistDataDeleteDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDataEditDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
@@ -272,47 +278,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	}
 
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		// The id argument will be the Item ID; CursorAdapter gives us this
-		// for free
-		if (mActionMode == null) {
-            mListView.setItemChecked(position, false);
-			Intent i = null;
-			long mId = (long) v.getTag();
-            String itemtype;
-
-            WishlistData wishlistdata;
-
-            WishlistDataCursor mycursor = (WishlistDataCursor) l.getItemAtPosition(position);
-            wishlistdata = mycursor.getWishlistData();
-            itemtype = wishlistdata.getItem().getType();
-
-            switch(itemtype){
-                case "Weapon":
-                    i = new Intent(getActivity(), WeaponDetailActivity.class);
-                    i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
-                    break;
-                case "Armor":
-                    i = new Intent(getActivity(), ArmorDetailActivity.class);
-                    i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
-                    break;
-                case "Decoration":
-                    i = new Intent(getActivity(), DecorationDetailActivity.class);
-                    i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
-                    break;
-                default:
-                    i = new Intent(getActivity(), ItemDetailActivity.class);
-                    i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
-            }
-			startActivity(i);
-		}
-		// Contextual action bar options
-		else { 
-            mActionMode.setTag(position);
-		}
-	}
-
-	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		// You only ever load the runs, so assume this is the case
 		long mId = -1;
@@ -461,6 +426,31 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			}
 			
 			itemImageView.setImageDrawable(i);
+
+
+			// NEW CODE FORMAT. NEED TO REFACTOR THE REST OF THIS ACTIVITY
+			String itemtype = data.getItem().getType();
+			switch(itemtype){
+				case "Weapon":
+					root.setOnClickListener(new WeaponClickListener(context, id));
+					break;
+				case "Armor":
+					root.setOnClickListener(new ArmorClickListener(context, id));
+					break;
+				case "Decoration":
+					root.setOnClickListener(new DecorationClickListener(context, id));
+					break;
+				case "Materials":
+					root.setOnClickListener(new MaterialClickListener(context,id));
+					break;
+				case "Palico Weapon":
+					root.setOnClickListener(new PalicoWeaponClickListener(context,id));
+					break;
+				default:
+					root.setOnClickListener(new ItemClickListener(context, id));
+					break;
+			}
+
 
 			root.setTag(id);
 		}

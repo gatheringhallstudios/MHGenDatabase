@@ -1,7 +1,5 @@
 package com.ghstudios.android.ui.detail;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +9,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,18 +29,20 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import android.support.v4.app.ListFragment;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistComponentCursor;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
+import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
+import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 import com.ghstudios.android.ui.dialog.WishlistComponentEditDialogFragment;
+
+import java.io.IOException;
 
 public class WishlistDataComponentFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -420,61 +425,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
                     cellImage = "icons_items/" + component.getItem().getFileLocation();
             }
 			
-			/*if (id < S.SECTION_ARMOR) {
-				cellImage = "icons_items/" + component.getItem().getFileLocation();
-			} 
-			else if ((id >= S.SECTION_HEAD) && (id < S.SECTION_BODY)) {
-				cellImage = "icons_armor/icons_head/head" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_BODY) && (id < S.SECTION_ARMS)) {
-				cellImage = "icons_armor/icons_body/body" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_ARMS) && (id < S.SECTION_WAIST)) {
-				cellImage = "icons_armor/icons_arms/arms" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_WAIST) && (id < S.SECTION_LEGS)) {
-				cellImage = "icons_armor/icons_waist/waist" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_LEGS) && (id < S.SECTION_GREAT_SWORD)) {
-				cellImage = "icons_armor/icons_legs/legs" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_GREAT_SWORD) && (id < S.SECTION_HUNTING_HORN)) {
-				cellImage = "icons_weapons/icons_great_sword/great_sword" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_HUNTING_HORN) && (id < S.SECTION_LONG_SWORD)) {
-				cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_LONG_SWORD) && (id < S.SECTION_SWORD_AND_SHIELD)) {
-				cellImage = "icons_weapons/icons_long_sword/long_sword" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_SWORD_AND_SHIELD) && (id < S.SECTION_DUAL_BLADES)) {
-				cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_DUAL_BLADES) && (id < S.SECTION_HAMMER)) {
-				cellImage = "icons_weapons/icons_dual_blades/dual_blades" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_HAMMER) && (id < S.SECTION_LANCE)) {
-				cellImage = "icons_weapons/icons_hammer/hammer" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_LANCE) && (id < S.SECTION_GUNLANCE)) {
-				cellImage = "icons_weapons/icons_lance/lance" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_GUNLANCE) && (id < S.SECTION_SWITCH_AXE)) {
-				cellImage = "icons_weapons/icons_gunlance/gunlance" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_SWITCH_AXE) && (id < S.SECTION_LIGHT_BOWGUN)) {
-				cellImage = "icons_weapons/icons_switch_axe/switch_axe" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_LIGHT_BOWGUN) && (id < S.SECTION_HEAVY_BOWGUN)) {
-				cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + cellRare + ".png";
-			}
-			else if ((id >= S.SECTION_HEAVY_BOWGUN) && (id < S.SECTION_BOW)) {
-				cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + cellRare + ".png";
-			}
-			else if (id >= S.SECTION_BOW) {
-				cellImage = "icons_weapons/icons_bow/bow" + cellRare + ".png";
-			}*/
-			
 			try {
 				i = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);
@@ -483,6 +433,30 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			}
 			
 			itemImageView.setImageDrawable(i);
+
+
+			// NEW CODE FORMAT. NEED TO REFACTOR THE REST OF THIS ACTIVITY
+			String itemtype = component.getItem().getType();
+			switch(itemtype){
+				case "Weapon":
+					root.setOnClickListener(new WeaponClickListener(context, id));
+					break;
+				case "Armor":
+					root.setOnClickListener(new ArmorClickListener(context, id));
+					break;
+				case "Decoration":
+					root.setOnClickListener(new DecorationClickListener(context, id));
+					break;
+				case "Materials":
+					root.setOnClickListener(new MaterialClickListener(context,id));
+					break;
+				case "Palico Weapon":
+					root.setOnClickListener(new PalicoWeaponClickListener(context,id));
+					break;
+				default:
+					root.setOnClickListener(new ItemClickListener(context, id));
+					break;
+			}
 
 			root.setTag(id);
 		}
