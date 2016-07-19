@@ -44,8 +44,11 @@ public class PalicoWeaponListFragment extends ListFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-        return inflater
-                .inflate(R.layout.fragment_generic_list, parent, false);
+        View v = inflater.inflate(R.layout.fragment_generic_list, parent, false);
+        //JOE:This list is never empty, so remove empty view to prevent flash
+        View emptyView = v.findViewById(android.R.id.empty);
+        ((ViewGroup)emptyView.getParent()).removeView(emptyView);
+        return v;
     }
 
     @Override

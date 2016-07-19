@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -250,6 +250,21 @@
     <!-- End styles for elevated lists -->
 
     <!-- Styles for weapon/item detail pages -->
+    <style name="title_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:background">@color/background_title_color</item>
+    </style>
+
+    <style name="title_bar_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/text_primary_color</item>
+    </style>
+
     <style name="detail_value_text" parent="text_medium">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textColor">@color/weapon_property_color</item>
@@ -262,6 +277,13 @@
 
     <style name="detail_subheader_text">
         <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="detail_value_element_text" parent="text_small">
+        <item name="android:layout_marginTop">-4dp</item>
+        <item name="android:textSize">8sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 

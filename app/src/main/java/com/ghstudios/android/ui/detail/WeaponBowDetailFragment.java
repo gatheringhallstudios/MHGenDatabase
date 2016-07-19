@@ -5,14 +5,11 @@ import java.io.InputStream;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
@@ -38,7 +35,7 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
 				container, false);
 
 		mWeaponTypeTextView = (TextView) view
-				.findViewById(R.id.detail_weapon_type);
+				.findViewById(R.id.detail_title_bar_text);
 		mWeaponAttackTextView = (TextView) view
 				.findViewById(R.id.detail_weapon_attack);
 		mWeaponElementTextView = (TextView) view

@@ -3,8 +3,6 @@ package com.ghstudios.android.ui.detail;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ghstudios.android.data.database.DataManager;
@@ -50,13 +48,14 @@ public class ArmorDetailActivity extends GenericTabActivity {
         return MenuSection.ARMOR;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = new MenuInflater(getApplicationContext());
-        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
-        return true;
-    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        MenuInflater inflater = new MenuInflater(getApplicationContext());
+//        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

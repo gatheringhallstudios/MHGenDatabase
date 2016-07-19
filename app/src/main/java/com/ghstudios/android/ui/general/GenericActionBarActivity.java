@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -97,6 +98,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         // Display changelog on first run after update
         ChangeLog cl = new ChangeLog(this);
         if (cl.isFirstRun()) {
+            //If this broke
             cl.getLogDialog().show();
         }
 
@@ -200,9 +202,9 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             case MenuSection.SKILL_TREES: // Skill Trees
                 intent = new Intent(GenericActionBarActivity.this, SkillTreeListActivity.class);
                 break;
-            case MenuSection.WISH_LISTS: // Wishlists
-                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
-                break;
+//            case MenuSection.WISH_LISTS: // Wishlists
+//                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
+//                break;
             case MenuSection.ARMOR_SET_BUILDER:
                 intent = new Intent(GenericActionBarActivity.this, ASBSetListActivity.class);
                 break;
@@ -302,7 +304,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.setType("text/email");
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "MH4U Database Feedback");
+                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
                 startActivity(Intent.createChooser(email, "Send Feedback:"));
 
             default:
@@ -413,6 +415,12 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
             holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text, getTheme()));
+
+            View v = (View)holder.txtTitle.getParent();
+            if(position == selectedIndex)
+                v.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.navigationSelectedColor));
+            else
+                v.setBackgroundColor(Color.TRANSPARENT);
 
             // Attempt to retrieve drawable
             Drawable i = null;

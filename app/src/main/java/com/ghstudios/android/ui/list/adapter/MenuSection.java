@@ -21,6 +21,6 @@ public class MenuSection {
     public static final int DECORATION = 8;
     public static final int SKILL_TREES = 9;
     public static final int WISH_LISTS = 10;
-    public static final int ARMOR_SET_BUILDER = 11;
+    public static final int ARMOR_SET_BUILDER = 10;
 
 }

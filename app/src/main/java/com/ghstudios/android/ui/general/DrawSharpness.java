@@ -111,7 +111,7 @@ public class DrawSharpness extends View {
         super.onDraw(canvas);
 
         // Margins are defined by height/7. 7 can be changed.
-        int margins = (int) Math.floor(mheight/7);
+        int margins = (int) Math.floor(mheight/8);
 
         int outer_margin = margins;   //Margin on the outside
         int inner_margin = 3;   //Margin between elements
@@ -121,11 +121,35 @@ public class DrawSharpness extends View {
         float scalefactor = (float) (mwidth-(outer_margin*2))/maxsharpness;
         // specify the width of each bar
         int barwidth = (int) (scalefactor * maxsharpness) + (outer_margin*2);
-        int barheight = (int)(mheight - (2*outer_margin) - (2*inner_margin))/3;
 
-        //This will make the main bar appear more prominent.
-        int mainBarHeight = barheight+4;
-        int subBarHeight = barheight-2;
+        int totalBarHeight = (mheight - (2*outer_margin) - (2*inner_margin));
+        int barheight = 0;
+        int mainBarHeight = 0;
+        int subBarHeight = 0;
+
+        //3 Possible cases of rounding
+        //The number of pixels available to the 3 bars is
+        //   No extra pixels - Perfect (We give 2 pixels from each of the sub bars to the main bar)
+        //   1 Extra pixel - We give the extra pixel to the main bar
+        //   2 Extra pixels - give an extra pixel to each of the sub bars, reducing the diff in size)
+        if(totalBarHeight % 3 == 0) {
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+4;
+            subBarHeight = barheight-2;
+        }
+        else if(totalBarHeight % 3 == 1){
+            //1 Extra Pixed - Give it to main bar
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+5;
+            subBarHeight = barheight-2;
+        }
+        else if(totalBarHeight % 3 == 2){
+            //2 Extra pixel
+            barheight = (int) (totalBarHeight / 3);
+            mainBarHeight = barheight+4;
+            subBarHeight = barheight-1;
+        }
+
 
         // Draw the background
         paint.setColor(Color.BLACK);

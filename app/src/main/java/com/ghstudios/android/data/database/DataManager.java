@@ -675,34 +675,6 @@ public class DataManager {
 	public MonsterToQuestCursor queryMonsterToQuestQuest(long id) {
 		return mHelper.queryMonsterToQuestQuest(id);
 	}
-	
-	/* Get an array of MonsterToQuest based on Monster */
-	public ArrayList<MonsterToQuest> queryMonsterToQuestArrayMonster(long id) {
-		ArrayList<MonsterToQuest> mtq = new ArrayList<MonsterToQuest>();
-		MonsterToQuestCursor cursor = mHelper.queryMonsterToQuestMonster(id);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			mtq.add(cursor.getMonsterToQuest());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return mtq;
-	}
-
-	/* Get an array of MonsterToQuest based on Quest */
-	public ArrayList<MonsterToQuest> queryMonsterToQuestArrayQuest(long id) {
-		ArrayList<MonsterToQuest> mtq = new ArrayList<MonsterToQuest>();
-		MonsterToQuestCursor cursor = mHelper.queryMonsterToQuestQuest(id);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			mtq.add(cursor.getMonsterToQuest());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return mtq;
-	}
 
 /********************************* MONSTER HABITAT QUERIES ******************************************/
 	/* Get a Cursor that has a list of MonsterHabitats based on Monster */

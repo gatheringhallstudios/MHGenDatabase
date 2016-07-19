@@ -52,7 +52,7 @@ public class WeaponDetailFragment extends Fragment {
 	
 	protected void updateUI() throws IOException {
 		//mWeaponLabelTextView.setText(mWeapon.getName());
-		mWeaponTypeTextView.setText(mWeapon.getWtype());
+		mWeaponTypeTextView.setText(mWeapon.getName());
 		mWeaponAttackTextView.setText("" + mWeapon.getAttack());
 		mWeaponRarityTextView.setText("" + mWeapon.getRarity());
 		mWeaponSlotTextView.setText("" + mWeapon.getSlotString());

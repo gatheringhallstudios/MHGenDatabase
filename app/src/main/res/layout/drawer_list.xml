@@ -2,22 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="240dp"
+    android:layout_width="match_parent"
+    android:layout_marginRight="56dp"
     android:orientation="vertical"
-    android:layout_gravity="left|start"
-    android:elevation="8dp">
+    android:layout_gravity="left|start">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:background="@color/dark_primary_color"
         android:layout_gravity="center"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:clickable="true"
-        android:src="@drawable/logo_white"
+        android:src="@drawable/drawer_img"
         android:contentDescription="@string/logo_description"/>
 
     <ListView
@@ -25,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
+        android:divider="@color/navigationDividerColor"
+        android:dividerHeight="1dp"
         android:background="@color/list_background"
         android:fitsSystemWindows="true"
         tools:listitem="@layout/drawer_list_item"/>

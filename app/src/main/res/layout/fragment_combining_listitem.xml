@@ -61,6 +61,7 @@
 
     <LinearLayout
         style="@style/list_item"
+        android:id="@+id/combining_ingredient_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/item3"
@@ -121,5 +122,11 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <View android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_below="@id/combining_ingredient_layout"
+        android:layout_marginTop="6dp"
+        android:background="@color/divider_color"/>
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary_color">#335533</color>
-    <color name="dark_primary_color">#234523</color>
+    <color name="primary_color">#3D564C</color>
+    <color name="dark_primary_color">#2D463C</color>
     <color name="accent_color">#009688</color>
     <color name="light_primary_color">#D7CCC8</color>
     <color name="light_accent_color">#33009688</color>
@@ -22,11 +22,15 @@
 
     <color name="text_color">#333333</color>
     <color name="background_color">#f5f5f5</color>
+    <color name="background_title_color">#2D463C</color>
 
     <!-- used for making anything clickable have a clicked state -->
     <color name="transparent">#00FFFFFF</color>
     <color name="transparentlight">#20D7CCC8</color>
     <color name="transparentDark">#82434343</color>
+
+    <color name="navigationSelectedColor">#12000000</color>
+    <color name="navigationDividerColor">#F1F6F4</color>
 
     <!--Styling for weapon detail-->
     <color name="weapon_property_color">#565656</color>
