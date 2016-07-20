@@ -18,8 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Wishlist;
@@ -168,7 +168,7 @@ public class WishlistListFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_list_item_basic, //TODO Add more wishlist details
+			return inflater.inflate(R.layout.fragment_wishlistmain_listitem,
 					parent, false);
 		}
 
@@ -178,9 +178,9 @@ public class WishlistListFragment extends ListFragment implements
 			Wishlist wishlist = mWishlistCursor.getWishlist();
 
 			// Set up the views
-			TextView wishlistNameTextView = (TextView) view.findViewById(R.id.item_label);
+			LinearLayout itemLayout = (LinearLayout) view.findViewById(R.id.listitem);
+			TextView wishlistNameTextView = (TextView) view.findViewById(R.id.item_name);
 			view.findViewById(R.id.item_image).setVisibility(View.GONE);
-			RelativeLayout itemLayout = (RelativeLayout) view.findViewById(R.id.listitem);
 
 			// Bind views
 			String cellText = wishlist.getName();

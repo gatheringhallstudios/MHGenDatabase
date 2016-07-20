@@ -112,6 +112,8 @@
     Unicode Dash \u2015
     -->
 
+    <string name="wishlist_text_total">Total cost</string>
+
     <string name="no_slots">―――</string>
     <string name="one_slot">○――</string>
     <string name="two_slots">○○―</string>

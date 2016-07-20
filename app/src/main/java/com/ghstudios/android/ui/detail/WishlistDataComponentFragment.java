@@ -58,7 +58,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 
 	private long wishlistId;
 	private ListView mListView;
-	private TextView mHeaderTextView, mItemTypeTextView, mQuantityTypeTextView, mExtraTypeTextView;
+	private TextView mTotalCostView;
 	private ActionMode mActionMode;
 	
 	private boolean started, fromOtherTab;
@@ -87,14 +87,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		View v = inflater.inflate(R.layout.fragment_wishlist_component_list, container, false);
 
 		mListView = (ListView) v.findViewById(android.R.id.list);
-		mHeaderTextView = (TextView) v.findViewById(R.id.header);
-		mItemTypeTextView = (TextView) v.findViewById(R.id.item_type);
-		mQuantityTypeTextView = (TextView) v.findViewById(R.id.quantity_type);
-		mExtraTypeTextView = (TextView) v.findViewById(R.id.extra_type);
-
-		mItemTypeTextView.setText("Item");
-		mQuantityTypeTextView.setText("Req");
-		mExtraTypeTextView.setText("Have");
+		mTotalCostView = (TextView) v.findViewById(R.id.total_cost_value);
 		
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 			// Use floating context menus on Froyo and Gingerbread
@@ -128,13 +121,13 @@ public class WishlistDataComponentFragment extends ListFragment implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.wishlist_edit:
-				if (mListView.getAdapter().getCount() > 0) {
-					mActionMode = getActivity().startActionMode(new mActionModeCallback());
-		            mActionMode.setTag(0);
-					mListView.setItemChecked(0, true);
-				}
-				return true;
+//			case R.id.wishlist_edit:
+//				if (mListView.getAdapter().getCount() > 0) {
+//					mActionMode = getActivity().startActionMode(new mActionModeCallback());
+//		            mActionMode.setTag(0);
+//					mListView.setItemChecked(0, true);
+//				}
+//				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 			}
@@ -301,7 +294,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		
 		// Show the total price
 		int totalPrice = DataManager.get(getActivity()).queryWishlistPrice(wishlistId);
-		mHeaderTextView.setText("Total Cost:   " + totalPrice + "z");
+		mTotalCostView.setText(totalPrice + "z");
 	}
 
 	@Override
@@ -324,7 +317,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_wishlist_data_listitem,
+			return inflater.inflate(R.layout.fragment_wishlist_component_listitem,
 					parent, false);
 		}
 
@@ -336,9 +329,9 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			// Set up the text view
 			LinearLayout root = (LinearLayout) view.findViewById(R.id.listitem);
 			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-			TextView itemTextView = (TextView) view.findViewById(R.id.item);
-			TextView amtTextView = (TextView) view.findViewById(R.id.amt);
-			TextView extraTextView = (TextView) view.findViewById(R.id.extra);
+			TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
+			TextView amtTextView = (TextView) view.findViewById(R.id.text_qty_required);
+			TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have);
 			
 			long id = component.getItem().getId();
 			int quantity = component.getQuantity();
@@ -347,7 +340,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			String nameText = component.getItem().getName();
 			String amtText = "" + quantity;
 			String extraText = "" + notes;
-			
+
+			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
 			extraTextView.setText(extraText);
@@ -356,86 +350,23 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			if (notes >= quantity) {
 				itemTextView.setTextColor(Color.RED);
 			}
-			
-			Drawable i = null;
-			String cellImage = "";
-			String cellRare = "" + component.getItem().getRarity();
 
-            String sub_type = component.getItem().getSubType();
+			// Draw image
+			String cellImage = component.getItem().getItemImage();
 
-            switch(sub_type){
-                case "Head":
-                    cellImage = "icons_armor/icons_head/head" + cellRare + ".png";
-                    break;
-                case "Body":
-                    cellImage = "icons_armor/icons_body/body" + cellRare + ".png";
-                    break;
-                case "Arms":
-                    cellImage = "icons_armor/icons_body/body" + cellRare + ".png";
-                    break;
-                case "Waist":
-                    cellImage = "icons_armor/icons_waist/waist" + cellRare + ".png";
-                    break;
-                case "Legs":
-                    cellImage = "icons_armor/icons_legs/legs" + cellRare + ".png";
-                    break;
-                case "Great Sword":
-                    cellImage = "icons_weapons/icons_great_sword/great_sword" + cellRare + ".png";
-                    break;
-                case "Long Sword":
-                    cellImage = "icons_weapons/icons_long_sword/long_sword" + cellRare + ".png";
-                    break;
-                case "Sword and Shield":
-                    cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + cellRare + ".png";
-                    break;
-                case "Dual Blades":
-                    cellImage = "icons_weapons/icons_dual_blades/dual_blades" + cellRare + ".png";
-                    break;
-                case "Hammer":
-                    cellImage = "icons_weapons/icons_hammer/hammer" + cellRare + ".png";
-                    break;
-                case "Hunting Horn":
-                    cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + cellRare + ".png";
-                    break;
-                case "Lance":
-                    cellImage = "icons_weapons/icons_hammer/hammer" + cellRare + ".png";
-                    break;
-                case "Gunlance":
-                    cellImage = "icons_weapons/icons_gunlance/gunlance" + cellRare + ".png";
-                    break;
-                case "Switch Axe":
-                    cellImage = "icons_weapons/icons_switch_axe/switch_axe" + cellRare + ".png";
-                    break;
-                case "Charge Blade":
-                    cellImage = "icons_weapons/icons_charge_blade/charge_blade" + cellRare + ".png";
-                    break;
-                case "Insect Glaive":
-                    cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + cellRare + ".png";
-                    break;
-                case "Light Bowgun":
-                    cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + cellRare + ".png";
-                    break;
-                case "Heavy Bowgun":
-                    cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + cellRare + ".png";
-                    break;
-                case "Bow":
-                    cellImage = "icons_weapons/icons_bow/bow" + cellRare + ".png";
-                    break;
-                default:
-                    cellImage = "icons_items/" + component.getItem().getFileLocation();
-            }
-			
+			Drawable itemImage = null;
 			try {
-				i = Drawable.createFromStream(
+				itemImage = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			itemImageView.setImageDrawable(i);
+
+			itemImageView.setImageDrawable(itemImage);
 
 
-			// NEW CODE FORMAT. NEED TO REFACTOR THE REST OF THIS ACTIVITY
+			// Set click listeners
 			String itemtype = component.getItem().getType();
 			switch(itemtype){
 				case "Weapon":

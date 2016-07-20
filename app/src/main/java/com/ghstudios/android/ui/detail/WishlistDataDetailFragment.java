@@ -64,8 +64,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
 	private boolean started, fromOtherTab;
 	
-	private ListView mListView;
-	private TextView mHeaderTextView, mItemTypeTextView, mQuantityTypeTextView, mExtraTypeTextView;
+	private ListView mListView;;
 	private ActionMode mActionMode;
 	
 	public static WishlistDataDetailFragment newInstance(long id) {
@@ -90,17 +89,9 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_wishlist_component_list, container, false);
+		View v = inflater.inflate(R.layout.fragment_wishlist_item_list, container, false);
 
 		mListView = (ListView) v.findViewById(android.R.id.list);
-		mHeaderTextView = (TextView) v.findViewById(R.id.header);
-		mItemTypeTextView = (TextView) v.findViewById(R.id.item_type);
-		mQuantityTypeTextView = (TextView) v.findViewById(R.id.quantity_type);
-		mExtraTypeTextView = (TextView) v.findViewById(R.id.extra_type);
-		
-		mItemTypeTextView.setText("Item");
-		mQuantityTypeTextView.setText("Qty");
-		mExtraTypeTextView.setText("Method");
 		
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 			// Use floating context menus on Froyo and Gingerbread
@@ -137,13 +128,13 @@ public class WishlistDataDetailFragment extends ListFragment implements
         FragmentManager fm = getActivity().getSupportFragmentManager();
 
 		switch (item.getItemId()) {
-			case R.id.wishlist_edit: // Not going to be used
-				if (mListView.getAdapter().getCount() > 0) {
-					mActionMode = getActivity().startActionMode(new mActionModeCallback());
-		            mActionMode.setTag(0);
-					mListView.setItemChecked(0, true);
-				}
-				return true;
+//			case R.id.wishlist_edit: // Not going to be used
+//				if (mListView.getAdapter().getCount() > 0) {
+//					mActionMode = getActivity().startActionMode(new mActionModeCallback());
+//		            mActionMode.setTag(0);
+//					mListView.setItemChecked(0, true);
+//				}
+//				return true;
             case R.id.wishlist_rename: // Launch Rename Wishlist dialog
                 WishlistRenameDialogFragment dialog = WishlistRenameDialogFragment.newInstance(
                         getArguments().getLong(ARG_ID, -1),
@@ -249,7 +240,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			return true;
 		}
 		else {
-			return super.onContextItemSelected((android.view.MenuItem) item);
+			return super.onContextItemSelected(item);
 		}
 	}
 	
@@ -317,7 +308,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_wishlist_data_listitem,
+			return inflater.inflate(R.layout.fragment_wishlist_item_listitem,
 					parent, false);
 		}
 
@@ -345,87 +336,24 @@ public class WishlistDataDetailFragment extends ListFragment implements
 				itemTextView.setTextColor(Color.RED);
 			}
 			
-			
+			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
 			extraTextView.setText(extraText);
-			
-			Drawable i = null;
-			String cellImage = "";
-			String cellRare = "" + data.getItem().getRarity();
 
-            String sub_type = data.getItem().getSubType();
+			// Draw image
+			String cellImage = data.getItem().getItemImage();
 
-            switch(sub_type){
-                case "Head":
-                    cellImage = "icons_armor/icons_head/head" + cellRare + ".png";
-                    break;
-                case "Body":
-                    cellImage = "icons_armor/icons_body/body" + cellRare + ".png";
-                    break;
-                case "Arms":
-                    cellImage = "icons_armor/icons_arms/arms" + cellRare + ".png";
-                    break;
-                case "Waist":
-                    cellImage = "icons_armor/icons_waist/waist" + cellRare + ".png";
-                    break;
-                case "Legs":
-                    cellImage = "icons_armor/icons_legs/legs" + cellRare + ".png";
-                    break;
-                case "Great Sword":
-                    cellImage = "icons_weapons/icons_great_sword/great_sword" + cellRare + ".png";
-                    break;
-                case "Long Sword":
-                    cellImage = "icons_weapons/icons_long_sword/long_sword" + cellRare + ".png";
-                    break;
-                case "Sword and Shield":
-                    cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + cellRare + ".png";
-                    break;
-                case "Dual Blades":
-                    cellImage = "icons_weapons/icons_dual_blades/dual_blades" + cellRare + ".png";
-                    break;
-                case "Hammer":
-                    cellImage = "icons_weapons/icons_hammer/hammer" + cellRare + ".png";
-                    break;
-                case "Hunting Horn":
-                    cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + cellRare + ".png";
-                    break;
-                case "Lance":
-                    cellImage = "icons_weapons/icons_lance/lance" + cellRare + ".png";
-                    break;
-                case "Gunlance":
-                    cellImage = "icons_weapons/icons_gunlance/gunlance" + cellRare + ".png";
-                    break;
-                case "Switch Axe":
-                    cellImage = "icons_weapons/icons_switch_axe/switch_axe" + cellRare + ".png";
-                    break;
-                case "Charge Blade":
-                    cellImage = "icons_weapons/icons_charge_blade/charge_blade" + cellRare + ".png";
-                    break;
-                case "Insect Glaive":
-                    cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + cellRare + ".png";
-                    break;
-                case "Light Bowgun":
-                    cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + cellRare + ".png";
-                    break;
-                case "Heavy Bowgun":
-                    cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + cellRare + ".png";
-                    break;
-                case "Bow":
-                    cellImage = "icons_weapons/icons_bow/bow" + cellRare + ".png";
-                    break;
-                default:
-                    cellImage = "icons_items/" + data.getItem().getFileLocation();
-            }
-			
+			Drawable itemImage = null;
 			try {
-				i = Drawable.createFromStream(
+				itemImage = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			itemImageView.setImageDrawable(i);
+
+			itemImageView.setImageDrawable(itemImage);
 
 
 			// NEW CODE FORMAT. NEED TO REFACTOR THE REST OF THIS ACTIVITY
