@@ -13,6 +13,7 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -24,9 +25,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WishlistComponent;
@@ -43,6 +46,7 @@ import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 import com.ghstudios.android.ui.dialog.WishlistComponentEditDialogFragment;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class WishlistDataComponentFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -322,19 +326,19 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		}
 
 		@Override
-		public void bindView(View view, Context context, Cursor cursor) {
+		public void bindView(View view, final Context context, Cursor cursor) {
 			// Get the skill for the current row
-			WishlistComponent component = mWishlistComponentCursor.getWishlistComponent();
+			final WishlistComponent component = mWishlistComponentCursor.getWishlistComponent();
 
 			// Set up the text view
 			LinearLayout root = (LinearLayout) view.findViewById(R.id.listitem);
 			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-			TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
+			final TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
 			TextView amtTextView = (TextView) view.findViewById(R.id.text_qty_required);
-			TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have);
+			//TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have);
 			
 			long id = component.getItem().getId();
-			int quantity = component.getQuantity();
+			final int quantity = component.getQuantity();
 			int notes = component.getNotes();
 			
 			String nameText = component.getItem().getName();
@@ -344,12 +348,56 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
-			extraTextView.setText(extraText);
-			
-			itemTextView.setTextColor(Color.BLACK);
-			if (notes >= quantity) {
-				itemTextView.setTextColor(Color.RED);
+			//extraTextView.setText(extraText);
+
+			/***************** SPINNER **************************/
+
+			// Assign Spinner
+			final Spinner spinner = (Spinner) view.findViewById(R.id.spinner_component_qty);
+			// Create an ArrayAdapter containing all possible values for spinner, 0 -> quantity
+			ArrayList<Integer> options = new ArrayList<>();
+			for(int i = 0; i<=quantity; i++){
+				options.add(i);
 			}
+			ArrayAdapter<Integer> adapter = new ArrayAdapter<>(context, R.layout.view_spinner_item, options);
+			// Specify the layout to use when the list of choices appears
+			adapter.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
+			// Apply the adapter to the spinner
+			spinner.setAdapter(adapter);
+
+			// Get position of notes (qty_have) and set spinner to that position
+			int spinnerpos = adapter.getPosition(notes);
+			spinner.setSelection(spinnerpos);
+
+			AdapterView.OnItemSelectedListener onSpinner = new AdapterView.OnItemSelectedListener(){
+				@Override
+				public void onItemSelected(
+						AdapterView<?> parent,
+						View view,
+						int position,
+						long id) {
+					// Change item color if we have enough
+					itemTextView.setTextColor(Color.BLACK);
+					if ((Integer)spinner.getSelectedItem() >= quantity) {
+						itemTextView.setTextColor(Color.GREEN);
+					}
+
+					// This is the call that edits the wishlist notes. This shouldn't be done in the UI thread.
+					// Also I'm not sure what it does.
+//					DataManager.get(getActivity()).queryUpdateWishlistComponentNotes(
+//							getArguments().getLong(ARG_WISHLIST_COMPONENT_ID), quantity);
+
+				}
+
+				@Override
+				public void onNothingSelected(
+						AdapterView<?>  parent) {
+					Log.v("ComponentFragment", "Nothing selected.");
+				}
+			};
+
+			spinner.setOnItemSelectedListener(onSpinner);
+			
 
 			// Draw image
 			String cellImage = component.getItem().getItemImage();
@@ -393,6 +441,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		}
 	}
 
+	// Handlers for context action handling.
+	// Not used here yet.
 	private class mActionModeCallback implements ActionMode.Callback {
 	    @Override
 	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {

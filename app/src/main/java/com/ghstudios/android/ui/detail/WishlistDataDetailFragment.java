@@ -333,7 +333,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
 			itemTextView.setTextColor(Color.BLACK);
 			if (satisfied == 1) {
-				itemTextView.setTextColor(Color.RED);
+				itemTextView.setTextColor(Color.GREEN);
 			}
 			
 			// Assign textviews
