@@ -335,28 +335,27 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
 			final TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
 			TextView amtTextView = (TextView) view.findViewById(R.id.text_qty_required);
-			//TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have);
+			TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have); // Once spinner is working we don't need this
 			
-			long id = component.getItem().getId();
-			final int quantity = component.getQuantity();
-			int notes = component.getNotes();
+			final long componentid = component.getItem().getId();
+			final int qtyreq = component.getQuantity();
+			final int qtyhave = component.getNotes();
 			
 			String nameText = component.getItem().getName();
-			String amtText = "" + quantity;
-			String extraText = "" + notes;
+			String amtText = "" + qtyreq;
 
 			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
-			//extraTextView.setText(extraText);
+            extraTextView.setText(Integer.toString(qtyhave)); // Once spinner is working we don't need this
 
-			/***************** SPINNER **************************/
+			/***************** SPINNER FOR QTY_HAVE DISPLAY **************************/
 
 			// Assign Spinner
 			final Spinner spinner = (Spinner) view.findViewById(R.id.spinner_component_qty);
 			// Create an ArrayAdapter containing all possible values for spinner, 0 -> quantity
 			ArrayList<Integer> options = new ArrayList<>();
-			for(int i = 0; i<=quantity; i++){
+			for(int i = 0; i<=100; i++){
 				options.add(i);
 			}
 			ArrayAdapter<Integer> adapter = new ArrayAdapter<>(context, R.layout.view_spinner_item, options);
@@ -366,7 +365,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			spinner.setAdapter(adapter);
 
 			// Get position of notes (qty_have) and set spinner to that position
-			int spinnerpos = adapter.getPosition(notes);
+			int spinnerpos = adapter.getPosition(qtyhave);
 			spinner.setSelection(spinnerpos);
 
 			AdapterView.OnItemSelectedListener onSpinner = new AdapterView.OnItemSelectedListener(){
@@ -376,16 +375,17 @@ public class WishlistDataComponentFragment extends ListFragment implements
 						View view,
 						int position,
 						long id) {
+
+					// Edit qtyhave and reevaluate 'satisfied' tag for wishlist items
+                    Log.v("WishlistComponent", "Component ID - " + componentid);
+                    Log.v("WishlistComponent", "SpinnerValue - " + position);
+					DataManager.get(context).queryUpdateWishlistComponentNotes(componentid, position);
+
 					// Change item color if we have enough
 					itemTextView.setTextColor(Color.BLACK);
-					if ((Integer)spinner.getSelectedItem() >= quantity) {
+					if ((Integer)spinner.getItemAtPosition(position) >= qtyreq) {
 						itemTextView.setTextColor(Color.GREEN);
 					}
-
-					// This is the call that edits the wishlist notes. This shouldn't be done in the UI thread.
-					// Also I'm not sure what it does.
-//					DataManager.get(getActivity()).queryUpdateWishlistComponentNotes(
-//							getArguments().getLong(ARG_WISHLIST_COMPONENT_ID), quantity);
 
 				}
 
@@ -418,26 +418,26 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			String itemtype = component.getItem().getType();
 			switch(itemtype){
 				case "Weapon":
-					root.setOnClickListener(new WeaponClickListener(context, id));
+					root.setOnClickListener(new WeaponClickListener(context, componentid));
 					break;
 				case "Armor":
-					root.setOnClickListener(new ArmorClickListener(context, id));
+					root.setOnClickListener(new ArmorClickListener(context, componentid));
 					break;
 				case "Decoration":
-					root.setOnClickListener(new DecorationClickListener(context, id));
+					root.setOnClickListener(new DecorationClickListener(context, componentid));
 					break;
 				case "Materials":
-					root.setOnClickListener(new MaterialClickListener(context,id));
+					root.setOnClickListener(new MaterialClickListener(context,componentid));
 					break;
 				case "Palico Weapon":
-					root.setOnClickListener(new PalicoWeaponClickListener(context,id));
+					root.setOnClickListener(new PalicoWeaponClickListener(context,componentid));
 					break;
 				default:
-					root.setOnClickListener(new ItemClickListener(context, id));
+					root.setOnClickListener(new ItemClickListener(context, componentid));
 					break;
 			}
 
-			root.setTag(id);
+			root.setTag(componentid);
 		}
 	}
 
