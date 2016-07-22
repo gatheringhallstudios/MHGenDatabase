@@ -9,9 +9,9 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
 
-        //1.00 = Version Code: 1 = Released 7-14-2016
-        //1.0.1 = Version Code: 2
-
+        //1.00   Version Code: 1   Released 7-14-2016
+        //1.0.1  Version Code: 2   Released 7-19-2016
+        //1.0.2  Version Code: 3   Released 7-19-2016
         versionCode 3
         versionName "1.0.2"
 

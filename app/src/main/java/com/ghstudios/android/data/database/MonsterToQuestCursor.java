@@ -3,6 +3,7 @@ package com.ghstudios.android.data.database;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterToQuest;
 import com.ghstudios.android.data.classes.Quest;
@@ -78,7 +79,26 @@ public class MonsterToQuestCursor extends CursorWrapper {
 		monster.setFileLocation(file_location); 
 		
 		monster_to_quest.setMonster(monster);
-		
+
+		int areaColumn = getColumnIndex(S.COLUMN_HABITAT_AREAS);
+		if(areaColumn != -1){
+			String areas = getString(areaColumn);
+			if(areas != null) {
+				String[] allAreas = areas.split(",");
+
+				long[] areasInt = new long[allAreas.length];
+				for (int i = 0; i < allAreas.length; i++) {
+					areasInt[i] = Long.valueOf(allAreas[i]);
+				}
+
+				Habitat hab = new Habitat();
+				hab.setStart(getLong(getColumnIndex(S.COLUMN_HABITAT_START)));
+				hab.setRest(getLong(getColumnIndex(S.COLUMN_HABITAT_REST)));
+				hab.setAreas(areasInt);
+				monster_to_quest.setHabitat(hab);
+			}
+		}
+
 		return monster_to_quest;
 	}
 

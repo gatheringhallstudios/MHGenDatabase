@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterToQuest;
 import com.ghstudios.android.data.database.MonsterToQuestCursor;
 import com.ghstudios.android.loader.MonsterToQuestListCursorLoader;
@@ -117,12 +118,16 @@ public class QuestMonsterFragment extends ListFragment implements
 			// Set up the text view
 			LinearLayout itemLayout = (LinearLayout) view
 					.findViewById(R.id.listitem);
+			LinearLayout habitatLayout = (LinearLayout)view.findViewById(R.id.habitat_layout);
 			ImageView monsterImageView = (ImageView) view
 					.findViewById(R.id.detail_monster_image);
 			TextView monsterTextView = (TextView) view
 					.findViewById(R.id.detail_monster_label);
 			TextView unstableTextView = (TextView) view
 					.findViewById(R.id.detail_monster_unstable);
+			TextView startTextView = (TextView)view.findViewById(R.id.habitat_start);
+			TextView travelTextView = (TextView)view.findViewById(R.id.habitat_travel);
+			TextView endTextView = (TextView)view.findViewById(R.id.habitat_end);
 			
 			String cellMonsterText = monsterToQuest.getMonster().getName();
 			String cellTraitText = monsterToQuest.getMonster().getTrait(); 
@@ -146,6 +151,30 @@ public class QuestMonsterFragment extends ListFragment implements
 			}
 
 			monsterImageView.setImageDrawable(i);
+
+			Habitat habitat = monsterToQuest.getHabitat();
+			if(habitat != null){
+				long start = habitat.getStart();
+				long[] area = habitat.getAreas();
+				long rest = habitat.getRest();
+
+				String areas = "";
+				for(int j = 0; j < area.length; j++)
+				{
+					areas += Long.toString(area[j]);
+					if (j != area.length - 1)
+					{
+						areas += ", ";
+					}
+				}
+
+				startTextView.setText(Long.toString(start));
+				travelTextView.setText(areas);
+				endTextView.setText(Long.toString(rest));
+				habitatLayout.setVisibility(View.VISIBLE);
+			}
+			else
+				habitatLayout.setVisibility(View.GONE);
 
 			itemLayout.setTag(monsterToQuest.getMonster().getId());
             itemLayout.setOnClickListener(new MonsterClickListener(context,

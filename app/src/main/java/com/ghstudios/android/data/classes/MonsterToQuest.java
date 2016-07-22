@@ -8,6 +8,7 @@ public class MonsterToQuest {
 	private long id;			// id
 	private Monster monster;	// Monster
 	private Quest quest;		// Quest
+	Habitat habitat;			// Habitat
 	private int unstable;	// Unstable or not
 	
 	/* Default Constructors */
@@ -34,6 +35,9 @@ public class MonsterToQuest {
 	public void setMonster(Monster monster) {
 		this.monster = monster;
 	}
+
+	public Habitat getHabitat(){return habitat;}
+	public void setHabitat(Habitat hab){habitat = hab;}
 
 	public Quest getQuest() {
 		return quest;
