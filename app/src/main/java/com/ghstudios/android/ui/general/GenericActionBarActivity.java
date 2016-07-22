@@ -414,7 +414,9 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
 
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
-            holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text, getTheme()));
+
+            // This is not supported in api < 23
+            holder.txtTitle.setTextColor(ContextCompat.getColor(getContext(), position == selectedIndex ? R.color.accent_color : R.color.list_text));
 
             View v = (View)holder.txtTitle.getParent();
             if(position == selectedIndex)
