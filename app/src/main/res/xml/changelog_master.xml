@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.0.2" versioncode="3">
+        <change>Added missing key quests</change>
+        <change>Fixed issue with quest list</change>
+    </release>
+
     <release version="1.0.1" versioncode="2">
-        <change>Nothing Yet</change>
+        <change>Fixed subquest rewards</change>
+        <change>Fixed monster quest bug</change>
+        <change>Added alternate state damages</change>
     </release>
 
     <release version="1.0.0" versioncode="1">
