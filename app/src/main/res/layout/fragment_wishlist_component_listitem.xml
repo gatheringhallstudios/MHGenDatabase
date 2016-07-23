@@ -47,17 +47,6 @@
         android:layout_height="wrap_content"
         android:text="/"/>
 
-    <TextView
-        android:id="@+id/text_qty_have"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight=".15"
-        android:layout_marginRight="-4dp"
-        android:gravity="center"
-        style="@style/text_small"
-        tools:text="6"
-        />
-
     <Spinner
         android:layout_width="0dp"
         android:layout_height="wrap_content"

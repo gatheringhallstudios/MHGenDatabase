@@ -335,8 +335,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
 			final TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
 			TextView amtTextView = (TextView) view.findViewById(R.id.text_qty_required);
-			TextView extraTextView = (TextView) view.findViewById(R.id.text_qty_have); // Once spinner is working we don't need this
-			
+
+			final long componentrowid = component.getId();
 			final long componentid = component.getItem().getId();
 			final int qtyreq = component.getQuantity();
 			final int qtyhave = component.getNotes();
@@ -347,7 +347,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
-            extraTextView.setText(Integer.toString(qtyhave)); // Once spinner is working we don't need this
 
 			/***************** SPINNER FOR QTY_HAVE DISPLAY **************************/
 
@@ -376,17 +375,14 @@ public class WishlistDataComponentFragment extends ListFragment implements
 						int position,
 						long id) {
 
-					// Edit qtyhave and reevaluate 'satisfied' tag for wishlist items
-                    Log.v("WishlistComponent", "Component ID - " + componentid);
-                    Log.v("WishlistComponent", "SpinnerValue - " + position);
-					DataManager.get(context).queryUpdateWishlistComponentNotes(componentid, position);
+					// Edit qtyhave for the component's row
+					DataManager.get(context).queryUpdateWishlistComponentNotes(componentrowid, position);
 
 					// Change item color if we have enough
 					itemTextView.setTextColor(Color.BLACK);
 					if ((Integer)spinner.getItemAtPosition(position) >= qtyreq) {
 						itemTextView.setTextColor(Color.GREEN);
 					}
-
 				}
 
 				@Override
@@ -396,8 +392,11 @@ public class WishlistDataComponentFragment extends ListFragment implements
 				}
 			};
 
+			// Set spinner listener
 			spinner.setOnItemSelectedListener(onSpinner);
 			
+			/********************* END SPINNER ***********************/
+
 
 			// Draw image
 			String cellImage = component.getItem().getItemImage();

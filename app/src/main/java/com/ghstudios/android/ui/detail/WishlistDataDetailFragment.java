@@ -30,6 +30,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WishlistData;
+import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
@@ -217,7 +218,21 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		super.onResume();
 		updateUI();
 	}
-	
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+
+        // If we are becoming visible, then...
+        if (isVisibleToUser) {
+            // Update wishlist with items that are 'satisfied'
+            DataManager.get(getContext()).helperQueryUpdateWishlistSatisfied(getArguments().getLong(ARG_ID));
+            updateUI();
+        }
+
+	}
+
+
 	private void sendResult(int resultCode, boolean refresh) {
 		if (getTargetFragment() == null) {
 			return;
@@ -355,8 +370,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
 			itemImageView.setImageDrawable(itemImage);
 
-
-			// NEW CODE FORMAT. NEED TO REFACTOR THE REST OF THIS ACTIVITY
 			String itemtype = data.getItem().getType();
 			switch(itemtype){
 				case "Weapon":

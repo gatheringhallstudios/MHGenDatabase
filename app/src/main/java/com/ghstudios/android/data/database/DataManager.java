@@ -1,12 +1,10 @@
 package com.ghstudios.android.data.database;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import android.content.Context;
 import android.database.Cursor;
 
-import com.ghstudios.android.data.classes.*;
+import com.ghstudios.android.data.classes.ASBSession;
+import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.classes.ArenaQuest;
 import com.ghstudios.android.data.classes.ArenaReward;
 import com.ghstudios.android.data.classes.Armor;
@@ -14,18 +12,16 @@ import com.ghstudios.android.data.classes.Combining;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Gathering;
-import com.ghstudios.android.data.classes.HuntingFleet;
 import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.classes.Location;
-import com.ghstudios.android.data.classes.MogaWoodsReward;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.classes.MonsterToArena;
-import com.ghstudios.android.data.classes.MonsterToQuest;
 import com.ghstudios.android.data.classes.MonsterWeakness;
+import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.classes.Skill;
@@ -36,6 +32,9 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.classes.WyporiumTrade;
 import com.ghstudios.android.ui.general.WeaponListEntry;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /*
@@ -1277,20 +1276,24 @@ public class DataManager {
 	
 	/* Update the specified WishlistComponent by the given quantity */
 	public void queryUpdateWishlistComponentNotes(long id, int notes) {	
-		mHelper.queryUpdateWishlistComponentNotes(id, notes);
+		// Update wishlist table value
+        mHelper.queryUpdateWishlistComponentNotes(id, notes);
+
+        // Get the wishlist id to check for any satisfied entries. This is too slow to be done here
+        /*
 		WishlistComponentCursor wcc = mHelper.queryWishlistComponentId(id);
 		wcc.moveToFirst();
-		
-		// Get the wishlist id to check for any satisfied entries
+        // Get id of wishlist to refresh
 		long w_id = wcc.getWishlistComponent().getWishlistId();
 		wcc.close();
 		
 		// Check for any changes if any WishlistData is satisfied (can be build)
 		helperQueryUpdateWishlistSatisfied(w_id);
+		*/
 	}
 	
 	/* Helper method: From a specified , check if any WishlistData can be built */
-	private void helperQueryUpdateWishlistSatisfied(long wishlist_id) {
+	public void helperQueryUpdateWishlistSatisfied(long wishlist_id) {
 		WishlistDataCursor wdc = mHelper.queryWishlistData(wishlist_id);
 		wdc.moveToFirst();
 		
