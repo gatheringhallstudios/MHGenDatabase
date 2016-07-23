@@ -8,15 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.ActionMode;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,7 +39,6 @@ import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
-import com.ghstudios.android.ui.dialog.WishlistComponentEditDialogFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -125,38 +120,12 @@ public class WishlistDataComponentFragment extends ListFragment implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-//			case R.id.wishlist_edit:
-//				if (mListView.getAdapter().getCount() > 0) {
-//					mActionMode = getActivity().startActionMode(new mActionModeCallback());
-//		            mActionMode.setTag(0);
-//					mListView.setItemChecked(0, true);
-//				}
-//				return true;
+            // TODO options for RENAME and DELETE wishlist still show in this fragment but are unhandled. Stop them from showing.
 			default:
 				return super.onOptionsItemSelected(item);
 			}
 	}
-	
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-		getActivity().getMenuInflater().inflate(R.menu.context_wishlist_data_component, menu);
-	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode != Activity.RESULT_OK) return;
-		if (requestCode == REQUEST_EDIT) {
-			if(data.getBooleanExtra(WishlistComponentEditDialogFragment.EXTRA_EDIT, false)) {
-				updateUI();
-			}
-		}
-		else if (requestCode == REQUEST_REFRESH) {
-			if(data.getBooleanExtra(WishlistDataDetailFragment.EXTRA_DETAIL_REFRESH, false)) {
-				updateUI();
-			}
-		}
-	}
-	
 	private void updateUI() {
 		if (started) {
 			getLoaderManager().getLoader( R.id.wishlist_data_component_fragment ).forceLoad();
@@ -177,47 +146,16 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		super.onResume();
 		updateUI();
 	}
-	
-	private void sendResult(int resultCode, boolean refresh) {
-		if (getTargetFragment() == null) {
-			return;
-		}
 
-		Intent i = new Intent();
-		i.putExtra(EXTRA_COMPONENT_REFRESH, refresh);
-		
-		getTargetFragment()
-			.onActivityResult(getTargetRequestCode(), resultCode, i);
-	}
-	
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		int position = info.position;
-		
-		boolean temp = onItemSelected(item, position);
-		
-		if(temp) {
-			return true;
-		}
-		else {
-			return super.onContextItemSelected((android.view.MenuItem) item);
-		}
-	}
+	private void sendResult(int resultCode, boolean refresh) {
+        if (getTargetFragment() == null) {
+            return;
+        }
+    }
+
 	
 	private boolean onItemSelected(MenuItem item, int position) {
-		WishlistComponentCursorAdapter adapter = (WishlistComponentCursorAdapter) getListAdapter();
-		WishlistComponent wishlistComponent = ((WishlistComponentCursor) adapter.getItem(position)).getWishlistComponent();
-		long id = wishlistComponent.getId();
-		String name = wishlistComponent.getItem().getName();
-		
-		FragmentManager fm = getActivity().getSupportFragmentManager();
-		
 		switch (item.getItemId()) {
-			case R.id.menu_item_edit_wishlist_data:
-				WishlistComponentEditDialogFragment dialogEdit = WishlistComponentEditDialogFragment.newInstance(id, name);
-				dialogEdit.setTargetFragment(WishlistDataComponentFragment.this, REQUEST_EDIT);
-				dialogEdit.show(fm, DIALOG_WISHLIST_COMPONENT_EDIT);
-				return true;
 			default:
 				return false;
 		}
