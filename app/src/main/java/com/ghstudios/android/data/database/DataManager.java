@@ -1275,24 +1275,11 @@ public class DataManager {
 	}	
 	
 	/* Update the specified WishlistComponent by the given quantity */
-	public void queryUpdateWishlistComponentNotes(long id, int notes) {	
-		// Update wishlist table value
+	public void queryUpdateWishlistComponentNotes(long id, int notes) {
         mHelper.queryUpdateWishlistComponentNotes(id, notes);
-
-        // Get the wishlist id to check for any satisfied entries. This is too slow to be done here
-        /*
-		WishlistComponentCursor wcc = mHelper.queryWishlistComponentId(id);
-		wcc.moveToFirst();
-        // Get id of wishlist to refresh
-		long w_id = wcc.getWishlistComponent().getWishlistId();
-		wcc.close();
-		
-		// Check for any changes if any WishlistData is satisfied (can be build)
-		helperQueryUpdateWishlistSatisfied(w_id);
-		*/
 	}
 	
-	/* Helper method: From a specified , check if any WishlistData can be built */
+	/* From a specified wishlist id, check if any WishlistData can be built */
 	public void helperQueryUpdateWishlistSatisfied(long wishlist_id) {
 		WishlistDataCursor wdc = mHelper.queryWishlistData(wishlist_id);
 		wdc.moveToFirst();

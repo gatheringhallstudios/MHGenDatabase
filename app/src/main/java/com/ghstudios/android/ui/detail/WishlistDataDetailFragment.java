@@ -222,14 +222,12 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
-
         // If we are becoming visible, then...
         if (isVisibleToUser) {
             // Update wishlist with items that are 'satisfied'
             DataManager.get(getContext()).helperQueryUpdateWishlistSatisfied(getArguments().getLong(ARG_ID));
             updateUI();
         }
-
 	}
 
 
