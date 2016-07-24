@@ -1,9 +1,6 @@
 package com.ghstudios.android.ui.detail;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,8 +9,6 @@ import android.view.MenuItem;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.adapter.WishlistDetailPagerAdapter;
-import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
-import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
@@ -127,5 +122,6 @@ public class WishlistDetailActivity extends GenericTabActivity implements Wishli
         long id = getIntent().getLongExtra(EXTRA_WISHLIST_ID, -1);
         setTitle(DataManager.get(getApplicationContext()).getWishlist(id).getName());
     }
+
 
 }

@@ -1,15 +1,13 @@
 package com.ghstudios.android.ui.detail;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -51,10 +49,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 	
 	private static final String ARG_ID = "ID";
 
-	private static final String DIALOG_WISHLIST_COMPONENT_EDIT = "wishlist_component_edit";
-	private static final int REQUEST_REFRESH = 0;
-	private static final int REQUEST_EDIT = 1;
-
 	private long wishlistId;
 	private ListView mListView;
 	private TextView mTotalCostView;
@@ -88,27 +82,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		mListView = (ListView) v.findViewById(android.R.id.list);
 		mTotalCostView = (TextView) v.findViewById(R.id.total_cost_value);
 		
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			// Use floating context menus on Froyo and Gingerbread
-			registerForContextMenu(mListView);
-		} else {
-			// Use contextual action bar on Honeycomb and higher
-			mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-			mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			        @Override
-			        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-			            if (mActionMode != null) {
-			                return false;
-			            }
-			
-			            mActionMode = getActivity().startActionMode(new mActionModeCallback());
-			            mActionMode.setTag(position);
-			            mListView.setItemChecked(position, true);
-			            return true;
-			        }
-			});
-		}
-		
 		return v;
 	}
 
@@ -131,13 +104,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			getLoaderManager().getLoader( R.id.wishlist_data_component_fragment ).forceLoad();
 			WishlistComponentCursorAdapter adapter = (WishlistComponentCursorAdapter) getListAdapter();
 			adapter.notifyDataSetChanged();
-			
-			if (!fromOtherTab) {
-				sendResult(Activity.RESULT_OK, true);
-			}
-			else {
-				fromOtherTab = false;
-			}
 		}
 	}
 	
@@ -147,73 +113,52 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		updateUI();
 	}
 
-	private void sendResult(int resultCode, boolean refresh) {
-        if (getTargetFragment() == null) {
-            return;
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        // If we are becoming visible, then...
+        if (isVisibleToUser) {
+            // Update wishlist componenets with items that are 'satisfied'
+            updateUI();
         }
     }
-
-	
-	private boolean onItemSelected(MenuItem item, int position) {
-		switch (item.getItemId()) {
-			default:
-				return false;
-		}
-	}
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// The id argument will be the Item ID; CursorAdapter gives us this
 		// for free
-		if (mActionMode == null) {
-            mListView.setItemChecked(position, false);
-			Intent i = null;
-			long mId = (long) v.getTag();
-            String itemtype;
 
-            WishlistComponent component;
+		mListView.setItemChecked(position, false);
+		Intent i = null;
+		long mId = (long) v.getTag();
+		String itemtype;
 
-            WishlistComponentCursor mycursor = (WishlistComponentCursor) l.getItemAtPosition(position);
-            component = mycursor.getWishlistComponent();
-            itemtype = component.getItem().getType();
+		WishlistComponent component;
 
-//			if (mId < S.SECTION_ARMOR) {
-//				i = new Intent(getActivity(), ItemDetailActivity.class);
-//				i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
-//			}
-//			else if (mId < S.SECTION_WEAPON) {
-//				i = new Intent(getActivity(), ArmorDetailActivity.class);
-//				i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
-//			}
-//			else {
-//				i = new Intent(getActivity(), WeaponDetailActivity.class);
-//				i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
-//			}
+		WishlistComponentCursor mycursor = (WishlistComponentCursor) l.getItemAtPosition(position);
+		component = mycursor.getWishlistComponent();
+		itemtype = component.getItem().getType();
 
-            switch(itemtype){
-                case "Weapon":
-                    i = new Intent(getActivity(), WeaponDetailActivity.class);
-                    i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
-                    break;
-                case "Armor":
-                    i = new Intent(getActivity(), ArmorDetailActivity.class);
-                    i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
-                    break;
-                case "Decoration":
-                    i = new Intent(getActivity(), DecorationDetailActivity.class);
-                    i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
-                    break;
-                default:
-                    i = new Intent(getActivity(), ItemDetailActivity.class);
-                    i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
-            }
-
-			startActivity(i);
+		switch(itemtype){
+			case "Weapon":
+				i = new Intent(getActivity(), WeaponDetailActivity.class);
+				i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
+				break;
+			case "Armor":
+				i = new Intent(getActivity(), ArmorDetailActivity.class);
+				i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
+				break;
+			case "Decoration":
+				i = new Intent(getActivity(), DecorationDetailActivity.class);
+				i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
+				break;
+			default:
+				i = new Intent(getActivity(), ItemDetailActivity.class);
+				i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
 		}
-		// Contextual action bar options
-		else { 
-            mActionMode.setTag(position);
-		}
+
+		startActivity(i);
+
 	}
 
 	@Override
@@ -278,6 +223,13 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			final long componentid = component.getItem().getId();
 			final int qtyreq = component.getQuantity();
 			final int qtyhave = component.getNotes();
+
+			// Set color component requirement is met
+			if (qtyhave >= qtyreq) {
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.light_accent_color));
+			} else {
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.text_color));
+			}
 			
 			String nameText = component.getItem().getName();
 			String amtText = "" + qtyreq;
@@ -301,10 +253,6 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			// Apply the adapter to the spinner
 			spinner.setAdapter(adapter);
 
-			// Get position of notes (qty_have) and set spinner to that position
-			int spinnerpos = adapter.getPosition(qtyhave);
-			spinner.setSelection(spinnerpos);
-
 			AdapterView.OnItemSelectedListener onSpinner = new AdapterView.OnItemSelectedListener(){
 				@Override
 				public void onItemSelected(
@@ -316,10 +264,11 @@ public class WishlistDataComponentFragment extends ListFragment implements
 					// Edit qtyhave for the component's row
 					DataManager.get(context).queryUpdateWishlistComponentNotes(componentrowid, position);
 
-					// Change item color if we have enough
-					itemTextView.setTextColor(Color.BLACK);
+					// Change item color if requirement is met
 					if ((Integer)spinner.getItemAtPosition(position) >= qtyreq) {
-						itemTextView.setTextColor(Color.GREEN);
+						itemTextView.setTextColor(ContextCompat.getColor(context, R.color.light_accent_color));
+					} else {
+						itemTextView.setTextColor(ContextCompat.getColor(context, R.color.text_color));
 					}
 				}
 
@@ -332,6 +281,10 @@ public class WishlistDataComponentFragment extends ListFragment implements
 
 			// Set spinner listener
 			spinner.setOnItemSelectedListener(onSpinner);
+
+			// Get position of notes (qty_have) and set spinner to that position
+			int spinnerpos = adapter.getPosition(qtyhave);
+			spinner.setSelection(spinnerpos);
 			
 			/********************* END SPINNER ***********************/
 
@@ -376,37 +329,5 @@ public class WishlistDataComponentFragment extends ListFragment implements
 
 			root.setTag(componentid);
 		}
-	}
-
-	// Handlers for context action handling.
-	// Not used here yet.
-	private class mActionModeCallback implements ActionMode.Callback {
-	    @Override
-	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-	        MenuInflater inflater = mode.getMenuInflater();
-	        inflater.inflate(R.menu.context_wishlist_data_component, menu);
-	        return true;
-	    }
-
-	    @Override
-	    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-	        return false;
-	    }
-
-	    @Override
-	    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-	    	int position = Integer.parseInt(mode.getTag().toString());
-	    	mode.finish();
-	    	return onItemSelected(item, position);
-	    }
-
-	    @Override
-	    public void onDestroyActionMode(ActionMode mode) {		        
-	        for (int i = 0; i < mListView.getCount(); i++) {
-	        	mListView.setItemChecked(i, false);
-	        }
-
-	        mActionMode = null;
-	    }
 	}
 }

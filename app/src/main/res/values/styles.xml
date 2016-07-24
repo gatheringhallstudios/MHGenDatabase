@@ -156,6 +156,7 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+
     <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
     <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:clickable">true</item>

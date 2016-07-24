@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -63,7 +63,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	private boolean started, fromOtherTab;
 	
 	private ListView mListView;
-	private ActionMode mActionMode;
 	
 	public static WishlistDataDetailFragment newInstance(long id) {
 		Bundle args = new Bundle();
@@ -93,7 +92,8 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
         // Use contextual action bar
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-
+		// Set selected background style. This is buggy right now.
+		// mListView.setSelector(R.color.transparentDark); // TODO Implement a proper selector style
         WishlistDataMultiChoiceListener multiChoiceListener = new WishlistDataMultiChoiceListener();
         mListView.setMultiChoiceModeListener(multiChoiceListener);
 		
@@ -140,9 +140,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
             final int checkedCount = mListView.getCheckedItemCount();
             // Set the CAB title according to total checked items
             mode.setTitle(checkedCount + " Selected");
-            // Calls toggleSelection method from ListViewAdapter Class
-            // change background color to better indicate selected states
-            // mListView.setItemChecked(position, true);
         }
 
         @Override
@@ -191,9 +188,8 @@ public class WishlistDataDetailFragment extends ListFragment implements
         @Override
         public void onDestroyActionMode(ActionMode mode) {
             // TODO Auto-generated method stub
-                /*
-                listviewadapter.removeSelection();
-                */
+			mListView.clearChoices();
+			updateUI();
         }
 
         @Override
@@ -234,26 +230,14 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		}
 
 	}
-		/*		if (requestCode == WishlistListFragment.REQUEST_REFRESH) {
-			if(data.getBooleanExtra(WishlistDataComponentFragment.EXTRA_COMPONENT_REFRESH, false)) {
-				fromOtherTab = true;
-				updateUI();
-			}
-		}
-		else if (requestCode == WishlistListFragment.REQUEST_EDIT) {
-			if(data.getBooleanExtra(WishlistDataEditDialogFragment.EXTRA_EDIT, false)) {
-				updateUI();
-			}
-		}
-		*/
 	
-	private void updateUI() {
+	public void updateUI() {
 		if (started) {
             // Refresh wishlist data fragment
 			getLoaderManager().getLoader( R.id.wishlist_data_detail_fragment ).forceLoad();
 			WishlistDataListCursorAdapter adapter = (WishlistDataListCursorAdapter) getListAdapter();
 			adapter.notifyDataSetChanged();
-	
+
 			if (!fromOtherTab) {
 				sendResult(Activity.RESULT_OK, true);
 			}
@@ -396,11 +380,13 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			String extraText = data.getPath();
 			int satisfied = data.getSatisfied();
 
-			itemTextView.setTextColor(Color.BLACK);
+			// Indicate a piece's requirements are met
 			if (satisfied == 1) {
-				itemTextView.setTextColor(Color.GREEN);
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.light_accent_color));
+			} else {
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.text_color));
 			}
-			
+
 			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
