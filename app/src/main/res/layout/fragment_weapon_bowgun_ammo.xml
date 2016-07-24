@@ -517,4 +517,119 @@
 
     </TableLayout>
 
+    <LinearLayout
+        android:id="@+id/internal_ammo_layout"
+        android:orientation="vertical"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tool:visibility="visible"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_small_secondary"
+            android:layout_marginBottom="4dp"
+            android:text="Internal Ammo"/>
+        <TextView
+            android:id="@+id/internal_ammo_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 20 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Normal S Lv2 - 10 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Demon S - 10 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Flaming S Lv1 - 5 - 2"/>
+        <TextView
+            android:id="@+id/internal_ammo_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Flaming S Lv1 \u2022 5 \u2022 2"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/detail_rapid_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_small_secondary"
+            android:layout_marginBottom="4dp"
+            android:text="Rapid Fire"/>
+        <TextView
+            android:id="@+id/rapid_ammo_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+    </LinearLayout>
+
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
@@ -25,6 +26,11 @@ public class WeaponDetailAmmoFragment extends Fragment implements
     private long mWeaponId;
     Weapon mWeapon;
     TextView[] mAmmoTextViews;
+
+    TextView[] _internalTextViews;
+    TextView[] _rapidTextViews;
+    TextView _rapidTitle;
+    LinearLayout _internalLayout;
 
     public static WeaponDetailAmmoFragment newInstance(long weaponId) {
         Bundle args = new Bundle();
@@ -94,6 +100,23 @@ public class WeaponDetailAmmoFragment extends Fragment implements
 				(TextView) view.findViewById(R.id.exhaust1),
 				(TextView) view.findViewById(R.id.exhaust2)
         };
+
+        _internalLayout = (LinearLayout)view.findViewById(R.id.internal_ammo_layout);
+        _rapidTitle = (TextView)view.findViewById(R.id.detail_rapid_text);
+
+        _rapidTextViews = new TextView[]{(TextView)view.findViewById(R.id.rapid_ammo_1),
+                (TextView)view.findViewById(R.id.rapid_ammo_2),
+                (TextView)view.findViewById(R.id.rapid_ammo_3),
+                (TextView)view.findViewById(R.id.rapid_ammo_4),
+                (TextView)view.findViewById(R.id.rapid_ammo_5)};
+
+
+        _internalTextViews = new TextView[]{(TextView)view.findViewById(R.id.internal_ammo_1),
+                (TextView)view.findViewById(R.id.internal_ammo_2),
+                (TextView)view.findViewById(R.id.internal_ammo_3),
+                (TextView)view.findViewById(R.id.internal_ammo_4),
+                (TextView)view.findViewById(R.id.internal_ammo_5)};
+
         return view;
     }
 
@@ -105,6 +128,33 @@ public class WeaponDetailAmmoFragment extends Fragment implements
         for(int i=0;i<mAmmoTextViews.length;i++) {
             ammoView = mAmmoTextViews[i];
             setAmmoText(ammos[i], ammoView);
+        }
+
+        _internalLayout.setVisibility(View.VISIBLE);
+
+        String[] internal = mWeapon.getSpecialAmmo().split("\\*");
+        String[] rapid = mWeapon.getRapidFire().split("\\*");
+
+        for(int i=0;i<internal.length;i++){
+            String[] s = internal[i].split(":");
+            _internalTextViews[i].setText(s[0] + " \u2022 " + s[1]+" \u2022 "+s[2]);
+            _internalTextViews[i].setVisibility(View.VISIBLE);
+        }
+
+        if(mWeapon.getWtype().equals("Light Bowgun")) {
+            for (int i = 0; i < rapid.length; i++) {
+                String[] s = rapid[i].split(":");
+                _rapidTextViews[i].setText(s[0] + " \u2022 " + s[1]+ " \u2022 "+s[2] + " \u2022 "+getWaitString(Integer.parseInt(s[3])));
+                _rapidTextViews[i].setVisibility(View.VISIBLE);
+            }
+        }
+        else{
+            _rapidTitle.setText("Seige Mode");
+            for (int i = 0; i < rapid.length; i++) {
+                String[] s = rapid[i].split(":");
+                _rapidTextViews[i].setText(s[0] + " \u2022 " + s[1]);
+                _rapidTextViews[i].setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -124,4 +174,15 @@ public class WeaponDetailAmmoFragment extends Fragment implements
             ammoView.setTextColor(ContextCompat.getColor(getContext(),R.color.text_color_focused));
         }
     }
+
+    String getWaitString(int wait){
+        switch (wait){
+            case 0:return "Short";
+            case 1:return "Medium";
+            case 2:return "Long";
+            case 3:return "Very Long";
+            default:return "";
+        }
+    }
+
 }
