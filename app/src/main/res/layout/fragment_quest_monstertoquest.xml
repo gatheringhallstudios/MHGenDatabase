@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listitem"
     style="@style/list_item"
     android:orientation="horizontal">
@@ -8,17 +9,63 @@
         android:id="@+id/detail_monster_image"
         style="@style/main_image"
         android:contentDescription="@string/monster_image"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        tools:src="@drawable/switch_axe1">
     </ImageView>
 
-    <TextView
-        android:id="@+id/detail_monster_label"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_weight=".7"
         android:gravity="center_vertical"
-        style="@style/text_medium"
-        android:layout_weight="0.7" />
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/detail_monster_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Monster Name"
+            style="@style/text_medium"/>
+        <LinearLayout
+            android:id="@+id/habitat_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/habitat_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_small_secondary"
+                tools:text="5"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:rotation="90"
+                android:background="@drawable/arrow_secondary"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp" />
+            <TextView
+                android:id="@+id/habitat_travel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_small_secondary"
+                tools:text="4,6,7"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:rotation="90"
+                android:background="@drawable/arrow_secondary"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp" />
+            <TextView
+                android:id="@+id/habitat_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_small_secondary"
+                tools:text="8"/>
+        </LinearLayout>
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/detail_monster_unstable"
