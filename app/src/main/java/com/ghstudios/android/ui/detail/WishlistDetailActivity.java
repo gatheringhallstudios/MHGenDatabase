@@ -60,57 +60,6 @@ public class WishlistDetailActivity extends GenericTabActivity implements Wishli
         return super.onOptionsItemSelected(item);
     }
 
-    // Implement menu actions on this wishlist
-/*    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) return;
-        else if (requestCode == REQUEST_RENAME) {
-            if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
-                updateUI();
-            }
-        }
-        else if (requestCode == REQUEST_COPY) {
-            if(data.getBooleanExtra(WishlistCopyDialogFragment.EXTRA_COPY, false)) {
-                updateUI();
-            }
-        }
-        else if (requestCode == REQUEST_DELETE) {
-            if(data.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
-                updateUI();
-            }
-        }
-    }
-
-        private boolean onItemSelected(MenuItem item, int position) {
-            WishlistListCursorAdapter adapter = (WishlistListCursorAdapter) getListAdapter();
-            Wishlist wishlist = ((WishlistCursor) adapter.getItem(position)).getWishlist();
-            long id = wishlist.getId();
-            String name = wishlist.getName();
-
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-
-            switch (item.getItemId()) {
-                case R.id.menu_item_rename_wishlist:
-                    WishlistRenameDialogFragment dialogRename = WishlistRenameDialogFragment.newInstance(id, name);
-                    dialogRename.setTargetFragment(WishlistListFragment.this, REQUEST_RENAME);
-                    dialogRename.show(fm, DIALOG_WISHLIST_RENAME);
-                    return true;
-                case R.id.menu_item_copy_wishlist:
-                    WishlistCopyDialogFragment dialogCopy = WishlistCopyDialogFragment.newInstance(id, name);
-                    dialogCopy.setTargetFragment(WishlistListFragment.this, REQUEST_COPY);
-                    dialogCopy.show(fm, DIALOG_WISHLIST_COPY);
-                    return true;
-                case R.id.menu_item_delete_wishlist:
-                    WishlistDeleteDialogFragment dialogDelete = WishlistDeleteDialogFragment.newInstance(id, name);
-                    dialogDelete.setTargetFragment(WishlistListFragment.this, REQUEST_DELETE);
-                    dialogDelete.show(fm, DIALOG_WISHLIST_DELETE);
-                    return true;
-                default:
-                    return false;
-            }
-	}
-*/
-
     @Override
     public void onPause() {
         super.onPause();
