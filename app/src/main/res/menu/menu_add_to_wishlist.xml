@@ -3,7 +3,7 @@
     tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity" >
 
     <item
-        android:id="@+id/wishlist_add"
+        android:id="@+id/add_to_wishlist"
         android:icon="@drawable/ic_menu_add"
         android:showAsAction="ifRoom"
         android:title="@string/option_wishlist_data_add"/>

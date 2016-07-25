@@ -1,43 +1,48 @@
 package com.ghstudios.android.ui.detail;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.AbsListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import android.support.v4.app.ListFragment;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.ghstudios.android.data.classes.WishlistData;
+import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.WishlistDataDeleteDialogFragment;
 import com.ghstudios.android.ui.dialog.WishlistDataEditDialogFragment;
+import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
+import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
+import com.ghstudios.android.ui.list.WishlistListActivity;
+import com.ghstudios.android.ui.list.WishlistListFragment;
+
+import java.io.IOException;
 
 public class WishlistDataDetailFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -53,11 +58,11 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	private static final int REQUEST_EDIT = 1;
 	private static final int REQUEST_DELETE = 2;
 
+    private static final String TAG = "WishlistDataFragment";
+
 	private boolean started, fromOtherTab;
 	
 	private ListView mListView;
-	private TextView mHeaderTextView, mItemTypeTextView, mQuantityTypeTextView, mExtraTypeTextView;
-	private ActionMode mActionMode;
 	
 	public static WishlistDataDetailFragment newInstance(long id) {
 		Bundle args = new Bundle();
@@ -75,43 +80,22 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		
 		// Initialize the loader to load the list of runs
 		getLoaderManager().initLoader(R.id.wishlist_data_detail_fragment, getArguments(), this);
+
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_wishlist_component_list, container, false);
+		View v = inflater.inflate(R.layout.fragment_wishlist_item_list, container, false);
 
 		mListView = (ListView) v.findViewById(android.R.id.list);
-		mHeaderTextView = (TextView) v.findViewById(R.id.header);
-		mItemTypeTextView = (TextView) v.findViewById(R.id.item_type);
-		mQuantityTypeTextView = (TextView) v.findViewById(R.id.quantity_type);
-		mExtraTypeTextView = (TextView) v.findViewById(R.id.extra_type);
-		
-		mItemTypeTextView.setText("Item");
-		mQuantityTypeTextView.setText("Qty");
-		mExtraTypeTextView.setText("Method");
-		
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			// Use floating context menus on Froyo and Gingerbread
-			registerForContextMenu(mListView);
-		} else {
-			// Use contextual action bar on Honeycomb and higher
-			mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-			mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			        @Override
-			        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-			            if (mActionMode != null) {
-			                return false;
-			            }
-			
-			            mActionMode = getActivity().startActionMode(new mActionModeCallback());
-			            mActionMode.setTag(position);
-			            mListView.setItemChecked(position, true);
-			            return true;
-			        }
-			});
-		}
+
+        // Use contextual action bar
+        mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+		// Set selected background style. This is buggy right now.
+		// mListView.setSelector(R.color.transparentDark); // TODO Implement a proper selector style
+        WishlistDataMultiChoiceListener multiChoiceListener = new WishlistDataMultiChoiceListener();
+        mListView.setMultiChoiceModeListener(multiChoiceListener);
 		
 		return v;
 	}
@@ -119,28 +103,102 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_wishlist_edit, menu);
-
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
-		     MenuItem item_down = menu.findItem(R.id.wishlist_edit);
-		     item_down.setVisible(false);
-		}
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+
 		switch (item.getItemId()) {
-			case R.id.wishlist_edit:
-				if (mListView.getAdapter().getCount() > 0) {
-					mActionMode = getActivity().startActionMode(new mActionModeCallback());
-		            mActionMode.setTag(0);
-					mListView.setItemChecked(0, true);
-				}
-				return true;
+            case R.id.wishlist_rename: // Launch Rename Wishlist dialog
+                WishlistRenameDialogFragment dialog = WishlistRenameDialogFragment.newInstance(
+                        getArguments().getLong(ARG_ID, -1),
+                        (String) getActivity().getTitle());
+                dialog.setTargetFragment(this, WishlistListFragment.REQUEST_RENAME);
+                dialog.show(fm, WishlistListFragment.DIALOG_WISHLIST_RENAME);
+                return true;
+            case R.id.wishlist_delete:// Launch Delete Wishlist dialog
+                WishlistDeleteDialogFragment dialogDelete = WishlistDeleteDialogFragment.newInstance(
+                        getArguments().getLong(ARG_ID, -1),
+                        (String) getActivity().getTitle());
+                dialogDelete.setTargetFragment(this, WishlistListFragment.REQUEST_DELETE);
+                dialogDelete.show(fm, WishlistListFragment.DIALOG_WISHLIST_DELETE);
+                return true;
 			default:
 				return super.onOptionsItemSelected(item);
 			}
 	}
+
+    /********************** MULTI-SELECT ACTION BAR *******************/
+    private class WishlistDataMultiChoiceListener implements AbsListView.MultiChoiceModeListener {
+
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode,
+        int position, long id, boolean checked) {
+            // Capture total checked items
+            final int checkedCount = mListView.getCheckedItemCount();
+            // Set the CAB title according to total checked items
+            mode.setTitle(checkedCount + " Selected");
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.menu_item_delete_wishlist_data:
+
+                    // Returns a hashmap of <position, boolean> where items are selected
+                    SparseBooleanArray selected = mListView
+                            .getCheckedItemPositions();
+                    Log.v(TAG, selected.toString());
+                    // Check each entry in the map where the value is true,
+                    // use the key to delete each entry from the database
+                    for (int i = 0; i < selected.size(); i++) {
+                        if (selected.valueAt(i)) {
+                            int position = selected.keyAt(i);
+
+                            // Get _id of the wishlist item
+                            WishlistDataListCursorAdapter adapter = (WishlistDataListCursorAdapter) getListAdapter();
+                            WishlistData wishlistData = ((WishlistDataCursor) adapter.getItem(position)).getWishlistData();
+                            long id = wishlistData.getId();
+
+                            Log.v(TAG, "_id is " + Long.toString(id));
+
+                            DataManager.get(getContext()).queryDeleteWishlistData(id);
+                            updateUI();
+                        }
+                    }
+
+
+                    // Close CAB
+                    mode.finish();
+                    return true;
+                default:
+                    mode.finish();
+                    return false;
+            }
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mode.getMenuInflater().inflate(R.menu.context_wishlist_data, menu);
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            // TODO Auto-generated method stub
+			mListView.clearChoices();
+			updateUI();
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+    }
+
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -149,31 +207,37 @@ public class WishlistDataDetailFragment extends ListFragment implements
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode != Activity.RESULT_OK) return;
-		if (requestCode == REQUEST_REFRESH) {
-			if(data.getBooleanExtra(WishlistDataComponentFragment.EXTRA_COMPONENT_REFRESH, false)) {
-				fromOtherTab = true;
-				updateUI();
-			}
+
+		// Return nothing if result is failed
+		if(resultCode != Activity.RESULT_OK) return;
+
+		switch (requestCode){
+			case WishlistListFragment.REQUEST_RENAME: // After wishlist is renamed
+				if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
+					// Cast parent activity in order to call refresh title method
+					((WishlistDetailActivity) getActivity()).refreshTitle();
+					updateUI();
+				}
+				return;
+			case WishlistListFragment.REQUEST_DELETE: // After wishlist is deleted
+				if(data.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
+					// Exit current activity
+                    Intent intent = new Intent(getActivity(), WishlistListActivity.class);
+                    startActivity(intent);
+					getActivity().finish();
+				}
+				return;
 		}
-		else if (requestCode == REQUEST_EDIT) {
-			if(data.getBooleanExtra(WishlistDataEditDialogFragment.EXTRA_EDIT, false)) {
-				updateUI();
-			}
-		}
-		else if (requestCode == REQUEST_DELETE) {
-			if(data.getBooleanExtra(WishlistDataDeleteDialogFragment.EXTRA_DELETE, false)) {
-				updateUI();
-			}
-		}
+
 	}
 	
-	private void updateUI() {
+	public void updateUI() {
 		if (started) {
+            // Refresh wishlist data fragment
 			getLoaderManager().getLoader( R.id.wishlist_data_detail_fragment ).forceLoad();
 			WishlistDataListCursorAdapter adapter = (WishlistDataListCursorAdapter) getListAdapter();
 			adapter.notifyDataSetChanged();
-	
+
 			if (!fromOtherTab) {
 				sendResult(Activity.RESULT_OK, true);
 			}
@@ -188,7 +252,19 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		super.onResume();
 		updateUI();
 	}
-	
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+        // If we are becoming visible, then...
+        if (isVisibleToUser) {
+            // Update wishlist with items that are 'satisfied'
+            DataManager.get(getContext()).helperQueryUpdateWishlistSatisfied(getArguments().getLong(ARG_ID));
+            updateUI();
+        }
+	}
+
+
 	private void sendResult(int resultCode, boolean refresh) {
 		if (getTargetFragment() == null) {
 			return;
@@ -211,7 +287,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			return true;
 		}
 		else {
-			return super.onContextItemSelected((android.view.MenuItem) item);
+			return super.onContextItemSelected(item);
 		}
 	}
 	
@@ -236,47 +312,6 @@ public class WishlistDataDetailFragment extends ListFragment implements
 				return true;
 			default:
 				return false;
-		}
-	}
-
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		// The id argument will be the Item ID; CursorAdapter gives us this
-		// for free
-		if (mActionMode == null) {
-            mListView.setItemChecked(position, false);
-			Intent i = null;
-			long mId = (long) v.getTag();
-            String itemtype;
-
-            WishlistData wishlistdata;
-
-            WishlistDataCursor mycursor = (WishlistDataCursor) l.getItemAtPosition(position);
-            wishlistdata = mycursor.getWishlistData();
-            itemtype = wishlistdata.getItem().getType();
-
-            switch(itemtype){
-                case "Weapon":
-                    i = new Intent(getActivity(), WeaponDetailActivity.class);
-                    i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
-                    break;
-                case "Armor":
-                    i = new Intent(getActivity(), ArmorDetailActivity.class);
-                    i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
-                    break;
-                case "Decoration":
-                    i = new Intent(getActivity(), DecorationDetailActivity.class);
-                    i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
-                    break;
-                default:
-                    i = new Intent(getActivity(), ItemDetailActivity.class);
-                    i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
-            }
-			startActivity(i);
-		}
-		// Contextual action bar options
-		else { 
-            mActionMode.setTag(position);
 		}
 	}
 
@@ -306,6 +341,8 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		setListAdapter(null);
 	}
 
+
+
 	private static class WishlistDataListCursorAdapter extends CursorAdapter {
 
 		private WishlistDataCursor mWishlistDataCursor;
@@ -320,7 +357,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_wishlist_data_listitem,
+			return inflater.inflate(R.layout.fragment_wishlist_item_listitem,
 					parent, false);
 		}
 
@@ -343,125 +380,64 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			String extraText = data.getPath();
 			int satisfied = data.getSatisfied();
 
-			itemTextView.setTextColor(Color.BLACK);
+			// Indicate a piece's requirements are met
 			if (satisfied == 1) {
-				itemTextView.setTextColor(Color.RED);
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.light_accent_color));
+			} else {
+				itemTextView.setTextColor(ContextCompat.getColor(context, R.color.text_color));
 			}
-			
-			
+
+			// Assign textviews
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
 			extraTextView.setText(extraText);
-			
-			Drawable i = null;
-			String cellImage = "";
-			String cellRare = "" + data.getItem().getRarity();
 
-            String sub_type = data.getItem().getSubType();
+			// Draw image
+			String cellImage = data.getItem().getItemImage();
 
-            switch(sub_type){
-                case "Head":
-                    cellImage = "icons_armor/icons_head/head" + cellRare + ".png";
-                    break;
-                case "Body":
-                    cellImage = "icons_armor/icons_body/body" + cellRare + ".png";
-                    break;
-                case "Arms":
-                    cellImage = "icons_armor/icons_arms/arms" + cellRare + ".png";
-                    break;
-                case "Waist":
-                    cellImage = "icons_armor/icons_waist/waist" + cellRare + ".png";
-                    break;
-                case "Legs":
-                    cellImage = "icons_armor/icons_legs/legs" + cellRare + ".png";
-                    break;
-                case "Great Sword":
-                    cellImage = "icons_weapons/icons_great_sword/great_sword" + cellRare + ".png";
-                    break;
-                case "Long Sword":
-                    cellImage = "icons_weapons/icons_long_sword/long_sword" + cellRare + ".png";
-                    break;
-                case "Sword and Shield":
-                    cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + cellRare + ".png";
-                    break;
-                case "Dual Blades":
-                    cellImage = "icons_weapons/icons_dual_blades/dual_blades" + cellRare + ".png";
-                    break;
-                case "Hammer":
-                    cellImage = "icons_weapons/icons_hammer/hammer" + cellRare + ".png";
-                    break;
-                case "Hunting Horn":
-                    cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + cellRare + ".png";
-                    break;
-                case "Lance":
-                    cellImage = "icons_weapons/icons_lance/lance" + cellRare + ".png";
-                    break;
-                case "Gunlance":
-                    cellImage = "icons_weapons/icons_gunlance/gunlance" + cellRare + ".png";
-                    break;
-                case "Switch Axe":
-                    cellImage = "icons_weapons/icons_switch_axe/switch_axe" + cellRare + ".png";
-                    break;
-                case "Charge Blade":
-                    cellImage = "icons_weapons/icons_charge_blade/charge_blade" + cellRare + ".png";
-                    break;
-                case "Insect Glaive":
-                    cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + cellRare + ".png";
-                    break;
-                case "Light Bowgun":
-                    cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + cellRare + ".png";
-                    break;
-                case "Heavy Bowgun":
-                    cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + cellRare + ".png";
-                    break;
-                case "Bow":
-                    cellImage = "icons_weapons/icons_bow/bow" + cellRare + ".png";
-                    break;
-                default:
-                    cellImage = "icons_items/" + data.getItem().getFileLocation();
-            }
-			
+			Drawable itemImage = null;
 			try {
-				i = Drawable.createFromStream(
+				itemImage = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			itemImageView.setImageDrawable(i);
+
+			itemImageView.setImageDrawable(itemImage);
+
+			String itemtype = data.getItem().getType();
+            root.setClickable(false);
+
+            // TODO  reenable listeners after they don't hijack longclicks
+//			switch(itemtype){
+//				case "Weapon":
+//					root.setOnClickListener(new WeaponClickListener(context, id));
+//					break;
+//				case "Armor":
+//					root.setOnClickListener(new ArmorClickListener(context, id));
+//					break;
+//				case "Decoration":
+//					root.setOnClickListener(new DecorationClickListener(context, id));
+//					break;
+//				case "Materials":
+//					root.setOnClickListener(new MaterialClickListener(context,id));
+//					break;
+//				case "Palico Weapon":
+//					root.setOnClickListener(new PalicoWeaponClickListener(context,id));
+//					break;
+//				default:
+//					root.setOnClickListener(new ItemClickListener(context, id));
+//					break;
+//			}
+
 
 			root.setTag(id);
 		}
 	}
 
-	
-	private class mActionModeCallback implements ActionMode.Callback {
-	    @Override
-	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-	        MenuInflater inflater = mode.getMenuInflater();
-	        inflater.inflate(R.menu.context_wishlist_data, menu);
-	        return true;
-	    }
-
-	    @Override
-	    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-	        return false;
-	    }
-
-	    @Override
-	    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-	    	int position = Integer.parseInt(mode.getTag().toString());
-	    	mode.finish();
-	    	return onItemSelected(item, position);
-	    }
-
-	    @Override
-	    public void onDestroyActionMode(ActionMode mode) {		        
-	        for (int i = 0; i < mListView.getCount(); i++) {
-	        	mListView.setItemChecked(i, false);
-	        }
-
-	        mActionMode = null;
-	    }
-	}
+    // Define interface WishlistDetailActivity must implement to refresh it's title
+    public interface RefreshActivityTitle{
+        void refreshTitle();
+    }
 }

@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity" >
+
+    <!--
+    <item
+        android:id="@+id/wishlist_edit"
+        android:icon="@drawable/ic_menu_edit"
+        android:showAsAction="ifRoom"
+        android:title="@string/option_wishlist_edit"/>
+    -->
+
+    <item
+        android:id="@+id/wishlist_rename"
+        android:icon="@drawable/ic_menu_edit"
+        android:showAsAction="ifRoom"
+        android:title="@string/option_wishlist_rename"/>
+
+    <item
+        android:id="@+id/wishlist_delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:showAsAction="ifRoom"
+        android:title="@string/option_wishlist_delete"/>
+
+</menu>

@@ -202,11 +202,11 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
             case MenuSection.SKILL_TREES: // Skill Trees
                 intent = new Intent(GenericActionBarActivity.this, SkillTreeListActivity.class);
                 break;
-//            case MenuSection.WISH_LISTS: // Wishlists
-//                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
-//                break;
-            case MenuSection.ARMOR_SET_BUILDER:
+            case MenuSection.ARMOR_SET_BUILDER: // Armor Set Builder
                 intent = new Intent(GenericActionBarActivity.this, ASBSetListActivity.class);
+                break;
+            case MenuSection.WISH_LISTS: // Wishlists
+                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
                 break;
         }
         // Clear the back stack whenever a nav drawer item is selected
@@ -378,6 +378,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         int layoutResourceId;
         String[] items;
 
+        // Show which drawer item is selected
         public void setSelectedIndex(int selectedIndex) {
             this.selectedIndex = selectedIndex;
         }
@@ -413,7 +414,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
 
             String[] singleItem = items[position].split(",");
             holder.txtTitle.setText(singleItem[0]);
-            holder.txtTitle.setTextColor(getResources().getColor(position == selectedIndex ? R.color.accent_color : R.color.list_text));
+            holder.txtTitle.setTextColor(ContextCompat.getColor(getContext(), position == selectedIndex ? R.color.accent_color : R.color.list_text));
 
             View v = (View)holder.txtTitle.getParent();
             if(position == selectedIndex)

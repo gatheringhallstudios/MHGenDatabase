@@ -50,18 +50,19 @@ public class ArmorDetailActivity extends GenericTabActivity {
         return MenuSection.ARMOR;
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        MenuInflater inflater = new MenuInflater(getApplicationContext());
-//        inflater.inflate(R.menu.menu_wishlist_add, menu);
-//        return true;
-//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = new MenuInflater(getApplicationContext());
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.wishlist_add:
+            case R.id.add_to_wishlist:
                 FragmentManager fm = getSupportFragmentManager();
                 WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
                         .newInstance(id, name);

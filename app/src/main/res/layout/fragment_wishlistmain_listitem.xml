@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listitem"
+    style="@style/list_item"
+    android:layout_width="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_image"
+        style="@style/main_image"
+        tools:src="@drawable/switch_axe1" />
+
+    <TextView
+        android:id="@+id/item_name"
+        style="@style/text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Rathalos Vambraces S" />
+
+</LinearLayout>
