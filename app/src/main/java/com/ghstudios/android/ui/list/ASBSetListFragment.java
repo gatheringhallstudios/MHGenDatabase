@@ -5,10 +5,12 @@ import android.content.*;
 import android.content.DialogInterface.*;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import com.ghstudios.android.data.classes.ASBSet;
@@ -31,6 +33,8 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
     public static final int REQUEST_ADD_ASB_SET = 0;
     public static final int REQUEST_EDIT_ASB_SET = 1;
 
+    FloatingActionButton fab;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +45,17 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list_generic_context, container, false);
+       View view = inflater.inflate(R.layout.fragment_list_generic_context, container, false);
+       fab = (FloatingActionButton) view.findViewById(R.id.fab);
+       fab.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Log.d("XYZ", "I'm Clicked!");
+               showAddDialog();
+           }
+       });
+        return view;
+
     }
 
     @Override
@@ -54,15 +68,19 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.asb_set_add:
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                ASBSetAddDialogFragment dialog = ASBSetAddDialogFragment.newInstance();
-                dialog.setTargetFragment(this, REQUEST_ADD_ASB_SET);
-                dialog.show(fm, DIALOG_ADD_ASB_SET);
+                showAddDialog();
                 return true;
 
             default:
                 return false;
         }
+    }
+
+    public void showAddDialog() {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        ASBSetAddDialogFragment dialog = ASBSetAddDialogFragment.newInstance();
+        dialog.setTargetFragment(this, REQUEST_ADD_ASB_SET);
+        dialog.show(fm, DIALOG_ADD_ASB_SET);
     }
 
     @Override
