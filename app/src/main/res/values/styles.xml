@@ -54,6 +54,13 @@
         <item name="android:buttonStyle">@style/ButtonStyle</item>
 
         <item name="android:clipToPadding">false</item>
+
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/text_color</item>
+        <item name="colorAccent">@color/accent_color</item>
     </style>
 
     <style name="SpinnerStyle">
