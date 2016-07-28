@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import com.ghstudios.android.data.classes.ASBSet;
@@ -50,7 +49,6 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
        fab.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Log.d("XYZ", "I'm Clicked!");
                showAddDialog();
            }
        });
