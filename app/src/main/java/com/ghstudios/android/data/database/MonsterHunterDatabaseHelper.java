@@ -60,7 +60,12 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     private static MonsterHunterDatabaseHelper mInstance = null;
 
     private static final String DATABASE_NAME = "mhgen.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
+
+    //Version 1 - v1.0   - Initial Release
+    //Version 2 - v1.0.1 - Added Alternate Damages/Weaknesses/Ailments
+    //Version 3 - v1.0.2 - Fixed issues with some quest data
+    //Version 4 - FUTURE - Changed Weaknesses / Fixed some data bugs
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;

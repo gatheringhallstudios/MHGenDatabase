@@ -186,4 +186,5 @@ public class MonsterWeakness {
 	public void setMeat(int meat) {
 		this.meat = meat;
 	}
+
 }

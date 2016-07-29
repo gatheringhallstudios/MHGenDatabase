@@ -168,22 +168,47 @@ public class MonsterSummaryFragment extends Fragment {
 		// Get "Normal" weaknesses
 		mWeakness = weaknesses.get(0);
 
-		// Fire
-		evalWeakness(mWeakness.getFire(), mWeaknessData, getResources().getString(R.string.image_location_fire));
-		// Water
-		evalWeakness(mWeakness.getWater(), mWeaknessData, getResources().getString(R.string.image_location_water));
-		// Thunder
-		evalWeakness(mWeakness.getThunder(), mWeaknessData, getResources().getString(R.string.image_location_thunder));
-		// Ice
-		evalWeakness(mWeakness.getIce(), mWeaknessData, getResources().getString(R.string.image_location_ice));
-		// Dragon
-		evalWeakness(mWeakness.getDragon(), mWeaknessData, getResources().getString(R.string.image_location_dragon));
-		// Poison
-		evalWeakness(mWeakness.getPoison(), mWeaknessData, getResources().getString(R.string.image_location_poison));
-		// Paralysis
-		evalWeakness(mWeakness.getParalysis(), mWeaknessData, getResources().getString(R.string.image_location_paralysis));
-		// Sleep
-		evalWeakness(mWeakness.getSleep(), mWeaknessData, getResources().getString(R.string.image_location_sleep));
+		int  AmountShown = 0;
+		//Loop through tier until an element is found. (All elements at that tier will be shown)
+		for(int i=7;i>0 && AmountShown<2;i--){
+			if(mWeakness.getFire()==i){
+				AmountShown++;
+				evalWeakness(mWeakness.getFire(),mWeaknessData,getResources().getString(R.string.image_location_fire));
+			}
+			if(mWeakness.getWater()==i){
+				AmountShown++;
+				evalWeakness(mWeakness.getWater(),mWeaknessData,getResources().getString(R.string.image_location_water));
+			}
+			if(mWeakness.getThunder()==i){
+				AmountShown++;
+				evalWeakness(mWeakness.getThunder(),mWeaknessData,getResources().getString(R.string.image_location_thunder));
+			}
+			if(mWeakness.getIce()==i){
+				AmountShown++;
+				evalWeakness(mWeakness.getIce(),mWeaknessData,getResources().getString(R.string.image_location_ice));
+			}
+			if(mWeakness.getDragon()==i){
+				AmountShown++;
+				evalWeakness(mWeakness.getDragon(),mWeaknessData,getResources().getString(R.string.image_location_dragon));
+			}
+		}
+
+		boolean shown = false;
+		//Loop through tier until an element is found. (All elements at that tier will be shown)
+		for(int i=7;i>0 && !shown;i--){
+			if(mWeakness.getPoison()==i){
+				shown = true;
+				evalWeakness(mWeakness.getPoison(),mWeaknessData,getResources().getString(R.string.image_location_poison));
+			}
+			if(mWeakness.getParalysis()==i){
+				shown = true;
+				evalWeakness(mWeakness.getParalysis(),mWeaknessData,getResources().getString(R.string.image_location_paralysis));
+			}
+			if(mWeakness.getSleep()==i){
+				shown = true;
+				evalWeakness(mWeakness.getSleep(),mWeaknessData,getResources().getString(R.string.image_location_sleep));
+			}
+		}
 
 		// Pitfall Trap
 		if(mWeakness.getPitfalltrap() != 0)
@@ -228,23 +253,47 @@ public class MonsterSummaryFragment extends Fragment {
 //			mTrapModText.setText("(" + mState + ")");
 //			mBombModText.setText("(" + mState + ")");
 
-			// Set Data
-			// Fire
-			evalWeakness(mWeakness.getFire(), mWeaknessModData, getResources().getString(R.string.image_location_fire));
-			// Water
-			evalWeakness(mWeakness.getWater(), mWeaknessModData, getResources().getString(R.string.image_location_water));
-			// Thunder
-			evalWeakness(mWeakness.getThunder(), mWeaknessModData, getResources().getString(R.string.image_location_thunder));
-			// Ice
-			evalWeakness(mWeakness.getIce(), mWeaknessModData, getResources().getString(R.string.image_location_ice));
-			// Dragon
-			evalWeakness(mWeakness.getDragon(), mWeaknessModData, getResources().getString(R.string.image_location_dragon));
-			// Poison
-			evalWeakness(mWeakness.getPoison(), mWeaknessModData, getResources().getString(R.string.image_location_poison));
-			// Paralysis
-			evalWeakness(mWeakness.getParalysis(), mWeaknessModData, getResources().getString(R.string.image_location_paralysis));
-			// Sleep
-			evalWeakness(mWeakness.getSleep(), mWeaknessModData, getResources().getString(R.string.image_location_sleep));
+			AmountShown = 0;
+			//Loop through tier until an element is found. (All elements at that tier will be shown)
+			for(int i=7;i>0 && AmountShown<2;i--){
+				if(mWeakness.getFire()==i){
+					AmountShown++;
+					evalWeakness(mWeakness.getFire(),mWeaknessModData,getResources().getString(R.string.image_location_fire));
+				}
+				if(mWeakness.getWater()==i){
+					AmountShown++;
+					evalWeakness(mWeakness.getWater(),mWeaknessModData,getResources().getString(R.string.image_location_water));
+				}
+				if(mWeakness.getThunder()==i){
+					AmountShown++;
+					evalWeakness(mWeakness.getThunder(),mWeaknessModData,getResources().getString(R.string.image_location_thunder));
+				}
+				if(mWeakness.getIce()==i){
+					AmountShown++;
+					evalWeakness(mWeakness.getIce(),mWeaknessModData,getResources().getString(R.string.image_location_ice));
+				}
+				if(mWeakness.getDragon()==i){
+					AmountShown++;
+					evalWeakness(mWeakness.getDragon(),mWeaknessModData,getResources().getString(R.string.image_location_dragon));
+				}
+			}
+
+			shown = false;
+			//Loop through tier until an element is found. (All elements at that tier will be shown)
+			for(int i=7;i>0 && !shown;i--){
+				if(mWeakness.getPoison()==i){
+					shown = true;
+					evalWeakness(mWeakness.getPoison(),mWeaknessModData,getResources().getString(R.string.image_location_poison));
+				}
+				if(mWeakness.getParalysis()==i){
+					shown = true;
+					evalWeakness(mWeakness.getParalysis(),mWeaknessModData,getResources().getString(R.string.image_location_paralysis));
+				}
+				if(mWeakness.getSleep()==i){
+					shown = true;
+					evalWeakness(mWeakness.getSleep(),mWeaknessModData,getResources().getString(R.string.image_location_sleep));
+				}
+			}
 
 			// Pitfall Trap
 			if(mWeakness.getPitfalltrap() != 0)
@@ -276,16 +325,17 @@ public class MonsterSummaryFragment extends Fragment {
 	private void evalWeakness(int weaknessvalue, FlowLayout parentview, String imagelocation){
 		// Add icon and modifier to show effectiveness
 		switch(weaknessvalue){
-			case 1:
+			case 4:
 				addIcon(parentview, imagelocation, null);
 				break;
-			case 2:
+			case 5:
 				addIcon(parentview, imagelocation, getResources().getString(R.string.image_location_effectiveness_2));
 				break;
-			case 3:
+			case 6:
+			case 7:
 				addIcon(parentview, imagelocation, getResources().getString(R.string.image_location_effectiveness_3));
 				break;
-			case 0:
+			default:
 				// Do nothing
 				break;
 		}
