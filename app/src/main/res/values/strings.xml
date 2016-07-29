@@ -202,6 +202,34 @@
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
 
+
+    <string name="siege_mode">Siege Mode</string>
+    <string name="ammo_divider">" • "</string>
+    <string name="rapid_fire_short_wait">Short</string>
+    <string name="rapid_fire_medium_wait">Medium</string>
+    <string name="rapid_fire_long_wait">Long</string>
+    <string name="rapid_fire_very_long_wait">Very Long</string>
+    <string name="ammo_none">(None)</string>
+    <string name="internal_ammo">Internal Ammo</string>
+    <string name="rapid_fire">Rapid Fire</string>
+
+    <!--Shot names that show in ammo page-->
+    <string name="shot_normal">Normal</string>
+    <string name="shot_pierce">Pierce</string>
+    <string name="shot_pellet">Pellet</string>
+    <string name="shot_crag">Crag</string>
+    <string name="shot_clust">Clust</string>
+    <string name="shot_poison">Poison</string>
+    <string name="shot_paralysis">Paralysis</string>
+    <string name="shot_sleep">Sleep</string>
+    <string name="shot_exhaust">Exhaust</string>
+    <string name="shot_recovery">Recovery</string>
+    <string name="shot_fire">Fire</string>
+    <string name="shot_water">Water</string>
+    <string name="shot_thunder">Thunder</string>
+    <string name="shot_ice">Ice</string>
+    <string name="shot_dragon">Dragon</string>
+
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>
         <item>Bishop,Talisman-Purple.png</item>

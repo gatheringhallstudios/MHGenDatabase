@@ -135,25 +135,44 @@ public class WeaponDetailAmmoFragment extends Fragment implements
         String[] internal = mWeapon.getSpecialAmmo().split("\\*");
         String[] rapid = mWeapon.getRapidFire().split("\\*");
 
-        for(int i=0;i<internal.length;i++){
-            String[] s = internal[i].split(":");
-            _internalTextViews[i].setText(s[0] + " \u2022 " + s[1]+" \u2022 "+s[2]);
-            _internalTextViews[i].setVisibility(View.VISIBLE);
+        //If there are no internal shots
+        if(internal[0].length()==0) {
+            _internalTextViews[0].setText(R.string.ammo_none);
+            _internalTextViews[0].setVisibility(View.VISIBLE);
+        }
+        else {
+            for (int i = 0; i < internal.length; i++) {
+                String[] s = internal[i].split(":");
+                _internalTextViews[i].setText(s[0] + this.getString(R.string.ammo_divider) + s[1] + this.getString(R.string.ammo_divider) + s[2]);
+                _internalTextViews[i].setVisibility(View.VISIBLE);
+            }
         }
 
         if(mWeapon.getWtype().equals("Light Bowgun")) {
-            for (int i = 0; i < rapid.length; i++) {
-                String[] s = rapid[i].split(":");
-                _rapidTextViews[i].setText(s[0] + " \u2022 " + s[1]+ " \u2022 "+s[2] + " \u2022 "+getWaitString(Integer.parseInt(s[3])));
-                _rapidTextViews[i].setVisibility(View.VISIBLE);
+            if(rapid[0].length()==0){
+                _rapidTextViews[0].setText(R.string.ammo_none);
+                _rapidTextViews[0].setVisibility(View.VISIBLE);
+            }
+            else {
+                for (int i = 0; i < rapid.length; i++) {
+                    String[] s = rapid[i].split(":");
+                    _rapidTextViews[i].setText(s[0] + this.getString(R.string.ammo_divider) + s[1] + this.getString(R.string.ammo_divider) + s[2] + this.getString(R.string.ammo_divider) + getWaitString(Integer.parseInt(s[3])));
+                    _rapidTextViews[i].setVisibility(View.VISIBLE);
+                }
             }
         }
         else{
-            _rapidTitle.setText("Seige Mode");
-            for (int i = 0; i < rapid.length; i++) {
-                String[] s = rapid[i].split(":");
-                _rapidTextViews[i].setText(s[0] + " \u2022 " + s[1]);
-                _rapidTextViews[i].setVisibility(View.VISIBLE);
+            _rapidTitle.setText(R.string.siege_mode);
+            if(rapid[0].length()==0){
+                _rapidTextViews[0].setText(R.string.ammo_none);
+                _rapidTextViews[0].setVisibility(View.VISIBLE);
+            }
+            else {
+                for (int i = 0; i < rapid.length; i++) {
+                    String[] s = rapid[i].split(":");
+                    _rapidTextViews[i].setText(s[0] + this.getString(R.string.ammo_divider) + s[1]);
+                    _rapidTextViews[i].setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -177,10 +196,10 @@ public class WeaponDetailAmmoFragment extends Fragment implements
 
     String getWaitString(int wait){
         switch (wait){
-            case 0:return "Short";
-            case 1:return "Medium";
-            case 2:return "Long";
-            case 3:return "Very Long";
+            case 0:return this.getString(R.string.rapid_fire_short_wait);
+            case 1:return this.getString(R.string.rapid_fire_medium_wait);
+            case 2:return this.getString(R.string.rapid_fire_long_wait);
+            case 3:return this.getString(R.string.rapid_fire_very_long_wait);
             default:return "";
         }
     }
