@@ -452,6 +452,24 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         }
     }
 
+    @Override
+    public void onForcedUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        super.onForcedUpgrade(db, oldVersion, newVersion);
+
+        switch (oldVersion){
+            //Fall through, so all old versions will perform the updates
+            case 1:
+            case 2:
+            case 3:
+            case 4:{
+                //Database version 4 removed G rank from ASB
+                db.execSQL("UPDATE "+S.TABLE_ASB_SETS+ " SET "+S.COLUMN_ASB_SET_RANK+"=1 WHERE "+S.COLUMN_ASB_SET_RANK+">=2");
+            }
+        }
+
+    }
+
+
     /**
      * Set database instance
      *

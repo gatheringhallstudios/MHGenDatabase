@@ -266,10 +266,15 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             textView.setText(set.getName());
 
             TextView propertiesText = (TextView) view.findViewById(R.id.properties_text);
-            String rank = context.getResources().getStringArray(R.array.rank)[set.getRank()] + " Rank";
+
+            int rank = set.getRank();
+            String[] arr = context.getResources().getStringArray(R.array.rank);
+            if(rank>= arr.length) rank = arr.length-1;
+
+            String rankString = arr[rank] + " Rank";
             String hunterType = context.getResources().getStringArray(R.array.hunter_type)[set.getHunterType()];
 
-            propertiesText.setText(rank + ", " + hunterType);
+            propertiesText.setText(rankString + ", " + hunterType);
 
             view.setTag(set.getName());
         }

@@ -263,7 +263,6 @@
     <string-array name="rank">
         <item>Low</item>
         <item>High</item>
-        <item>G</item>
     </string-array>
 
     <string-array name="hunter_type">
