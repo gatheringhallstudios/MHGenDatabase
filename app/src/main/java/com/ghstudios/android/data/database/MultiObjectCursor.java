@@ -45,7 +45,7 @@ public class MultiObjectCursor extends CursorWrapper {
             super(cursor);
             this.handler = handler;
 
-            if (cursor.getColumnName(0) != "_id") {
+            if (!cursor.getColumnName(0).equals("_id")) {
                 throw new IllegalArgumentException("Invalid cursor: the first column must be called _id");
             }
         }

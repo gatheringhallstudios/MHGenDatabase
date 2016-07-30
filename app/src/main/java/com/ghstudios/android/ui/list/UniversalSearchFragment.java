@@ -160,7 +160,12 @@ public class UniversalSearchFragment extends ListFragment implements
 
             @Override
             public String getType(Item obj) {
-                return obj.getType();
+                String type = obj.getType();
+                if (type == null || type.equals("")) {
+                    // todo: localize, but item types should be localized too
+                    type = "Item";
+                }
+                return type;
             }
 
             @Override
