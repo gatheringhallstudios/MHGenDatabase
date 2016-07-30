@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -2385,7 +2386,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         String q = "q";
         String l = "l";
 
-        HashMap<String, String> projectionMap = new HashMap<String, String>();
+        LinkedHashMap<String, String> projectionMap = new LinkedHashMap<String, String>();
 
         projectionMap.put("_id", q + "." + S.COLUMN_QUESTS_ID + " AS " + "_id");
         projectionMap.put(q + S.COLUMN_QUESTS_NAME, q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME);
@@ -2558,6 +2559,31 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Having = null;
         qh.OrderBy = null;
         qh.Limit = null;
+
+        return new SkillTreeCursor(wrapHelper(qh));
+    }
+
+    /*
+     * Get Skill trees filtered by name
+     */
+    public SkillTreeCursor querySkillTreesSearch(String searchTerm) {
+        // "SELECT DISTINCT * FROM skill_trees
+        //  WHERE (name LIKE '% word%' OR name LIKE 'word%')
+        //    AND (name LIKE '% word2%' OR name LIKE 'word2%')
+        //  GROUP BY name"
+
+        QueryHelper qh = new QueryHelper();
+        qh.Distinct = true;
+        qh.Table = S.TABLE_SKILL_TREES;
+        qh.Columns = null;
+        qh.Selection = null;
+        qh.SelectionArgs = null;
+        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME;
+        qh.Having = null;
+        qh.OrderBy = null;
+        qh.Limit = null;
+
+        modifyQueryForSearch(qh, S.COLUMN_SKILL_TREES_NAME, searchTerm);
 
         return new SkillTreeCursor(wrapHelper(qh));
     }

@@ -25,6 +25,7 @@ public class UniversalSearchCursorLoader extends SQLiteCursorLoader {
             MultiObjectCursor.Builder builder = new MultiObjectCursor.Builder();
             builder.add(manager.queryMonstersSearch(searchTerm), "getMonster");
             builder.add(manager.queryQuestsSearch(searchTerm), "getQuest");
+            builder.add(manager.querySkillTreesSearch(searchTerm), "getSkillTree");
             builder.add(manager.queryItemSearch(searchTerm), "getItem");
 
             return builder.create();
