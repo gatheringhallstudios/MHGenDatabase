@@ -87,7 +87,6 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
             //JOE:This will force database to be copied.
             //c.getApplicationContext().deleteDatabase(DATABASE_NAME);
             mInstance = new MonsterHunterDatabaseHelper(c.getApplicationContext());
-            mInstance.onForcedUpgrade(mInstance.getWritableDatabase(),1,DATABASE_VERSION);
         }
         return mInstance;
     }
