@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.Quest;
+import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.MultiObjectCursor;
 import com.ghstudios.android.loader.UniversalSearchCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
@@ -27,6 +28,7 @@ import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
 import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
+import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 import java.io.IOException;
@@ -35,11 +37,33 @@ import java.util.HashMap;
 public class UniversalSearchFragment extends ListFragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private interface ResultHandler<T> {
-        String getImage(T obj);
-        String getName(T obj);
-        String getType(T obj);
-        View.OnClickListener createListener(T obj);
+    /**
+     * A simple handler class used to create mappings for the Universal Search results.
+     * Override EITHER getImagePath or getImageResource so that getImage() will handle the rest.
+     * @param <T>
+     */
+    private abstract class ResultHandler<T> {
+        public String getImagePath(T obj) { return null; }
+        public int getImageResource(T obj) { return -1; }
+        abstract String getName(T obj);
+        abstract String getType(T obj);
+        abstract View.OnClickListener createListener(T obj);
+
+        public Drawable getImage(T obj, Context ctx) {
+            try {
+                String imagePath = this.getImagePath(obj);
+                if (imagePath != null) {
+                    return Drawable.createFromStream(ctx.getAssets().open(imagePath), null);
+                } else {
+                    int resource = this.getImageResource(obj);
+                    return Drawable.createFromStream(ctx.getResources().openRawResource(resource), null);
+                }
+            } catch (IOException e) {
+                // should this throw instead of returning null?
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 
     private HashMap<Class, ResultHandler> mHandlers = new HashMap<>();
@@ -52,7 +76,7 @@ public class UniversalSearchFragment extends ListFragment implements
 
         mHandlers.put(Monster.class, new ResultHandler<Monster>() {
             @Override
-            public String getImage(Monster obj) {
+            public String getImagePath(Monster obj) {
                 return "icons_monster/" + obj.getFileLocation();
             }
 
@@ -74,9 +98,15 @@ public class UniversalSearchFragment extends ListFragment implements
 
         mHandlers.put(Quest.class, new ResultHandler<Quest>() {
             @Override
-            public String getImage(Quest obj) {
-                // todo: Change color if capture/slay (requires db + more icons)
-                return "icons_items/Quest-Icon-White.png";
+            public int getImageResource(Quest q) {
+                if(q.getHunterType() == 1)
+                    return R.drawable.quest_cat;
+                else if(q.getGoalType() == Quest.QUEST_GOAL_DELIVER)
+                    return R.drawable.quest_icon_green;
+                else if(q.getGoalType() == Quest.QUEST_GOAL_CAPTURE)
+                    return R.drawable.quest_icon_grey;
+                else
+                    return R.drawable.quest_icon_red;
             }
 
             @Override
@@ -95,9 +125,31 @@ public class UniversalSearchFragment extends ListFragment implements
             }
         });
 
+        mHandlers.put(SkillTree.class, new ResultHandler<SkillTree>() {
+            @Override
+            public String getImagePath(SkillTree skill) {
+                return "icons_items/Bomb-White.png";
+            }
+
+            @Override
+            public String getName(SkillTree obj)  {
+                return obj.getName();
+            }
+
+            @Override
+            public String getType(SkillTree obj) {
+                return "Skill Tree";
+            }
+
+            @Override
+            public View.OnClickListener createListener(SkillTree obj) {
+                return new SkillClickListener(getActivity(), obj.getId());
+            }
+        });
+
         mHandlers.put(Item.class, new ResultHandler<Item>() {
             @Override
-            public String getImage(Item item) {
+            public String getImagePath(Item item) {
                 return item.getItemImage();
             }
 
@@ -108,7 +160,12 @@ public class UniversalSearchFragment extends ListFragment implements
 
             @Override
             public String getType(Item obj) {
-                return obj.getType();
+                String type = obj.getType();
+                if (type == null || type.equals("")) {
+                    // todo: localize, but item types should be localized too
+                    type = "Item";
+                }
+                return type;
             }
 
             @Override
@@ -121,9 +178,9 @@ public class UniversalSearchFragment extends ListFragment implements
                     case "Decoration":
                         return new DecorationClickListener(getActivity(), obj.getId());
                     case "Materials":
-                        return new MaterialClickListener(getActivity(),obj.getId());
+                        return new MaterialClickListener(getActivity(), obj.getId());
                     case "Palico Weapon":
-                        return new PalicoWeaponClickListener(getActivity(),obj.getId());
+                        return new PalicoWeaponClickListener(getActivity(), obj.getId());
                     default:
                         return new ItemClickListener(getActivity(), obj.getId());
                 }
@@ -206,20 +263,8 @@ public class UniversalSearchFragment extends ListFragment implements
             TextView nameView = (TextView) view.findViewById(R.id.result_name);
             TextView typeView = (TextView) view.findViewById(R.id.result_type);
 
-            String imagePath = handler.getImage(result);
-            if (imagePath != null) {
-                Drawable itemImage = null;
-
-                try {
-                    itemImage = Drawable.createFromStream(
-                            context.getAssets().open(imagePath), null);
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-                imageView.setImageDrawable(itemImage);
-            }
+            Drawable image = handler.getImage(result, context);
+            imageView.setImageDrawable(image);
 
             nameView.setText(handler.getName(result));
             typeView.setText(handler.getType(result));

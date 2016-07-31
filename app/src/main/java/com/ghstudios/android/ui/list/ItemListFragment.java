@@ -132,7 +132,6 @@ public class ItemListFragment extends ListFragment implements
 					.findViewById(R.id.icon);
 
 			String cellText = item.getName();
-            String sub_type = item.getSubType();
 
             String cellImage = item.getItemImage();
 

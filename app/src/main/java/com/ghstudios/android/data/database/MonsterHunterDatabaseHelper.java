@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -19,6 +20,7 @@ import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.PalicoWeapon;
+import com.ghstudios.android.mhgendatabase.R;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -60,7 +62,12 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     private static MonsterHunterDatabaseHelper mInstance = null;
 
     private static final String DATABASE_NAME = "mhgen.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
+
+    //Version 1 - v1.0   - Initial Release
+    //Version 2 - v1.0.1 - Added Alternate Damages/Weaknesses/Ailments
+    //Version 3 - v1.0.2 - Fixed issues with some quest data
+    //Version 4 - v1.1.0 - Changed Weaknesses / Fixed some data bugs / Default Wishlists+Set
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;
@@ -446,6 +453,47 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
             //e.printStackTrace();
         }
     }
+
+    @Override
+    public void onForcedUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        super.onForcedUpgrade(db, oldVersion, newVersion);
+
+        switch (oldVersion){
+            //Fall through, so all old versions will perform the updates
+            case 1:
+            case 2:
+            case 3:
+            case 4:{
+                //Database version 4 removed G rank from ASB
+                db.execSQL("UPDATE "+S.TABLE_ASB_SETS+ " SET "+S.COLUMN_ASB_SET_RANK+"=1 WHERE "+S.COLUMN_ASB_SET_RANK+">=2");
+
+                //Create a default wishlist if none exist
+                Cursor c = db.rawQuery("SELECT COUNT(*) FROM "+S.TABLE_WISHLIST,null);
+                if(c.moveToFirst() && c.getInt(0)==0) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(S.COLUMN_WISHLIST_NAME,myContext.getString(R.string.default_wishlist_name));
+                    db.insert(S.TABLE_WISHLIST,null,cv);
+                }
+                if(c != null) c.close();
+
+                //Create a default armor set
+                c = db.rawQuery("SELECT COUNT(*) FROM "+S.TABLE_ASB_SETS,null);
+                if(c.moveToFirst() && c.getInt(0)==0) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(S.COLUMN_ASB_SET_NAME, myContext.getString(R.string.default_armor_set_name));
+                    cv.put(S.COLUMN_ASB_SET_RANK, 0);
+                    cv.put(S.COLUMN_ASB_SET_HUNTER_TYPE, 0);
+                    cv.put(S.COLUMN_TALISMAN_EXISTS, 0);
+                    db.insert(S.TABLE_ASB_SETS,null,cv);
+                }
+                if(c != null) c.close();
+
+
+            }
+        }
+
+    }
+
 
     /**
      * Set database instance
@@ -2136,7 +2184,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.OrderBy = null;
         qh.Limit = null;
 
-        return new MonsterToQuestCursor(wrapJoinHelper(builderMonsterToQuest(qh.Distinct), qh));
+        return new MonsterToQuestCursor(wrapJoinHelper(builderMonsterToQuestWithHabitats(qh.Distinct), qh));
     }
 
     /*
@@ -2175,6 +2223,60 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         QB.setTables(S.TABLE_MONSTER_TO_QUEST + " AS mtq" + " LEFT OUTER JOIN " + S.TABLE_MONSTERS + " AS m" + " ON " + "mtq." +
                 S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID + " = " + "m." + S.COLUMN_MONSTERS_ID + " LEFT OUTER JOIN " + S.TABLE_QUESTS +
                 " AS q " + " ON " + "mtq." + S.COLUMN_MONSTER_TO_QUEST_QUEST_ID + " = " + "q." + S.COLUMN_QUESTS_ID);
+
+        QB.setDistinct(Distinct);
+        QB.setProjectionMap(projectionMap);
+        return QB;
+    }
+
+    /*
+ * Helper method to query for MonsterToQuest
+ */
+    private SQLiteQueryBuilder builderMonsterToQuestWithHabitats(boolean Distinct) {
+//		SELECT mtq._id AS _id, mtq.monster_id, mtq.quest_id,
+//		mtq.unstable, m.name AS mname, q.name AS qname,
+//		q.hub, q.stars,mh.start_area,mh.move_area,mh.rest_area
+//		FROM monster_to_quest AS mtq
+//		LEFT OUTER JOIN monsters AS m ON mtq.monster_id = m._id
+//		LEFT OUTER JOIN quests AS q ON mtq.quest_id = q._id;
+//      LEFT OUTER JOIN monster_habitat mh ON mh.monster_id=m._id AND mh.location_id=q.location_id
+
+        String mtq = "mtq";
+        String m = "m";
+        String q = "q";
+        String mh = "mh";
+
+        HashMap<String, String> projectionMap = new HashMap<String, String>();
+
+        projectionMap.put("_id", mtq + "." + S.COLUMN_MONSTER_TO_QUEST_ID + " AS " + "_id");
+
+        projectionMap.put(S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID, mtq + "." + S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID);
+        projectionMap.put(S.COLUMN_MONSTER_TO_QUEST_QUEST_ID, mtq + "." + S.COLUMN_MONSTER_TO_QUEST_QUEST_ID);
+        projectionMap.put(S.COLUMN_MONSTER_TO_QUEST_UNSTABLE, mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE);
+
+        projectionMap.put(m + S.COLUMN_MONSTERS_NAME, m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME);
+        projectionMap.put(S.COLUMN_MONSTERS_TRAIT, m + "." + S.COLUMN_MONSTERS_TRAIT);
+        projectionMap.put(S.COLUMN_MONSTERS_FILE_LOCATION, m + "." + S.COLUMN_MONSTERS_FILE_LOCATION);
+        projectionMap.put(q + S.COLUMN_QUESTS_NAME, q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME);
+        projectionMap.put(S.COLUMN_QUESTS_HUB, q + "." + S.COLUMN_QUESTS_HUB);
+        projectionMap.put(S.COLUMN_QUESTS_STARS, q + "." + S.COLUMN_QUESTS_STARS);
+
+        projectionMap.put(S.COLUMN_HABITAT_START,mh+"."+S.COLUMN_HABITAT_START);
+        projectionMap.put(S.COLUMN_HABITAT_AREAS,mh+"."+S.COLUMN_HABITAT_AREAS);
+        projectionMap.put(S.COLUMN_HABITAT_REST,mh+"."+S.COLUMN_HABITAT_REST);
+
+
+        //Create new querybuilder
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+
+        QB.setTables(S.TABLE_MONSTER_TO_QUEST + " AS mtq" + " LEFT OUTER JOIN " + S.TABLE_MONSTERS + " AS m" + " ON " + "mtq." +
+                S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID + " = " + "m." + S.COLUMN_MONSTERS_ID + " LEFT OUTER JOIN " + S.TABLE_QUESTS +
+                " AS q " + " ON " + "mtq." + S.COLUMN_MONSTER_TO_QUEST_QUEST_ID + " = " + "q." + S.COLUMN_QUESTS_ID +
+                " LEFT OUTER JOIN "+S.TABLE_HABITAT+ " AS mh ON mh." + S.COLUMN_HABITAT_MONSTER_ID+"= m."+S.COLUMN_MONSTERS_ID +
+                " AND mh."+S.COLUMN_HABITAT_LOCATION_ID+"= CASE WHEN q."+S.COLUMN_QUESTS_LOCATION_ID +">=100 then q."+S.COLUMN_QUESTS_LOCATION_ID+"-100 ELSE q."+S.COLUMN_QUESTS_LOCATION_ID+" END");
+
+
+
 
         QB.setDistinct(Distinct);
         QB.setProjectionMap(projectionMap);
@@ -2308,7 +2410,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         String q = "q";
         String l = "l";
 
-        HashMap<String, String> projectionMap = new HashMap<String, String>();
+        LinkedHashMap<String, String> projectionMap = new LinkedHashMap<String, String>();
 
         projectionMap.put("_id", q + "." + S.COLUMN_QUESTS_ID + " AS " + "_id");
         projectionMap.put(q + S.COLUMN_QUESTS_NAME, q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME);
@@ -2481,6 +2583,31 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Having = null;
         qh.OrderBy = null;
         qh.Limit = null;
+
+        return new SkillTreeCursor(wrapHelper(qh));
+    }
+
+    /*
+     * Get Skill trees filtered by name
+     */
+    public SkillTreeCursor querySkillTreesSearch(String searchTerm) {
+        // "SELECT DISTINCT * FROM skill_trees
+        //  WHERE (name LIKE '% word%' OR name LIKE 'word%')
+        //    AND (name LIKE '% word2%' OR name LIKE 'word2%')
+        //  GROUP BY name"
+
+        QueryHelper qh = new QueryHelper();
+        qh.Distinct = true;
+        qh.Table = S.TABLE_SKILL_TREES;
+        qh.Columns = null;
+        qh.Selection = null;
+        qh.SelectionArgs = null;
+        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME;
+        qh.Having = null;
+        qh.OrderBy = null;
+        qh.Limit = null;
+
+        modifyQueryForSearch(qh, S.COLUMN_SKILL_TREES_NAME, searchTerm);
 
         return new SkillTreeCursor(wrapHelper(qh));
     }

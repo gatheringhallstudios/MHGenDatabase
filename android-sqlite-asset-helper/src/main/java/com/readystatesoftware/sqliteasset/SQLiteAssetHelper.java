@@ -181,6 +181,7 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
             if (version != 0 && version < mForcedUpgradeVersion) {
                 db = createOrOpenDatabase(true);
                 db.setVersion(mNewVersion);
+                onForcedUpgrade(db,version,mNewVersion);
                 version = db.getVersion();
             }
 
@@ -337,6 +338,8 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
         Log.w(TAG, "Successfully upgraded database " + mName + " from version " + oldVersion + " to " + newVersion);
 
     }
+
+    public void onForcedUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){}
 
     @Override
     public final void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

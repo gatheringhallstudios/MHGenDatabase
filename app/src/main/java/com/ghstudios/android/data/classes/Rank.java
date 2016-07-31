@@ -2,8 +2,8 @@ package com.ghstudios.android.data.classes;
 
 public enum Rank {
     LOW(1, 3),
-    HIGH(4, 7),
-    G(8, 10);
+    HIGH(4, 10),
+    G(4, 10);       //JOE: If someone has used G before we removed it, it will work just like HIGH
 
     int armorMinimumRarity;
     int armorMaximumRarity;

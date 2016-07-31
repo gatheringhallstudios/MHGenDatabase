@@ -69,8 +69,8 @@
         <item>"Locations,icons_items/Map-Icon-White.png"</item>
         <item>"Decorations,icons_items/Jewel-White.png"</item>
         <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
-        <!--<item>"Wishlists,icons_items/Mantle-White.png"</item>-->
         <item>"Armor Set Builder,icons_items/Talisman-White.png"</item>
+        <item>"Wishlists,icons_items/Mantle-White.png"</item>
     </string-array>
 
     <string name="option_list">List</string>
@@ -80,7 +80,7 @@
     <string name="option_wishlist_copy">Copy wishlist</string>
     <string name="option_wishlist_rename">Rename wishlist</string>
     <string name="option_wishlist_edit">Edit wishlist</string>
-    <string name="option_wishlist_data_add">Create new wishlist</string>
+    <string name="option_wishlist_data_add">Add to wishlist</string>
     <string name="option_wishlist_data_edit">Edit quantity</string>
     <string name="option_wishlist_data_delete">Delete from wishlist</string>
     <string name="search_title">Search item</string>
@@ -111,6 +111,20 @@
     Unicode White Circle \u25CB
     Unicode Dash \u2015
     -->
+
+    <!-- Wishlist stuff -->
+
+    <string name="wishlist_text_total">Total cost</string>
+    <string-array name="test_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
 
     <string name="no_slots">―――</string>
     <string name="one_slot">○――</string>
@@ -168,7 +182,7 @@
     <string name="asb_action_remove_decoration">Remove</string>
     <string name="asb_action_get_decoration_info">Info</string>
 
-    <string name="asb_option_set_add">New set</string>
+    <string name="asb_option_set_add">New Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>
     <string name="asb_talisman_skill_1">Skill 1</string>
@@ -187,6 +201,36 @@
     <string name="asb_dialog_title_copy_set">Copy this set?</string>
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
+
+
+    <string name="siege_mode">Siege Mode</string>
+    <string name="ammo_divider">" • "</string>
+    <string name="rapid_fire_short_wait">Short</string>
+    <string name="rapid_fire_medium_wait">Medium</string>
+    <string name="rapid_fire_long_wait">Long</string>
+    <string name="rapid_fire_very_long_wait">Very Long</string>
+    <string name="ammo_none">(None)</string>
+    <string name="internal_ammo">Internal Ammo</string>
+    <string name="rapid_fire">Rapid Fire</string>
+
+    <!--Shot names that show in ammo page-->
+    <string name="shot_normal">Normal</string>
+    <string name="shot_pierce">Pierce</string>
+    <string name="shot_pellet">Pellet</string>
+    <string name="shot_crag">Crag</string>
+    <string name="shot_clust">Clust</string>
+    <string name="shot_poison">Poison</string>
+    <string name="shot_paralysis">Paralysis</string>
+    <string name="shot_sleep">Sleep</string>
+    <string name="shot_exhaust">Exhaust</string>
+    <string name="shot_recovery">Recovery</string>
+    <string name="shot_fire">Fire</string>
+    <string name="shot_water">Water</string>
+    <string name="shot_thunder">Thunder</string>
+    <string name="shot_ice">Ice</string>
+    <string name="shot_dragon">Dragon</string>
+    <string name="default_wishlist_name">My Wishlist</string>
+    <string name="default_armor_set_name">My Armor Set</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>
@@ -221,11 +265,11 @@
     <string-array name="rank">
         <item>Low</item>
         <item>High</item>
-        <item>G</item>
     </string-array>
 
     <string-array name="hunter_type">
         <item>Blademaster</item>
         <item>Gunner</item>
     </string-array>
+
 </resources>

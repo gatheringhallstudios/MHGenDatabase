@@ -54,6 +54,13 @@
         <item name="android:buttonStyle">@style/ButtonStyle</item>
 
         <item name="android:clipToPadding">false</item>
+
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/text_color</item>
+        <item name="colorAccent">@color/accent_color</item>
     </style>
 
     <style name="SpinnerStyle">
@@ -61,14 +68,19 @@
     </style>
 
     <style name="SpinnerItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
-        <item name="android:textAppearance">@style/text_medium.color_states_enabled</item>
+        <item name="android:textAppearance">@style/text_medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
     </style>
 
     <style name="SpinnerDropDownItemStyle" parent="SpinnerItemStyle">
-        <item name="android:minWidth">50dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:textAppearance">@style/text_medium</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
     </style>
 
     <style name="SpinnerItemTextAppearance" parent="AppTheme">
@@ -150,6 +162,7 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
 
     <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
     <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">

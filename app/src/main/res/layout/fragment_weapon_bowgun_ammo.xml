@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="left"
-            android:text="Normal"
+            android:text="@string/shot_normal"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Poison"
+            android:text="@string/shot_poison"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Fire"
+            android:text="@string/shot_fire"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="left"
-            android:text="Pierce"
+            android:text="@string/shot_pierce"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -218,7 +218,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Paralysis"
+            android:text="@string/shot_paralysis"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -244,7 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Water"
+            android:text="@string/shot_water"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -268,7 +268,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="left"
-            android:text="Pellet"
+            android:text="@string/shot_pellet"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -303,7 +303,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Sleep"
+            android:text="@string/shot_sleep"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -329,7 +329,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Thunder"
+            android:text="@string/shot_thunder"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -353,7 +353,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="left"
-            android:text="Crag"
+            android:text="@string/shot_crag"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -388,7 +388,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Exhaust"
+            android:text="@string/shot_exhaust"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -414,7 +414,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Ice"
+            android:text="@string/shot_ice"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -439,7 +439,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="left"
-            android:text="Clust"
+            android:text="@string/shot_clust"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -474,7 +474,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Recovery"
+            android:text="@string/shot_recovery"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -500,7 +500,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.125"
             android:gravity="left"
-            android:text="Dragon"
+            android:text="@string/shot_dragon"
             android:textColor="@color/text_color" />
 
         <TextView
@@ -516,5 +516,120 @@
     </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/internal_ammo_layout"
+        android:orientation="vertical"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tool:visibility="visible"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_small_secondary"
+            android:layout_marginBottom="4dp"
+            android:text="@string/internal_ammo"/>
+        <TextView
+            android:id="@+id/internal_ammo_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 20 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Normal S Lv2 - 10 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Demon S - 10 - 1"/>
+        <TextView
+            android:id="@+id/internal_ammo_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Flaming S Lv1 - 5 - 2"/>
+        <TextView
+            android:id="@+id/internal_ammo_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Flaming S Lv1 \u2022 5 \u2022 2"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/detail_rapid_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_small_secondary"
+            android:layout_marginBottom="4dp"
+            android:text="@string/rapid_fire"/>
+        <TextView
+            android:id="@+id/rapid_ammo_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+        <TextView
+            android:id="@+id/rapid_ammo_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/detail_value_text"
+            android:layout_marginBottom="0dp"
+            tool:visibility="visible"
+            android:visibility="gone"
+            tool:text="Stone S - 4 - 50 - Short"/>
+    </LinearLayout>
 
 </LinearLayout>
