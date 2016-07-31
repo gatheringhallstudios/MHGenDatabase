@@ -229,7 +229,8 @@
     <string name="shot_thunder">Thunder</string>
     <string name="shot_ice">Ice</string>
     <string name="shot_dragon">Dragon</string>
-    <string name="default_wishlist_name">Default</string>
+    <string name="default_wishlist_name">My Wishlist</string>
+    <string name="default_armor_set_name">My Armor Set</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>

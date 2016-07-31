@@ -54,11 +54,17 @@ public class WishlistDataAddDialogFragment extends DialogFragment {
 		quantityInput.setText("1");
 		
 		final WishlistCursor cursor = DataManager.get(getActivity()).queryWishlists();
+
+		int selected = -1;
+
+		//If there is only 1 wishlist, select it by default.
+		if(cursor.getCount()==1)
+			selected = 0;
 		
 		return new AlertDialog.Builder(getActivity())
 			.setTitle("Add to which wishlist?")
 			.setView(v)
-			.setSingleChoiceItems(cursor, -1, "name", new DialogInterface.OnClickListener() {
+			.setSingleChoiceItems(cursor, selected, "name", new DialogInterface.OnClickListener() {
 				
 	               @Override
 	               public void onClick(DialogInterface dialog, int id) {

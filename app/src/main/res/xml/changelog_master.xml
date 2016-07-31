@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.0" versioncode="4">
+        <change>Added wishlist functionality</change>
+        <change>Added missing Bowgun Info</change>
+        <change>Added habitat for quest monster list</change>
+        <change>Fixed android N dialog issue</change>
+        <change>Fixed HH melody issue</change>
+    </release>
+
     <release version="1.0.2" versioncode="3">
         <change>Added missing key quests</change>
         <change>Fixed issue with quest list</change>

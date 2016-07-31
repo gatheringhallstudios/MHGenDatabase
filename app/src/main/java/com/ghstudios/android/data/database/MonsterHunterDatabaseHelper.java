@@ -67,7 +67,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     //Version 1 - v1.0   - Initial Release
     //Version 2 - v1.0.1 - Added Alternate Damages/Weaknesses/Ailments
     //Version 3 - v1.0.2 - Fixed issues with some quest data
-    //Version 4 - FUTURE - Changed Weaknesses / Fixed some data bugs
+    //Version 4 - v1.1.0 - Changed Weaknesses / Fixed some data bugs / Default Wishlists+Set
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;
@@ -87,6 +87,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
             //JOE:This will force database to be copied.
             //c.getApplicationContext().deleteDatabase(DATABASE_NAME);
             mInstance = new MonsterHunterDatabaseHelper(c.getApplicationContext());
+            mInstance.onForcedUpgrade(mInstance.getWritableDatabase(),1,DATABASE_VERSION);
         }
         return mInstance;
     }
@@ -469,12 +470,26 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
 
                 //Create a default wishlist if none exist
                 Cursor c = db.rawQuery("SELECT COUNT(*) FROM "+S.TABLE_WISHLIST,null);
-                if(c == null || c.getCount()==0) {
+                if(c.moveToFirst() && c.getInt(0)==0) {
                     ContentValues cv = new ContentValues();
                     cv.put(S.COLUMN_WISHLIST_NAME,myContext.getString(R.string.default_wishlist_name));
                     db.insert(S.TABLE_WISHLIST,null,cv);
                 }
                 if(c != null) c.close();
+
+                //Create a default armor set
+                c = db.rawQuery("SELECT COUNT(*) FROM "+S.TABLE_ASB_SETS,null);
+                if(c.moveToFirst() && c.getInt(0)==0) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(S.COLUMN_ASB_SET_NAME, myContext.getString(R.string.default_armor_set_name));
+                    cv.put(S.COLUMN_ASB_SET_RANK, 0);
+                    cv.put(S.COLUMN_ASB_SET_HUNTER_TYPE, 0);
+                    cv.put(S.COLUMN_TALISMAN_EXISTS, 0);
+                    db.insert(S.TABLE_ASB_SETS,null,cv);
+                }
+                if(c != null) c.close();
+
+
             }
         }
 
