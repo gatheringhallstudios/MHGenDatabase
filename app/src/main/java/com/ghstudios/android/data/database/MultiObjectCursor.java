@@ -35,9 +35,19 @@ public class MultiObjectCursor extends CursorWrapper {
         private MultiObjectCursor parent;
         private Handler handler;
 
+        /**
+         * Creates a new IdentifyingCursorWrapper
+         * @param cursor
+         * @param handler
+         * @throws IllegalArgumentException if the cursor's first column is not _id
+         */
         public IdentifyingCursorWrapper(Cursor cursor, Handler handler) {
             super(cursor);
             this.handler = handler;
+
+            if (!cursor.getColumnName(0).equals("_id")) {
+                throw new IllegalArgumentException("Invalid cursor: the first column must be called _id");
+            }
         }
 
         private void setOwner(MultiObjectCursor parent) {
@@ -67,11 +77,13 @@ public class MultiObjectCursor extends CursorWrapper {
         /**
          * A special version of add which takes a method name instead of a handler.
          * This version uses reflection to create the handler. This handler
-         * will invoke the given method on the cursor.
+         * will invoke the given method on the cursor. The cursor's first column must be _id
+         * so that the id lookup remains consistent (A requirement to use CursorAdapter).
          * @param cursor
          * @param methodName
          * @param <T>
-         * @throws NoSuchMethodException
+         * @throws NoSuchMethodException if the given cursor doesn't have the listed method
+         * @throws IllegalArgumentException if the cursor's first column is not _id
          */
         public <T extends Cursor> void add(T cursor, String methodName) throws NoSuchMethodException {
             final Method method = cursor.getClass().getMethod(methodName);

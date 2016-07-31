@@ -824,6 +824,10 @@ public class DataManager {
 		return mHelper.querySkillTrees();
 	}
 
+	public SkillTreeCursor querySkillTreesSearch(String searchTerm) {
+		return mHelper.querySkillTreesSearch(searchTerm);
+	}
+
 	/* Get a specific SkillTree */
 	public SkillTree getSkillTree(long id) {
 		SkillTree skillTree = null;
