@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -48,6 +49,7 @@ public class WishlistListFragment extends ListFragment implements
     private int lastSelectionIndex = 0;
     private ActionMode mActionMode;
 	private ListView mListView;
+	FloatingActionButton fab;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,10 +63,15 @@ public class WishlistListFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_generic_list, container, false);
-		
+		View v = inflater.inflate(R.layout.fragment_list_generic_context, container, false);
+		fab = (FloatingActionButton) v.findViewById(R.id.fab);
+		fab.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				showAddDialog();
+			}
+		});
 		mListView = (ListView) v.findViewById(android.R.id.list);
-
 		return v;
 
 	}
@@ -99,18 +106,21 @@ public class WishlistListFragment extends ListFragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.create_new_wishlist:
-				FragmentManager fm = getActivity().getSupportFragmentManager();
-				WishlistAddDialogFragment dialog = new WishlistAddDialogFragment();
-				dialog.setTargetFragment(WishlistListFragment.this, REQUEST_ADD);
-				dialog.show(fm, DIALOG_WISHLIST_ADD);
-				
+				showAddDialog();
 				return true;
 			default:
 				// Action for other existing menu items
 				return super.onOptionsItemSelected(item);
 			}
 	}
-	
+
+	private void showAddDialog() {
+		FragmentManager fm = getActivity().getSupportFragmentManager();
+		WishlistAddDialogFragment dialog = new WishlistAddDialogFragment();
+		dialog.setTargetFragment(WishlistListFragment.this, REQUEST_ADD);
+		dialog.show(fm, DIALOG_WISHLIST_ADD);
+	}
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != Activity.RESULT_OK) return;

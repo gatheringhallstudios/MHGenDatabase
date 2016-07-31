@@ -20,6 +20,7 @@ import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.PalicoWeapon;
+import com.ghstudios.android.mhgendatabase.R;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -465,6 +466,15 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
             case 4:{
                 //Database version 4 removed G rank from ASB
                 db.execSQL("UPDATE "+S.TABLE_ASB_SETS+ " SET "+S.COLUMN_ASB_SET_RANK+"=1 WHERE "+S.COLUMN_ASB_SET_RANK+">=2");
+
+                //Create a default wishlist if none exist
+                Cursor c = db.rawQuery("SELECT COUNT(*) FROM "+S.TABLE_WISHLIST,null);
+                if(c == null || c.getCount()==0) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(S.COLUMN_WISHLIST_NAME,myContext.getString(R.string.default_wishlist_name));
+                    db.insert(S.TABLE_WISHLIST,null,cv);
+                }
+                if(c != null) c.close();
             }
         }
 
