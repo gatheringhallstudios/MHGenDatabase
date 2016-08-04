@@ -30,7 +30,7 @@ public class WishlistDataAddDialogFragment extends DialogFragment {
 	private static final String ARG_WISHLIST_DATA_WEAPON_NAME = "WISHLIST_DATA_WEAPON_NAME";
 	private static final String DIALOG_WISHLIST_COMPONENT_PATH = "wishlist_component_path";
 	
-	private long wishlistId = -1;
+	private int wishlistId = -1;
 	private String wishlistName = "";
 	
 	private long item_id;
@@ -55,22 +55,27 @@ public class WishlistDataAddDialogFragment extends DialogFragment {
 		
 		final WishlistCursor cursor = DataManager.get(getActivity()).queryWishlists();
 
-		int selected = -1;
-
 		//If there is only 1 wishlist, select it by default.
-		if(cursor.getCount()==1)
-			selected = 0;
+		int checkedItem = -1;
+		if(cursor.getCount()==1) {
+			cursor.moveToFirst();
+			Wishlist w = cursor.getWishlist();
+			wishlistId = (int)w.getId();
+			wishlistName = w.getName();
+			checkedItem = 0;
+			cursor.moveToFirst();
+		}
 		
 		return new AlertDialog.Builder(getActivity())
 			.setTitle("Add to which wishlist?")
 			.setView(v)
-			.setSingleChoiceItems(cursor, selected, "name", new DialogInterface.OnClickListener() {
+			.setSingleChoiceItems(cursor, checkedItem, "name", new DialogInterface.OnClickListener() {
 				
 	               @Override
 	               public void onClick(DialogInterface dialog, int id) {
 	            	   cursor.moveToPosition(id);
 	            	   Wishlist wishlist = cursor.getWishlist();
-	            	   wishlistId = wishlist.getId();
+	            	   wishlistId = (int)wishlist.getId();
 	            	   wishlistName = wishlist.getName();
 	               }
 			})
