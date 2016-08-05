@@ -12,9 +12,10 @@ android {
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
         //1.0.2  Version Code: 3   Released 7-19-2016
-        //1.1.0  Version Code: 4   Not Released
-        versionCode 4
-        versionName "1.1.0"
+        //1.1.0  Version Code: 4   Released 7-31-2016
+        //1.1.1  Version Code: 5   Released 8-05-2016
+        versionCode 5
+        versionName "1.1.1"
 
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7

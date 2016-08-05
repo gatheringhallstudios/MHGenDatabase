@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.1" versioncode="5">
+        <change>Added July DLC Quests</change>
+        <change>Added August DLC Quests</change>
+        <change>Fixed issue with wishlist selection</change>
+    </release>
+
     <release version="1.1.0" versioncode="4">
         <change>Added Wishlist functionality.</change>
         <change>Monster summary screen now only shows the most effective weakness elements.</change>
