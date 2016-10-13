@@ -68,12 +68,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
     //Version 2 - v1.0.1 - Added Alternate Damages/Weaknesses/Ailments
     //Version 3 - v1.0.2 - Fixed issues with some quest data
     //Version 4 - v1.1.0 - Changed Weaknesses / Fixed some data bugs / Default Wishlists+Set
-<<<<<<< HEAD
     //Version 5 - v1.1.1 - Added more localized data / July DLC
-    //Version 6 - v1.1.2 - August DLC
-=======
-    //Version 5 - v1.1.1 - Added more localized data / July DLC / August DLC
->>>>>>> 9c30b1320c391b7e297844338056bcc7b8d3539f
+    //Version 6 - v1.1.2 - Sept/Oct DLC
 
     private final Context myContext;
     private SQLiteDatabase myDataBase;

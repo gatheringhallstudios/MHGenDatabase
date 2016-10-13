@@ -32,9 +32,8 @@ public class ItemDetailActivity extends GenericTabActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new ItemDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
-
+        mSlidingTabLayout.setDistributeEvenly(false);
         mSlidingTabLayout.setViewPager(viewPager);
-
     }
 
     @Override
