@@ -283,7 +283,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 android:layout_below="@+id/ailments_label">
 
@@ -306,40 +305,6 @@
                     android:visibility="gone"
                     tools:visibility="visible"/>
             </LinearLayout>
-
-        </RelativeLayout>
-
-        <View
-            android:background="@color/divider_color"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-        <!-- Signature Moves -->
-        <RelativeLayout
-            android:id="@+id/moves"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/list_item"
-            android:minHeight="48dp">
-
-            <TextView
-                android:id="@+id/moves_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_medium"
-                android:text="Signature Moves"/>
-
-            <TextView
-                android:id="@+id/moves_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:ellipsize="none"
-                android:maxLines="100"
-                android:scrollHorizontally="false"
-                android:layout_below="@id/moves_label"
-                android:animateLayoutChanges="true"
-                tools:text="Mandible attack, Web shot, Abdomen sting" />
 
         </RelativeLayout>
 

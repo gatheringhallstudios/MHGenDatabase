@@ -50,7 +50,7 @@ public class MonsterSummaryFragment extends Fragment {
 	private FlowLayout mWeaknessModData, mTrapModData, mBombModData;
 	private LinearLayout mWeaknessMod, mTrapMod, mBombMod;
 	private View mWeaknessModDiv, mTrapModDiv, mBombModDiv;
-	private TextView mWeaknessModText, mTrapModText, mBombModText, mMovesData,mModStateText;
+	private TextView mWeaknessModText, mTrapModText, mBombModText, mModStateText;
 	private LinearLayout mAilments,mModStateHeader;
 
 	// Need to add dividers
@@ -102,7 +102,6 @@ public class MonsterSummaryFragment extends Fragment {
 		mTrapData = (FlowLayout) view.findViewById(R.id.trap_data);
 		mBombData = (FlowLayout) view.findViewById(R.id.bomb_data);
 		mAilments = (LinearLayout) view.findViewById(R.id.ailments_data);
-		mMovesData = (TextView) view.findViewById(R.id.moves_data);
 
 		// Mods if monster has a secondary state
 		// Sections
@@ -315,10 +314,6 @@ public class MonsterSummaryFragment extends Fragment {
 			if(mWeakness.getDungbomb() != 0)
 				addIcon(mBombModData, getResources().getString(R.string.image_location_dung_bomb), null);
 		}
-
-
-		// Signature Moves section
-		mMovesData.setText(mMonster.getSignatureMove());
 
 	}
 
