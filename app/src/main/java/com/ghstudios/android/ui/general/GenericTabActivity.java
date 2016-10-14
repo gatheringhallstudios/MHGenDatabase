@@ -35,13 +35,15 @@ public abstract class GenericTabActivity extends GenericActionBarActivity {
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         //mSlidingTabLayout.setCustomTabView(R.layout.sliding_tab_layout, R.id.text1);
 
+        // Distribute evenly if we have less than 4 tabs
+        mSlidingTabLayout.setDistributeEvenlyLimit(4);
+
         Point size = new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
 
         int width = size.x;
 
         mSlidingTabLayout.setMinimumWidth(width);
-        mSlidingTabLayout.setDistributeEvenly(true);
 
 
         setTitle(R.string.app_name);
