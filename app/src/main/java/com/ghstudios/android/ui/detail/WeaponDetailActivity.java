@@ -55,11 +55,6 @@ public class WeaponDetailActivity extends GenericTabActivity {
         mAdapter = new WeaponDetailPagerAdapter(getSupportFragmentManager(), getApplicationContext(), id,wtype);
         viewPager.setAdapter(mAdapter);
 
-        //If we have a lot of tabs
-        if(mAdapter.getCount()>3)
-            mSlidingTabLayout.setDistributeEvenly(false);
-
-
         mSlidingTabLayout.setViewPager(viewPager);
     }
 

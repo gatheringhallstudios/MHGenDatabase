@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -34,15 +35,17 @@ import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.AboutDialogFragment;
-import com.ghstudios.android.ui.list.*;
+import com.ghstudios.android.ui.list.ASBSetListActivity;
 import com.ghstudios.android.ui.list.ArmorListActivity;
 import com.ghstudios.android.ui.list.CombiningListActivity;
 import com.ghstudios.android.ui.list.DecorationListActivity;
 import com.ghstudios.android.ui.list.ItemListActivity;
 import com.ghstudios.android.ui.list.LocationListActivity;
 import com.ghstudios.android.ui.list.MonsterListActivity;
+import com.ghstudios.android.ui.list.PalicoActivity;
 import com.ghstudios.android.ui.list.QuestListActivity;
 import com.ghstudios.android.ui.list.SkillTreeListActivity;
+import com.ghstudios.android.ui.list.UniversalSearchActivity;
 import com.ghstudios.android.ui.list.WeaponSelectionListActivity;
 import com.ghstudios.android.ui.list.WishlistListActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
@@ -120,6 +123,12 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
         //mDrawerLayout.setStatusBarBackgroundColor(#000000); // I think this is used to have the drawer behind the status bar
         // Populate navigation drawer
         mDrawerList = (ListView) findViewById(R.id.navList);
+
+        // Allow the header image to scroll away. Only supported on Lollipop+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            mDrawerList.setNestedScrollingEnabled(true);
+        }
+
         addDrawerItems();
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

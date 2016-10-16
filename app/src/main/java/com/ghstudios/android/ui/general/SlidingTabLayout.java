@@ -55,7 +55,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
-    private boolean mDistributeEvenly;
+    private int mDistributeEvenlyLimit;
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
@@ -95,8 +95,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
         mTabStrip.setCustomTabColorizer(tabColorizer);
     }
 
-    public void setDistributeEvenly(boolean distributeEvenly) {
-        mDistributeEvenly = distributeEvenly;
+    /**
+     * Tabs will be evenly distributed unless number of tabs is greater than this limit.
+     * Higher limits should only be used in landscape mode or tablets.
+     * @param limit Setting this to 0 will lay tabs left to right
+     */
+    public void setDistributeEvenlyLimit(int limit){
+        mDistributeEvenlyLimit = limit;
     }
 
     /**
@@ -191,7 +196,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView = (TextView) tabView;
             }
 
-            if (mDistributeEvenly) {
+            // If number of tabs is under the limit, distribute them evenly across the screen.
+            if(adapter.getCount() <= mDistributeEvenlyLimit) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                 lp.width = 0;
                 lp.weight = 1;
