@@ -238,6 +238,18 @@
     <string name="shot_dragon">Dragon</string>
     <string name="default_wishlist_name">My Wishlist</string>
     <string name="default_armor_set_name">My Armor Set</string>
+    <string name="weapon_attack">Attack</string>
+    <string name="weapon_slots">Slots</string>
+    <string name="weapon_sharpness">Sharpness</string>
+    <string name="weapon_notes">Notes</string>
+    <string name="weapon_phial_type">Phial Type</string>
+    <string name="weapon_upgrade_cost">Upgrade Cost</string>
+    <string name="weapon_creation_cost">Creation Cost</string>
+    <string name="weapon_charges">Charges</string>
+    <string name="weapon_arc">Arc</string>
+    <string name="weapon_recoil">Recoil</string>
+    <string name="weapon_reload">Reload</string>
+    <string name="weapon_deviation">Deviation</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>
