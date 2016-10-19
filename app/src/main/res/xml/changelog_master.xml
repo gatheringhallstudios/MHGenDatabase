@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
 
+    <release version="1.1.2" versioncode="6">
+        <change>Added September DLC Quests</change>
+        <change>Added October DLC Quests</change>
+        <change>Redesign item details</change>
+        <change>Fix tab issue on Android 7</change>
+    </release>
+
     <release version="1.1.1" versioncode="5">
         <change>Added July DLC Quests</change>
         <change>Added August DLC Quests</change>

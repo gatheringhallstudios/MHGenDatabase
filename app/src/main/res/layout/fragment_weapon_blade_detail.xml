@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,7 +8,7 @@
         style="@style/title_bar">
         <TextView
             android:id="@+id/detail_title_bar_text"
-            android:text="Title Bar Text"
+            tools:text="Title Bar Text"
             style="@style/title_bar_text" />
     </RelativeLayout>
     <ScrollView
@@ -33,17 +34,16 @@
             <TextView
                 android:id="@+id/detail_weapon_attack"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="180"
+                tools:text="180"
                 style="@style/detail_header_text"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Attack"
+                android:text="@string/weapon_attack"
                 style="@style/detail_subheader_text"/>
         </LinearLayout>
         <LinearLayout
@@ -55,17 +55,16 @@
             <TextView
                 android:id="@+id/detail_weapon_element"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="28"
+                tools:text="28"
                 style="@style/detail_header_text"/>
             <TextView
                 android:id="@+id/detail_weapon_element_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Fire"
+                tools:text="Fire"
                 style="@style/detail_subheader_text"/>
         </LinearLayout>
         <LinearLayout
@@ -79,14 +78,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="18"
+                tools:text="18"
                 style="@style/detail_header_text"/>
             <TextView
                 android:id="@+id/detail_weapon_element_2_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Poison"
+                tools:text="Poison"
                 style="@style/detail_subheader_text"/>
         </LinearLayout>
         <LinearLayout
@@ -99,14 +98,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="5%"
+                tools:text="5%"
                 style="@style/detail_header_text"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Affinity"
+                android:text="@string/weapon_affinity"
                 style="@style/detail_subheader_text"/>
         </LinearLayout>
         <LinearLayout
@@ -117,17 +116,16 @@
             <TextView
                 android:id="@+id/detail_weapon_slot"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="---"
+                tools:text="---"
                 style="@style/detail_header_text"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
-                android:text="Slots"
+                android:text="@string/weapon_slots"
                 style="@style/detail_subheader_text"/>
         </LinearLayout>
     </LinearLayout>
@@ -151,7 +149,7 @@
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Sharpness"/>
+            android:text="@string/weapon_sharpness"/>
         <com.ghstudios.android.ui.general.DrawSharpness
             android:id="@+id/detail_weapon_blade_sharpness"
             android:layout_width="160dp"
@@ -163,7 +161,7 @@
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Notes"/>
+            android:text="@string/weapon_notes"/>
         <LinearLayout
             android:id="@+id/detail_weapon_note_container"
             android:layout_width="wrap_content"
@@ -188,72 +186,72 @@
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Phial Type"/>
+            android:text="@string/weapon_phial_type"/>
         <TextView
             android:id="@+id/detail_weapon_blade_special_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/detail_value_text"
-            android:text="Element"/>
+            tools:text="Element"/>
         <TextView
             android:id="@+id/detail_weapon_defense_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Defense"/>
+            android:text="@string/weapon_defense"/>
         <TextView
             android:id="@+id/detail_weapon_defense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/detail_value_text"
-            android:text="10"/>
+            tools:text="10"/>
         <!--Upgrade Cost-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Upgrade Cost"/>
+            android:text="@string/weapon_upgrade_cost"/>
         <TextView
             android:id="@+id/detail_weapon_upgrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/detail_value_text"
-            android:text="48000z"/>
+            tools:text="48000z"/>
         <!--Creation Cost-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Creation Cost"/>
+            android:text="@string/weapon_creation_cost"/>
         <TextView
             android:id="@+id/detail_weapon_creation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/detail_value_text"
-            android:text="-"/>
-        <!--Creation Cost-->
+            tools:text="-"/>
+        <!--Rarity-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Rarity"/>
+            android:text="@string/item_rarity"/>
         <TextView
             android:id="@+id/detail_weapon_rarity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/detail_value_text"
-            android:text="5"/>
-        <!--Creation Cost-->
+            tools:text="5"/>
+        <!--Description-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
             android:layout_marginBottom="4dp"
-            android:text="Description"/>
+            android:text="@string/item_description"/>
         <TextView
             android:id="@+id/detail_weapon_description"
             android:layout_width="wrap_content"
@@ -261,7 +259,7 @@
             style="@style/text_medium"
             android:textColor="@color/weapon_property_color"
             android:layout_marginBottom="8dp"
-            android:text="5"/>
+            tools:text="5"/>
     </LinearLayout>
         </LinearLayout>
     </ScrollView>
