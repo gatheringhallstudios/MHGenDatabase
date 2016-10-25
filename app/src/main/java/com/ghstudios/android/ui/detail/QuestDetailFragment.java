@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -43,7 +44,6 @@ public class QuestDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override
@@ -95,6 +95,12 @@ public class QuestDetailFragment extends Fragment {
 	}
 	
 	private void updateUI() {
+		FragmentManager fm = getFragmentManager();
+		fm.beginTransaction().add(
+				R.id.monster_habitat_fragment,
+				QuestMonsterFragment.newInstance(mQuest.getId())
+		).commitAllowingStateLoss();
+
 		String cellQuest = mQuest.getName();
 		String cellLevels = mQuest.getHub() + " " + mQuest.getStars();
 		String cellGoal = mQuest.getGoal();
