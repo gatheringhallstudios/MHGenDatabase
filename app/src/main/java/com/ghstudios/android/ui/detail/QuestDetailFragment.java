@@ -95,6 +95,8 @@ public class QuestDetailFragment extends Fragment {
 	}
 	
 	private void updateUI() {
+
+		// Add list of monsters and habitats
 		FragmentManager fm = getFragmentManager();
 		fm.beginTransaction().add(
 				R.id.monster_habitat_fragment,
