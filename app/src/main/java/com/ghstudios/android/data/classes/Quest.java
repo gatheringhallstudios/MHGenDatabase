@@ -21,6 +21,7 @@ public class Quest {
     private String sub_goal;		// Subquest Clear condition
     private int sub_reward;			// Subquest reward in zenny
     private int sub_hrp;			// Subquest Hunting rank points
+	private String flavor;		// Quest prompt/description
 
 	private int goal_type;			//Quest goal -> one of the following constants:
 
@@ -49,6 +50,7 @@ public class Quest {
         this.sub_reward = -1;
         this.sub_hrp = -1;
 		this.goal_type = QUEST_GOAL_HUNT;
+		this.flavor = "";
 	}
 
 	/* Getters and Setters */
@@ -185,6 +187,14 @@ public class Quest {
 
 	public int getGoalType(){return goal_type;}
 	public void setGoalType(int gt){goal_type = gt;}
+
+	public String getFlavor() {
+		return flavor;
+	}
+
+	public void setFlavor(String flavor) {
+		this.flavor = flavor;
+	}
 
 	@Override
 	public String toString(){

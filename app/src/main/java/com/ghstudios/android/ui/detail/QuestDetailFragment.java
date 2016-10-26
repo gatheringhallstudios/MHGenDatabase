@@ -45,6 +45,7 @@ public class QuestDetailFragment extends Fragment {
     TextView questtv8;
     TextView questtv9;
     TextView questtv10;
+	TextView mFlavor;
 
 	public static QuestDetailFragment newInstance(long questId) {
 		Bundle args = new Bundle();
@@ -93,6 +94,7 @@ public class QuestDetailFragment extends Fragment {
         questtv9 = (TextView) view.findViewById(R.id.subhrp);
         questtv10 = (TextView) view.findViewById(R.id.subreward);
         mQuestLocationLayout = (LinearLayout) mView.findViewById(R.id.location_layout);
+		mFlavor = (TextView) view.findViewById(R.id.description);
 
         // Click listener for quest location
         mQuestLocationLayout.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +133,7 @@ public class QuestDetailFragment extends Fragment {
         String cellSubGoal = mQuest.getSubGoal();
         String cellSubHrp = "" + mQuest.getSubHrp();
         String cellSubReward = "" + mQuest.getSubReward() + "z";
+		String flavor = mQuest.getFlavor();
 		
 		questtv1.setText(cellLevels);
 		questtv2.setText(cellGoal);
@@ -144,6 +147,7 @@ public class QuestDetailFragment extends Fragment {
         questtv9.setText(cellSubHrp);
         questtv10.setText(cellSubReward);
         mQuestLocationLayout.setTag(mQuest.getLocation().getId());
+		mFlavor.setText(flavor);
 
         ImageView questLocationImageView = (ImageView) mView.findViewById(R.id.location_image);
 
