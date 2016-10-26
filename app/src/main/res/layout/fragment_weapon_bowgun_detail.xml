@@ -1,215 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        style="@style/title_bar">
-        <TextView
-            android:id="@+id/detail_title_bar_text"
-            tools:text="Title Bar Text"
-            style="@style/title_bar_text" />
-    </RelativeLayout>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout style="@style/title_bar">
+
+            <TextView
+                android:id="@+id/detail_title_bar_text"
+                style="@style/title_bar_text"
+                android:text="Title Bar Text" />
+        </RelativeLayout>
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:layout_gravity="center_horizontal">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_attack"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        tools:text="180"
-                        style="@style/detail_header_text"/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/weapon_attack"
-                        style="@style/detail_subheader_text"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/detail_weapon_attack"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_affinity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        tools:text="5%"
-                        style="@style/detail_header_text"/>
+                    android:text="180" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/weapon_affinity"
-                        style="@style/detail_subheader_text"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/detail_weapon_slot"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_horizontal"
-                        tools:text="---"
-                        style="@style/detail_header_text"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:text="@string/weapon_slots"
-                        style="@style/detail_subheader_text"/>
-                </LinearLayout>
+                <TextView
+                    style="@style/detail_subheader_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Attack" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/text_color_secondary"/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/detail_weapon_affinity"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="5%" />
+
+                <TextView
+                    style="@style/detail_subheader_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Affinity" />
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <!--Special Value-->
                 <TextView
+                    android:id="@+id/detail_weapon_slot"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="---" />
+
+                <TextView
+                    style="@style/detail_subheader_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_recoil"/>
-                <TextView
-                    android:id="@+id/detail_weapon_bowgun_recoil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="Average"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_reload"/>
-                <TextView
-                    android:id="@+id/detail_weapon_bowgun_reload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="Faster"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_deviation"/>
-                <TextView
-                    android:id="@+id/detail_weapon_bowgun_steadiness"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="None"/>
-                <TextView
-                    android:id="@+id/detail_weapon_defense_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_defense"/>
-                <TextView
-                    android:id="@+id/detail_weapon_defense"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="10"/>
-                <!--Upgrade Cost-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_upgrade_cost"/>
-                <TextView
-                    android:id="@+id/detail_weapon_upgrade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="48000z"/>
-                <!--Creation Cost-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/weapon_creation_cost"/>
-                <TextView
-                    android:id="@+id/detail_weapon_creation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="-"/>
-                <!--Creation Cost-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/item_rarity"/>
-                <TextView
-                    android:id="@+id/detail_weapon_rarity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="5"/>
-                <!--Creation Cost-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/item_description"/>
-                <TextView
-                    android:id="@+id/detail_weapon_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_medium"
-                    android:textColor="@color/weapon_property_color"
-                    android:layout_marginBottom="8dp"
-                    tools:text="5"/>
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:text="Slots" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/text_color_secondary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <!--Special Value-->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Recoil" />
+
+            <TextView
+                android:id="@+id/detail_weapon_bowgun_recoil"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average" />
+
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Recoil" />
+
+            <TextView
+                android:id="@+id/detail_weapon_bowgun_reload"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Faster" />
+
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Deviation" />
+
+            <TextView
+                android:id="@+id/detail_weapon_bowgun_steadiness"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="None" />
+
+            <TextView
+                android:id="@+id/detail_weapon_defense_text"
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Defense" />
+
+            <TextView
+                android:id="@+id/detail_weapon_defense"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10" />
+            <!--Upgrade Cost-->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Upgrade Cost" />
+
+            <TextView
+                android:id="@+id/detail_weapon_upgrade"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="48000z" />
+            <!--Creation Cost-->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Creation Cost" />
+
+            <TextView
+                android:id="@+id/detail_weapon_creation"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-" />
+            <!--Creation Cost-->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Rarity" />
+
+            <TextView
+                android:id="@+id/detail_weapon_rarity"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5" />
+            <!--Creation Cost-->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Description" />
+
+            <TextView
+                android:id="@+id/detail_weapon_description"
+                style="@style/text_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="5"
+                android:textColor="@color/weapon_property_color" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
