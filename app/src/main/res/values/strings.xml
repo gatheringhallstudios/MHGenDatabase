@@ -238,6 +238,15 @@
     <string name="shot_dragon">Dragon</string>
     <string name="default_wishlist_name">My Wishlist</string>
     <string name="default_armor_set_name">My Armor Set</string>
+    <string name="quest_detail_reward">Reward</string>
+    <string name="quest_detail_hrp">HRP</string>
+    <string name="quest_detail_fee">Fee</string>
+    <string name="quest_detail_monsters">Monsters</string>
+    <string name="quest_detail_level">Level</string>
+    <string name="quest_detail_location">Location</string>
+    <string name="quest_detail_goal">Goal</string>
+    <string name="quest_detail_subquest">Subquest</string>
+    <string name="quest_detail_description">Description</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>
