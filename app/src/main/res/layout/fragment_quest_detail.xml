@@ -8,11 +8,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/monster_habitat_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_height="150dp"/>
+            tools:layout_height="50dp"
+            tools:background="@color/rare_1"
+            android:orientation="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"

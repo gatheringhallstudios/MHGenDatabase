@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listitem"
     style="@style/list_item"
+    android:layout_height="20dp"
     android:paddingLeft="0dp"
     android:orientation="horizontal"
     android:clickable="false">
@@ -14,6 +15,7 @@
         android:layout_gravity="center"
         android:gravity="center_vertical"
         style="@style/text_small"
+        android:textColor="@color/text_color_secondary"
         tools:text="Severe Waterblight"/>
 
 </LinearLayout>

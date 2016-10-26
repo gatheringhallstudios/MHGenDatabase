@@ -282,7 +282,7 @@
                 android:id="@+id/ailments_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="8dp"
                 android:orientation="vertical"
                 android:layout_below="@+id/ailments_label">
 

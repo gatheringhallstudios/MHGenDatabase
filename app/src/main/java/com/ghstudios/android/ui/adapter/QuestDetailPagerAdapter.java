@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.ui.detail.QuestDetailFragment;
-import com.ghstudios.android.ui.detail.QuestMonsterFragment;
 import com.ghstudios.android.ui.detail.QuestRewardFragment;
 
 public class QuestDetailPagerAdapter extends FragmentPagerAdapter {
@@ -13,7 +12,7 @@ public class QuestDetailPagerAdapter extends FragmentPagerAdapter {
 	private long questId;
 
     // Tab titles
-    private String[] tabs = { "Detail", "Monsters", "Rewards"};
+    private String[] tabs = { "Detail", "Rewards"};
 
 	public QuestDetailPagerAdapter(FragmentManager fm, long id) {
 		super(fm);
@@ -28,9 +27,6 @@ public class QuestDetailPagerAdapter extends FragmentPagerAdapter {
 			// Quest detail
 			return QuestDetailFragment.newInstance(questId);
 		case 1:
-			// Monsters in Quest
-			return QuestMonsterFragment.newInstance(questId);
-		case 2:
 			// Quest rewards
 			return QuestRewardFragment.newInstance(questId);
 		default:
@@ -46,7 +42,7 @@ public class QuestDetailPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// get item count - equal to number of tabs
-		return 3;
+		return 2;
 	}
 
 }
