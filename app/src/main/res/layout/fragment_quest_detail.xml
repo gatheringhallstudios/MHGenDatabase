@@ -120,32 +120,49 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp">
 
-                <!-- Level -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/quest_detail_level"/>
-                <TextView
-                    android:id="@+id/level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="Village 5"/>
-
                 <!-- Location -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/text_small_secondary"
-                    android:text="@string/quest_detail_location"/>
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="wrap_content"
+                    android:text="@string/quest_detail_location" />
+                <LinearLayout
+                    android:id="@+id/location_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/detail_value_text"
-                    tools:text="Misty Peaks (N)"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="?attr/selectableItemBackground">
+                    <ImageView
+                        android:id="@+id/location_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="left"
+                        style="@style/large_image"
+                        tools:src="@drawable/switch_axe1"/>
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        style="@style/detail_value_text"
+                        tools:text="Misty Peaks (N)"/>
+                </LinearLayout>
+
+                <!-- Level -->
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_small_secondary"
+                android:layout_marginTop="4dp"
+                android:text="@string/quest_detail_level"/>
+                <TextView
+                android:id="@+id/level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/detail_value_text"
+                tools:text="Village 5"/>
+
 
                 <!-- Goal -->
                 <TextView
