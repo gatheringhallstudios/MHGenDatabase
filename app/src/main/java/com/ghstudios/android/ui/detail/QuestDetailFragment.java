@@ -1,25 +1,39 @@
 package com.ghstudios.android.ui.detail;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Quest;
+import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.QuestLoader;
 import com.ghstudios.android.mhgendatabase.R;
+
+import java.io.IOException;
+
+import static com.ghstudios.android.mhgendatabase.R.id.location;
 
 public class QuestDetailFragment extends Fragment {
 	private static final String ARG_QUEST_ID = "QUEST_ID";
 	
 	private Quest mQuest;
+    private View mView;
+    private LinearLayout mQuestLocationLayout;
 	
 	TextView questtv1;
 	TextView questtv2;
@@ -31,6 +45,7 @@ public class QuestDetailFragment extends Fragment {
     TextView questtv8;
     TextView questtv9;
     TextView questtv10;
+	TextView mFlavor;
 
 	public static QuestDetailFragment newInstance(long questId) {
 		Bundle args = new Bundle();
@@ -43,7 +58,6 @@ public class QuestDetailFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override
@@ -65,6 +79,9 @@ public class QuestDetailFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_quest_detail, container, false);
+
+        // Get member reference
+        mView = view;
 		
 		questtv1 = (TextView) view.findViewById(R.id.level);
 		questtv2 = (TextView) view.findViewById(R.id.goal);
@@ -72,13 +89,15 @@ public class QuestDetailFragment extends Fragment {
 		questtv4 = (TextView) view.findViewById(R.id.reward);
 		questtv5 = (TextView) view.findViewById(R.id.fee);
 		questtv6 = (TextView) view.findViewById(R.id.quest);
-		questtv7 = (TextView) view.findViewById(R.id.location);
+		questtv7 = (TextView) view.findViewById(location);
         questtv8 = (TextView) view.findViewById(R.id.subquest);
         questtv9 = (TextView) view.findViewById(R.id.subhrp);
         questtv10 = (TextView) view.findViewById(R.id.subreward);
-		
-		questtv7.setOnClickListener(new View.OnClickListener() {
+        mQuestLocationLayout = (LinearLayout) mView.findViewById(R.id.location_layout);
+		mFlavor = (TextView) view.findViewById(R.id.description);
 
+        // Click listener for quest location
+        mQuestLocationLayout.setOnClickListener(new View.OnClickListener() {
 		    @Override
 		    public void onClick(View v) {
 				// The id argument will be the Monster ID; CursorAdapter gives us this
@@ -95,6 +114,14 @@ public class QuestDetailFragment extends Fragment {
 	}
 	
 	private void updateUI() {
+
+		// Add list of monsters and habitats
+		FragmentManager fm = getFragmentManager();
+		fm.beginTransaction().add(
+				R.id.monster_habitat_fragment,
+				QuestMonsterFragment.newInstance(mQuest.getId())
+		).commitAllowingStateLoss();
+
 		String cellQuest = mQuest.getName();
 		String cellLevels = mQuest.getHub() + " " + mQuest.getStars();
 		String cellGoal = mQuest.getGoal();
@@ -106,6 +133,7 @@ public class QuestDetailFragment extends Fragment {
         String cellSubGoal = mQuest.getSubGoal();
         String cellSubHrp = "" + mQuest.getSubHrp();
         String cellSubReward = "" + mQuest.getSubReward() + "z";
+		String flavor = mQuest.getFlavor();
 		
 		questtv1.setText(cellLevels);
 		questtv2.setText(cellGoal);
@@ -118,6 +146,18 @@ public class QuestDetailFragment extends Fragment {
         questtv8.setText(cellSubGoal);
         questtv9.setText(cellSubHrp);
         questtv10.setText(cellSubReward);
+        mQuestLocationLayout.setTag(mQuest.getLocation().getId());
+		mFlavor.setText(flavor);
+
+        ImageView questLocationImageView = (ImageView) mView.findViewById(R.id.location_image);
+
+        // Get Location based on ID and set image thumbnail
+        DataManager dm = DataManager.get(getContext());
+        Location loc = dm.getLocation(mQuest.getLocation().getId());
+        String cellImage = "icons_location/" + loc.getFileLocationMini();
+
+        questLocationImageView.setTag(mQuest.getLocation().getId());
+        new LoadImage(questLocationImageView, cellImage, getContext()).execute();
 		
 	}
 	
@@ -139,4 +179,38 @@ public class QuestDetailFragment extends Fragment {
 			// Do nothing
 		}
 	}
+
+    protected class LoadImage extends AsyncTask<Void,Void,Drawable> {
+        private ImageView mImage;
+        private String path;
+        private String imagePath;
+        private Context context;
+
+        public LoadImage(ImageView imv, String imagePath, Context c) {
+            this.mImage = imv;
+            this.path = imv.getTag().toString();
+            this.imagePath = imagePath;
+            this.context = c;
+        }
+
+        @Override
+        protected Drawable doInBackground(Void... arg0) {
+            Drawable d = null;
+
+            try {
+                d = Drawable.createFromStream(context.getAssets().open(imagePath),
+                        null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return d;
+        }
+
+        protected void onPostExecute(Drawable result) {
+            if (mImage.getTag().toString().equals(path)) {
+                mImage.setImageDrawable(result);
+            }
+        }
+    }
 }

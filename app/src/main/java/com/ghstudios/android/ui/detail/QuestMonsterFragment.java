@@ -1,15 +1,12 @@
 package com.ghstudios.android.ui.detail;
 
-import java.io.IOException;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
@@ -18,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Habitat;
@@ -28,7 +24,9 @@ import com.ghstudios.android.loader.MonsterToQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
 
-public class QuestMonsterFragment extends ListFragment implements
+import java.io.IOException;
+
+public class QuestMonsterFragment extends Fragment implements
 		LoaderCallbacks<Cursor> {
 	private static final String ARG_QUEST_ID = "QUEST_ID";
 
@@ -71,24 +69,23 @@ public class QuestMonsterFragment extends ListFragment implements
 
 		MonsterToQuestListCursorAdapter adapter = new MonsterToQuestListCursorAdapter(
 				getActivity(), (MonsterToQuestCursor) cursor);
-		setListAdapter(adapter);
+
+		LinearLayout monsterLayout = (LinearLayout) getActivity().findViewById(
+                R.id.monster_habitat_fragment);
+
+        // Use adapter to manually populate a LinearLayout
+        for(int i=0;i<adapter.getCount();i++) {
+            LinearLayout v = (LinearLayout) adapter.getView(i, null, monsterLayout);
+            monsterLayout.addView(v);
+        }
 
 	}
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
-		// Stop using the cursor (via the adapter)
-		setListAdapter(null);
 	}
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		// The id argument will be the Monster ID; CursorAdapter gives us this
-		// for free
-		Intent i = new Intent(getActivity(), MonsterDetailActivity.class);
-		i.putExtra(MonsterDetailActivity.EXTRA_MONSTER_ID, (long) v.getTag());
-		startActivity(i);
-	}
+
 
 	private static class MonsterToQuestListCursorAdapter extends CursorAdapter {
 

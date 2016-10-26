@@ -214,12 +214,14 @@
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="text_small_secondary" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="text_small.color_states_enabled">
