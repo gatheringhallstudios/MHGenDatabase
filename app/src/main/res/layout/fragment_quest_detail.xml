@@ -1,158 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:baselineAligned="false"
-    android:orientation="horizontal" >
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".3"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:paddingBottom="14dp"
+        android:orientation="vertical">
 
+        <RelativeLayout style="@style/title_bar">
+
+            <TextView
+                android:id="@+id/quest"
+                style="@style/title_bar_text"
+                tools:text="Title Bar Text" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/reward"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    tools:text="4500z" />
+
+                <TextView
+                    style="@style/detail_subheader_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/quest_detail_reward" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hrp"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    tools:text="300" />
+
+                <TextView
+                    style="@style/detail_subheader_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/quest_detail_hrp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fee"
+                    style="@style/detail_header_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    tools:text="500z" />
+
+                <TextView
+                    style="@style/detail_subheader_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/quest_detail_fee" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/text_color_secondary" />
+
+        <!-- Monster List -->
         <TextView
+            style="@style/text_small_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Quest:"
-            android:textColor="@color/text_color" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/quest_detail_monsters" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/monster_habitat_fragment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Level:"
-            android:textColor="@color/text_color" />
+            android:orientation="vertical"
+            tools:background="@color/rare_1"
+            tools:layout_height="50dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HRP:"
-            android:textColor="@color/text_color" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reward:"
-            android:textColor="@color/text_color" />
+            <!-- Location -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_location" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fee:"
-            android:textColor="@color/text_color" />
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location:"
-            android:textColor="@color/text_color" />
+            <LinearLayout
+                android:id="@+id/location_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/location_image"
+                    style="@style/large_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    tools:src="@drawable/switch_axe1" />
+
+                <TextView
+                    android:id="@+id/location"
+                    style="@style/detail_value_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    tools:text="Misty Peaks (N)" />
+            </LinearLayout>
+
+            <!-- Level -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/quest_detail_level" />
+
+            <TextView
+                android:id="@+id/level"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Village 5" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goal:"
-            android:textColor="@color/text_color" />
+            <!-- Goal -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_goal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/text_color" />
+            <TextView
+                android:id="@+id/goal"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Hunt a Lagiacrus" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Subquest:"
-            android:textColor="@color/text_color" />
+            <!-- Subquest -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_subquest" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HRP:"
-            android:textColor="@color/text_color" />
+            <TextView
+                android:id="@+id/subquest"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Mount and topple monster twice." />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reward:"
-            android:textColor="@color/text_color" />
+            <!-- Sub Reward -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_reward" />
+
+            <TextView
+                android:id="@+id/subreward"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="900z" />
+
+            <!-- Sub HRP -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_hrp" />
+
+            <TextView
+                android:id="@+id/subhrp"
+                style="@style/detail_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="30" />
+
+            <!-- Description -->
+            <TextView
+                style="@style/text_small_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quest_detail_description" />
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/text_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/weapon_property_color"
+                tools:text="Quest description." />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight=".7"
-        android:orientation="vertical"
-        android:padding="10dp" >
-
-        <TextView
-            android:id="@+id/quest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/hrp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/reward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/fee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-        
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/goal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/subquest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/subhrp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-
-        <TextView
-            android:id="@+id/subreward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

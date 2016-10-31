@@ -1,5 +1,21 @@
 package com.ghstudios.android.data.database;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Xml;
+
+import com.ghstudios.android.data.classes.ASBSession;
+import com.ghstudios.android.mhgendatabase.R;
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+import org.xmlpull.v1.XmlSerializer;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,24 +24,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.util.Log;
-import android.util.Xml;
-
-import com.ghstudios.android.data.classes.ASBSession;
-import com.ghstudios.android.data.classes.PalicoWeapon;
-import com.ghstudios.android.mhgendatabase.R;
-import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
-
-import org.xmlpull.v1.XmlPullParserFactory;
-import org.xmlpull.v1.XmlSerializer;
-import org.xmlpull.v1.XmlPullParser;
 
 /*
    QUERY REFERENCE:
@@ -2433,6 +2431,7 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         projectionMap.put(S.COLUMN_QUESTS_HUNTER_TYPE, q + "." + S.COLUMN_QUESTS_HUNTER_TYPE);
         projectionMap.put(l + S.COLUMN_LOCATIONS_NAME, l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME);
         projectionMap.put(S.COLUMN_LOCATIONS_MAP, l + "." + S.COLUMN_LOCATIONS_MAP);
+        projectionMap.put(S.COLUMN_QUESTS_FLAVOR, q + "." + S.COLUMN_QUESTS_FLAVOR);
 
         //Create new querybuilder
         SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
