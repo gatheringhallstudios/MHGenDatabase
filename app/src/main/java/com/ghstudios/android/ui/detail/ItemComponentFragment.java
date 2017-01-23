@@ -24,6 +24,7 @@ import com.ghstudios.android.loader.ComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
@@ -139,30 +140,7 @@ public class ItemComponentFragment extends ListFragment implements
 			itemImageView.setImageDrawable(i);
 
 			itemLayout.setTag(createdId);
-
-            String itemtype = created.getType();
-
-            switch(itemtype){
-                case "Weapon":
-                    itemLayout.setOnClickListener(new WeaponClickListener(context, createdId));
-                    break;
-                case "Armor":
-                    itemLayout.setOnClickListener(new ArmorClickListener(context, createdId));
-                    break;
-                case "Decoration":
-                    itemLayout.setOnClickListener(new DecorationClickListener(context, createdId));
-                    break;
-				case "Materials":
-					itemLayout.setOnClickListener(new MaterialClickListener(context,createdId));
-					break;
-				case "Palico Weapon":
-					itemLayout.setOnClickListener(new PalicoWeaponClickListener(context,createdId));
-					break;
-                default:
-                    itemLayout.setOnClickListener(new ItemClickListener(context, createdId));
-                    break;
-            }
-
+			itemLayout.setOnClickListener(new ItemClickListener(context, created));
 		}
 	}
 

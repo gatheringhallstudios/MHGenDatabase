@@ -1,28 +1,45 @@
 package com.ghstudios.android.ui.ClickListeners;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.ItemDetailActivity;
+import com.ghstudios.android.data.classes.Item;
 
 /**
- * Created by Mark on 2/24/2015.
+ * A proxy listener that internally uses an actual listener for general item pages.
+ * Created by Carlos on 1/22/2017.
  */
 public class ItemClickListener implements View.OnClickListener {
-    private Context c;
-    private Long id;
+    View.OnClickListener innerListener;
 
-    public ItemClickListener(Context context, Long id) {
+    public ItemClickListener(Context context, String type, Long id) {
         super();
-        this.id = id;
-        this.c = context;
+        innerListener = constructTrueListener(context, type, id);
+    }
+
+    public ItemClickListener(Context context, Item item) {
+        this(context, item.getType(), item.getId());
+    }
+
+    private View.OnClickListener constructTrueListener(Context c, String type, Long id) {
+        switch(type){
+            case "Weapon":
+                return new WeaponClickListener(c, id);
+            case "Armor":
+                return new ArmorClickListener(c, id);
+            case "Decoration":
+                return new DecorationClickListener(c, id);
+            case "Materials":
+                return new MaterialClickListener(c,id);
+            case "Palico Weapon":
+                return new PalicoWeaponClickListener(c,id);
+            default:
+                return new BasicItemClickListener(c, id);
+        }
     }
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(c, ItemDetailActivity.class);
-        i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, id);
-        c.startActivity(i);
+        innerListener.onClick(v);
     }
 }

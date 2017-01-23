@@ -20,7 +20,7 @@ import com.ghstudios.android.data.classes.Combining;
 import com.ghstudios.android.data.database.CombiningCursor;
 import com.ghstudios.android.loader.CombiningListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 
 import java.io.IOException;
 
@@ -165,9 +165,9 @@ public class CombiningListFragment extends ListFragment implements
 			itemtv2.setText(item2);
 			itemtv3.setText(item3);
 
-			itemlayout1.setOnClickListener(new ItemClickListener(context, item.getItem1().getId()));
-			itemlayout2.setOnClickListener(new ItemClickListener(context, item.getItem2().getId()));
-			itemlayout3.setOnClickListener(new ItemClickListener(context, item.getCreatedItem().getId()));
+			itemlayout1.setOnClickListener(new BasicItemClickListener(context, item.getItem1().getId()));
+			itemlayout2.setOnClickListener(new BasicItemClickListener(context, item.getItem2().getId()));
+			itemlayout3.setOnClickListener(new BasicItemClickListener(context, item.getCreatedItem().getId()));
 
 		}
 
