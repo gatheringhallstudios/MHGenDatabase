@@ -105,7 +105,7 @@ public class S {
 	static final String COLUMN_HUNTING_REWARDS_ITEM_ID = "item_id";
 	public static final String COLUMN_HUNTING_REWARDS_CONDITION = "condition";
 	static final String COLUMN_HUNTING_REWARDS_MONSTER_ID = "monster_id";
-	static final String COLUMN_HUNTING_REWARDS_RANK = "rank";
+	public static final String COLUMN_HUNTING_REWARDS_RANK = "rank";
 	static final String COLUMN_HUNTING_REWARDS_STACK_SIZE = "stack_size";
 	static final String COLUMN_HUNTING_REWARDS_PERCENTAGE = "percentage";
 	

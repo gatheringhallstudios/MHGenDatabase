@@ -586,6 +586,20 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.SelectionArgs = selectionArgs;
     }
 
+    /**
+     * Maps a rank column to a case statement to allow sorting by rank.
+     * As ranks do not have a natural sorting order, this is necessary.
+     * @param rankColumnName The value to check
+     * @return
+     */
+    private String mapRankColumn(String rankColumnName)
+    {
+        return "(CASE " + rankColumnName +
+                " WHEN 'LR' THEN 0" +
+                " WHEN 'HR' THEN 1" +
+                " ELSE 2 END)";
+    }
+
     /*
      * Insert data to a table
      */
@@ -2305,16 +2319,19 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
 
     /********************************* MONSTER EQUIPMENT QUERIES ******************************************/
 
-    public ItemCursor queryMonsterEquipment(long monsterId) {
+    public MonsterEquipmentCursor queryMonsterEquipment(long monsterId) {
         QueryHelper qh = new QueryHelper();
         qh.Distinct = true;
         qh.Table = S.TABLE_ITEMS;
-        qh.Columns = new String[] { "i.*" };
+        qh.Columns = new String[] { "i.*", "r." + S.COLUMN_HUNTING_REWARDS_RANK };
         qh.Selection = "r." + S.COLUMN_HUNTING_REWARDS_MONSTER_ID + "= ?";
         qh.SelectionArgs = new String[]{String.valueOf(monsterId)};
-        qh.OrderBy = "i." + S.COLUMN_ITEMS_NAME;
 
-        return new ItemCursor(wrapJoinHelper(builderMonsterEquipment(), qh));
+        qh.OrderBy = mapRankColumn("r." + S.COLUMN_HUNTING_REWARDS_RANK) +
+                ", i." + S.COLUMN_ITEMS_RARITY +
+                ", i." + S.COLUMN_ITEMS_NAME;
+
+        return new MonsterEquipmentCursor(wrapJoinHelper(builderMonsterEquipment(), qh));
     }
 
     private SQLiteQueryBuilder builderMonsterEquipment()

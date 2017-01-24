@@ -709,7 +709,7 @@ public class DataManager {
 
 /********************************* MONSTER EQUIPMENT QUERIES ******************************************/
 
-	public ItemCursor queryMonsterEquipment(long monsterId) {
+	public MonsterEquipmentCursor queryMonsterEquipment(long monsterId) {
 		return mHelper.queryMonsterEquipment(monsterId);
 	}
 

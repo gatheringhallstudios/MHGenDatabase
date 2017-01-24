@@ -17,7 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Item;
+import com.ghstudios.android.data.classes.MonsterEquipment;
 import com.ghstudios.android.data.database.ItemCursor;
+import com.ghstudios.android.data.database.MonsterEquipmentCursor;
+import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.MonsterEquipmentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
@@ -26,6 +29,7 @@ import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
+import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 import java.io.IOException;
 
@@ -69,7 +73,7 @@ public class MonsterEquipmentFragment extends ListFragment implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         MonsterEquipmentCursorAdapter adapter = new MonsterEquipmentCursorAdapter(
-                getActivity(), cursor);
+                getActivity(), (MonsterEquipmentCursor) cursor);
         setListAdapter(adapter);
     }
 
@@ -78,13 +82,12 @@ public class MonsterEquipmentFragment extends ListFragment implements
         setListAdapter(null);
     }
 
-    private static class MonsterEquipmentCursorAdapter extends CursorAdapter {
-        ItemCursor mItemCursor;
+    private static class MonsterEquipmentCursorAdapter extends SectionCursorAdapter {
+        MonsterEquipmentCursor mEquipmentCursor;
 
-        public MonsterEquipmentCursorAdapter(Context context, Cursor cursor) {
-            //super(context, cursor, R.layout.listview_generic_header, cursor.getColumnIndex(S.COLUMN_COMPONENTS_TYPE));
-            super(context, cursor, 0);
-            mItemCursor = (ItemCursor)cursor;
+        public MonsterEquipmentCursorAdapter(Context context, MonsterEquipmentCursor cursor) {
+            super(context, cursor, R.layout.listview_generic_header, S.COLUMN_HUNTING_REWARDS_RANK);
+            mEquipmentCursor = cursor;
         }
 
         @Override
@@ -98,7 +101,8 @@ public class MonsterEquipmentFragment extends ListFragment implements
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             // Get the item for the current row
-            Item item = mItemCursor.getItem();
+            MonsterEquipment monsterEquipment = mEquipmentCursor.getMonsterItem();
+            Item item = monsterEquipment.getItem();
 
             // Set up the text view
             LinearLayout clickView = (LinearLayout) view.findViewById(R.id.listitem);
