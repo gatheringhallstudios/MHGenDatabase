@@ -707,6 +707,12 @@ public class DataManager {
 		return weaknesses;
 	}
 
+/********************************* MONSTER EQUIPMENT QUERIES ******************************************/
+
+	public ItemCursor queryMonsterEquipment(long monsterId) {
+		return mHelper.queryMonsterEquipment(monsterId);
+	}
+
 /********************************* QUEST QUERIES ******************************************/	
 
 	/* Get a Cursor that has a list of all Quests */

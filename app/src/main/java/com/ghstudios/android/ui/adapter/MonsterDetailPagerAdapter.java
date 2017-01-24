@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.ui.detail.MonsterDamageFragment;
+import com.ghstudios.android.ui.detail.MonsterEquipmentFragment;
 import com.ghstudios.android.ui.detail.MonsterHabitatFragment;
 import com.ghstudios.android.ui.detail.MonsterQuestFragment;
 import com.ghstudios.android.ui.detail.MonsterRewardFragment;
@@ -30,6 +31,7 @@ public class MonsterDetailPagerAdapter extends FragmentPagerAdapter {
 		tabs.add("Low-Rank");
 		tabs.add("High-Rank");
 		//tabs.add("G-Rank");	//No G Rank in MHGen...
+		tabs.add("Equipment");
 		tabs.add("Quest");
 	}
 
@@ -62,6 +64,8 @@ public class MonsterDetailPagerAdapter extends FragmentPagerAdapter {
 			return MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_HR);
 		else if(title.equals("G-Rank"))
 			return MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_G);
+		else if(title.equals("Equipment"))
+			return MonsterEquipmentFragment.newInstance(monsterId);
 		else if(title.equals("Quest"))
 			return MonsterQuestFragment.newInstance(monsterId);
 		else return null;
