@@ -23,7 +23,7 @@ import com.ghstudios.android.data.database.HuntingRewardCursor;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 public class MonsterRewardFragment extends ListFragment implements
@@ -171,7 +171,7 @@ public class MonsterRewardFragment extends ListFragment implements
 			itemImageView.setImageDrawable(i);
 
 			itemLayout.setTag(huntingReward.getItem().getId());
-            itemLayout.setOnClickListener(new ItemClickListener(context, huntingReward.getItem().getId()));
+			itemLayout.setOnClickListener(new BasicItemClickListener(context, huntingReward.getItem().getId()));
 		}
 	}
 

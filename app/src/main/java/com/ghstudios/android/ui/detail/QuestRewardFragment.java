@@ -18,13 +18,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.database.QuestRewardCursor;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 
 public class QuestRewardFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -153,7 +153,7 @@ public class QuestRewardFragment extends ListFragment implements
 			itemImageView.setImageDrawable(i);
 
 			itemLayout.setTag(questReward.getItem().getId());
-            itemLayout.setOnClickListener(new ItemClickListener(context, questReward.getItem()
+            itemLayout.setOnClickListener(new BasicItemClickListener(context, questReward.getItem()
                     .getId()));
 		}
 	}

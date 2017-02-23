@@ -32,6 +32,7 @@ import com.ghstudios.android.data.database.WishlistComponentCursor;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
@@ -303,30 +304,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 
 			itemImageView.setImageDrawable(itemImage);
 
-
-			// Set click listeners
-			String itemtype = component.getItem().getType();
-			switch(itemtype){
-				case "Weapon":
-					root.setOnClickListener(new WeaponClickListener(context, componentid));
-					break;
-				case "Armor":
-					root.setOnClickListener(new ArmorClickListener(context, componentid));
-					break;
-				case "Decoration":
-					root.setOnClickListener(new DecorationClickListener(context, componentid));
-					break;
-				case "Materials":
-					root.setOnClickListener(new MaterialClickListener(context,componentid));
-					break;
-				case "Palico Weapon":
-					root.setOnClickListener(new PalicoWeaponClickListener(context,componentid));
-					break;
-				default:
-					root.setOnClickListener(new ItemClickListener(context, componentid));
-					break;
-			}
-
+			root.setOnClickListener(new ItemClickListener(context, component.getItem()));
 			root.setTag(componentid);
 		}
 	}

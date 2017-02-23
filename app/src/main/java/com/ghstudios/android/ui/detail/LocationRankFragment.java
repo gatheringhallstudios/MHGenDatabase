@@ -23,7 +23,7 @@ import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.database.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 
 public class LocationRankFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -172,8 +172,8 @@ public class LocationRankFragment extends ListFragment implements
 			itemImageView.setImageDrawable(i);
 
 			itemLayout.setTag(gathering.getItem().getId());
-            itemLayout.setOnClickListener(new ItemClickListener(context,
-                    gathering.getItem().getId()));
+			itemLayout.setOnClickListener(new BasicItemClickListener(context,
+					gathering.getItem().getId()));
 
 		}
 

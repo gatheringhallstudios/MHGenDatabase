@@ -304,31 +304,9 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
 			itemImageView.setImageDrawable(itemImage);
 
-
-			String itemtype = data.getItem().getType();
             //root.setClickable(false);
 
-            // TODO  reenable listeners after they don't hijack longclicks
-			switch(itemtype){
-				case "Weapon":
-					root.setOnClickListener(new WeaponClickListener(context, id));
-					break;
-				case "Armor":
-					root.setOnClickListener(new ArmorClickListener(context, id));
-					break;
-				case "Decoration":
-					root.setOnClickListener(new DecorationClickListener(context, id));
-					break;
-				case "Materials":
-					root.setOnClickListener(new MaterialClickListener(context,id));
-					break;
-				case "Palico Weapon":
-					root.setOnClickListener(new PalicoWeaponClickListener(context,id));
-					break;
-				default:
-					root.setOnClickListener(new ItemClickListener(context, id));
-					break;
-			}
+			root.setOnClickListener(new ItemClickListener(context, data.getItem()));
 
 			root.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override

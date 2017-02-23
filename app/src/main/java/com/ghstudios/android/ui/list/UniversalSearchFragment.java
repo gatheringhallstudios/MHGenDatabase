@@ -23,6 +23,7 @@ import com.ghstudios.android.loader.UniversalSearchCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
@@ -170,20 +171,7 @@ public class UniversalSearchFragment extends ListFragment implements
 
             @Override
             public View.OnClickListener createListener(Item obj) {
-                switch(obj.getType()){
-                    case "Weapon":
-                        return new WeaponClickListener(getActivity(), obj.getId());
-                    case "Armor":
-                        return new ArmorClickListener(getActivity(), obj.getId());
-                    case "Decoration":
-                        return new DecorationClickListener(getActivity(), obj.getId());
-                    case "Materials":
-                        return new MaterialClickListener(getActivity(), obj.getId());
-                    case "Palico Weapon":
-                        return new PalicoWeaponClickListener(getActivity(), obj.getId());
-                    default:
-                        return new ItemClickListener(getActivity(), obj.getId());
-                }
+                return new ItemClickListener(getActivity(), obj);
             }
         });
     }

@@ -15,12 +15,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToMaterial;
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.ItemToMaterialCursor;
 import com.ghstudios.android.loader.ItemToMaterialListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
@@ -106,84 +107,22 @@ public class MaterialDetailItemFragment extends ListFragment implements
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             ItemToMaterial mat = _cursor.GetItemToMaterial();
+            Item item = mat.getItem();
             LinearLayout itemLayout = (LinearLayout) view
                     .findViewById(R.id.listitem);
             ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
             TextView itemTextView = (TextView) view.findViewById(R.id.item);
             TextView amtTextView = (TextView) view.findViewById(R.id.amt);
 
-            String nameText = mat.getItem().getName();
+            String nameText = item.getName();
             String amtText = "" + mat.getAmount();
 
             itemTextView.setText(nameText);
             amtTextView.setText(amtText);
 
             Drawable i = null;
-            String cellImage;
+            String cellImage = item.getItemImage();
 
-            String sub_type = mat.getItem().getSubType();
-
-            switch(sub_type){
-                case "Head":
-                    cellImage = "icons_armor/icons_head/head" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Body":
-                    cellImage = "icons_armor/icons_body/body" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Arms":
-                    cellImage = "icons_armor/icons_arms/arms" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Waist":
-                    cellImage = "icons_armor/icons_waist/waist" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Legs":
-                    cellImage = "icons_armor/icons_legs/legs" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Great Sword":
-                    cellImage = "icons_weapons/icons_great_sword/great_sword" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Long Sword":
-                    cellImage = "icons_weapons/icons_long_sword/long_sword" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Sword and Shield":
-                    cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Dual Blades":
-                    cellImage = "icons_weapons/icons_dual_blades/dual_blades" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Hammer":
-                    cellImage = "icons_weapons/icons_hammer/hammer" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Hunting Horn":
-                    cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Lance":
-                    cellImage = "icons_weapons/icons_lance/lance" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Gunlance":
-                    cellImage = "icons_weapons/icons_gunlance/gunlance" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Switch Axe":
-                    cellImage = "icons_weapons/icons_switch_axe/switch_axe" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Charge Blade":
-                    cellImage = "icons_weapons/icons_charge_blade/charge_blade" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Insect Glaive":
-                    cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Light Bowgun":
-                    cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Heavy Bowgun":
-                    cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + mat.getItem().getRarity() + ".png";
-                    break;
-                case "Bow":
-                    cellImage = "icons_weapons/icons_bow/bow" + mat.getItem().getRarity() + ".png";
-                    break;
-                default:
-                    cellImage = "icons_items/" + mat.getItem().getFileLocation();
-            }
             try {
                 i = Drawable.createFromStream(
                         context.getAssets().open(cellImage), null);
@@ -193,24 +132,8 @@ public class MaterialDetailItemFragment extends ListFragment implements
 
             itemImageView.setImageDrawable(i);
 
-            long id = mat.getItem().getId();
-            itemLayout.setTag(id);
-
-            String itemtype = mat.getItem().getType();
-            switch(itemtype){
-                case "Weapon":
-                    itemLayout.setOnClickListener(new WeaponClickListener(context, id));
-                    break;
-                case "Armor":
-                    itemLayout.setOnClickListener(new ArmorClickListener(context, id));
-                    break;
-                case "Decoration":
-                    itemLayout.setOnClickListener(new DecorationClickListener(context, id));
-                    break;
-                default:
-                    itemLayout.setOnClickListener(new ItemClickListener(context, id));
-                    break;
-            }
+            itemLayout.setTag(item.getId());
+            itemLayout.setOnClickListener(new ItemClickListener(context, item));
         }
     }
 
