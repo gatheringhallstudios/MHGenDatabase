@@ -564,8 +564,8 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
      * Note: This fails if there is already arguments on the query.
      * TODO: support arguments already existing by expanding the array and adding "AND"
      * @param qh
-     * @param columnName
-     * @param searchTerm
+     * @param columnName The column name to search on (ie: name)
+     * @param searchTerm The value being searched (injected as a parameter)
      */
     private void modifyQueryForSearch(QueryHelper qh, String columnName, String searchTerm) {
         // WHERE (name LIKE '% word1%' OR name LIKE 'word1%')
@@ -584,6 +584,20 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         }
 
         qh.SelectionArgs = selectionArgs;
+    }
+
+    /**
+     * Maps a rank column to a case statement to allow sorting by rank.
+     * As ranks do not have a natural sorting order, this is necessary.
+     * @param rankColumnName The value to check
+     * @return
+     */
+    private String mapRankColumn(String rankColumnName)
+    {
+        return "(CASE " + rankColumnName +
+                " WHEN 'LR' THEN 0" +
+                " WHEN 'HR' THEN 1" +
+                " ELSE 2 END)";
     }
 
     /*
@@ -2301,6 +2315,44 @@ class MonsterHunterDatabaseHelper extends SQLiteAssetHelper {
         qh.Limit = null;
 
         return new MonsterWeaknessCursor(wrapHelper(qh));
+    }
+
+    /********************************* MONSTER EQUIPMENT QUERIES ******************************************/
+
+    public MonsterEquipmentCursor queryMonsterEquipment(long monsterId) {
+        QueryHelper qh = new QueryHelper();
+        qh.Distinct = true;
+        qh.Table = S.TABLE_ITEMS;
+        qh.Columns = new String[] { "i.*", "r." + S.COLUMN_HUNTING_REWARDS_RANK };
+        qh.Selection = "r." + S.COLUMN_HUNTING_REWARDS_MONSTER_ID + "= ?";
+        qh.SelectionArgs = new String[]{String.valueOf(monsterId)};
+
+        qh.OrderBy = mapRankColumn("r." + S.COLUMN_HUNTING_REWARDS_RANK) +
+                ", i." + S.COLUMN_ITEMS_RARITY +
+                ", i." + S.COLUMN_ITEMS_NAME;
+
+        return new MonsterEquipmentCursor(wrapJoinHelper(builderMonsterEquipment(), qh));
+    }
+
+    private SQLiteQueryBuilder builderMonsterEquipment()
+    {
+//        SELECT i.*
+//        FROM items i
+//        JOIN components c
+//        ON c.created_item_id = i._id
+//        JOIN hunting_rewards r
+//        ON r.item_id = c.component_item_id
+//        WHERE r.monster_id = :monset_id;
+
+
+        SQLiteQueryBuilder QB = new SQLiteQueryBuilder();
+        QB.setDistinct(true);
+        QB.setTables(
+                "items i " +
+                "JOIN components c ON c.created_item_id = i._id " +
+                "JOIN hunting_rewards r ON r.item_id = c.component_item_id");
+
+        return QB;
     }
 
     /**
