@@ -459,7 +459,7 @@ public class MonsterSummaryFragment extends Fragment {
 
             // mAilmentsLinearLayout should be the vertical LinearLayout that you substituted the listview with
             for(int i=0;i<adapter.getCount();i++) {
-                LinearLayout v = (LinearLayout) adapter.getView(i, null, mAilments);
+                View v = adapter.getView(i, null, mAilments);
                 mAilments.addView(v);
             }
 
