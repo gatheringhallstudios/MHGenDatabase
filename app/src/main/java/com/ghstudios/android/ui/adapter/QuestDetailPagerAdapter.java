@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.ui.detail.QuestDetailFragment;
-import com.ghstudios.android.ui.detail.QuestRewardFragment;
+import com.ghstudios.android.features.quests.QuestDetailFragment;
+import com.ghstudios.android.features.quests.QuestRewardFragment;
 
 public class QuestDetailPagerAdapter extends FragmentPagerAdapter {
 	

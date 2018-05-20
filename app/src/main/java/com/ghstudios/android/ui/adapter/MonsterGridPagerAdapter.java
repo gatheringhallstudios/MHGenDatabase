@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.MonsterListCursorLoader;
-import com.ghstudios.android.ui.list.MonsterListFragment;
+import com.ghstudios.android.features.monsters.MonsterListFragment;
 
 public class MonsterGridPagerAdapter extends FragmentPagerAdapter {
 

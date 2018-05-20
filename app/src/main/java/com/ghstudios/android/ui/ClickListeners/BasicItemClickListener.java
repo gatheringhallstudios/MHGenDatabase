@@ -1,11 +1,10 @@
 package com.ghstudios.android.ui.ClickListeners;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.ItemDetailActivity;
+import com.ghstudios.android.features.items.ItemDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

@@ -19,11 +19,11 @@ import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.detail.ASBActivity;
 import com.ghstudios.android.ui.detail.ASBFragment;
-import com.ghstudios.android.ui.detail.ArmorDetailActivity;
-import com.ghstudios.android.ui.detail.DecorationDetailActivity;
+import com.ghstudios.android.features.armor.ArmorDetailActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.ui.dialog.ASBTalismanDialogFragment;
-import com.ghstudios.android.ui.list.ArmorListActivity;
-import com.ghstudios.android.ui.list.DecorationListActivity;
+import com.ghstudios.android.features.armor.ArmorListActivity;
+import com.ghstudios.android.features.decorations.DecorationListActivity;
 
 import java.io.IOException;
 import java.io.InputStream;

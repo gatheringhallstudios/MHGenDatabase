@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.GatheringListCursorLoader;
-import com.ghstudios.android.ui.detail.LocationDetailFragment;
-import com.ghstudios.android.ui.detail.LocationHabitatFragment;
-import com.ghstudios.android.ui.detail.LocationRankFragment;
+import com.ghstudios.android.features.locations.LocationDetailFragment;
+import com.ghstudios.android.features.locations.LocationHabitatFragment;
+import com.ghstudios.android.features.locations.LocationRankFragment;
 
 public class LocationDetailPagerAdapter extends FragmentPagerAdapter {
 	

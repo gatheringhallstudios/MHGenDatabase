@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.QuestListCursorLoader;
-import com.ghstudios.android.ui.list.QuestExpandableListFragment;
+import com.ghstudios.android.features.quests.QuestExpandableListFragment;
 
 public class QuestExpandableListPagerAdapter extends FragmentPagerAdapter {
 

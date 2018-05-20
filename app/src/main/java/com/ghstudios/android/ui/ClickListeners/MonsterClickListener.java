@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.MonsterDetailActivity;
+import com.ghstudios.android.features.monsters.MonsterDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

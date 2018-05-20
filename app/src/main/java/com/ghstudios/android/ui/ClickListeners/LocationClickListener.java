@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.LocationDetailActivity;
+import com.ghstudios.android.features.locations.LocationDetailActivity;
 
 /**
  * Created by Mark on 2/23/2015.

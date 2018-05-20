@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.data.classes.Armor;
-import com.ghstudios.android.ui.list.ArmorExpandableListFragment;
+import com.ghstudios.android.features.armor.ArmorExpandableListFragment;
 
 public class ArmorExpandableListPagerAdapter extends FragmentPagerAdapter {
 

@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
-import com.ghstudios.android.ui.detail.SkillTreeArmorFragment;
-import com.ghstudios.android.ui.detail.SkillTreeDecorationFragment;
-import com.ghstudios.android.ui.detail.SkillTreeDetailFragment;
+import com.ghstudios.android.features.skills.SkillTreeArmorFragment;
+import com.ghstudios.android.features.skills.SkillTreeDecorationFragment;
+import com.ghstudios.android.features.skills.SkillTreeDetailFragment;
 
 public class SkillTreeDetailPagerAdapter extends FragmentPagerAdapter {
 	

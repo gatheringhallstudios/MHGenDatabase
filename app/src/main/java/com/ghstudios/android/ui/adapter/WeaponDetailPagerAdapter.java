@@ -5,15 +5,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.ui.detail.ComponentListFragment;
-import com.ghstudios.android.ui.detail.WeaponBladeDetailFragment;
-import com.ghstudios.android.ui.detail.WeaponBowDetailFragment;
-import com.ghstudios.android.ui.detail.WeaponBowgunDetailFragment;
-import com.ghstudios.android.ui.detail.WeaponDetailAmmoFragment;
-import com.ghstudios.android.ui.detail.WeaponDetailCoatingFragment;
-import com.ghstudios.android.ui.detail.WeaponSongFragment;
-import com.ghstudios.android.ui.detail.WeaponTreeFragment;
+import com.ghstudios.android.features.weapons.WeaponBladeDetailFragment;
+import com.ghstudios.android.features.weapons.WeaponBowDetailFragment;
+import com.ghstudios.android.features.weapons.WeaponBowgunDetailFragment;
+import com.ghstudios.android.features.weapons.WeaponDetailAmmoFragment;
+import com.ghstudios.android.features.weapons.WeaponDetailCoatingFragment;
+import com.ghstudios.android.features.weapons.WeaponSongFragment;
+import com.ghstudios.android.features.weapons.WeaponTreeFragment;
 
 public class WeaponDetailPagerAdapter extends FragmentPagerAdapter {
 	

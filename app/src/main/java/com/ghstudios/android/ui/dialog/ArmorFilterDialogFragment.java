@@ -15,7 +15,7 @@ import android.widget.*;
 
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.list.ArmorExpandableListFragment;
+import com.ghstudios.android.features.armor.ArmorExpandableListFragment;
 
 public class ArmorFilterDialogFragment extends DialogFragment {
 

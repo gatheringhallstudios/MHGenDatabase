@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.ItemDetailActivity;
+import com.ghstudios.android.features.items.ItemDetailActivity;
 
 public class WyporiumTradeClickListener implements View.OnClickListener {
     private Context c;

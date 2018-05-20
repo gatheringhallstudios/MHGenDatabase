@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.ghstudios.android.ui.detail.ASBActivity;
-import com.ghstudios.android.ui.detail.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

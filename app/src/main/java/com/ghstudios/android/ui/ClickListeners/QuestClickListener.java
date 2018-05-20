@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.QuestDetailActivity;
+import com.ghstudios.android.features.quests.QuestDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

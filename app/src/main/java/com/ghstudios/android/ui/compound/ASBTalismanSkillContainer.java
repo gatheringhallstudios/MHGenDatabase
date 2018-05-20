@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.detail.ASBActivity;
-import com.ghstudios.android.ui.list.SkillTreeListActivity;
+import com.ghstudios.android.features.skills.SkillTreeListActivity;
 
 public class ASBTalismanSkillContainer extends LinearLayout {
 

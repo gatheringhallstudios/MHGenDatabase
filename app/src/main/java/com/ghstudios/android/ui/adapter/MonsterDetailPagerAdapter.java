@@ -5,12 +5,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
-import com.ghstudios.android.ui.detail.MonsterDamageFragment;
-import com.ghstudios.android.ui.detail.MonsterHabitatFragment;
-import com.ghstudios.android.ui.detail.MonsterQuestFragment;
-import com.ghstudios.android.ui.detail.MonsterRewardFragment;
-import com.ghstudios.android.ui.detail.MonsterStatusFragment;
-import com.ghstudios.android.ui.detail.MonsterSummaryFragment;
+import com.ghstudios.android.features.monsters.MonsterDamageFragment;
+import com.ghstudios.android.features.monsters.MonsterHabitatFragment;
+import com.ghstudios.android.features.monsters.MonsterQuestFragment;
+import com.ghstudios.android.features.monsters.MonsterRewardFragment;
+import com.ghstudios.android.features.monsters.MonsterStatusFragment;
+import com.ghstudios.android.features.monsters.MonsterSummaryFragment;
 
 import java.util.ArrayList;
 

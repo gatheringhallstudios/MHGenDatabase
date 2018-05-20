@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.ui.detail.ItemTradeFragment;
+import com.ghstudios.android.features.items.ItemTradeFragment;
 
 public class WyporiumTradeDetailPagerAdapter extends FragmentPagerAdapter {
 

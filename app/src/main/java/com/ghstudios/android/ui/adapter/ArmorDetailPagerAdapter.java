@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.ui.detail.ArmorDetailFragment;
+import com.ghstudios.android.features.armor.ArmorDetailFragment;
 import com.ghstudios.android.ui.detail.ComponentListFragment;
-import com.ghstudios.android.ui.detail.ItemToSkillFragment;
+import com.ghstudios.android.features.items.ItemToSkillFragment;
 
 public class ArmorDetailPagerAdapter extends FragmentPagerAdapter {
 

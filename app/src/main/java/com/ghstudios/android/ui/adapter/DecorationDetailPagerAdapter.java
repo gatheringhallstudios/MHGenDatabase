@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ghstudios.android.ui.detail.ComponentListFragment;
-import com.ghstudios.android.ui.detail.DecorationDetailFragment;
-import com.ghstudios.android.ui.detail.ItemToSkillFragment;
+import com.ghstudios.android.features.decorations.DecorationDetailFragment;
+import com.ghstudios.android.features.items.ItemToSkillFragment;
 
 public class DecorationDetailPagerAdapter extends FragmentPagerAdapter {
 	

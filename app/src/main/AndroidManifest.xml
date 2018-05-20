@@ -19,15 +19,15 @@
             android:label=""
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.ghstudios.android.ui.list.PalicoActivity"
+        <activity android:name="com.ghstudios.android.features.palicos.PalicoActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.ghstudios.android.ui.detail.PalicoWeaponDetailActivity"
+        <activity android:name="com.ghstudios.android.features.palicos.PalicoWeaponDetailActivity"
             android:screenOrientation="portrait"/>
 
         <!-- MONSTER LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.MonsterListActivity"
+            android:name="com.ghstudios.android.features.monsters.MonsterListActivity"
             android:label="@string/app_name_launcher"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -36,75 +36,75 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ghstudios.android.ui.detail.MonsterDetailActivity"
+            android:name="com.ghstudios.android.features.monsters.MonsterDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.MonsterListActivity" />
+                android:value="com.ghstudios.android.features.monsters.MonsterListActivity" />
         </activity>
 
         <!-- ITEM LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.ItemListActivity"
+            android:name="com.ghstudios.android.features.items.ItemListActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.ui.detail.ItemDetailActivity"
+            android:name="com.ghstudios.android.features.items.ItemDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.ItemListActivity" />
+                android:value="com.ghstudios.android.features.items.ItemListActivity" />
         </activity>
 
         <!-- ARMOR LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.ArmorListActivity"
+            android:name="com.ghstudios.android.features.armor.ArmorListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.ArmorDetailActivity"
+            android:name="com.ghstudios.android.features.armor.ArmorDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.ArmorListActivity" />
+                android:value="com.ghstudios.android.features.armor.ArmorListActivity" />
         </activity>
 
         <!-- LOCATION LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.LocationListActivity"
+            android:name="com.ghstudios.android.features.locations.LocationListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.LocationDetailActivity"
+            android:name="com.ghstudios.android.features.locations.LocationDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.LocationListActivity" />
+                android:value="com.ghstudios.android.features.locations.LocationListActivity" />
         </activity>
 
         <!-- COMBO LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.CombiningListActivity"
+            android:name="com.ghstudios.android.features.combining.CombiningListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <!-- QUEST LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.QuestListActivity"
+            android:name="com.ghstudios.android.features.quests.QuestListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.ui.detail.QuestDetailActivity"
+            android:name="com.ghstudios.android.features.quests.QuestDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.QuestListActivity" />
+                android:value="com.ghstudios.android.features.quests.QuestListActivity" />
         </activity>
 
         <!-- ARENA QUEST SECTION -->
@@ -123,54 +123,54 @@
 
         <!-- SKILL TREE SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.SkillTreeListActivity"
+            android:name="com.ghstudios.android.features.skills.SkillTreeListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.SkillTreeDetailActivity"
+            android:name="com.ghstudios.android.features.skills.SkillTreeDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.SkillTreeListActivity" />
+                android:value="com.ghstudios.android.features.skills.SkillTreeListActivity" />
         </activity>
 
         <!-- DECORATION SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.DecorationListActivity"
+            android:name="com.ghstudios.android.features.decorations.DecorationListActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.DecorationDetailActivity"
+            android:name="com.ghstudios.android.features.decorations.DecorationDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.DecorationListActivity" />
+                android:value="com.ghstudios.android.features.decorations.DecorationListActivity" />
         </activity>
 
         <!-- WEAPON SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.WeaponSelectionListActivity"
+            android:name="com.ghstudios.android.features.weapons.WeaponSelectionListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name="com.ghstudios.android.ui.list.WeaponListActivity"
+            android:name="com.ghstudios.android.features.weapons.WeaponListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.WeaponSelectionListActivity" />
+                android:value="com.ghstudios.android.features.weapons.WeaponSelectionListActivity" />
         </activity>
         <activity
-            android:name="com.ghstudios.android.ui.detail.WeaponDetailActivity"
+            android:name="com.ghstudios.android.features.weapons.WeaponDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.WeaponSelectionListActivity" />
+                android:value="com.ghstudios.android.features.weapons.WeaponSelectionListActivity" />
         </activity>
 
         <!-- WISHLIST SECTION -->

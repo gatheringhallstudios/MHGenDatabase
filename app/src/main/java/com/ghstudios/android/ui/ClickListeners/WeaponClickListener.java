@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.WeaponDetailActivity;
+import com.ghstudios.android.features.weapons.WeaponDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

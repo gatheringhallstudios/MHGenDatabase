@@ -17,7 +17,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.compound.ASBTalismanSkillContainer;
 import com.ghstudios.android.ui.detail.ASBActivity;
-import com.ghstudios.android.ui.detail.SkillTreeDetailActivity;
+import com.ghstudios.android.features.skills.SkillTreeDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;

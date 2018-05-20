@@ -12,10 +12,12 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.features.armor.ArmorDetailActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.compound.ASBPieceContainer;
 import com.ghstudios.android.ui.general.ResourceUtils;
-import com.ghstudios.android.ui.list.ArmorListActivity;
+import com.ghstudios.android.features.armor.ArmorListActivity;
 
 /**
  * This is where the magic happens baby. Users can define a custom armor set in this fragment.

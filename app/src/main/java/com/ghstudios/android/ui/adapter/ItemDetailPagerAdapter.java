@@ -4,12 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.ui.detail.ItemComponentFragment;
-import com.ghstudios.android.ui.detail.ItemDetailFragment;
-import com.ghstudios.android.ui.detail.ItemLocationFragment;
-import com.ghstudios.android.ui.detail.ItemMonsterFragment;
-import com.ghstudios.android.ui.detail.ItemQuestFragment;
-import com.ghstudios.android.ui.list.CombiningListFragment;
+import com.ghstudios.android.features.items.ItemComponentFragment;
+import com.ghstudios.android.features.items.ItemDetailFragment;
+import com.ghstudios.android.features.items.ItemLocationFragment;
+import com.ghstudios.android.features.items.ItemMonsterFragment;
+import com.ghstudios.android.features.items.ItemQuestFragment;
+import com.ghstudios.android.features.combining.CombiningListFragment;
 
 public class ItemDetailPagerAdapter extends FragmentPagerAdapter {
 	
