@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.features.monsters.MonsterListPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.AboutDialogFragment;
 import com.ghstudios.android.ui.list.ASBSetListActivity;
@@ -41,7 +42,6 @@ import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 import com.ghstudios.android.features.items.ItemListActivity;
 import com.ghstudios.android.features.locations.LocationListActivity;
-import com.ghstudios.android.features.monsters.MonsterListActivity;
 import com.ghstudios.android.features.palicos.PalicoActivity;
 import com.ghstudios.android.features.quests.QuestListActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
@@ -182,7 +182,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
 
         switch (itemId) {
             case MenuSection.MONSTERS: // Monsters
-                intent = new Intent(GenericActionBarActivity.this, MonsterListActivity.class);
+                intent = new Intent(GenericActionBarActivity.this, MonsterListPagerActivity.class);
                 break;
             case MenuSection.WEAPONS: // Weapons
                 intent = new Intent(GenericActionBarActivity.this, WeaponSelectionListActivity.class);

@@ -27,7 +27,7 @@
 
         <!-- MONSTER LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.monsters.MonsterListActivity"
+            android:name="com.ghstudios.android.features.monsters.MonsterListPagerActivity"
             android:label="@string/app_name_launcher"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -41,7 +41,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.monsters.MonsterListActivity" />
+                android:value="com.ghstudios.android.features.monsters.MonsterListPagerActivity" />
         </activity>
 
         <!-- ITEM LIST SECTION -->
