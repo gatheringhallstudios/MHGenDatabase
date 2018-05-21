@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.dialog;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,8 +15,6 @@ import android.widget.Spinner;
 import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.compound.ASBTalismanSkillContainer;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity;
 
 import java.util.ArrayList;

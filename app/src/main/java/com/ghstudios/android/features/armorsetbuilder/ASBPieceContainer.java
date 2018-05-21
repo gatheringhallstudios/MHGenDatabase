@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.compound;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,10 +18,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
-import com.ghstudios.android.ui.detail.ASBFragment;
 import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
-import com.ghstudios.android.ui.dialog.ASBTalismanDialogFragment;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 

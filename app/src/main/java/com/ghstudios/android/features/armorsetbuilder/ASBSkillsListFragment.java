@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,7 +16,6 @@ import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSession.*;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
 
 import java.util.Comparator;
 import java.util.List;

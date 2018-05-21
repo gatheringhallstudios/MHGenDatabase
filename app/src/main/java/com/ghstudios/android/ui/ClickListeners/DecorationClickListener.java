@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
 
 /**

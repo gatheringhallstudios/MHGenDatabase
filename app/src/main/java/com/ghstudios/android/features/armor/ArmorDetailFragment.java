@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.loader.ArmorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 public class ArmorDetailFragment extends Fragment {
 	private static final String ARG_ARMOR_ID = "ARMOR_ID";

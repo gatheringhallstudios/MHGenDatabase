@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -9,8 +9,6 @@ import com.ghstudios.android.loader.ASBSessionLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.adapter.PagerTab;
 import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.ASBSetListFragment;
-import com.ghstudios.android.ui.list.ASBSkillsListFragment;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 import java.util.ArrayList;

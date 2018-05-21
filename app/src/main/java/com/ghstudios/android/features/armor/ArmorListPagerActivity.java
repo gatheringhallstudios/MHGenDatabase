@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 import com.ghstudios.android.ui.general.BasePagerActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 

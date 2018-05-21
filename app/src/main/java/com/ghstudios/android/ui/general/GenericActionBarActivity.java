@@ -36,7 +36,7 @@ import android.widget.TextView;
 import com.ghstudios.android.features.monsters.MonsterListPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.AboutDialogFragment;
-import com.ghstudios.android.ui.list.ASBSetListActivity;
+import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;

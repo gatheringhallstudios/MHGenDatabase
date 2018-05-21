@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.dialog;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.list.ASBSetListFragment;
 
 public class ASBSetAddDialogFragment extends DialogFragment {
     private static final String ARG_ID = "id";

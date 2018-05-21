@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.compound;
+package com.ghstudios.android.features.armorsetbuilder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
 
 public class ASBTalismanSkillContainer extends LinearLayout {
