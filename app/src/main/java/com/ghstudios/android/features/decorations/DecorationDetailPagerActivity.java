@@ -1,20 +1,19 @@
 package com.ghstudios.android.features.decorations;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.ui.detail.ItemToSkillFragment;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.adapter.DecorationDetailPagerAdapter;
 import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
-import com.ghstudios.android.ui.general.GenericTabActivity;
+import com.ghstudios.android.ui.detail.ComponentListFragment;
+import com.ghstudios.android.ui.general.BasePagerActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
-public class DecorationDetailActivity extends GenericTabActivity {
+public class DecorationDetailPagerActivity extends BasePagerActivity {
     /**
      * A key for passing a decoration ID as a long
      */
@@ -24,27 +23,26 @@ public class DecorationDetailActivity extends GenericTabActivity {
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
     private static final int REQUEST_ADD = 0;
 
-    private ViewPager viewPager;
-    private DecorationDetailPagerAdapter mAdapter;
-
-    private long id;
+    private long decorationId;
     private String name;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        id = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
-        name = DataManager.get(getApplicationContext()).getDecoration(id).getName();
+    public void onAddTabs(TabAdder tabs) {
+        decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
+        name = DataManager.get(getApplicationContext()).getDecoration(decorationId).getName();
         setTitle(name);
 
-        // Initialization
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        mAdapter = new DecorationDetailPagerAdapter(getSupportFragmentManager(), id);
-        viewPager.setAdapter(mAdapter);
+        tabs.addTab("Detail", () ->
+                DecorationDetailFragment.newInstance(decorationId)
+        );
 
-        setViewPager(viewPager);
+        tabs.addTab("Skills", () ->
+                ItemToSkillFragment.newInstance(decorationId, "Decoration")
+        );
 
+        tabs.addTab("Components", () ->
+                ComponentListFragment.newInstance(decorationId)
+        );
     }
 
     @Override
@@ -66,17 +64,11 @@ public class DecorationDetailActivity extends GenericTabActivity {
             case R.id.add_to_wishlist:
                 FragmentManager fm = getSupportFragmentManager();
                 WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                        .newInstance(id, name);
+                        .newInstance(decorationId, name);
                 dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
 }

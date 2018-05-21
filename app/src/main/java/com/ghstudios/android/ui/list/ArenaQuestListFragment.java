@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.ArenaQuest;
 import com.ghstudios.android.data.database.ArenaQuestCursor;
 import com.ghstudios.android.loader.ArenaQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ArenaQuestDetailActivity;
+import com.ghstudios.android.ui.detail.ArenaQuestDetailPagerActivity;
 
 public class ArenaQuestListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -56,8 +56,8 @@ public class ArenaQuestListFragment extends ListFragment implements
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// The id argument will be the Arena Quest ID; CursorAdapter gives us this for free
         //TODO reenable when Arena quests are complete. Don't need to disable this because its recursive.
-		Intent i = new Intent(getActivity(), ArenaQuestDetailActivity.class);
-		i.putExtra(ArenaQuestDetailActivity.EXTRA_ARENA_QUEST_ID, id);
+		Intent i = new Intent(getActivity(), ArenaQuestDetailPagerActivity.class);
+		i.putExtra(ArenaQuestDetailPagerActivity.EXTRA_ARENA_QUEST_ID, id);
 		startActivity(i);
 	}
 

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WyporiumTrade;
-import com.ghstudios.android.features.quests.QuestDetailActivity;
+import com.ghstudios.android.features.quests.QuestDetailPagerActivity;
 import com.ghstudios.android.loader.WyporiumTradeLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -90,8 +90,8 @@ public class ItemTradeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ItemDetailActivity.class);
-                i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, (long) v.getTag());
+                Intent i = new Intent(getActivity(), ItemDetailPagerActivity.class);
+                i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, (long) v.getTag());
                 startActivity(i);
             }
         });
@@ -100,8 +100,8 @@ public class ItemTradeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ItemDetailActivity.class);
-                i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, (long) v.getTag());
+                Intent i = new Intent(getActivity(), ItemDetailPagerActivity.class);
+                i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, (long) v.getTag());
                 startActivity(i);
             }
         });
@@ -110,8 +110,8 @@ public class ItemTradeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), QuestDetailActivity.class);
-                i.putExtra(QuestDetailActivity.EXTRA_QUEST_ID, (long) v.getTag());
+                Intent i = new Intent(getActivity(), QuestDetailPagerActivity.class);
+                i.putExtra(QuestDetailPagerActivity.EXTRA_QUEST_ID, (long) v.getTag());
                 startActivity(i);
             }
         });

@@ -1,10 +1,6 @@
 package com.ghstudios.android.features.palicos;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,13 +10,13 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.detail.ComponentListFragment;
 import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
-import com.ghstudios.android.ui.general.GenericTabActivity;
+import com.ghstudios.android.ui.general.BasePagerActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 /**
  * Created by Joseph on 7/10/2016.
  */
-public class PalicoWeaponDetailActivity extends GenericTabActivity {
+public class PalicoWeaponDetailActivity extends BasePagerActivity {
 
     public static final String EXTRA_WEAPON_ID = "WEAPON_ID";
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
@@ -29,20 +25,19 @@ public class PalicoWeaponDetailActivity extends GenericTabActivity {
     private String name;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onAddTabs(TabAdder tabs) {
         id = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
         PalicoWeapon wep = DataManager.get(getApplicationContext()).getPalicoWeapon(id);
         name = wep.getItem().getName();
         setTitle(R.string.palicos);
 
-        // Initialization
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        PalicoWeaponPagerAdapter mAdapter = new PalicoWeaponPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(mAdapter);
+        tabs.addTab("Details", () ->
+                PalicoWeaponDetailFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0))
+        );
 
-        setViewPager(viewPager);
+        tabs.addTab("Components", () ->
+                ComponentListFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0))
+        );
     }
 
     @Override
@@ -71,35 +66,4 @@ public class PalicoWeaponDetailActivity extends GenericTabActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    class PalicoWeaponPagerAdapter extends FragmentPagerAdapter{
-
-        String[] _tabs = {"Details","Components"};
-
-        public PalicoWeaponPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (_tabs[position]){
-                case "Details":
-                    return PalicoWeaponDetailFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0));
-                case "Components":
-                    return ComponentListFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0));
-            }
-            return null;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return _tabs[position];
-        }
-
-        @Override
-        public int getCount() {
-            return _tabs.length;
-        }
-    }
-
 }

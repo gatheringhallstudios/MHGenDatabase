@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.quests.QuestDetailActivity;
+import com.ghstudios.android.features.quests.QuestDetailPagerActivity;
 
 /**
  * Created by Mark on 2/24/2015.
@@ -21,8 +21,8 @@ public class QuestClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(c, QuestDetailActivity.class);
-        i.putExtra(QuestDetailActivity.EXTRA_QUEST_ID, id);
+        Intent i = new Intent(c, QuestDetailPagerActivity.class);
+        i.putExtra(QuestDetailPagerActivity.EXTRA_QUEST_ID, id);
         c.startActivity(i);
     }
 }

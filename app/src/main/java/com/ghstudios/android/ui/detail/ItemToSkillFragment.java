@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.ui.detail;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,6 +20,7 @@ import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
 
+// note: used by armor and decorations. Can't move to features yet
 public class ItemToSkillFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
 	private static final String ARG_ITEM_TO_SKILL_ID = "ITEM_TO_SKILL_ID";

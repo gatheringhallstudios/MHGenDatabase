@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.loader.DecorationLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 
 public class DecorationDetailFragment extends Fragment {
 	private static final String ARG_DECORATION_ID = "DECORATION_ID";
@@ -82,14 +82,14 @@ public class DecorationDetailFragment extends Fragment {
 		slotsReqTextView = (TextView) view.findViewById(R.id.slots_req);
 
         // If the originator of this fragment's activity was the Armor Set Builder...
-        if (getActivity().getIntent().getBooleanExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, false)) {
+        if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
             Button selectButton = (Button) view.findViewById(R.id.select_button);
             selectButton.setVisibility(View.VISIBLE);
             selectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = getActivity().getIntent();
-                    intent.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, getArguments().getLong(ARG_DECORATION_ID)); // We put the armor's ID number as an extra of the intent.
+                    intent.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, getArguments().getLong(ARG_DECORATION_ID)); // We put the armor's ID number as an extra of the intent.
                     getActivity().setResult(Activity.RESULT_OK, intent);
                     getActivity().finish();
                 }

@@ -214,8 +214,8 @@ public class WishlistListFragment extends ListFragment implements
 
 		@Override
 		public void onClick(View v) {
-			Intent i = new Intent(c, WishlistDetailActivity.class);
-			i.putExtra(WishlistDetailActivity.EXTRA_WISHLIST_ID, id);
+			Intent i = new Intent(c, WishlistDetailPagerActivity.class);
+			i.putExtra(WishlistDetailPagerActivity.EXTRA_WISHLIST_ID, id);
 			c.startActivity(i);
 		}
 	}

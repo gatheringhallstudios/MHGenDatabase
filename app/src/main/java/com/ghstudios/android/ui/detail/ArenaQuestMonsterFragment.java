@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.MonsterToArena;
 import com.ghstudios.android.data.database.MonsterToArenaCursor;
-import com.ghstudios.android.features.monsters.MonsterDetailActivity;
+import com.ghstudios.android.features.monsters.MonsterDetailPagerActivity;
 import com.ghstudios.android.loader.MonsterToArenaListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -77,8 +77,8 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// The id argument will be the Monster ID; CursorAdapter gives us this
 		// for free
-		Intent i = new Intent(getActivity(), MonsterDetailActivity.class);
-		i.putExtra(MonsterDetailActivity.EXTRA_MONSTER_ID, (long) v.getTag());
+		Intent i = new Intent(getActivity(), MonsterDetailPagerActivity.class);
+		i.putExtra(MonsterDetailPagerActivity.EXTRA_MONSTER_ID, (long) v.getTag());
 		startActivity(i);
 	}
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.locations.LocationDetailActivity;
+import com.ghstudios.android.features.locations.LocationDetailPagerActivity;
 
 /**
  * Created by Mark on 2/23/2015.
@@ -21,11 +21,11 @@ public class LocationClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(c, LocationDetailActivity.class);
+        Intent i = new Intent(c, LocationDetailPagerActivity.class);
 
         if(id>100) id = id-100;
 
-        i.putExtra(LocationDetailActivity.EXTRA_LOCATION_ID, id);
+        i.putExtra(LocationDetailPagerActivity.EXTRA_LOCATION_ID, id);
         c.startActivity(i);
     }
 }

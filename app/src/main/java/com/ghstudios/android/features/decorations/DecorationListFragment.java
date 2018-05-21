@@ -27,7 +27,7 @@ import com.ghstudios.android.data.database.DecorationCursor;
 import com.ghstudios.android.loader.DecorationListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 
 import java.io.IOException;
 
@@ -115,9 +115,9 @@ public class DecorationListFragment extends ListFragment implements
             if (context instanceof Activity) {
                 activity = (Activity) context;
                 Intent intent = ((Activity) context).getIntent();
-                if (intent.getBooleanExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, false)) {
+                if (intent.getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
                     fromAsb = true;
-                    maxSlots = intent.getIntExtra(ASBActivity.EXTRA_DECORATION_MAX_SLOTS, 3);
+                    maxSlots = intent.getIntExtra(ASBPagerActivity.EXTRA_DECORATION_MAX_SLOTS, 3);
                 }
             }
         }

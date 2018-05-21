@@ -37,13 +37,13 @@ import com.ghstudios.android.features.monsters.MonsterListPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.dialog.AboutDialogFragment;
 import com.ghstudios.android.ui.list.ASBSetListActivity;
-import com.ghstudios.android.features.armor.ArmorListActivity;
+import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 import com.ghstudios.android.features.items.ItemListActivity;
 import com.ghstudios.android.features.locations.LocationListActivity;
-import com.ghstudios.android.features.palicos.PalicoActivity;
-import com.ghstudios.android.features.quests.QuestListActivity;
+import com.ghstudios.android.features.palicos.PalicoPagerActivity;
+import com.ghstudios.android.features.quests.QuestListPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
 import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
@@ -188,16 +188,16 @@ public abstract class GenericActionBarActivity extends AppCompatActivity {
                 intent = new Intent(GenericActionBarActivity.this, WeaponSelectionListActivity.class);
                 break;
             case MenuSection.ARMOR: // Armor
-                intent = new Intent(GenericActionBarActivity.this, ArmorListActivity.class);
+                intent = new Intent(GenericActionBarActivity.this, ArmorListPagerActivity.class);
                 break;
             case MenuSection.QUESTS: // Quests
-                intent = new Intent(GenericActionBarActivity.this, QuestListActivity.class);
+                intent = new Intent(GenericActionBarActivity.this, QuestListPagerActivity.class);
                 break;
             case MenuSection.ITEMS: // Items
                 intent = new Intent(GenericActionBarActivity.this, ItemListActivity.class);
                 break;
             case MenuSection.PALICOS:
-                intent = new Intent(GenericActionBarActivity.this, PalicoActivity.class);
+                intent = new Intent(GenericActionBarActivity.this, PalicoPagerActivity.class);
                 break;
             case MenuSection.COMBINING: // Combining
                 intent = new Intent(GenericActionBarActivity.this, CombiningListActivity.class);

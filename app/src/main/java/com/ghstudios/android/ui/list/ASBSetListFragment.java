@@ -117,7 +117,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent i = new Intent(getActivity(), ASBActivity.class);
+        Intent i = new Intent(getActivity(), ASBPagerActivity.class);
         i.putExtra(EXTRA_ASB_SET_NAME, v.getTag().toString());
         i.putExtra(EXTRA_ASB_SET_ID, id);
         startActivity(i);

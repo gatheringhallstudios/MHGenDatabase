@@ -29,10 +29,10 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistComponentCursor;
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
-import com.ghstudios.android.features.items.ItemDetailActivity;
-import com.ghstudios.android.features.weapons.WeaponDetailActivity;
+import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
+import com.ghstudios.android.features.items.ItemDetailPagerActivity;
+import com.ghstudios.android.features.weapons.WeaponDetailPagerActivity;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
@@ -140,20 +140,20 @@ public class WishlistDataComponentFragment extends ListFragment implements
 
 		switch(itemtype){
 			case "Weapon":
-				i = new Intent(getActivity(), WeaponDetailActivity.class);
-				i.putExtra(WeaponDetailActivity.EXTRA_WEAPON_ID, mId);
+				i = new Intent(getActivity(), WeaponDetailPagerActivity.class);
+				i.putExtra(WeaponDetailPagerActivity.EXTRA_WEAPON_ID, mId);
 				break;
 			case "Armor":
-				i = new Intent(getActivity(), ArmorDetailActivity.class);
-				i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
+				i = new Intent(getActivity(), ArmorDetailPagerActivity.class);
+				i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, mId);
 				break;
 			case "Decoration":
-				i = new Intent(getActivity(), DecorationDetailActivity.class);
-				i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
+				i = new Intent(getActivity(), DecorationDetailPagerActivity.class);
+				i.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, mId);
 				break;
 			default:
-				i = new Intent(getActivity(), ItemDetailActivity.class);
-				i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, mId);
+				i = new Intent(getActivity(), ItemDetailPagerActivity.class);
+				i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, mId);
 		}
 
 		startActivity(i);

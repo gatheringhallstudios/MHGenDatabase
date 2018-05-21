@@ -16,8 +16,8 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.compound.ASBTalismanSkillContainer;
-import com.ghstudios.android.ui.detail.ASBActivity;
-import com.ghstudios.android.features.skills.SkillTreeDetailActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
+import com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,12 +109,12 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
                                        long skill1Id = talismanSkillContainers[0].getSkillTree().getId();
                                        int skill1Points = Integer.parseInt(talismanSkillContainers[0].getSkillPoints());
 
-                                       i.putExtra(ASBActivity.EXTRA_TALISMAN_TYPE_INDEX,
+                                       i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_TYPE_INDEX,
                                                   typeSpinner.getSelectedItemPosition());
-                                       i.putExtra(ASBActivity.EXTRA_TALISMAN_SLOTS,
+                                       i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SLOTS,
                                                   slotsSpinner.getSelectedItemPosition());
-                                       i.putExtra(ASBActivity.EXTRA_TALISMAN_SKILL_TREE_1, skill1Id);
-                                       i.putExtra(ASBActivity.EXTRA_TALISMAN_SKILL_POINTS_1, skill1Points);
+                                       i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, skill1Id);
+                                       i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_1, skill1Points);
 
                                        if (talismanSkillContainers[1].getSkillTree() != null) {
                                            Log.d("SetBuilder", "Skill 2 is defined.");
@@ -122,11 +122,11 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
                                            long skill2Id = talismanSkillContainers[1].getSkillTree().getId();
                                            int skill2Points = Integer.parseInt(talismanSkillContainers[1].getSkillPoints());
 
-                                           i.putExtra(ASBActivity.EXTRA_TALISMAN_SKILL_TREE_2, skill2Id);
-                                           i.putExtra(ASBActivity.EXTRA_TALISMAN_SKILL_POINTS_2, skill2Points);
+                                           i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, skill2Id);
+                                           i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, skill2Points);
                                        }
 
-                                       getTargetFragment().onActivityResult(ASBActivity.REQUEST_CODE_CREATE_TALISMAN,
+                                       getTargetFragment().onActivityResult(ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN,
                                                                             Activity.RESULT_OK, i);
                                    }
                                }
@@ -146,10 +146,10 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK && requestCode == ASBActivity.REQUEST_CODE_CREATE_TALISMAN) {
+        if (resultCode == Activity.RESULT_OK && requestCode == ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN) {
 
-            int talismanSkillNumber = data.getIntExtra(ASBActivity.EXTRA_TALISMAN_SKILL_INDEX, -1);
-            long skillTreeId = data.getLongExtra(SkillTreeDetailActivity.EXTRA_SKILLTREE_ID, -1);
+            int talismanSkillNumber = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_INDEX, -1);
+            long skillTreeId = data.getLongExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, -1);
 
             talismanSkillContainers[talismanSkillNumber].setSkillTree(DataManager.get(getActivity()).getSkillTree(skillTreeId));
             talismanSkillContainers[talismanSkillNumber].requestFocus();

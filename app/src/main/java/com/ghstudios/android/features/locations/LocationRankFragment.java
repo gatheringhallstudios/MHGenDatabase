@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.features.items.ItemDetailActivity;
+import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.database.GatheringCursor;
@@ -103,8 +103,8 @@ public class LocationRankFragment extends ListFragment implements
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// The id argument will be the Monster ID; CursorAdapter gives us this
 		// for free
-		Intent i = new Intent(getActivity(), ItemDetailActivity.class);
-		i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, (long) v.getTag());
+		Intent i = new Intent(getActivity(), ItemDetailPagerActivity.class);
+		i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, (long) v.getTag());
 		startActivity(i);
 	}
 

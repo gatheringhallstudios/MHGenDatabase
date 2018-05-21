@@ -103,8 +103,8 @@ public class MonsterHabitatFragment extends ListFragment implements
     public void onListItemClick(ListView l, View v, int position, long id) {
         // The id argument will be the Location ID set by adapter
 
-        Intent i = new Intent(getActivity(), LocationDetailActivity.class);
-        i.putExtra(LocationDetailActivity.EXTRA_LOCATION_ID, (long) v.getTag());
+        Intent i = new Intent(getActivity(), LocationDetailPagerActivity.class);
+        i.putExtra(LocationDetailPagerActivity.EXTRA_LOCATION_ID, (long) v.getTag());
         startActivity(i);
     }*/
 

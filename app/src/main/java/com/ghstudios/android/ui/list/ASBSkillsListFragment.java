@@ -16,12 +16,12 @@ import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSession.*;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class ASBSkillsListFragment extends Fragment implements ASBActivity.OnASBSetActivityUpdateListener {
+public class ASBSkillsListFragment extends Fragment implements ASBPagerActivity.OnASBSetActivityUpdateListener {
 
     private ASBSession session;
     private ASBSkillsAdapter adapter;
@@ -60,7 +60,7 @@ public class ASBSkillsListFragment extends Fragment implements ASBActivity.OnASB
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ASBActivity a = (ASBActivity) getActivity();
+        ASBPagerActivity a = (ASBPagerActivity) getActivity();
         a.addASBSetChangedListener(this);
         session = a.getASBSession();
     }

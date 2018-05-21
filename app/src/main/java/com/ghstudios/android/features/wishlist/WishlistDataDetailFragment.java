@@ -131,7 +131,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			case WishlistListFragment.REQUEST_RENAME: // After wishlist is renamed
 				if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
 					// Cast parent activity in order to call refresh title method
-					((WishlistDetailActivity) getActivity()).refreshTitle();
+					((WishlistDetailPagerActivity) getActivity()).refreshTitle();
 					updateUI();
 				}
 				return;
@@ -305,7 +305,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 		}
 	}
 
-    // Define interface WishlistDetailActivity must implement to refresh it's title
+    // Define interface WishlistDetailPagerActivity must implement to refresh it's title
     public interface RefreshActivityTitle{
         void refreshTitle();
     }

@@ -23,7 +23,7 @@ import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.QuestLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.locations.LocationDetailActivity;
+import com.ghstudios.android.features.locations.LocationDetailPagerActivity;
 
 import java.io.IOException;
 
@@ -103,10 +103,10 @@ public class QuestDetailFragment extends Fragment {
 		    public void onClick(View v) {
 				// The id argument will be the Monster ID; CursorAdapter gives us this
 				// for free
-				Intent i = new Intent(getActivity(), LocationDetailActivity.class);
+				Intent i = new Intent(getActivity(), LocationDetailPagerActivity.class);
 				long id = (long)v.getTag();
 				if(id>100) id = id-100;
-				i.putExtra(LocationDetailActivity.EXTRA_LOCATION_ID, id);
+				i.putExtra(LocationDetailPagerActivity.EXTRA_LOCATION_ID, id);
 				startActivity(i);
 		    }
 		});

@@ -19,7 +19,7 @@
             android:label=""
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.ghstudios.android.features.palicos.PalicoActivity"
+        <activity android:name="com.ghstudios.android.features.palicos.PalicoPagerActivity"
             android:screenOrientation="portrait"/>
 
         <activity android:name="com.ghstudios.android.features.palicos.PalicoWeaponDetailActivity"
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ghstudios.android.features.monsters.MonsterDetailActivity"
+            android:name="com.ghstudios.android.features.monsters.MonsterDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -51,7 +51,7 @@
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.features.items.ItemDetailActivity"
+            android:name="com.ghstudios.android.features.items.ItemDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -61,16 +61,16 @@
 
         <!-- ARMOR LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.armor.ArmorListActivity"
+            android:name="com.ghstudios.android.features.armor.ArmorListPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.armor.ArmorDetailActivity"
+            android:name="com.ghstudios.android.features.armor.ArmorDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.armor.ArmorListActivity" />
+                android:value="com.ghstudios.android.features.armor.ArmorListPagerActivity" />
         </activity>
 
         <!-- LOCATION LIST SECTION -->
@@ -79,7 +79,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.locations.LocationDetailActivity"
+            android:name="com.ghstudios.android.features.locations.LocationDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -95,16 +95,16 @@
 
         <!-- QUEST LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.quests.QuestListActivity"
+            android:name="com.ghstudios.android.features.quests.QuestListPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.features.quests.QuestDetailActivity"
+            android:name="com.ghstudios.android.features.quests.QuestDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.quests.QuestListActivity" />
+                android:value="com.ghstudios.android.features.quests.QuestListPagerActivity" />
         </activity>
 
         <!-- ARENA QUEST SECTION -->
@@ -113,7 +113,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.ui.detail.ArenaQuestDetailActivity"
+            android:name="com.ghstudios.android.ui.detail.ArenaQuestDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -127,7 +127,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.skills.SkillTreeDetailActivity"
+            android:name="com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -142,7 +142,7 @@
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.decorations.DecorationDetailActivity"
+            android:name="com.ghstudios.android.features.decorations.DecorationDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -165,7 +165,7 @@
                 android:value="com.ghstudios.android.features.weapons.WeaponSelectionListActivity" />
         </activity>
         <activity
-            android:name="com.ghstudios.android.features.weapons.WeaponDetailActivity"
+            android:name="com.ghstudios.android.features.weapons.WeaponDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -179,7 +179,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.wishlist.WishlistDetailActivity"
+            android:name="com.ghstudios.android.features.wishlist.WishlistDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -193,7 +193,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.ASBActivity"
+            android:name="com.ghstudios.android.ui.detail.ASBPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
+import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 
 public class ArmorClickListener implements View.OnClickListener {
 
@@ -29,8 +29,8 @@ public class ArmorClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(c, ArmorDetailActivity.class);
-        i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, id);
+        Intent i = new Intent(c, ArmorDetailPagerActivity.class);
+        i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, id);
 
         // If we are being called by something else
         if (activity != null) {

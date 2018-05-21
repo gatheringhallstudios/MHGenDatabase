@@ -16,13 +16,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
+import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 import com.ghstudios.android.ui.detail.ASBFragment;
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
 import com.ghstudios.android.ui.dialog.ASBTalismanDialogFragment;
-import com.ghstudios.android.features.armor.ArmorListActivity;
+import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 
 import java.io.IOException;
@@ -231,32 +231,32 @@ public class ASBPieceContainer extends LinearLayout {
     private void onAddEquipment() {
         if (pieceIndex == ASBSession.TALISMAN) {
             ASBTalismanDialogFragment d = ASBTalismanDialogFragment.newInstance();
-            d.setTargetFragment(parentFragment, ASBActivity.REQUEST_CODE_CREATE_TALISMAN);
+            d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN);
             d.show(parentFragment.getActivity().getSupportFragmentManager(), "TALISMAN");
         } else {
-            Intent i = new Intent(getContext(), ArmorListActivity.class);
-            i.putExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, true);
-            i.putExtra(ASBActivity.EXTRA_PIECE_INDEX, pieceIndex);
-            i.putExtra(ASBActivity.EXTRA_SET_RANK, parentFragment.getArguments().getInt(ASBFragment.ARG_SET_RANK));
-            i.putExtra(ASBActivity.EXTRA_SET_HUNTER_TYPE,
+            Intent i = new Intent(getContext(), ArmorListPagerActivity.class);
+            i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true);
+            i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex);
+            i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, parentFragment.getArguments().getInt(ASBFragment.ARG_SET_RANK));
+            i.putExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE,
                     parentFragment.getArguments().getInt(ASBFragment.ARG_SET_HUNTER_TYPE));
 
-            parentFragment.startActivityForResult(i, ASBActivity.REQUEST_CODE_ADD_PIECE);
+            parentFragment.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_PIECE);
         }
     }
 
     private void onRemoveEquipment() {
         Intent data = new Intent();
-        data.putExtra(ASBActivity.EXTRA_PIECE_INDEX, pieceIndex);
-        parentFragment.onActivityResult(ASBActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data);
+        data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex);
+        parentFragment.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data);
     }
 
     private void requestPieceInfo() {
         if (pieceIndex == ASBSession.TALISMAN) {
             onAddEquipment();
         } else {
-            Intent i = new Intent(getContext(), ArmorDetailActivity.class);
-            i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).getId());
+            Intent i = new Intent(getContext(), ArmorDetailPagerActivity.class);
+            i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).getId());
             getContext().startActivity(i);
         }
     }
@@ -373,25 +373,25 @@ public class ASBPieceContainer extends LinearLayout {
 
         private void requestAddDecoration() {
             Intent i = new Intent(parentFragment.getActivity(), DecorationListActivity.class);
-            i.putExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, true);
-            i.putExtra(ASBActivity.EXTRA_PIECE_INDEX, pieceIndex);
-            i.putExtra(ASBActivity.EXTRA_DECORATION_MAX_SLOTS, session.getAvailableSlots(pieceIndex));
+            i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true);
+            i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex);
+            i.putExtra(ASBPagerActivity.EXTRA_DECORATION_MAX_SLOTS, session.getAvailableSlots(pieceIndex));
 
-            parentFragment.startActivityForResult(i, ASBActivity.REQUEST_CODE_ADD_DECORATION);
+            parentFragment.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_DECORATION);
         }
 
         private void requestRemoveDecoration(int decorationIndex) {
             Intent data = new Intent();
-            data.putExtra(ASBActivity.EXTRA_PIECE_INDEX, pieceIndex);
-            data.putExtra(ASBActivity.EXTRA_DECORATION_INDEX, decorationIndex);
+            data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex);
+            data.putExtra(ASBPagerActivity.EXTRA_DECORATION_INDEX, decorationIndex);
 
-            parentFragment.onActivityResult(ASBActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data);
+            parentFragment.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data);
         }
 
         private void requestDecorationInfo(int decorationIndex) {
-            Intent i = new Intent(parentFragment.getActivity(), DecorationDetailActivity.class);
+            Intent i = new Intent(parentFragment.getActivity(), DecorationDetailPagerActivity.class);
 
-            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID,
+            i.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID,
                     session.getDecoration(pieceIndex, decorationIndex).getId());
 
             parentFragment.startActivity(i);

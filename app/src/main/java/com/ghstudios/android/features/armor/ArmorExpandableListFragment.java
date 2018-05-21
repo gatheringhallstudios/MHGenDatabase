@@ -19,7 +19,7 @@ import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,8 +74,8 @@ public class ArmorExpandableListFragment extends Fragment {
 
         filter = new ArmorFilter();
 
-        if (getActivity().getIntent().getBooleanExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, false)) {
-            filter.setRank(Rank.values()[getActivity().getIntent().getIntExtra(ASBActivity.EXTRA_SET_RANK, -1)]);
+        if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
+            filter.setRank(Rank.values()[getActivity().getIntent().getIntExtra(ASBPagerActivity.EXTRA_SET_RANK, -1)]);
         }
 
         populateList();
@@ -278,8 +278,8 @@ public class ArmorExpandableListFragment extends Fragment {
 
             armorGroupTextView.setText(getGroup(i).toString());
 
-            if (getActivity().getIntent().getBooleanExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                int piece = getActivity().getIntent().getIntExtra(ASBActivity.EXTRA_PIECE_INDEX, -1);
+            if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
+                int piece = getActivity().getIntent().getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
 
                 if (piece != -1) {
                     elv.setDividerHeight(0);
@@ -338,8 +338,8 @@ public class ArmorExpandableListFragment extends Fragment {
 
             root.setTag(armorId);
 
-            if (getActivity().getIntent().getBooleanExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                root.setOnClickListener(new ArmorClickListener(context, armorId, getActivity(), ASBActivity.REQUEST_CODE_ADD_PIECE));
+            if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
+                root.setOnClickListener(new ArmorClickListener(context, armorId, getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
             }
             else {
                 root.setOnClickListener(new ArmorClickListener(context, armorId));

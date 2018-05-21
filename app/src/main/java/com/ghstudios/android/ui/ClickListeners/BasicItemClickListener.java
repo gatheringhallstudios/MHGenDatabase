@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.items.ItemDetailActivity;
+import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 
 /**
  * Created by Mark on 2/24/2015.
@@ -21,8 +21,8 @@ public class BasicItemClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(c, ItemDetailActivity.class);
-        i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, id);
+        Intent i = new Intent(c, ItemDetailPagerActivity.class);
+        i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, id);
         c.startActivity(i);
     }
 }

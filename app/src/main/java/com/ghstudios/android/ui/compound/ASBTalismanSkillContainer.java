@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ASBActivity;
+import com.ghstudios.android.ui.detail.ASBPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
 
 public class ASBTalismanSkillContainer extends LinearLayout {
@@ -169,10 +169,10 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         if (skillTree == null) {
             Intent i = new Intent(getContext(), SkillTreeListActivity.class);
 
-            i.putExtra(ASBActivity.EXTRA_FROM_TALISMAN_EDITOR, true);
-            i.putExtra(ASBActivity.EXTRA_TALISMAN_SKILL_INDEX, skillIndex - 1);
+            i.putExtra(ASBPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, true);
+            i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_INDEX, skillIndex - 1);
 
-            parent.startActivityForResult(i, ASBActivity.REQUEST_CODE_CREATE_TALISMAN);
+            parent.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN);
         }
         else {
             setSkillTree(null);

@@ -12,17 +12,17 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.compound.ASBPieceContainer;
 import com.ghstudios.android.ui.general.ResourceUtils;
-import com.ghstudios.android.features.armor.ArmorListActivity;
+import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 
 /**
  * This is where the magic happens baby. Users can define a custom armor set in this fragment.
  */
-public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivityUpdateListener {
+public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetActivityUpdateListener {
 
     public static final String ARG_SET_RANK = "set_rank";
     public static final String ARG_SET_HUNTER_TYPE = "set_hunter_type";
@@ -72,23 +72,23 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) { // If the user canceled the request, we don't want to do anything.
             switch (requestCode) {
-                case ASBActivity.REQUEST_CODE_ADD_PIECE:
+                case ASBPagerActivity.REQUEST_CODE_ADD_PIECE:
                     new ASBAsyncTask(ASBOperation.ADD_PIECE, data).execute();
                     break;
 
-                case ASBActivity.REQUEST_CODE_ADD_DECORATION:
+                case ASBPagerActivity.REQUEST_CODE_ADD_DECORATION:
                     new ASBAsyncTask(ASBOperation.ADD_DECORATION, data).execute();
                     break;
 
-                case ASBActivity.REQUEST_CODE_CREATE_TALISMAN:
+                case ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN:
                     new ASBAsyncTask(ASBOperation.CREATE_TALISMAN, data).execute();
                     break;
 
-                case ASBActivity.REQUEST_CODE_REMOVE_PIECE:
+                case ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE:
                     new ASBAsyncTask(ASBOperation.REMOVE_PIECE, data).execute();
                     break;
 
-                case ASBActivity.REQUEST_CODE_REMOVE_DECORATION:
+                case ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION:
                     new ASBAsyncTask(ASBOperation.REMOVE_DECORATION, data).execute();
                     break;
             }
@@ -106,10 +106,10 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.set_builder_add_piece: // The user wants to add an armor piece
-                Intent intent = new Intent(getActivity(), ArmorListActivity.class);
-                intent.putExtra(ASBActivity.EXTRA_FROM_SET_BUILDER, true);
+                Intent intent = new Intent(getActivity(), ArmorListPagerActivity.class);
+                intent.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true);
 
-                startActivityForResult(intent, ASBActivity.REQUEST_CODE_ADD_PIECE);
+                startActivityForResult(intent, ASBPagerActivity.REQUEST_CODE_ADD_PIECE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -120,7 +120,7 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        ASBActivity a = (ASBActivity) getActivity();
+        ASBPagerActivity a = (ASBPagerActivity) getActivity();
         a.addASBSetChangedListener(this);
         session = a.getASBSession();
     }
@@ -143,7 +143,7 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         ADD_PIECE {
             @Override
             public void perform(ASBSession session, Context context, Intent data) {
-                long armorId = data.getLongExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, -1);
+                long armorId = data.getLongExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, -1);
 
                 String armorType = DataManager.get(context).getArmor(armorId).getSlot();
 
@@ -175,8 +175,8 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         ADD_DECORATION {
             @Override
             void perform(ASBSession session, Context context, Intent data) {
-                long decorationId = data.getLongExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, -1);
-                int pieceIndex = data.getIntExtra(ASBActivity.EXTRA_PIECE_INDEX, -1);
+                long decorationId = data.getLongExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, -1);
+                int pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
 
                 Decoration decoration = DataManager.get(context).getDecoration(decorationId);
                 int decorationIndex = session.addDecoration(pieceIndex, decoration);
@@ -192,11 +192,11 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
             void perform(ASBSession session, Context context, Intent data) {
                 ASBTalisman talisman;
 
-                int typeIndex = data.getIntExtra(ASBActivity.EXTRA_TALISMAN_TYPE_INDEX, -1);
-                int slots = data.getIntExtra(ASBActivity.EXTRA_TALISMAN_SLOTS, 0);
+                int typeIndex = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1);
+                int slots = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SLOTS, 0);
 
-                long skill1Id = data.getLongExtra(ASBActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1);
-                int skill1Points = data.getIntExtra(ASBActivity.EXTRA_TALISMAN_SKILL_POINTS_1, -1);
+                long skill1Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1);
+                int skill1Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_1, -1);
 
                 long skill2Id = -1;
                 int skill2Points = 0;
@@ -206,9 +206,9 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
                 talisman.setName(ResourceUtils.splitStringInArrayByComma(R.array.talisman_names, typeIndex, 0, context) + " Talisman");
                 talisman.setNumSlots(slots);
 
-                if (data.hasExtra(ASBActivity.EXTRA_TALISMAN_SKILL_TREE_2)) {
-                    skill2Id = data.getLongExtra(ASBActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1);
-                    skill2Points = data.getIntExtra(ASBActivity.EXTRA_TALISMAN_SKILL_POINTS_2, -1);
+                if (data.hasExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2)) {
+                    skill2Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1);
+                    skill2Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, -1);
 
                     SkillTree skill2Tree = DataManager.get(context).getSkillTree(skill2Id);
                     talisman.setSkill2(skill2Tree);
@@ -224,7 +224,7 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         REMOVE_PIECE {
             @Override
             void perform(ASBSession session, Context context, Intent data) {
-                int pieceIndex = data.getIntExtra(ASBActivity.EXTRA_PIECE_INDEX, -1);
+                int pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
                 session.removeEquipment(pieceIndex);
 
                 if (pieceIndex == ASBSession.TALISMAN) {
@@ -238,8 +238,8 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         REMOVE_DECORATION {
             @Override
             void perform(ASBSession session, Context context, Intent data) {
-                int pieceIndex = data.getIntExtra(ASBActivity.EXTRA_PIECE_INDEX, -1);
-                int decorationIndex = data.getIntExtra(ASBActivity.EXTRA_DECORATION_INDEX, -1);
+                int pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
+                int decorationIndex = data.getIntExtra(ASBPagerActivity.EXTRA_DECORATION_INDEX, -1);
 
                 session.removeDecoration(pieceIndex, decorationIndex);
                 DataManager.get(context).queryRemoveASBSessionDecoration(session.getId(), pieceIndex, decorationIndex);
@@ -270,7 +270,7 @@ public class ASBFragment extends Fragment implements ASBActivity.OnASBSetActivit
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            ((ASBActivity) getActivity()).updateASBSetChangedListeners();
+            ((ASBPagerActivity) getActivity()).updateASBSetChangedListeners();
         }
     }
 }

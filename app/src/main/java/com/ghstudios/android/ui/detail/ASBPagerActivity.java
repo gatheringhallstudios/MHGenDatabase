@@ -3,20 +3,20 @@ package com.ghstudios.android.ui.detail;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v4.view.ViewPager;
 
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.loader.ASBSessionLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.adapter.ASBPagerAdapter;
-import com.ghstudios.android.ui.general.GenericTabActivity;
+import com.ghstudios.android.ui.adapter.PagerTab;
+import com.ghstudios.android.ui.general.BasePagerActivity;
 import com.ghstudios.android.ui.list.ASBSetListFragment;
+import com.ghstudios.android.ui.list.ASBSkillsListFragment;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ASBActivity extends GenericTabActivity {
+public class ASBPagerActivity extends BasePagerActivity {
 
     public static final String EXTRA_FROM_SET_BUILDER = "com.daviancorp.android.ui.detail.from_set_builder";
     public static final String EXTRA_FROM_TALISMAN_EDITOR = "com.daviancorp.android.ui.detail.from_talisman_editor";
@@ -44,21 +44,16 @@ public class ASBActivity extends GenericTabActivity {
 
     private List<OnASBSetActivityUpdateListener> onASBSetActivityUpdateListeners;
 
-    private ViewPager viewPager;
-    private ASBPagerAdapter adapter;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        viewPager = (ViewPager) findViewById(R.id.pager);
-
+    public void onAddTabs(TabAdder tabs) {
         onASBSetActivityUpdateListeners = new ArrayList<>();
 
         setTitle(getIntent().getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME));
 
         LoaderManager lm = getSupportLoaderManager();
         lm.initLoader(R.id.asb_set_activity, null, new ASBSetLoaderCallbacks());
+
+        // we don't add tabs here. Tabs are reset when the loader complete
     }
 
     @Override
@@ -94,17 +89,23 @@ public class ASBActivity extends GenericTabActivity {
     private class ASBSetLoaderCallbacks implements LoaderManager.LoaderCallbacks<ASBSession> {
         @Override
         public Loader<ASBSession> onCreateLoader(int id, Bundle args) {
-            return new ASBSessionLoader(ASBActivity.this, getIntent().getLongExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, -1));
+            return new ASBSessionLoader(ASBPagerActivity.this, getIntent().getLongExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, -1));
         }
 
         @Override
         public void onLoadFinished(Loader<ASBSession> loader, ASBSession run) {
             session = run;
 
-            // Initialization
-            adapter = new ASBPagerAdapter(getSupportFragmentManager(), session);
-            viewPager.setAdapter(adapter);
-            setViewPager(viewPager);
+            // Load the tabs now that we have a session
+            ArrayList<PagerTab> tabs = new ArrayList<>();
+            tabs.add(new PagerTab("Equipment", () ->
+                    ASBFragment.newInstance(session.getRank(), session.getHunterType())
+            ));
+            tabs.add(new PagerTab("Skills", () ->
+                    ASBSkillsListFragment.newInstance()
+            ));
+
+            resetTabs(tabs);
 
             updateASBSetChangedListeners();
         }
