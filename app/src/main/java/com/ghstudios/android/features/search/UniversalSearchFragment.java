@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.search;
 
 import android.content.Context;
 import android.database.Cursor;

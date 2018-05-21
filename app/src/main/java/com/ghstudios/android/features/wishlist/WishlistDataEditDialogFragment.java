@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.dialog;
+package com.ghstudios.android.features.wishlist;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,18 +15,18 @@ import android.widget.Toast;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 
-public class WishlistComponentEditDialogFragment extends DialogFragment {
+public class WishlistDataEditDialogFragment extends DialogFragment {
 	public static final String EXTRA_EDIT =
 			"com.daviancorp.android.ui.general.wishlist_data_edit";
 	
-	private static final String ARG_WISHLIST_COMPONENT_ID = "WISHLIST_COMPONENT_ID";
-	private static final String ARG_WISHLIST_COMPONENT_NAME = "WISHLIST_COMPONENT_NAME";
+	private static final String ARG_WISHLIST_DATA_ID = "WISHLIST_DATA_ID";
+	private static final String ARG_WISHLIST_DATA_NAME = "WISHLIST_DATA_NAME";
 
-	public static WishlistComponentEditDialogFragment newInstance(long id, String name) {
+	public static WishlistDataEditDialogFragment newInstance(long id, String name) {
 		Bundle args = new Bundle();
-		args.putLong(ARG_WISHLIST_COMPONENT_ID, id);
-		args.putString(ARG_WISHLIST_COMPONENT_NAME, name);
-		WishlistComponentEditDialogFragment f = new WishlistComponentEditDialogFragment();
+		args.putLong(ARG_WISHLIST_DATA_ID, id);
+		args.putString(ARG_WISHLIST_DATA_NAME, name);
+		WishlistDataEditDialogFragment f = new WishlistDataEditDialogFragment();
 		f.setArguments(args);
 		return f;
 	}
@@ -49,10 +49,10 @@ public class WishlistComponentEditDialogFragment extends DialogFragment {
 		View v = inflater.inflate(R.layout.dialog_wishlist_data_edit, null);
 		final EditText quantityInput = (EditText) v.findViewById(R.id.edit);
 		
-		final String name = getArguments().getString(ARG_WISHLIST_COMPONENT_NAME);
+		final String name = getArguments().getString(ARG_WISHLIST_DATA_NAME);
 		
 		return new AlertDialog.Builder(getActivity())
-			.setTitle("Set your quantity for '" + name + "'")
+			.setTitle("Set quantity for '" + name + "'")
 			.setView(v)
 			.setNegativeButton(android.R.string.cancel, null)
 			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -60,16 +60,20 @@ public class WishlistComponentEditDialogFragment extends DialogFragment {
 	               @Override
 	               public void onClick(DialogInterface dialog, int id) {
 	            	   String input = quantityInput.getText().toString();
-	            	   if (input.equals("")) {
+	            	   if (input.equals("") || input.equals("0")) {
 		   				   Toast.makeText(getActivity(), "Please put a quantity!", 
 		   						   Toast.LENGTH_SHORT).show();
 		   				   return;
 	            	   }
 	            	   
             		   int quantity = Integer.parseInt(input);
-            		               		   
-            		   DataManager.get(getActivity()).queryUpdateWishlistComponentNotes(
-            				   getArguments().getLong(ARG_WISHLIST_COMPONENT_ID), quantity);
+            		   
+            		   if (quantity > 99) {
+            			   quantity = 99;
+            		   }
+            		   
+            		   DataManager.get(getActivity()).queryUpdateWishlistData(
+            				   getArguments().getLong(ARG_WISHLIST_DATA_ID), quantity);
             		   
 	   				   Toast.makeText(getActivity(), "Edited '" + name + "'", Toast.LENGTH_SHORT).show();
 	            	   sendResult(Activity.RESULT_OK, true);

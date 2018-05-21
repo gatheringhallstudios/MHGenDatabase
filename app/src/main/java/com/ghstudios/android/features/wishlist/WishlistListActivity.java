@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.wishlist;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

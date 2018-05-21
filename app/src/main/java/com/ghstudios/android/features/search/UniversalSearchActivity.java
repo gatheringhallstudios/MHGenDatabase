@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.search;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.general.GenericActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 /**
  * Created by Carlos on 8/3/2015.

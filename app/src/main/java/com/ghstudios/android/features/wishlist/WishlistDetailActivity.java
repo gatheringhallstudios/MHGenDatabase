@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.wishlist;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;

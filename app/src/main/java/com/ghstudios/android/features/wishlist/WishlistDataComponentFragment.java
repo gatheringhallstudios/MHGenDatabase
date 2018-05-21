@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.wishlist;
 
 import android.content.Context;
 import android.content.Intent;

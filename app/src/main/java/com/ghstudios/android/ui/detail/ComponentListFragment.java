@@ -30,6 +30,7 @@ import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
+// this is a general component fragment maybe. Don't move until we know what to do with it
 public class ComponentListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
 

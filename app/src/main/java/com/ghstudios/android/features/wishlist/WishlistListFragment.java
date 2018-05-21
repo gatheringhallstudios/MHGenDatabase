@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.wishlist;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -27,11 +27,6 @@ import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.database.WishlistCursor;
 import com.ghstudios.android.loader.WishlistListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.WishlistDetailActivity;
-import com.ghstudios.android.ui.dialog.WishlistAddDialogFragment;
-import com.ghstudios.android.ui.dialog.WishlistCopyDialogFragment;
-import com.ghstudios.android.ui.dialog.WishlistDeleteDialogFragment;
-import com.ghstudios.android.ui.dialog.WishlistRenameDialogFragment;
 
 @SuppressLint("NewApi")
 public class WishlistListFragment extends ListFragment implements

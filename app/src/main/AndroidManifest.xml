@@ -11,11 +11,11 @@
 
         <!-- UNIVERSAL SEARCH SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.UniversalSearchActivity"
+            android:name="com.ghstudios.android.features.search.UniversalSearchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.ghstudios.android.ui.detail.MaterialDetailActivity"
+        <activity android:name="com.ghstudios.android.features.items.MaterialDetailActivity"
             android:label=""
             android:screenOrientation="portrait"/>
 
@@ -175,16 +175,16 @@
 
         <!-- WISHLIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.WishlistListActivity"
+            android:name="com.ghstudios.android.features.wishlist.WishlistListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.ui.detail.WishlistDetailActivity"
+            android:name="com.ghstudios.android.features.wishlist.WishlistDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.WishlistListActivity" />
+                android:value="com.ghstudios.android.features.wishlist.WishlistListActivity" />
         </activity>
 
         <!-- ARMOR SET BUILDER ACTIVITY -->

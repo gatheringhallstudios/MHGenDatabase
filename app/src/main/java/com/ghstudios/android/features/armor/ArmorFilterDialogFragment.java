@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.dialog;
+package com.ghstudios.android.features.armor;
 
 import android.app.Activity;
 import android.app.AlertDialog;

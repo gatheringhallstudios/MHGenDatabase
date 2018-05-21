@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.dialog;
+package com.ghstudios.android.features.wishlist;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

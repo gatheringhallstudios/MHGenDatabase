@@ -1,10 +1,9 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.items;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.general.GenericActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 

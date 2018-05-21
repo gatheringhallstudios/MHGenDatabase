@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ui.adapter.WeaponDetailPagerAdapter;
-import com.ghstudios.android.ui.dialog.WishlistDataAddDialogFragment;
+import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 

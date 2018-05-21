@@ -45,9 +45,9 @@ import com.ghstudios.android.features.monsters.MonsterListActivity;
 import com.ghstudios.android.features.palicos.PalicoActivity;
 import com.ghstudios.android.features.quests.QuestListActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
-import com.ghstudios.android.ui.list.UniversalSearchActivity;
+import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
-import com.ghstudios.android.ui.list.WishlistListActivity;
+import com.ghstudios.android.features.wishlist.WishlistListActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 import java.io.IOException;

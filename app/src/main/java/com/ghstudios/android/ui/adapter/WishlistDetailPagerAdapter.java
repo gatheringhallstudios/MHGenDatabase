@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ghstudios.android.ui.detail.WishlistDataComponentFragment;
-import com.ghstudios.android.ui.detail.WishlistDataDetailFragment;
+import com.ghstudios.android.features.wishlist.WishlistDataComponentFragment;
+import com.ghstudios.android.features.wishlist.WishlistDataDetailFragment;
 
 public class WishlistDetailPagerAdapter extends FragmentPagerAdapter {
     // Tab titles
