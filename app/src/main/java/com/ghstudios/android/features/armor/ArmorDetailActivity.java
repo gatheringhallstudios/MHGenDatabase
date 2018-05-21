@@ -42,7 +42,7 @@ public class ArmorDetailActivity extends GenericTabActivity {
         mAdapter = new ArmorDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
     }
 
     @Override

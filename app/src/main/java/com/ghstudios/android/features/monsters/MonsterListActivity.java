@@ -27,7 +27,7 @@ public class MonsterListActivity extends GenericTabActivity {
         mAdapter = new MonsterGridPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
         // Tag as top level activity
         super.setAsTopLevel();

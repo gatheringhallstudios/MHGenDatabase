@@ -34,7 +34,7 @@ public class SkillTreeDetailActivity extends GenericTabActivity {
         mAdapter = new SkillTreeDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
     }
 

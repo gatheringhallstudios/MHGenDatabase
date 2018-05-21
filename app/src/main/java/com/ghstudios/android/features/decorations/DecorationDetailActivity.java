@@ -43,7 +43,7 @@ public class DecorationDetailActivity extends GenericTabActivity {
         mAdapter = new DecorationDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
     }
 

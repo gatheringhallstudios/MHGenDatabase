@@ -42,7 +42,7 @@ public class PalicoWeaponDetailActivity extends GenericTabActivity {
         PalicoWeaponPagerAdapter mAdapter = new PalicoWeaponPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
     }
 
     @Override

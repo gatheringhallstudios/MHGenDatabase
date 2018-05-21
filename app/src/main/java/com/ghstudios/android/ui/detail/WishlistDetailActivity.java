@@ -36,7 +36,7 @@ public class WishlistDetailActivity extends GenericTabActivity implements Wishli
         mAdapter = new WishlistDetailPagerAdapter(getSupportFragmentManager(), id);
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
     }
 

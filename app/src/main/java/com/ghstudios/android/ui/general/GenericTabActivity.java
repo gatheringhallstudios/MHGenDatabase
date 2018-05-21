@@ -3,7 +3,9 @@ package com.ghstudios.android.ui.general;
 import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -14,13 +16,12 @@ import com.ghstudios.android.mhgendatabase.R;
 
 public abstract class GenericTabActivity extends GenericActionBarActivity {
 
-	protected Fragment detail;
-    protected SlidingTabLayout mSlidingTabLayout;
+    protected Fragment detail;
 
-	@SuppressLint("NewApi")
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @SuppressLint("NewApi")
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_tab);
 
@@ -31,24 +32,21 @@ public abstract class GenericTabActivity extends GenericActionBarActivity {
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        // Set up tabs
-        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        //mSlidingTabLayout.setCustomTabView(R.layout.sliding_tab_layout, R.id.text1);
-
-        // Distribute evenly if we have less than 4 tabs
-        mSlidingTabLayout.setDistributeEvenlyLimit(4);
-
-        Point size = new Point();
-        getWindowManager().getDefaultDisplay().getSize(size);
-
-        int width = size.x;
-
-        mSlidingTabLayout.setMinimumWidth(width);
-
-
         setTitle(R.string.app_name);
         super.setupDrawer(); // Needs to be called after setContentView
         // Disabled by request. Turns into BACK button
         //super.enableDrawerIndicator(); // Enable drawer toggle button
-	}
+    }
+
+    public void setViewPager(ViewPager pager) {
+        TabLayout layout = findViewById(R.id.tab_layout);
+
+        if (pager.getAdapter().getCount() > 4) {
+            layout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        } else {
+            layout.setTabMode(TabLayout.MODE_FIXED);
+        }
+
+        layout.setupWithViewPager(pager);
+    }
 }

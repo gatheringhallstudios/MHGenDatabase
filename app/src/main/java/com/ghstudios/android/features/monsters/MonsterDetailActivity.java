@@ -38,7 +38,7 @@ public class MonsterDetailActivity extends GenericTabActivity {
         //mAdapter.RemoveTab("Low-Rank");
         //mAdapter.notifyDataSetChanged();
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
     }
 

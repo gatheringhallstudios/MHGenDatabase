@@ -19,12 +19,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.ghstudios.android.ui.general.SlidingTabLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id = "@+id/sliding_tabs"
-                android:background="@color/primary_color">
-            </com.ghstudios.android.ui.general.SlidingTabLayout>
+            <include
+                android:id="@+id/tab_layout"
+                layout="@layout/tab_layout_generic" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"

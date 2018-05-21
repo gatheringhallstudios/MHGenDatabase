@@ -30,7 +30,7 @@ public class PalicoActivity extends GenericTabActivity {
         mAdapter = new PalicoPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
 
-        mSlidingTabLayout.setViewPager(viewPager);
+        setViewPager(viewPager);
 
         // Tag as top level activity
         super.setAsTopLevel();
