@@ -57,6 +57,19 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_monsters">Monsters</string>
+    <string name="drawer_weapons">Weapons</string>
+    <string name="drawer_armor">Armor</string>
+    <string name="drawer_quests">Quests</string>
+    <string name="drawer_items">Items</string>
+    <string name="drawer_palicos">Palicos</string>
+    <string name="drawer_combining">Combining</string>
+    <string name="drawer_locations">Locations</string>
+    <string name="drawer_decorations">Decorations</string>
+    <string name="drawer_skills">Skills</string>
+    <string name="drawer_asb">Armor Set Builder</string>
+    <string name="drawer_wishlists">Wishlists</string>
+
     <string name="logo_description">Logo</string>
     <string-array name="drawer_items">
         <item>"Monsters,icons_items/Book-White.png"</item>
