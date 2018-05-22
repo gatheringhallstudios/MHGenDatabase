@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
-import com.ghstudios.android.ui.detail.ComponentListFragment;
+import com.ghstudios.android.components.ComponentListFragment;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 

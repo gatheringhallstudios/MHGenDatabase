@@ -25,7 +25,7 @@ import com.ghstudios.android.data.database.PalicoWeaponCursor;
 import com.ghstudios.android.loader.PalicoWeaponListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.PalicoWeaponClickListener;
-import com.ghstudios.android.ui.general.DrawSharpness;
+import com.ghstudios.android.components.DrawSharpness;
 
 import java.io.IOException;
 import java.io.InputStream;

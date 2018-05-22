@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.adapter;
+package com.ghstudios.android.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.WeaponListEntry;
+import com.ghstudios.android.components.WeaponListEntry;
 
 /**
  * Created by Mark on 3/3/2015.

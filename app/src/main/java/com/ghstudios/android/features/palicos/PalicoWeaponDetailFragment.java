@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.loader.PalicoWeaponLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.DrawSharpness;
+import com.ghstudios.android.components.DrawSharpness;
 
 /**
  * Created by Joseph on 7/10/2016.

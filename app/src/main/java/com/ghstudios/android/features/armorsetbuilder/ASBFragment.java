@@ -15,7 +15,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.ResourceUtils;
+import com.ghstudios.android.ResourceUtils;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 
 /**

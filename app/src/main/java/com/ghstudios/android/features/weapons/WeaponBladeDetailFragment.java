@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.DrawSharpness;
+import com.ghstudios.android.components.DrawSharpness;
 
 public class WeaponBladeDetailFragment extends WeaponDetailFragment{
 

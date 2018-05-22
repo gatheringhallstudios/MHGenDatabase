@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.adapter;
+package com.ghstudios.android.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
-import com.ghstudios.android.ui.general.WeaponListEntry;
+import com.ghstudios.android.ClickListeners.WeaponClickListener;
+import com.ghstudios.android.components.WeaponListEntry;
 import com.oissela.software.multilevelexpindlistview.MultiLevelExpIndListAdapter;
 import com.oissela.software.multilevelexpindlistview.Utils;
 

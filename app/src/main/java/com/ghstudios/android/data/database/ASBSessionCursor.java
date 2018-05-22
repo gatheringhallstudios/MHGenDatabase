@@ -3,9 +3,10 @@ package com.ghstudios.android.data.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+
+import com.ghstudios.android.ResourceUtils;
 import com.ghstudios.android.data.classes.*;
 import com.ghstudios.android.mhgendatabase.*;
-import com.ghstudios.android.ui.general.*;
 
 public class ASBSessionCursor extends CursorWrapper {
 

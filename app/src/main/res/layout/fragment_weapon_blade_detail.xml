@@ -164,7 +164,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="@string/weapon_sharpness" />
 
-            <com.ghstudios.android.ui.general.DrawSharpness
+            <com.ghstudios.android.components.DrawSharpness
                 android:id="@+id/detail_weapon_blade_sharpness"
                 android:layout_width="160dp"
                 android:layout_height="20dp"

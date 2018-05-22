@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.general;
+package com.ghstudios.android;
 
 import android.content.*;
 import android.support.annotation.*;

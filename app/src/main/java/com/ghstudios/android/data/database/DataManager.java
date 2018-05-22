@@ -31,7 +31,7 @@ import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.classes.WyporiumTrade;
-import com.ghstudios.android.ui.general.WeaponListEntry;
+import com.ghstudios.android.components.WeaponListEntry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
