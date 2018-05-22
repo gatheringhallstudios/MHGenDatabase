@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.arena;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

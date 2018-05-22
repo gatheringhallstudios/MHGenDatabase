@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.detail;
+package com.ghstudios.android.features.arena;
 
 import java.io.IOException;
 
@@ -20,20 +20,20 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ghstudios.android.data.classes.MonsterToArena;
-import com.ghstudios.android.data.database.MonsterToArenaCursor;
-import com.ghstudios.android.features.monsters.MonsterDetailPagerActivity;
-import com.ghstudios.android.loader.MonsterToArenaListCursorLoader;
+import com.ghstudios.android.data.classes.ArenaReward;
+import com.ghstudios.android.data.database.ArenaRewardCursor;
+import com.ghstudios.android.features.items.ItemDetailPagerActivity;
+import com.ghstudios.android.loader.ArenaQuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
-public class ArenaQuestMonsterFragment extends ListFragment implements
+public class ArenaQuestRewardFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
 	private static final String ARG_ARENA_QUEST_ID = "ARENA_QUEST_ID";
 
-	public static ArenaQuestMonsterFragment newInstance(long id) {
+	public static ArenaQuestRewardFragment newInstance(long id) {
 		Bundle args = new Bundle();
 		args.putLong(ARG_ARENA_QUEST_ID, id);
-		ArenaQuestMonsterFragment f = new ArenaQuestMonsterFragment();
+		ArenaQuestRewardFragment f = new ArenaQuestRewardFragment();
 		f.setArguments(args);
 		return f;
 	}
@@ -43,7 +43,14 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 		super.onCreate(savedInstanceState);
 
 		// Initialize the loader to load the list of runs
-		getLoaderManager().initLoader(R.id.arena_quest_monster_fragment, getArguments(), this);
+		getLoaderManager().initLoader(R.id.arena_quest_reward_fragment, getArguments(), this);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.fragment_arena_quest_reward_list, null);
+		return v;
 	}
 
 	@SuppressLint("NewApi")
@@ -51,18 +58,17 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		// You only ever load the runs, so assume this is the case
 		long arenaId = args.getLong(ARG_ARENA_QUEST_ID, -1);
-
-		return new MonsterToArenaListCursorLoader(getActivity(), 
-				MonsterToArenaListCursorLoader.FROM_ARENA,
-				arenaId);
+		
+		return new ArenaQuestRewardListCursorLoader(getActivity(), 
+				ArenaQuestRewardListCursorLoader.FROM_ARENA_QUEST, arenaId);
 	}
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
 
-		MonsterToArenaListCursorAdapter adapter = new MonsterToArenaListCursorAdapter(
-				getActivity(), (MonsterToArenaCursor) cursor);
+		ArenaQuestRewardListCursorAdapter adapter = new ArenaQuestRewardListCursorAdapter(
+				getActivity(), (ArenaRewardCursor) cursor);
 		setListAdapter(adapter);
 
 	}
@@ -77,19 +83,18 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// The id argument will be the Monster ID; CursorAdapter gives us this
 		// for free
-		Intent i = new Intent(getActivity(), MonsterDetailPagerActivity.class);
-		i.putExtra(MonsterDetailPagerActivity.EXTRA_MONSTER_ID, (long) v.getTag());
+		Intent i = new Intent(getActivity(), ItemDetailPagerActivity.class);
+		i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, (long) v.getTag());
 		startActivity(i);
 	}
 
-	private static class MonsterToArenaListCursorAdapter extends CursorAdapter {
+	private static class ArenaQuestRewardListCursorAdapter extends CursorAdapter {
 
-		private MonsterToArenaCursor mMonsterToArenaCursor;
+		private ArenaRewardCursor mArenaRewardCursor;
 
-		public MonsterToArenaListCursorAdapter(Context context,
-				MonsterToArenaCursor cursor) {
+		public ArenaQuestRewardListCursorAdapter(Context context, ArenaRewardCursor cursor) {
 			super(context, cursor, 0);
-			mMonsterToArenaCursor = cursor;
+			mArenaRewardCursor = cursor;
 		}
 
 		@Override
@@ -97,36 +102,39 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_arena_quest_monster,
+			return inflater.inflate(R.layout.fragment_arena_quest_reward_listitem,
 					parent, false);
 		}
 
 		@Override
 		public void bindView(View view, Context context, Cursor cursor) {
 			// Get the item for the current row
-			MonsterToArena monsterToArena = mMonsterToArenaCursor
-					.getMonsterToArena();
+			ArenaReward arenaReward = mArenaRewardCursor.getArenaReward();
 
 			// Set up the text view
 			LinearLayout itemLayout = (LinearLayout) view
 					.findViewById(R.id.listitem);
-			ImageView monsterImageView = (ImageView) view
-					.findViewById(R.id.detail_monster_image);
-			TextView monsterTextView = (TextView) view
-					.findViewById(R.id.detail_monster_label);
-			
-			String cellMonsterText = monsterToArena.getMonster().getName();
-			String cellTraitText = monsterToArena.getMonster().getTrait(); 
-			
-			if (!cellTraitText.equals("")) {
-				cellMonsterText = cellMonsterText + " (" + cellTraitText + ")";
-			}
-			
-			monsterTextView.setText(cellMonsterText);
+			ImageView itemImageView = (ImageView) view
+					.findViewById(R.id.item_image);
+
+			TextView itemTextView = (TextView) view.findViewById(R.id.item);
+			TextView amountTextView = (TextView) view.findViewById(R.id.amount);
+			TextView percentageTextView = (TextView) view
+					.findViewById(R.id.percentage);
+
+			String cellItemText = arenaReward.getItem().getName();
+			int cellAmountText = arenaReward.getStackSize();
+			int cellPercentageText = arenaReward.getPercentage();
+
+			itemTextView.setText(cellItemText);
+			amountTextView.setText("" + cellAmountText);
+
+			String percent = "" + cellPercentageText + "%";
+			percentageTextView.setText(percent);
 
 			Drawable i = null;
-			String cellImage = "icons_monster/"
-					+ monsterToArena.getMonster().getFileLocation();
+			String cellImage = "icons_items/" + arenaReward.getItem().getFileLocation();
+			
 			try {
 				i = Drawable.createFromStream(
 						context.getAssets().open(cellImage), null);
@@ -134,9 +142,9 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 				e.printStackTrace();
 			}
 
-			monsterImageView.setImageDrawable(i);
+			itemImageView.setImageDrawable(i);
 
-			itemLayout.setTag(monsterToArena.getMonster().getId());
+			itemLayout.setTag(arenaReward.getItem().getId());
 		}
 	}
 

@@ -109,16 +109,16 @@
 
         <!-- ARENA QUEST SECTION -->
         <activity
-            android:name="com.ghstudios.android.ui.list.ArenaQuestListActivity"
+            android:name="com.ghstudios.android.features.arena.ArenaQuestListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.ui.detail.ArenaQuestDetailPagerActivity"
+            android:name="com.ghstudios.android.features.arena.ArenaQuestDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.ui.list.ArenaQuestListActivity" />
+                android:value="com.ghstudios.android.features.arena.ArenaQuestListActivity" />
         </activity>
 
         <!-- SKILL TREE SECTION -->

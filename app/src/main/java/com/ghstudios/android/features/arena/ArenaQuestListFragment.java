@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list;
+package com.ghstudios.android.features.arena;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.ArenaQuest;
 import com.ghstudios.android.data.database.ArenaQuestCursor;
 import com.ghstudios.android.loader.ArenaQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.detail.ArenaQuestDetailPagerActivity;
+import com.ghstudios.android.features.arena.ArenaQuestDetailPagerActivity;
 
 public class ArenaQuestListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

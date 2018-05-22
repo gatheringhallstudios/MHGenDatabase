@@ -1,6 +1,4 @@
-package com.ghstudios.android.ui.detail;
-
-import android.view.Menu;
+package com.ghstudios.android.features.arena;
 
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.ui.general.BasePagerActivity;
