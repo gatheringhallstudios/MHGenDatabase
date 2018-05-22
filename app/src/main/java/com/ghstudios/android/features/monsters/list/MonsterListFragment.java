@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.monsters;
+package com.ghstudios.android.features.monsters.list;
 
 import android.content.Context;
 import android.content.res.AssetManager;

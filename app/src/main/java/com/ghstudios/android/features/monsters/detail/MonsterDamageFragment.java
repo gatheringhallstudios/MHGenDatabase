@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.monsters;
+package com.ghstudios.android.features.monsters.detail;
 
 import java.io.IOException;
 import java.io.InputStream;
