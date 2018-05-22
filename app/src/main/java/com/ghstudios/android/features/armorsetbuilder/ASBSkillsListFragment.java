@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSession.*;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
+import com.ghstudios.android.ClickListeners.SkillClickListener;
 
 import java.util.Comparator;
 import java.util.List;

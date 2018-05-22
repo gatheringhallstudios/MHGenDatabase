@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.general;
+package com.ghstudios.android;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -35,7 +35,6 @@ import android.widget.TextView;
 
 import com.ghstudios.android.features.monsters.MonsterListPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.dialog.AboutDialogFragment;
 import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
@@ -48,7 +47,6 @@ import com.ghstudios.android.features.skills.SkillTreeListActivity;
 import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
 import com.ghstudios.android.features.wishlist.WishlistListActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 import java.io.IOException;
 

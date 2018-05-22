@@ -1,8 +1,8 @@
 package com.ghstudios.android.features.quests;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class QuestDetailPagerActivity extends BasePagerActivity {
     /**

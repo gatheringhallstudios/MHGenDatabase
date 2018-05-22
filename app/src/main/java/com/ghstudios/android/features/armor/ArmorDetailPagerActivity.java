@@ -10,8 +10,8 @@ import com.ghstudios.android.ui.detail.ComponentListFragment;
 import com.ghstudios.android.ui.detail.ItemToSkillFragment;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class ArmorDetailPagerActivity extends BasePagerActivity {
     /**

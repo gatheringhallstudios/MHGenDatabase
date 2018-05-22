@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.adapter;
+package com.ghstudios.android;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

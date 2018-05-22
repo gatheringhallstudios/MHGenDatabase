@@ -1,8 +1,8 @@
 package com.ghstudios.android.features.palicos;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 /**
  * Created by Joseph on 7/9/2016.

@@ -24,7 +24,7 @@ import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.database.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
+import com.ghstudios.android.ClickListeners.BasicItemClickListener;
 
 public class LocationRankFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

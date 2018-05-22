@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.ClickListeners;
+package com.ghstudios.android.ClickListeners;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,14 @@ import android.view.View;
 
 import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 
-public class WyporiumTradeClickListener implements View.OnClickListener {
+/**
+ * Created by Mark on 2/24/2015.
+ */
+public class BasicItemClickListener implements View.OnClickListener {
     private Context c;
     private Long id;
 
-    public WyporiumTradeClickListener(Context context, Long id) {
+    public BasicItemClickListener(Context context, Long id) {
         super();
         this.id = id;
         this.c = context;

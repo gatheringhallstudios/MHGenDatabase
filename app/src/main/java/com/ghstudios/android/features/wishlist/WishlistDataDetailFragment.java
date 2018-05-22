@@ -30,7 +30,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 
 import java.io.IOException;
 

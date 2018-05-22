@@ -20,7 +20,7 @@ import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.database.MonsterHabitatCursor;
 import com.ghstudios.android.loader.MonsterHabitatListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
+import com.ghstudios.android.ClickListeners.MonsterClickListener;
 
 import java.io.IOException;
 

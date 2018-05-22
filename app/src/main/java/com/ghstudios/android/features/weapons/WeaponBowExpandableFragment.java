@@ -3,8 +3,8 @@ package com.ghstudios.android.features.weapons;
 import android.os.Bundle;
 import android.view.View;
 
-import com.ghstudios.android.ui.adapter.WeaponExpandableListBowAdapter;
-import com.ghstudios.android.ui.adapter.WeaponExpandableListGeneralAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListBowAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListGeneralAdapter;
 
 /**
  * Created by Mark on 3/5/2015.

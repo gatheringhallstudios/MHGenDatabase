@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.database.ItemToSkillTreeCursor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
+import com.ghstudios.android.ClickListeners.SkillClickListener;
 
 // note: used by armor and decorations. Can't move to features yet
 public class ItemToSkillFragment extends ListFragment implements

@@ -22,7 +22,7 @@ import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.ComponentCursor;
 import com.ghstudios.android.loader.ComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 
 public class ItemComponentFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

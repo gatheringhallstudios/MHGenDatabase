@@ -6,8 +6,8 @@ import android.view.MenuInflater;
 
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class WishlistDetailPagerActivity extends BasePagerActivity implements WishlistDataDetailFragment.RefreshActivityTitle{
     /**

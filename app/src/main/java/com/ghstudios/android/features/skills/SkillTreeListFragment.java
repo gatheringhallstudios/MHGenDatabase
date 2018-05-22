@@ -19,7 +19,7 @@ import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.SkillTreeCursor;
 import com.ghstudios.android.loader.SkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
+import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 public class SkillTreeListFragment extends ListFragment implements

@@ -3,8 +3,8 @@ package com.ghstudios.android.features.weapons;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.ghstudios.android.ui.general.GenericActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.GenericActivity;
+import com.ghstudios.android.MenuSection;
 
 public class WeaponListActivity extends GenericActivity {
     public static final String EXTRA_WEAPON_TYPE =

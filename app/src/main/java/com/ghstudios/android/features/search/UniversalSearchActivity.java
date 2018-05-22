@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.GenericActivity;
+import com.ghstudios.android.GenericActivity;
 
 /**
  * Created by Carlos on 8/3/2015.

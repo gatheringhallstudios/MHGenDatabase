@@ -19,7 +19,7 @@ import com.ghstudios.android.data.database.MonsterToQuestCursor;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.MonsterToQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
+import com.ghstudios.android.ClickListeners.QuestClickListener;
 
 public class MonsterQuestFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

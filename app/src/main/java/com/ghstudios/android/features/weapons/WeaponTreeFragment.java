@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.database.WeaponCursor;
 import com.ghstudios.android.loader.WeaponTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
+import com.ghstudios.android.ClickListeners.WeaponClickListener;
 
 public class WeaponTreeFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

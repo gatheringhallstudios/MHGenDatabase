@@ -5,8 +5,8 @@ import android.content.Intent;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class ArmorListPagerActivity extends BasePagerActivity {
 

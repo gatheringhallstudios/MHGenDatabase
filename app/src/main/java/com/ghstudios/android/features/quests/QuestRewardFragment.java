@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
+import com.ghstudios.android.ClickListeners.BasicItemClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.database.QuestRewardCursor;

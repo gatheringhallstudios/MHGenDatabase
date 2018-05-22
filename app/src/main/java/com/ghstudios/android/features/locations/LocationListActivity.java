@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.Menu;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.general.GenericActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.GenericActivity;
+import com.ghstudios.android.MenuSection;
 
 public class LocationListActivity extends GenericActivity {
 

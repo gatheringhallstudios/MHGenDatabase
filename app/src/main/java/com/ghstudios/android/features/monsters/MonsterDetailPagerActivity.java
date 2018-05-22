@@ -8,8 +8,8 @@ import com.ghstudios.android.features.monsters.detail.MonsterRewardFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterStatusFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterSummaryFragment;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class MonsterDetailPagerActivity extends BasePagerActivity {
     /**

@@ -2,8 +2,8 @@ package com.ghstudios.android.features.items;
 
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.combining.CombiningListFragment;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 public class ItemDetailPagerActivity extends BasePagerActivity {
     /**

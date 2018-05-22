@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.list.adapter;
+package com.ghstudios.android;
 
 /**
  * 2015

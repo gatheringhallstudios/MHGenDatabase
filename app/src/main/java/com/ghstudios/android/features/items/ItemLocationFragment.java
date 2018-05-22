@@ -17,7 +17,7 @@ import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.database.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.LocationClickListener;
+import com.ghstudios.android.ClickListeners.LocationClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 public class ItemLocationFragment extends ListFragment implements

@@ -18,17 +18,12 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.S;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.database.ComponentCursor;
 import com.ghstudios.android.loader.ComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 // this is a general component fragment maybe. Don't move until we know what to do with it
 public class ComponentListFragment extends ListFragment implements

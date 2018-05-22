@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
+import com.ghstudios.android.ClickListeners.QuestClickListener;
 
 import java.util.ArrayList;
 

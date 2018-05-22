@@ -17,7 +17,7 @@ import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.database.QuestRewardCursor;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
+import com.ghstudios.android.ClickListeners.QuestClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 
 public class ItemQuestFragment extends ListFragment implements

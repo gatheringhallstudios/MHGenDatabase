@@ -7,9 +7,9 @@ import android.support.v4.content.Loader;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.loader.ASBSessionLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.adapter.PagerTab;
-import com.ghstudios.android.ui.general.BasePagerActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
+import com.ghstudios.android.PagerTab;
+import com.ghstudios.android.BasePagerActivity;
+import com.ghstudios.android.MenuSection;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,7 +18,7 @@ import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 import java.io.IOException;

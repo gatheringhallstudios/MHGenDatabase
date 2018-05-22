@@ -24,7 +24,7 @@ import com.ghstudios.android.data.database.ItemToSkillTreeCursor;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
+import com.ghstudios.android.ClickListeners.ArmorClickListener;
 
 public class SkillTreeArmorFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

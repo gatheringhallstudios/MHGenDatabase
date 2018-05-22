@@ -35,7 +35,7 @@ import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 import com.ghstudios.android.features.weapons.WeaponDetailPagerActivity;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -19,16 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.PalicoWeapon;
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.PalicoWeaponCursor;
 import com.ghstudios.android.loader.PalicoWeaponListCursorLoader;
-import com.ghstudios.android.loader.SQLiteCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
+import com.ghstudios.android.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.ui.general.DrawSharpness;
 
 import java.io.IOException;

@@ -21,7 +21,7 @@ import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.database.MonsterCursor;
 import com.ghstudios.android.loader.MonsterListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
+import com.ghstudios.android.ClickListeners.MonsterClickListener;
 
 import java.io.IOException;
 import java.io.InputStream;

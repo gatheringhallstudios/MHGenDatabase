@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.ClickListeners;
+package com.ghstudios.android.ClickListeners;
 
 import android.content.Context;
 import android.content.Intent;
