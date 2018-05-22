@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.general;
+package com.ghstudios.android.components;
 
 import android.content.Context;
 import android.util.AttributeSet;

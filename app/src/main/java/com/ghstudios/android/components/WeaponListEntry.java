@@ -1,4 +1,4 @@
-package com.ghstudios.android.ui.general;
+package com.ghstudios.android.components;
 
 import com.ghstudios.android.data.classes.Weapon;
 import com.oissela.software.multilevelexpindlistview.MultiLevelExpIndListAdapter;
