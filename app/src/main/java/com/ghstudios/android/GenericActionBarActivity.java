@@ -38,8 +38,6 @@ import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
 import com.ghstudios.android.features.wishlist.WishlistListActivity;
 
-import java.io.IOException;
-
 import de.cketti.library.changelog.ChangeLog;
 
 /*
@@ -82,6 +80,14 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
     public ActionOnCloseListener actionOnCloseListener;
 
+
+    /**
+     * Method that returns the MenuSection value that the activity belongs to.
+     * Override this to set the selected Drawer item.
+     * @return
+     */
+    protected abstract int getSelectedSection();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +95,6 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         // Display changelog on first run after update
         ChangeLog cl = new ChangeLog(this);
         if (cl.isFirstRun()) {
-            //If this broke
             cl.getLogDialog().show();
         }
 
@@ -160,6 +165,28 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 //                mDrawerLayout.closeDrawers();
 
         int itemId = item.getItemId();
+
+        // Handle "Other" menu first.
+        switch (itemId) {
+            case R.id.change_log:
+                ChangeLog cl = new ChangeLog(this);
+                cl.getFullLogDialog().show();
+                return true;
+
+            case R.id.about:
+                FragmentManager fm = getSupportFragmentManager();
+                AboutDialogFragment dialog = new AboutDialogFragment();
+                dialog.show(fm, DIALOG_ABOUT);
+                return true;
+
+            case R.id.send_feedback:
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setType("text/email");
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
+                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
+                startActivity(Intent.createChooser(email, "Send Feedback:"));
+                return true;
+        }
 
         // Set navigation actions
         Intent intent = new Intent();
@@ -245,13 +272,6 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * Method that returns the MenuSection value that the activity belongs to.
-     * Override this to set the selected Drawer item.
-     * @return
-     */
-    protected abstract int getSelectedSection();
-
     // Handle toggle state sync across configuration changes (rotation)
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -281,24 +301,6 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
                 Intent startSearch = new Intent(GenericActionBarActivity.this, UniversalSearchActivity.class);
                 startActivity(startSearch);
                 return true;
-
-            case R.id.change_log:
-                ChangeLog cl = new ChangeLog(this);
-                cl.getFullLogDialog().show();
-                return true;
-
-            case R.id.about:
-                FragmentManager fm = getSupportFragmentManager();
-                AboutDialogFragment dialog = new AboutDialogFragment();
-                dialog.show(fm, DIALOG_ABOUT);
-                return true;
-
-            case R.id.send_feedback:
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.setType("text/email");
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
-                startActivity(Intent.createChooser(email, "Send Feedback:"));
 
             default:
                 return super.onOptionsItemSelected(item);

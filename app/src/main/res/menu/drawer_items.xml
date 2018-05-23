@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_group_main"
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_monsters"
             android:icon="@drawable/drawer_monsters"
@@ -56,5 +59,21 @@
             android:id="@+id/nav_wishlists"
             android:icon="@drawable/drawer_wishlists"
             android:title="@string/drawer_wishlists" />
+    </group>
+
+    <group
+        android:id="@+id/nav_group_other"
+        android:title="Other">
+        <item
+            android:id="@+id/send_feedback"
+            android:title="Send Feedback"/>
+
+        <item
+            android:id="@+id/change_log"
+            android:title="Change Log"/>
+
+        <item
+            android:id="@+id/about"
+            android:title="@string/about"/>
     </group>
 </menu>

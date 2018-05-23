@@ -7,20 +7,4 @@
         android:title="@string/search"
         android:icon="@drawable/abc_ic_search_api_material"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/send_feedback"
-        android:showAsAction="never"
-        android:title="Send Feedback"/>
-
-    <item
-        android:id="@+id/change_log"
-        android:showAsAction="never"
-        android:title="Change Log"/>
-
-    <item
-        android:id="@+id/about"
-        android:showAsAction="never"
-        android:title="@string/about"/>
-
 </menu>
