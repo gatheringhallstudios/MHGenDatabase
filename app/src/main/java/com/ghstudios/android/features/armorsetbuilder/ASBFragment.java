@@ -15,7 +15,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ResourceUtils;
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 
 /**
@@ -202,7 +202,7 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
 
                 SkillTree skill1Tree = DataManager.get(context).getSkillTree(skill1Id);
                 talisman = new ASBTalisman(skill1Tree, skill1Points, typeIndex);
-                talisman.setName(ResourceUtils.splitStringInArrayByComma(R.array.talisman_names, typeIndex, 0, context) + " Talisman");
+                talisman.setName(MHUtils.splitStringInArrayByComma(R.array.talisman_names, typeIndex, 0, context) + " Talisman");
                 talisman.setNumSlots(slots);
 
                 if (data.hasExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2)) {

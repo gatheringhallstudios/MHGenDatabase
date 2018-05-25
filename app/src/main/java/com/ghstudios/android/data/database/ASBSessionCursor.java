@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.ghstudios.android.ResourceUtils;
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.*;
 import com.ghstudios.android.mhgendatabase.*;
 
@@ -152,7 +152,7 @@ public class ASBSessionCursor extends CursorWrapper {
 
         if (talismanExists == 1) {
             ASBTalisman talisman = new ASBTalisman();
-            talisman.setName(ResourceUtils.splitStringInArrayByComma(R.array.talisman_names, talismanType, 0, context) + " Talisman");
+            talisman.setName(MHUtils.splitStringInArrayByComma(R.array.talisman_names, talismanType, 0, context) + " Talisman");
             talisman.setTypeIndex(talismanType);
             talisman.setNumSlots(talismanSlots);
             talisman.setSkill1(getSkillTreeById(context, talismanSkill1Id));
