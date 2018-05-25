@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.features.items.basicdetail;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.features.items.basicdetail;
 
 import java.io.IOException;
 import java.io.InputStream;

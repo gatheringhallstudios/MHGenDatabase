@@ -29,29 +29,4 @@ public class ItemListActivity extends GenericActivity {
         super.detail = new ItemListFragment();
         return super.detail;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-//		Fragment newFragment;
-//		FragmentTransaction transaction;
-
-        switch (item.getItemId()) {
-//		case R.id.about:
-//			
-//			newFragment = QuestExpandableListFragment.newInstance("DLC");
-//			transaction = getSupportFragmentManager().beginTransaction();
-//
-//			transaction.replace(R.id.fragment_container, newFragment);
-//			// transaction.addToBackStack(null);
-//
-//			// Commit the transaction
-//			transaction.commit();
-//
-//			return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 }
