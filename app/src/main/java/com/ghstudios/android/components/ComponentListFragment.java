@@ -21,7 +21,7 @@ import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Component;
-import com.ghstudios.android.data.database.ComponentCursor;
+import com.ghstudios.android.data.cursors.ComponentCursor;
 import com.ghstudios.android.loader.ComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 

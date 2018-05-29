@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Location;
-import com.ghstudios.android.data.database.LocationCursor;
+import com.ghstudios.android.data.cursors.LocationCursor;
 import com.ghstudios.android.loader.LocationListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.LocationClickListener;

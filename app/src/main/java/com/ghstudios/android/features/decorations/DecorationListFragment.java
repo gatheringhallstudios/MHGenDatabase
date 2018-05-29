@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Decoration;
-import com.ghstudios.android.data.database.DecorationCursor;
+import com.ghstudios.android.data.cursors.DecorationCursor;
 import com.ghstudios.android.loader.DecorationListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.DecorationClickListener;

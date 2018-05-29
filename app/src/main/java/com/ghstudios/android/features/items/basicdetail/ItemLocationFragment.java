@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Gathering;
-import com.ghstudios.android.data.database.GatheringCursor;
+import com.ghstudios.android.data.cursors.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.LocationClickListener;
@@ -103,48 +103,22 @@ public class ItemLocationFragment extends ListFragment implements
             Gathering gathering = mGatheringCursor.getGathering();
 
             // Set up the text view
-            LinearLayout itemLayout = (LinearLayout) view
-                    .findViewById(R.id.listitem);
+            LinearLayout itemLayout = view.findViewById(R.id.listitem);
 
             TextView mapTextView = view.findViewById(R.id.map);
-            //TextView rankTextView = (TextView) view.findViewById(R.id.rank);
-            //TextView areaTextView = (TextView) view.findViewById(R.id.area);
             TextView methodTextView = view.findViewById(R.id.method);
             TextView rateTextView = view.findViewById(R.id.rate);
-            //ImageView mapView = (ImageView) view.findViewById(R.id.map_image);
 
-            
-            String mapName = gathering.getLocation().getName();
-            String rank = gathering.getRank();
-            String area = gathering.getArea();
             String method = gathering.getSite();
             long rate = (long) gathering.getRate();
             
             mapTextView.setText(gathering.getArea());
-            //rankTextView.setText(rank);
-            //areaTextView.setText(area);
             methodTextView.setText(method);
             rateTextView.setText(Long.toString(rate) + "%");
             
             itemLayout.setTag(gathering.getLocation().getId());
             itemLayout.setOnClickListener(new LocationClickListener(context,
                     gathering.getLocation().getId()));
-
-            //This code is too slow, needs async
-            /*
-            Drawable i = null;
-            String cellImage = "icons_location/"
-                    + gathering.getLocation().getFileLocation();
-            try {
-                i = Drawable.createFromStream(
-                        context.getAssets().open(cellImage), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            mapView.setImageDrawable(i);
-            */
-
         }
     }
 

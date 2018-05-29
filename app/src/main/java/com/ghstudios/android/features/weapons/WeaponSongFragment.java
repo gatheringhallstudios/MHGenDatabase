@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Melody;
-import com.ghstudios.android.data.database.HornMelodiesCursor;
+import com.ghstudios.android.data.cursors.HornMelodiesCursor;
 import com.ghstudios.android.loader.HornMelodyListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 

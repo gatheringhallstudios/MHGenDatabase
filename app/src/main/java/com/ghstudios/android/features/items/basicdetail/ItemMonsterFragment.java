@@ -17,12 +17,10 @@ import android.widget.TextView;
 
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.HuntingReward;
-import com.ghstudios.android.data.database.HuntingRewardCursor;
+import com.ghstudios.android.data.cursors.HuntingRewardCursor;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.MonsterClickListener;
-
-import java.io.IOException;
 
 public class ItemMonsterFragment extends ListFragment implements
         LoaderCallbacks<Cursor> {

@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.data.database.ComponentCursor;
+import com.ghstudios.android.data.cursors.ComponentCursor;
 import com.ghstudios.android.loader.ComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;

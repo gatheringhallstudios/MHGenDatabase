@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.PalicoWeapon;
-import com.ghstudios.android.data.database.PalicoWeaponCursor;
+import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
 import com.ghstudios.android.loader.PalicoWeaponListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.PalicoWeaponClickListener;

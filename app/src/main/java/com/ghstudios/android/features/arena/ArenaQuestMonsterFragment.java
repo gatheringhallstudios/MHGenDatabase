@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.MonsterToArena;
-import com.ghstudios.android.data.database.MonsterToArenaCursor;
+import com.ghstudios.android.data.cursors.MonsterToArenaCursor;
 import com.ghstudios.android.features.monsters.MonsterDetailPagerActivity;
 import com.ghstudios.android.loader.MonsterToArenaListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;

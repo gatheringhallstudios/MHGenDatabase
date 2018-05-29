@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.data.database.MultiObjectCursor;
+import com.ghstudios.android.data.cursors.MultiObjectCursor;
 
 /**
  * Created by Carlos on 8/5/2015.

@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Gathering;
-import com.ghstudios.android.data.database.GatheringCursor;
+import com.ghstudios.android.data.cursors.GatheringCursor;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.BasicItemClickListener;

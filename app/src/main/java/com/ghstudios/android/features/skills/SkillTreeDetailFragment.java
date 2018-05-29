@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Skill;
-import com.ghstudios.android.data.database.SkillCursor;
+import com.ghstudios.android.data.cursors.SkillCursor;
 import com.ghstudios.android.loader.SkillListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 

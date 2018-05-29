@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Habitat;
-import com.ghstudios.android.data.database.MonsterHabitatCursor;
+import com.ghstudios.android.data.cursors.MonsterHabitatCursor;
 import com.ghstudios.android.loader.MonsterHabitatListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.MonsterClickListener;

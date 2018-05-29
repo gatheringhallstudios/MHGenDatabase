@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.MonsterToQuest;
-import com.ghstudios.android.data.database.MonsterToQuestCursor;
+import com.ghstudios.android.data.cursors.MonsterToQuestCursor;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.MonsterToQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;

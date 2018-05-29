@@ -20,7 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.ItemToSkillTree;
-import com.ghstudios.android.data.database.ItemToSkillTreeCursor;
+import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;

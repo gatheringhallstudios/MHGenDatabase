@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.data.database.PalicoWeaponCursor;
+import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
 
 /**
  * Created by Joseph on 7/10/2016.

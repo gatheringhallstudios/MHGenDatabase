@@ -23,7 +23,7 @@ import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.data.database.MonsterAilmentCursor;
+import com.ghstudios.android.data.cursors.MonsterAilmentCursor;
 import com.ghstudios.android.loader.MonsterAilmentCursorLoader;
 import com.ghstudios.android.loader.MonsterLoader;
 import com.ghstudios.android.mhgendatabase.R;

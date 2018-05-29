@@ -15,17 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.data.database.ItemCursor;
+import com.ghstudios.android.data.cursors.ItemCursor;
 import com.ghstudios.android.loader.ItemListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
-
-import java.io.IOException;
 
 public class ItemListFragment extends ListFragment implements
         LoaderCallbacks<Cursor> {

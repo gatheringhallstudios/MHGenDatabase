@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToMaterial;
-import com.ghstudios.android.data.database.ItemToMaterialCursor;
+import com.ghstudios.android.data.cursors.ItemToMaterialCursor;
 import com.ghstudios.android.loader.ItemToMaterialListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;

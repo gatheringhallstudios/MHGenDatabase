@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Combining;
-import com.ghstudios.android.data.database.CombiningCursor;
+import com.ghstudios.android.data.cursors.CombiningCursor;
 import com.ghstudios.android.loader.CombiningListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.BasicItemClickListener;

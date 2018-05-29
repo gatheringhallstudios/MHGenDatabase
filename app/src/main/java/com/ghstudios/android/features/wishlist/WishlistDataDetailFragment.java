@@ -27,7 +27,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.data.database.WishlistDataCursor;
+import com.ghstudios.android.data.cursors.WishlistDataCursor;
 import com.ghstudios.android.loader.WishlistDataListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;

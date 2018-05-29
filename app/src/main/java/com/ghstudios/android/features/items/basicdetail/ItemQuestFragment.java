@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.QuestReward;
-import com.ghstudios.android.data.database.QuestRewardCursor;
+import com.ghstudios.android.data.cursors.QuestRewardCursor;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.QuestClickListener;
