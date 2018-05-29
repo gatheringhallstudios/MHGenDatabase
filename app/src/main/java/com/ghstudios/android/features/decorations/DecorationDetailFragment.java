@@ -21,18 +21,19 @@ import com.ghstudios.android.loader.DecorationLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DecorationDetailFragment extends Fragment {
     private static final String ARG_DECORATION_ID = "DECORATION_ID";
 
-    private Decoration mDecoration;
-
-    private TextView mDecorationLabelTextView;
-    private ImageView mDecorationIconImageView;
-    private TextView rareTextView;
-    private TextView maxTextView;
-    private TextView buyTextView;
-    private TextView sellTextView;
-    private TextView slotsReqTextView;
+    @BindView(R.id.detail_decoration_label) TextView mDecorationLabelTextView;
+    @BindView(R.id.detail_decoration_image) ImageView mDecorationIconImageView;
+    @BindView(R.id.rare) TextView rareTextView;
+    @BindView(R.id.max) TextView maxTextView;
+    @BindView(R.id.buy) TextView buyTextView;
+    @BindView(R.id.sell) TextView sellTextView;
+    @BindView(R.id.slots_req) TextView slotsReqTextView;
 
     public static DecorationDetailFragment newInstance(long decorationId) {
         Bundle args = new Bundle();
@@ -70,14 +71,7 @@ public class DecorationDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_decoration_detail,
                 container, false);
 
-        mDecorationLabelTextView = view.findViewById(R.id.detail_decoration_label);
-        mDecorationIconImageView = view.findViewById(R.id.detail_decoration_image);
-
-        rareTextView = view.findViewById(R.id.rare);
-        maxTextView = view.findViewById(R.id.max);
-        sellTextView = view.findViewById(R.id.sell);
-        buyTextView = view.findViewById(R.id.buy);
-        slotsReqTextView = view.findViewById(R.id.slots_req);
+        ButterKnife.bind(this, view);
 
         // If the originator of this fragment's activity was the Armor Set Builder...
         if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
@@ -94,14 +88,18 @@ public class DecorationDetailFragment extends Fragment {
         return view;
     }
 
-    private void updateUI() {
-        String cellText = mDecoration.getName();
-        String cellImage = "icons_items/" + mDecoration.getFileLocation();
-        String cellRare = "" + mDecoration.getRarity();
-        String cellMax = "" + mDecoration.getCarryCapacity();
-        String cellBuy = "" + mDecoration.getBuy() + "z";
-        String cellSell = "" + mDecoration.getSell() + "z";
-        String cellSlotsReq = "" + mDecoration.getSlotsString();
+    /**
+     * Updates the UI to set the decoration data.
+     * @param decoration
+     */
+    private void populateDecoration(Decoration decoration) {
+        String cellText = decoration.getName();
+        String cellImage = "icons_items/" + decoration.getFileLocation();
+        String cellRare = "" + decoration.getRarity();
+        String cellMax = "" + decoration.getCarryCapacity();
+        String cellBuy = "" + decoration.getBuy() + "z";
+        String cellSell = "" + decoration.getSell() + "z";
+        String cellSlotsReq = "" + decoration.getSlotsString();
 
         if (cellBuy.equals("0z")) {
             cellBuy = "-";
@@ -126,14 +124,13 @@ public class DecorationDetailFragment extends Fragment {
 
         @Override
         public Loader<Decoration> onCreateLoader(int id, Bundle args) {
-            return new DecorationLoader(getActivity(),
-                    args.getLong(ARG_DECORATION_ID));
+            long decorationId = args.getLong(ARG_DECORATION_ID);
+            return new DecorationLoader(getActivity(), decorationId);
         }
 
         @Override
-        public void onLoadFinished(Loader<Decoration> loader, Decoration run) {
-            mDecoration = run;
-            updateUI();
+        public void onLoadFinished(Loader<Decoration> loader, Decoration deco) {
+            populateDecoration(deco);
         }
 
         @Override
