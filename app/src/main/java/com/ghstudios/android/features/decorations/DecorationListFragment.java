@@ -54,7 +54,7 @@ public class DecorationListFragment extends ListFragment implements
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_generic_list_search, container, false);
 
-        EditText inputSearch = (EditText) v.findViewById(R.id.input_search);
+        EditText inputSearch = v.findViewById(R.id.input_search);
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
