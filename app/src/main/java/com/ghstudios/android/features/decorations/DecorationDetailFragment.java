@@ -23,7 +23,6 @@ import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.loader.DecorationLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,18 +75,6 @@ public class DecorationDetailFragment extends Fragment {
                 container, false);
 
         ButterKnife.bind(this, view);
-
-        // If the originator of this fragment's activity was the Armor Set Builder...
-        if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-            Button selectButton = view.findViewById(R.id.select_button);
-            selectButton.setVisibility(View.VISIBLE);
-            selectButton.setOnClickListener(v -> {
-                Intent intent = getActivity().getIntent();
-                intent.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, getArguments().getLong(ARG_DECORATION_ID)); // We put the armor's ID number as an extra of the intent.
-                getActivity().setResult(Activity.RESULT_OK, intent);
-                getActivity().finish();
-            });
-        }
 
         return view;
     }

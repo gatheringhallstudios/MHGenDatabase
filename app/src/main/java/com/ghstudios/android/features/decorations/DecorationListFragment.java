@@ -98,7 +98,7 @@ public class DecorationListFragment extends ListFragment implements
     }
 
 
-    private static class DecorationListCursorAdapter extends CursorAdapter {
+    private class DecorationListCursorAdapter extends CursorAdapter {
 
         private DecorationCursor mDecorationCursor;
 
@@ -191,7 +191,12 @@ public class DecorationListFragment extends ListFragment implements
                 itemImageView.setAlpha((fitsInArmor) ? 1.0f : 0.5f);
 
                 if (fitsInArmor) {
-                    itemLayout.setOnClickListener(new DecorationClickListener(context, decoration.getId(), true, activity));
+                    itemLayout.setOnClickListener(v -> {
+                        Intent intent = getActivity().getIntent();
+                        intent.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, decoration.getId());
+                        getActivity().setResult(Activity.RESULT_OK, intent);
+                        getActivity().finish();
+                    });
                 }
             }
             else {
