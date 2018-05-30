@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="titleText" format="string" />
     <attr name="labelText" format="string" />
     <attr name="valueText" format="string" />
 
@@ -21,5 +22,9 @@
     <declare-styleable name="ColumnLabelTextCell">
         <attr name="labelText" />
         <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemRecipeCell">
+        <attr name="titleText" />
     </declare-styleable>
 </resources>

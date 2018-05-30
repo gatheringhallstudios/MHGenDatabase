@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -118,52 +118,25 @@
                 app:valueText="-1"/>
         </LinearLayout>
 
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/craft_label"
-            style="@style/text_small"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:layout_marginTop="8dp"
-            android:elevation="8dp"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-            android:textColor="@color/accent_color"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/skill_list"
-
-            android:text="Craft"/>
-
         <LinearLayout
-            android:id="@+id/component_list"
+            android:id="@+id/recipe_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/craft_label">
+            app:layout_constraintTop_toBottomOf="@id/skill_list">
 
-            <com.ghstudios.android.components.IconLabelTextCell
+            <com.ghstudios.android.components.ItemRecipeCell
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:iconSrc="@drawable/drawer_decorations"
-                app:labelText="Bloodrun Jewel"
-                app:valueText="1"
-                tools:visibility="visible" />
-            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:titleText="Recipe 1"/>
+            <com.ghstudios.android.components.ItemRecipeCell
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:iconSrc="@drawable/drawer_items"
-                app:labelText="Rath Medulla"
-                app:valueText="1"
-                tools:visibility="visible" />
-            <com.ghstudios.android.components.IconLabelTextCell
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:iconSrc="@drawable/drawer_items"
-                app:labelText="Mega Demondrug"
-                app:valueText="2"
-                tools:visibility="visible" />
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:titleText="Recipe 2"/>
         </LinearLayout>
 
         <Button
@@ -176,7 +149,7 @@
             android:elevation="3dp"
             android:text="@string/asb_action_select"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/component_list"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_list"
             tools:text="Select"
             tools:visibility="visible" />
 
