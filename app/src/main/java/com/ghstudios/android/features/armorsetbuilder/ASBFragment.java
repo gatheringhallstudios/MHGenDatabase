@@ -13,7 +13,7 @@ import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
@@ -174,7 +174,7 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
         ADD_DECORATION {
             @Override
             void perform(ASBSession session, Context context, Intent data) {
-                long decorationId = data.getLongExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, -1);
+                long decorationId = data.getLongExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, -1);
                 int pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
 
                 Decoration decoration = DataManager.get(context).getDecoration(decorationId);

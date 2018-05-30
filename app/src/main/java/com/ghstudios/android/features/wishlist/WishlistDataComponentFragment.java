@@ -30,7 +30,7 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.features.items.ItemDetailPagerActivity;
 import com.ghstudios.android.features.weapons.WeaponDetailPagerActivity;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
@@ -148,8 +148,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 				i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, mId);
 				break;
 			case "Decoration":
-				i = new Intent(getActivity(), DecorationDetailPagerActivity.class);
-				i.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, mId);
+				i = new Intent(getActivity(), DecorationDetailActivity.class);
+				i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
 				break;
 			default:
 				i = new Intent(getActivity(), ItemDetailPagerActivity.class);

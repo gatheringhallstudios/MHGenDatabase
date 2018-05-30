@@ -114,6 +114,13 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
+    <style name="HorizontalDivider">
+        <item name = "android:layout_width">match_parent</item>
+        <item name = "android:layout_height">2dp</item>
+        <item name = "android:layout_margin">@dimen/margin_medium</item>
+        <item name = "android:background">@color/text_color_secondary</item>
+    </style>
+
     <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
     <style name="FullScreenActivity" parent = "AppTheme">
         <item name="android:windowBackground">@null</item>

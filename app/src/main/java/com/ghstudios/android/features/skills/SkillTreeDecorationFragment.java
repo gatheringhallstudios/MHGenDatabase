@@ -24,7 +24,7 @@ import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 
 public class SkillTreeDecorationFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -62,8 +62,8 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 		// for free
 
         //TODO reenable when decorations are complete.
-		Intent i = new Intent(getActivity(), DecorationDetailPagerActivity.class);
-		i.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, (long) v.getTag());
+		Intent i = new Intent(getActivity(), DecorationDetailActivity.class);
+		i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, (long) v.getTag());
 		startActivity(i);
 	}
 

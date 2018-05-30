@@ -1,10 +1,13 @@
 package com.ghstudios.android.features.decorations;
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.components.ItemToSkillFragment;
 import com.ghstudios.android.mhgendatabase.R;
@@ -13,7 +16,7 @@ import com.ghstudios.android.components.ComponentListFragment;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 
-public class DecorationDetailPagerActivity extends BasePagerActivity {
+public class DecorationDetailActivity extends GenericActivity {
     /**
      * A key for passing a decoration ID as a long
      */
@@ -23,31 +26,29 @@ public class DecorationDetailPagerActivity extends BasePagerActivity {
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
     private static final int REQUEST_ADD = 0;
 
-    private long decorationId;
     private String name;
+    private long decorationId;
 
     @Override
-    public void onAddTabs(TabAdder tabs) {
-        decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
-        name = DataManager.get(getApplicationContext()).getDecoration(decorationId).getName();
-        setTitle(name);
-
-        tabs.addTab("Detail", () ->
-                DecorationDetailFragment.newInstance(decorationId)
-        );
-
-        tabs.addTab("Skills", () ->
-                ItemToSkillFragment.newInstance(decorationId, "Decoration")
-        );
-
-        tabs.addTab("Components", () ->
-                ComponentListFragment.newInstance(decorationId)
-        );
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected int getSelectedSection() {
         return MenuSection.DECORATION;
+    }
+
+    @Override
+    protected Fragment createFragment() {
+        decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
+
+        // todo: refactor. Many pages in the app load data synchronously like this and then set the title
+        name = DataManager.get(getApplicationContext()).getDecoration(decorationId).getName();
+        setTitle(name);
+
+        super.detail = DecorationDetailFragment.newInstance(decorationId);
+        return super.detail;
     }
 
     @Override

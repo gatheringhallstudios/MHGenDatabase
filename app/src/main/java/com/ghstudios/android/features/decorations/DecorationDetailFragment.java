@@ -13,9 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.loader.DecorationLoader;
 import com.ghstudios.android.mhgendatabase.R;
@@ -29,11 +33,11 @@ public class DecorationDetailFragment extends Fragment {
 
     @BindView(R.id.detail_decoration_label) TextView mDecorationLabelTextView;
     @BindView(R.id.detail_decoration_image) ImageView mDecorationIconImageView;
-    @BindView(R.id.rare) TextView rareTextView;
-    @BindView(R.id.max) TextView maxTextView;
-    @BindView(R.id.buy) TextView buyTextView;
-    @BindView(R.id.sell) TextView sellTextView;
-    @BindView(R.id.slots_req) TextView slotsReqTextView;
+    @BindView(R.id.rare) ColumnLabelTextCell rareView;
+    @BindView(R.id.buy) ColumnLabelTextCell buyView;
+    @BindView(R.id.sell) ColumnLabelTextCell sellView;
+    @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
+    @BindView(R.id.skill_list) LinearLayout skillListView;
 
     public static DecorationDetailFragment newInstance(long decorationId) {
         Bundle args = new Bundle();
@@ -79,7 +83,7 @@ public class DecorationDetailFragment extends Fragment {
             selectButton.setVisibility(View.VISIBLE);
             selectButton.setOnClickListener(v -> {
                 Intent intent = getActivity().getIntent();
-                intent.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID, getArguments().getLong(ARG_DECORATION_ID)); // We put the armor's ID number as an extra of the intent.
+                intent.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, getArguments().getLong(ARG_DECORATION_ID)); // We put the armor's ID number as an extra of the intent.
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             });
@@ -96,7 +100,6 @@ public class DecorationDetailFragment extends Fragment {
         String cellText = decoration.getName();
         String cellImage = "icons_items/" + decoration.getFileLocation();
         String cellRare = "" + decoration.getRarity();
-        String cellMax = "" + decoration.getCarryCapacity();
         String cellBuy = "" + decoration.getBuy() + "z";
         String cellSell = "" + decoration.getSell() + "z";
         String cellSlotsReq = "" + decoration.getSlotsString();
@@ -109,14 +112,29 @@ public class DecorationDetailFragment extends Fragment {
         }
 
         mDecorationLabelTextView.setText(cellText);
-        rareTextView.setText(cellRare);
-        maxTextView.setText(cellMax);
-        buyTextView.setText(cellBuy);
-        sellTextView.setText(cellSell);
-        slotsReqTextView.setText(cellSlotsReq);
+        rareView.setValueText(cellRare);
+        buyView.setValueText(cellBuy);
+        sellView.setValueText(cellSell);
+        slotsReqView.setValueText(cellSlotsReq);
 
         Drawable image = MHUtils.loadAssetDrawable(getContext(), cellImage);
         mDecorationIconImageView.setImageDrawable(image);
+
+        skillListView.removeAllViews();
+
+        addSkillListItem(decoration.getSkill1Id(), decoration.getSkill1Name(), decoration.getSkill1Point());
+        if (decoration.getSkill2Point() != 0) {
+            addSkillListItem(decoration.getSkill2Id(), decoration.getSkill2Name(), decoration.getSkill2Point());
+        }
+    }
+
+    private void addSkillListItem(long skillId, String skillName, int points) {
+        IconLabelTextCell skillItem = new IconLabelTextCell(getContext());
+        skillItem.setLabelText(skillName);
+        skillItem.setValueText(String.valueOf(points));
+        skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
+
+        skillListView.addView(skillItem);
     }
 
     private class DecorationLoaderCallbacks implements

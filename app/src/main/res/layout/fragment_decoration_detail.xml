@@ -1,125 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-
-    <LinearLayout
+    
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/detail_decoration_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginLeft="@dimen/margin_large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/drawer_decorations"/>
 
         <TextView
             android:id="@+id/detail_decoration_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:gravity="center"
+            android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/text_color"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+            app:layout_constraintBottom_toBottomOf="@+id/detail_decoration_image"
+            app:layout_constraintStart_toEndOf="@+id/detail_decoration_image"
+            app:layout_constraintTop_toTopOf="@+id/detail_decoration_image"
+            tools:text="Attack Jwl 1" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
-            android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:id="@+id/data_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            app:layout_constraintTop_toBottomOf="@id/detail_decoration_image">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/slots"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:text="Rare:"
-                android:textColor="@color/text_color"/>
+                tools:valueText="●●●"
+                android:layout_weight="1"
+                app:labelText="Slots" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/rare"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:text="Max:"
-                android:textColor="@color/text_color"/>
+                tools:valueText="6"
+                android:layout_weight="1"
+                app:labelText="@string/item_rarity" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/buy"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:text="Buy:"
-                android:textColor="@color/text_color"/>
+                tools:valueText="80z"
+                android:layout_weight="1"
+                app:labelText="@string/item_buy"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/sell"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:text="Sell:"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Slots Req:"
-                android:textColor="@color/text_color"/>
-
+                tools:valueText="80z"
+                android:layout_weight="1"
+                app:labelText="@string/item_sell" />
         </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/divider1"
+            style="@style/HorizontalDivider"
+            app:layout_constraintTop_toBottomOf="@id/data_row" />
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/skill_label"
+            android:text="Skills"
+            style="@style/text_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+            android:textColor="@color/accent_color"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
+
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".8"
+            android:id="@+id/skill_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/skill_label"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/rare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:id="@+id/max"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:id="@+id/buy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:id="@+id/sell"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:id="@+id/slots_req"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:visibility="visible"
+                android:visibility="gone"
+                app:labelText="Attack"
+                app:valueText="1" />
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:visibility="visible"
+                android:visibility="gone"
+                app:labelText="Defense"
+                app:valueText="-1"/>
         </LinearLayout>
-    </LinearLayout>
 
-    <Button android:id="@+id/select_button"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/asb_action_select"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:elevation="3dp"
-        android:clickable="true"/>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/craft_label"
+            style="@style/text_small"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginTop="8dp"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+            android:textColor="@color/accent_color"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/skill_list"
 
-</LinearLayout>
+            android:text="Craft"/>
+
+        <LinearLayout
+            android:id="@+id/component_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/craft_label">
+
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:iconSrc="@drawable/drawer_decorations"
+                app:labelText="Bloodrun Jewel"
+                app:valueText="1"
+                tools:visibility="visible" />
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:iconSrc="@drawable/drawer_items"
+                app:labelText="Rath Medulla"
+                app:valueText="1"
+                tools:visibility="visible" />
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:iconSrc="@drawable/drawer_items"
+                app:labelText="Mega Demondrug"
+                app:valueText="2"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/select_button"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:elevation="3dp"
+            android:text="@string/asb_action_select"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/component_list"
+            tools:text="Select"
+            tools:visibility="visible" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

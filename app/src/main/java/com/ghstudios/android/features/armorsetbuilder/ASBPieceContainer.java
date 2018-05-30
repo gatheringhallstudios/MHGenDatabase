@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.decorations.DecorationDetailPagerActivity;
+import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 
@@ -386,9 +386,9 @@ public class ASBPieceContainer extends LinearLayout {
         }
 
         private void requestDecorationInfo(int decorationIndex) {
-            Intent i = new Intent(parentFragment.getActivity(), DecorationDetailPagerActivity.class);
+            Intent i = new Intent(parentFragment.getActivity(), DecorationDetailActivity.class);
 
-            i.putExtra(DecorationDetailPagerActivity.EXTRA_DECORATION_ID,
+            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID,
                     session.getDecoration(pieceIndex, decorationIndex).getId());
 
             parentFragment.startActivity(i);
