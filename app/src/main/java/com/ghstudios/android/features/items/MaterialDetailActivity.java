@@ -27,8 +27,8 @@ public class MaterialDetailActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = MaterialDetailItemFragment.newInstance(getIntent().getLongExtra(EXTRA_MATERIAL_ITEM_ID,0));
-        return super.detail;
+        long itemId = getIntent().getLongExtra(EXTRA_MATERIAL_ITEM_ID,0);
+        return MaterialDetailItemFragment.newInstance(itemId);
     }
 
     @Override

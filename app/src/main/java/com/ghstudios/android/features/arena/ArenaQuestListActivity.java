@@ -22,8 +22,7 @@ public class ArenaQuestListActivity extends GenericActivity {
 
     @Override
 	protected Fragment createFragment() {
-		super.detail = new ArenaQuestListFragment();
-		return super.detail;
+		return new ArenaQuestListFragment();
 	}
 
 }

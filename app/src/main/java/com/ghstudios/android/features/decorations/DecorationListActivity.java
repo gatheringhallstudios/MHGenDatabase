@@ -35,8 +35,7 @@ public class DecorationListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new DecorationListFragment();
-        return super.detail;
+        return new DecorationListFragment();
     }
 
     @Override

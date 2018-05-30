@@ -47,8 +47,7 @@ public class DecorationDetailActivity extends GenericActivity {
         name = DataManager.get(getApplicationContext()).getDecoration(decorationId).getName();
         setTitle(name);
 
-        super.detail = DecorationDetailFragment.newInstance(decorationId);
-        return super.detail;
+        return DecorationDetailFragment.newInstance(decorationId);
     }
 
     @Override

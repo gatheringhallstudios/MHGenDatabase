@@ -25,8 +25,7 @@ public class SkillTreeListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new SkillTreeListFragment();
-        return super.detail;
+        return new SkillTreeListFragment();
     }
 
 }

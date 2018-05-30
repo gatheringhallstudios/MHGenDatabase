@@ -51,7 +51,6 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
     protected static final String DIALOG_ABOUT = "about";
 
-    protected Fragment detail;
     private Handler mHandler;
 
     public ActionBarDrawerToggle mDrawerToggle;
@@ -362,9 +361,5 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         else{
             super.onBackPressed();
         }
-    }
-
-    public Fragment getDetail() {
-        return detail;
     }
 }

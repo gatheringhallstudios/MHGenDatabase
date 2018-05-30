@@ -27,8 +27,7 @@ public class WeaponSelectionListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new WeaponSelectionListFragment();
-        return super.detail;
+        return new WeaponSelectionListFragment();
     }
 
     @Override

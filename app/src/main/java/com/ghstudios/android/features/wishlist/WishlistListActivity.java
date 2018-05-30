@@ -34,8 +34,7 @@ public class WishlistListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new WishlistListFragment();
-        return super.detail;
+        return new WishlistListFragment();
     }
 
 }

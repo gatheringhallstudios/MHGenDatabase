@@ -15,6 +15,8 @@ import com.ghstudios.android.mhgendatabase.R;
 
 public abstract class GenericActivity extends GenericActionBarActivity {
 
+    private Fragment detail;
+
 	protected abstract Fragment createFragment();
 
     @Override
@@ -22,12 +24,13 @@ public abstract class GenericActivity extends GenericActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        setTitle(R.string.app_name);
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
-            fragment = createFragment();
+            detail = fragment = createFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment)
                     .commit();
         }
@@ -39,9 +42,12 @@ public abstract class GenericActivity extends GenericActionBarActivity {
         android.support.v7.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        setTitle(R.string.app_name);
         super.setupDrawer(); // Needs to be called after setContentView
         // Disabled by request. Turns into BACK button
         //super.enableDrawerIndicator(); // Enable drawer toggle button
+    }
+
+    public Fragment getDetail() {
+        return detail;
     }
 }

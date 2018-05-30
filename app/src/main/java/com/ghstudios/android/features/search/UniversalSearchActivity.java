@@ -21,8 +21,7 @@ public class UniversalSearchActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new UniversalSearchFragment();
-        return super.detail;
+        return new UniversalSearchFragment();
     }
 
     @Override
@@ -31,8 +30,8 @@ public class UniversalSearchActivity extends GenericActivity {
     }
 
     public void performSearch(String query) {
-        if (detail != null) {
-            ((UniversalSearchFragment)detail).performSearch(query);
+        if (getDetail() != null) {
+            ((UniversalSearchFragment)getDetail()).performSearch(query);
         }
     }
 

@@ -27,8 +27,7 @@ public class LocationListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new LocationListFragment();
-        return super.detail;
+        return new LocationListFragment();
     }
 
     @Override

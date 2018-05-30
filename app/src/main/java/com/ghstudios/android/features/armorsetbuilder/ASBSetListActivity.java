@@ -25,7 +25,6 @@ public class ASBSetListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new ASBSetListFragment();
-        return super.detail;
+        return new ASBSetListFragment();
     }
 }

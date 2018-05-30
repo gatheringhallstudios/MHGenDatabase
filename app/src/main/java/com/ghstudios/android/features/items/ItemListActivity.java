@@ -26,7 +26,6 @@ public class ItemListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        super.detail = new ItemListFragment();
-        return super.detail;
+        return new ItemListFragment();
     }
 }
