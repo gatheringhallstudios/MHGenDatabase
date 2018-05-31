@@ -1,24 +1,17 @@
 package com.ghstudios.android.features.decorations;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
@@ -26,6 +19,7 @@ import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
+import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
@@ -43,8 +37,7 @@ public class DecorationDetailFragment extends Fragment {
 
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
-    @BindView(R.id.detail_decoration_label) TextView mDecorationLabelTextView;
-    @BindView(R.id.detail_decoration_image) ImageView mDecorationIconImageView;
+    @BindView(R.id.titlebar) TitleBarCell titleView;
     @BindView(R.id.rare) ColumnLabelTextCell rareView;
     @BindView(R.id.buy) ColumnLabelTextCell buyView;
     @BindView(R.id.sell) ColumnLabelTextCell sellView;
@@ -119,14 +112,14 @@ public class DecorationDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        mDecorationLabelTextView.setText(decorationName);
+        Drawable image = MHUtils.loadAssetDrawable(getContext(), cellImage);
+
+        titleView.setIconDrawable(image);
+        titleView.setName(decorationName);
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);
         slotsReqView.setValueText(cellSlotsReq);
-
-        Drawable image = MHUtils.loadAssetDrawable(getContext(), cellImage);
-        mDecorationIconImageView.setImageDrawable(image);
 
         skillListView.removeAllViews();
 

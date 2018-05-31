@@ -116,9 +116,10 @@
 
     <style name="HorizontalDivider">
         <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">2dp</item>
-        <item name = "android:layout_margin">@dimen/margin_medium</item>
-        <item name = "android:background">@color/text_color_secondary</item>
+        <item name = "android:layout_height">1dp</item>
+        <item name = "android:layout_marginLeft">@dimen/margin_medium</item>
+        <item name = "android:layout_marginRight">@dimen/margin_medium</item>
+        <item name = "android:background">@color/divider_color</item>
     </style>
 
     <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
@@ -274,8 +275,8 @@
     <!-- Styles for weapon/item detail pages -->
     <style name="title_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72dp</item>
-        <item name="android:background">@color/background_title_color</item>
+        <item name="android:layout_height">84dp</item>
+        <item name="android:minHeight">84dp</item>
     </style>
 
     <style name="title_bar_text">
@@ -283,8 +284,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:paddingLeft">16dp</item>
-        <item name="android:textSize">26sp</item>
-        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="title_bar_alt_text" parent="title_bar_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
     </style>
 
     <style name="detail_value_text" parent="text_medium">

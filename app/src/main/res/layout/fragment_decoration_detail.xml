@@ -6,81 +6,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/detail_decoration_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginLeft="@dimen/margin_large"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/drawer_decorations"/>
-
-        <TextView
-            android:id="@+id/detail_decoration_label"
-            android:layout_width="wrap_content"
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:gravity="center"
-            android:textColor="@color/text_color"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/detail_decoration_image"
-            app:layout_constraintStart_toEndOf="@+id/detail_decoration_image"
-            app:layout_constraintTop_toTopOf="@+id/detail_decoration_image"
-            tools:text="Attack Jwl 1" />
+            tools:iconSrc="@drawable/drawer_decorations"
+            tools:labelText="Attack Jewel 3"/>
+
+        <FrameLayout
+            android:id="@+id/divider1"
+            style="@style/HorizontalDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
-            app:layout_constraintTop_toBottomOf="@id/detail_decoration_image"
+            android:layout_margin="@dimen/margin_large"
             app:justifyContent="space_between">
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/slots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:valueText="●●●"
-                app:labelText="Slots" />
+                app:labelText="Slots"
+                tools:valueText="●●●" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/rare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:valueText="6"
-                app:labelText="@string/item_rarity" />
+                app:labelText="@string/item_rarity"
+                tools:valueText="6" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/buy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:valueText="80z"
-                app:labelText="@string/item_buy"/>
+                app:labelText="@string/item_buy"
+                tools:valueText="80z" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:valueText="80z"
-                app:labelText="@string/item_sell" />
+                app:labelText="@string/item_sell"
+                tools:valueText="80z" />
         </com.google.android.flexbox.FlexboxLayout>
 
         <FrameLayout
-            android:id="@+id/divider1"
-            style="@style/HorizontalDivider"
-            app:layout_constraintTop_toBottomOf="@id/data_row" />
+            android:id="@+id/divider2"
+            style="@style/HorizontalDivider" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/skill_label"
-            android:text="Skills"
             style="@style/text_small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,68 +73,54 @@
             android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+            android:text="Skills"
             android:textColor="@color/accent_color"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/divider1" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/skill_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/skill_label"
             android:orientation="vertical">
 
             <com.ghstudios.android.components.IconLabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:visibility="visible"
                 android:visibility="gone"
                 app:labelText="Attack"
-                app:valueText="1" />
+                app:valueText="1"
+                tools:visibility="visible" />
+
             <com.ghstudios.android.components.IconLabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:visibility="visible"
                 android:visibility="gone"
                 app:labelText="Defense"
-                app:valueText="-1"/>
+                app:valueText="-1"
+                tools:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/recipe_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/skill_list">
+            android:orientation="vertical">
 
             <com.ghstudios.android.components.ItemRecipeCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                tools:visibility="visible"
-                app:titleText="Recipe 1"/>
+                app:titleText="Recipe 1"
+                tools:visibility="visible" />
+
             <com.ghstudios.android.components.ItemRecipeCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                tools:visibility="visible"
-                app:titleText="Recipe 2"/>
+                app:titleText="Recipe 2"
+                tools:visibility="visible" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/select_button"
-            style="@style/ButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            android:elevation="3dp"
-            android:text="@string/asb_action_select"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_list"
-            tools:text="Select"
-            tools:visibility="visible" />
 
-
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>

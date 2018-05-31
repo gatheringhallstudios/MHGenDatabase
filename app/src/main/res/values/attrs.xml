@@ -8,6 +8,11 @@
         <attr name="skillNumber" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="TitleBarCell">
+        <attr name="iconSrc" />
+        <attr name="labelText" />
+    </declare-styleable>
+
     <declare-styleable name="IconLabelTextCell">
         <attr name="iconSrc" />
         <attr name="labelText" />
