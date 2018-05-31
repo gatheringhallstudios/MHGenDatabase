@@ -1,12 +1,15 @@
 package com.ghstudios.android;
 
 import android.content.*;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.*;
 import android.util.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A static class that provides helper methods for accessing and managing the {@code res} directory.
@@ -63,5 +66,27 @@ public class MHUtils {
                 }
             } catch (IOException ex) { /* do nothing */ }
         }
+    }
+
+    public interface CursorProcessFunction<T, J extends Cursor> {
+        T getValue(J c);
+    }
+
+    /**
+     * Extracts every value in a cursor, returning a list of objects.
+     * This method exhausts the cursor.
+     * @param c
+     * @param process
+     * @param <T>
+     * @return
+     */
+    public static <T, J extends Cursor> List<T> cursorToList(J c, CursorProcessFunction<T, J> process) {
+        ArrayList<T> results = new ArrayList<>();
+
+        while (c.moveToNext()) {
+            results.add(process.getValue(c));
+        }
+
+        return results;
     }
 }

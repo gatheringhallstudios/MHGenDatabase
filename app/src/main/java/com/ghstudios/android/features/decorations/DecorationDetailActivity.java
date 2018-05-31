@@ -42,11 +42,6 @@ public class DecorationDetailActivity extends GenericActivity {
     @Override
     protected Fragment createFragment() {
         decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
-
-        // todo: refactor. Many pages in the app load data synchronously like this and then set the title
-        name = DataManager.get(getApplicationContext()).getDecoration(decorationId).getName();
-        setTitle(name);
-
         return DecorationDetailFragment.newInstance(decorationId);
     }
 

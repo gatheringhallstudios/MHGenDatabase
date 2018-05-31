@@ -2,10 +2,12 @@ package com.ghstudios.android.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,5 +60,16 @@ public class ItemRecipeCell extends ConstraintLayout {
 
     public void setTitleText(String title) {
         titleView.setText(title);
+    }
+
+    public View addItem(Drawable icon, String itemName, int qty) {
+        IconLabelTextCell cell = new IconLabelTextCell(getContext());
+        cell.setLeftIconDrawable(icon);
+        cell.setLabelText(itemName);
+        cell.setValueText(String.valueOf(qty));
+
+        itemsView.addView(cell);
+
+        return cell;
     }
 }

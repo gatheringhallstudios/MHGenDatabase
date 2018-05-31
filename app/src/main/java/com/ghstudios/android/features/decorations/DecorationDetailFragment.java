@@ -1,6 +1,7 @@
 package com.ghstudios.android.features.decorations;
 
 import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,18 +12,23 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.IconLabelTextCell;
+import com.ghstudios.android.components.ItemRecipeCell;
+import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
-import com.ghstudios.android.loader.DecorationLoader;
+import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.mhgendatabase.R;
+
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +43,7 @@ public class DecorationDetailFragment extends Fragment {
     @BindView(R.id.sell) ColumnLabelTextCell sellView;
     @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
     @BindView(R.id.skill_list) LinearLayout skillListView;
+    @BindView(R.id.recipe_list) LinearLayout recipeListView;
 
     public static DecorationDetailFragment newInstance(long decorationId) {
         Bundle args = new Bundle();
@@ -50,8 +57,6 @@ public class DecorationDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setRetainInstance(true);
-
         // Check for a Item ID as an argument, and find the item
         Bundle args = getArguments();
         if (args == null) {
@@ -63,9 +68,11 @@ public class DecorationDetailFragment extends Fragment {
             return;
         }
 
-        LoaderManager lm = getLoaderManager();
-        lm.initLoader(R.id.decoration_detail_fragment, args,
-                new DecorationLoaderCallbacks());
+        DecorationViewModel viewModel = ViewModelProviders.of(this).get(DecorationViewModel.class);
+        viewModel.setDecoration(decorationId);
+
+        viewModel.getDecorationData().observe(this, this::populateDecoration);
+        viewModel.getComponentData().observe(this, this::populateRecipes);
     }
 
     @Override
@@ -84,6 +91,8 @@ public class DecorationDetailFragment extends Fragment {
      * @param decoration
      */
     private void populateDecoration(Decoration decoration) {
+        getActivity().setTitle(decoration.getName());
+
         String cellText = decoration.getName();
         String cellImage = "icons_items/" + decoration.getFileLocation();
         String cellRare = "" + decoration.getRarity();
@@ -115,6 +124,25 @@ public class DecorationDetailFragment extends Fragment {
         }
     }
 
+    private void populateRecipes(Map<String, List<Component>> recipes) {
+        recipeListView.removeAllViews();
+
+        for (List<Component> recipe : recipes.values()) {
+            ItemRecipeCell cell = new ItemRecipeCell(getContext());
+            cell.setTitleText(recipe.get(0).getType());
+
+            for (Component component : recipe) {
+                Item item = component.getComponent();
+                Drawable itemIcon = MHUtils.loadAssetDrawable(getContext(), item.getItemImage());
+
+                View itemCell = cell.addItem(itemIcon, item.getName(), component.getQuantity());
+                itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
+            }
+
+            recipeListView.addView(cell);
+        }
+    }
+
     private void addSkillListItem(long skillId, String skillName, int points) {
         IconLabelTextCell skillItem = new IconLabelTextCell(getContext());
         skillItem.setLabelText(skillName);
@@ -122,25 +150,5 @@ public class DecorationDetailFragment extends Fragment {
         skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
 
         skillListView.addView(skillItem);
-    }
-
-    private class DecorationLoaderCallbacks implements
-            LoaderCallbacks<Decoration> {
-
-        @Override
-        public Loader<Decoration> onCreateLoader(int id, Bundle args) {
-            long decorationId = args.getLong(ARG_DECORATION_ID);
-            return new DecorationLoader(getActivity(), decorationId);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Decoration> loader, Decoration deco) {
-            populateDecoration(deco);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Decoration> loader) {
-            // Do nothing
-        }
     }
 }
