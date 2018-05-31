@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,6 +29,7 @@ import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
+import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
 
 import java.util.List;
@@ -36,6 +41,8 @@ import butterknife.ButterKnife;
 public class DecorationDetailFragment extends Fragment {
     private static final String ARG_DECORATION_ID = "DECORATION_ID";
 
+    private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
+
     @BindView(R.id.detail_decoration_label) TextView mDecorationLabelTextView;
     @BindView(R.id.detail_decoration_image) ImageView mDecorationIconImageView;
     @BindView(R.id.rare) ColumnLabelTextCell rareView;
@@ -44,6 +51,10 @@ public class DecorationDetailFragment extends Fragment {
     @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
     @BindView(R.id.skill_list) LinearLayout skillListView;
     @BindView(R.id.recipe_list) LinearLayout recipeListView;
+
+    // stored to allow add to wishlist to work
+    long decorationId;
+    String decorationName;
 
     public static DecorationDetailFragment newInstance(long decorationId) {
         Bundle args = new Bundle();
@@ -56,6 +67,7 @@ public class DecorationDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
         // Check for a Item ID as an argument, and find the item
         Bundle args = getArguments();
@@ -91,9 +103,9 @@ public class DecorationDetailFragment extends Fragment {
      * @param decoration
      */
     private void populateDecoration(Decoration decoration) {
-        getActivity().setTitle(decoration.getName());
+        decorationId = decoration.getId();
+        decorationName = decoration.getName();
 
-        String cellText = decoration.getName();
         String cellImage = "icons_items/" + decoration.getFileLocation();
         String cellRare = "" + decoration.getRarity();
         String cellBuy = "" + decoration.getBuy() + "z";
@@ -107,7 +119,7 @@ public class DecorationDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        mDecorationLabelTextView.setText(cellText);
+        mDecorationLabelTextView.setText(decorationName);
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);
@@ -150,5 +162,25 @@ public class DecorationDetailFragment extends Fragment {
         skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
 
         skillListView.addView(skillItem);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_to_wishlist:
+                FragmentManager fm = this.getFragmentManager();
+                WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
+                        .newInstance(decorationId, decorationName);
+                dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
