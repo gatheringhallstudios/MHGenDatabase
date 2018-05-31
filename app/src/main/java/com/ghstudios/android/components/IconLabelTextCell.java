@@ -9,6 +9,8 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +24,7 @@ import com.ghstudios.android.mhgendatabase.R;
  * data rows in RecyclerView or inside XML layouts.
  */
 
-public class IconLabelTextCell extends ConstraintLayout {
+public class IconLabelTextCell extends FrameLayout {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -70,7 +72,7 @@ public class IconLabelTextCell extends ConstraintLayout {
     public void init(Drawable drawable, String labelText, String valueText) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.cell_icon_label_text, this, true);
+        View v = inflater.inflate(R.layout.cell_icon_label_text, this, true);
 
         ButterKnife.bind(this);
 

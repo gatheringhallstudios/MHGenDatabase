@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/value_text"
         style="@style/detail_header_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
@@ -26,12 +26,14 @@
     <TextView
         android:id="@+id/label_text"
         style="@style/detail_subheader_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/value_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:text="Sell Price and more text" />
 
 </merge>

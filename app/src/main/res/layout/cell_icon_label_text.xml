@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:orientation="horizontal"
-    tools:parentTag="android.support.constraint.ConstraintLayout">
+    android:layout_height="@dimen/list_item_height"
+    tools:orientation="horizontal">
     <!-- This layout uses the merge tag so its actual layout is dependent on
     the class that inflates it. Use parentTag is used to preview the layout in the editor -->
 
@@ -13,10 +12,9 @@
         android:id="@+id/generic_icon"
         style="@style/main_image"
         android:layout_gravity="center_vertical"
-        android:layout_marginBottom="@dimen/margin_large"
+
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginLeft="@dimen/margin_large"
-        android:layout_marginTop="@dimen/margin_large"
         android:src="@drawable/question_mark_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,4 +48,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Some value" />
 
-</merge>
+</android.support.constraint.ConstraintLayout>
