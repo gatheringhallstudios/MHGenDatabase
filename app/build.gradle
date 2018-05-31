@@ -68,6 +68,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
 
+    implementation 'com.google.android:flexbox:1.0.0'
+
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1' // Support library for tab navigation with new Toolbar object
     // integration instructions here https://github.com/astuetz/PagerSlidingTabStrip
     compile 'org.apmem.tools:layouts:1.8@aar' // Library for flow layout
