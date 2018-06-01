@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:iconSrc="@drawable/drawer_decorations"
-            tools:labelText="Attack Jewel 3"/>
+            tools:titleText="Attack Jewel 3"/>
 
         <FrameLayout
             android:id="@+id/divider1"
@@ -60,24 +60,10 @@
                 tools:valueText="80z" />
         </com.google.android.flexbox.FlexboxLayout>
 
-        <FrameLayout
-            android:id="@+id/divider2"
-            style="@style/HorizontalDivider" />
-
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/skill_label"
-            style="@style/text_small"
+        <com.ghstudios.android.components.SectionHeaderCell
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="8dp"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-            android:text="Skills"
-            android:textColor="@color/accent_color"
-            android:textStyle="bold" />
+            app:labelText="@string/item_skills" />
 
         <LinearLayout
             android:id="@+id/skill_list"
@@ -101,6 +87,12 @@
                 app:valueText="-1"
                 tools:visibility="visible" />
         </LinearLayout>
+
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting" />
 
         <LinearLayout
             android:id="@+id/recipe_list"

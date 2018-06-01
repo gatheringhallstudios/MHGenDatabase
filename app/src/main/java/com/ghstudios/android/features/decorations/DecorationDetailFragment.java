@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -144,7 +145,11 @@ public class DecorationDetailFragment extends Fragment {
 
         for (List<Component> recipe : recipes.values()) {
             ItemRecipeCell cell = new ItemRecipeCell(getContext());
-            cell.setTitleText(recipe.get(0).getType());
+
+            // only show recipe title if there's more than one
+            if (recipes.size() > 1) {
+                cell.setTitleText(recipe.get(0).getType());
+            }
 
             for (Component component : recipe) {
                 Item item = component.getComponent();
@@ -163,6 +168,15 @@ public class DecorationDetailFragment extends Fragment {
         skillItem.setLabelText(skillName);
         skillItem.setValueText(String.valueOf(points));
         skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
+
+        Drawable icon = null;
+        if (points > 0) {
+            icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_good);
+        } else {
+            icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_bad);
+        }
+
+        skillItem.setLeftIconDrawable(icon);
 
         skillListView.addView(skillItem);
     }

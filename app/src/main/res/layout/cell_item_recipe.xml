@@ -5,26 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:orientation="vertical"
-    tools:parentTag="android.support.constraint.ConstraintLayout">
+    tools:parentTag="android.widget.LinearLayout">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.ghstudios.android.components.SubHeaderCell
         android:id="@+id/title"
-        style="@style/text_small"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:layout_marginTop="8dp"
-        android:elevation="8dp"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:textColor="@color/accent_color"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-
-        tools:text="Craft"/>
+        android:layout_height="wrap_content"
+        tools:labelText="Craft" />
 
     <LinearLayout
         android:id="@+id/list"

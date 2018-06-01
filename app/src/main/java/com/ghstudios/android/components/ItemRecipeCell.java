@@ -16,9 +16,9 @@ import com.ghstudios.android.mhgendatabase.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ItemRecipeCell extends ConstraintLayout {
+public class ItemRecipeCell extends LinearLayout {
     @BindView(R.id.title)
-    TextView titleView;
+    SubHeaderCell titleView;
 
     @BindView(R.id.list)
     LinearLayout itemsView;
@@ -50,6 +50,8 @@ public class ItemRecipeCell extends ConstraintLayout {
     }
 
     public void init(String title) {
+        setOrientation(VERTICAL);
+
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
         inflater.inflate(R.layout.cell_item_recipe, this, true);
 
@@ -59,7 +61,12 @@ public class ItemRecipeCell extends ConstraintLayout {
     }
 
     public void setTitleText(String title) {
-        titleView.setText(title);
+        titleView.setLabelText(title);
+        if (title != null && !title.isEmpty()) {
+            titleView.setVisibility(VISIBLE);
+        } else {
+            titleView.setVisibility(GONE);
+        }
     }
 
     public View addItem(Drawable icon, String itemName, int qty) {
