@@ -119,8 +119,11 @@
     <string name="item_sell">Sell</string>
     <string name="item_description">Description</string>
 
-    <!-- Wishlist stuff -->
+    <!-- Armor detail -->
+    <string name="armor_part">Part</string>
+    <string name="armor_defense">Defense</string>
 
+    <!-- Wishlist stuff -->
     <string name="wishlist_text_total">Total cost</string>
     <string-array name="test_array">
         <item>0</item>

@@ -138,7 +138,7 @@ public class ArmorExpandableListFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
-//		setContextMenu(v);
+//        setContextMenu(v);
 
         elv = (ExpandableListView) v
                 .findViewById(R.id.expandableListView);
@@ -262,10 +262,10 @@ public class ArmorExpandableListFragment extends Fragment {
         @Override
         public View getGroupView(int i, boolean b, View view,
                                  ViewGroup viewGroup) {
-//			TextView textView = new TextView(
-//					ArmorExpandableListFragment.this.getActivity());
-//			textView.setText(getGroup(i).toString());
-//			return textView;
+//            TextView textView = new TextView(
+//                    ArmorExpandableListFragment.this.getActivity());
+//            textView.setText(getGroup(i).toString());
+//            return textView;
 
             View v = view;
             Context context = viewGroup.getContext();
@@ -347,10 +347,10 @@ public class ArmorExpandableListFragment extends Fragment {
 
             return v;
 
-//			TextView textView = new TextView(
-//					ArmorExpandableListFragment.this.getActivity());
-//			textView.setText(getChild(groupPosition, childPosition).toString());
-//			return textView;
+//            TextView textView = new TextView(
+//                    ArmorExpandableListFragment.this.getActivity());
+//            textView.setText(getChild(groupPosition, childPosition).toString());
+//            return textView;
         }
 
         @Override
