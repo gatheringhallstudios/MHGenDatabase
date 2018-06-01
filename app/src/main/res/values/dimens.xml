@@ -4,6 +4,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="elevation_action_bar">8dp</dimen>
+
     <dimen name="generic_element_vertical_spacing">5dp</dimen>
     <dimen name="generic_element_horizontal_spacing">3dp</dimen>
     <dimen name="damage_table_item_height">24dp</dimen>

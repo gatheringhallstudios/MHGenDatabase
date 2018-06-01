@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 
 import com.ghstudios.android.mhgendatabase.R;
@@ -37,7 +39,12 @@ public abstract class BasePagerActivity extends GenericActionBarActivity {
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_tab);
+        setContentView(R.layout.activity_main);
+
+        // add the "pager" stuff to the layout
+        ViewGroup container = findViewById(R.id.fragment_container);
+        LayoutInflater inflater = this.getLayoutInflater();
+        inflater.inflate(R.layout.activity_pager, container, true);
 
         // Perform MHGUDatabase specific stuff
         doSpecialSetup();
