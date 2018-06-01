@@ -25,16 +25,11 @@
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_large"
-            app:justifyContent="space_between">
-
-            <com.ghstudios.android.components.ColumnLabelTextCell
-                android:id="@+id/slots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:labelText="Slots"
-                tools:valueText="●●●" />
+            android:layout_height="@dimen/title_full_height"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            app:justifyContent="space_between"
+            app:alignItems="center">
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/rare"
@@ -42,6 +37,13 @@
                 android:layout_height="wrap_content"
                 app:labelText="@string/item_rarity"
                 tools:valueText="6" />
+
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/slots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="Slots"
+                tools:valueText="●●●" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/buy"

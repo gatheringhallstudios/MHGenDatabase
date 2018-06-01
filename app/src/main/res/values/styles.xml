@@ -276,8 +276,8 @@
     <!-- Styles for weapon/item detail pages -->
     <style name="title_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">84dp</item>
-        <item name="android:minHeight">84dp</item>
+        <item name="android:layout_height">@dimen/title_full_height</item>
+        <item name="android:minHeight">@dimen/title_full_height</item>
     </style>
 
     <style name="title_bar_text">
