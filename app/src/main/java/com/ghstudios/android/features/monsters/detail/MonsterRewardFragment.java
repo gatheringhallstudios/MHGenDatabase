@@ -102,14 +102,14 @@ public class MonsterRewardFragment extends ListFragment implements
         setListAdapter(null);
     }
 
-//	@Override
-//	public void onListItemClick(ListView l, View v, int position, long id) {
-//		// The id argument will be the Monster ID; CursorAdapter gives us this
-//		// for free
-//		Intent i = new Intent(getActivity(), ItemDetailActivity.class);
-//		i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, (long) v.getTag());
-//		startActivity(i);
-//	}
+//    @Override
+//    public void onListItemClick(ListView l, View v, int position, long id) {
+//        // The id argument will be the Monster ID; CursorAdapter gives us this
+//        // for free
+//        Intent i = new Intent(getActivity(), ItemDetailActivity.class);
+//        i.putExtra(ItemDetailActivity.EXTRA_ITEM_ID, (long) v.getTag());
+//        startActivity(i);
+//    }
 
     private static class MonsterHuntingRewardListCursorAdapter extends SectionCursorAdapter {
 

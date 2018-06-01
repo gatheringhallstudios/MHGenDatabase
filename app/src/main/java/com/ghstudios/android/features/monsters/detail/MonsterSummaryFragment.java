@@ -248,9 +248,9 @@ public class MonsterSummaryFragment extends Fragment {
             mBombModDiv.setVisibility(View.VISIBLE);
 
             // Set new section names
-//			mWeaknessModText.setText("(" + mState + ")");
-//			mTrapModText.setText("(" + mState + ")");
-//			mBombModText.setText("(" + mState + ")");
+//            mWeaknessModText.setText("(" + mState + ")");
+//            mTrapModText.setText("(" + mState + ")");
+//            mBombModText.setText("(" + mState + ")");
 
             AmountShown = 0;
             //Loop through tier until an element is found. (All elements at that tier will be shown)
