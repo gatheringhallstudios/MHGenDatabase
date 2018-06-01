@@ -56,6 +56,8 @@
         <item name="android:clipToPadding">false</item>
 
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">

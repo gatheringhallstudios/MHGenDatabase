@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/title_preferences">
+
+    <SwitchPreference
+        android:key="JAPANESE_ENABLED"
+        android:title="@string/preference_japanese"
+        android:summary="@string/preference_japanese_description"/>
+</PreferenceScreen>

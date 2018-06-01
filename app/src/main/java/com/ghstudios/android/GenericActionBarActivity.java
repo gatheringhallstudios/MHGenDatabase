@@ -1,12 +1,14 @@
 package com.ghstudios.android;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.Preference;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ghstudios.android.features.monsters.MonsterListPagerActivity;
+import com.ghstudios.android.features.preferences.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
@@ -163,10 +166,16 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 //
 //                mDrawerLayout.closeDrawers();
 
+        Context ctx = GenericActionBarActivity.this;
         int itemId = item.getItemId();
 
         // Handle "Other" menu first.
         switch (itemId) {
+            case R.id.settings:
+                Intent preferences = new Intent(ctx, PreferencesActivity.class);
+                startActivity(preferences);
+                return true;
+
             case R.id.change_log:
                 ChangeLog cl = new ChangeLog(this);
                 cl.getFullLogDialog().show();
@@ -192,40 +201,40 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
         switch (itemId) {
             case MenuSection.MONSTERS: // Monsters
-                intent = new Intent(GenericActionBarActivity.this, MonsterListPagerActivity.class);
+                intent = new Intent(ctx, MonsterListPagerActivity.class);
                 break;
             case MenuSection.WEAPONS: // Weapons
-                intent = new Intent(GenericActionBarActivity.this, WeaponSelectionListActivity.class);
+                intent = new Intent(ctx, WeaponSelectionListActivity.class);
                 break;
             case MenuSection.ARMOR: // Armor
-                intent = new Intent(GenericActionBarActivity.this, ArmorListPagerActivity.class);
+                intent = new Intent(ctx, ArmorListPagerActivity.class);
                 break;
             case MenuSection.QUESTS: // Quests
-                intent = new Intent(GenericActionBarActivity.this, QuestListPagerActivity.class);
+                intent = new Intent(ctx, QuestListPagerActivity.class);
                 break;
             case MenuSection.ITEMS: // Items
-                intent = new Intent(GenericActionBarActivity.this, ItemListActivity.class);
+                intent = new Intent(ctx, ItemListActivity.class);
                 break;
             case MenuSection.PALICOS:
-                intent = new Intent(GenericActionBarActivity.this, PalicoPagerActivity.class);
+                intent = new Intent(ctx, PalicoPagerActivity.class);
                 break;
             case MenuSection.COMBINING: // Combining
-                intent = new Intent(GenericActionBarActivity.this, CombiningListActivity.class);
+                intent = new Intent(ctx, CombiningListActivity.class);
                 break;
             case MenuSection.LOCATIONS: // Locations
-                intent = new Intent(GenericActionBarActivity.this, LocationListActivity.class);
+                intent = new Intent(ctx, LocationListActivity.class);
                 break;
             case MenuSection.DECORATION: // Decorations
-                intent = new Intent(GenericActionBarActivity.this, DecorationListActivity.class);
+                intent = new Intent(ctx, DecorationListActivity.class);
                 break;
             case MenuSection.SKILL_TREES: // Skill Trees
-                intent = new Intent(GenericActionBarActivity.this, SkillTreeListActivity.class);
+                intent = new Intent(ctx, SkillTreeListActivity.class);
                 break;
             case MenuSection.ARMOR_SET_BUILDER: // Armor Set Builder
-                intent = new Intent(GenericActionBarActivity.this, ASBSetListActivity.class);
+                intent = new Intent(ctx, ASBSetListActivity.class);
                 break;
             case MenuSection.WISH_LISTS: // Wishlists
-                intent = new Intent(GenericActionBarActivity.this, WishlistListActivity.class);
+                intent = new Intent(ctx, WishlistListActivity.class);
                 break;
         }
 

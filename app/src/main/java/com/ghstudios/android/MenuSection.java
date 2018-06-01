@@ -12,6 +12,8 @@ import com.ghstudios.android.mhgendatabase.R;
  */
 
 public class MenuSection {
+    public static final int NONE = 0;
+
     // mapped to nav ids for compatibility with NavigationView drawer items
     public static final int MONSTERS = R.id.nav_monsters;
     public static final int WEAPONS = R.id.nav_weapons;
