@@ -1,5 +1,7 @@
 package com.ghstudios.android.features.monsters;
 
+import android.arch.lifecycle.ViewModelProviders;
+
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.monsters.detail.MonsterDamageFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterHabitatFragment;
@@ -21,7 +23,14 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long monsterId = getIntent().getLongExtra(EXTRA_MONSTER_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getMonster(monsterId).getName());
+
+        MonsterDetailViewModel viewModel = ViewModelProviders.of(this).get(MonsterDetailViewModel.class);
+        viewModel.setMonster(monsterId);
+
+        // set title once monster is loaded
+        viewModel.getMonsterData().observe(this, monster ->
+                setTitle(monster.getName())
+        );
 
         tabs.addTab("Summary", () ->
                 MonsterSummaryFragment.newInstance(monsterId)

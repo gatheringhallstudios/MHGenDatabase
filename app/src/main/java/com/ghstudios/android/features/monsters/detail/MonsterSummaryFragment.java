@@ -1,16 +1,16 @@
 package com.ghstudios.android.features.monsters.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,27 +19,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.data.classes.Monster;
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor;
-import com.ghstudios.android.loader.MonsterAilmentCursorLoader;
-import com.ghstudios.android.loader.MonsterLoader;
+import com.ghstudios.android.features.monsters.MonsterDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
 import org.apmem.tools.layouts.FlowLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MonsterSummaryFragment extends Fragment {
     private static final String ARG_MONSTER_ID = "MONSTER_ID";
 
-    private Bundle mBundle;
-
-    private Monster mMonster;
     private MonsterWeakness mWeakness;
 
     private TextView mMonsterLabelTextView;
@@ -62,32 +57,6 @@ public class MonsterSummaryFragment extends Fragment {
         MonsterSummaryFragment f = new MonsterSummaryFragment();
         f.setArguments(args);
         return f;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // Check for a Monster ID as an argument, and find the monster
-        Bundle args = getArguments();
-        if (args != null) {
-            long monsterId = args.getLong(ARG_MONSTER_ID, -1);
-            if (monsterId != -1) {
-                LoaderManager lm = getLoaderManager();
-                lm.initLoader(R.id.monster_detail_fragment, args, new MonsterLoaderCallbacks());
-            }
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -129,40 +98,38 @@ public class MonsterSummaryFragment extends Fragment {
         return view;
     }
 
-    private void updateUI() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        MonsterDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(MonsterDetailViewModel.class);
 
-        LayoutInflater inflater = getLayoutInflater(mBundle);
+        viewModel.getMonsterData().observe(this, (monster) -> {
+            String cellImage = "icons_monster/" + monster.getFileLocation();
+            Drawable monsterImage = MHUtils.loadAssetDrawable(getContext(), cellImage);
 
-        // Header
-        String cellText = mMonster.getName();
-        String cellImage = "icons_monster/" + mMonster.getFileLocation();
+            mMonsterLabelTextView.setText(monster.getName());
+            mMonsterIconImageView.setImageDrawable(monsterImage);
+        });
 
-        mMonsterLabelTextView.setText(cellText);
-        AssetManager manager = getActivity().getAssets();
-        try {
-            InputStream open = manager.open(cellImage);
-            Bitmap bitmap = BitmapFactory.decodeStream(open);
-            // Assign the bitmap to an ImageView in this layout
-            mMonsterIconImageView.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        viewModel.getMonsterWeaknessData().observe(this, this::updateWeaknesses);
 
-        updateWeaknessUI();
+        viewModel.getAilments().observe(this, (ailmentCursor) -> {
+            MonsterSummaryFragment.MonsterAilmentsCursorAdapter adapter
+                    = new MonsterSummaryFragment.MonsterAilmentsCursorAdapter(getActivity(), ailmentCursor);
 
+            // mAilmentsListView.setAdapter(adapter);
+            // Assign list items to LinearLayout instead of ListView
+
+            // mAilmentsLinearLayout should be the vertical LinearLayout that you substituted the listview with
+            for (int i = 0; i < adapter.getCount(); i++) {
+                View v = adapter.getView(i, null, mAilments);
+                mAilments.addView(v);
+            }
+        });
     }
 
     // Update weakness display after loader callback
-    private void updateWeaknessUI() {
-        // Weakness Section
-        int fire, water, thunder, ice, dragon, poison, paralysis, sleep, pitfalltrap,
-                shocktrap, flashbomb, sonicbomb, dungbomb, meat;
-
-
-        // Load ArrayList of weaknesses without using a loader
-        ArrayList<MonsterWeakness> weaknesses = DataManager.get(getActivity()).queryMonsterWeaknessArray(mMonster.getId());
-
-        if (weaknesses.size() == 0) return;
+    private void updateWeaknesses(List<MonsterWeakness> weaknesses) {
+        if (weaknesses == null || weaknesses.size() == 0) return;
 
         // Get "Normal" weaknesses
         mWeakness = weaknesses.get(0);
@@ -338,7 +305,8 @@ public class MonsterSummaryFragment extends Fragment {
 
     // Add small_icon to a particular LinearLayout
     private void addIcon(FlowLayout parentview, String imagelocation, String imagemodlocation) {
-        LayoutInflater inflater = getLayoutInflater(mBundle);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
         ImageView mImage; // Generic image holder
         ImageView mImageMod; // Modifier image holder
         View view; // Generic icon view holder
@@ -412,75 +380,5 @@ public class MonsterSummaryFragment extends Fragment {
             // Set ailment text
             mAilment.setText(mMonsterAilment.getAilment());
         }
-    }
-
-    // Loader to load data for this monster
-    private class MonsterLoaderCallbacks implements LoaderCallbacks<Monster> {
-
-        @Override
-        public Loader<Monster> onCreateLoader(int id, Bundle args) {
-            return new MonsterLoader(getActivity(), args.getLong(ARG_MONSTER_ID));
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Monster> loader, Monster run) {
-            mMonster = run;
-            LoaderManager lm = getLoaderManager();
-            Bundle args = new Bundle();
-            args.putLong(ARG_MONSTER_ID, run.getId());
-
-            // Load ailments data after monster is found
-            lm.initLoader(R.id.monster_ailments, args, new MonsterAilmentsLoaderCallbacks());
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Monster> loader) {
-            // Do nothing
-        }
-    }
-
-    // Loader to load the ailment data for this monster
-    private class MonsterAilmentsLoaderCallbacks implements LoaderCallbacks<Cursor> {
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-            // Get cursor based on Monster ID
-            return new MonsterAilmentCursorLoader(getActivity(), args.getLong(ARG_MONSTER_ID));
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-
-            // Get the cursor adapter
-            MonsterSummaryFragment.MonsterAilmentsCursorAdapter adapter = new MonsterSummaryFragment.MonsterAilmentsCursorAdapter(
-                    getActivity(), (MonsterAilmentCursor) cursor);
-
-            // mAilmentsListView.setAdapter(adapter);
-            // Assign list items to LinearLayout instead of ListView
-
-            // mAilmentsLinearLayout should be the vertical LinearLayout that you substituted the listview with
-            for (int i = 0; i < adapter.getCount(); i++) {
-                View v = adapter.getView(i, null, mAilments);
-                mAilments.addView(v);
-            }
-
-            // Update the UI after loaders are finished
-            updateUI();
-
-            getLoaderManager().destroyLoader(R.id.monster_ailments);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {
-        }
-    }
-
-    private String checkDamageValue(String damage) {
-        String ret = damage;
-        if (ret.equals("-1")) {
-            ret = "--";
-        } else if (ret.equals("-2")) {
-            ret = "?";
-        }
-        return ret;
     }
 }

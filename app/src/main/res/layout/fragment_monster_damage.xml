@@ -42,7 +42,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/cut"/>
+                    android:src="@drawable/cut"/>
 
                 <ImageView
                     android:id="@+id/impact"
@@ -50,7 +50,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/impact"/>
+                    android:src="@drawable/impact"/>
 
                 <ImageView
                     android:id="@+id/shot"
@@ -58,7 +58,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/shot"/>
+                    android:src="@drawable/shot"/>
 
                 <ImageView
                     android:id="@+id/ko"
@@ -66,7 +66,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/stun"/>
+                    android:src="@drawable/stun"/>
 
             </LinearLayout>
 
@@ -97,7 +97,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/fire"/>
+                    android:src="@drawable/fire"/>
 
                 <ImageView
                     android:id="@+id/water"
@@ -105,7 +105,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/water"/>
+                    android:src="@drawable/water"/>
 
                 <ImageView
                     android:id="@+id/ice"
@@ -113,7 +113,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/ice"/>
+                    android:src="@drawable/ice"/>
 
                 <ImageView
                     android:id="@+id/thunder"
@@ -121,7 +121,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/thunder"/>
+                    android:src="@drawable/thunder"/>
 
                 <ImageView
                     android:id="@+id/dragon"
@@ -129,7 +129,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    tools:src="@drawable/dragon"/>
+                    android:src="@drawable/dragon"/>
             </LinearLayout>
 
             <LinearLayout
