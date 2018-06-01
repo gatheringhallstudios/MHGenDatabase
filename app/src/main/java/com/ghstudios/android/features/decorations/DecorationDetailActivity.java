@@ -2,18 +2,9 @@ package com.ghstudios.android.features.decorations;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.ghstudios.android.GenericActivity;
-import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.components.ItemToSkillFragment;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
-import com.ghstudios.android.components.ComponentListFragment;
-import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 
 public class DecorationDetailActivity extends GenericActivity {
