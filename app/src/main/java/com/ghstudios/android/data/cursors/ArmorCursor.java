@@ -55,6 +55,7 @@ public class ArmorCursor extends CursorWrapper {
 		String name = getString(getColumnIndex(S.COLUMN_ITEMS_NAME));
 		String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
 		String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
+		String subType = getString(getColumnIndex(S.COLUMN_ITEMS_SUB_TYPE));
 		int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
 		int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
 		int buy = getInt(getColumnIndex(S.COLUMN_ITEMS_BUY));
@@ -67,6 +68,7 @@ public class ArmorCursor extends CursorWrapper {
 		armor.setName(name);
 		armor.setJpnName(jpnName);
 		armor.setType(type);
+		armor.setSubType(subType);
 		armor.setRarity(rarity);
 		armor.setCarryCapacity(carry_capacity);
 		armor.setBuy(buy);
