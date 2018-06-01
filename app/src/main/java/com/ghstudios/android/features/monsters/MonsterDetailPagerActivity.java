@@ -2,12 +2,10 @@ package com.ghstudios.android.features.monsters;
 
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.monsters.detail.MonsterDamageFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterHabitatFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterQuestFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterRewardFragment;
-import com.ghstudios.android.features.monsters.detail.MonsterStatusFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterSummaryFragment;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
@@ -38,10 +36,6 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
 
         tabs.addTab("Damage", () ->
                 MonsterDamageFragment.newInstance(monsterId)
-        );
-
-        tabs.addTab("Status", () ->
-                MonsterStatusFragment.newInstance(monsterId)
         );
 
         tabs.addTab("Habitat", () ->

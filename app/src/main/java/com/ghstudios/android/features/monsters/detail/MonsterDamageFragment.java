@@ -1,5 +1,6 @@
 package com.ghstudios.android.features.monsters.detail;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -18,10 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.MonsterDamage;
+import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.features.monsters.MonsterDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -32,7 +36,8 @@ public class MonsterDamageFragment extends Fragment {
     private ImageView mMonsterIconImageView;
     
     private LinearLayout mWeaponDamageTL, mElementalDamageTL;
-    private View mDividerView;
+
+    private TableLayout mStatusTable; // Location of table to add rows to
     
     public static MonsterDamageFragment newInstance(long monsterId) {
         Bundle args = new Bundle();
@@ -52,14 +57,14 @@ public class MonsterDamageFragment extends Fragment {
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_monster_damage, container, false);
         
-        mMonsterLabelTextView = (TextView) view.findViewById(R.id.detail_monster_label);
-        mMonsterIconImageView = (ImageView) view.findViewById(R.id.detail_monster_image);
+        mMonsterLabelTextView = view.findViewById(R.id.detail_monster_label);
+        mMonsterIconImageView = view.findViewById(R.id.detail_monster_image);
     
-        mWeaponDamageTL = (LinearLayout) view.findViewById(R.id.weapon_damage);
-        mElementalDamageTL = (LinearLayout) view.findViewById(R.id.elemental_damage);
+        mWeaponDamageTL = view.findViewById(R.id.weapon_damage);
+        mElementalDamageTL = view.findViewById(R.id.elemental_damage);
 
-        mDividerView = view.findViewById(R.id.divider);
-        
+        mStatusTable = view.findViewById(R.id.statusTable);
+
         return view;
     }
 
@@ -75,14 +80,13 @@ public class MonsterDamageFragment extends Fragment {
             mMonsterIconImageView.setImageDrawable(monsterImage);
         });
 
-        viewModel.getMonsterDamageData().observe(this, monsterDamages -> {
-            updateUI(monsterDamages);
-        });
+        viewModel.getMonsterDamageData().observe(this, this::populateDamage);
+        viewModel.getMonsterStatusData().observe(this, this::populateStatus);
     }
 
-    private void updateUI(List<MonsterDamage> damages) {
+    private void populateDamage(List<MonsterDamage> damages) {
         MonsterDamage damage = null;
-        String body_part, cut, impact, shot, ko, fire, water, ice, thunder, dragon;
+        String body_part;
         
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
 
@@ -157,5 +161,105 @@ public class MonsterDamageFragment extends Fragment {
             tv.setTypeface(null,Typeface.BOLD);
 
         return ret;
+    }
+
+    private void populateStatus(List<MonsterStatus> statuses) {
+        MonsterStatus currentStatus = null;
+        String status, initial, increase, max, duration, damage;
+        String imageFile;
+
+        LayoutInflater inflater = LayoutInflater.from(this.getContext());
+
+        for(int i = 0; i < statuses.size(); i++) {
+            TableRow wdRow = (TableRow) inflater.inflate(
+                    R.layout.fragment_monster_status_listitem, mStatusTable, false);
+
+            currentStatus = statuses.get(i);
+
+            // Get our strings and our views
+            status = currentStatus.getStatus();
+            initial = Long.toString(currentStatus.getInitial());
+            increase = Long.toString(currentStatus.getIncrease());
+            max = Long.toString(currentStatus.getMax());
+            duration = Long.toString(currentStatus.getDuration());
+            damage = Long.toString(currentStatus.getDamage());
+
+            String DefaultString = "-";
+
+            if(currentStatus.getInitial()==0)
+                initial=DefaultString;
+
+            if(currentStatus.getIncrease()==0)
+                increase = DefaultString;
+
+            if(currentStatus.getMax()==0)
+                max = DefaultString;
+
+            if(currentStatus.getDuration()==0)
+                duration = DefaultString;
+            else
+                duration += "s";
+
+            if(currentStatus.getDamage()==0)
+                damage = DefaultString;
+
+            ImageView statusImage = (ImageView) wdRow.findViewById(R.id.statusImage);
+            TextView initialView = (TextView) wdRow.findViewById(R.id.initial);
+            TextView increaseView = (TextView) wdRow.findViewById(R.id.increase);
+            TextView maxView = (TextView) wdRow.findViewById(R.id.max);
+            TextView durationView = (TextView) wdRow.findViewById(R.id.duration);
+            TextView damageView = (TextView) wdRow.findViewById(R.id.damage);
+
+            // Check which image to load
+            boolean image = true;
+            imageFile = "icons_monster_info/";
+            switch (status)
+            {
+                case "Poison":
+                    imageFile = imageFile + "Poison.png";
+                    break;
+                case "Sleep":
+                    imageFile = imageFile + "Sleep.png";
+                    break;
+                case "Para":
+                    imageFile = imageFile + "Paralysis.png";
+                    break;
+                case "KO":
+                    imageFile = imageFile + "Stun.png";
+                    break;
+                case "Exhaust":
+                    //statusView.setText(status);
+                    imageFile = imageFile + "exhaust.png";
+                    break;
+                case "Blast":
+                    imageFile = imageFile + "Blastblight.png";
+                    break;
+                case "Jump":
+                    //statusView.setText(status);
+                    imageFile = imageFile + "jump.png";
+                    break;
+                case "Mount":
+                    //statusView.setText(status);
+                    imageFile = imageFile + "mount.png";
+                    break;
+            }
+
+            // initialize our views
+            initialView.setText(initial);
+            increaseView.setText(increase);
+            maxView.setText(max);
+            durationView.setText(duration);
+            damageView.setText(damage);
+
+            if (image) {
+                Drawable draw = MHUtils.loadAssetDrawable(getContext(), imageFile);
+                android.view.ViewGroup.LayoutParams layoutParams = statusImage.getLayoutParams();
+                statusImage.setLayoutParams(layoutParams);
+
+                statusImage.setImageDrawable(draw);
+            }
+
+            mStatusTable.addView(wdRow);
+        }
     }
 }

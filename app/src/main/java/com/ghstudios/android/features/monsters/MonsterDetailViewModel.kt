@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.data.classes.MonsterDamage
+import com.ghstudios.android.data.classes.MonsterStatus
 import com.ghstudios.android.data.classes.MonsterWeakness
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor
 import com.ghstudios.android.data.database.DataManager
@@ -16,6 +17,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     val monsterData = MutableLiveData<Monster>()
     val monsterWeaknessData = MutableLiveData<List<MonsterWeakness>>()
     val monsterDamageData = MutableLiveData<List<MonsterDamage>>()
+    val monsterStatusData = MutableLiveData<List<MonsterStatus>>()
 
     var monsterId = -1L
 
@@ -28,15 +30,12 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
 
         Thread {
             // load and post monster first (high priority)
-            val monster = dataManager.getMonster(monsterId)
-            monsterData.postValue(monster)
+            monsterData.postValue(dataManager.getMonster(monsterId))
 
             // then load the rest
-            val weakness = dataManager.queryMonsterWeaknessArray(monsterId)
-            val damages = dataManager.queryMonsterDamageArray(monsterId)
-
-            monsterWeaknessData.postValue(weakness)
-            monsterDamageData.postValue(damages)
+            monsterWeaknessData.postValue(dataManager.queryMonsterWeaknessArray(monsterId))
+            monsterDamageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
+            monsterStatusData.postValue(dataManager.queryMonsterStatus(monsterId))
         }.start()
     }
 
