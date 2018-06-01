@@ -19,21 +19,21 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/label_text"
+        android:id="@+id/title_text"
         tools:text="Attack Jwl 1"
         style="@style/title_bar_text"
         app:layout_constraintStart_toEndOf="@id/generic_icon"
 
         app:layout_constraintTop_toTopOf="@id/generic_icon"
-        app:layout_constraintBottom_toTopOf="@id/label_alt_text"/>
+        app:layout_constraintBottom_toTopOf="@id/title_alt_text"/>
 
 
     <TextView
-        android:id="@+id/label_alt_text"
+        android:id="@+id/title_alt_text"
         tools:text="攻撃珠【１】"
         style="@style/title_bar_alt_text"
         app:layout_constraintStart_toEndOf="@id/generic_icon"
-        app:layout_constraintTop_toBottomOf="@id/label_text"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
         app:layout_constraintBottom_toBottomOf="@id/generic_icon"
 
         android:visibility="gone"

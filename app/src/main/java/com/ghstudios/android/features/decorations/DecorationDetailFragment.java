@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
@@ -121,7 +122,10 @@ public class DecorationDetailFragment extends Fragment {
         Drawable image = MHUtils.loadAssetDrawable(getContext(), cellImage);
 
         titleView.setIconDrawable(image);
-        titleView.setName(decorationName);
+        titleView.setTitleText(decorationName);
+        titleView.setAltTitleText(decoration.getJpnName());
+        titleView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);

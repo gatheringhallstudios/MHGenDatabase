@@ -1,33 +1,24 @@
 package com.ghstudios.android.features.armor;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Armor;
-import com.ghstudios.android.loader.ArmorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
@@ -120,8 +111,10 @@ public class ArmorDetailFragment extends Fragment {
     private void updateUI(Armor armor) {
         Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), armor.getItemImage());
 
-        titleBar.setName(armor.getName());
+        titleBar.setTitleText(armor.getName());
         titleBar.setIconDrawable(itemImage);
+        titleBar.setAltTitleText(armor.getJpnName());
+        titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
         String cellPart = "" + armor.getSlot();
         String cellDefense = "" + armor.getDefense() + "~" + armor.getMaxDefense();

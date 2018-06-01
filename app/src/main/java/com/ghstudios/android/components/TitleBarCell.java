@@ -3,12 +3,9 @@ package com.ghstudios.android.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,18 +20,15 @@ public class TitleBarCell extends FrameLayout {
     @BindView(R.id.generic_icon)
     ImageView imageView;
 
-    @BindView(R.id.label_text)
-    TextView labelView;
+    @BindView(R.id.title_text)
+    TextView titleView;
 
-    public TitleBarCell(Context context, @DrawableRes int imgSrc, String labelText) {
-        super(context);
-        Drawable drawable = ContextCompat.getDrawable(getContext(), imgSrc);
-        init(drawable, labelText);
-    }
+    @BindView(R.id.title_alt_text)
+    TextView titleAltView;
 
     public TitleBarCell(Context context) {
         super(context);
-        init(null, "");
+        init(null, "", "", false);
     }
 
     public TitleBarCell(Context context, @Nullable AttributeSet attrs) {
@@ -43,28 +37,30 @@ public class TitleBarCell extends FrameLayout {
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.TitleBarCell);
 
         // Set values from attributes
-        Drawable drawable;
-        String labelText;
         try {
-            drawable = attributes.getDrawable(R.styleable.TitleBarCell_iconSrc);
-            labelText = attributes.getString(R.styleable.TitleBarCell_labelText);
+            Drawable drawable = attributes.getDrawable(R.styleable.TitleBarCell_iconSrc);
+            String titleText = attributes.getString(R.styleable.TitleBarCell_titleText);
+            String titleAltText = attributes.getString(R.styleable.TitleBarCell_titleAltText);
+            boolean altTitleEnabled = attributes.getBoolean(R.styleable.TitleBarCell_altTitleEnabled, false);
+
+            init(drawable, titleText, titleAltText, altTitleEnabled);
         } finally {
             // Typed arrays should be recycled after use
             attributes.recycle();
         }
-
-        init(drawable, labelText);
     }
 
-    public void init(Drawable drawable, String labelText) {
+    public void init(Drawable drawable, String titleText, String titleAltText, boolean altTitleEnabled) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.cell_title_bar, this, true);
+        inflater.inflate(R.layout.cell_title_bar, this, true);
 
         ButterKnife.bind(this);
 
         setIconDrawable(drawable);
-        setName(labelText);
+        setTitleText(titleText);
+        setAltTitleText(titleAltText);
+        setAltTitleEnabled(altTitleEnabled);
     }
 
     /**
@@ -77,7 +73,19 @@ public class TitleBarCell extends FrameLayout {
         invalidate();
     }
 
-    public void setName(String labelText) {
-        labelView.setText(labelText);
+    public void setTitleText(String titleText) {
+        titleView.setText(titleText);
+    }
+
+    public void setAltTitleText(String altTitleText) {
+        titleAltView.setText(altTitleText);
+    }
+
+    public void setAltTitleEnabled(boolean enabled) {
+        if (enabled) {
+            titleAltView.setVisibility(VISIBLE);
+        } else {
+            titleAltView.setVisibility(GONE);
+        }
     }
 }
