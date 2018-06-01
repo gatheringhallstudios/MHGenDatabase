@@ -82,7 +82,8 @@
             <LinearLayout
                 style="@style/list_item"
                 android:orientation="horizontal"
-                android:background="@color/subheading_color">
+                android:background="@color/subheading_color"
+                android:layout_marginTop="@dimen/margin_large">
 
                 <TextView
                     android:id="@+id/element_area"
@@ -144,7 +145,8 @@
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/statusTable">
+            android:id="@+id/statusTable"
+            android:layout_marginTop="@dimen/margin_large">
 
             <TableRow
                 style="@style/list_item"
@@ -153,7 +155,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/textView"
                     android:layout_weight="1"
                     android:text="Status"
@@ -205,6 +207,17 @@
                     android:gravity="center"
                     android:textColor="@color/text_color" />
             </TableRow>
+
+            <include layout="@layout/fragment_monster_status_listitem"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+            <include layout="@layout/fragment_monster_status_listitem"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+            <include layout="@layout/fragment_monster_status_listitem"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
         </TableLayout>
 
     </LinearLayout>

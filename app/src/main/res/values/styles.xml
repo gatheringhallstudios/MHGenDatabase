@@ -165,6 +165,7 @@
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:layout_height">48dp</item>
+        <item name="android:minHeight">48dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>

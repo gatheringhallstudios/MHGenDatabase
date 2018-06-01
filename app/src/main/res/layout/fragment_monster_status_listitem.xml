@@ -4,17 +4,18 @@
     style="@style/list_item_dense"
     android:layout_height="48dp">
 
-
-    <ImageView
-        style="@style/main_image"
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:id="@+id/statusImage"
-        android:layout_gravity="center"
-        tools:src="@drawable/sword_and_shield1"/>
+        android:layout_height="@dimen/list_item_height">
+        <ImageView
+            style="@style/main_image"
+            android:layout_margin="0dp"
+            android:id="@+id/statusImage"
+            android:layout_gravity="center"
+            android:gravity="center"
+            tools:src="@drawable/sword_and_shield1"/>
+    </FrameLayout>
 
 
     <TextView
@@ -24,7 +25,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/text_color" />
+        android:textColor="@color/text_color"
+        tools:text="400"/>
 
     <TextView
         android:id="@+id/increase"
@@ -33,7 +35,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/text_color" />
+        android:textColor="@color/text_color"
+        tools:text="100"/>
 
     <TextView
         android:id="@+id/max"
@@ -42,7 +45,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/text_color" />
+        android:textColor="@color/text_color"
+        tools:text="1000"/>
 
     <TextView
         android:id="@+id/duration"
@@ -51,7 +55,8 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/text_color" />
+        android:textColor="@color/text_color"
+        tools:text="60s"/>
 
     <TextView
         android:id="@+id/damage"
@@ -60,6 +65,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/text_color" />
+        android:textColor="@color/text_color"
+        tools:text="-"/>
 
 </TableRow>
