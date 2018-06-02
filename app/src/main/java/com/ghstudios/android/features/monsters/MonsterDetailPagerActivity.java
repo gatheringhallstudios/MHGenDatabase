@@ -3,7 +3,6 @@ package com.ghstudios.android.features.monsters;
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.features.monsters.detail.MonsterDamageFragment;
-import com.ghstudios.android.features.monsters.detail.MonsterHabitatFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterQuestFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterRewardFragment;
 import com.ghstudios.android.features.monsters.detail.MonsterSummaryFragment;
@@ -36,10 +35,6 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
 
         tabs.addTab("Damage", () ->
                 MonsterDamageFragment.newInstance(monsterId)
-        );
-
-        tabs.addTab("Habitat", () ->
-                MonsterHabitatFragment.newInstance(monsterId)
         );
 
         tabs.addTab("Low Rank", () ->

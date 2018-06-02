@@ -1,40 +1,33 @@
 package com.ghstudios.android.features.monsters.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.ClickListeners.LocationClickListener;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.SectionHeaderCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
-import com.ghstudios.android.data.cursors.MonsterAilmentCursor;
 import com.ghstudios.android.features.monsters.MonsterDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
 import org.apmem.tools.layouts.FlowLayout;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,10 +43,10 @@ public class MonsterSummaryFragment extends Fragment {
     LinearLayout statesListView;
 
     @BindView(R.id.ailments_data)
-    LinearLayout mAilments;
+    LinearLayout ailmentListView;
 
-    // Need to add dividers
-    //private View mDividerView;
+    @BindView(R.id.habitat_list)
+    LinearLayout habitatListView;
 
     public static MonsterSummaryFragment newInstance(long monsterId) {
         Bundle args = new Bundle();
@@ -89,6 +82,7 @@ public class MonsterSummaryFragment extends Fragment {
 
         viewModel.getWeaknessData().observe(this, this::updateWeaknesses);
         viewModel.getAilmentData().observe(this, this::populateAilments);
+        viewModel.getHabitatData().observe(this, this::populateHabitats);
     }
 
     // Update weakness display after loader callback
@@ -201,14 +195,58 @@ public class MonsterSummaryFragment extends Fragment {
     private void populateAilments(List<MonsterAilment> ailments) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
-        mAilments.removeAllViews();
+        ailmentListView.removeAllViews();
         for (MonsterAilment ailment : ailments) {
-            View ailmentView = inflater.inflate(R.layout.fragment_ailment_listitem, mAilments, false);
+            View ailmentView = inflater.inflate(R.layout.fragment_ailment_listitem, ailmentListView, false);
 
             TextView labelView = ailmentView.findViewById(R.id.ailment_text);
             labelView.setText(ailment.getAilment());
 
-            mAilments.addView(ailmentView);
+            ailmentListView.addView(ailmentView);
+        }
+    }
+
+    private void populateHabitats(List<Habitat> habitats) {
+        if (habitats == null) return;
+
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        habitatListView.removeAllViews();
+        for (Habitat habitat : habitats) {
+            View view = inflater.inflate(R.layout.fragment_monster_habitat_listitem, habitatListView, false);
+
+            RelativeLayout itemLayout = view.findViewById(R.id.listitem);
+            ImageView mapView = view.findViewById(R.id.mapImage);
+            TextView mapTextView = view.findViewById(R.id.map);
+            TextView startTextView = view.findViewById(R.id.start);
+            TextView areaTextView = view.findViewById(R.id.move);
+            TextView restTextView = view.findViewById(R.id.rest);
+
+            // there's no string join in java 7 unfortunately
+            long[] areas = habitat.getAreas();
+            String areasStr = "";
+            for(int i = 0; i < areas.length; i++) {
+                areasStr += areas[i];
+                if (i != areas.length - 1) {
+                    areasStr += ", ";
+                }
+            }
+
+            mapTextView.setText(habitat.getLocation().getName());
+            startTextView.setText(String.valueOf(habitat.getStart()));
+            areaTextView.setText(areasStr);
+            restTextView.setText(String.valueOf(habitat.getRest()));
+
+            String cellImage = "icons_location/" + habitat.getLocation().getFileLocationMini();
+            Drawable mapImage = MHUtils.loadAssetDrawable(getContext(), cellImage);
+
+            mapView.setImageDrawable(mapImage);
+
+            long locationId = habitat.getLocation().getId();
+            itemLayout.setTag(locationId);
+            itemLayout.setOnClickListener(new LocationClickListener(getContext(), locationId));
+
+            habitatListView.addView(view);
         }
     }
 
