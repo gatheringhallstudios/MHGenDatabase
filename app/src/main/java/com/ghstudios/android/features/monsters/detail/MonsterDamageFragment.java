@@ -1,6 +1,5 @@
 package com.ghstudios.android.features.monsters.detail;
 
-import java.io.IOException;
 import java.util.List;
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -80,8 +79,8 @@ public class MonsterDamageFragment extends Fragment {
             mMonsterIconImageView.setImageDrawable(monsterImage);
         });
 
-        viewModel.getMonsterDamageData().observe(this, this::populateDamage);
-        viewModel.getMonsterStatusData().observe(this, this::populateStatus);
+        viewModel.getDamageData().observe(this, this::populateDamage);
+        viewModel.getStatusData().observe(this, this::populateStatus);
     }
 
     private void populateDamage(List<MonsterDamage> damages) {

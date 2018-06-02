@@ -4,20 +4,20 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.ghstudios.android.data.classes.Monster
-import com.ghstudios.android.data.classes.MonsterDamage
-import com.ghstudios.android.data.classes.MonsterStatus
-import com.ghstudios.android.data.classes.MonsterWeakness
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.toList
 
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
     val monsterData = MutableLiveData<Monster>()
-    val monsterWeaknessData = MutableLiveData<List<MonsterWeakness>>()
-    val monsterDamageData = MutableLiveData<List<MonsterDamage>>()
-    val monsterStatusData = MutableLiveData<List<MonsterStatus>>()
+    val weaknessData = MutableLiveData<List<MonsterWeakness>>()
+    val ailmentData = MutableLiveData<List<MonsterAilment>>()
+    val habitatData = MutableLiveData<List<Habitat>>()
+    val damageData = MutableLiveData<List<MonsterDamage>>()
+    val statusData = MutableLiveData<List<MonsterStatus>>()
 
     var monsterId = -1L
 
@@ -33,24 +33,12 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             monsterData.postValue(dataManager.getMonster(monsterId))
 
             // then load the rest
-            monsterWeaknessData.postValue(dataManager.queryMonsterWeaknessArray(monsterId))
-            monsterDamageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
-            monsterStatusData.postValue(dataManager.queryMonsterStatus(monsterId))
+
+            weaknessData.postValue(dataManager.queryMonsterWeaknessArray(monsterId))
+            ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
+            habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
+            damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
+            statusData.postValue(dataManager.queryMonsterStatus(monsterId))
         }.start()
-    }
-
-    /**
-     * Returns a live data that can be observed for a MonsterAilmentCursor.
-     * Everytime this is called, a new cursor is retrieved
-     */
-    fun getAilments() : LiveData<MonsterAilmentCursor> {
-        // todo: check if this makes a leak. If it doesn't, remove this todo
-        val result = MutableLiveData<MonsterAilmentCursor>()
-
-        Thread {
-            result.postValue(dataManager.queryAilmentsFromId(monsterId))
-        }.start()
-
-        return result
     }
 }

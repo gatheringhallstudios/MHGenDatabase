@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.SectionHeaderCell;
 import com.ghstudios.android.components.TitleBarCell;
+import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor;
@@ -85,21 +87,8 @@ public class MonsterSummaryFragment extends Fragment {
             headerView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
         });
 
-        viewModel.getMonsterWeaknessData().observe(this, this::updateWeaknesses);
-
-        viewModel.getAilments().observe(this, (ailmentCursor) -> {
-            MonsterSummaryFragment.MonsterAilmentsCursorAdapter adapter
-                    = new MonsterSummaryFragment.MonsterAilmentsCursorAdapter(getActivity(), ailmentCursor);
-
-            // mAilmentsListView.setAdapter(adapter);
-            // Assign list items to LinearLayout instead of ListView
-
-            // mAilmentsLinearLayout should be the vertical LinearLayout that you substituted the listview with
-            for (int i = 0; i < adapter.getCount(); i++) {
-                View v = adapter.getView(i, null, mAilments);
-                mAilments.addView(v);
-            }
-        });
+        viewModel.getWeaknessData().observe(this, this::updateWeaknesses);
+        viewModel.getAilmentData().observe(this, this::populateAilments);
     }
 
     // Update weakness display after loader callback
@@ -107,7 +96,6 @@ public class MonsterSummaryFragment extends Fragment {
         if (weaknesses == null || weaknesses.size() == 0) return;
 
         statesListView.removeAllViews();
-
         for (MonsterWeakness weakness : weaknesses) {
             addWeakness(weakness);
         }
@@ -210,6 +198,20 @@ public class MonsterSummaryFragment extends Fragment {
         }
     }
 
+    private void populateAilments(List<MonsterAilment> ailments) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        mAilments.removeAllViews();
+        for (MonsterAilment ailment : ailments) {
+            View ailmentView = inflater.inflate(R.layout.fragment_ailment_listitem, mAilments, false);
+
+            TextView labelView = ailmentView.findViewById(R.id.ailment_text);
+            labelView.setText(ailment.getAilment());
+
+            mAilments.addView(ailmentView);
+        }
+    }
+
     // Add small_icon to a particular LinearLayout
     private void addIcon(FlowLayout parentview, String imagelocation, String imagemodlocation) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -226,66 +228,17 @@ public class MonsterSummaryFragment extends Fragment {
         mImageMod = (ImageView) view.findViewById(R.id.image_mod);
 
         // Open Image
-        String cellImage = imagelocation;
-        AssetManager manager = getActivity().getAssets();
-        try {
-            InputStream open = manager.open(cellImage);
-            Bitmap bitmap = BitmapFactory.decodeStream(open);
-            // Assign the bitmap to an ImageView in this layout
-            mImage.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Drawable image = MHUtils.loadAssetDrawable(getContext(), imagelocation);
+        mImage.setImageDrawable(image);
 
         // Open Image Mod if applicable
         if (imagemodlocation != null) {
-            cellImage = imagemodlocation;
-            manager = getActivity().getAssets();
-            try {
-                InputStream open = manager.open(cellImage);
-                Bitmap bitmap = BitmapFactory.decodeStream(open);
-                // Assign the bitmap to an ImageView in this layout
-                mImageMod.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Drawable modImage = MHUtils.loadAssetDrawable(getContext(), imagemodlocation);
+            mImageMod.setImageDrawable(modImage);
             mImageMod.setVisibility(View.VISIBLE);
         }
 
         // Add small_icon to appropriate layout
         parentview.addView(view);
-    }
-
-    // Adapter to populate the Ailments Listview
-    private class MonsterAilmentsCursorAdapter extends CursorAdapter {
-
-        private MonsterAilmentCursor mMonsterAilmentsCursor;
-
-        public MonsterAilmentsCursorAdapter(Context context,
-                                            MonsterAilmentCursor cursor) {
-            super(context, cursor, 0);
-            mMonsterAilmentsCursor = cursor;
-        }
-
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            // Use a layout inflater to get a row view
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            return inflater.inflate(R.layout.fragment_ailment_listitem,
-                    parent, false);
-        }
-
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            // Get the Ailment for the current row
-            MonsterAilment mMonsterAilment = mMonsterAilmentsCursor.getAilment();
-
-            // Locate textview
-            TextView mAilment = (TextView) view.findViewById(R.id.ailment_text);
-
-            // Set ailment text
-            mAilment.setText(mMonsterAilment.getAilment());
-        }
     }
 }
