@@ -126,6 +126,9 @@
         Show Japanese names alongside english ones.
     </string>
 
+    <!-- Monster detail -->
+    <string name="monster_habitats">Habitats</string>
+
     <!-- Item details -->
     <string name="item_rarity">Rarity</string>
     <string name="item_max">Max</string>

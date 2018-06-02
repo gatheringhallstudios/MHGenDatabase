@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.SectionHeaderCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
@@ -43,15 +44,11 @@ public class MonsterSummaryFragment extends Fragment {
     @BindView(R.id.monster_header)
     TitleBarCell headerView;
 
-    private MonsterWeakness mWeakness;
+    @BindView(R.id.monster_state_list)
+    LinearLayout statesListView;
 
-    // Sections to hold icons and text
-    private FlowLayout mWeaknessData, mTrapData, mBombData;
-    private FlowLayout mWeaknessModData, mTrapModData, mBombModData;
-    private LinearLayout mWeaknessMod, mTrapMod, mBombMod;
-    private View mWeaknessModDiv, mTrapModDiv, mBombModDiv;
-    private TextView mWeaknessModText, mTrapModText, mBombModText, mModStateText;
-    private LinearLayout mAilments, mModStateHeader;
+    @BindView(R.id.ailments_data)
+    LinearLayout mAilments;
 
     // Need to add dividers
     //private View mDividerView;
@@ -70,34 +67,6 @@ public class MonsterSummaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_monster_summary, container, false);
 
         ButterKnife.bind(this, view);
-
-        mWeaknessData = (FlowLayout) view.findViewById(R.id.weakness_data);
-        mTrapData = (FlowLayout) view.findViewById(R.id.trap_data);
-        mBombData = (FlowLayout) view.findViewById(R.id.bomb_data);
-        mAilments = (LinearLayout) view.findViewById(R.id.ailments_data);
-
-        // Mods if monster has a secondary state
-        // Sections
-        mWeaknessMod = (LinearLayout) view.findViewById(R.id.weaknesses_mod);
-        mTrapMod = (LinearLayout) view.findViewById(R.id.trap_mod);
-        mBombMod = (LinearLayout) view.findViewById(R.id.bombs_mod);
-        mModStateHeader = (LinearLayout) view.findViewById(R.id.monster_summary_mod_state_header);
-        mModStateText = (TextView) view.findViewById(R.id.monster_mod_state);
-
-        // Text titles
-        mWeaknessModText = (TextView) view.findViewById(R.id.weakness_mod_text);
-        mTrapModText = (TextView) view.findViewById(R.id.trap_mod_text);
-        mBombModText = (TextView) view.findViewById(R.id.bomb_mod_text);
-
-        // FlowLayouts
-        mWeaknessModData = (FlowLayout) view.findViewById(R.id.weakness_mod_data);
-        mTrapModData = (FlowLayout) view.findViewById(R.id.trap_mod_data);
-        mBombModData = (FlowLayout) view.findViewById(R.id.bombs_mod_data);
-
-        // Dividers
-        mWeaknessModDiv = view.findViewById(R.id.weakness_mod_div);
-        mTrapModDiv = view.findViewById(R.id.trap_mod_div);
-        mBombModDiv = view.findViewById(R.id.bombs_mod_div);
 
         return view;
     }
@@ -137,8 +106,24 @@ public class MonsterSummaryFragment extends Fragment {
     private void updateWeaknesses(List<MonsterWeakness> weaknesses) {
         if (weaknesses == null || weaknesses.size() == 0) return;
 
-        // Get "Normal" weaknesses
-        mWeakness = weaknesses.get(0);
+        statesListView.removeAllViews();
+
+        for (MonsterWeakness weakness : weaknesses) {
+            addWeakness(weakness);
+        }
+    }
+
+    private void addWeakness(MonsterWeakness mWeakness) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View weaknessView = inflater.inflate(R.layout.fragment_monster_summary_state, statesListView, false);
+
+        // Set title
+        SectionHeaderCell header = weaknessView.findViewById(R.id.state_name);
+        header.setLabelText(mWeakness.getState());
+
+        FlowLayout mWeaknessData = weaknessView.findViewById(R.id.weakness_data);
+        FlowLayout mTrapData = weaknessView.findViewById(R.id.trap_data);
+        FlowLayout mBombData = weaknessView.findViewById(R.id.bomb_data);
 
         int AmountShown = 0;
         //Loop through tier until an element is found. (All elements at that tier will be shown)
@@ -203,91 +188,7 @@ public class MonsterSummaryFragment extends Fragment {
             addIcon(mBombData, getResources().getString(R.string.image_location_dung_bomb), null);
 
 
-        // Apply CHARGED or ENRAGED weaknesses if applicable. Only supports one more state right now.
-        if (weaknesses.size() > 1) {
-            mWeakness = weaknesses.get(1);
-
-            String mState = mWeakness.getState();
-
-            mModStateText.setText(mState);
-
-            // Make all mod layouts and dividers visible
-            mModStateHeader.setVisibility(View.VISIBLE);
-            mWeaknessMod.setVisibility(View.VISIBLE);
-            mTrapMod.setVisibility(View.VISIBLE);
-            mBombMod.setVisibility(View.VISIBLE);
-            mWeaknessModDiv.setVisibility(View.VISIBLE);
-            mTrapModDiv.setVisibility(View.VISIBLE);
-            mBombModDiv.setVisibility(View.VISIBLE);
-
-            // Set new section names
-//            mWeaknessModText.setText("(" + mState + ")");
-//            mTrapModText.setText("(" + mState + ")");
-//            mBombModText.setText("(" + mState + ")");
-
-            AmountShown = 0;
-            //Loop through tier until an element is found. (All elements at that tier will be shown)
-            for (int i = 7; i > 0 && AmountShown < 2; i--) {
-                if (mWeakness.getFire() == i) {
-                    AmountShown++;
-                    evalWeakness(mWeakness.getFire(), mWeaknessModData, getResources().getString(R.string.image_location_fire));
-                }
-                if (mWeakness.getWater() == i) {
-                    AmountShown++;
-                    evalWeakness(mWeakness.getWater(), mWeaknessModData, getResources().getString(R.string.image_location_water));
-                }
-                if (mWeakness.getThunder() == i) {
-                    AmountShown++;
-                    evalWeakness(mWeakness.getThunder(), mWeaknessModData, getResources().getString(R.string.image_location_thunder));
-                }
-                if (mWeakness.getIce() == i) {
-                    AmountShown++;
-                    evalWeakness(mWeakness.getIce(), mWeaknessModData, getResources().getString(R.string.image_location_ice));
-                }
-                if (mWeakness.getDragon() == i) {
-                    AmountShown++;
-                    evalWeakness(mWeakness.getDragon(), mWeaknessModData, getResources().getString(R.string.image_location_dragon));
-                }
-            }
-
-            shown = false;
-            //Loop through tier until an element is found. (All elements at that tier will be shown)
-            for (int i = 7; i > 0 && !shown; i--) {
-                if (mWeakness.getPoison() == i) {
-                    shown = true;
-                    evalWeakness(mWeakness.getPoison(), mWeaknessModData, getResources().getString(R.string.image_location_poison));
-                }
-                if (mWeakness.getParalysis() == i) {
-                    shown = true;
-                    evalWeakness(mWeakness.getParalysis(), mWeaknessModData, getResources().getString(R.string.image_location_paralysis));
-                }
-                if (mWeakness.getSleep() == i) {
-                    shown = true;
-                    evalWeakness(mWeakness.getSleep(), mWeaknessModData, getResources().getString(R.string.image_location_sleep));
-                }
-            }
-
-            // Pitfall Trap
-            if (mWeakness.getPitfalltrap() != 0)
-                addIcon(mTrapModData, getResources().getString(R.string.image_location_pitfall_trap), null);
-            // Shock Trap
-            if (mWeakness.getShocktrap() != 0)
-                addIcon(mTrapModData, getResources().getString(R.string.image_location_shock_trap), null);
-            // Meat
-            if (mWeakness.getMeat() != 0)
-                addIcon(mTrapModData, getResources().getString(R.string.image_location_meat), null);
-
-            // Flash Bomb
-            if (mWeakness.getFlashbomb() != 0)
-                addIcon(mBombModData, getResources().getString(R.string.image_location_flash_bomb), null);
-            // Sonic Bomb
-            if (mWeakness.getSonicbomb() != 0)
-                addIcon(mBombModData, getResources().getString(R.string.image_location_sonic_bomb), null);
-            // Dung Bomb
-            if (mWeakness.getDungbomb() != 0)
-                addIcon(mBombModData, getResources().getString(R.string.image_location_dung_bomb), null);
-        }
-
+        statesListView.addView(weaknessView);
     }
 
     private void evalWeakness(int weaknessvalue, FlowLayout parentview, String imagelocation) {

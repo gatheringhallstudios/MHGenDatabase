@@ -116,12 +116,15 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
-    <style name="HorizontalDivider">
-        <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">1dp</item>
+    <style name="HorizontalDividerFull">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_color</item>
+    </style>
+
+    <style name="HorizontalDivider" parent="HorizontalDividerFull">
         <item name = "android:layout_marginLeft">@dimen/margin_medium</item>
         <item name = "android:layout_marginRight">@dimen/margin_medium</item>
-        <item name = "android:background">@color/divider_color</item>
     </style>
 
     <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
