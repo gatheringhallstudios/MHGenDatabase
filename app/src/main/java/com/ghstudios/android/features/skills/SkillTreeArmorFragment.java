@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
-import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
+import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ArmorClickListener;
@@ -82,8 +82,8 @@ public class SkillTreeArmorFragment extends ListFragment implements
 		// The id argument will be the Item ID; CursorAdapter gives us this
 		// for free
 		
-		Intent i = new Intent(getActivity(), ArmorDetailPagerActivity.class);
-		i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, (long) v.getTag());
+		Intent i = new Intent(getActivity(), ArmorDetailActivity.class);
+		i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, (long) v.getTag());
 		startActivity(i);
 	}
 

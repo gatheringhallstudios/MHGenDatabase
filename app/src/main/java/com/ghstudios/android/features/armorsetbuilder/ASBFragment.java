@@ -12,7 +12,7 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
+import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.MHUtils;
@@ -142,7 +142,7 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
         ADD_PIECE {
             @Override
             public void perform(ASBSession session, Context context, Intent data) {
-                long armorId = data.getLongExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, -1);
+                long armorId = data.getLongExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, -1);
 
                 String armorType = DataManager.get(context).getArmor(armorId).getSlot();
 

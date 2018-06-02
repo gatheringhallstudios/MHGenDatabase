@@ -508,7 +508,7 @@ public class DataManager {
 		return mHelper.queryItemToSkillTreeSkillTree(id, type);
 	}
 
-	/* Get an array of ItemToSkillTree based on Item */
+	/** Get an array of ItemToSkillTree based on Item */
 	public ArrayList<ItemToSkillTree> queryItemToSkillTreeArrayItem(long id) {
 		ArrayList<ItemToSkillTree> itst = new ArrayList<ItemToSkillTree>();
 		ItemToSkillTreeCursor cursor = mHelper.queryItemToSkillTreeItem(id);
@@ -522,7 +522,7 @@ public class DataManager {
 		return itst;
 	}
 
-	/* Get an array of ItemToSkillTree based on SkillTree */
+	/** Get an array of ItemToSkillTree based on SkillTree */
 	public ArrayList<ItemToSkillTree> queryItemToSkillTreeArraySkillTree(long id, String type) {
 		ArrayList<ItemToSkillTree> itst = new ArrayList<ItemToSkillTree>();
 		ItemToSkillTreeCursor cursor = mHelper.queryItemToSkillTreeSkillTree(id, type);

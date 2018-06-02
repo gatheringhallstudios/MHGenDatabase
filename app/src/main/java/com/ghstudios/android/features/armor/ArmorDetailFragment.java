@@ -8,19 +8,35 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
+import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.IconLabelTextCell;
+import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.data.classes.Component;
+import com.ghstudios.android.data.classes.Item;
+import com.ghstudios.android.data.classes.ItemToSkillTree;
+import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +44,10 @@ import butterknife.ButterKnife;
 public class ArmorDetailFragment extends Fragment {
     private static final String ARG_ARMOR_ID = "ARMOR_ID";
 
+    private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
+
     private ArmorViewModel viewModel;
+    private Armor armor; // set using the viewmodel
 
     @BindView(R.id.titlebar)
     TitleBarCell titleBar;
@@ -37,6 +56,11 @@ public class ArmorDetailFragment extends Fragment {
     @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
     @BindView(R.id.defense) ColumnLabelTextCell defenseView;
     @BindView(R.id.part) ColumnLabelTextCell partView;
+
+    @BindView(R.id.skill_list) LinearLayout skillListView;
+
+    @BindView(R.id.recipe_header) View recipeHeader;
+    @BindView(R.id.recipe) ItemRecipeCell recipeView;
     
     private TextView fireResTextView;
     private TextView waterResTextView;
@@ -93,7 +117,7 @@ public class ArmorDetailFragment extends Fragment {
                 public void onClick(View v) {
                     long armorId = getArguments().getLong(ARG_ARMOR_ID);
                     Intent intent = getActivity().getIntent();
-                    intent.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, armorId);
+                    intent.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, armorId);
                     getActivity().setResult(Activity.RESULT_OK, intent);
                     getActivity().finish();
                 }
@@ -105,10 +129,19 @@ public class ArmorDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel.getArmorData().observe(this, this::updateUI);
+        // bind view model data to view
+        viewModel.getArmorData().observe(this, this::populateArmor);
+        viewModel.getSkillData().observe(this, this::populateSkills);
+        viewModel.getComponentData().observe(this, this::populateRecipe);
     }
 
-    private void updateUI(Armor armor) {
+    private void populateArmor(Armor armor) {
+        if (armor == null) return;
+
+        this.armor = armor;
+
+        getActivity().setTitle(armor.getName());
+
         Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), armor.getItemImage());
 
         titleBar.setTitleText(armor.getName());
@@ -131,5 +164,69 @@ public class ArmorDetailFragment extends Fragment {
         iceResTextView.setText(String.valueOf(armor.getIceRes()));
         thunderResTextView.setText(String.valueOf(armor.getThunderRes()));
         dragonResTextView.setText(String.valueOf(armor.getDragonRes()));
+    }
+
+    private void populateSkills(List<ItemToSkillTree> skills) {
+        for (ItemToSkillTree skill : skills) {
+            IconLabelTextCell skillItem = new IconLabelTextCell(getContext());
+            skillItem.setLabelText(skill.getSkillTree().getName());
+            skillItem.setValueText(String.valueOf(skill.getPoints()));
+
+            skillItem.setOnClickListener(
+                    new SkillClickListener(getContext(), skill.getSkillTree().getId())
+            );
+
+            Drawable icon;
+            if (skill.getPoints() > 0) {
+                icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_good);
+            } else {
+                icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_bad);
+            }
+
+            skillItem.setLeftIconDrawable(icon);
+
+            skillListView.addView(skillItem);
+        }
+    }
+
+    private void populateRecipe(List<Component> recipe) {
+        if (recipe == null || recipe.isEmpty()) {
+            recipeHeader.setVisibility(View.GONE);
+            recipeView.setVisibility(View.GONE);
+            return;
+        }
+
+        recipeHeader.setVisibility(View.VISIBLE);
+        recipeView.setVisibility(View.VISIBLE);
+
+        for (Component component : recipe) {
+            Item item = component.getComponent();
+            Drawable itemIcon = MHUtils.loadAssetDrawable(getContext(), item.getItemImage());
+
+            View itemCell = recipeView.addItem(itemIcon, item.getName(), component.getQuantity());
+            itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_to_wishlist:
+                if (armor != null) {
+                    FragmentManager fm = this.getFragmentManager();
+                    WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
+                            .newInstance(armor.getId(), armor.getName());
+                    dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -60,9 +60,13 @@ public class ItemRecipeCell extends LinearLayout {
         setTitleText(title);
     }
 
+    /**
+     * Sets the title text. If the title is null or empty, the title is hidden.
+     * @param title
+     */
     public void setTitleText(String title) {
         titleView.setLabelText(title);
-        if (title != null && !title.isEmpty()) {
+        if (title != null && !title.trim().isEmpty()) {
             titleView.setVisibility(VISIBLE);
         } else {
             titleView.setVisibility(GONE);
@@ -78,5 +82,12 @@ public class ItemRecipeCell extends LinearLayout {
         itemsView.addView(cell);
 
         return cell;
+    }
+
+    /**
+     * Clears all components in this recipe
+     */
+    public void clearItems() {
+        itemsView.removeAllViews();
     }
 }

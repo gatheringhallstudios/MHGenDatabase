@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
-import com.ghstudios.android.features.armor.ArmorDetailPagerActivity;
+import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
@@ -252,8 +252,8 @@ public class ASBPieceContainer extends LinearLayout {
         if (pieceIndex == ASBSession.TALISMAN) {
             onAddEquipment();
         } else {
-            Intent i = new Intent(getContext(), ArmorDetailPagerActivity.class);
-            i.putExtra(ArmorDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).getId());
+            Intent i = new Intent(getContext(), ArmorDetailActivity.class);
+            i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).getId());
             getContext().startActivity(i);
         }
     }

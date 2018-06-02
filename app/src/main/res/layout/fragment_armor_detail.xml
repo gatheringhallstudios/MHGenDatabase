@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:iconSrc="@drawable/drawer_armor"
-            tools:labelText="Attack Jewel 3"/>
+            tools:titleText="Attack Jewel 3"/>
 
         <FrameLayout
             android:id="@+id/divider1"
@@ -68,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_large">
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -145,6 +146,50 @@
                     android:textColor="@color/text_color" />
             </LinearLayout>
         </LinearLayout>
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_skills" />
+
+        <LinearLayout
+            android:id="@+id/skill_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:labelText="Attack"
+                app:valueText="1"
+                tools:visibility="visible" />
+
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:labelText="Defense"
+                app:valueText="-1"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/recipe_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.ghstudios.android.components.ItemRecipeCell
+            android:id="@+id/recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <Button android:id="@+id/select_button"
             style="@style/ButtonStyle"

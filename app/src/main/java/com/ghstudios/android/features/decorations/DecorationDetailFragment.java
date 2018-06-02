@@ -104,14 +104,16 @@ public class DecorationDetailFragment extends Fragment {
      * @param decoration
      */
     private void populateDecoration(Decoration decoration) {
+        if (decoration == null) return;
+
         decorationId = decoration.getId();
         decorationName = decoration.getName();
 
-        String cellImage = "icons_items/" + decoration.getFileLocation();
+        getActivity().setTitle(decorationName);
+
         String cellRare = "" + decoration.getRarity();
         String cellBuy = "" + decoration.getBuy() + "z";
         String cellSell = "" + decoration.getSell() + "z";
-        String cellSlotsReq = "" + decoration.getSlotsString();
 
         if (cellBuy.equals("0z")) {
             cellBuy = "-";
@@ -120,7 +122,7 @@ public class DecorationDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        Drawable image = MHUtils.loadAssetDrawable(getContext(), cellImage);
+        Drawable image = MHUtils.loadAssetDrawable(getContext(), decoration.getItemImage());
 
         titleView.setIconDrawable(image);
         titleView.setTitleText(decorationName);
@@ -130,7 +132,7 @@ public class DecorationDetailFragment extends Fragment {
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);
-        slotsReqView.setValueText(cellSlotsReq);
+        slotsReqView.setValueText(decoration.getSlotsString());
 
         skillListView.removeAllViews();
 
