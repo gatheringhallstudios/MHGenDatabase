@@ -292,8 +292,17 @@
     </style>
 
     <style name="title_bar_alt_text" parent="title_bar_text">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
+    <style name="cell_column_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/title_full_height</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:layout_marginRight">@dimen/margin_large</item>
+        <item name="justifyContent">space_between</item>
+        <item name="alignItems">center</item>
     </style>
 
     <style name="detail_value_text" parent="text_medium">
@@ -302,13 +311,12 @@
     </style>
 
     <style name="detail_header_text">
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 
     <style name="detail_subheader_text">
-        <item name="android:textSize">16sp</item>
-        <item name="android:paddingTop">4dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 

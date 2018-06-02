@@ -15,7 +15,7 @@
     <dimen name="filter_dialog_row_spacing">16dp</dimen>
 
     <dimen name="list_item_height">48dp</dimen>
-    <dimen name="title_full_height">84dp</dimen>
+    <dimen name="title_full_height">72dp</dimen>
 
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_medium">8dp</dimen>

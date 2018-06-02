@@ -10,8 +10,8 @@
         android:id="@+id/generic_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         tools:src="@drawable/drawer_decorations"
 
         app:layout_constraintTop_toTopOf="parent"
