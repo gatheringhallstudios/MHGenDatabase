@@ -7,12 +7,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <!-- Common header -->
-        <include layout="@layout/monster_detail_header"
-            android:id="@+id/monster_header" />
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/monster_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:iconSrc="@drawable/drawer_monsters"
+            tools:titleText="Azure Rathalos"
+            />
 
         <!-- Summary Section -->
         <LinearLayout

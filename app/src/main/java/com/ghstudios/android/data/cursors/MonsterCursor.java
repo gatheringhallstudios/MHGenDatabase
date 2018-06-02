@@ -29,6 +29,7 @@ public class MonsterCursor extends CursorWrapper {
 
 		long monsterId = getLong(getColumnIndex(S.COLUMN_MONSTERS_ID));
 		String name = getString(getColumnIndex(S.COLUMN_MONSTERS_NAME));
+		String jpnName = getString(getColumnIndex(S.COLUMN_MONSTERS_JPN_NAME));
 		String monsterClass = getString(getColumnIndex(S.COLUMN_MONSTERS_CLASS));
 		String trait = getString(getColumnIndex(S.COLUMN_MONSTERS_TRAIT));
 		String file_location = getString(getColumnIndex(S.COLUMN_MONSTERS_FILE_LOCATION));
@@ -36,6 +37,7 @@ public class MonsterCursor extends CursorWrapper {
 		
 		monster.setId(monsterId);
 		monster.setName(name);
+		monster.setJpnName(jpnName);
 		monster.setMonsterClass(monsterClass);
 		monster.setTrait(trait);
 		monster.setFileLocation(file_location);

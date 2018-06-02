@@ -19,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor;
@@ -32,13 +34,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MonsterSummaryFragment extends Fragment {
     private static final String ARG_MONSTER_ID = "MONSTER_ID";
 
-    private MonsterWeakness mWeakness;
+    @BindView(R.id.monster_header)
+    TitleBarCell headerView;
 
-    private TextView mMonsterLabelTextView;
-    private ImageView mMonsterIconImageView;
+    private MonsterWeakness mWeakness;
 
     // Sections to hold icons and text
     private FlowLayout mWeaknessData, mTrapData, mBombData;
@@ -64,8 +69,7 @@ public class MonsterSummaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_monster_summary, container, false);
 
-        mMonsterLabelTextView = (TextView) view.findViewById(R.id.detail_monster_label);
-        mMonsterIconImageView = (ImageView) view.findViewById(R.id.detail_monster_image);
+        ButterKnife.bind(this, view);
 
         mWeaknessData = (FlowLayout) view.findViewById(R.id.weakness_data);
         mTrapData = (FlowLayout) view.findViewById(R.id.trap_data);
@@ -106,8 +110,10 @@ public class MonsterSummaryFragment extends Fragment {
             String cellImage = "icons_monster/" + monster.getFileLocation();
             Drawable monsterImage = MHUtils.loadAssetDrawable(getContext(), cellImage);
 
-            mMonsterLabelTextView.setText(monster.getName());
-            mMonsterIconImageView.setImageDrawable(monsterImage);
+            headerView.setIconDrawable(monsterImage);
+            headerView.setTitleText(monster.getName());
+            headerView.setAltTitleText(monster.getJpnName());
+            headerView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
         });
 
         viewModel.getMonsterWeaknessData().observe(this, this::updateWeaknesses);

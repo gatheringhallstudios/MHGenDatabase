@@ -6,20 +6,16 @@ package com.ghstudios.android.data.classes;
 public class Monster {
 
 	private long id;				// Monster id
-	private String name;			// Monster name
-	private String monsterClass;	// Large / small
-	private String trait;			// Traits/different type
-	private String file_location;	// File location for image
-	private String signature_move; // Signature moves
+	private String name = "";			// Monster name
+	private String jpn_name = "";		// Japanese name
+	private String monsterClass = "";	// Large / small
+	private String trait = "";			// Traits/different type
+	private String file_location = "";	// File location for image
+	private String signature_move = ""; // Signature moves
 	
 	/* Default Constructor */
 	public Monster() {
 		this.id = -1;
-		this.name = "";
-		this.monsterClass = "";
-		this.trait = "";
-		this.file_location = "";
-		this.signature_move = "";
 	}
 
 	/* Getters and Setters */
@@ -37,6 +33,14 @@ public class Monster {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getJpnName() {
+		return jpn_name;
+	}
+
+	public void setJpnName(String jpn_name) {
+		this.jpn_name = jpn_name;
 	}
 
 	public String getMonsterClass() {
