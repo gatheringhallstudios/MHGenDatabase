@@ -6,6 +6,9 @@ import android.content.SharedPreferences
 
 class AppSettings {
     companion object {
+        @JvmStatic
+        val SETTINGS_FILE_NAME = "MHGUDatabase.settings"
+
         private var application : Application? = null
 
         @JvmStatic
@@ -18,7 +21,7 @@ class AppSettings {
                 if (application == null) {
                     throw UninitializedPropertyAccessException("Application not initialized")
                 }
-                return application!!.applicationContext.getSharedPreferences("APP", MODE_PRIVATE)
+                return application!!.applicationContext.getSharedPreferences(SETTINGS_FILE_NAME, MODE_PRIVATE)
             }
 
         @JvmStatic
@@ -27,5 +30,6 @@ class AppSettings {
 
         // keys
         private val JAPANESE_ENABLED = "JAPANESE_ENABLED"
+        
     }
 }

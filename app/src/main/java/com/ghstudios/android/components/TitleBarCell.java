@@ -26,6 +26,8 @@ public class TitleBarCell extends FrameLayout {
     @BindView(R.id.title_alt_text)
     TextView titleAltView;
 
+    boolean altEnabled = false;
+
     public TitleBarCell(Context context) {
         super(context);
         init(null, "", "", false);
@@ -73,16 +75,38 @@ public class TitleBarCell extends FrameLayout {
         invalidate();
     }
 
+    /**
+     * Sets the main title of the title bar.
+     * @param titleText
+     */
     public void setTitleText(String titleText) {
         titleView.setText(titleText);
     }
 
+    /**
+     * Sets the alt title. This is usually the japanese name.
+     * @param altTitleText
+     */
     public void setAltTitleText(String altTitleText) {
         titleAltView.setText(altTitleText);
+        maybeEnableAltText();
     }
 
+    /**
+     * Sets whether or not the alt text is enabled
+     * @param enabled
+     */
     public void setAltTitleEnabled(boolean enabled) {
-        if (enabled) {
+        altEnabled = enabled;
+        maybeEnableAltText();
+    }
+
+    /**
+     * Runs some logic to see if alt text should be enabled.
+     */
+    private void maybeEnableAltText() {
+        CharSequence altText = titleAltView.getText();
+        if (altEnabled && altText != null && altText.length() > 0) {
             titleAltView.setVisibility(VISIBLE);
         } else {
             titleAltView.setVisibility(GONE);
