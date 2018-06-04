@@ -1,5 +1,7 @@
 package com.ghstudios.android.features.items;
 
+import android.arch.lifecycle.ViewModelProviders;
+
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.features.combining.CombiningListFragment;
 import com.ghstudios.android.BasePagerActivity;
@@ -20,7 +22,13 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long itemId = getIntent().getLongExtra(EXTRA_ITEM_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getItem(itemId).getName());
+
+        ItemDetailViewModel viewModel = ViewModelProviders.of(this).get(ItemDetailViewModel.class);
+        viewModel.setItem(itemId);
+
+        viewModel.getItemData().observe(this, (item) -> {
+            setTitle(item.getName());
+        });
 
         tabs.addTab("Detail", () ->
                 ItemDetailFragment.newInstance(itemId)

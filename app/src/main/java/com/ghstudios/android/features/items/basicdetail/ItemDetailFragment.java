@@ -3,36 +3,45 @@ package com.ghstudios.android.features.items.basicdetail;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.loader.ItemLoader;
+import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ItemDetailFragment extends Fragment {
     private static final String ARG_ITEM_ID = "ITEM_ID";
     
     private Item mItem;
-    
-    private TextView mItemLabelTextView;
-    private ImageView mItemIconImageView;
-    private TextView rareTextView;
-    private TextView maxTextView;
-    private TextView buyTextView;
-    private TextView sellTextView;
-    private TextView descriptionTextView;
+
+    @BindView(R.id.item_title) TitleBarCell titleCell;
+
+    @BindView(R.id.rare) ColumnLabelTextCell rareCell;
+    @BindView(R.id.carry) ColumnLabelTextCell carryCell;
+    @BindView(R.id.buy) ColumnLabelTextCell buyCell;
+    @BindView(R.id.sell) ColumnLabelTextCell sellCell;
+
+    @BindView(R.id.description) TextView descriptionTextView;
 
     public static ItemDetailFragment newInstance(long itemId) {
         Bundle args = new Bundle();
@@ -41,49 +50,34 @@ public class ItemDetailFragment extends Fragment {
         f.setArguments(args);
         return f;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
-        
-        // Check for a Item ID as an argument, and find the item
-        Bundle args = getArguments();
-        if (args != null) {
-            long itemId = args.getLong(ARG_ITEM_ID, -1);
-            if (itemId != -1) {
-                LoaderManager lm = getLoaderManager();
-                lm.initLoader(R.id.item_detail_fragment, args, new ItemLoaderCallbacks());
-            }
-        }
-    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_detail, container, false);
-        
-        mItemLabelTextView = view.findViewById(R.id.detail_item_label);
-        mItemIconImageView = view.findViewById(R.id.detail_item_image);
-    
-        rareTextView = view.findViewById(R.id.rare);
-        maxTextView = view.findViewById(R.id.max);
-        sellTextView = view.findViewById(R.id.sell);
-        buyTextView = view.findViewById(R.id.buy);
-        descriptionTextView = view.findViewById(R.id.description);
+
+        ButterKnife.bind(this, view);
 
         return view;
     }
-    
-    private void updateUI() throws IOException {
-        String cellText = mItem.getName();
-        String cellImage = mItem.getItemImage();
-        String cellRare = "" + mItem.getRarity();
-        String cellMax = "" + mItem.getCarryCapacity();
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // this uses the pager's view Model
+        ItemDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(ItemDetailViewModel.class);
+        viewModel.getItemData().observe(this, this::populateItem);
+    }
+
+    private void populateItem(Item mItem) {
+        // Set title icon and image
+        Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), mItem.getItemImage());
+        titleCell.setIconDrawable(itemImage);
+        titleCell.setTitleText(mItem.getName());
+        titleCell.setAltTitleText(mItem.getJpnName());
+        titleCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+
         String cellSell = "" + mItem.getSell() + "z";
         String cellBuy = "" + mItem.getBuy() + "z";
-        String cellDescription = "" + mItem.getDescription();
         
         if (cellBuy.equals("0z")) {
             cellBuy = "-";
@@ -91,58 +85,13 @@ public class ItemDetailFragment extends Fragment {
         if (cellSell.equals("0z")) {
             cellSell = "-";
         }
-        
-        if (cellDescription.equals("null")) {
-            cellDescription = "";
-        }
-        
-        mItemLabelTextView.setText(cellText);
-        rareTextView.setText(cellRare);
-        maxTextView.setText(cellMax);
-        buyTextView.setText(cellBuy);
-        sellTextView.setText(cellSell);
-        descriptionTextView.setText(cellDescription);
-        
-        // Read a Bitmap from Assets
-        AssetManager manager = getActivity().getAssets();
-        InputStream open = null;
-        
-        try {
-            open = manager.open(cellImage);
-            Bitmap bitmap = BitmapFactory.decodeStream(open);
-            // Assign the bitmap to an ImageView in this layout
-            mItemIconImageView.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
-        finally{
-            if(open != null){
-                open.close();
-            }
-        }
+
+        rareCell.setValueText(String.valueOf(mItem.getRarity()));
+        carryCell.setValueText(String.valueOf(mItem.getCarryCapacity()));
+        buyCell.setValueText(cellBuy);
+        sellCell.setValueText(cellSell);
+
+        descriptionTextView.setText(mItem.getDescription());
     }
-    
-    private class ItemLoaderCallbacks implements LoaderCallbacks<Item> {
-        
-        @Override
-        public Loader<Item> onCreateLoader(int id, Bundle args) {
-            return new ItemLoader(getActivity(), args.getLong(ARG_ITEM_ID));
-        }
-        
-        @Override
-        public void onLoadFinished(Loader<Item> loader, Item run) {
-            mItem = run;
-            try {
-                updateUI();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        
-        @Override
-        public void onLoaderReset(Loader<Item> loader) {
-            // Do nothing
-        }
-    }
+
 }
