@@ -24,13 +24,30 @@
             android:id="@+id/data_row"
             style="@style/cell_column_row">
 
-            <TextView
-                android:id="@+id/level"
-                style="@style/cell_column_solovalue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:labelText="@string/quest_detail_reward"
-                tools:text="Village 10" />
+            <com.google.android.flexbox.FlexboxLayout
+                style="@style/cell_column">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/level"
+                        style="@style/cell_column_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="6"/>
+                    <ImageView
+                        style="@style/tiny_image"
+                        android:src="@drawable/impact"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/hub"
+                    style="@style/cell_column_label"
+                    tools:text="Village"/>
+            </com.google.android.flexbox.FlexboxLayout>
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/reward"

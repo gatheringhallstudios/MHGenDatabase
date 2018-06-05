@@ -299,6 +299,13 @@
         <item name="android:textColor">@color/text_color_secondary</item>
     </style>
 
+    <style name="cell_column">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="flexDirection">column</item>
+        <item name="alignItems">center</item>
+    </style>
+
     <style name="cell_column_row">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/title_full_height</item>
@@ -314,6 +321,8 @@
     </style>
 
     <style name="cell_column_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
