@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/value_text"
-        style="@style/detail_header_text"
+        style="@style/cell_column_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,13 +19,14 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
+
+        android:maxLines="1"
         tools:text="80z" />
 
     <TextView
         android:id="@+id/label_text"
-        style="@style/detail_subheader_text"
+        style="@style/cell_column_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

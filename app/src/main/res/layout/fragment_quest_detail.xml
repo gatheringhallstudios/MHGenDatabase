@@ -24,12 +24,20 @@
             android:id="@+id/data_row"
             style="@style/cell_column_row">
 
+            <TextView
+                android:id="@+id/level"
+                style="@style/cell_column_solovalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_reward"
+                tools:text="Village 10" />
+
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/reward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:labelText="@string/quest_detail_reward"
-                tools:valueText="4500z" />
+                tools:valueText="45000z"/>
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/hrp"
@@ -43,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:labelText="@string/quest_detail_fee"
-                tools:valueText="500z" />
+                tools:valueText="5000z" />
         </com.google.android.flexbox.FlexboxLayout>
 
         <FrameLayout style="@style/HorizontalDivider"
@@ -69,8 +77,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
             android:orientation="vertical">
 
             <!-- Location -->
@@ -84,6 +92,8 @@
                 android:id="@+id/location_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -104,22 +114,6 @@
                     android:layout_marginBottom="0dp"
                     tools:text="Misty Peaks (N)" />
             </LinearLayout>
-
-            <!-- Level -->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/quest_detail_level" />
-
-            <TextView
-                android:id="@+id/level"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Village 5" />
-
 
             <!-- Goal -->
             <TextView

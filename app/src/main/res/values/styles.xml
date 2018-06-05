@@ -169,8 +169,8 @@
     <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:minHeight">48dp</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:minHeight">@dimen/list_item_height</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
@@ -308,9 +308,29 @@
         <item name="alignItems">center</item>
     </style>
 
+    <style name="cell_column_value">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="cell_column_label">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="cell_column_solovalue">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
     <style name="detail_value_text" parent="text_medium">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textColor">@color/weapon_property_color</item>
+    </style>
+
+    <style name="detail_value_medium_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 
     <style name="detail_header_text">
