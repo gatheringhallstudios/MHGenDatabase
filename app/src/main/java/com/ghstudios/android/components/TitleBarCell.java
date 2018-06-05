@@ -3,6 +3,7 @@ package com.ghstudios.android.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -70,6 +71,16 @@ public class TitleBarCell extends FrameLayout {
      */
     public void setIconDrawable(Drawable drawable) {
         imageView.setImageDrawable(drawable);
+
+        // Invalidate to trigger layout update
+        invalidate();
+    }
+
+    /**
+     * Set custom drawable for the left icon
+     */
+    public void setIconResource(@DrawableRes int resId) {
+        imageView.setImageResource(resId);
 
         // Invalidate to trigger layout update
         invalidate();

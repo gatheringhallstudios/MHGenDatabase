@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,99 +11,43 @@
         android:paddingBottom="14dp"
         android:orientation="vertical">
 
-        <RelativeLayout style="@style/title_bar">
-
-            <TextView
-                android:id="@+id/quest"
-                style="@style/title_bar_text"
-                tools:text="Title Bar Text" />
-        </RelativeLayout>
-
-        <LinearLayout
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="12dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="12dp">
+            tools:iconSrc="@drawable/drawer_quests"
+            tools:titleText="Some Quest"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <FrameLayout style="@style/HorizontalDivider"/>
 
-                <TextView
-                    android:id="@+id/reward"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    tools:text="4500z" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/data_row"
+            style="@style/cell_column_row">
 
-                <TextView
-                    style="@style/detail_subheader_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_reward" />
-            </LinearLayout>
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/reward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_reward"
+                tools:valueText="4500z" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/hrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_hrp"
+                tools:valueText="300" />
 
-                <TextView
-                    android:id="@+id/hrp"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    tools:text="300" />
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_fee"
+                tools:valueText="500z" />
+        </com.google.android.flexbox.FlexboxLayout>
 
-                <TextView
-                    style="@style/detail_subheader_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_hrp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/fee"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="500z" />
-
-                <TextView
-                    style="@style/detail_subheader_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_fee" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/text_color_secondary" />
+        <FrameLayout style="@style/HorizontalDivider"
+            android:layout_marginBottom="@dimen/margin_large"/>
 
         <!-- Monster List -->
         <TextView
@@ -209,7 +154,7 @@
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quest_detail_reward" />
+                android:text="@string/quest_detail_subquest_reward" />
 
             <TextView
                 android:id="@+id/subreward"
@@ -223,7 +168,7 @@
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quest_detail_hrp" />
+                android:text="@string/quest_detail_subquest_hrp" />
 
             <TextView
                 android:id="@+id/subhrp"

@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
@@ -27,6 +30,9 @@ import com.ghstudios.android.features.locations.LocationDetailPagerActivity;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.ghstudios.android.mhgendatabase.R.id.location;
 
 public class QuestDetailFragment extends Fragment {
@@ -35,13 +41,15 @@ public class QuestDetailFragment extends Fragment {
 	private Quest mQuest;
     private View mView;
     private LinearLayout mQuestLocationLayout;
-	
+
+    @BindView(R.id.titlebar) TitleBarCell titleBarCell;
+
+    @BindView(R.id.reward) ColumnLabelTextCell rewardCell;
+    @BindView(R.id.hrp) ColumnLabelTextCell hrpCell;
+    @BindView(R.id.fee) ColumnLabelTextCell feeCell;
+
 	TextView questtv1;
 	TextView questtv2;
-	TextView questtv3;
-	TextView questtv4;
-	TextView questtv5;
-	TextView questtv6;
 	TextView questtv7;
     TextView questtv8;
     TextView questtv9;
@@ -83,13 +91,11 @@ public class QuestDetailFragment extends Fragment {
 
         // Get member reference
         mView = view;
+
+        ButterKnife.bind(this, view);
 		
 		questtv1 = (TextView) view.findViewById(R.id.level);
 		questtv2 = (TextView) view.findViewById(R.id.goal);
-		questtv3 = (TextView) view.findViewById(R.id.hrp);
-		questtv4 = (TextView) view.findViewById(R.id.reward);
-		questtv5 = (TextView) view.findViewById(R.id.fee);
-		questtv6 = (TextView) view.findViewById(R.id.quest);
 		questtv7 = (TextView) view.findViewById(location);
         questtv8 = (TextView) view.findViewById(R.id.subquest);
         questtv9 = (TextView) view.findViewById(R.id.subhrp);
@@ -135,13 +141,18 @@ public class QuestDetailFragment extends Fragment {
         String cellSubHrp = "" + mQuest.getSubHrp();
         String cellSubReward = "" + mQuest.getSubReward() + "z";
 		String flavor = mQuest.getFlavor();
+
+		titleBarCell.setIconResource(getIconForQuest(mQuest));
+		titleBarCell.setTitleText(mQuest.getName());
+		titleBarCell.setAltTitleText(mQuest.getJpnName());
+		titleBarCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+
+		hrpCell.setValueText(cellHrp);
+		rewardCell.setValueText(cellReward);
+		feeCell.setValueText(cellFee);
 		
 		questtv1.setText(cellLevels);
 		questtv2.setText(cellGoal);
-		questtv3.setText(cellHrp);
-		questtv4.setText(cellReward);
-		questtv5.setText(cellFee);
-		questtv6.setText(cellQuest);
 		questtv7.setText(cellLocation);
 		questtv7.setTag(mQuest.getLocation().getId());
         questtv8.setText(cellSubGoal);
@@ -160,6 +171,27 @@ public class QuestDetailFragment extends Fragment {
         questLocationImageView.setTag(mQuest.getLocation().getId());
         new LoadImage(questLocationImageView, cellImage, getContext()).execute();
 		
+	}
+
+	/**
+	 * TODO: Needs to be defined in a better way that avoids repetition,
+	 * but this is the easiest way for now.
+	 * @param quest
+	 * @return
+	 */
+	private int getIconForQuest(Quest quest) {
+		if (quest.getHunterType() == 1) {
+			return R.drawable.quest_cat;
+		}
+
+		switch (quest.getGoalType()) {
+			case Quest.QUEST_GOAL_DELIVER:
+				return R.drawable.quest_icon_green;
+			case Quest.QUEST_GOAL_CAPTURE:
+				return R.drawable.quest_icon_grey;
+			default:
+				return R.drawable.quest_icon_red;
+		}
 	}
 	
 	private class QuestLoaderCallbacks implements LoaderCallbacks<Quest> {

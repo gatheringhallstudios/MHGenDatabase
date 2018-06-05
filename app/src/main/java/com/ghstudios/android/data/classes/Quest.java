@@ -5,8 +5,9 @@ package com.ghstudios.android.data.classes;
  */
 public class Quest {
 	
-	private long id;			// id
-	private String name;		// Quest name
+	private long id = -1;		// id
+	private String name = "";	// Quest name
+	private String jpn_name = "";
 	private String goal;		// Clear condition
 	private String hub;			// Port or village
 	private int type;			// 0=Normal,1=Key,2=Urgent
@@ -34,8 +35,6 @@ public class Quest {
 	
 	/* Default Constructor */
 	public Quest() {
-		this.id = -1;
-		this.name = "";
 		this.goal = "";
 		this.hub = "";
 		this.type = 0;
@@ -68,6 +67,14 @@ public class Quest {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getJpnName() {
+		return jpn_name;
+	}
+
+	public void setJpnName(String jpn_name) {
+		this.jpn_name = jpn_name;
 	}
 
 	public String getGoal() {

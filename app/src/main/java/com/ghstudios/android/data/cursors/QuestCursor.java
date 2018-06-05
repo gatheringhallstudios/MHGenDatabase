@@ -31,6 +31,7 @@ public class QuestCursor extends CursorWrapper {
 
 		long questId = getLong(getColumnIndex(S.COLUMN_QUESTS_ID));
 		String name = getString(getColumnIndex("q" + S.COLUMN_QUESTS_NAME));
+		String jpnName = getString(getColumnIndex("q" + S.COLUMN_QUESTS_JPN_NAME));
 		String goal = getString(getColumnIndex(S.COLUMN_QUESTS_GOAL));
 		String hub = getString(getColumnIndex(S.COLUMN_QUESTS_HUB));
 		int type = getInt(getColumnIndex(S.COLUMN_QUESTS_TYPE));	//0=Normal,1=Key,2=Urgent
@@ -50,6 +51,7 @@ public class QuestCursor extends CursorWrapper {
 
 		quest.setId(questId);
 		quest.setName(name);
+		quest.setJpnName(jpnName);
 		quest.setGoal(goal);
 		quest.setHub(hub);
 		quest.setType(type);

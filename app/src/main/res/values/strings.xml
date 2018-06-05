@@ -272,6 +272,8 @@
     <string name="weapon_recoil">Recoil</string>
     <string name="weapon_reload">Reload</string>
     <string name="weapon_deviation">Deviation</string>
+
+    <!-- Quest Detail -->
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
@@ -280,6 +282,8 @@
     <string name="quest_detail_location">Location</string>
     <string name="quest_detail_goal">Goal</string>
     <string name="quest_detail_subquest">Subquest</string>
+    <string name="quest_detail_subquest_reward">Subquest Reward</string>
+    <string name="quest_detail_subquest_hrp">Subquest HRP</string>
     <string name="quest_detail_description">Description</string>
 
     <string-array name="talisman_names">

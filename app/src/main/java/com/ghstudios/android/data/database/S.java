@@ -253,6 +253,7 @@ public class S {
 	public static final String TABLE_QUESTS = "quests";
 	public static final String COLUMN_QUESTS_ID = "_id";
 	public static final String COLUMN_QUESTS_NAME = "name";
+	public static final String COLUMN_QUESTS_JPN_NAME = "name_ja";
 	public static final String COLUMN_QUESTS_GOAL = "goal";
 	public static final String COLUMN_QUESTS_HUB = "hub";
 	public static final String COLUMN_QUESTS_TYPE = "type";
