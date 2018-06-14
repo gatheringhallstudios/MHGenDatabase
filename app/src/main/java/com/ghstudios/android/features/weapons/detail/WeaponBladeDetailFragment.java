@@ -48,8 +48,6 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment {
                 .findViewById(R.id.detail_weapon_description);
         mWeaponSharpnessDrawnView = (DrawSharpness) view
                 .findViewById(R.id.detail_weapon_blade_sharpness);
-        mWeaponRarityTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_rarity);
         mWeaponDefenseTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_defense);
         mWeaponDefenseTextTextView=(TextView) view

@@ -130,7 +130,7 @@
     <string name="monster_habitats">Habitats</string>
 
     <!-- Item details -->
-    <string name="item_rarity">Rarity</string>
+    <string name="item_rarity">Rare</string>
     <string name="item_max">Max</string>
     <string name="item_buy">Buy</string>
     <string name="item_sell">Sell</string>

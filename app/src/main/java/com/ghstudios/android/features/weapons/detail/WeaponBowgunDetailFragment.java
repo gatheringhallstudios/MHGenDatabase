@@ -38,8 +38,6 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
         //mWeaponLabelTextView = (TextView) view
         //        .findViewById(R.id.detail_weapon_name);
         mWeaponDescription = (TextView)view.findViewById(R.id.detail_weapon_description);
-        mWeaponRarityTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_rarity);
         mWeaponDefenseTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_defense);
         mWeaponDefenseTextTextView=(TextView) view

@@ -32,14 +32,14 @@ public class WeaponDetailFragment extends Fragment {
     protected WeaponDetailViewModel viewModel;
 
     private TitleBarCell titleBar;
+    private ColumnLabelTextCell rarityCell;
     private ColumnLabelTextCell attackCell;
     private ColumnLabelTextCell element1Cell;
     private ColumnLabelTextCell element2Cell;
     private ColumnLabelTextCell affinityCell;
     private ColumnLabelTextCell slotsCell;
 
-    protected TextView mWeaponDescription,
-            mWeaponRarityTextView, mWeaponDefenseTextView,
+    protected TextView mWeaponDescription, mWeaponDefenseTextView,
             mWeaponDefenseTextTextView,
             mWeaponCreationTextView, mWeaponUpgradeTextView;
 
@@ -72,6 +72,7 @@ public class WeaponDetailFragment extends Fragment {
         // Bind general view elements
         // subclasses implement onCreateView, so we have to do it here instead
         titleBar = view.findViewById(R.id.titlebar);
+        rarityCell = view.findViewById(R.id.rare);
         attackCell = view.findViewById(R.id.attack);
         element1Cell = view.findViewById(R.id.element1);
         element2Cell = view.findViewById(R.id.element2);
@@ -89,6 +90,7 @@ public class WeaponDetailFragment extends Fragment {
         titleBar.setAltTitleText(weapon.getJpnName());
         titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
+        rarityCell.setValueText("" + weapon.getRarity());
         attackCell.setValueText("" + weapon.getAttack());
         affinityCell.setValueText(weapon.getAffinity()+"%");
         slotsCell.setValueText("" + weapon.getSlotString());
@@ -97,7 +99,6 @@ public class WeaponDetailFragment extends Fragment {
          * Items below are from old code
          */
 
-        mWeaponRarityTextView.setText("" + weapon.getRarity());
         mWeaponDescription.setText(weapon.getDescription());
 
         if(weapon.getDefense()==0)

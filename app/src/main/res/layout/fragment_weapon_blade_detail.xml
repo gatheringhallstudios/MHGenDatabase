@@ -104,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="48000z" />
+
             <!--Creation Cost-->
             <TextView
                 style="@style/text_small_secondary"
@@ -118,20 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="-" />
-            <!--Rarity-->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/item_rarity" />
 
-            <TextView
-                android:id="@+id/detail_weapon_rarity"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="5" />
             <!--Description-->
             <TextView
                 style="@style/text_small_secondary"
