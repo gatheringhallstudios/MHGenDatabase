@@ -32,6 +32,8 @@
             android:id="@+id/element1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
             tools:labelText="Fire"
             tools:valueText="28"/>
 
@@ -39,6 +41,8 @@
             android:id="@+id/element2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
             tools:labelText="Fire"
             tools:valueText="28"/>
 

@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.weapons.detail;
 
-import java.io.IOException;
+import java.util.List;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.drawable.Drawable;
@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,7 +17,7 @@ import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.features.weapons.WeaponDetailViewModel;
-import com.ghstudios.android.loader.WeaponLoader;
+import com.ghstudios.android.features.weapons.WeaponElementData;
 import com.ghstudios.android.mhgendatabase.R;
 
 /**
@@ -82,6 +79,7 @@ public class WeaponDetailFragment extends Fragment {
         slotsCell = view.findViewById(R.id.slots);
 
         viewModel.getWeaponData().observe(this, this::populateWeapon);
+        viewModel.getWeaponElementData().observe(this, this::populateElementData);
     }
 
     protected void populateWeapon(Weapon weapon) {
@@ -94,28 +92,6 @@ public class WeaponDetailFragment extends Fragment {
         attackCell.setValueText("" + weapon.getAttack());
         affinityCell.setValueText(weapon.getAffinity()+"%");
         slotsCell.setValueText("" + weapon.getSlotString());
-
-//
-//        /* Element */
-//        if (!mWeapon.getElement().equals(""))
-//        {
-//            mWeaponElementTextView.setText(Long.toString(mWeapon.getElementAttack()));
-//            mWeaponElementTypeTextView.setText(mWeapon.getElement());
-//        }
-//        else
-//        {
-//            mWeaponElementTextView.setText("0");
-//            mWeaponElementTypeTextView.setText("None");
-//        }
-//
-//        /* Element 2 */
-//        if (!"".equals(mWeapon.getElement2())) {
-//            mWeaponElement2TypeTextView.setText(mWeapon.getElement2());
-//            mWeaponElement2TextView.setText(Long.toString(mWeapon.getElement2Attack()));
-//        }else{
-//            mWeaponElement2Layout.setVisibility(View.GONE);
-//        }
-
 
         /*
          * Items below are from old code
@@ -146,5 +122,28 @@ public class WeaponDetailFragment extends Fragment {
         
         mWeaponCreationTextView.setText(createCost);
         mWeaponUpgradeTextView.setText(upgradeCost);
+    }
+
+    private void populateElementData(List<WeaponElementData> items) {
+        element1Cell.setVisibility(View.GONE);
+        element2Cell.setVisibility(View.GONE);
+
+        if (items == null) {
+            return;
+        }
+
+        if (items.size() >= 1) {
+            WeaponElementData data = items.get(0);
+            element1Cell.setLabelText(data.getElement());
+            element1Cell.setValueText(String.valueOf(data.getValue()));
+            element1Cell.setVisibility(View.VISIBLE);
+        }
+
+        if (items.size() >= 2) {
+            WeaponElementData data = items.get(1);
+            element2Cell.setLabelText(data.getElement());
+            element2Cell.setValueText(String.valueOf(data.getValue()));
+            element2Cell.setVisibility(View.VISIBLE);
+        }
     }
 }
