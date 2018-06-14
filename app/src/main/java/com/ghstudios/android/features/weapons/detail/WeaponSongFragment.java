@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.weapons;
+package com.ghstudios.android.features.weapons.detail;
 
 import android.content.Context;
 import android.content.res.AssetManager;
