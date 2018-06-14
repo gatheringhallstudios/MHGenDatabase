@@ -162,46 +162,46 @@ public class  Item {
 			case "Legs":
 				cellImage = "icons_armor/icons_legs/legs" + this.getRarity() + ".png";
 				break;
-			case "Great Sword":
+			case Weapon.GREAT_SWORD:
 				cellImage = "icons_weapons/icons_great_sword/great_sword" + this.getRarity() + ".png";
 				break;
-			case "Long Sword":
+			case Weapon.LONG_SWORD:
 				cellImage = "icons_weapons/icons_long_sword/long_sword" + this.getRarity() + ".png";
 				break;
-			case "Sword and Shield":
+			case Weapon.SWORD_AND_SHIELD:
 				cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + this.getRarity() + ".png";
 				break;
-			case "Dual Blades":
+			case Weapon.DUAL_BLADES:
 				cellImage = "icons_weapons/icons_dual_blades/dual_blades" + this.getRarity() + ".png";
 				break;
-			case "Hammer":
+			case Weapon.HAMMER:
 				cellImage = "icons_weapons/icons_hammer/hammer" + this.getRarity() + ".png";
 				break;
-			case "Hunting Horn":
+			case Weapon.HUNTING_HORN:
 				cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + this.getRarity() + ".png";
 				break;
-			case "Lance":
+			case Weapon.LANCE:
 				cellImage = "icons_weapons/icons_lance/lance" + this.getRarity() + ".png";
 				break;
-			case "Gunlance":
+			case Weapon.GUN_LANCE:
 				cellImage = "icons_weapons/icons_gunlance/gunlance" + this.getRarity() + ".png";
 				break;
-			case "Switch Axe":
+			case Weapon.SWITCH_AXE:
 				cellImage = "icons_weapons/icons_switch_axe/switch_axe" + this.getRarity() + ".png";
 				break;
-			case "Charge Blade":
+			case Weapon.CHARGE_BLADE:
 				cellImage = "icons_weapons/icons_charge_blade/charge_blade" + this.getRarity() + ".png";
 				break;
-			case "Insect Glaive":
+			case Weapon.INSECT_GLAIVE:
 				cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + this.getRarity() + ".png";
 				break;
-			case "Light Bowgun":
+			case Weapon.LIGHT_BOWGUN:
 				cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + this.getRarity() + ".png";
 				break;
-			case "Heavy Bowgun":
+			case Weapon.HEAVY_BOWGUN:
 				cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + this.getRarity() + ".png";
 				break;
-			case "Bow":
+			case Weapon.BOW:
 				cellImage = "icons_weapons/icons_bow/bow" + this.getRarity() + ".png";
 				break;
 			default: {

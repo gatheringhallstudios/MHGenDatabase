@@ -333,60 +333,6 @@ public class Weapon extends Item {
     public void setAwakenAttack(long awaken_attack) {
         this.awaken_attack = awaken_attack;
     }
-    
-    public void setFileLocation() {
-        
-        String cellImage = "";
-        switch (this.wtype) {
-            case GREAT_SWORD:
-                cellImage = "icons_weapons/icons_great_sword/great_sword" + this.getRarity() + ".png";
-                break;
-            case LONG_SWORD:
-                cellImage = "icons_weapons/icons_long_sword/long_sword" + this.getRarity() + ".png";
-                break;
-            case SWORD_AND_SHIELD:
-                cellImage = "icons_weapons/icons_sword_and_shield/sword_and_shield" + this.getRarity() + ".png";
-                break;
-            case DUAL_BLADES:
-                cellImage = "icons_weapons/icons_dual_blades/dual_blades" + this.getRarity() + ".png";
-                break;
-            case HAMMER:
-                cellImage = "icons_weapons/icons_hammer/hammer" + this.getRarity() + ".png";
-                break;
-            case HUNTING_HORN:
-                cellImage = "icons_weapons/icons_hunting_horn/hunting_horn" + this.getRarity() + ".png";
-                break;
-            case LANCE:
-                cellImage = "icons_weapons/icons_lance/lance" + this.getRarity() + ".png";
-                break;
-            case GUN_LANCE:
-                cellImage = "icons_weapons/icons_gunlance/gunlance" + this.getRarity() + ".png";
-                break;
-            case SWITCH_AXE:
-                cellImage = "icons_weapons/icons_switch_axe/switch_axe" + this.getRarity() + ".png";
-                break;
-            case CHARGE_BLADE:
-                cellImage = "icons_weapons/icons_charge_blade/charge_blade" + this.getRarity() + ".png";
-                break;
-            case INSECT_GLAIVE:
-                cellImage = "icons_weapons/icons_insect_glaive/insect_glaive" + this.getRarity() + ".png";
-                break;
-            case LIGHT_BOWGUN:
-                cellImage = "icons_weapons/icons_light_bowgun/light_bowgun" + this.getRarity() + ".png";
-                break;
-            case HEAVY_BOWGUN:
-                cellImage = "icons_weapons/icons_heavy_bowgun/heavy_bowgun" + this.getRarity() + ".png";
-                break;
-            case BOW:
-                cellImage = "icons_weapons/icons_bow/bow" + this.getRarity() + ".png";
-                break;
-        }
-        this.file_location = cellImage;
-    }
-
-    public String getFileLocation() {
-        return this.file_location;
-    }
 
     public void initializeSharpness() {
         // Sharpness is in the format "1.1.1.1.1.1.1 1.1.1.1.1.1.1" where each

@@ -92,6 +92,7 @@ public class WeaponCursor extends CursorWrapper {
 		String name = getString(getColumnIndex(S.COLUMN_ITEMS_NAME));
 		String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
 		String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
+		String subType = getString(getColumnIndex(S.COLUMN_ITEMS_SUB_TYPE));
 		int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
 		int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
 		int buy = getInt(getColumnIndex(S.COLUMN_ITEMS_BUY));
@@ -104,14 +105,17 @@ public class WeaponCursor extends CursorWrapper {
 		weapon.setName(name);
 		weapon.setJpnName(jpnName);
 		weapon.setType(type);
+		weapon.setSubType(subType);
 		weapon.setRarity(rarity);
 		weapon.setCarryCapacity(carry_capacity);
 		weapon.setBuy(buy);
 		weapon.setSell(sell);
 		weapon.setDescription(description);
-		weapon.setFileLocation();
 		weapon.setArmorDupeNameFix(armor_dupe_name_fix);
         weapon.setParentId(parent_id);
+
+		// note: not actually used for weapons, but here for completeness
+		weapon.setFileLocation(fileLocation);
 
         if (!weapon.getWtype().equals("Bow") && !weapon.getWtype().equals("Light Bowgun")
             && !weapon.getWtype().equals("Heavy Bowgun")) {
