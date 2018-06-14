@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
@@ -36,17 +37,9 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
 
         //mWeaponLabelTextView = (TextView) view
         //        .findViewById(R.id.detail_weapon_name);
-        mWeaponTypeTextView = (TextView) view
-                .findViewById(R.id.detail_title_bar_text);
         mWeaponDescription = (TextView)view.findViewById(R.id.detail_weapon_description);
-        mWeaponAttackTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_attack);
         mWeaponRarityTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_rarity);
-        mWeaponSlotTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_slot);
-        mWeaponAffinityTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_affinity);
         mWeaponDefenseTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_defense);
         mWeaponDefenseTextTextView=(TextView) view
@@ -81,12 +74,12 @@ public class WeaponBowgunDetailFragment extends WeaponDetailFragment {
     }
 
     @Override
-    protected void updateUI() throws IOException {
-        super.updateUI();
+    protected void populateWeapon(Weapon weapon)  {
+        super.populateWeapon(weapon);
 
-        mWeaponReloadTextView.setText(mWeapon.getReloadSpeed());
-        mWeaponRecoilTextView.setText(mWeapon.getRecoil());
-        mWeaponSteadinessTextView.setText(mWeapon.getDeviation());
+        mWeaponReloadTextView.setText(weapon.getReloadSpeed());
+        mWeaponRecoilTextView.setText(weapon.getRecoil());
+        mWeaponSteadinessTextView.setText(weapon.getDeviation());
 
 //        if (mWeapon.getWtype().equals("Light Bowgun")) {
 //            mWeaponSpecialTypeTextView.setText("Rapid Fire:");

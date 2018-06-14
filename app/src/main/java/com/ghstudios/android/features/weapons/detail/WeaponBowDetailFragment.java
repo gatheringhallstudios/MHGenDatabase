@@ -1,10 +1,5 @@
 package com.ghstudios.android.features.weapons.detail;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,13 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WeaponBowDetailFragment extends WeaponDetailFragment {
 
     private TextView mWeaponArcTextView, mWeaponCharge1TextView,
             mWeaponCharge2TextView, mWeaponCharge3TextView,
-            mWeaponCharge4TextView, mWeaponElementTextView,mWeaponElementTypeTextView;
+            mWeaponCharge4TextView;
 
     public static WeaponBowDetailFragment newInstance(long weaponId) {
         Bundle args = new Bundle();
@@ -34,20 +30,8 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
         View view = inflater.inflate(R.layout.fragment_weapon_bow_detail,
                 container, false);
 
-        mWeaponTypeTextView = (TextView) view
-                .findViewById(R.id.detail_title_bar_text);
-        mWeaponAttackTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_attack);
-        mWeaponElementTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_element);
-        mWeaponElementTypeTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_element_text);
         mWeaponRarityTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_rarity);
-        mWeaponSlotTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_slot);
-        mWeaponAffinityTextView = (TextView) view
-                .findViewById(R.id.detail_weapon_affinity);
         mWeaponDefenseTextView = (TextView) view
                 .findViewById(R.id.detail_weapon_defense);
         mWeaponDefenseTextTextView = (TextView) view
@@ -74,8 +58,8 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
     }
 
     @Override
-    protected void updateUI() throws IOException {
-        super.updateUI();
+    protected void populateWeapon(Weapon mWeapon) {
+        super.populateWeapon(mWeapon);
 
         mWeaponArcTextView.setText(mWeapon.getRecoil());
 
@@ -110,23 +94,6 @@ public class WeaponBowDetailFragment extends WeaponDetailFragment {
         }
         else {
             mWeaponCharge4TextView.setText("None");
-        }
-
-        // Read a Bitmap from Assets
-        AssetManager manager = getActivity().getAssets();
-        InputStream open = null;
-        Bitmap bitmap = null;
-
-        /* Element */
-        if (!mWeapon.getElement().equals(""))
-        {
-            mWeaponElementTextView.setText(Long.toString(mWeapon.getElementAttack()));
-            mWeaponElementTypeTextView.setText(mWeapon.getElement());
-        }
-        else
-        {
-            mWeaponElementTextView.setText("0");
-            mWeaponElementTypeTextView.setText("None");
         }
     }
 }
