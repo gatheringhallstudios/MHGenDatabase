@@ -4,6 +4,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
+import com.ghstudios.android.mhgendatabase.R;
 
 public class SkillTreeDetailPagerActivity extends BasePagerActivity {
     /**
@@ -17,38 +18,38 @@ public class SkillTreeDetailPagerActivity extends BasePagerActivity {
         long skillTreeId = getIntent().getLongExtra(EXTRA_SKILLTREE_ID, -1);
         setTitle(DataManager.get(getApplicationContext()).getSkillTree(skillTreeId).getName());
 
-        tabs.addTab("Detail", () ->
+        tabs.addTab(getString(R.string.skill_tab_detail), () ->
                 SkillTreeDetailFragment.newInstance(skillTreeId)
         );
 
-        tabs.addTab("Head", () ->
+        tabs.addTab(getString(R.string.skill_tab_decorations), () ->
+                SkillTreeDecorationFragment.newInstance(skillTreeId,
+                        ItemToSkillTreeListCursorLoader.TYPE_DECORATION)
+        );
+
+        tabs.addTab(getString(R.string.skill_tab_head), () ->
                 SkillTreeArmorFragment.newInstance(skillTreeId,
                         ItemToSkillTreeListCursorLoader.TYPE_HEAD)
         );
 
-        tabs.addTab("Body", () ->
+        tabs.addTab(getString(R.string.skill_tab_body), () ->
                 SkillTreeArmorFragment.newInstance(skillTreeId,
                         ItemToSkillTreeListCursorLoader.TYPE_BODY)
         );
 
-        tabs.addTab("Arm", () ->
+        tabs.addTab(getString(R.string.skill_tab_arms), () ->
                 SkillTreeArmorFragment.newInstance(skillTreeId,
                         ItemToSkillTreeListCursorLoader.TYPE_ARMS)
         );
 
-        tabs.addTab("Waist", () ->
+        tabs.addTab(getString(R.string.skill_tab_waist), () ->
                 SkillTreeArmorFragment.newInstance(skillTreeId,
                         ItemToSkillTreeListCursorLoader.TYPE_WAIST)
         );
 
-        tabs.addTab("Leg", () ->
+        tabs.addTab(getString(R.string.skill_tab_legs), () ->
                 SkillTreeArmorFragment.newInstance(skillTreeId,
                         ItemToSkillTreeListCursorLoader.TYPE_LEGS)
-        );
-
-        tabs.addTab("Jewels", () ->
-                SkillTreeDecorationFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_DECORATION)
         );
     }
 

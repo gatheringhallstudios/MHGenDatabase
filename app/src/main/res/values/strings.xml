@@ -76,6 +76,7 @@
 
     <string name="logo_description">Logo</string>
 
+    <!-- Standard Menu Options -->
     <string name="option_list">List</string>
     <string name="option_grid">Grid</string>
     <string name="option_wishlist_add">Create Wishlist</string>
@@ -136,6 +137,16 @@
     <string name="item_description">Description</string>
     <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
+
+    <!-- Skill detail -->
+    <string name="skill_tab_detail">Detail</string>
+    <string name="skill_tab_decorations">Decorations</string>
+    <string name="skill_tab_head">Head</string>
+    <string name="skill_tab_body">Body</string>
+    <string name="skill_tab_arms">Arms</string>
+    <string name="skill_tab_waist">Waist</string>
+    <string name="skill_tab_legs">Legs</string>
+
 
     <!-- Armor detail -->
     <string name="armor_part">Part</string>
