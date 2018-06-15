@@ -27,6 +27,7 @@ import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
+import com.ghstudios.android.components.LabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
@@ -57,6 +58,7 @@ public class ArmorDetailFragment extends Fragment {
     @BindView(R.id.defense) ColumnLabelTextCell defenseView;
     @BindView(R.id.part) ColumnLabelTextCell partView;
 
+    @BindView(R.id.skill_section) ViewGroup skillSection;
     @BindView(R.id.skill_list) LinearLayout skillListView;
 
     @BindView(R.id.recipe_header) View recipeHeader;
@@ -167,23 +169,21 @@ public class ArmorDetailFragment extends Fragment {
     }
 
     private void populateSkills(List<ItemToSkillTree> skills) {
+        skillListView.removeAllViews();
+        if (skills.size() == 0)  {
+            skillSection.setVisibility(View.GONE);
+            return;
+        }
+
+        skillSection.setVisibility(View.VISIBLE);
         for (ItemToSkillTree skill : skills) {
-            IconLabelTextCell skillItem = new IconLabelTextCell(getContext());
+            LabelTextCell skillItem = new LabelTextCell(getContext());
             skillItem.setLabelText(skill.getSkillTree().getName());
             skillItem.setValueText(String.valueOf(skill.getPoints()));
 
             skillItem.setOnClickListener(
                     new SkillClickListener(getContext(), skill.getSkillTree().getId())
             );
-
-            Drawable icon;
-            if (skill.getPoints() > 0) {
-                icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_good);
-            } else {
-                icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_bad);
-            }
-
-            skillItem.setLeftIconDrawable(icon);
 
             skillListView.addView(skillItem);
         }

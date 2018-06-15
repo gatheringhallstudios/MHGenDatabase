@@ -63,15 +63,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_large">
+            android:layout_margin="@dimen/margin_large">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".4"
-                android:orientation="vertical"
-                android:paddingLeft="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -142,32 +140,39 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.ghstudios.android.components.SectionHeaderCell
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:labelText="@string/item_skills" />
-
         <LinearLayout
-            android:id="@+id/skill_list"
+            android:id="@+id/skill_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.ghstudios.android.components.IconLabelTextCell
+            <com.ghstudios.android.components.SectionHeaderCell
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                app:labelText="Attack"
-                app:valueText="1"
-                tools:visibility="visible" />
+                android:layout_height="wrap_content"
+                app:labelText="@string/item_skills" />
 
-            <com.ghstudios.android.components.IconLabelTextCell
+            <LinearLayout
+                android:id="@+id/skill_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                app:labelText="Defense"
-                app:valueText="-1"
-                tools:visibility="visible" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Attack"
+                    app:valueText="1"
+                    tools:visibility="visible" />
+
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Defense"
+                    app:valueText="-1"
+                    tools:visibility="visible" />
+            </LinearLayout>
         </LinearLayout>
 
 

@@ -22,7 +22,7 @@ class ArmorViewModel(app: Application) : AndroidViewModel(app) {
     /**
      * Sets the armor and begins loading armor data if not already loaded
      */
-    fun loadArmor(armorId : Long) {
+    fun loadArmor(armorId: Long) {
         if (this.armorId == armorId) {
             return
         }
