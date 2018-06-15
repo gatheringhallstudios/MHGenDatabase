@@ -40,6 +40,8 @@
                     <ImageView
                         style="@style/tiny_image"
                         android:src="@drawable/impact"
+                        android:visibility="gone"
+                        tools:visibility="visible"
                         />
                 </LinearLayout>
 

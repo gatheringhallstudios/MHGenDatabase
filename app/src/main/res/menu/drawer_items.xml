@@ -65,9 +65,12 @@
         android:id="@+id/nav_group_other"
         android:title="@string/drawer_group_other">
 
+        <!--
+            ENABLE ONCE WE HAVE JAPANESE TRANSLATIONS
         <item
             android:id="@+id/settings"
             android:title="@string/drawer_preferences"/>
+            -->
 
         <item
             android:id="@+id/send_feedback"

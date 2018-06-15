@@ -23,6 +23,7 @@ import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
+import com.ghstudios.android.components.LabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
@@ -166,19 +167,10 @@ public class DecorationDetailFragment extends Fragment {
     }
 
     private void addSkillListItem(long skillId, String skillName, int points) {
-        IconLabelTextCell skillItem = new IconLabelTextCell(getContext());
+        LabelTextCell skillItem = new LabelTextCell(getContext());
         skillItem.setLabelText(skillName);
         skillItem.setValueText(String.valueOf(points));
         skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
-
-        Drawable icon = null;
-        if (points > 0) {
-            icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_good);
-        } else {
-            icon = ContextCompat.getDrawable(getContext(), R.drawable.skill_bad);
-        }
-
-        skillItem.setLeftIconDrawable(icon);
 
         skillListView.addView(skillItem);
     }

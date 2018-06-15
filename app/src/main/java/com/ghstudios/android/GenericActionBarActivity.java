@@ -171,10 +171,10 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
         // Handle "Other" menu first.
         switch (itemId) {
-            case R.id.settings:
-                Intent preferences = new Intent(ctx, PreferencesActivity.class);
-                startActivity(preferences);
-                return true;
+//            case R.id.settings:
+//                Intent preferences = new Intent(ctx, PreferencesActivity.class);
+//                startActivity(preferences);
+//                return true;
 
             case R.id.change_log:
                 ChangeLog cl = new ChangeLog(this);
