@@ -36,7 +36,7 @@ public abstract class GenericActivity extends GenericActionBarActivity {
         }
 
         // Integrate Toolbar so sliding drawer can go over toolbar
-        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
+        android.support.v7.widget.Toolbar mtoolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolbar);
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();

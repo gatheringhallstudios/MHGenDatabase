@@ -78,7 +78,7 @@ public abstract class BasePagerActivity extends GenericActionBarActivity {
      * Performs "special setup" exclusive to this app. This is code not from the World app.
      */
     private void doSpecialSetup() {
-        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
+        android.support.v7.widget.Toolbar mtoolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolbar);
 
         android.support.v7.app.ActionBar ab = getSupportActionBar();
