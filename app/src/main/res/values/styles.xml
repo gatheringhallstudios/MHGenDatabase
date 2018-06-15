@@ -127,13 +127,6 @@
         <item name = "android:layout_marginRight">@dimen/margin_medium</item>
     </style>
 
-    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
-    <style name="FullScreenActivity" parent = "AppTheme">
-        <item name="android:windowBackground">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-
     <!-- Begin styles for lists -->
 
     <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">

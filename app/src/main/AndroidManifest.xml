@@ -162,8 +162,7 @@
         <activity
             android:name="com.ghstudios.android.features.weapons.WeaponListActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreenActivity">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ghstudios.android.features.weapons.WeaponSelectionListActivity" />
