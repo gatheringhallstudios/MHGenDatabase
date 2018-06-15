@@ -33,13 +33,7 @@ public class WeaponListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        if (type.equals("Bow")) {
-            return WeaponBowExpandableFragment.newInstance(type);
-        } else if (type.equals("Light Bowgun") || type.equals("Heavy Bowgun")) {
-            return WeaponBowgunExpandableFragment.newInstance(type);
-        } else {
-            return WeaponBladeExpandableFragment.newInstance(type);
-        }
+        return WeaponListFragment.newInstance(type);
     }
 
 }

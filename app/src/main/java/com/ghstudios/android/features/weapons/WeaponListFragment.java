@@ -1,12 +1,10 @@
 package com.ghstudios.android.features.weapons;
 
-import android.content.Context;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,70 +13,97 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.RecyclerViewFragment;
+import com.ghstudios.android.adapter.WeaponExpandableListBladeAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListBowAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListBowgunAdapter;
+import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.adapter.WeaponExpandableListGeneralAdapter;
-import com.ghstudios.android.components.WeaponListEntry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * The superclass for weapons list fragments of every weapon type.
+ * The weapon list fragment for every weapon type.
  */
-public abstract class WeaponListFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<ArrayList<WeaponListEntry>> {
+public class WeaponListFragment extends RecyclerViewFragment {
 
     protected static final String ARG_TYPE = "WEAPON_TYPE";
-    private static final String GROUPS_KEY = "groups_key";
 
-    private LinearLayoutManager mLayoutManager;
-    private Bundle savedState;
+    private WeaponListViewModel viewModel;
+    private WeaponExpandableListGeneralAdapter mAdapter;
 
-    // todo: Use a better mechanism to filter (filter command / object)
-    private boolean isFilterFinal = false;
-
-    // todo: refactor so that these variables don't have to be set to protected
-    protected WeaponExpandableListGeneralAdapter mAdapter;
-    protected RecyclerView mRecyclerView;
+    public static WeaponListFragment newInstance(String type) {
+        Bundle args = new Bundle();
+        args.putString(WeaponListFragment.ARG_TYPE, type);
+        WeaponListFragment f = new WeaponListFragment();
+        f.setArguments(args);
+        return f;
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
         setHasOptionsMenu(true);
 
-        savedState = savedInstanceState;
+        viewModel = ViewModelProviders.of(this).get(WeaponListViewModel.class);
 
-        // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.weapon_list_fragment, getArguments(), this).forceLoad();
+        Bundle args = getArguments();
+        if (args != null) {
+            String weaponType = args.getString(ARG_TYPE);
+            viewModel.loadWeaponType(weaponType);
+        }
     }
 
     /**
      * Used by onCreateView to build an adapter that creates the actual views for all weapons.
      * @return
      */
-    protected abstract WeaponExpandableListGeneralAdapter createWeaponAdapter();
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_weapon_tree_expandable, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.content_recyclerview);
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = createWeaponAdapter();
-        mRecyclerView.setAdapter(mAdapter);
-
-        // Restores old groups if we are returning to the fragment
-        if (savedInstanceState != null) {
-            List<Integer> groups = savedInstanceState.getIntegerArrayList(GROUPS_KEY);
-            mAdapter.restoreGroups(groups);
+    protected WeaponExpandableListGeneralAdapter createWeaponAdapter() {
+        String weaponType = viewModel.getWeaponType();
+        if (weaponType == null || weaponType.equals("")) {
+            return null;
         }
 
-        return rootView;
+        View.OnLongClickListener listener = (v) -> {
+            collapseItem(v);
+            return true;
+        };
+
+        if (weaponType.equals(Weapon.BOW)) {
+            return new WeaponExpandableListBowAdapter(getActivity(), listener);
+        }
+
+        if (weaponType.equals(Weapon.HEAVY_BOWGUN) || weaponType.equals(Weapon.LIGHT_BOWGUN)) {
+            return new WeaponExpandableListBowgunAdapter(getActivity(), listener);
+        }
+
+        return new WeaponExpandableListBladeAdapter(getActivity(), listener);
+    }
+
+    /**
+     * Collapses an item in the list using its view
+     * @param v
+     */
+    protected void collapseItem(View v) {
+        if (mAdapter != null) {
+            int position = this.getRecyclerView().getChildAdapterPosition(v);
+            mAdapter.collapseGroup(position);
+        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mAdapter = createWeaponAdapter();
+        this.setAdapter(mAdapter);
+
+        viewModel.getWeaponListData().observe(this, (weapons) -> {
+            mAdapter.clear();
+            mAdapter.addAll(weapons);
+        });
+
+        // restore collapsed groups if we are restoring the fragment
+        if (viewModel.getCollapsedGroups() != null) {
+            mAdapter.restoreGroups(viewModel.getCollapsedGroups());
+        }
     }
 
     @Override
@@ -91,15 +116,8 @@ public abstract class WeaponListFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.filter_final:
-                // toggle state
                 item.setChecked(!item.isChecked());
-                isFilterFinal = item.isChecked();
-
-                // restart the loader so that filtering can occur
-                getLoaderManager()
-                        .restartLoader(R.id.weapon_list_fragment, getArguments(), this)
-                        .forceLoad();
-
+                viewModel.setFilterFinal(item.isChecked());
                 return true;
 
             default:
@@ -108,81 +126,18 @@ public abstract class WeaponListFragment extends Fragment implements
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // Restores old groups if we are returning to the fragment
-        if (savedInstanceState != null) {
-            List<Integer> groups = savedInstanceState.getIntegerArrayList(GROUPS_KEY);
-            mAdapter.restoreGroups(groups);
-        }
-    }
-
-    //
-    // Saves current state of groups
-    //
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putIntegerArrayList(GROUPS_KEY, mAdapter.saveGroups());
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<ArrayList<WeaponListEntry>> loader,
-                               ArrayList<WeaponListEntry> weapons) {
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.clear();
-        mAdapter.addAll(weapons);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<ArrayList<WeaponListEntry>> loader) {
-        // Stop using the cursor (via the adapter)
-        mRecyclerView.setAdapter(null);
-        mAdapter.clear();
-    }
-
-    @Override
-    public Loader<ArrayList<WeaponListEntry>> onCreateLoader(int id, Bundle args) {
-        // You only ever load the runs, so assume this is the case
-        String mType = null;
-        if (args != null) {
-            mType = args.getString(ARG_TYPE);
-        }
-        return new WeaponArrayLoader(getActivity().getApplicationContext(), mType, isFilterFinal);
-    }
-
-    static class WeaponArrayLoader extends AsyncTaskLoader<ArrayList<WeaponListEntry>> {
-        String mType;
-        boolean mFinalOnly;
-        public WeaponArrayLoader(Context context, String type, boolean finalOnly) {
-            super(context);
-            mType = type;
-            mFinalOnly = finalOnly;
-        }
-
-        public ArrayList<WeaponListEntry> loadInBackground() {
-            if (mFinalOnly) {
-                return DataManager.get(getContext()).queryWeaponTreeArrayFinal(mType);
-            } else {
-                return DataManager.get(getContext()).queryWeaponTreeArray(mType);
-            }
-        }
-    }
-
-    @Override
     public void onPause() {
-        savedState = new Bundle();
-        savedState.putIntegerArrayList(GROUPS_KEY, mAdapter.saveGroups());
         super.onPause();
+        if (mAdapter != null) {
+            viewModel.setCollapsedGroups(mAdapter.saveGroups());
+        }
     }
 
     @Override
-    public void onResume() {
-        if (savedState != null) {
-            List<Integer> groups = savedState.getIntegerArrayList(GROUPS_KEY);
-            mAdapter.restoreGroups(groups);
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mAdapter != null) {
+            viewModel.setCollapsedGroups(mAdapter.saveGroups());
         }
-        super.onResume();
     }
 }
