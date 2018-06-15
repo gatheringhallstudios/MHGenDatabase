@@ -97,6 +97,7 @@ public class DecorationDetailFragment extends Fragment {
         viewModel.setDecoration(decorationId);
 
         viewModel.getDecorationData().observe(this, this::populateDecoration);
+        viewModel.getDecorationSkillData().observe(this, this::populateSkills);
         viewModel.getComponentData().observe(this, this::populateRecipes);
     }
 
@@ -134,12 +135,18 @@ public class DecorationDetailFragment extends Fragment {
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);
         slotsReqView.setValueText(decoration.getSlotsString());
+    }
 
+    private void populateSkills(List<SkillPoints> skills) {
         skillListView.removeAllViews();
 
-        addSkillListItem(decoration.getSkill1Id(), decoration.getSkill1Name(), decoration.getSkill1Point());
-        if (decoration.getSkill2Point() != 0) {
-            addSkillListItem(decoration.getSkill2Id(), decoration.getSkill2Name(), decoration.getSkill2Point());
+        for (SkillPoints skill : skills) {
+            LabelTextCell skillItem = new LabelTextCell(getContext());
+            skillItem.setLabelText(skill.getSkillName());
+            skillItem.setValueText(String.valueOf(skill.getPoints()));
+            skillItem.setOnClickListener(new SkillClickListener(getContext(), skill.getSkillId()));
+
+            skillListView.addView(skillItem);
         }
     }
 
@@ -164,15 +171,6 @@ public class DecorationDetailFragment extends Fragment {
 
             recipeListView.addView(cell);
         }
-    }
-
-    private void addSkillListItem(long skillId, String skillName, int points) {
-        LabelTextCell skillItem = new LabelTextCell(getContext());
-        skillItem.setLabelText(skillName);
-        skillItem.setValueText(String.valueOf(points));
-        skillItem.setOnClickListener(new SkillClickListener(getContext(), skillId));
-
-        skillListView.addView(skillItem);
     }
 
     @Override
