@@ -2,15 +2,40 @@ package com.ghstudios.android.features.items
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
+import com.ghstudios.android.data.cursors.ComponentCursor
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.toList
+
+inline fun <T> createLiveData(crossinline fn: () -> T) : LiveData<T> {
+    val result = MutableLiveData<T>()
+    Thread {
+        result.postValue(fn())
+    }.start()
+    return result
+}
 
 class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
-    val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get(app.applicationContext)
 
     val itemData = MutableLiveData<Item>()
 
+    // live data used to create cursors
+    // this will most likely go away and is here because of incremental refactor
+    val usageData: LiveData<ComponentCursor>
+        get() = createLiveData { dataManager.queryComponentComponent(itemId) }
+
+    val monsterRewardsData
+        get() = createLiveData { dataManager.queryHuntingRewardItem(itemId) }
+
+    val questRewardsData
+        get() = createLiveData { dataManager.queryQuestRewardItem(itemId) }
+
+    val gatherData
+        get() = createLiveData { dataManager.queryGatheringItem(itemId) }
 
     var itemId = -1L
         private set

@@ -1,12 +1,13 @@
 package com.ghstudios.android.features.items.basicdetail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,11 @@ import android.widget.TextView;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.cursors.HuntingRewardCursor;
-import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
+import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.MonsterClickListener;
 
-public class ItemMonsterFragment extends ListFragment implements
-        LoaderCallbacks<Cursor> {
+public class ItemMonsterFragment extends ListFragment {
     private static final String ARG_ITEM_ID = "ITEM_ID";
     
     public static ItemMonsterFragment newInstance(long itemId) {
@@ -33,13 +33,6 @@ public class ItemMonsterFragment extends ListFragment implements
         f.setArguments(args);
         return f;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.item_monster_fragment, getArguments(), this);
-    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,28 +41,17 @@ public class ItemMonsterFragment extends ListFragment implements
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        // You only ever load the runs, so assume this is the case
-        long itemId = args.getLong(ARG_ITEM_ID, -1);
-        
-        return new HuntingRewardListCursorLoader(getActivity(), 
-                HuntingRewardListCursorLoader.FROM_ITEM, itemId, null);
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // Create an adapter to point at this cursor
-        ItemHuntingRewardListCursorAdapter adapter = new ItemHuntingRewardListCursorAdapter(
-                getActivity(), (HuntingRewardCursor) cursor);
-        setListAdapter(adapter);
+        ItemDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(ItemDetailViewModel.class);
+        viewModel.getMonsterRewardsData().observe(this, (cursor) -> {
+            // Create an adapter to point at this cursor
+            ItemHuntingRewardListCursorAdapter adapter = new ItemHuntingRewardListCursorAdapter(
+                    getActivity(), cursor);
+            setListAdapter(adapter);
+        });
     }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        // Stop using the cursor (via the adapter)
-        setListAdapter(null);
-    }
-
 
     private static class ItemHuntingRewardListCursorAdapter extends CursorAdapter {
 

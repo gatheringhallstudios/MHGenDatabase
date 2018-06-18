@@ -1,9 +1,12 @@
 package com.ghstudios.android.features.items.basicdetail;
 
 import android.annotation.SuppressLint;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -15,13 +18,14 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.cursors.GatheringCursor;
+import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.LocationClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 
-public class ItemLocationFragment extends ListFragment implements
-        LoaderCallbacks<Cursor> {
+public class ItemLocationFragment extends ListFragment {
+
     private static final String ARG_ITEM_ID = "ITEM_ID";
 
     public static ItemLocationFragment newInstance(long itemId) {
@@ -33,44 +37,21 @@ public class ItemLocationFragment extends ListFragment implements
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.item_location_fragment, getArguments(), this);
-    }
-    
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_generic_list, container, false);
     }
-    
-
-    @SuppressLint("NewApi")
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        // You only ever load the runs, so assume this is the case
-        long itemId = args.getLong(ARG_ITEM_ID, -1);
-
-        return new GatheringListCursorLoader(getActivity(), 
-                GatheringListCursorLoader.FROM_ITEM, itemId, null);
-    }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // Create an adapter to point at this cursor
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        GatheringListCursorAdapter adapter = new GatheringListCursorAdapter(
-                getActivity(), (GatheringCursor) cursor);
-        setListAdapter(adapter);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        // Stop using the cursor (via the adapter)
-        setListAdapter(null);
+        ItemDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(ItemDetailViewModel.class);
+        viewModel.getGatherData().observe(this, (cursor) -> {
+            GatheringListCursorAdapter adapter = new GatheringListCursorAdapter(
+                    getActivity(), cursor);
+            setListAdapter(adapter);
+        });
     }
 
     private static class GatheringListCursorAdapter extends SectionCursorAdapter {
