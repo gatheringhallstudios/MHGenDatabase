@@ -1,5 +1,7 @@
 package com.ghstudios.android;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.*;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -88,5 +90,23 @@ public class MHUtils {
         }
 
         return results;
+    }
+
+    interface Builder<T> {
+        T build();
+    }
+
+    /**
+     * Creates a new livedata that is populated asynchronously using the provided
+     * builder function.
+     * @param builder
+     * @param <T>
+     * @return
+     */
+    @NonNull
+    public static <T> LiveData<T> createLiveData(Builder<T> builder) {
+        MutableLiveData<T> result = new MutableLiveData<>();
+        new Thread(() -> result.postValue(builder.build())).start();
+        return result;
     }
 }
