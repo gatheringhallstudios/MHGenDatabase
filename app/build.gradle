@@ -79,6 +79,12 @@ dependencies {
      */
     implementation 'com.jakewharton:butterknife:8.8.1'
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    /*
+     * Adapter Delegates
+     * https://github.com/sockeqwe/AdapterDelegates
+     */
+    implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
 }
 
 repositories {

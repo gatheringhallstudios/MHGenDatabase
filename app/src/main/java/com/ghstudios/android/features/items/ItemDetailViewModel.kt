@@ -4,9 +4,9 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
-import com.ghstudios.android.data.cursors.ComponentCursor
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.toList
 
@@ -18,16 +18,19 @@ inline fun <T> createLiveData(crossinline fn: () -> T) : LiveData<T> {
     return result
 }
 
+data class ItemUsage(
+        val combinations: List<Combining>,
+        val crafting: List<Component>
+)
+
 class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
     val itemData = MutableLiveData<Item>()
+    val usageData = MutableLiveData<ItemUsage>()
 
     // live data used to create cursors
     // this will most likely go away and is here because of incremental refactor
-    val usageData: LiveData<ComponentCursor>
-        get() = createLiveData { dataManager.queryComponentComponent(itemId) }
-
     val monsterRewardsData
         get() = createLiveData { dataManager.queryHuntingRewardItem(itemId) }
 
@@ -50,6 +53,22 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
 
         Thread {
             itemData.postValue(dataManager.getItem(itemId))
+
+            // query crafting usage
+            val craftUsage = dataManager.queryComponentComponent(itemId).toList {
+                it.component
+            }
+
+            // query combination usage
+            val combiningResults = dataManager.queryCombiningOnItemID(itemId).toList {
+                it.combining
+            }
+
+            usageData.postValue(ItemUsage(
+                    combinations=combiningResults.filter { it.createdItem.id != itemId },
+                    crafting=craftUsage
+            ))
+
         }.start()
     }
 }

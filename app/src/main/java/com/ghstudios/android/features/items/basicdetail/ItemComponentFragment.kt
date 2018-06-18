@@ -1,0 +1,105 @@
+package com.ghstudios.android.features.items.basicdetail
+
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+
+import com.ghstudios.android.data.classes.Component
+import com.ghstudios.android.features.items.ItemDetailViewModel
+import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.ClickListeners.ItemClickListener
+import com.ghstudios.android.MHUtils
+import com.ghstudios.android.RecyclerViewFragment
+import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate
+import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+
+/**
+ * A fragment that display usages for an item
+ */
+class ItemComponentFragment : RecyclerViewFragment() {
+    companion object {
+        private val ARG_ITEM_ID = "COMPONENT_ID"
+
+        @JvmStatic
+        fun newInstance(id: Long): ItemComponentFragment {
+            val args = Bundle()
+            args.putLong(ARG_ITEM_ID, id)
+            val f = ItemComponentFragment()
+            f.arguments = args
+            return f
+        }
+    }
+
+    val adapter = BasicListDelegationAdapter(
+            ItemCombinationAdapterDelegate(),
+            UsageAdapterDelegate()
+    )
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setAdapter(adapter)
+
+        val viewModel = ViewModelProviders.of(activity!!).get(ItemDetailViewModel::class.java)
+        viewModel.usageData.observe(this, Observer { usage ->
+            usage ?: return@Observer
+
+            adapter.items = usage.combinations + usage.crafting
+            adapter.notifyDataSetChanged()
+        })
+    }
+}
+
+/**
+ * Internal adapter delegate used to render items on the usage tab
+ */
+class UsageAdapterDelegate : AdapterDelegate<List<Any>>() {
+    override fun isForViewType(items: List<Any>, position: Int): Boolean {
+        return items[position]::class == Component::class
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent?.context)
+        val view = inflater.inflate(R.layout.fragment_component_listitem, parent, false)
+        return UsageViewHolder(view)
+    }
+
+    override fun onBindViewHolder(items: List<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
+        val vh = holder as UsageViewHolder
+        val component = items[position] as Component
+        vh.bindItem(component)
+    }
+
+    class UsageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindItem(component: Component) {
+            // Set up the text view
+            val itemLayout = itemView.findViewById<LinearLayout>(R.id.listitem)
+            val itemImageView = itemView.findViewById<ImageView>(R.id.item_image)
+            val itemTextView = itemView.findViewById<TextView>(R.id.item)
+            val amtTextView = itemView.findViewById<TextView>(R.id.amt)
+            val typeTextView = itemView.findViewById<TextView>(R.id.type)
+
+            val created = component!!.created
+            val createdId = created.id
+
+            val nameText = created.name
+            val amtText = "" + component.quantity
+            val typeText = "" + component.type
+
+            itemTextView.text = nameText
+            amtTextView.text = amtText
+            typeTextView.text = typeText
+
+            val cellImage = created.itemImage
+            val image = MHUtils.loadAssetDrawable(itemView.context, cellImage)
+            itemImageView.setImageDrawable(image)
+
+            itemLayout.tag = createdId
+            itemLayout.setOnClickListener(ItemClickListener(itemView.context, created))
+        }
+    }
+}
