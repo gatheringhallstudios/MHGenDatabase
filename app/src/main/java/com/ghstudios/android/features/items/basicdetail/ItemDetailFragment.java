@@ -1,18 +1,12 @@
 package com.ghstudios.android.features.items.basicdetail;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +14,8 @@ import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate;
+import com.ghstudios.android.adapter.common.BasicListDelegationAdapter;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Item;
@@ -31,8 +27,6 @@ import butterknife.ButterKnife;
 
 public class ItemDetailFragment extends Fragment {
     private static final String ARG_ITEM_ID = "ITEM_ID";
-    
-    private Item mItem;
 
     @BindView(R.id.item_title) TitleBarCell titleCell;
 
@@ -42,6 +36,9 @@ public class ItemDetailFragment extends Fragment {
     @BindView(R.id.sell) ColumnLabelTextCell sellCell;
 
     @BindView(R.id.description) TextView descriptionTextView;
+
+    @BindView(R.id.combination_section) ViewGroup combinationSection;
+    @BindView(R.id.craft_combinations) RecyclerView combinationList;
 
     public static ItemDetailFragment newInstance(long itemId) {
         Bundle args = new Bundle();
@@ -63,9 +60,29 @@ public class ItemDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // add divider for the combination list
+        //combinationList.addItemDecoration(new RecyclerViewDivider(combinationList));
+
         // this uses the pager's view Model
         ItemDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(ItemDetailViewModel.class);
         viewModel.getItemData().observe(this, this::populateItem);
+
+        viewModel.getCraftData().observe(this, (items) -> {
+            if (items == null || items.isEmpty()) {
+                return;
+            }
+
+            combinationSection.setVisibility(View.VISIBLE);
+
+            // DO NOT PUT ADAPTER AS AN INSTANCE VARIABLE (or it'll leak)
+            ItemCombinationAdapterDelegate delegate = new ItemCombinationAdapterDelegate();
+            delegate.setShowSideMargins(false);
+            delegate.setResultItemNavigationEnabled(false);
+            BasicListDelegationAdapter<Object> adapter = new BasicListDelegationAdapter<>(delegate);
+            adapter.setItems(items);
+
+            combinationList.setAdapter(adapter);
+        });
     }
 
     private void populateItem(Item mItem) {

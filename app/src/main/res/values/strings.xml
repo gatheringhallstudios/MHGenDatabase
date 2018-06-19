@@ -135,6 +135,7 @@
     <string name="item_buy">Buy</string>
     <string name="item_sell">Sell</string>
     <string name="item_description">Description</string>
+    <string name="item_combinations">Combinations</string>
     <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
     <string name="item_combination_yield">Yields</string>

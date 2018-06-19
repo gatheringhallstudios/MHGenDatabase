@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -21,6 +19,18 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
  * Renders item combination information
  */
 class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any, ItemCombinationAdapterDelegate.CombinationViewHolder>() {
+    /**
+     * Enables whether to show the left and right side padding. Use if the list is part of another element.
+     * Set this before adding items to the adapter. Defaults to true.
+     */
+    var showSideMargins = true
+
+    /**
+     * Sets whether the result item performs navigation. Defaults to true.
+     * Use before adding items to the adapter
+     */
+    var resultItemNavigationEnabled = true
+
     override fun isForViewType(item: Any, items: List<Any>, position: Int): Boolean {
         return item is Combining
     }
@@ -28,6 +38,13 @@ class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any,
     override fun onCreateViewHolder(parent: ViewGroup): CombinationViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.fragment_combining_listitem, parent, false)
+
+        if (!showSideMargins) {
+            // note: left/right is listed as padding.
+            // top/bottom is margins and is not affected by this function
+            view.setPadding(0, 0, 0, 0)
+        }
+
         return CombinationViewHolder(view)
     }
 
@@ -35,7 +52,7 @@ class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any,
         holder.bindItem(combination)
     }
 
-    class CombinationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CombinationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @BindView(R.id.item_text1) lateinit var itemtv1: TextView
         @BindView(R.id.item_text2) lateinit var itemtv2: TextView
         @BindView(R.id.item_text3) lateinit var itemtvResult: TextView
@@ -86,7 +103,10 @@ class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any,
 
             itemlayout1.setOnClickListener(BasicItemClickListener(context, item.item1.id))
             itemlayout2.setOnClickListener(BasicItemClickListener(context, item.item2.id))
-            itemlayoutResult.setOnClickListener(BasicItemClickListener(context, item.createdItem.id))
+
+            if (resultItemNavigationEnabled) {
+                itemlayoutResult.setOnClickListener(BasicItemClickListener(context, item.createdItem.id))
+            }
         }
     }
 }

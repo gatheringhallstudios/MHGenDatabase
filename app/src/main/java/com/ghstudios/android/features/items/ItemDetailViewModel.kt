@@ -20,6 +20,7 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
     val itemData = MutableLiveData<Item>()
+    val craftData = MutableLiveData<List<Combining>>()
     val usageData = MutableLiveData<ItemUsage>()
 
     // live data used to create cursors
@@ -56,6 +57,9 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
             val combiningResults = dataManager.queryCombiningOnItemID(itemId).toList {
                 it.combining
             }
+
+            // Combinations that result in this item are added to the craft list
+            craftData.postValue(combiningResults.filter { it.createdItem.id == itemId })
 
             usageData.postValue(ItemUsage(
                     combinations=combiningResults.filter { it.createdItem.id != itemId },

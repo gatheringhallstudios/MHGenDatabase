@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,9 +30,13 @@ import java.util.List;
  */
 public class BasicListDelegationAdapter<T> extends ListDelegationAdapter<List<? extends T>> {
     @SafeVarargs
-    public BasicListDelegationAdapter(@NonNull AdapterDelegate<List<? extends T>>... delegates) {
-        for (AdapterDelegate<List<? extends T>> delegate : delegates) {
-            delegatesManager.addDelegate(delegate);
+    public BasicListDelegationAdapter(@NonNull AdapterDelegate<? extends List<? extends T>>... delegates) {
+        for (AdapterDelegate<? extends List<? extends T>> delegate : delegates) {
+            delegatesManager.addDelegate((AdapterDelegate<List<? extends T>>)delegate);
         }
+    }
+
+    public void setItems(List<? extends T> items) {
+        super.setItems(Collections.unmodifiableList(items));
     }
 }
