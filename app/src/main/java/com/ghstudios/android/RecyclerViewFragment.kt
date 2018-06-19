@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ghstudios.android.components.RecyclerViewDivider
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -17,8 +18,6 @@ import com.ghstudios.android.mhgendatabase.R
  * Items are split by a divider
  */
 open class RecyclerViewFragment : Fragment() {
-    private var dividerEnabled = false
-
     lateinit var recyclerView: RecyclerView
         private set
 
@@ -44,16 +43,9 @@ open class RecyclerViewFragment : Fragment() {
      * using the default settings for this project.
      */
     fun enableDivider() {
-        if (!dividerEnabled) {
-            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-            val divider = DividerItemDecoration(context, layoutManager.orientation)
-            val dividerDrawable = ContextCompat.getDrawable(context!!, R.drawable.generic_divider)
-            dividerDrawable?.let {
-                divider.setDrawable(it)
-            }
+        if (this.recyclerView.itemDecorationCount == 0) {
+            val divider = RecyclerViewDivider(recyclerView)
             this.recyclerView.addItemDecoration(divider)
-
-            dividerEnabled = true
         }
     }
 

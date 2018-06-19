@@ -20,6 +20,7 @@ public class CombiningListFragment extends RecyclerViewFragment {
         AdapterDelegate delegate = new ItemCombinationAdapterDelegate();
         adapter = new BasicListDelegationAdapter<Combining>(delegate);
         setAdapter(adapter);
+        enableDivider();
 
         CombiningListViewModel viewModel = ViewModelProviders.of(this).get(CombiningListViewModel.class);
         viewModel.getCombinationData().observe(this, (data) -> {
