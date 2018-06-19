@@ -1,132 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listitem"
-    style="@style/list_item"
+    style="@style/list_item_basic"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:clickable="false"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp">
+    android:padding="@dimen/margin_large">
 
-    <RelativeLayout
-        android:id="@+id/item3"
-        style="@style/list_sub_item"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
-
-        <TextView
-            android:id="@+id/percentage"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="false"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:text="95%" />
-
-        <TextView
-            android:id="@+id/amt"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/percentage"
-            android:gravity="center"
-            android:text="2" />
+    <LinearLayout
+        android:id="@id/item3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/item_img3"
             style="@style/main_image"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            tools:src="@drawable/drawer_items"/>
 
         <TextView
             android:id="@+id/item_text3"
             style="@style/text_medium"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_toRightOf="@+id/item_img3"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="Potion" />
-    </RelativeLayout>
+            tools:text="Potion" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/yield_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/item3"
+        app:layout_constraintBottom_toBottomOf="@id/item3"
+        app:layout_constraintEnd_toStartOf="@id/amt"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+
+        android:text="@string/item_combination_yield"
+        />
+
+    <TextView
+        android:id="@+id/amt"
+        style="@style/text_small"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintBaseline_toBaselineOf="@id/yield_label"
+        app:layout_constraintEnd_toStartOf="@id/percentage"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/percentage"
+        style="@style/text_small"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/amt"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        tools:text="95%" />
+
 
     <LinearLayout
-        style="@style/list_item"
-        android:id="@+id/combining_ingredient_layout"
-        android:layout_width="fill_parent"
+        android:id="@+id/item1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item3"
-        android:clickable="false"
-        android:gravity="right"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="end"
+        app:layout_constraintTop_toBottomOf="@id/item3"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        <LinearLayout
-            android:id="@+id/item1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_text1"
+            style="@style/text_small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            tools:text="Dragonbone Artifact"/>
 
-            <TextView
-                android:id="@+id/item_text1"
-                style="@style/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_toLeftOf="@+id/item_img2"
-                android:gravity="center_vertical"
-                tools:text="Dragonbone Artifact" />
-
-            <ImageView
-                android:id="@+id/item_img1"
-                style="@style/small_image"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="0dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/item2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/item_text2"
-                style="@style/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:gravity="center_vertical"
-                tools:text="Dragonbone Artifact" />
-
-            <ImageView
-                android:id="@+id/item_img2"
-                style="@style/small_image"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="0dp" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/item_img1"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:src="@drawable/drawer_items"/>
 
     </LinearLayout>
 
-    <View android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_below="@id/combining_ingredient_layout"
-        android:layout_marginTop="6dp"
-        android:background="@color/divider_color"/>
+    <LinearLayout
+        android:id="@+id/item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/item1"
+        app:layout_constraintEnd_toEndOf="parent">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/item_text2"
+            style="@style/text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            tools:text="Dragonbone Artifact" />
+
+        <ImageView
+            android:id="@+id/item_img2"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            tools:src="@drawable/drawer_items"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

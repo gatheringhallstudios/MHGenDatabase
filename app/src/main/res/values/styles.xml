@@ -159,6 +159,12 @@
 
     </style>
 
+    <style name="list_item_basic" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+    </style>
+
     <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
@@ -221,14 +227,12 @@
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
-        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="text_small_secondary" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
-        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="text_small.color_states_enabled">
@@ -252,13 +256,13 @@
     </style>
 
     <style name="large_image" parent="@style/main_image">
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">@dimen/image_size_large</item>
+        <item name="android:layout_width">@dimen/image_size_large</item>
     </style>
 
     <style name="small_image" parent="@style/main_image">
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">@dimen/image_size_small</item>
+        <item name="android:layout_width">@dimen/image_size_small</item>
         <item name="android:layout_marginRight">8dp</item>
     </style>
 

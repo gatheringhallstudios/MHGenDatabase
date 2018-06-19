@@ -44,9 +44,9 @@ class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any,
         @BindView(R.id.item_img2) lateinit var itemiv2: ImageView
         @BindView(R.id.item_img3) lateinit var itemivResult: ImageView
 
-        @BindView(R.id.item1) lateinit var itemlayout1 : LinearLayout
-        @BindView(R.id.item2) lateinit var itemlayout2: LinearLayout
-        @BindView(R.id.item3) lateinit var itemlayoutResult: RelativeLayout
+        @BindView(R.id.item1) lateinit var itemlayout1 : ViewGroup
+        @BindView(R.id.item2) lateinit var itemlayout2: ViewGroup
+        @BindView(R.id.item3) lateinit var itemlayoutResult: ViewGroup
 
         @BindView(R.id.percentage) lateinit var percenttv : TextView
         @BindView(R.id.amt) lateinit var amttv : TextView

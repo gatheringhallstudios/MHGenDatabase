@@ -129,7 +129,7 @@
     <!-- Monster detail -->
     <string name="monster_habitats">Habitats</string>
 
-    <!-- Item details -->
+    <!-- Items -->
     <string name="item_rarity">Rare</string>
     <string name="item_max">Max</string>
     <string name="item_buy">Buy</string>
@@ -137,6 +137,7 @@
     <string name="item_description">Description</string>
     <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
+    <string name="item_combination_yield">Yields</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>
