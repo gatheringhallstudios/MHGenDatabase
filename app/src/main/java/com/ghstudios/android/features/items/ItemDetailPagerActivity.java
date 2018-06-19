@@ -2,11 +2,9 @@ package com.ghstudios.android.features.items;
 
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.features.combining.CombiningListFragment;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
-import com.ghstudios.android.features.items.basicdetail.ItemComponentFragment;
+import com.ghstudios.android.features.items.basicdetail.ItemUsageFragment;
 import com.ghstudios.android.features.items.basicdetail.ItemDetailFragment;
 import com.ghstudios.android.features.items.basicdetail.ItemLocationFragment;
 import com.ghstudios.android.features.items.basicdetail.ItemMonsterFragment;
@@ -35,7 +33,7 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         );
         tabs.addTab("Usage", () ->
                 // List of combinations, armor, aecoration, and weapons
-                ItemComponentFragment.newInstance(itemId)
+                ItemUsageFragment.newInstance(itemId)
         );
         tabs.addTab("Monster", () ->
                 // Monster drops

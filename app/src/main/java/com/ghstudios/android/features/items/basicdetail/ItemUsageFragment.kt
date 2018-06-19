@@ -18,20 +18,19 @@ import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
-import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 /**
  * A fragment that display usages for an item
  */
-class ItemComponentFragment : RecyclerViewFragment() {
+class ItemUsageFragment : RecyclerViewFragment() {
     companion object {
         private val ARG_ITEM_ID = "COMPONENT_ID"
 
         @JvmStatic
-        fun newInstance(id: Long): ItemComponentFragment {
+        fun newInstance(id: Long): ItemUsageFragment {
             val args = Bundle()
             args.putLong(ARG_ITEM_ID, id)
-            val f = ItemComponentFragment()
+            val f = ItemUsageFragment()
             f.arguments = args
             return f
         }
