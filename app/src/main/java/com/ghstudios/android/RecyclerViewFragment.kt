@@ -17,6 +17,8 @@ import com.ghstudios.android.mhgendatabase.R
  * Items are split by a divider
  */
 open class RecyclerViewFragment : Fragment() {
+    private var dividerEnabled = false
+
     lateinit var recyclerView: RecyclerView
         private set
 
@@ -32,15 +34,27 @@ open class RecyclerViewFragment : Fragment() {
                 false) as RecyclerView
 
         // Adds a divider
-        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-        val divider = DividerItemDecoration(context, layoutManager.orientation)
-        val dividerDrawable = ContextCompat.getDrawable(context!!, R.drawable.generic_divider)
-        dividerDrawable?.let {
-            divider.setDrawable(it)
-        }
-        this.recyclerView.addItemDecoration(divider)
+
 
         return recyclerView
+    }
+
+    /**
+     * Enables a divider to be shown between list items in the recycler view
+     * using the default settings for this project.
+     */
+    fun enableDivider() {
+        if (!dividerEnabled) {
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val divider = DividerItemDecoration(context, layoutManager.orientation)
+            val dividerDrawable = ContextCompat.getDrawable(context!!, R.drawable.generic_divider)
+            dividerDrawable?.let {
+                divider.setDrawable(it)
+            }
+            this.recyclerView.addItemDecoration(divider)
+
+            dividerEnabled = true
+        }
     }
 
     /**

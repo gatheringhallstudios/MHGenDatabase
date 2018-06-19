@@ -46,6 +46,7 @@ class ItemUsageFragment : RecyclerViewFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setAdapter(adapter)
+        enableDivider()
 
         val viewModel = ViewModelProviders.of(activity!!).get(ItemDetailViewModel::class.java)
         viewModel.usageData.observe(this, Observer { usage ->
