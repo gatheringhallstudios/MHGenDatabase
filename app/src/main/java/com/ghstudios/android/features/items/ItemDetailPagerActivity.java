@@ -33,11 +33,8 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         tabs.addTab("Detail", () ->
                 ItemDetailFragment.newInstance(itemId)
         );
-        tabs.addTab("Combining", () ->
-                CombiningListFragment.newInstance(itemId)
-        );
         tabs.addTab("Usage", () ->
-                // List of Armor, Decoration, and Weapon the Item can be used for
+                // List of combinations, armor, aecoration, and weapons
                 ItemComponentFragment.newInstance(itemId)
         );
         tabs.addTab("Monster", () ->

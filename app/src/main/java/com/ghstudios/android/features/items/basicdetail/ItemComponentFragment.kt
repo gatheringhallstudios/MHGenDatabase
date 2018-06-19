@@ -17,6 +17,7 @@ import com.ghstudios.android.MHUtils
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
+import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 /**
@@ -57,21 +58,19 @@ class ItemComponentFragment : RecyclerViewFragment() {
 /**
  * Internal adapter delegate used to render items on the usage tab
  */
-class UsageAdapterDelegate : AdapterDelegate<List<Any>>() {
-    override fun isForViewType(items: List<Any>, position: Int): Boolean {
-        return items[position]::class == Component::class
+class UsageAdapterDelegate : AbsListItemAdapterDelegate<Component, Any, UsageAdapterDelegate.UsageViewHolder>() {
+    override fun isForViewType(item: Any, items: List<Any>, position: Int): Boolean {
+        return item is Component
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup): UsageViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.fragment_component_listitem, parent, false)
         return UsageViewHolder(view)
     }
 
-    override fun onBindViewHolder(items: List<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
-        val vh = holder as UsageViewHolder
-        val component = items[position] as Component
-        vh.bindItem(component)
+    override fun onBindViewHolder(component: Component, holder: UsageViewHolder, payloads: MutableList<Any>) {
+        holder.bindItem(component)
     }
 
     class UsageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

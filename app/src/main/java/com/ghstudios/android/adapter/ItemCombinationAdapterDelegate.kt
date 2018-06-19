@@ -14,28 +14,25 @@ import com.ghstudios.android.ClickListeners.BasicItemClickListener
 import com.ghstudios.android.MHUtils
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.mhgendatabase.R
-import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 
 /**
  * An adapter delegate that can be added to any adapter delegate adapter.
  * Renders item combination information
  */
-class ItemCombinationAdapterDelegate : AdapterDelegate<List<Any>>() {
-    override fun isForViewType(items: List<Any>, position: Int): Boolean {
-        return items[position]::class == Combining::class
+class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any, ItemCombinationAdapterDelegate.CombinationViewHolder>() {
+    override fun isForViewType(item: Any, items: List<Any>, position: Int): Boolean {
+        return item is Combining
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-
-        val inflater = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup): CombinationViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.fragment_combining_listitem, parent, false)
         return CombinationViewHolder(view)
     }
 
-    override fun onBindViewHolder(items: List<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: MutableList<Any>) {
-        val vh = holder as CombinationViewHolder
-        val component = items[position] as Combining
-        vh.bindItem(component)
+    override fun onBindViewHolder(combination: Combining, holder: CombinationViewHolder, payloads: MutableList<Any>) {
+        holder.bindItem(combination)
     }
 
     class CombinationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

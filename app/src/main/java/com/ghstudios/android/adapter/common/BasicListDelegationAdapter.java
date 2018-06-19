@@ -1,5 +1,7 @@
 package com.ghstudios.android.adapter.common;
 
+import android.support.annotation.NonNull;
+
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate;
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter;
 
@@ -25,9 +27,10 @@ import java.util.List;
  *      adapter = new BasicListDelegationAdapter<>(rewardDelegate, sectionHeaderDelegate, subHeaderDelegate);
  * } </pre>
  */
-public class BasicListDelegationAdapter<T> extends ListDelegationAdapter<List<T>> {
-    public BasicListDelegationAdapter(AdapterDelegate<List<T>>... delegates) {
-        for (AdapterDelegate<List<T>> delegate : delegates) {
+public class BasicListDelegationAdapter<T> extends ListDelegationAdapter<List<? extends T>> {
+    @SafeVarargs
+    public BasicListDelegationAdapter(@NonNull AdapterDelegate<List<? extends T>>... delegates) {
+        for (AdapterDelegate<List<? extends T>> delegate : delegates) {
             delegatesManager.addDelegate(delegate);
         }
     }

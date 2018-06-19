@@ -25,7 +25,7 @@ public class CombiningListActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        return CombiningListFragment.newInstance(-1);
+        return new CombiningListFragment();
     }
 
 }
