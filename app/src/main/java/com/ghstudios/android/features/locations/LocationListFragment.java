@@ -80,7 +80,7 @@ public class LocationListFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_list_item_basic,
+			return inflater.inflate(R.layout.fragment_list_item_large,
 					parent, false);
 		}
 

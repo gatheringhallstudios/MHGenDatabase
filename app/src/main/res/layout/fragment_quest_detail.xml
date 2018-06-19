@@ -119,7 +119,7 @@
 
                 <ImageView
                     android:id="@+id/location_image"
-                    style="@style/large_image"
+                    style="@style/main_image_large"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="left"

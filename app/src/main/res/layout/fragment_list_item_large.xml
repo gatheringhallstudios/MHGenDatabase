@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/item_image"
         android:contentDescription="@string/monster_image"
-        style="@style/large_image"
+        style="@style/main_image_large"
         android:src="@drawable/quest_icon_red"
         android:layout_centerVertical="true">
     </ImageView>

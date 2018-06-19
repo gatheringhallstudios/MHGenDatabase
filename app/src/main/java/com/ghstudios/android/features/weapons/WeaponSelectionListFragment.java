@@ -96,7 +96,7 @@ public class WeaponSelectionListFragment extends ListFragment {
 			if (convertView == null) {
 				LayoutInflater inflater = (LayoutInflater) getContext()
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				convertView = inflater.inflate(R.layout.fragment_list_item_basic,
+				convertView = inflater.inflate(R.layout.fragment_list_item_large,
 						parent, false);
 			}
 
