@@ -16,7 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:iconSrc="@drawable/drawer_decorations"
-            tools:titleText="Attack Jewel 3"/>
+            tools:titleText="Attack Jewel 3"
+            tools:titleAltText="攻撃珠【３】"
+            tools:altTitleEnabled="true"/>
 
         <FrameLayout
             android:id="@+id/divider1"
@@ -66,7 +68,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.ghstudios.android.components.IconLabelTextCell
+            <com.ghstudios.android.components.LabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
@@ -74,7 +76,7 @@
                 app:valueText="1"
                 tools:visibility="visible" />
 
-            <com.ghstudios.android.components.IconLabelTextCell
+            <com.ghstudios.android.components.LabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
