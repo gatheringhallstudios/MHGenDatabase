@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.monsters
+package com.ghstudios.android.features.monsters.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

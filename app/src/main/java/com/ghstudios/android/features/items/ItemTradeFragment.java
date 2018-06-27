@@ -19,10 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WyporiumTrade;
+import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.ghstudios.android.features.quests.QuestDetailPagerActivity;
 import com.ghstudios.android.loader.WyporiumTradeLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
+// UNUSED - left here for history
 public class ItemTradeFragment extends Fragment {
     private static final String ARG_ITEM_IN_ID = "ITEM_IN_ID";
 

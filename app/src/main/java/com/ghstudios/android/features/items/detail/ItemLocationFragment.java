@@ -1,6 +1,5 @@
-package com.ghstudios.android.features.items.basicdetail;
+package com.ghstudios.android.features.items.detail;
 
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +15,6 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.cursors.GatheringCursor;
-import com.ghstudios.android.features.items.ItemDetailViewModel;
-import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.LocationClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;

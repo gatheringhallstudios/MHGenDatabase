@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.features.items.ItemDetailPagerActivity;
+import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Gathering;
 import com.ghstudios.android.data.cursors.GatheringCursor;

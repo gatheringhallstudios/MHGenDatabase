@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.weapons;
+package com.ghstudios.android.features.weapons.detail;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

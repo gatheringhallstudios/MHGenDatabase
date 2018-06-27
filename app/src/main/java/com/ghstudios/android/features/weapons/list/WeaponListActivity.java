@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.weapons;
+package com.ghstudios.android.features.weapons.list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

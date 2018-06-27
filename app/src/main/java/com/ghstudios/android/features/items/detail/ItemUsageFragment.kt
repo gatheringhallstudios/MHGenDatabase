@@ -1,11 +1,8 @@
-package com.ghstudios.android.features.items.basicdetail
+package com.ghstudios.android.features.items.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.*
 
 import com.ghstudios.android.data.classes.Component
-import com.ghstudios.android.features.items.ItemDetailViewModel
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.MHUtils

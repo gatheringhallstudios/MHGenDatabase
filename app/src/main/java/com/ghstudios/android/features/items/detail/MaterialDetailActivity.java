@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.features.items.detail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,7 @@ import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.MenuSection;
 
 /**
+ * Used to display items that are considered arbitrary materials, such as "Rathalos Item".
  * Created by Joseph on 7/7/2016.
  */
 public class MaterialDetailActivity extends GenericActivity {

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.features.weapons.list.WeaponListActivity;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WeaponSelectionListFragment extends ListFragment {

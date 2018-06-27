@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items.basicdetail;
+package com.ghstudios.android.features.items.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.cursors.QuestRewardCursor;
-import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.QuestClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;

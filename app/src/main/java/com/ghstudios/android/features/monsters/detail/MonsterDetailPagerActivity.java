@@ -1,11 +1,7 @@
-package com.ghstudios.android.features.monsters;
+package com.ghstudios.android.features.monsters.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.ghstudios.android.features.monsters.detail.MonsterDamageFragment;
-import com.ghstudios.android.features.monsters.detail.MonsterQuestFragment;
-import com.ghstudios.android.features.monsters.detail.MonsterRewardFragment;
-import com.ghstudios.android.features.monsters.detail.MonsterSummaryFragment;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;

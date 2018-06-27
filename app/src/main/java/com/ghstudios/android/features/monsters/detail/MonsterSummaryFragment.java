@@ -22,12 +22,10 @@ import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterAilment;
 import com.ghstudios.android.data.classes.MonsterWeakness;
-import com.ghstudios.android.features.monsters.MonsterDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
 import org.apmem.tools.layouts.FlowLayout;
 
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;

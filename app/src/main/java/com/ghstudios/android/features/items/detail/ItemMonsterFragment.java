@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items.basicdetail;
+package com.ghstudios.android.features.items.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.cursors.HuntingRewardCursor;
-import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.MonsterClickListener;
 

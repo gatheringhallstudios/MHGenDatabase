@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.weapons
+package com.ghstudios.android.features.weapons.list
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

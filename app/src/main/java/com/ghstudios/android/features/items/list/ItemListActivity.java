@@ -1,8 +1,7 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.features.items.list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.MenuItem;
 
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.GenericActivity;

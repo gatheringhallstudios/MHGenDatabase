@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.monsters;
+package com.ghstudios.android.features.monsters.list;
 
 import com.ghstudios.android.features.monsters.list.MonsterListFragment;
 import com.ghstudios.android.loader.MonsterListCursorLoader;

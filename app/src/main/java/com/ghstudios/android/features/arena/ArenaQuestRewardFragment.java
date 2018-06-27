@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.ArenaReward;
 import com.ghstudios.android.data.cursors.ArenaRewardCursor;
-import com.ghstudios.android.features.items.ItemDetailPagerActivity;
+import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.ghstudios.android.loader.ArenaQuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 

@@ -1,14 +1,9 @@
-package com.ghstudios.android.features.items;
+package com.ghstudios.android.features.items.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
-import com.ghstudios.android.features.items.basicdetail.ItemUsageFragment;
-import com.ghstudios.android.features.items.basicdetail.ItemDetailFragment;
-import com.ghstudios.android.features.items.basicdetail.ItemLocationFragment;
-import com.ghstudios.android.features.items.basicdetail.ItemMonsterFragment;
-import com.ghstudios.android.features.items.basicdetail.ItemQuestFragment;
 
 public class ItemDetailPagerActivity extends BasePagerActivity {
     /**

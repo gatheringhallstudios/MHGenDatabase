@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.items.basicdetail;
+package com.ghstudios.android.features.items.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.drawable.Drawable;
@@ -19,7 +19,6 @@ import com.ghstudios.android.adapter.common.BasicListDelegationAdapter;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.features.items.ItemDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
 import butterknife.BindView;

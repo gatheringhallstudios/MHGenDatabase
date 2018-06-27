@@ -19,7 +19,7 @@
             android:label="@string/title_preferences"
             android:screenOrientation="portrait" />
 
-        <activity android:name="com.ghstudios.android.features.items.MaterialDetailActivity"
+        <activity android:name="com.ghstudios.android.features.items.detail.MaterialDetailActivity"
             android:label=""
             android:screenOrientation="portrait"/>
 
@@ -31,7 +31,7 @@
 
         <!-- MONSTER LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.monsters.MonsterListPagerActivity"
+            android:name="com.ghstudios.android.features.monsters.list.MonsterListPagerActivity"
             android:label="@string/app_name_launcher"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -40,27 +40,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ghstudios.android.features.monsters.MonsterDetailPagerActivity"
+            android:name="com.ghstudios.android.features.monsters.detail.MonsterDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.monsters.MonsterListPagerActivity" />
+                android:value="com.ghstudios.android.features.monsters.list.MonsterListPagerActivity" />
         </activity>
 
         <!-- ITEM LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.items.ItemListActivity"
+            android:name="com.ghstudios.android.features.items.list.ItemListActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.ghstudios.android.features.items.ItemDetailPagerActivity"
+            android:name="com.ghstudios.android.features.items.detail.ItemDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.items.ItemListActivity" />
+                android:value="com.ghstudios.android.features.items.list.ItemListActivity" />
         </activity>
 
         <!-- ARMOR LIST SECTION -->
@@ -160,7 +160,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name="com.ghstudios.android.features.weapons.WeaponListActivity"
+            android:name="com.ghstudios.android.features.weapons.list.WeaponListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
@@ -168,7 +168,7 @@
                 android:value="com.ghstudios.android.features.weapons.WeaponSelectionListActivity" />
         </activity>
         <activity
-            android:name="com.ghstudios.android.features.weapons.WeaponDetailPagerActivity"
+            android:name="com.ghstudios.android.features.weapons.detail.WeaponDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.weapons.WeaponDetailPagerActivity;
+import com.ghstudios.android.features.weapons.detail.WeaponDetailPagerActivity;
 
 /**
  * Created by Mark on 2/24/2015.

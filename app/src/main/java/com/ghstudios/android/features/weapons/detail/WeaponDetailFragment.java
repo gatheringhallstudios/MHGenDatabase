@@ -16,8 +16,6 @@ import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Weapon;
-import com.ghstudios.android.features.weapons.WeaponDetailViewModel;
-import com.ghstudios.android.features.weapons.WeaponElementData;
 import com.ghstudios.android.mhgendatabase.R;
 
 /**

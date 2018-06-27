@@ -1,8 +1,7 @@
-package com.ghstudios.android.features.items
+package com.ghstudios.android.features.items.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.MHUtils
 import com.ghstudios.android.data.classes.Combining
@@ -62,8 +61,8 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
             craftData.postValue(combiningResults.filter { it.createdItem.id == itemId })
 
             usageData.postValue(ItemUsage(
-                    combinations=combiningResults.filter { it.createdItem.id != itemId },
-                    crafting=craftUsage
+                    combinations = combiningResults.filter { it.createdItem.id != itemId },
+                    crafting = craftUsage
             ))
 
         }.start()

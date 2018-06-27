@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterStatus;
-import com.ghstudios.android.features.monsters.MonsterDetailViewModel;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class MonsterDamageFragment extends Fragment {
