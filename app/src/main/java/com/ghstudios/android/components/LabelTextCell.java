@@ -9,6 +9,8 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -25,20 +27,21 @@ public class LabelTextCell extends ConstraintLayout {
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.label_text)
-    TextView labelView;
+    @BindView(R.id.generic_icon) ImageView imageView;
+    @BindView(R.id.label_text) TextView labelView;
+    @BindView(R.id.label_alt_text) TextView labelAltView;
+    @BindView(R.id.value_text) TextView valueView;
 
-    @BindView(R.id.value_text)
-    TextView valueView;
+    boolean altEnabled = false;
 
     public LabelTextCell(Context context, String labelText, String valueText) {
         super(context);
-        init(labelText, valueText);
+        init(labelText, "", false, valueText);
     }
 
     public LabelTextCell(Context context) {
         super(context);
-        init("", "");
+        init("", "", false, "");
     }
 
     public LabelTextCell(Context context, @Nullable AttributeSet attrs) {
@@ -47,22 +50,27 @@ public class LabelTextCell extends ConstraintLayout {
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.LabelTextCell);
 
         try {
-            String labelText = attributes.getString(R.styleable.ColumnLabelTextCell_labelText);
-            String valueText = attributes.getString(R.styleable.ColumnLabelTextCell_valueText);
+            String labelText = attributes.getString(R.styleable.LabelTextCell_labelText);
+            String labelAltText = attributes.getString(R.styleable.LabelTextCell_labelAltText);
+            boolean altTextEnabled = attributes.getBoolean(R.styleable.LabelTextCell_altTextEnabled, false);
+            String valueText = attributes.getString(R.styleable.LabelTextCell_valueText);
 
-            init(labelText, valueText);
+            init(labelText, labelAltText, altTextEnabled, valueText);
         } finally {
             attributes.recycle();
         }
     }
 
-    public void init(String labelText, String valueText) {
+    public void init(String labelText, String labelAltText, boolean altTextEnabled, String valueText) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.cell_label_text, this, true);
+        inflater.inflate(R.layout.cell_icon_label_text, this, true);
 
         ButterKnife.bind(this);
 
+        imageView.setVisibility(View.GONE);
         setLabelText(labelText);
+        setLabelAltText(labelAltText);
+        setAltTextEnabled(altTextEnabled);
         setValueText(valueText);
     }
 
@@ -70,7 +78,37 @@ public class LabelTextCell extends ConstraintLayout {
         labelView.setText(labelText);
     }
 
+    /**
+     * Sets the alt title. This is usually the japanese name.
+     * @param altTitleText
+     */
+    public void setLabelAltText(String altTitleText) {
+        labelAltView.setText(altTitleText);
+        updateAltTextVisibility();
+    }
+
+    /**
+     * Sets whether or not the alt text is enabled
+     * @param enabled
+     */
+    public void setAltTextEnabled(boolean enabled) {
+        altEnabled = enabled;
+        updateAltTextVisibility();
+    }
+
     public void setValueText(String valueText) {
         valueView.setText(valueText);
+    }
+
+    /**
+     * Runs some logic to see if alt text should be enabled.
+     */
+    private void updateAltTextVisibility() {
+        CharSequence altText = labelAltView.getText();
+        if (altEnabled && altText != null && altText.length() > 0) {
+            labelAltView.setVisibility(VISIBLE);
+        } else {
+            labelAltView.setVisibility(GONE);
+        }
     }
 }

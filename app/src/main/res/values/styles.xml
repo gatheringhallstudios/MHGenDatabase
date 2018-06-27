@@ -299,6 +299,21 @@
         <item name="android:textColor">@color/text_color_secondary</item>
     </style>
 
+    <style name="cell_listitem_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="cell_listitem_alt_label" parent="cell_listitem_label">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
     <style name="cell_column">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
