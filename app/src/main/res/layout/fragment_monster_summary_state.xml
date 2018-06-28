@@ -35,7 +35,7 @@
                 android:layout_alignParentLeft="true"
                 style="@style/text_medium"
                 android:layout_gravity="center_vertical"
-                android:text="Weaknesses"/>
+                android:text="@string/monster_summary_weaknesses"/>
 
             <org.apmem.tools.layouts.FlowLayout
                 android:id="@+id/weakness_data"
@@ -47,9 +47,9 @@
 
         </LinearLayout>
 
-        <!-- Traps -->
+        <!-- Traps and Bombs -->
         <RelativeLayout
-            android:id="@+id/trap"
+            android:id="@+id/items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/list_item"
@@ -62,35 +62,10 @@
                 style="@style/text_medium"
                 android:animateLayoutChanges="true"
                 android:layout_gravity="center_vertical"
-                android:text="Traps"/>
+                android:text="@string/monster_summary_items"/>
 
             <org.apmem.tools.layouts.FlowLayout
-                android:id="@+id/trap_data"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                app:layoutDirection="ltr"
-                android:orientation="horizontal"
-                android:gravity="right"/>
-        </RelativeLayout>
-
-        <!-- Bombs Mod -->
-        <RelativeLayout
-            android:id="@+id/bombs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/list_item"
-            android:animateLayoutChanges="true"
-            android:minHeight="48dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_medium"
-                android:layout_gravity="center_vertical"
-                android:text="Bombs"/>
-
-            <org.apmem.tools.layouts.FlowLayout
-                android:id="@+id/bomb_data"
+                android:id="@+id/item_data"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 app:layoutDirection="ltr"

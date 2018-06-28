@@ -2,7 +2,6 @@ package com.ghstudios.android.features.monsters.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -20,10 +19,7 @@ import com.ghstudios.android.components.SectionHeaderCell
 import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.data.classes.Habitat
 import com.ghstudios.android.data.classes.MonsterAilment
-import com.ghstudios.android.data.classes.MonsterWeakness
 import com.ghstudios.android.mhgendatabase.R
-
-import org.apmem.tools.layouts.FlowLayout
 
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -85,26 +81,16 @@ class MonsterSummaryFragment : Fragment() {
     /**
      * Updates weaknesses to match
      */
-    private fun updateWeaknesses(weaknessData: MonsterWeaknessResult?) {
+    private fun updateWeaknesses(weaknesses: List<MonsterWeaknessResult>?) {
         statesListView.removeAllViews()
-        if (weaknessData == null) return
+        if (weaknesses == null || weaknesses.isEmpty()) return
 
-        addWeakness(weaknessData.normalState)
-
-        for (weakness in weaknessData.altStates) {
-            val showWeaknesses = weaknessData.weaknessesDiffer
-            val showTraps = weaknessData.trapsDiffer
-            val showBombs = weaknessData.bombsDiffer
-            addWeakness(weakness, showWeaknesses, showTraps, showBombs)
+        for (weakness in weaknesses) {
+            addWeakness(weakness)
         }
     }
 
-    private fun addWeakness(
-            mWeakness: MonsterWeaknessStateResult,
-            includeWeaknesses: Boolean = true,
-            includeTraps: Boolean = true,
-            includeBombs: Boolean = true
-    ) {
+    private fun addWeakness(mWeakness: MonsterWeaknessResult) {
         val inflater = LayoutInflater.from(context)
         val weaknessView = inflater.inflate(R.layout.fragment_monster_summary_state, statesListView, false)
 
@@ -112,79 +98,48 @@ class MonsterSummaryFragment : Fragment() {
         val header = weaknessView.findViewById<SectionHeaderCell>(R.id.state_name)
         header.setLabelText(mWeakness.state)
 
-        val weaknessLine = weaknessView.findViewById<View>(R.id.weaknesses)
-        val trapLine = weaknessView.findViewById<View>(R.id.trap)
-        val bombLine = weaknessView.findViewById<View>(R.id.bombs)
-
-        val mWeaknessData = weaknessView.findViewById<ViewGroup>(R.id.weakness_data)
-        val mTrapData = weaknessView.findViewById<ViewGroup>(R.id.trap_data)
-        val mBombData = weaknessView.findViewById<ViewGroup>(R.id.bomb_data)
+        val weaknessListView = weaknessView.findViewById<ViewGroup>(R.id.weakness_data)
+        val itemListView = weaknessView.findViewById<ViewGroup>(R.id.item_data)
 
         // weakness line
-        if (!includeWeaknesses) {
-            weaknessLine.visibility = View.GONE
-        } else {
-            weaknessLine.visibility = View.VISIBLE
-            for (value in mWeakness.elementAndStatus) {
-                val imagePath = when (value.type) {
-                    WeaknessType.FIRE -> resources.getString(R.string.image_location_fire)
-                    WeaknessType.WATER -> resources.getString(R.string.image_location_water)
-                    WeaknessType.THUNDER -> resources.getString(R.string.image_location_thunder)
-                    WeaknessType.ICE -> resources.getString(R.string.image_location_ice)
-                    WeaknessType.DRAGON -> resources.getString(R.string.image_location_dragon)
-                    WeaknessType.POISON -> resources.getString(R.string.image_location_poison)
-                    WeaknessType.PARALYSIS -> resources.getString(R.string.image_location_paralysis)
-                    WeaknessType.SLEEP -> resources.getString(R.string.image_location_sleep)
-                    else -> null
-                }
+        for (value in mWeakness.elementAndStatus) {
+            val imagePath = when (value.type) {
+                WeaknessType.FIRE -> resources.getString(R.string.image_location_fire)
+                WeaknessType.WATER -> resources.getString(R.string.image_location_water)
+                WeaknessType.THUNDER -> resources.getString(R.string.image_location_thunder)
+                WeaknessType.ICE -> resources.getString(R.string.image_location_ice)
+                WeaknessType.DRAGON -> resources.getString(R.string.image_location_dragon)
+                WeaknessType.POISON -> resources.getString(R.string.image_location_poison)
+                WeaknessType.PARALYSIS -> resources.getString(R.string.image_location_paralysis)
+                WeaknessType.SLEEP -> resources.getString(R.string.image_location_sleep)
+                else -> null
+            }
 
-                val imageModification = when (value.rating) {
-                    WeaknessRating.WEAK -> resources.getString(R.string.image_location_effectiveness_2)
-                    WeaknessRating.VERY_WEAK -> resources.getString(R.string.image_location_effectiveness_3)
-                    else -> null
-                }
+            val imageModification = when (value.rating) {
+                WeaknessRating.WEAK -> resources.getString(R.string.image_location_effectiveness_2)
+                WeaknessRating.VERY_WEAK -> resources.getString(R.string.image_location_effectiveness_3)
+                else -> null
+            }
 
-                imagePath?.let {
-                    addIcon(mWeaknessData, imagePath, imageModification)
-                }
+            imagePath?.let {
+                addIcon(weaknessListView, imagePath, imageModification)
             }
         }
 
-        // trap line
-        if (!includeTraps) {
-            trapLine.visibility = View.GONE
-        } else {
-            trapLine.visibility = View.VISIBLE
-            for (trapType in mWeakness.traps) {
-                val imagePath = when (trapType) {
-                    WeaknessType.PITFALL_TRAP -> resources.getString(R.string.image_location_pitfall_trap)
-                    WeaknessType.SHOCK_TRAP -> resources.getString(R.string.image_location_shock_trap)
-                    WeaknessType.MEAT -> resources.getString(R.string.image_location_meat)
-                    else -> null
-                }
-
-                imagePath?.let {
-                    addIcon(mTrapData, imagePath, null)
-                }
+        // items line
+        for (trapType in mWeakness.items) {
+            val imagePath = when (trapType) {
+                WeaknessType.PITFALL_TRAP -> resources.getString(R.string.image_location_pitfall_trap)
+                WeaknessType.SHOCK_TRAP -> resources.getString(R.string.image_location_shock_trap)
+                WeaknessType.MEAT -> resources.getString(R.string.image_location_meat)
+                WeaknessType.FLASH_BOMB -> resources.getString(R.string.image_location_flash_bomb)
+                WeaknessType.SONIC_BOMB -> resources.getString(R.string.image_location_sonic_bomb)
+                WeaknessType.DUNG_BOMB -> resources.getString(R.string.image_location_dung_bomb)
+                else -> null
             }
-        }
 
-        // bomb line
-        if (!includeBombs) {
-            bombLine.visibility = View.GONE
-        } else {
-            bombLine.visibility = View.VISIBLE
-            for (bombType in mWeakness.bombs) {
-                val imagePath = when (bombType) {
-                    WeaknessType.FLASH_BOMB -> resources.getString(R.string.image_location_flash_bomb)
-                    WeaknessType.SONIC_BOMB -> resources.getString(R.string.image_location_sonic_bomb)
-                    WeaknessType.DUNG_BOMB -> resources.getString(R.string.image_location_dung_bomb)
-                    else -> null
-                }
-
-                imagePath?.let {
-                    addIcon(mBombData, imagePath, null)
-                }
+            imagePath?.let {
+                addIcon(itemListView, imagePath, null)
             }
         }
 

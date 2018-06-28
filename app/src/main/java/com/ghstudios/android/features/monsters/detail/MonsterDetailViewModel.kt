@@ -26,19 +26,10 @@ data class MonsterWeaknessValue(val type: WeaknessType, val value: Int) {
     }
 }
 
-data class MonsterWeaknessStateResult(
+data class MonsterWeaknessResult(
         var state: String, // editable since under certain conditions it becomes "all states"
         val elementAndStatus: List<MonsterWeaknessValue>,
-        val traps: List<WeaknessType>,
-        val bombs: List<WeaknessType>
-)
-
-data class MonsterWeaknessResult(
-        val normalState: MonsterWeaknessStateResult,
-        val altStates: List<MonsterWeaknessStateResult>,
-        val weaknessesDiffer : Boolean,
-        val trapsDiffer: Boolean,
-        val bombsDiffer: Boolean
+        val items: List<WeaknessType>
 )
 
 /**
@@ -112,39 +103,28 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
         val stateResults = weaknessList.map {
             val topElement = calculateTopWeaknesses(it.elementWeaknesses, 2)
             val topStatus = calculateTopWeaknesses(it.statusWeaknesses, 1)
-            MonsterWeaknessStateResult(
+            MonsterWeaknessResult(
                     state = it.state ?: "",
                     elementAndStatus = topElement + topStatus,
-                    traps = it.vulnerableTraps,
-                    bombs = it.vulnerableBombs)
+                    items = it.vulnerableTraps + it.vulnerableBombs)
         }
 
         // detect if any categories are equivalent, so that we don't show them multiple times
         val stateSequence = stateResults.asSequence()
         val weaknessesDiffer = stateSequence.map { it.elementAndStatus }.distinct().count() > 1
-        val trapsDiffer = stateSequence.map { it.traps }.distinct().count() > 1
-        val bombsDiffer = stateSequence.map { it.bombs }.distinct().count() > 1
+        val itemsDiffer = stateSequence.map { it.items }.distinct().count() > 1
 
-        // If all categories are equivalent, make sure there are no alternate states
-        val anyDiffer = weaknessesDiffer || trapsDiffer || bombsDiffer
-        val altStates = when(anyDiffer) {
-            true -> stateResults.drop(1)
-            false -> emptyList()
-        }
-
-        // If there is more than one state and they're all the same, rename normal to all
+        // If all categories are equivalent, we need to remove alternative states
+        // if there is more than one state, we'll also have to rename the first one
+        val anyDiffer = weaknessesDiffer || itemsDiffer
         if (!anyDiffer && stateResults.size > 1) {
             // todo: translate
             stateResults.first().state = "All States"
         }
 
-        // returns results
-        MonsterWeaknessResult(
-                normalState = stateResults.first(),
-                altStates = altStates,
-                weaknessesDiffer = weaknessesDiffer,
-                trapsDiffer = trapsDiffer,
-                bombsDiffer = bombsDiffer
-        )
+        return@map when(anyDiffer) {
+            true -> stateResults
+            false -> stateResults.take(1)
+        }
     }
 }

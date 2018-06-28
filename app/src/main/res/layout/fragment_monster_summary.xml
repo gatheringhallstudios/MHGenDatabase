@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:iconSrc="@drawable/drawer_monsters"
-            tools:titleText="Azure Rathalos"
-            />
+            tools:titleText="Azure Rathalos" />
 
         <LinearLayout
             android:id="@+id/monster_state_list"
@@ -25,78 +24,68 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/fragment_monster_summary_state"
+            <include
+                layout="@layout/fragment_monster_summary_state"
                 android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/fragment_monster_summary_state"
+                tools:visibility="visible" />
+
+            <include
+                layout="@layout/fragment_monster_summary_state"
                 android:visibility="gone"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
         </LinearLayout>
 
-        <View style="@style/HorizontalDividerFull"/>
-
-        <!-- AILMENTS -->
-        <RelativeLayout
-            android:id="@+id/ailments"
-            style="@style/list_item"
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/ailments_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_large"
-            android:minHeight="48dp">
+            app:labelText="@string/monster_ailments" />
+
+        <LinearLayout
+            android:id="@+id/ailments_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margin_large">
 
             <TextView
-                android:id="@+id/ailments_label"
-                style="@style/text_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ailments" />
+                android:visibility="gone"
+                tools:text="Blastblight"
+                tools:visibility="visible" />
 
-            <LinearLayout
-                android:id="@+id/ailments_data"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ailments_label"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
+                android:visibility="gone"
+                tools:text="Severe Dragonblight"
+                tools:visibility="visible" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Blastblight"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Severe Dragonblight"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dragon Wind Pressure"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-            </LinearLayout>
-
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:text="Dragon Wind Pressure"
+                tools:visibility="visible" />
+        </LinearLayout>
 
         <com.ghstudios.android.components.SectionHeaderCell
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:labelText="@string/monster_habitats"/>
+            app:labelText="@string/monster_habitats" />
 
         <LinearLayout
             android:id="@+id/habitat_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:divider="@drawable/generic_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
         </LinearLayout>
-        
+
     </LinearLayout>
 </ScrollView>

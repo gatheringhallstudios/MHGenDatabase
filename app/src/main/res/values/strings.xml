@@ -127,6 +127,9 @@
     </string>
 
     <!-- Monster detail -->
+    <string name="monster_summary_weaknesses">Weaknesses</string>
+    <string name="monster_summary_items">Items</string>
+    <string name="monster_ailments">Ailments</string>
     <string name="monster_habitats">Habitats</string>
 
     <!-- Items -->
