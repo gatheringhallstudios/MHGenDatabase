@@ -25,6 +25,9 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.ghstudios.android.data.classes.WeaknessType
 
+/**
+ * Represents a subfragment displayed in the summary tab of the monster detail.
+ */
 class MonsterSummaryFragment : Fragment() {
     companion object {
         private val ARG_MONSTER_ID = "MONSTER_ID"
@@ -45,11 +48,11 @@ class MonsterSummaryFragment : Fragment() {
     @BindView(R.id.monster_state_list)
     lateinit var statesListView: LinearLayout
 
-    @BindView(R.id.ailments_data)
-    lateinit var ailmentListView: LinearLayout
+    @BindView(R.id.ailments_data) lateinit var ailmentListView: LinearLayout
+    @BindView(R.id.habitat_list) lateinit var habitatListView: LinearLayout
 
-    @BindView(R.id.habitat_list)
-    lateinit var habitatListView: LinearLayout
+    @BindView(R.id.ailments_empty) lateinit var ailmentsEmpty: View
+    @BindView(R.id.habitats_empty) lateinit var habitatsEmpty: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -79,7 +82,8 @@ class MonsterSummaryFragment : Fragment() {
     }
 
     /**
-     * Updates weaknesses to match
+     * Populates weakness data in the view using the provided data.
+     * If null or empty, then nothing is rendered regarding weaknesses
      */
     private fun updateWeaknesses(weaknesses: List<MonsterWeaknessResult>?) {
         statesListView.removeAllViews()
@@ -146,11 +150,25 @@ class MonsterSummaryFragment : Fragment() {
         statesListView.addView(weaknessView)
     }
 
+    /**
+     * Populates ailment data in the view using the provided data.
+     * If null or empty is given, the blank slate is shown instead.
+     */
     private fun populateAilments(ailments: List<MonsterAilment>?) {
-        if (ailments == null) return
+        // if no ailments, show blank slate instead of the ailment list, and return
+        if (ailments == null || ailments.isEmpty()) {
+            ailmentsEmpty.visibility = View.VISIBLE
+            ailmentListView.visibility = View.GONE
+            return
+        }
+
+        // hide blank slate, and make the ailment list visible
+        ailmentsEmpty.visibility = View.GONE
+        ailmentListView.visibility = View.VISIBLE
+        ailmentListView.removeAllViews()
+
         val inflater = LayoutInflater.from(context)
 
-        ailmentListView.removeAllViews()
         for (ailment in ailments) {
             val ailmentView = inflater.inflate(R.layout.fragment_ailment_listitem, ailmentListView, false)
 
@@ -161,9 +179,17 @@ class MonsterSummaryFragment : Fragment() {
         }
     }
 
+    /**
+     * Populates habitat data in th e view using the provided data.
+     * If null or empty is given, the blank slate is shown instead.
+     */
     private fun populateHabitats(habitats: List<Habitat>?) {
-        if (habitats == null) return
+        if (habitats == null || habitats.isEmpty()) {
+            habitatsEmpty.visibility = View.VISIBLE
+            return
+        }
 
+        habitatsEmpty.visibility = View.GONE
         val inflater = LayoutInflater.from(context)
 
         habitatListView.removeAllViews()

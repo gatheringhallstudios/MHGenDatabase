@@ -25,6 +25,7 @@
             android:orientation="vertical">
 
             <include
+                android:id="@+id/ahahaha"
                 layout="@layout/fragment_monster_summary_state"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -41,6 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelText="@string/monster_ailments" />
+
+        <include
+            android:id="@+id/ailments_empty"
+            layout="@layout/listitem_empty"/>
 
         <LinearLayout
             android:id="@+id/ailments_data"
@@ -76,6 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelText="@string/monster_habitats" />
+
+        <include
+            android:id="@+id/habitats_empty"
+            layout="@layout/listitem_empty"/>
 
         <LinearLayout
             android:id="@+id/habitat_list"
