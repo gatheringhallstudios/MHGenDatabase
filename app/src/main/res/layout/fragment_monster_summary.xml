@@ -46,9 +46,9 @@
             android:id="@+id/ailments_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/margin_large">
+            android:minHeight="@dimen/list_item_height"
+            android:layout_margin="@dimen/margin_large"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
