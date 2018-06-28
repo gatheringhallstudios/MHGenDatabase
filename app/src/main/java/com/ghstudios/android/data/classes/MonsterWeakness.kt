@@ -1,5 +1,23 @@
 package com.ghstudios.android.data.classes
 
+enum class WeaknessType {
+    FIRE,
+    WATER,
+    THUNDER,
+    ICE,
+    DRAGON,
+    POISON,
+    PARALYSIS,
+    SLEEP,
+    BLAST,
+    PITFALL_TRAP,
+    SHOCK_TRAP,
+    FLASH_BOMB,
+    SONIC_BOMB,
+    DUNG_BOMB,
+    MEAT
+}
+
 /*
  * Represents a set of weaknesses for a monster in a specific state.
  *
@@ -9,44 +27,26 @@ package com.ghstudios.android.data.classes
  * at 5 its very effective
  * and at 7 its super effective
  */
-
 class MonsterWeakness {
-    companion object {
-        const val FIRE = 0
-        const val WATER = 1
-        const val THUNDER = 2
-        const val ICE = 3
-        const val DRAGON = 4
-        const val POISON = 5
-        const val PARALYSIS = 6
-        const val SLEEP = 7
-        const val PITFALL_TRAP = 8
-        const val SHOCK_TRAP = 9
-        const val FLASH_BOMB = 10
-        const val SONIC_BOMB = 11
-        const val DUNG_BOMB = 12
-        const val MEAT = 13
-    }
-
     /* Getters and Setters */
     var id: Long = -1
 
     // Monster State
     var state: String? = ""
 
-    // Fire element effectiveness (unused)
+    // Fire element effectiveness
     var fire: Int = -1
 
-    // Water element effectiveness (unused)
+    // Water element effectiveness
     var water: Int = -1
 
-    // Thunder element effectiveness (unused)
+    // Thunder element effectiveness
     var thunder: Int = -1
 
-    // Ice element effectiveness (unused)
+    // Ice element effectiveness
     var ice: Int = -1
 
-    // Dragon element effectiveness (unused)
+    // Dragon element effectiveness
     var dragon: Int = -1
 
     // Poison effectiveness
@@ -78,17 +78,43 @@ class MonsterWeakness {
 
     /**
      * Returns a map mapping the constant weakness field names to the weakness value
+     * for all elements. This is calculated every time.
      */
-    fun getElementAndStatusWeaknesses(): Map<Int, Int> {
-        return mapOf(
-                FIRE to fire,
-                WATER to water,
-                THUNDER to thunder,
-                ICE to ice,
-                DRAGON to dragon,
-                POISON to poison,
-                PARALYSIS to paralysis,
-                SLEEP to sleep
-        )
-    }
+    val elementWeaknesses get() = mapOf(
+            WeaknessType.FIRE to fire,
+            WeaknessType.WATER to water,
+            WeaknessType.THUNDER to thunder,
+            WeaknessType.ICE to ice,
+            WeaknessType.DRAGON to dragon
+    )
+
+    /**
+     * Returns a map mapping the constant weakness filed names to the weakness values
+     * for all status. This is calculated every time.
+     */
+    val statusWeaknesses get() = mapOf(
+            WeaknessType.POISON to poison,
+            WeaknessType.PARALYSIS to paralysis,
+            WeaknessType.SLEEP to sleep
+    )
+
+    /**
+     * Returns a list of all traps that work on this monster.
+     * This is calculated every time
+     */
+    val vulnerableTraps get() = mapOf(
+            WeaknessType.PITFALL_TRAP to pitfalltrap,
+            WeaknessType.SHOCK_TRAP to shocktrap,
+            WeaknessType.MEAT to meat
+    ).filter { it.value }.keys.toList()
+
+    /**
+     * Returns a list of all bombs that work on this monster.
+     * This is calculated every time.
+     */
+    val vulnerableBombs get() = mapOf(
+            WeaknessType.FLASH_BOMB to flashbomb,
+            WeaknessType.SONIC_BOMB to sonicbomb,
+            WeaknessType.DUNG_BOMB to dungbomb
+    ).filter { it.value }.keys.toList()
 }
