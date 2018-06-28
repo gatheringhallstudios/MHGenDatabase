@@ -78,7 +78,7 @@ public class MonsterSummaryFragment extends Fragment {
             headerView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
         });
 
-        viewModel.getWeaknessData().observe(this, this::updateWeaknesses);
+        viewModel.getRawWeaknessData().observe(this, this::updateWeaknesses);
         viewModel.getAilmentData().observe(this, this::populateAilments);
         viewModel.getHabitatData().observe(this, this::populateHabitats);
     }
@@ -148,23 +148,23 @@ public class MonsterSummaryFragment extends Fragment {
         }
 
         // Pitfall Trap
-        if (mWeakness.getPitfalltrap() != 0)
+        if (mWeakness.getPitfalltrap())
             addIcon(mTrapData, getResources().getString(R.string.image_location_pitfall_trap), null);
         // Shock Trap
-        if (mWeakness.getShocktrap() != 0)
+        if (mWeakness.getShocktrap())
             addIcon(mTrapData, getResources().getString(R.string.image_location_shock_trap), null);
         // Meat
-        if (mWeakness.getMeat() != 0)
+        if (mWeakness.getMeat())
             addIcon(mTrapData, getResources().getString(R.string.image_location_meat), null);
 
         // Flash Bomb
-        if (mWeakness.getFlashbomb() != 0)
+        if (mWeakness.getFlashbomb())
             addIcon(mBombData, getResources().getString(R.string.image_location_flash_bomb), null);
         // Sonic Bomb
-        if (mWeakness.getSonicbomb() != 0)
+        if (mWeakness.getSonicbomb())
             addIcon(mBombData, getResources().getString(R.string.image_location_sonic_bomb), null);
         // Dung Bomb
-        if (mWeakness.getDungbomb() != 0)
+        if (mWeakness.getDungbomb())
             addIcon(mBombData, getResources().getString(R.string.image_location_dung_bomb), null);
 
 

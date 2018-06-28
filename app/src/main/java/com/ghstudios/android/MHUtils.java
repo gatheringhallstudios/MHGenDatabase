@@ -98,7 +98,7 @@ public class MHUtils {
 
     /**
      * Creates a new livedata that is populated asynchronously using the provided
-     * builder function.
+     * builder function. The builder function runs in a different thread.
      * @param builder
      * @param <T>
      * @return
