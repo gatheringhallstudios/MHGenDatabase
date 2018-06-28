@@ -13,92 +13,92 @@
         android:layout_height="wrap_content"
         tools:labelText="Normal State" />
 
-    <!-- Weaknesses -->
     <LinearLayout
-        android:id="@+id/weaknesses"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/list_item"
-        android:animateLayoutChanges="true"
-        android:minHeight="48dp">
+        android:divider="@drawable/generic_divider"
+        android:showDividers="middle">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Weaknesses -->
+        <LinearLayout
+            android:id="@+id/weaknesses"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            style="@style/text_medium"
-            android:layout_gravity="center_vertical"
-            android:text="Weaknesses"/>
+            style="@style/list_item"
+            android:animateLayoutChanges="true"
+            android:minHeight="48dp">
 
-        <org.apmem.tools.layouts.FlowLayout
-            android:id="@+id/weakness_data"
-            android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                style="@style/text_medium"
+                android:layout_gravity="center_vertical"
+                android:text="Weaknesses"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/weakness_data"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:gravity="right"/>
+
+        </LinearLayout>
+
+        <!-- Traps -->
+        <RelativeLayout
+            android:id="@+id/trap"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:gravity="right"/>
+            style="@style/list_item"
+            android:animateLayoutChanges="true"
+            android:minHeight="48dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_medium"
+                android:animateLayoutChanges="true"
+                android:layout_gravity="center_vertical"
+                android:text="Traps"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/trap_data"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:gravity="right"/>
+        </RelativeLayout>
+
+        <!-- Bombs Mod -->
+        <RelativeLayout
+            android:id="@+id/bombs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/list_item"
+            android:animateLayoutChanges="true"
+            android:minHeight="48dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_medium"
+                android:layout_gravity="center_vertical"
+                android:text="Bombs"/>
+
+            <org.apmem.tools.layouts.FlowLayout
+                android:id="@+id/bomb_data"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:gravity="right"/>
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <View
-        android:background="@color/divider_color"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-    <!-- Traps -->
-    <RelativeLayout
-        android:id="@+id/trap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/list_item"
-        android:animateLayoutChanges="true"
-        android:minHeight="48dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/text_medium"
-            android:animateLayoutChanges="true"
-            android:layout_gravity="center_vertical"
-            android:text="Traps"/>
-
-        <org.apmem.tools.layouts.FlowLayout
-            android:id="@+id/trap_data"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:gravity="right"/>
-    </RelativeLayout>
-
-    <View
-        android:background="@color/divider_color"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-
-    <!-- Bombs Mod -->
-    <RelativeLayout
-        android:id="@+id/bombs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/list_item"
-        android:animateLayoutChanges="true"
-        android:minHeight="48dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/text_medium"
-            android:layout_gravity="center_vertical"
-            android:text="Bombs"/>
-
-        <org.apmem.tools.layouts.FlowLayout
-            android:id="@+id/bomb_data"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:gravity="right"/>
-    </RelativeLayout>
 
 </LinearLayout>

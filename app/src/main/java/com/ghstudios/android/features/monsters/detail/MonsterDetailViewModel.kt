@@ -27,7 +27,7 @@ data class MonsterWeaknessValue(val type: WeaknessType, val value: Int) {
 }
 
 data class MonsterWeaknessStateResult(
-        val state: String,
+        var state: String, // editable since under certain conditions it becomes "all states"
         val elementAndStatus: List<MonsterWeaknessValue>,
         val traps: List<WeaknessType>,
         val bombs: List<WeaknessType>
@@ -84,7 +84,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
 
     /**
      * A livedata that returns processed weakness results.
-     * Performs a transmation on raw weakness data to get data prepared for the summary
+     * Performs a transformation on raw weakness data to get data prepared for the summary
      */
     val weaknessData = Transformations.map(rawWeaknessData) { weaknessList ->
         if (weaknessList == null || weaknessList.isEmpty()) {
@@ -119,15 +119,32 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
                     bombs = it.vulnerableBombs)
         }
 
+        // detect if any categories are equivalent, so that we don't show them multiple times
         val stateSequence = stateResults.asSequence()
+        val weaknessesDiffer = stateSequence.map { it.elementAndStatus }.distinct().count() > 1
+        val trapsDiffer = stateSequence.map { it.traps }.distinct().count() > 1
+        val bombsDiffer = stateSequence.map { it.bombs }.distinct().count() > 1
+
+        // If all categories are equivalent, make sure there are no alternate states
+        val anyDiffer = weaknessesDiffer || trapsDiffer || bombsDiffer
+        val altStates = when(anyDiffer) {
+            true -> stateResults.drop(1)
+            false -> emptyList()
+        }
+
+        // If there is more than one state and they're all the same, rename normal to all
+        if (!anyDiffer && stateResults.size > 1) {
+            // todo: translate
+            stateResults.first().state = "All States"
+        }
 
         // returns results
         MonsterWeaknessResult(
                 normalState = stateResults.first(),
-                altStates = stateResults.drop(1),
-                weaknessesDiffer = stateSequence.map { it.elementAndStatus }.distinct().count() > 1,
-                trapsDiffer = stateSequence.map { it.traps }.distinct().count() > 1,
-                bombsDiffer = stateSequence.map { it.bombs }.distinct().count() > 1
+                altStates = altStates,
+                weaknessesDiffer = weaknessesDiffer,
+                trapsDiffer = trapsDiffer,
+                bombsDiffer = bombsDiffer
         )
     }
 }
