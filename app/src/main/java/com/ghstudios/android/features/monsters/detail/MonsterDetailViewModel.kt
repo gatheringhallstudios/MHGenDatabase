@@ -33,11 +33,22 @@ data class MonsterWeaknessResult(
 )
 
 /**
+ * Represents basic initialization information regarding a monster.
+ */
+data class MonsterDetailMetadata(
+        val id: Long,
+        val name: String,
+        val hasDamage : Boolean
+)
+
+/**
  * A viewmodel for the entirety of monster detail data.
  * This should be attached to the activty or fragment owning the viewpager.
  */
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
+
+    val monsterMetadata = MutableLiveData<MonsterDetailMetadata>()
 
     val monsterData = MutableLiveData<Monster>()
     val rawWeaknessData = MutableLiveData<List<MonsterWeakness>>()
@@ -60,16 +71,24 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
         this.monsterId = monsterId
 
         Thread {
-            // load and post monster first (high priority)
-            monsterData.postValue(dataManager.getMonster(monsterId))
+            val monster = dataManager.getMonster(monsterId)
+            val damageList = dataManager.queryMonsterDamageArray(monsterId)
+            val statusList = dataManager.queryMonsterStatus(monsterId)
+
+            // load and post metadata and monster first (high priority)
+            monsterMetadata.postValue(MonsterDetailMetadata(
+                    id=monster.id,
+                    name=monster.name,
+                    hasDamage = damageList.isNotEmpty() || statusList.isNotEmpty()
+            ))
+            monsterData.postValue(monster)
 
             // then load the rest
-
             rawWeaknessData.postValue(dataManager.queryMonsterWeaknessArray(monsterId))
             ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
-            damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
-            statusData.postValue(dataManager.queryMonsterStatus(monsterId))
+            damageData.postValue(damageList)
+            statusData.postValue(statusList)
         }.start()
     }
 

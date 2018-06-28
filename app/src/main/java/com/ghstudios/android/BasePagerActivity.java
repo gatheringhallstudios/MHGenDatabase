@@ -33,6 +33,16 @@ public abstract class BasePagerActivity extends GenericActionBarActivity {
      * @param tabs
      */
     public abstract void onAddTabs(TabAdder tabs);
+    /**
+     * A version of reset tabs that receives an initialization block.
+     * @param tabAddingFunction
+     */
+    public void resetTabs(TabAddingFunction tabAddingFunction) {
+        InnerTabAdder adder = new InnerTabAdder();
+        tabAddingFunction.invoke(adder);
+
+        resetTabs(adder.getTabs(), adder.getDefaultIdx());
+    }
 
     @Nullable
     @Override
@@ -53,24 +63,15 @@ public abstract class BasePagerActivity extends GenericActionBarActivity {
         viewPager = findViewById(R.id.pager);
 
         // Setup tabs
-        ArrayList<PagerTab> tabs = new ArrayList<>();
-        AtomicInteger defaultIdx = new AtomicInteger(-1);
+        InnerTabAdder adder = new InnerTabAdder();
+        onAddTabs(adder);
 
-        onAddTabs(new TabAdder() {
-            @Override
-            public void addTab(String title, PagerTab.Factory builder) {
-                tabs.add(new PagerTab(title, builder));
-            }
-
-            @Override
-            public void setDefaultItem(int idx) {
-                // note: We're setting an atomic integer due to reassignment restrictions
-                defaultIdx.set(idx);
-            }
-        });
+        // get results
+        List<PagerTab> tabs = adder.getTabs();
+        int defaultIdx = adder.getDefaultIdx();
 
         if (!tabs.isEmpty()) {
-            resetTabs(tabs, defaultIdx.get());
+            resetTabs(tabs, defaultIdx);
         }
     }
 
@@ -126,5 +127,34 @@ public abstract class BasePagerActivity extends GenericActionBarActivity {
          * @param idx
          */
         void setDefaultItem(int idx);
+    }
+
+    public interface TabAddingFunction {
+        void invoke(TabAdder adder);
+    }
+
+    /** Internal only implementation of the TabAdder */
+    private class InnerTabAdder implements TabAdder {
+        private int defaultIdx = -1;
+        private ArrayList<PagerTab> tabs = new ArrayList<>();
+
+        @Override
+        public void addTab(String title, PagerTab.Factory builder) {
+            tabs.add(new PagerTab(title, builder));
+        }
+
+        @Override
+        public void setDefaultItem(int idx) {
+            // note: We're setting an atomic integer due to reassignment restrictions
+            defaultIdx = idx;
+        }
+
+        public List<PagerTab> getTabs() {
+            return tabs;
+        }
+
+        public int getDefaultIdx() {
+            return defaultIdx;
+        }
     }
 }

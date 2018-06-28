@@ -8,7 +8,8 @@ import android.util.Log;
 import java.util.List;
 
 /**
- * Internal class that handles the actual logic of rendering tabs
+ * A custom pager adapter that accepts a list of pager tab objects.
+ * todo: rename
  */
 public class GenericPagerAdapter extends FragmentPagerAdapter {
     private String TAG = getClass().getSimpleName();
@@ -27,6 +28,15 @@ public class GenericPagerAdapter extends FragmentPagerAdapter {
      */
     public GenericPagerAdapter(Fragment frag, List<PagerTab> tabs) {
         this(frag.getChildFragmentManager(), tabs);
+    }
+
+    /**
+     * Updates the set of tabs and notifies that there was a change
+     * @param tabs
+     */
+    public void setTabs(List<PagerTab> tabs) {
+        this.tabs = tabs;
+        notifyDataSetChanged();
     }
 
     @Override

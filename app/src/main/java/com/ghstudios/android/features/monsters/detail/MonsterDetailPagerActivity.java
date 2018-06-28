@@ -20,18 +20,27 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
         MonsterDetailViewModel viewModel = ViewModelProviders.of(this).get(MonsterDetailViewModel.class);
         viewModel.setMonster(monsterId);
 
-        // set title once monster is loaded
-        viewModel.getMonsterData().observe(this, monster ->
-                setTitle(monster.getName())
-        );
+        viewModel.getMonsterMetadata().observe(this, meta -> {
+            if (meta == null) return; // todo: throw?
+
+            setTitle(meta.getName());
+            resetTabs((adder) -> initTabs(adder, meta));
+        });
+    }
+
+    protected void initTabs(TabAdder tabs, MonsterDetailMetadata meta) {
+        Long monsterId = meta.getId();
 
         tabs.addTab("Summary", () ->
                 MonsterSummaryFragment.newInstance(monsterId)
         );
 
-        tabs.addTab("Damage", () ->
-                MonsterDamageFragment.newInstance(monsterId)
-        );
+        if (meta.getHasDamage()) {
+            // only include Damage tab if there is data
+            tabs.addTab("Damage", () ->
+                    MonsterDamageFragment.newInstance(monsterId)
+            );
+        }
 
         tabs.addTab("Low Rank", () ->
                 MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_LR)
