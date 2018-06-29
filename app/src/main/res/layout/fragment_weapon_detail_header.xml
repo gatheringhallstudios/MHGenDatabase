@@ -15,7 +15,7 @@
         tools:iconSrc="@drawable/drawer_weapons"
         tools:titleText="Master Sword"/>
 
-    <FrameLayout style="@style/HorizontalDivider"/>
+    <FrameLayout style="@style/SectionDivider"/>
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/data_row"
@@ -68,6 +68,6 @@
             tools:valueText="---"/>
     </com.google.android.flexbox.FlexboxLayout>
 
-    <FrameLayout style="@style/HorizontalDivider"/>
+    <FrameLayout style="@style/SectionDivider"/>
 
 </merge>

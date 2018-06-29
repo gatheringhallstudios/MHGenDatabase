@@ -127,6 +127,9 @@
         <item name="android:layout_marginRight">@dimen/margin_medium</item>
     </style>
 
+    <!-- Divides section like titles and column label sections -->
+    <style name="SectionDivider" parent="HorizontalDividerFull"/>
+
     <!-- Begin styles for lists -->
 
     <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">

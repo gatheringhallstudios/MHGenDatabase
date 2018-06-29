@@ -19,7 +19,7 @@
 
         <FrameLayout
             android:id="@+id/divider1"
-            style="@style/HorizontalDivider"/>
+            style="@style/SectionDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"
@@ -56,7 +56,7 @@
 
         <FrameLayout
             android:id="@+id/divider2"
-            style="@style/HorizontalDivider" />
+            style="@style/SectionDivider" />
 
 
         <LinearLayout

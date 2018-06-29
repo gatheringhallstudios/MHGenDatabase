@@ -22,7 +22,7 @@
 
         <FrameLayout
             android:id="@+id/divider1"
-            style="@style/HorizontalDivider"/>
+            style="@style/SectionDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"

@@ -17,7 +17,7 @@
             tools:iconSrc="@drawable/drawer_items"
             tools:titleText="Barrel Bomb L+"/>
 
-        <FrameLayout style="@style/HorizontalDivider"/>
+        <FrameLayout style="@style/SectionDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"
@@ -54,7 +54,7 @@
 
 
         <FrameLayout
-            style="@style/HorizontalDivider"
+            style="@style/SectionDivider"
             android:layout_marginBottom="@dimen/margin_large"/>
 
         <LinearLayout
