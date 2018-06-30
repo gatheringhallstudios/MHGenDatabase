@@ -7,6 +7,7 @@ import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
 
 class ArmorViewModel(app: Application) : AndroidViewModel(app) {
@@ -29,7 +30,7 @@ class ArmorViewModel(app: Application) : AndroidViewModel(app) {
 
         this.armorId = armorId
 
-        Thread {
+        loggedThread(name="Armor Loading") {
             armorData.postValue(dataManager.getArmor(armorId))
 
             skillData.postValue(dataManager.queryItemToSkillTreeArrayItem(armorId))
@@ -38,6 +39,6 @@ class ArmorViewModel(app: Application) : AndroidViewModel(app) {
                 it.component
             }
             componentData.postValue(components)
-        }.start()
+        }
     }
 }

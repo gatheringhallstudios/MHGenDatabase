@@ -8,6 +8,7 @@ import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
 
 /**
@@ -42,7 +43,7 @@ class DecorationViewModel(app: Application) : AndroidViewModel(app) {
 
         this.decorationId = decorationId
 
-        Thread {
+        loggedThread(name="Decoration Loading") {
             val decoration = dataManager.getDecoration(decorationId)
             val components = dataManager.queryComponentCreated(decorationId).toList {
                 it.component
@@ -50,6 +51,6 @@ class DecorationViewModel(app: Application) : AndroidViewModel(app) {
 
             decorationData.postValue(decoration)
             componentData.postValue(components)
-        }.start()
+        }
     }
 }

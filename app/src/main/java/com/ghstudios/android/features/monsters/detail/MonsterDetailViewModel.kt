@@ -3,9 +3,9 @@ package com.ghstudios.android.features.monsters.detail
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
 
 enum class WeaknessRating {
@@ -51,7 +51,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     val monsterMetadata = MutableLiveData<MonsterDetailMetadata>()
 
     val monsterData = MutableLiveData<Monster>()
-    val rawWeaknessData = MutableLiveData<List<MonsterWeakness>>()
+    val weaknessData = MutableLiveData<List<MonsterWeaknessResult>>()
     val ailmentData = MutableLiveData<List<MonsterAilment>>()
     val habitatData = MutableLiveData<List<Habitat>>()
     val damageData = MutableLiveData<List<MonsterDamage>>()
@@ -70,7 +70,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
 
         this.monsterId = monsterId
 
-        Thread {
+        loggedThread(name="Monster Loading") {
             val monster = dataManager.getMonster(monsterId)
             val damageList = dataManager.queryMonsterDamageArray(monsterId)
             val statusList = dataManager.queryMonsterStatus(monsterId)
@@ -84,21 +84,19 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             monsterData.postValue(monster)
 
             // then load the rest
-            rawWeaknessData.postValue(dataManager.queryMonsterWeaknessArray(monsterId))
             ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
             damageData.postValue(damageList)
             statusData.postValue(statusList)
-        }.start()
+
+            val weaknessRaw = dataManager.queryMonsterWeaknessArray(monsterId)
+            weaknessData.postValue(processWeaknessData(weaknessRaw))
+        }
     }
 
-    /**
-     * A livedata that returns processed weakness results.
-     * Performs a transformation on raw weakness data to get data prepared for the summary
-     */
-    val weaknessData = Transformations.map(rawWeaknessData) { weaknessList ->
-        if (weaknessList == null || weaknessList.isEmpty()) {
-            return@map null
+    private fun processWeaknessData(weaknessList: List<MonsterWeakness>): List<MonsterWeaknessResult> {
+        if (weaknessList.isEmpty()) {
+            return emptyList()
         }
 
         // internal helper function to calculate top weaknesses
@@ -141,7 +139,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             stateResults.first().state = "All States"
         }
 
-        return@map when(anyDiffer) {
+        return when(anyDiffer) {
             true -> stateResults
             false -> stateResults.take(1)
         }

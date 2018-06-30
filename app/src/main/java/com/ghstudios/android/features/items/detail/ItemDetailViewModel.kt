@@ -8,6 +8,7 @@ import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
 
 data class ItemUsage(
@@ -44,7 +45,7 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
 
         this.itemId = itemId
 
-        Thread {
+        loggedThread(name="Item Loading") {
             itemData.postValue(dataManager.getItem(itemId))
 
             // query crafting usage
@@ -65,6 +66,6 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
                     crafting = craftUsage
             ))
 
-        }.start()
+        }
     }
 }

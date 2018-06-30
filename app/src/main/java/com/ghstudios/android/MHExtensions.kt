@@ -1,6 +1,27 @@
 package com.ghstudios.android
 
 import android.database.Cursor
+import android.util.Log
+import kotlin.concurrent.thread
+import kotlin.system.measureTimeMillis
+
+val TAG = "MHGU_DATABASE"
+
+/**
+ * Runs a function in a separate thread that logs the time taken, and any errors that occur.
+ */
+inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
+    val nameDisplay = name ?: "Unnamed"
+
+    thread(start=true) {
+        try {
+            val timeToRun = measureTimeMillis(process)
+            Log.d(TAG, "Ran $nameDisplay thread in $timeToRun milliseconds")
+        } catch (ex: Exception) {
+            Log.e(TAG, "Error in $nameDisplay thread", ex)
+        }
+    }
+}
 
 /**
  * Extension function
