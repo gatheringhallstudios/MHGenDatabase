@@ -67,7 +67,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/stun"/>
+                    android:src="@drawable/status_stun"/>
 
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/fire"/>
+                    android:src="@drawable/element_fire"/>
 
                 <ImageView
                     android:id="@+id/water"
@@ -107,7 +107,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/water"/>
+                    android:src="@drawable/element_water"/>
 
                 <ImageView
                     android:id="@+id/ice"
@@ -115,7 +115,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/ice"/>
+                    android:src="@drawable/element_ice"/>
 
                 <ImageView
                     android:id="@+id/thunder"
@@ -123,7 +123,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/thunder"/>
+                    android:src="@drawable/element_thunder"/>
 
                 <ImageView
                     android:id="@+id/dragon"
@@ -131,7 +131,7 @@
                     android:layout_height="@dimen/damage_table_icon_height"
                     android:layout_weight="0.1"
                     android:contentDescription="@string/monster_image"
-                    android:src="@drawable/dragon"/>
+                    android:src="@drawable/element_dragon"/>
             </LinearLayout>
 
             <LinearLayout

@@ -16,7 +16,7 @@ enum class WeaknessRating {
     VERY_WEAK
 }
 
-data class MonsterWeaknessValue(val type: WeaknessType, val value: Int) {
+data class MonsterWeaknessValue<T>(val type: T, val value: Int) {
     val rating = when(value) {
         0, 1, 2, 3 -> WeaknessRating.RESISTS
         4 -> WeaknessRating.REGULAR
@@ -28,7 +28,8 @@ data class MonsterWeaknessValue(val type: WeaknessType, val value: Int) {
 
 data class MonsterWeaknessResult(
         var state: String, // editable since under certain conditions it becomes "all states"
-        val elementAndStatus: List<MonsterWeaknessValue>,
+        val element: List<MonsterWeaknessValue<ElementStatus>>,
+        val status: List<MonsterWeaknessValue<ElementStatus>>,
         val items: List<WeaknessType>
 )
 
@@ -100,7 +101,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
         }
 
         // internal helper function to calculate top weaknesses
-        fun calculateTopWeaknesses(weaknessMap: Map<WeaknessType, Int>, count: Int): List<MonsterWeaknessValue> {
+        fun <T> calculateTopWeaknesses(weaknessMap: Map<T, Int>, count: Int): List<MonsterWeaknessValue<T>> {
             val weaknesses = weaknessMap
                     .map { MonsterWeaknessValue(it.key, it.value) }
                     .filter { it.rating != WeaknessRating.RESISTS }
@@ -122,18 +123,20 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             val topStatus = calculateTopWeaknesses(it.statusWeaknesses, 1)
             MonsterWeaknessResult(
                     state = it.state ?: "",
-                    elementAndStatus = topElement + topStatus,
+                    element = topElement,
+                    status = topStatus,
                     items = it.vulnerableTraps + it.vulnerableBombs)
         }
 
         // detect if any categories are equivalent, so that we don't show them multiple times
         val stateSequence = stateResults.asSequence()
-        val weaknessesDiffer = stateSequence.map { it.elementAndStatus }.distinct().count() > 1
+        val elementsDiffer = stateSequence.map { it.element }.distinct().count() > 1
+        val statusesDiffer = stateSequence.map { it.status }.distinct().count() > 1
         val itemsDiffer = stateSequence.map { it.items }.distinct().count() > 1
 
         // If all categories are equivalent, we need to remove alternative states
         // if there is more than one state, we'll also have to rename the first one
-        val anyDiffer = weaknessesDiffer || itemsDiffer
+        val anyDiffer = elementsDiffer || statusesDiffer || itemsDiffer
         if (!anyDiffer && stateResults.size > 1) {
             // todo: translate
             stateResults.first().state = "All States"

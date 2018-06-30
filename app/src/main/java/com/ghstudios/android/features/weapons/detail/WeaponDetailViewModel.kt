@@ -9,7 +9,7 @@ import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.database.DataManager
 
 data class WeaponElementData(
-        val element: String,
+        val element: String?,
         val value: Long
 )
 

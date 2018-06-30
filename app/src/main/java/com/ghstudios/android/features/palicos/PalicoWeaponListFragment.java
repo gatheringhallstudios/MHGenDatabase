@@ -7,10 +7,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetRegistry;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
 import com.ghstudios.android.loader.PalicoWeaponListCursorLoader;
@@ -154,17 +157,11 @@ public class PalicoWeaponListFragment extends ListFragment implements
                 element_melee_text.setText(Integer.toString(wep.getElementMelee()));
                 element_ranged_text.setText(Integer.toString(wep.getElementRanged()));
 
-                try {
+                int elementIconId = AssetRegistry.getElementRegistry().get(wep.getElementEnum());
+                Drawable elementIcon = ContextCompat.getDrawable(context, elementIconId);
 
-                    InputStream open = manager.open("icons_monster_info/"+wep.getElement()+".png");
-                    Bitmap bitmap = BitmapFactory.decodeStream(open);
-                    element_melee.setImageBitmap(bitmap);
-                    element_ranged.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    element_melee.setImageResource(android.R.color.transparent);
-                    element_ranged.setImageResource(android.R.color.transparent);
-                }
+                element_melee.setImageDrawable(elementIcon);
+                element_ranged.setImageDrawable(elementIcon);
             }
 
             if(wep.getAffinityMelee()==0)

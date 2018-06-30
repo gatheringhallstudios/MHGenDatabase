@@ -22,7 +22,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetRegistry;
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.data.classes.ElementStatus;
 import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.mhgendatabase.R;
@@ -162,20 +164,15 @@ public class MonsterDamageFragment extends Fragment {
     }
 
     private void populateStatus(List<MonsterStatus> statuses) {
-        MonsterStatus currentStatus = null;
         String status, initial, increase, max, duration, damage;
-        String imageFile;
 
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
 
-        for(int i = 0; i < statuses.size(); i++) {
+        for (MonsterStatus currentStatus : statuses) {
             TableRow wdRow = (TableRow) inflater.inflate(
                     R.layout.fragment_monster_status_listitem, mStatusTable, false);
 
-            currentStatus = statuses.get(i);
-
             // Get our strings and our views
-            status = currentStatus.getStatus();
             initial = Long.toString(currentStatus.getInitial());
             increase = Long.toString(currentStatus.getIncrease());
             max = Long.toString(currentStatus.getMax());
@@ -185,7 +182,7 @@ public class MonsterDamageFragment extends Fragment {
             String DefaultString = "-";
 
             if(currentStatus.getInitial()==0)
-                initial=DefaultString;
+                initial = DefaultString;
 
             if(currentStatus.getIncrease()==0)
                 increase = DefaultString;
@@ -209,38 +206,8 @@ public class MonsterDamageFragment extends Fragment {
             TextView damageView = (TextView) wdRow.findViewById(R.id.damage);
 
             // Check which image to load
-            boolean image = true;
-            imageFile = "icons_monster_info/";
-            switch (status)
-            {
-                case "Poison":
-                    imageFile = imageFile + "Poison.png";
-                    break;
-                case "Sleep":
-                    imageFile = imageFile + "Sleep.png";
-                    break;
-                case "Para":
-                    imageFile = imageFile + "Paralysis.png";
-                    break;
-                case "KO":
-                    imageFile = imageFile + "Stun.png";
-                    break;
-                case "Exhaust":
-                    //statusView.setText(status);
-                    imageFile = imageFile + "exhaust.png";
-                    break;
-                case "Blast":
-                    imageFile = imageFile + "Blastblight.png";
-                    break;
-                case "Jump":
-                    //statusView.setText(status);
-                    imageFile = imageFile + "jump.png";
-                    break;
-                case "Mount":
-                    //statusView.setText(status);
-                    imageFile = imageFile + "mount.png";
-                    break;
-            }
+            ElementStatus element = currentStatus.getStatusEnum();
+            int imageFile = AssetRegistry.getElementRegistry().get(element, R.color.transparent);
 
             // initialize our views
             initialView.setText(initial);
@@ -249,11 +216,10 @@ public class MonsterDamageFragment extends Fragment {
             durationView.setText(duration);
             damageView.setText(damage);
 
-            if (image) {
-                Drawable draw = MHUtils.loadAssetDrawable(getContext(), imageFile);
+            if (imageFile != -1) {
+                Drawable draw = ContextCompat.getDrawable(getContext(), imageFile);
                 android.view.ViewGroup.LayoutParams layoutParams = statusImage.getLayoutParams();
                 statusImage.setLayoutParams(layoutParams);
-
                 statusImage.setImageDrawable(draw);
             }
 

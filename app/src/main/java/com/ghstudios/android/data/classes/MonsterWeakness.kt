@@ -1,15 +1,6 @@
 package com.ghstudios.android.data.classes
 
 enum class WeaknessType {
-    FIRE,
-    WATER,
-    THUNDER,
-    ICE,
-    DRAGON,
-    POISON,
-    PARALYSIS,
-    SLEEP,
-    BLAST,
     PITFALL_TRAP,
     SHOCK_TRAP,
     FLASH_BOMB,
@@ -81,11 +72,11 @@ class MonsterWeakness {
      * for all elements. This is calculated every time.
      */
     val elementWeaknesses get() = mapOf(
-            WeaknessType.FIRE to fire,
-            WeaknessType.WATER to water,
-            WeaknessType.THUNDER to thunder,
-            WeaknessType.ICE to ice,
-            WeaknessType.DRAGON to dragon
+            ElementStatus.FIRE to fire,
+            ElementStatus.WATER to water,
+            ElementStatus.THUNDER to thunder,
+            ElementStatus.ICE to ice,
+            ElementStatus.DRAGON to dragon
     )
 
     /**
@@ -93,9 +84,9 @@ class MonsterWeakness {
      * for all status. This is calculated every time.
      */
     val statusWeaknesses get() = mapOf(
-            WeaknessType.POISON to poison,
-            WeaknessType.PARALYSIS to paralysis,
-            WeaknessType.SLEEP to sleep
+            ElementStatus.POISON to poison,
+            ElementStatus.PARALYSIS to paralysis,
+            ElementStatus.SLEEP to sleep
     )
 
     /**

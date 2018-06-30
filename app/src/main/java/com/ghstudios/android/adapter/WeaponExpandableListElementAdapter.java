@@ -2,11 +2,15 @@ package com.ghstudios.android.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetRegistry;
+import com.ghstudios.android.data.classes.ElementStatus;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.components.WeaponListEntry;
@@ -54,12 +58,14 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
         Weapon weapon = ((WeaponListEntry) getItemAt(position)).weapon;
 
         // Set the element to view
-        String element = weapon.getElement();
-        String awakenedElement = weapon.getAwaken();
-        String element2 = weapon.getElement2();
+        ElementStatus element = weapon.getElementEnum();
+        ElementStatus awakenedElement = weapon.getAwakenElementEnum();
+        ElementStatus element2 = weapon.getElement2Enum();
+
         long element_attack = weapon.getElementAttack();
         long element_2_attack = weapon.getElement2Attack();
         long awaken_attack = weapon.getAwakenAttack();
+
         String awakenText = "";
 
 
@@ -68,8 +74,8 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
         holder.elementIconView.setVisibility(View.INVISIBLE);
         holder.elementIconView2.setVisibility(View.INVISIBLE);
 
-        if (!"".equals(element) || !"".equals(awakenedElement)) {
-            if (!"".equals(awakenedElement)) {
+        if (element != ElementStatus.NONE || awakenedElement != ElementStatus.NONE) {
+            if (awakenedElement != ElementStatus.NONE) {
                 element = awakenedElement;
                 element_attack = awaken_attack;
                 awakenText = "(";
@@ -81,26 +87,23 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
             holder.elementIconView.setTag(weapon.getId());
             holder.elementIconView.setVisibility(View.VISIBLE);
 
-            final Bitmap bitmap = getBitmapFromMemCache("icons_monster_info/" + element + ".png");
-            if(bitmap != null) {
-                holder.elementIconView.setImageBitmap(bitmap);
-            } else {
-                new LoadImage(holder.elementIconView, "icons_monster_info/" + element + ".png").execute();
-            }
-
+            int elementIconId = AssetRegistry.getElementRegistry().get(element, R.color.transparent);
+            Drawable icon = ContextCompat.getDrawable(mContext, elementIconId);
+            holder.elementIconView.setImageDrawable(icon);
         }
-        if(!"".equals(element2)) {
+
+        if (element2 != ElementStatus.NONE) {
             holder.elementIconView2.setTag(weapon.getId());
-            final Bitmap bitmap = getBitmapFromMemCache("icons_monster_info/" + element2 + ".png");
-            if(bitmap != null) {
-                holder.elementIconView2.setImageBitmap(bitmap);
-            } else {
-                new LoadImage(holder.elementIconView2, "icons_monster_info/" + element2 + ".png").execute();
-            }
+
+            int elementIconId = AssetRegistry.getElementRegistry().get(element, R.color.transparent);
+            Drawable icon = ContextCompat.getDrawable(mContext, elementIconId);
+            holder.elementIconView2.setImageDrawable(icon);
+
             holder.elementIconView2.setVisibility(View.VISIBLE);
 
             holder.elementView2.setText("" + element_2_attack);
         }
+
         holder.awakenView.setText(awakenText);
     }
 }

@@ -3,7 +3,10 @@ package com.ghstudios.android.features.monsters.detail
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.annotation.DrawableRes
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +20,18 @@ import com.ghstudios.android.ClickListeners.LocationClickListener
 import com.ghstudios.android.MHUtils
 import com.ghstudios.android.components.SectionHeaderCell
 import com.ghstudios.android.components.TitleBarCell
-import com.ghstudios.android.data.classes.Habitat
-import com.ghstudios.android.data.classes.MonsterAilment
 import com.ghstudios.android.mhgendatabase.R
 
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.ghstudios.android.data.classes.WeaknessType
+import com.ghstudios.android.ElementRegistry
+import com.ghstudios.android.data.classes.*
+
+private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weaknessRating) {
+    WeaknessRating.WEAK -> R.drawable.effectiveness_2
+    WeaknessRating.VERY_WEAK -> R.drawable.effectiveness_3
+    else -> null
+}
 
 /**
  * Represents a subfragment displayed in the summary tab of the monster detail.
@@ -41,6 +49,8 @@ class MonsterSummaryFragment : Fragment() {
             return f
         }
     }
+
+    private val TAG = this::class.java.simpleName
 
     @BindView(R.id.monster_header)
     lateinit var headerView: TitleBarCell
@@ -105,46 +115,32 @@ class MonsterSummaryFragment : Fragment() {
         val weaknessListView = weaknessView.findViewById<ViewGroup>(R.id.weakness_data)
         val itemListView = weaknessView.findViewById<ViewGroup>(R.id.item_data)
 
-        // weakness line
-        for (value in mWeakness.elementAndStatus) {
-            val imagePath = when (value.type) {
-                WeaknessType.FIRE -> resources.getString(R.string.image_location_fire)
-                WeaknessType.WATER -> resources.getString(R.string.image_location_water)
-                WeaknessType.THUNDER -> resources.getString(R.string.image_location_thunder)
-                WeaknessType.ICE -> resources.getString(R.string.image_location_ice)
-                WeaknessType.DRAGON -> resources.getString(R.string.image_location_dragon)
-                WeaknessType.POISON -> resources.getString(R.string.image_location_poison)
-                WeaknessType.PARALYSIS -> resources.getString(R.string.image_location_paralysis)
-                WeaknessType.SLEEP -> resources.getString(R.string.image_location_sleep)
-                else -> null
-            }
+        // weakness line (element part)
+        for (value in mWeakness.element) {
+            val imagePath = ElementRegistry[value.type]
+            val imageModification = imageFromWeaknessRating(value.rating)
+            addIcon(weaknessListView, imagePath, imageModification)
+        }
 
-            val imageModification = when (value.rating) {
-                WeaknessRating.WEAK -> resources.getString(R.string.image_location_effectiveness_2)
-                WeaknessRating.VERY_WEAK -> resources.getString(R.string.image_location_effectiveness_3)
-                else -> null
-            }
-
-            imagePath?.let {
-                addIcon(weaknessListView, imagePath, imageModification)
-            }
+        // weakness line (status part)
+        for (value in mWeakness.status) {
+            val imagePath = ElementRegistry[value.type]
+            val imageModification = imageFromWeaknessRating(value.rating)
+            addIcon(weaknessListView, imagePath, imageModification)
         }
 
         // items line
         for (trapType in mWeakness.items) {
             val imagePath = when (trapType) {
-                WeaknessType.PITFALL_TRAP -> resources.getString(R.string.image_location_pitfall_trap)
-                WeaknessType.SHOCK_TRAP -> resources.getString(R.string.image_location_shock_trap)
-                WeaknessType.MEAT -> resources.getString(R.string.image_location_meat)
-                WeaknessType.FLASH_BOMB -> resources.getString(R.string.image_location_flash_bomb)
-                WeaknessType.SONIC_BOMB -> resources.getString(R.string.image_location_sonic_bomb)
-                WeaknessType.DUNG_BOMB -> resources.getString(R.string.image_location_dung_bomb)
-                else -> null
+                WeaknessType.PITFALL_TRAP -> R.drawable.item_trap_pitfall
+                WeaknessType.SHOCK_TRAP -> R.drawable.item_trap_shock
+                WeaknessType.MEAT -> R.drawable.item_meat
+                WeaknessType.FLASH_BOMB -> R.drawable.item_bomb_flash
+                WeaknessType.SONIC_BOMB -> R.drawable.item_bomb_sonic
+                WeaknessType.DUNG_BOMB -> R.drawable.item_bomb_dung
             }
 
-            imagePath?.let {
-                addIcon(itemListView, imagePath, null)
-            }
+            addIcon(itemListView, imagePath, null)
         }
 
         statesListView.addView(weaknessView)
@@ -222,7 +218,12 @@ class MonsterSummaryFragment : Fragment() {
     }
 
     // Add small_icon to a particular LinearLayout
-    private fun addIcon(parentview: ViewGroup, imagelocation: String, imagemodlocation: String?) {
+    private fun addIcon(parentview: ViewGroup, @DrawableRes image: Int?, @DrawableRes mod: Int?) {
+        if (image == null) {
+            Log.e(TAG, "Tried to add null image as an icon")
+            return
+        }
+
         // Create new small_icon layout
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.small_icon, parentview, false)
@@ -232,12 +233,12 @@ class MonsterSummaryFragment : Fragment() {
         val mImageMod = view.findViewById<ImageView>(R.id.image_mod)
 
         // Open Image
-        val image = MHUtils.loadAssetDrawable(context, imagelocation)
-        mImage.setImageDrawable(image)
+        val mainImage = ContextCompat.getDrawable(context!!, image)
+        mImage.setImageDrawable(mainImage)
 
         // Open Image Mod if applicable
-        if (imagemodlocation != null) {
-            val modImage = MHUtils.loadAssetDrawable(context, imagemodlocation)
+        if (mod != null) {
+            val modImage = ContextCompat.getDrawable(context!!, mod)
             mImageMod.setImageDrawable(modImage)
             mImageMod.visibility = View.VISIBLE
         }
