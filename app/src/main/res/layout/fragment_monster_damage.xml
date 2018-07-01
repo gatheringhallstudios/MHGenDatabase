@@ -9,137 +9,154 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Common header -->
+        <include layout="@layout/monster_detail_header"/>
+
+        <!-- Table 1 header -->
         <LinearLayout
-            android:id="@+id/monster_damage_chart"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:paddingLeft="@dimen/margin_large"
+            android:paddingRight="@dimen/margin_large"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/subheading_color">
+
+            <TextView
+                android:id="@+id/impact_area"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="Area"
+                style="@style/text_medium"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:layout_weight="0.1" />
+
+            <ImageView
+                android:id="@+id/cut"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/cut"/>
+
+            <ImageView
+                android:id="@+id/impact"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/impact"/>
+
+            <ImageView
+                android:id="@+id/shot"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/shot"/>
+
+            <ImageView
+                android:id="@+id/ko"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/status_stun"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/weapon_damage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Common header -->
-            <include layout="@layout/monster_detail_header"/>
+            <include layout="@layout/fragment_monster_damage_listitem"
+                tools:visibility="visible"
+                android:visibility="gone"/>
 
-            <!-- Table 1 header -->
-            <LinearLayout
-                android:orientation="horizontal"
-                style="@style/list_item"
-                android:background="@color/subheading_color">
+            <include layout="@layout/fragment_monster_damage_listitem"
+                tools:visibility="visible"
+                android:visibility="gone"/>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/impact_area"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Area"
-                    style="@style/text_medium"/>
+        <!-- Table 2 header -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:paddingLeft="@dimen/margin_large"
+            android:paddingRight="@dimen/margin_large"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/subheading_color"
+            android:layout_marginTop="@dimen/margin_large">
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1" />
-
-                <ImageView
-                    android:id="@+id/cut"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/cut"/>
-
-                <ImageView
-                    android:id="@+id/impact"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/impact"/>
-
-                <ImageView
-                    android:id="@+id/shot"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/shot"/>
-
-                <ImageView
-                    android:id="@+id/ko"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/status_stun"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/weapon_damage"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/element_area"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:layout_weight="0.5"
+                android:text="Area"
+                style="@style/text_medium"/>
 
-            <!-- Table 2 header -->
-            <LinearLayout
-                style="@style/list_item"
-                android:orientation="horizontal"
-                android:background="@color/subheading_color"
-                android:layout_marginTop="@dimen/margin_large">
+            <ImageView
+                android:id="@+id/fire"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/element_fire"/>
 
-                <TextView
-                    android:id="@+id/element_area"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Area"
-                    style="@style/text_medium"/>
+            <ImageView
+                android:id="@+id/water"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/element_water"/>
 
-                <ImageView
-                    android:id="@+id/fire"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/element_fire"/>
+            <ImageView
+                android:id="@+id/ice"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/element_ice"/>
 
-                <ImageView
-                    android:id="@+id/water"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/element_water"/>
+            <ImageView
+                android:id="@+id/thunder"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/element_thunder"/>
 
-                <ImageView
-                    android:id="@+id/ice"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/element_ice"/>
+            <ImageView
+                android:id="@+id/dragon"
+                android:layout_width="@dimen/damage_table_value_width"
+                android:layout_height="@dimen/damage_table_icon_height"
+                android:gravity="center"
+                android:contentDescription="@string/monster_image"
+                android:src="@drawable/element_dragon"/>
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/thunder"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/element_thunder"/>
+        <LinearLayout
+            android:id="@+id/elemental_damage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/dragon"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/damage_table_icon_height"
-                    android:layout_weight="0.1"
-                    android:contentDescription="@string/monster_image"
-                    android:src="@drawable/element_dragon"/>
-            </LinearLayout>
+            <include layout="@layout/fragment_monster_damage_listitem"
+                tools:visibility="visible"
+                android:visibility="gone"/>
 
-            <LinearLayout
-                android:id="@+id/elemental_damage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+            <include layout="@layout/fragment_monster_damage_listitem"
+                tools:visibility="visible"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <TableLayout
