@@ -18,6 +18,8 @@ import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
 
 import com.ghstudios.android.*
 import com.ghstudios.android.MHUtils
@@ -40,25 +42,26 @@ class MonsterDamageFragment : Fragment() {
         }
     }
 
-    private var mMonsterLabelTextView: TextView? = null
-    private var mMonsterIconImageView: ImageView? = null
+    @BindView(R.id.detail_monster_label)
+    lateinit var mMonsterLabelTextView: TextView
 
-    private var mWeaponDamageTL: LinearLayout? = null
-    private var mElementalDamageTL: LinearLayout? = null
+    @BindView(R.id.detail_monster_image)
+    lateinit var mMonsterIconImageView: ImageView
 
-    private var mStatusTable: TableLayout? = null // Location of table to add rows to
+    @BindView(R.id.weapon_damage)
+    lateinit var mWeaponDamageTL: LinearLayout
+
+    @BindView(R.id.elemental_damage)
+    lateinit var mElementalDamageTL: LinearLayout
+
+    @BindView(R.id.status_table)
+    lateinit var mStatusTable: TableLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_monster_damage, container, false)
 
-        mMonsterLabelTextView = view.findViewById(R.id.detail_monster_label)
-        mMonsterIconImageView = view.findViewById(R.id.detail_monster_image)
-
-        mWeaponDamageTL = view.findViewById(R.id.weapon_damage)
-        mElementalDamageTL = view.findViewById(R.id.elemental_damage)
-
-        mStatusTable = view.findViewById(R.id.statusTable)
+        ButterKnife.bind(this, view)
 
         return view
     }
@@ -72,8 +75,8 @@ class MonsterDamageFragment : Fragment() {
             val cellImage = "icons_monster/" + monster.fileLocation
             val monsterImage = MHUtils.loadAssetDrawable(context, cellImage)
 
-            mMonsterLabelTextView?.text = monster.name
-            mMonsterIconImageView?.setImageDrawable(monsterImage)
+            mMonsterLabelTextView.text = monster.name
+            mMonsterIconImageView.setImageDrawable(monsterImage)
         })
 
         viewModel.damageData.observe(this, Observer<List<MonsterDamage>> { this.populateDamage(it) })
@@ -82,6 +85,9 @@ class MonsterDamageFragment : Fragment() {
 
     private fun populateDamage(damages: List<MonsterDamage>?) {
         if (damages == null || damages.isEmpty()) return
+
+        mWeaponDamageTL.removeAllViews()
+        mElementalDamageTL.removeAllViews()
 
         val altStateColor = ContextCompat.getColor(context!!, R.color.text_color_secondary)
         val altStateSpan = ForegroundColorSpan(altStateColor)
@@ -121,7 +127,7 @@ class MonsterDamageFragment : Fragment() {
 
             dummy_tv.text = ""
 
-            mWeaponDamageTL!!.addView(wdRow)
+            mWeaponDamageTL.addView(wdRow)
         }
 
         // Elemental table
@@ -144,7 +150,7 @@ class MonsterDamageFragment : Fragment() {
             checkDamageValue(damage.thunder, thunder_tv, true, false)
             checkDamageValue(damage.dragon, dragon_tv, true, false)
 
-            mElementalDamageTL?.addView(edRow)
+            mElementalDamageTL.addView(edRow)
         }
     }
 
@@ -163,7 +169,6 @@ class MonsterDamageFragment : Fragment() {
 
     private fun populateStatus(statuses: List<MonsterStatus>?) {
         if (statuses == null || statuses.isEmpty()) return
-
 
         val inflater = LayoutInflater.from(this.context)
 

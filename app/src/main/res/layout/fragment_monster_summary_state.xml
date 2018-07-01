@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,100 +11,105 @@
         android:id="@+id/state_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:labelText="Normal State" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:labelText="Normal State"/>
 
     <!-- Weaknesses -->
-    <LinearLayout
-        android:id="@+id/weaknesses"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/weakness_label"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/list_item_height"
         android:minHeight="@dimen/list_item_height"
+        style="@style/text_medium"
+        android:gravity="center_vertical"
+
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
-        android:gravity="center_vertical"
-        android:animateLayoutChanges="true">
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/weakness_data"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/text_medium"
-            android:layout_gravity="center_vertical"
-            android:text="@string/monster_summary_weaknesses"/>
+        android:text="@string/monster_summary_weaknesses"/>
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/weakness_data"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:flexWrap="wrap"
-            app:flexDirection="row_reverse">
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/weakness_data"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/list_item_height"
+        app:flexWrap="wrap"
+        app:flexDirection="row_reverse"
 
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-        </com.google.android.flexbox.FlexboxLayout>
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weakness_label">
 
-    </LinearLayout>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </com.google.android.flexbox.FlexboxLayout>
 
-    <FrameLayout style="@style/HorizontalDividerFull"/>
+    <FrameLayout style="@style/HorizontalDividerFull"
+        android:id="@+id/divider1"
+        app:layout_constraintTop_toBottomOf="@id/weakness_label"/>
 
     <!-- Traps and Bombs -->
-    <RelativeLayout
-        android:id="@+id/items"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/item_label"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/list_item_height"
         android:minHeight="@dimen/list_item_height"
+        style="@style/text_medium"
+        android:gravity="center_vertical"
+
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
-        android:gravity="center_vertical"
-        android:animateLayoutChanges="true">
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_data"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/text_medium"
-            android:animateLayoutChanges="true"
-            android:layout_gravity="center_vertical"
-            android:text="@string/monster_summary_items"/>
+        android:text="@string/monster_summary_items"/>
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/item_data"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            app:flexWrap="wrap"
-            app:flexDirection="row_reverse">
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/item_data"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/list_item_height"
+        app:flexWrap="wrap"
+        app:flexDirection="row_reverse"
 
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-            <include layout="@layout/small_icon"
-                android:visibility="gone"
-                tools:visibility="visible"/>
-        </com.google.android.flexbox.FlexboxLayout>
-    </RelativeLayout>
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_label">
 
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <include layout="@layout/small_icon"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </com.google.android.flexbox.FlexboxLayout>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
