@@ -23,7 +23,6 @@ import butterknife.ButterKnife
 
 import com.ghstudios.android.*
 import com.ghstudios.android.MHUtils
-import com.ghstudios.android.data.classes.ElementStatus
 import com.ghstudios.android.data.classes.MonsterDamage
 import com.ghstudios.android.data.classes.MonsterStatus
 import com.ghstudios.android.mhgendatabase.R
@@ -54,8 +53,8 @@ class MonsterDamageFragment : Fragment() {
     @BindView(R.id.elemental_damage)
     lateinit var mElementalDamageTL: LinearLayout
 
-    @BindView(R.id.status_table)
-    lateinit var mStatusTable: TableLayout
+    @BindView(R.id.status_data)
+    lateinit var mStatusTable: LinearLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -109,7 +108,7 @@ class MonsterDamageFragment : Fragment() {
         // non-elemental table
         for (damage in damages) {
             val wdRow = inflater.inflate(
-                    R.layout.fragment_monster_damage_listitem, mWeaponDamageTL, false) as LinearLayout
+                    R.layout.fragment_monster_damage_listitem, mWeaponDamageTL, false)
 
             val body_part_tv1 = wdRow.findViewById<TextView>(R.id.body_part)
             val dummy_tv = wdRow.findViewById<TextView>(R.id.dmg1)
@@ -133,7 +132,7 @@ class MonsterDamageFragment : Fragment() {
         // Elemental table
         for (damage in damages) {
             val edRow = inflater.inflate(
-                    R.layout.fragment_monster_damage_listitem, mElementalDamageTL, false) as LinearLayout
+                    R.layout.fragment_monster_damage_listitem, mElementalDamageTL, false)
 
             val body_part_tv2 = edRow.findViewById<TextView>(R.id.body_part)
             val fire_tv = edRow.findViewById<TextView>(R.id.dmg1)
@@ -170,11 +169,13 @@ class MonsterDamageFragment : Fragment() {
     private fun populateStatus(statuses: List<MonsterStatus>?) {
         if (statuses == null || statuses.isEmpty()) return
 
+        mStatusTable.removeAllViews()
+
         val inflater = LayoutInflater.from(this.context)
 
         for (currentStatus in statuses) {
             val wdRow = inflater.inflate(
-                    R.layout.fragment_monster_status_listitem, mStatusTable, false) as TableRow
+                    R.layout.fragment_monster_status_listitem, mStatusTable, false)
 
             val DefaultString = "-"
             fun valToString(v: Long, suffix: String=""): String = when(v) {
@@ -215,7 +216,7 @@ class MonsterDamageFragment : Fragment() {
                 statusImage.setImageDrawable(draw)
             }
 
-            mStatusTable!!.addView(wdRow)
+            mStatusTable.addView(wdRow)
         }
     }
 }

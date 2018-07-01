@@ -132,6 +132,13 @@
     <string name="monster_summary_items">Items</string>
     <string name="monster_ailments">Ailments</string>
     <string name="monster_habitats">Habitats</string>
+    <string name="monster_damage_area">Area</string>
+    <string name="monster_status_icon">Status</string>
+    <string name="monster_status_initial">Initial</string>
+    <string name="monster_status_increase">Increase</string>
+    <string name="monster_status_max">Max</string>
+    <string name="monster_status_duration">Duration</string>
+    <string name="monster_status_damage">Damage</string>
 
     <!-- Items -->
     <string name="item_rarity">Rare</string>
