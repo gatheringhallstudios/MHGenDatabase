@@ -37,13 +37,14 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/weakness_data"
         android:layout_width="0dp"
-        android:layout_height="@dimen/list_item_height"
+        android:layout_height="wrap_content"
         app:flexWrap="wrap"
         app:flexDirection="row_reverse"
 
         android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
         app:layout_constraintTop_toBottomOf="@id/state_name"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weakness_label">
 
@@ -65,6 +66,7 @@
         <include layout="@layout/small_icon"
             android:visibility="gone"
             tools:visibility="visible"/>
+
     </com.google.android.flexbox.FlexboxLayout>
 
     <FrameLayout style="@style/HorizontalDividerFull"
@@ -91,13 +93,14 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/item_data"
         android:layout_width="0dp"
-        android:layout_height="@dimen/list_item_height"
+        android:layout_height="wrap_content"
         app:flexWrap="wrap"
         app:flexDirection="row_reverse"
 
         android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
         app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_label">
 
