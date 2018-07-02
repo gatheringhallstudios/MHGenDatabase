@@ -34,7 +34,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             cursor.toList {
                 MonsterMetadata(
                         id = monsterId,
-                        name = it.getString(col_name),
+                        name = it.getString("name"),
                         hasDamageData = it.getBoolean("has_damage"),
                         hasStatusData = it.getBoolean("has_status")
                 )

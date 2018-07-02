@@ -83,17 +83,20 @@ public class MHUtils {
      * @return
      */
     public static <T, J extends Cursor> List<T> cursorToList(J c, CursorProcessFunction<T, J> process) {
-        ArrayList<T> results = new ArrayList<>();
+        try {
+            ArrayList<T> results = new ArrayList<>(c.getCount());
 
-        while (c.moveToNext()) {
-            results.add(process.getValue(c));
+            while (c.moveToNext()) {
+                results.add(process.getValue(c));
+            }
+
+            return results;
+
+        } finally {
+            if (!c.isClosed()) {
+                c.close();
+            }
         }
-
-        if (!c.isClosed()) {
-            c.close();
-        }
-
-        return results;
     }
 
     interface Builder<T> {

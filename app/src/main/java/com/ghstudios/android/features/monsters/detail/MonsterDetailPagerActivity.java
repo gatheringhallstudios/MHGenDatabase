@@ -19,18 +19,9 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
         long monsterId = getIntent().getLongExtra(EXTRA_MONSTER_ID, -1);
 
         MonsterDetailViewModel viewModel = ViewModelProviders.of(this).get(MonsterDetailViewModel.class);
-        viewModel.setMonster(monsterId);
+        MonsterMetadata meta = viewModel.setMonster(monsterId);
 
-        viewModel.getMonsterMetadata().observe(this, meta -> {
-            if (meta == null) return; // todo: throw?
-
-            setTitle(meta.getName());
-            resetTabs((adder) -> initTabs(adder, meta));
-        });
-    }
-
-    protected void initTabs(TabAdder tabs, MonsterMetadata meta) {
-        Long monsterId = meta.getId();
+        setTitle(meta.getName());
 
         tabs.addTab("Summary", () ->
                 MonsterSummaryFragment.newInstance(monsterId)

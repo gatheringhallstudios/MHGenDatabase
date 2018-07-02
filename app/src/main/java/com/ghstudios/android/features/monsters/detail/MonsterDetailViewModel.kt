@@ -17,14 +17,16 @@ enum class WeaknessRating {
     VERY_WEAK
 }
 
+fun getRatingFromValue(value: Int) = when(value) {
+    0, 1, 2, 3 -> WeaknessRating.RESISTS
+    4 -> WeaknessRating.REGULAR
+    5 -> WeaknessRating.WEAK
+    6, 7 -> WeaknessRating.VERY_WEAK
+    else -> throw IllegalArgumentException("Invalid weakness value $value")
+}
+
 data class MonsterWeaknessValue<T>(val type: T, val value: Int) {
-    val rating = when(value) {
-        0, 1, 2, 3 -> WeaknessRating.RESISTS
-        4 -> WeaknessRating.REGULAR
-        5 -> WeaknessRating.WEAK
-        6, 7 -> WeaknessRating.VERY_WEAK
-        else -> throw IllegalArgumentException("Invalid weakness value $value")
-    }
+    val rating = getRatingFromValue(value)
 }
 
 data class MonsterWeaknessResult(
@@ -41,7 +43,6 @@ data class MonsterWeaknessResult(
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
-    val monsterMetadata = MutableLiveData<MonsterMetadata>()
 
     val monsterData = MutableLiveData<Monster>()
     val weaknessData = MutableLiveData<List<MonsterWeaknessResult>>()
@@ -51,66 +52,51 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     val statusData = MutableLiveData<List<MonsterStatus>>()
 
     var monsterId = -1L
+    private var metadata: MonsterMetadata? = null
 
     /**
      * Sets the viewmodel to represent a monster, and loads the viewmodels
      * Does nothing if the data is already loaded.
      */
-    fun setMonster(monsterId : Long) {
-        if (this.monsterId == monsterId) {
-            return
+    fun setMonster(monsterId : Long): MonsterMetadata {
+        if (this.monsterId == monsterId && this.metadata != null) {
+            return metadata!!
         }
 
         this.monsterId = monsterId
+        this.metadata = dataManager.queryMonsterMetadata(monsterId)
 
         loggedThread(name="Monster Loading") {
             // load and post metadata and monster first (high priority)
-            monsterMetadata.postValue(dataManager.queryMonsterMetadata(monsterId))
             monsterData.postValue(dataManager.getMonster(monsterId))
 
             // then load the rest
+            val weaknessRaw = dataManager.queryMonsterWeaknessArray(monsterId)
+
+            // this is a bigger process, so run this in a different thread while we continue loading data
+            loggedThread(name="Weakness processing") {
+                weaknessData.postValue(processWeaknessData(weaknessRaw))
+            }
+
             ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
             damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
             statusData.postValue(dataManager.queryMonsterStatus(monsterId))
-
-            val weaknessRaw = dataManager.queryMonsterWeaknessArray(monsterId)
-            weaknessData.postValue(processWeaknessData(weaknessRaw))
         }
+
+        return metadata!!
     }
 
+    /**
+     * Internal method to extract the "biggest weaknesses" monster.
+     * Returns a custom MonsterWeaknessResult view object
+     */
     private fun processWeaknessData(weaknessList: List<MonsterWeakness>): List<MonsterWeaknessResult> {
         if (weaknessList.isEmpty()) {
             return emptyList()
         }
 
-        // internal helper function to calculate top weaknesses
-        fun <T> calculateTopWeaknesses(weaknessMap: Map<T, Int>, count: Int): List<MonsterWeaknessValue<T>> {
-            val weaknesses = weaknessMap
-                    .map { MonsterWeaknessValue(it.key, it.value) }
-                    .filter { it.rating != WeaknessRating.RESISTS }
-                    .sortedByDescending { it.value }
-
-            // take the top two weaknesses
-            val results = weaknesses.take(count).toMutableList()
-
-            if (weaknesses.size > count) {
-                // add all weaknesses equivalent to the last taken weakness as well
-                results += weaknesses.drop(count).takeWhile { it.value == results.last().value }
-            }
-
-            return results
-        }
-
-        val stateResults = weaknessList.map {
-            val topElement = calculateTopWeaknesses(it.elementWeaknesses, 2)
-            val topStatus = calculateTopWeaknesses(it.statusWeaknesses, 1)
-            MonsterWeaknessResult(
-                    state = it.state ?: "",
-                    element = topElement,
-                    status = topStatus,
-                    items = it.vulnerableTraps + it.vulnerableBombs)
-        }
+        val stateResults = weaknessList.map(::processWeaknessState)
 
         // detect if any categories are equivalent, so that we don't show them multiple times
         val stateSequence = stateResults.asSequence()
@@ -128,7 +114,39 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
 
         return when(anyDiffer) {
             true -> stateResults
-            false -> stateResults.take(1)
+            false -> stateResults.take(1) // only take one if states are the same
         }
+    }
+
+    /**
+     * Internal method
+     */
+    private fun processWeaknessState(it: MonsterWeakness) : MonsterWeaknessResult {
+        // internal helper function to calculate top weaknesses
+        fun <T> calculateTopWeaknesses(weaknessMap: Map<T, Int>, count: Int): List<MonsterWeaknessValue<T>> {
+            val weaknesses = weaknessMap.asSequence()
+                        .filter { getRatingFromValue(it.value) != WeaknessRating.RESISTS }
+                        .map { MonsterWeaknessValue(it.key, it.value) }
+                        .sortedByDescending { it.value }
+                        .toList()
+
+            // take the top two weaknesses
+            val results = weaknesses.take(count).toMutableList()
+
+            // add all extra weaknesses equivalent to the last taken weakness as well
+            if (weaknesses.size > count) {
+                results += weaknesses.drop(count).takeWhile { it.value == results.last().value }
+            }
+
+            return results
+        }
+
+        val topElement = calculateTopWeaknesses(it.elementWeaknesses, 2)
+        val topStatus = calculateTopWeaknesses(it.statusWeaknesses, 1)
+        return MonsterWeaknessResult(
+                state = it.state ?: "",
+                element = topElement,
+                status = topStatus,
+                items = it.vulnerableTraps + it.vulnerableBombs)
     }
 }

@@ -24,12 +24,11 @@ inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
 }
 
 /**
- * Extension function
+ * Extension function that converts a cursor to a list of objects using a transformation function.
+ * The cursor is closed at the completion of this method.
  */
 inline fun <T, J : Cursor> J.toList(crossinline process: (J) -> T) : List<T> {
-    return MHUtils.cursorToList(this, {
-        process(it)
-    })
+    return MHUtils.cursorToList(this) { process(it) }
 }
 
 /**
