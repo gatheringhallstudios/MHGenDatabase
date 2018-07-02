@@ -2,6 +2,7 @@ package com.ghstudios.android.features.monsters.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
 
+import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
@@ -28,14 +29,14 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
         });
     }
 
-    protected void initTabs(TabAdder tabs, MonsterDetailMetadata meta) {
+    protected void initTabs(TabAdder tabs, MonsterMetadata meta) {
         Long monsterId = meta.getId();
 
         tabs.addTab("Summary", () ->
                 MonsterSummaryFragment.newInstance(monsterId)
         );
 
-        if (meta.getHasDamage()) {
+        if (meta.getHasDamageData() || meta.getHasStatusData()) {
             // only include Damage tab if there is data
             tabs.addTab("Damage", () ->
                     MonsterDamageFragment.newInstance(monsterId)

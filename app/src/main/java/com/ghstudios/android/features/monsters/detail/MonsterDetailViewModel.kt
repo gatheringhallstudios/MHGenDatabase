@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.*
+import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
@@ -34,22 +35,13 @@ data class MonsterWeaknessResult(
 )
 
 /**
- * Represents basic initialization information regarding a monster.
- */
-data class MonsterDetailMetadata(
-        val id: Long,
-        val name: String,
-        val hasDamage : Boolean
-)
-
-/**
  * A viewmodel for the entirety of monster detail data.
  * This should be attached to the activty or fragment owning the viewpager.
  */
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
-    val monsterMetadata = MutableLiveData<MonsterDetailMetadata>()
+    val monsterMetadata = MutableLiveData<MonsterMetadata>()
 
     val monsterData = MutableLiveData<Monster>()
     val weaknessData = MutableLiveData<List<MonsterWeaknessResult>>()
@@ -72,23 +64,15 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
         this.monsterId = monsterId
 
         loggedThread(name="Monster Loading") {
-            val monster = dataManager.getMonster(monsterId)
-            val damageList = dataManager.queryMonsterDamageArray(monsterId)
-            val statusList = dataManager.queryMonsterStatus(monsterId)
-
             // load and post metadata and monster first (high priority)
-            monsterMetadata.postValue(MonsterDetailMetadata(
-                    id=monster.id,
-                    name=monster.name,
-                    hasDamage = damageList.isNotEmpty() || statusList.isNotEmpty()
-            ))
-            monsterData.postValue(monster)
+            monsterMetadata.postValue(dataManager.queryMonsterMetadata(monsterId))
+            monsterData.postValue(dataManager.getMonster(monsterId))
 
             // then load the rest
             ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
-            damageData.postValue(damageList)
-            statusData.postValue(statusList)
+            damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
+            statusData.postValue(dataManager.queryMonsterStatus(monsterId))
 
             val weaknessRaw = dataManager.queryMonsterWeaknessArray(monsterId)
             weaknessData.postValue(processWeaknessData(weaknessRaw))

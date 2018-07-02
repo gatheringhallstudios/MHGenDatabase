@@ -76,7 +76,7 @@ public class MHUtils {
 
     /**
      * Extracts every value in a cursor, returning a list of objects.
-     * This method exhausts the cursor.
+     * This method exhausts the cursor and closes it.
      * @param c
      * @param process
      * @param <T>
@@ -87,6 +87,10 @@ public class MHUtils {
 
         while (c.moveToNext()) {
             results.add(process.getValue(c));
+        }
+
+        if (!c.isClosed()) {
+            c.close();
         }
 
         return results;

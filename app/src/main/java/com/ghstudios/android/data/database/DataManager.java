@@ -32,6 +32,7 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.classes.WyporiumTrade;
 import com.ghstudios.android.components.WeaponListEntry;
+import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.data.cursors.ASBSessionCursor;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.cursors.ArenaQuestCursor;
@@ -80,11 +81,15 @@ public class DataManager {
 	private static DataManager sDataManager;		// Singleton design
 	private Context mAppContext;
 	private MonsterHunterDatabaseHelper mHelper;	// Used for queries
+
+	// additional query objects. These handle different types of queries
+	private MetadataDao metadataDao;
 	
 	/* Singleton design */
 	private DataManager(Context appContext) {
 		mAppContext = appContext;
 		mHelper = MonsterHunterDatabaseHelper.getInstance(mAppContext);
+		metadataDao = new MetadataDao(mHelper);
 	}
 	
 	public static DataManager get(Context c) {
@@ -569,6 +574,11 @@ public class DataManager {
 
 /********************************* MONSTER QUERIES ******************************************/
 	/* Get a Cursor that has a list of all Monster */
+
+	public MonsterMetadata queryMonsterMetadata(long id) {
+		return metadataDao.queryMonsterMetadata(id);
+	}
+
 	public MonsterCursor queryMonsters() {
 		return mHelper.queryMonsters();
 	}
