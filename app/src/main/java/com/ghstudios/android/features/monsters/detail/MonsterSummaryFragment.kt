@@ -58,7 +58,7 @@ class MonsterSummaryFragment : Fragment() {
     @BindView(R.id.monster_state_list)
     lateinit var statesListView: LinearLayout
 
-    @BindView(R.id.ailments_data) lateinit var ailmentListView: LinearLayout
+    @BindView(R.id.ailments_data) lateinit var ailmentTextView: TextView
     @BindView(R.id.habitat_list) lateinit var habitatListView: LinearLayout
 
     @BindView(R.id.ailments_empty) lateinit var ailmentsEmpty: View
@@ -154,25 +154,14 @@ class MonsterSummaryFragment : Fragment() {
         // if no ailments, show blank slate instead of the ailment list, and return
         if (ailments == null || ailments.isEmpty()) {
             ailmentsEmpty.visibility = View.VISIBLE
-            ailmentListView.visibility = View.GONE
+            ailmentTextView.visibility = View.GONE
             return
         }
 
         // hide blank slate, and make the ailment list visible
         ailmentsEmpty.visibility = View.GONE
-        ailmentListView.visibility = View.VISIBLE
-        ailmentListView.removeAllViews()
-
-        val inflater = LayoutInflater.from(context)
-
-        for (ailment in ailments) {
-            val ailmentView = inflater.inflate(R.layout.fragment_ailment_listitem, ailmentListView, false)
-
-            val labelView = ailmentView.findViewById<TextView>(R.id.ailment_text)
-            labelView.text = ailment.ailment
-
-            ailmentListView.addView(ailmentView)
-        }
+        ailmentTextView.visibility = View.VISIBLE
+        ailmentTextView.text = ailments.joinToString("\n") { it.ailment }
     }
 
     /**

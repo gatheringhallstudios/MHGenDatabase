@@ -47,35 +47,15 @@
             android:id="@+id/ailments_empty"
             layout="@layout/listitem_empty"/>
 
-        <LinearLayout
+        <TextView
             android:id="@+id/ailments_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/list_item_height"
             android:layout_margin="@dimen/margin_large"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:text="Blastblight"
-                tools:visibility="visible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:text="Severe Dragonblight"
-                tools:visibility="visible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:text="Dragon Wind Pressure"
-                tools:visibility="visible" />
-        </LinearLayout>
+            style="@style/text_small_secondary"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="Blastblight\nSevere Dragonblight" />
 
         <com.ghstudios.android.components.SectionHeaderCell
             android:layout_width="match_parent"
