@@ -39,7 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:flexWrap="wrap"
-        app:flexDirection="row_reverse"
+        app:justifyContent="flex_end"
 
         android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
@@ -95,7 +95,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:flexWrap="wrap"
-        app:flexDirection="row_reverse"
+        app:justifyContent="flex_end"
 
         android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
