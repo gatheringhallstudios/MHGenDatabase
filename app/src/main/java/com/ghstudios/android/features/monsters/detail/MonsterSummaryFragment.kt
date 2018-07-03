@@ -215,7 +215,7 @@ class MonsterSummaryFragment : Fragment() {
 
         // Create new small_icon layout
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.small_icon, parentview, false)
+        val view = inflater.inflate(R.layout.fragment_monster_summary_weakness, parentview, false)
 
         // Get reference to image in small_icon layout
         val mImage = view.findViewById<ImageView>(R.id.image)
