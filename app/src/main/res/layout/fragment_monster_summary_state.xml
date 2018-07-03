@@ -48,25 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weakness_label">
 
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-
     </com.google.android.flexbox.FlexboxLayout>
 
     <FrameLayout style="@style/HorizontalDividerFull"
@@ -104,15 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_label">
 
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-        <include layout="@layout/small_icon"
-            android:visibility="gone"
-            tools:visibility="visible"/>
     </com.google.android.flexbox.FlexboxLayout>
 
 </android.support.constraint.ConstraintLayout>

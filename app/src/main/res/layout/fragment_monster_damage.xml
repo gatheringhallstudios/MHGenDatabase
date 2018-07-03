@@ -92,10 +92,6 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <include
-                layout="@layout/fragment_monster_damage_listitem"
-                android:visibility="gone"
-                tools:visibility="visible" />
         </LinearLayout>
 
 
@@ -185,10 +181,6 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <include
-                layout="@layout/fragment_monster_damage_listitem"
-                android:visibility="gone"
-                tools:visibility="visible" />
         </LinearLayout>
 
 
@@ -294,16 +286,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/status_header">
-
-            <include
-                layout="@layout/fragment_monster_status_listitem"
-                android:visibility="gone"
-                tools:visibility="visible" />
-
-            <include
-                layout="@layout/fragment_monster_status_listitem"
-                android:visibility="gone"
-                tools:visibility="visible" />
 
             <include
                 layout="@layout/fragment_monster_status_listitem"
