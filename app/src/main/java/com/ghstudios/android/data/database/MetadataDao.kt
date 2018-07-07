@@ -2,6 +2,7 @@ package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.getBoolean
 import com.ghstudios.android.getString
@@ -19,7 +20,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase
 
     /**
-     * Creates a query for a monster's metadata
+     * Queries for a monster's metadata
      */
     fun queryMonsterMetadata(monsterId : Long): MonsterMetadata? {
         val cursor = db.rawQuery("""
@@ -37,6 +38,42 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
                         name = it.getString("name"),
                         hasDamageData = it.getBoolean("has_damage"),
                         hasStatusData = it.getBoolean("has_status")
+                )
+            }.firstOrNull()
+        }
+    }
+
+    /**
+     * Queries for an item's metadata, which decides what data an item has available.
+     * TODO: The query needs indices. Unfortunately right now this does not perform well
+     */
+    fun queryItemMetadata(itemId: Long): ItemMetadata? {
+        val cursor = db.rawQuery("""
+            SELECT item._id, item.name,
+                (
+                    SELECT 1
+                    FROM combining c
+                    WHERE c.item_1_id = item._id
+                    OR c.item_2_id = item._id
+                    LIMIT 1) usedInCombining,
+                (SELECT 1 FROM components c WHERE component_item_id = item._id LIMIT 1) usedInCrafting,
+                (SELECT 1 FROM hunting_rewards r WHERE item_id = item._id LIMIT 1) isMonsterReward,
+                (SELECT 1 FROM quest_rewards r WHERE item_id = item._id LIMIT 1) isQuestReward,
+                (SELECT 1 FROM gathering g WHERE item_id = item._id LIMIT 1) isGatherable
+            FROM items item
+            WHERE item._id = ?
+        """, arrayOf(itemId.toString()))
+
+        return cursor.use {
+            cursor.toList {
+                ItemMetadata(
+                        id = itemId,
+                        name = it.getString("name"),
+                        usedInCombining = it.getBoolean("usedInCombining"),
+                        usedInCrafting = it.getBoolean("usedInCrafting"),
+                        isMonsterReward = it.getBoolean("isMonsterReward"),
+                        isQuestReward = it.getBoolean("isQuestReward"),
+                        isGatherable = it.getBoolean("isGatherable")
                 )
             }.firstOrNull()
         }

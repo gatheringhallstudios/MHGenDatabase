@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
+import com.ghstudios.android.data.classes.meta.ItemMetadata;
 
 public class ItemDetailPagerActivity extends BasePagerActivity {
     /**
@@ -17,7 +18,7 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         long itemId = getIntent().getLongExtra(EXTRA_ITEM_ID, -1);
 
         ItemDetailViewModel viewModel = ViewModelProviders.of(this).get(ItemDetailViewModel.class);
-        viewModel.setItem(itemId);
+        ItemMetadata meta = viewModel.setItem(itemId);
 
         viewModel.getItemData().observe(this, (item) -> {
             setTitle(item.getName());
@@ -26,20 +27,32 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         tabs.addTab("Detail", () ->
                 ItemDetailFragment.newInstance(itemId)
         );
-        tabs.addTab("Usage", () ->
-                // List of combinations, armor, aecoration, and weapons
-                ItemUsageFragment.newInstance(itemId)
-        );
-        tabs.addTab("Monster", () ->
-                // Monster drops
-                ItemMonsterFragment.newInstance(itemId)
-        );
-        tabs.addTab("Quest", () ->
-                ItemQuestFragment.newInstance(itemId)
-        );
-        tabs.addTab("Location", () ->
-                ItemLocationFragment.newInstance(itemId)
-        );
+
+        if (meta.getUsedInCombining() || meta.getUsedInCrafting()) {
+            tabs.addTab("Usage", () ->
+                    // List of combinations, armor, aecoration, and weapons
+                    ItemUsageFragment.newInstance(itemId)
+            );
+        }
+
+        if (meta.isMonsterReward()) {
+            tabs.addTab("Monster", () ->
+                    // Monster drops
+                    ItemMonsterFragment.newInstance(itemId)
+            );
+        }
+
+        if (meta.isQuestReward()) {
+            tabs.addTab("Quest", () ->
+                    ItemQuestFragment.newInstance(itemId)
+            );
+        }
+
+        if (meta.isGatherable()) {
+            tabs.addTab("Location", () ->
+                    ItemLocationFragment.newInstance(itemId)
+            );
+        }
 
         //JOE: No wyporium in MHGen
         //    return ItemTradeFragment.newInstance(itemId);

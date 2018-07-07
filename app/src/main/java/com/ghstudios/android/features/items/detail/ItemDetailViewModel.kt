@@ -7,6 +7,7 @@ import com.ghstudios.android.MHUtils
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
+import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
@@ -37,13 +38,19 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
     var itemId = -1L
         private set
 
+
+    private var metadata: ItemMetadata? = null
+
     /**
      * If the item id is unique, loads item data.
      */
-    fun setItem(itemId: Long) {
-        if (this.itemId == itemId) return
+    fun setItem(itemId: Long): ItemMetadata {
+        if (this.itemId == itemId && this.metadata != null) {
+            return metadata!!
+        }
 
         this.itemId = itemId
+        this.metadata = dataManager.queryItemMetadata(itemId)
 
         loggedThread(name="Item Loading") {
             itemData.postValue(dataManager.getItem(itemId))
@@ -65,7 +72,8 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
                     combinations = combiningResults.filter { it.createdItem.id != itemId },
                     crafting = craftUsage
             ))
-
         }
+
+        return metadata!!
     }
 }
