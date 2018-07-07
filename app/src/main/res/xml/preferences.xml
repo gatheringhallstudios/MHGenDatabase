@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/title_preferences">
 
+    <ListPreference
+        android:key="DATA_LOCALE"
+        android:title="@string/preference_data_language"
+        android:summary="@string/preference_data_language_description"/>
+
     <SwitchPreference
         android:key="JAPANESE_ENABLED"
         android:title="@string/preference_japanese"

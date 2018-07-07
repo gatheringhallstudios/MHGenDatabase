@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ghstudios.android.features.monsters.list.MonsterListPagerActivity;
+import com.ghstudios.android.features.preferences.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
 import com.ghstudios.android.features.armor.ArmorListPagerActivity;
@@ -48,6 +50,8 @@ import de.cketti.library.changelog.ChangeLog;
 
 public abstract class GenericActionBarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String TAG = getClass().getSimpleName();
 
     protected static final String DIALOG_ABOUT = "about";
 
@@ -168,10 +172,10 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
         // Handle "Other" menu first.
         switch (itemId) {
-//            case R.id.settings:
-//                Intent preferences = new Intent(ctx, PreferencesActivity.class);
-//                startActivity(preferences);
-//                return true;
+            case R.id.settings:
+                Intent preferences = new Intent(ctx, PreferencesActivity.class);
+                startActivity(preferences);
+                return true;
 
             case R.id.change_log:
                 ChangeLog cl = new ChangeLog(this);
@@ -194,7 +198,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         }
 
         // Set navigation actions
-        Intent intent = new Intent();
+        Intent intent = null;
 
         switch (itemId) {
             case MenuSection.MONSTERS: // Monsters
@@ -233,6 +237,9 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
             case MenuSection.WISH_LISTS: // Wishlists
                 intent = new Intent(ctx, WishlistListActivity.class);
                 break;
+            default:
+                Log.e(TAG, "Failed navigation, invalid item id selected");
+                return false;
         }
 
         // Clear the back stack whenever a nav drawer item is selected

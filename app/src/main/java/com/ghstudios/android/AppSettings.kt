@@ -28,8 +28,12 @@ class AppSettings {
         val isJapaneseEnabled
             get() = sharedPreferences.getBoolean(JAPANESE_ENABLED, false)
 
+        @JvmStatic
+        val dataLocale : String
+            get() = sharedPreferences.getString(DATA_LOCALE, "en")
+
         // keys
         private val JAPANESE_ENABLED = "JAPANESE_ENABLED"
-        
+        private val DATA_LOCALE = "DATA_LOCALE"
     }
 }
