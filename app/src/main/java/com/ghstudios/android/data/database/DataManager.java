@@ -88,7 +88,7 @@ public class DataManager {
 	/* Singleton design */
 	private DataManager(Context appContext) {
 		mAppContext = appContext;
-		mHelper = MonsterHunterDatabaseHelper.getInstance(mAppContext);
+		mHelper = MonsterHunterDatabaseHelper.getInstance(appContext);
 		metadataDao = new MetadataDao(mHelper);
 	}
 	
