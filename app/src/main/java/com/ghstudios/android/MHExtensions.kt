@@ -1,6 +1,8 @@
 package com.ghstudios.android
 
+import android.content.Context
 import android.database.Cursor
+import android.graphics.drawable.Drawable
 import android.util.Log
 import kotlin.concurrent.thread
 import kotlin.system.measureTimeMillis
@@ -24,11 +26,19 @@ inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
 }
 
 /**
+ * Extension: Loads a drawable from the assets folder.
+ * Returns null on failure.
+ */
+fun Context.getAssetDrawable(path: String?): Drawable? {
+    return MHUtils.loadAssetDrawable(this, path ?: "")
+}
+
+/**
  * Extension function that converts a cursor to a list of objects using a transformation function.
  * The cursor is closed at the completion of this method.
  */
-inline fun <T, J : Cursor> J.toList(crossinline process: (J) -> T) : List<T> {
-    return MHUtils.cursorToList(this) { process(it) }
+fun <T, J : Cursor> J.toList(process: (J) -> T) : List<T> {
+    return MHUtils.cursorToList(this, process)
 }
 
 /**

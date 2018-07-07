@@ -72,7 +72,7 @@ class MonsterDamageFragment : Fragment() {
             if (monster == null) return@Observer
 
             val cellImage = "icons_monster/" + monster.fileLocation
-            val monsterImage = MHUtils.loadAssetDrawable(context, cellImage)
+            val monsterImage = context?.getAssetDrawable(cellImage)
 
             mMonsterLabelTextView.text = monster.name
             mMonsterIconImageView.setImageDrawable(monsterImage)

@@ -26,6 +26,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.ghstudios.android.ElementRegistry
 import com.ghstudios.android.data.classes.*
+import com.ghstudios.android.getAssetDrawable
 
 private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weaknessRating) {
     WeaknessRating.WEAK -> R.drawable.effectiveness_2
@@ -78,7 +79,7 @@ class MonsterSummaryFragment : Fragment() {
             if (monster == null) return@Observer
 
             val cellImage = "icons_monster/" + monster.getFileLocation()
-            val monsterImage = MHUtils.loadAssetDrawable(context, cellImage)
+            val monsterImage = context?.getAssetDrawable(cellImage)
 
             headerView.setIconDrawable(monsterImage)
             headerView.setTitleText(monster.name)
@@ -194,7 +195,7 @@ class MonsterSummaryFragment : Fragment() {
             restTextView.text = habitat.rest.toString()
 
             val cellImage = "icons_location/" + habitat.location.fileLocationMini
-            val mapImage = MHUtils.loadAssetDrawable(context, cellImage)
+            val mapImage = context?.getAssetDrawable(cellImage)
 
             mapView.setImageDrawable(mapImage)
 
