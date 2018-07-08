@@ -80,7 +80,7 @@ object MHUtils {
      * @return
     </T> */
     @JvmStatic fun <T, J : Cursor> cursorToList(c: J, transform: (J) -> T): List<T> {
-        try {
+        c.use {
             val results = ArrayList<T>(c.count)
 
             while (c.moveToNext()) {
@@ -88,11 +88,6 @@ object MHUtils {
             }
 
             return results
-
-        } finally {
-            if (!c.isClosed) {
-                c.close()
-            }
         }
     }
 

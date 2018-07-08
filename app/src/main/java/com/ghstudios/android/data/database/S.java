@@ -160,7 +160,6 @@ public class S {
 	public static final String COLUMN_MONSTERS_NAME = "name";
 	public static final String COLUMN_MONSTERS_JPN_NAME = "name_ja";
 	public static final String COLUMN_MONSTERS_CLASS = "class";
-	public static final String COLUMN_MONSTERS_TRAIT = "trait";
 	public static final String COLUMN_MONSTERS_FILE_LOCATION = "icon_name";
 	public static final String COLUMN_MONSTERS_SORT_NAME = "sort_name";
 	public static final String COLUMN_MONSTERS_SIGNATURE_MOVE = "signature_move";

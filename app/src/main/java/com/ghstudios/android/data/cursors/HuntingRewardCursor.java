@@ -77,13 +77,11 @@ public class HuntingRewardCursor extends CursorWrapper {
 		long monsterId = getLong(getColumnIndex(S.COLUMN_HUNTING_REWARDS_MONSTER_ID));
 		String monsterName = getString(getColumnIndex("m" + S.COLUMN_MONSTERS_NAME));
 //			String monsterClass = getString(getColumnIndex(S.COLUMN_MONSTERS_CLASS));
-		String trait = getString(getColumnIndex(S.COLUMN_MONSTERS_TRAIT));
 			String file_location2 = getString(getColumnIndex("m" + S.COLUMN_MONSTERS_FILE_LOCATION)); 
 		
 		monster.setId(monsterId);
 		monster.setName(monsterName);
 //			monster.setMonsterClass(monsterClass);
-		monster.setTrait(trait);
 			monster.setFileLocation(file_location2); 
 		
 		huntingReward.setMonster(monster);

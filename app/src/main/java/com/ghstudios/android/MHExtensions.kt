@@ -33,32 +33,11 @@ fun Context.getAssetDrawable(path: String?): Drawable? {
     return MHUtils.loadAssetDrawable(this, path ?: "")
 }
 
+// todo: determine proper home. Unlike the other db extensions, this is also "general use"
 /**
  * Extension function that converts a cursor to a list of objects using a transformation function.
  * The cursor is closed at the completion of this method.
  */
 fun <T, J : Cursor> J.toList(process: (J) -> T) : List<T> {
     return MHUtils.cursorToList(this, process)
-}
-
-/**
- * Retrieves the value of the requested column as a string, using the column name.
- */
-fun Cursor.getString(columnName: String) : String {
-    return this.getString(getColumnIndex(columnName))
-}
-
-/**
- * Retrieves the value of the requested column as a string, using the column name.
- */
-fun Cursor.getInt(columnName: String) : Int {
-    return this.getInt(getColumnIndex(columnName))
-}
-
-/**
- * Retrieves the value of the requested column as an integer evaluated as a boolean.
- * All non-zero values evaluate to true. Zero is false
- */
-fun Cursor.getBoolean(columnName : String) : Boolean {
-    return this.getInt(columnName) != 0
 }

@@ -1,5 +1,9 @@
-package com.ghstudios.android.data.database;
+package com.ghstudios.android.data.util;
 
+/**
+ * An encapsulated of a query to be performed.
+ * It is not recommended to use this for new queries, and is only here for backwards compatibility.
+ */
 public class QueryHelper {
 	public boolean Distinct;
 	public String Table; 

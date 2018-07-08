@@ -78,7 +78,7 @@ class MonsterSummaryFragment : Fragment() {
         viewModel.monsterData.observe(this, Observer { monster ->
             if (monster == null) return@Observer
 
-            val cellImage = "icons_monster/" + monster.getFileLocation()
+            val cellImage = "icons_monster/" + monster.fileLocation
             val monsterImage = context?.getAssetDrawable(cellImage)
 
             headerView.setIconDrawable(monsterImage)
@@ -189,19 +189,20 @@ class MonsterSummaryFragment : Fragment() {
             val areaTextView = view.findViewById<TextView>(R.id.move)
             val restTextView = view.findViewById<TextView>(R.id.rest)
 
-            mapTextView.text = habitat.location.name
+            mapTextView.text = habitat.location?.name
             startTextView.text = habitat.start.toString()
-            areaTextView.text = habitat.areas.joinToString(", ")
+            areaTextView.text = habitat.areas?.joinToString(", ")
             restTextView.text = habitat.rest.toString()
 
-            val cellImage = "icons_location/" + habitat.location.fileLocationMini
+            val cellImage = "icons_location/" + habitat.location?.fileLocationMini
             val mapImage = context?.getAssetDrawable(cellImage)
-
             mapView.setImageDrawable(mapImage)
 
-            val locationId = habitat.location.id
-            itemLayout.tag = locationId
-            itemLayout.setOnClickListener(LocationClickListener(context, locationId))
+            val locationId = habitat.location?.id
+            if (locationId != null) {
+                itemLayout.tag = locationId
+                itemLayout.setOnClickListener(LocationClickListener(context, locationId))
+            }
 
             habitatListView.addView(view)
         }

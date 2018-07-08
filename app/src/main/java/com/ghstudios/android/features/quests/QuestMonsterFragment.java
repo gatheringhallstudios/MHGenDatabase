@@ -127,12 +127,7 @@ public class QuestMonsterFragment extends Fragment implements
 			TextView endTextView = (TextView)view.findViewById(R.id.habitat_end);
 			
 			String cellMonsterText = monsterToQuest.getMonster().getName();
-			String cellTraitText = monsterToQuest.getMonster().getTrait(); 
 			String cellUnstableText = monsterToQuest.getUnstable()==1?"Unstable":"";
-			
-			if (!cellTraitText.equals("")) {
-				cellMonsterText = cellMonsterText + " (" + cellTraitText + ")";
-			}
 			
 			monsterTextView.setText(cellMonsterText);
 			unstableTextView.setText(cellUnstableText);

@@ -116,11 +116,6 @@ public class ArenaQuestMonsterFragment extends ListFragment implements
 					.findViewById(R.id.detail_monster_label);
 			
 			String cellMonsterText = monsterToArena.getMonster().getName();
-			String cellTraitText = monsterToArena.getMonster().getTrait(); 
-			
-			if (!cellTraitText.equals("")) {
-				cellMonsterText = cellMonsterText + " (" + cellTraitText + ")";
-			}
 			
 			monsterTextView.setText(cellMonsterText);
 

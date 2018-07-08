@@ -18,6 +18,7 @@ import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
+import com.ghstudios.android.data.classes.MonsterSize;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.classes.MonsterToArena;
 import com.ghstudios.android.data.classes.MonsterWeakness;
@@ -85,12 +86,14 @@ public class DataManager {
 
 	// additional query objects. These handle different types of queries
 	private MetadataDao metadataDao;
+	private MonsterDao monsterDao;
 	
 	/* Singleton design */
 	private DataManager(Context appContext) {
 		mAppContext = appContext;
 		mHelper = MonsterHunterDatabaseHelper.getInstance(appContext);
 		metadataDao = new MetadataDao(mHelper);
+		monsterDao = new MonsterDao(mHelper);
 	}
 	
 	public static DataManager get(Context c) {
@@ -391,27 +394,12 @@ public class DataManager {
 /********************************* HUNTING REWARD QUERIES ******************************************/
 	/* Helper method: Get an array of all ids for a certain Monster 
 	 *		Note: Monsters may have multiple ids
+	 *	EDIT: Monsters can no longer have multiple ids
 	 */
 	private long[] helperHuntingRewardMonster(long id) {
+		// monsters can no longer have multiple ids
 		ArrayList<Long> ids = new ArrayList<Long>();
 		ids.add(id);
-		
-		MonsterCursor monsterCursor = mHelper.queryMonster(id);
-		monsterCursor.moveToFirst();
-		
-		// Get the monster name
-		String name = monsterCursor.getMonster().getName();
-		monsterCursor.close();
-		
-		// Find all of the Monster ids based on name
-		monsterCursor = mHelper.queryMonsterTrait(name);
-		monsterCursor.moveToFirst();
-		
-		while(!monsterCursor.isAfterLast()) {
-			ids.add(monsterCursor.getMonster().getId());
-			monsterCursor.moveToNext();
-		}
-		monsterCursor.close();
 		
 		long[] idArray = new long[ids.size()];
 		for (int i = 0; i < idArray.length; i++) {
@@ -434,50 +422,6 @@ public class DataManager {
 	/* Get a Cursor that has a list of HuntingReward based on Monster and Rank */
 	public HuntingRewardCursor queryHuntingRewardMonsterRank(long id, String rank) {
 		return mHelper.queryHuntingRewardMonsterRank(helperHuntingRewardMonster(id), rank);
-	}
-	
-	/* Get an array of HuntingReward based on Item */
-	public ArrayList<HuntingReward> queryHuntingRewardArrayItem(long id) {
-		ArrayList<HuntingReward> rewards = new ArrayList<HuntingReward>();
-		HuntingRewardCursor cursor = mHelper.queryHuntingRewardItem(id);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getHuntingReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
-	}
-
-	/* Get an array of HuntingReward based on Monster */
-	public ArrayList<HuntingReward> queryHuntingRewardArrayMonster(long id) {
-		ArrayList<HuntingReward> rewards = new ArrayList<HuntingReward>();
-		HuntingRewardCursor cursor = 
-				mHelper.queryHuntingRewardMonster(helperHuntingRewardMonster(id));
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getHuntingReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
-	}
-
-	/* Get an array of HuntingReward based on Monster and Rank */
-	public ArrayList<HuntingReward> queryHuntingRewardArrayMonsterRank(long id, String rank) {
-		ArrayList<HuntingReward> rewards = new ArrayList<HuntingReward>();
-		HuntingRewardCursor cursor = 
-				mHelper.queryHuntingRewardMonsterRank(helperHuntingRewardMonster(id), rank);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			rewards.add(cursor.getHuntingReward());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return rewards;
 	}
 	
 /********************************* ITEM QUERIES ******************************************/
@@ -591,50 +535,26 @@ public class DataManager {
 	}
 
 	public MonsterCursor queryMonsters() {
-		return mHelper.queryMonsters();
+		return monsterDao.queryMonsters();
 	}
 	
 	/* Get a Cursor that has a list of all small Monster */	
 	public MonsterCursor querySmallMonsters() {
-		return mHelper.querySmallMonsters();
+		return monsterDao.queryMonsters(MonsterSize.SMALL);
 	}
 
 	/* Get a Cursor that has a list of all large Monster */	
 	public MonsterCursor queryLargeMonsters() {
-		return mHelper.queryLargeMonsters();
+		return monsterDao.queryMonsters(MonsterSize.LARGE);
 	}
 
 	public MonsterCursor queryMonstersSearch(String searchTerm) {
-		return mHelper.queryMonstersSearch(searchTerm);
+		return monsterDao.queryMonstersSearch(searchTerm);
 	}
 
 	/* Get a specific Monster */
 	public Monster getMonster(long id) {
-		Monster monster = null;
-		MonsterCursor cursor = mHelper.queryMonster(id);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			monster = cursor.getMonster();
-		cursor.close();
-		return monster;
-	}
-
-	/* Get an array of every trait of a specific Monster */
-	public ArrayList<Monster> getMonsterTraitArray(long id) {
-		ArrayList<Monster> monsters = new ArrayList<Monster>();
-		MonsterCursor cursor = mHelper.queryMonster(id);
-		cursor.moveToFirst();
-		
-		String name = cursor.getMonster().getName();
-		
-		cursor = mHelper.queryMonsterTrait(name);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			monsters.add(cursor.getMonster());
-		cursor.close();
-		return monsters;
+		return monsterDao.queryMonster(id);
 	}
 
 /********************************* MONSTER AILMENT QUERIES ******************************************/

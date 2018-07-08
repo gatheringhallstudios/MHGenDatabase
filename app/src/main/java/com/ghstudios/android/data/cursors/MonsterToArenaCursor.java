@@ -49,13 +49,11 @@ public class MonsterToArenaCursor extends CursorWrapper {
 		long monsterId = getLong(getColumnIndex(S.COLUMN_MONSTER_TO_ARENA_MONSTER_ID));
 		String monsterName = getString(getColumnIndex("m" + S.COLUMN_MONSTERS_NAME));
 //			String monsterClass = getString(getColumnIndex(S.COLUMN_MONSTERS_CLASS));
-		String trait = getString(getColumnIndex(S.COLUMN_MONSTERS_TRAIT));
 		String file_location = getString(getColumnIndex(S.COLUMN_MONSTERS_FILE_LOCATION)); 
 		
 		monster.setId(monsterId);
 		monster.setName(monsterName);
 //			monster.setMonsterClass(monsterClass);
-		monster.setTrait(trait);
 		monster.setFileLocation(file_location); 
 		
 		monster_to_arena.setMonster(monster);

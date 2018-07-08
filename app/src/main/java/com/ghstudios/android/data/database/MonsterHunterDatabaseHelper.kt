@@ -25,7 +25,6 @@ import com.ghstudios.android.data.cursors.ItemToMaterialCursor
 import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor
 import com.ghstudios.android.data.cursors.LocationCursor
 import com.ghstudios.android.data.cursors.MonsterAilmentCursor
-import com.ghstudios.android.data.cursors.MonsterCursor
 import com.ghstudios.android.data.cursors.MonsterDamageCursor
 import com.ghstudios.android.data.cursors.MonsterHabitatCursor
 import com.ghstudios.android.data.cursors.MonsterStatusCursor
@@ -43,6 +42,7 @@ import com.ghstudios.android.data.cursors.WishlistComponentCursor
 import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
+import com.ghstudios.android.data.util.QueryHelper
 import com.ghstudios.android.mhgendatabase.R
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 
@@ -1494,7 +1494,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[i + S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + i + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
-        projectionMap[S.COLUMN_MONSTERS_TRAIT] = m + "." + S.COLUMN_MONSTERS_TRAIT
         projectionMap[m + S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION + " AS " + m + S.COLUMN_MONSTERS_FILE_LOCATION
 
         //Create new querybuilder
@@ -1783,136 +1782,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return HornMelodiesCursor(wrapHelper(qh))
     }
 
-    /**
-     * ****************************** MONSTER QUERIES *****************************************
-     */
-
-    /*
-	 * Get all monsters
-	 */
-    fun queryMonsters(): MonsterCursor {
-        // "SELECT DISTINCT * FROM monsters GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME
-        qh.Limit = null
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
-    /*
-     * Get all small monsters
-     */
-    fun querySmallMonsters(): MonsterCursor {
-        // "SELECT DISTINCT * FROM monsters WHERE class = 'Minion' GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_MONSTERS_CLASS + " = ?"
-        qh.SelectionArgs = arrayOf("1")
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME
-        qh.Limit = null
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
-    fun queryMonstersSearch(searchTerm: String?): MonsterCursor {
-        // "SELECT DISTINCT * FROM monsters
-        //  WHERE (name LIKE '% word%' OR name LIKE 'word%')
-        //    AND (name LIKE '% word2%' OR name LIKE 'word2%')
-        //  GROUP BY name"
-
-        // If the search is empty, use the retrieve all version
-        if (searchTerm == null || searchTerm.trim { it <= ' ' } == "") {
-            return queryMonsters()
-        }
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        modifyQueryForSearch(qh, S.COLUMN_MONSTERS_NAME, searchTerm)
-        qh.Selection += " AND " + S.COLUMN_MONSTERS_TRAIT + " = ''"
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
-    /*
-     * Get all large monsters
-     */
-    fun queryLargeMonsters(): MonsterCursor {
-        // "SELECT DISTINCT * FROM monsters WHERE class = 'Boss' GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_MONSTERS_CLASS + " = ?"
-        qh.SelectionArgs = arrayOf("0")
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = S.COLUMN_MONSTERS_SORT_NAME
-        qh.Limit = null
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
-    /*
-     * Get a specific monster
-     */
-    fun queryMonster(id: Long): MonsterCursor {
-        // "SELECT DISTINCT * FROM monsters WHERE _id = id LIMIT 1"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_MONSTERS_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
-    /*
-     * Get all traits from same monsters
-     */
-    fun queryMonsterTrait(name: String): MonsterCursor {
-        // "SELECT * FROM monsters WHERE _id = ? AND trait != ''"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTERS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_MONSTERS_NAME + " = ?" + " AND " + S.COLUMN_MONSTERS_TRAIT + " != '' "
-        qh.SelectionArgs = arrayOf(name)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return MonsterCursor(wrapHelper(qh))
-    }
-
     /******************************** MONSTER AILMENT QUERIES  */
     /* Get all ailments a from a particular monster */
     fun queryAilmentsFromMonster(id: Long): MonsterAilmentCursor {
@@ -2129,7 +1998,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_ARENA_ARENA_ID] = mta + "." + S.COLUMN_MONSTER_TO_ARENA_ARENA_ID
 
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
-        projectionMap[S.COLUMN_MONSTERS_TRAIT] = m + "." + S.COLUMN_MONSTERS_TRAIT
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
         projectionMap[a + S.COLUMN_ARENA_QUESTS_NAME] = a + "." + S.COLUMN_ARENA_QUESTS_NAME + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
 
@@ -2212,7 +2080,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
 
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
-        projectionMap[S.COLUMN_MONSTERS_TRAIT] = m + "." + S.COLUMN_MONSTERS_TRAIT
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
         projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
@@ -2256,7 +2123,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
 
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
-        projectionMap[S.COLUMN_MONSTERS_TRAIT] = m + "." + S.COLUMN_MONSTERS_TRAIT
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
         projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB

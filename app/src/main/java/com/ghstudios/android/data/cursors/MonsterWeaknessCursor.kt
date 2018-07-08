@@ -5,9 +5,9 @@ import android.database.CursorWrapper
 
 import com.ghstudios.android.data.classes.MonsterWeakness
 import com.ghstudios.android.data.database.S
-import com.ghstudios.android.getBoolean
-import com.ghstudios.android.getInt
-import com.ghstudios.android.getString
+import com.ghstudios.android.data.util.getBoolean
+import com.ghstudios.android.data.util.getInt
+import com.ghstudios.android.data.util.getString
 
 /**
  * Created by Jayson on 4/6/2015.

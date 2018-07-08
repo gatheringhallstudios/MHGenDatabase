@@ -23,7 +23,8 @@ class PreferencesActivity : GenericActivity() {
 val supportedLanguages = mapOf(
         "en" to "English",
         "es" to "Español",
-        "fr" to "Français"
+        "fr" to "Français",
+        "ja" to "日本語"
 )
 
 class PreferencesFragment : PreferenceFragmentCompat() {

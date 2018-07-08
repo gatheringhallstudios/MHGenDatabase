@@ -4,8 +4,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
-import com.ghstudios.android.getBoolean
-import com.ghstudios.android.getString
+import com.ghstudios.android.data.util.getBoolean
+import com.ghstudios.android.data.util.getString
 import com.ghstudios.android.toList
 
 /**
@@ -49,7 +49,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryItemMetadata(itemId: Long): ItemMetadata? {
         val cursor = db.rawQuery("""
-            SELECT item._id, item.name,
+            SELECT item._id, item.$col_name name,
                 (
                     SELECT 1
                     FROM combining c
