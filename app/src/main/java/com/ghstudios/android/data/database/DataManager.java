@@ -3,6 +3,7 @@ package com.ghstudios.android.data.database;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.classes.ArenaQuest;
@@ -72,6 +73,7 @@ import com.ghstudios.android.data.cursors.WyporiumTradeCursor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /*
@@ -168,53 +170,20 @@ public class DataManager {
 	
 /********************************* ARMOR QUERIES ******************************************/	
 
-	/* Get a cursor that has a list based on a search term */
-	public ArmorCursor queryArmorSearch(String search) { return mHelper.queryArmorSearch(search); }
-
 	/* Get a Cursor that has a list of all Armors */
 	public ArmorCursor queryArmor() {
-		return mHelper.queryArmor();
+		return itemDao.queryArmor();
 	}
 	
 	/* Get a specific Armor */
 	public Armor getArmor(long id) {
-		Armor armor = null;
-		ArmorCursor cursor = mHelper.queryArmor(id);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			armor = cursor.getArmor();
-		cursor.close();
-		return armor;
+		return itemDao.queryArmor(id);
 	}
 	
 	/* Get an array of Armor based on hunter type */
-	public ArrayList<Armor> queryArmorArrayType(int type) {
-		ArrayList<Armor> armors = new ArrayList<Armor>();
-		ArmorCursor cursor = mHelper.queryArmorType(type);
-		cursor.moveToFirst();
-		
-		while(!cursor.isAfterLast()) {
-			armors.add(cursor.getArmor());
-			cursor.moveToNext();
-		}
-		cursor.close();
-		return armors;
-	}
-	
-	/* Get a Cursor that has a list of Armor based on hunter type */
-	public ArmorCursor queryArmorType(int type) {
-		return mHelper.queryArmorType(type);
-	}
-
-	/* Get a Cursor that has a list of Armor based on equipment slot */
-	public ArmorCursor queryArmorSlot(String slot) {
-		return mHelper.queryArmorSlot(slot);
-	}
-
-	/* Get a Cursor that has a list of Armor based on hunter type and equipment slot */
-	public ArmorCursor queryArmorTypeSlot(String type, String slot) {
-		return mHelper.queryArmorTypeSlot(type, slot);
+	public List<Armor> queryArmorArrayType(int type) {
+		ArmorCursor cursor = itemDao.queryArmorType(type);
+		return MHUtils.cursorToList(cursor, ArmorCursor::getArmor);
 	}
 	
 /********************************* COMBINING QUERIES ******************************************/

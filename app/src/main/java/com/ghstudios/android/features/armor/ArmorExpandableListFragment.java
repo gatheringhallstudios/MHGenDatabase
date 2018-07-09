@@ -23,6 +23,7 @@ import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Pieced together from: Android samples:
@@ -44,7 +45,6 @@ public class ArmorExpandableListFragment extends Fragment {
     private static final int REQUEST_FILTER = 0;
 
     private int mType;
-    private ArrayList<Armor> armors;
     private String[] slots = {"Head", "Body", "Arms", "Waist", "Legs"};
 
     private ArrayList<ArrayList<Armor>> children;
@@ -88,7 +88,7 @@ public class ArmorExpandableListFragment extends Fragment {
      */
     private void populateList() {
         children = new ArrayList<ArrayList<Armor>>();
-        armors = DataManager.get(getActivity()).queryArmorArrayType(mType);
+        List<Armor> armors = DataManager.get(getActivity()).queryArmorArrayType(mType);
 
         ArrayList<Armor> g1 = new ArrayList<Armor>();
         ArrayList<Armor> g2 = new ArrayList<Armor>();

@@ -19,8 +19,7 @@ import com.ghstudios.android.data.util.getString
 class HuntingRewardCursor(c: Cursor) : CursorWrapper(c) {
 
     /**
-     * Returns a HuntingReward object configured for the current row, or null if the
-     * current row is invalid.
+     * Returns a HuntingReward object configured for the current row
      */
     val huntingReward: HuntingReward
         get() {

@@ -39,5 +39,17 @@ fun Context.getAssetDrawable(path: String?): Drawable? {
  * The cursor is closed at the completion of this method.
  */
 fun <T, J : Cursor> J.toList(process: (J) -> T) : List<T> {
-    return MHUtils.cursorToList(this, process)
+    return MHUtils.cursorToList(this, object: MHUtils.CursorProcessFunction<T, J> {
+        override fun getValue(c: J): T = process(c)
+    })
+}
+
+/**
+ * Extension function that pulls one entry from a cursor using a transform function,
+ * or null if the cursor is empty.
+ * The cursor is closed at the completion of this method.
+ */
+fun <T, J : Cursor> J.firstOrNull(process: (J) -> T) : T? {
+    // todo: implement asSequence() extension, use that one
+    return this.toList(process).firstOrNull()
 }

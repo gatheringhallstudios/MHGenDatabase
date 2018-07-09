@@ -1,7 +1,6 @@
 package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteOpenHelper
-import com.ghstudios.android.AppSettings
 import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.data.classes.MonsterSize
 import com.ghstudios.android.data.cursors.MonsterCursor

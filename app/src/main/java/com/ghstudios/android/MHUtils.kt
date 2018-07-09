@@ -74,29 +74,17 @@ object MHUtils {
     /**
      * Extracts every value in a cursor, returning a list of objects.
      * This method exhausts the cursor and closes it.
-     * @param c
-     * @param process
-     * @param <T>
-     * @return
-    </T> */
-    @JvmStatic fun <T, J : Cursor> cursorToList(c: J, transform: (J) -> T): List<T> {
+     */
+    @JvmStatic fun <T, J : Cursor> cursorToList(c: J, transform: CursorProcessFunction<T, J>): List<T> {
         c.use {
             val results = ArrayList<T>(c.count)
 
             while (c.moveToNext()) {
-                results.add(transform(c))
+                results.add(transform.getValue(c))
             }
 
             return results
         }
-    }
-
-    /**
-     * Extracts every value in a cursor, returning a list of objects.
-     * This method exhausts the cursor and closes it.
-     */
-    @JvmStatic fun <T, J : Cursor> cursorToList(c: J, transform: CursorProcessFunction<T, J>): List<T> {
-        return cursorToList(c) { transform.getValue(c) }
     }
 
     /**
