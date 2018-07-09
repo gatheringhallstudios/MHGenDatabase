@@ -88,6 +88,7 @@ public class DataManager {
 	private MetadataDao metadataDao;
 	private MonsterDao monsterDao;
 	private ItemDao itemDao;
+	private HuntingRewardsDao huntingRewardsDao;
 	
 	/* Singleton design */
 	private DataManager(Context appContext) {
@@ -96,6 +97,7 @@ public class DataManager {
 		metadataDao = new MetadataDao(mHelper);
 		monsterDao = new MonsterDao(mHelper);
 		itemDao = new ItemDao(mHelper);
+		huntingRewardsDao = new HuntingRewardsDao(mHelper);
 	}
 	
 	public static DataManager get(Context c) {
@@ -394,36 +396,20 @@ public class DataManager {
 
 	
 /********************************* HUNTING REWARD QUERIES ******************************************/
-	/* Helper method: Get an array of all ids for a certain Monster 
-	 *		Note: Monsters may have multiple ids
-	 *	EDIT: Monsters can no longer have multiple ids
-	 */
-	private long[] helperHuntingRewardMonster(long id) {
-		// monsters can no longer have multiple ids
-		ArrayList<Long> ids = new ArrayList<Long>();
-		ids.add(id);
-		
-		long[] idArray = new long[ids.size()];
-		for (int i = 0; i < idArray.length; i++) {
-			idArray[i] = ids.get(i);
-		}
-		
-		return idArray;
-	}
-	
+
 	/* Get a Cursor that has a list of HuntingReward based on Item */
 	public HuntingRewardCursor queryHuntingRewardItem(long id) {
-		return mHelper.queryHuntingRewardItem(id);
+		return huntingRewardsDao.queryHuntingRewardItem(id);
 	}
 
 	/* Get a Cursor that has a list of HuntingReward based on Monster */
 	public HuntingRewardCursor queryHuntingRewardMonster(long id) {
-		return mHelper.queryHuntingRewardMonster(helperHuntingRewardMonster(id));
+		return huntingRewardsDao.queryHuntingRewardMonster(id);
 	}
 
 	/* Get a Cursor that has a list of HuntingReward based on Monster and Rank */
 	public HuntingRewardCursor queryHuntingRewardMonsterRank(long id, String rank) {
-		return mHelper.queryHuntingRewardMonsterRank(helperHuntingRewardMonster(id), rank);
+		return huntingRewardsDao.queryHuntingRewardMonsterRank(id, rank);
 	}
 	
 /********************************* ITEM QUERIES ******************************************/

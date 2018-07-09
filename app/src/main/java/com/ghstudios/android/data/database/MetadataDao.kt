@@ -6,6 +6,7 @@ import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.util.getBoolean
 import com.ghstudios.android.data.util.getString
+import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.toList
 
 /**
@@ -14,10 +15,9 @@ import com.ghstudios.android.toList
  * what tabs to show or hide.
  */
 class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
-    // todo: bind this somehow for cross-language queries
-    val col_name = "name"
-
     val db get() = dbMainHelper.writableDatabase
+
+    val col_name get() = localizeColumn("name")
 
     /**
      * Queries for a monster's metadata

@@ -9,6 +9,10 @@ import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.toList
 
+/**
+ * A class used to perform queries retrieving monster data,
+ * and data stemming from a monster (including hunting rewards)
+ */
 class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase
 
