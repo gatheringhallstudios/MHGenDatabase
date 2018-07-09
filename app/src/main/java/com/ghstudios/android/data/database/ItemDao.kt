@@ -1,9 +1,12 @@
 package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteOpenHelper
+import com.ghstudios.android.AppSettings
 import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.cursors.ArmorCursor
+import com.ghstudios.android.data.cursors.CombiningCursor
 import com.ghstudios.android.data.cursors.ItemCursor
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
@@ -73,6 +76,76 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE ${filter.predicate}
             ORDER BY _id
         """, arrayOf(*filter.parameters)))
+    }
+
+    /**
+     * ****************************** COMBINING QUERIES *****************************************
+     */
+
+    /**
+     * Internal helper that returns the column names for a sub-item in a combine recipe.
+     */
+    private fun combiningItemColumns(table: String, prefix: String): String {
+        val t = table
+        val p = prefix
+
+        val columns = arrayOf(
+                "_id", "name_ja", "type", "sub_type", "rarity", "carry_capacity",
+                "buy", "sell", "icon_name", "armor_dupe_name_fix")
+
+        val colName = localizeColumn("$table.name")
+        val colDescription = localizeColumn("$table.description")
+        return "$colName ${p}name, $colDescription ${p}description, " +
+                columns.joinToString(", ") { "$table.$it AS $prefix$it" }
+    }
+
+    /*
+	 * Get all combinings
+	 */
+    fun queryCombinings(): CombiningCursor {
+        return CombiningCursor(db.rawQuery("""
+            SELECT c._id, c.amount_made_min, c.amount_made_max, c.percentage,
+                ${combiningItemColumns("crt", "crt")},
+                ${combiningItemColumns("mat1", "mat1")},
+                ${combiningItemColumns("mat2", "mat2")}
+            FROM combining c
+                LEFT OUTER JOIN items crt ON c.created_item_id = crt._id
+                LEFT OUTER JOIN items mat1 ON c.item_1_id = mat1._id
+                LEFT OUTER JOIN items mat2 ON c.item_2_id = mat2._id
+        """, emptyArray()))
+    }
+
+    /**
+     * Get a specific combining
+     */
+    fun queryCombining(id: Long): Combining? {
+        return CombiningCursor(db.rawQuery("""
+            SELECT c._id, c.amount_made_min, c.amount_made_max, c.percentage,
+                ${combiningItemColumns("crt", "crt")},
+                ${combiningItemColumns("mat1", "mat1")},
+                ${combiningItemColumns("mat2", "mat2")}
+            FROM combining c
+                LEFT OUTER JOIN items crt ON c.created_item_id = crt._id
+                LEFT OUTER JOIN items mat1 ON c.item_1_id = mat1._id
+                LEFT OUTER JOIN items mat2 ON c.item_2_id = mat2._id
+            WHERE c._id = ?
+        """, arrayOf(id.toString()))).firstOrNull { it.combining }
+    }
+
+    fun queryCombinationsOnItemID(id: Long): CombiningCursor {
+        return CombiningCursor(db.rawQuery("""
+            SELECT c._id, c.amount_made_min, c.amount_made_max, c.percentage,
+                ${combiningItemColumns("crt", "crt")},
+                ${combiningItemColumns("mat1", "mat1")},
+                ${combiningItemColumns("mat2", "mat2")}
+            FROM combining c
+                LEFT OUTER JOIN items crt ON c.created_item_id = crt._id
+                LEFT OUTER JOIN items mat1 ON c.item_1_id = mat1._id
+                LEFT OUTER JOIN items mat2 ON c.item_2_id = mat2._id
+            WHERE crt._id = @id
+              OR mat1._id = @id
+              OR mat2._id = @id
+        """, arrayOf(id.toString())))
     }
 
     /**

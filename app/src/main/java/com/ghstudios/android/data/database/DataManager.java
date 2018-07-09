@@ -189,23 +189,11 @@ public class DataManager {
 /********************************* COMBINING QUERIES ******************************************/
 	/* Get a Cursor that has a list of all Combinings */
 	public CombiningCursor queryCombinings() {
-		return mHelper.queryCombinings();
-	}
-	
-	/* Get a specific Combining */
-	public Combining getCombining(long id) {
-		Combining combining = null;
-		CombiningCursor cursor = mHelper.queryCombining(id);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			combining = cursor.getCombining();
-		cursor.close();
-		return combining;
+		return itemDao.queryCombinings();
 	}
 
     public CombiningCursor queryCombiningOnItemID(long id) {
-         return mHelper.queryCombinationsOnItemID(id);
+         return itemDao.queryCombinationsOnItemID(id);
     }
 	
 /********************************* COMPONENT QUERIES ******************************************/
