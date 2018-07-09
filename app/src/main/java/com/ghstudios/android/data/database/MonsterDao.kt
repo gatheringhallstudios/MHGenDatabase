@@ -6,18 +6,14 @@ import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.data.classes.MonsterSize
 import com.ghstudios.android.data.cursors.MonsterCursor
 import com.ghstudios.android.data.util.SqlFilter
+import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.toList
-
-fun localizeColumn(locale: String, columnName: String) = when(locale) {
-    "en" -> columnName
-    else -> "${columnName}_$locale"
-}
 
 class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase
 
     private val column_name
-        get() = localizeColumn(AppSettings.dataLocale, "name")
+        get() = localizeColumn("name")
 
     private val monster_columns
         get() = "_id, $column_name name, name_ja, class, icon_name, signature_move"

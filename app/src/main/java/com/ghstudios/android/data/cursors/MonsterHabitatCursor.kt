@@ -15,7 +15,7 @@ import com.ghstudios.android.data.util.getString
  * Created by Mark on 2/22/2015.
  */
 class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
-    
+
     /**
      * Generates a Habitat object after retrieving entries from the database
      * @return The habitat object

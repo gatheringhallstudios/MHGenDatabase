@@ -87,6 +87,7 @@ public class DataManager {
 	// additional query objects. These handle different types of queries
 	private MetadataDao metadataDao;
 	private MonsterDao monsterDao;
+	private ItemDao itemDao;
 	
 	/* Singleton design */
 	private DataManager(Context appContext) {
@@ -94,6 +95,7 @@ public class DataManager {
 		mHelper = MonsterHunterDatabaseHelper.getInstance(appContext);
 		metadataDao = new MetadataDao(mHelper);
 		monsterDao = new MonsterDao(mHelper);
+		itemDao = new ItemDao(mHelper);
 	}
 	
 	public static DataManager get(Context c) {
@@ -437,24 +439,17 @@ public class DataManager {
 
 	/* Get a Cursor that has a list of all Items */
 	public ItemCursor queryItems() {
-		return mHelper.queryItems();
+		return itemDao.queryItems();
 	}
 	
 	/* Get a specific Item */
 	public Item getItem(long id) {
-		Item item = null;
-		ItemCursor cursor = mHelper.queryItem(id);
-		cursor.moveToFirst();
-		
-		if (!cursor.isAfterLast())
-			item = cursor.getItem();
-		cursor.close();
-		return item;
+		return itemDao.queryItem(id);
 	}
 	
 	/* Get a Cursor that has a list of filtered Items through search */
 	public ItemCursor queryItemSearch(String search) {
-		return mHelper.queryItemSearch(search);
+		return itemDao.queryItemSearch(search);
 	}
 	
 /********************************* ITEM TO SKILL TREE QUERIES ******************************************/
