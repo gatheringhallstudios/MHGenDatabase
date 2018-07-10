@@ -207,39 +207,6 @@ public class DataManager {
         return mHelper.queryComponentComponent(id);
     }
 
-    /* Get a Cursor that has a list of Components based on the created Item and creation type */
-    public ComponentCursor queryComponentCreatedType(long id, String type) {
-        return mHelper.queryComponentCreatedType(id, type);
-    }
-    
-    /* Get an array of Components based on the created Item */
-    public ArrayList<Component> queryComponentArrayCreated(long id) {
-        ArrayList<Component> components = new ArrayList<Component>();
-        ComponentCursor cursor = mHelper.queryComponentCreated(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            components.add(cursor.getComponent());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return components;
-    }
-    
-    /* Get an array of Components based on the component Item */
-    public ArrayList<Component> queryComponentArrayComponent(long id) {
-        ArrayList<Component> components = new ArrayList<Component>();
-        ComponentCursor cursor = mHelper.queryComponentComponent(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            components.add(cursor.getComponent());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return components;
-    }
-
     /* Get an array of paths for a created Item */
     public ArrayList<String> queryComponentCreateImprove(long id) {
         // Gets all the component Items
@@ -277,7 +244,7 @@ public class DataManager {
     public DecorationCursor queryDecorationsSearch(String filter) {
         filter = (filter == null) ? "" : filter.trim();
         if (filter.equals(""))
-            return mHelper.queryDecorations();
+            return queryDecorations();
         return mHelper.queryDecorationsSearch(filter);
     }
 
@@ -307,48 +274,6 @@ public class DataManager {
     /* Get a Cursor that has a list of Gathering based on Location and Quest rank */
     public GatheringCursor queryGatheringLocationRank(long id, String rank) {
         return mHelper.queryGatheringLocationRank(id, rank);
-    }
-    
-    /* Get an array of Gathering based on Item */
-    public ArrayList<Gathering> queryGatheringArrayItem(long id) {
-        ArrayList<Gathering> gatherings = new ArrayList<Gathering>();
-        GatheringCursor cursor = mHelper.queryGatheringItem(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            gatherings.add(cursor.getGathering());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return gatherings;
-    }
-    
-    /* Get an array of Gathering based on Location */
-    public ArrayList<Gathering> queryGatheringArrayLocation(long id) {
-        ArrayList<Gathering> gatherings = new ArrayList<Gathering>();
-        GatheringCursor cursor = mHelper.queryGatheringLocation(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            gatherings.add(cursor.getGathering());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return gatherings;
-    }
-    
-    /* Get an array of Gathering based on Location and Quest rank */
-    public ArrayList<Gathering> queryGatheringArrayLocationRank(long id, String rank) {
-        ArrayList<Gathering> gatherings = new ArrayList<Gathering>();
-        GatheringCursor cursor = mHelper.queryGatheringLocationRank(id, rank);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            gatherings.add(cursor.getGathering());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return gatherings;
     }
 
     
@@ -420,19 +345,6 @@ public class DataManager {
         return itst;
     }
 
-    /** Get an array of ItemToSkillTree based on SkillTree */
-    public ArrayList<ItemToSkillTree> queryItemToSkillTreeArraySkillTree(long id, String type) {
-        ArrayList<ItemToSkillTree> itst = new ArrayList<ItemToSkillTree>();
-        ItemToSkillTreeCursor cursor = mHelper.queryItemToSkillTreeSkillTree(id, type);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            itst.add(cursor.getItemToSkillTree());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return itst;
-    }
 /********************************* ITEM TO MATERIAL QUERIES ******************************************/
 
     public ItemToMaterialCursor queryItemsForMaterial(long mat_item_id){
@@ -508,34 +420,16 @@ public class DataManager {
     }
     
     /* Get an array of MonsterDamage for a specific Monster */
-    public ArrayList<MonsterDamage> queryMonsterDamageArray(long id) {
-        ArrayList<MonsterDamage> damages = new ArrayList<MonsterDamage>();
-        MonsterDamageCursor cursor = mHelper.queryMonsterDamage(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            damages.add(cursor.getMonsterDamage());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return damages;
+    public List<MonsterDamage> queryMonsterDamageArray(long id) {
+        MonsterDamageCursor cursor = queryMonsterDamage(id);
+        return MHUtils.cursorToList(cursor, MonsterDamageCursor::getMonsterDamage);
     }
 
 /********************************* MONSTER STATUS QUERIES ******************************************/
     /* Get an array of status objects for a monster */
-    public ArrayList<MonsterStatus> queryMonsterStatus(long id) {
-        ArrayList<MonsterStatus> monsterStatuses = new ArrayList<MonsterStatus>();
-
+    public List<MonsterStatus> queryMonsterStatus(long id) {
         MonsterStatusCursor cursor = mHelper.queryMonsterStatus(id);
-
-        cursor.moveToFirst();
-
-        while(!cursor.isAfterLast()) {
-            monsterStatuses.add(cursor.getStatus());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return monsterStatuses;
+        return MHUtils.cursorToList(cursor, MonsterStatusCursor::getStatus);
     }
 
 /********************************* MONSTER TO ARENA QUERIES ******************************************/
@@ -547,34 +441,6 @@ public class DataManager {
     /* Get a Cursor that has a list of MonsterToArena based on ArenaQuest */
     public MonsterToArenaCursor queryMonsterToArenaArena(long id) {
         return mHelper.queryMonsterToArenaArena(id);
-    }
-    
-    /* Get an array of MonsterToArena based on Monster */
-    public ArrayList<MonsterToArena> queryMonsterToArenaArrayMonster(long id) {
-        ArrayList<MonsterToArena> mta = new ArrayList<MonsterToArena>();
-        MonsterToArenaCursor cursor = mHelper.queryMonsterToArenaMonster(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            mta.add(cursor.getMonsterToArena());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return mta;
-    }
-
-    /* Get an array of MonsterToArena based on ArenaQuest */
-    public ArrayList<MonsterToArena> queryMonsterToArenaArrayArena(long id) {
-        ArrayList<MonsterToArena> mta = new ArrayList<MonsterToArena>();
-        MonsterToArenaCursor cursor = mHelper.queryMonsterToArenaArena(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            mta.add(cursor.getMonsterToArena());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return mta;
     }
         
 /********************************* MONSTER TO QUEST QUERIES ******************************************/
@@ -607,17 +473,9 @@ public class DataManager {
     }
 
     /* Get an array of MonsterWeakness for a specific Monster */
-    public ArrayList<MonsterWeakness> queryMonsterWeaknessArray(long id) {
-        ArrayList<MonsterWeakness> weaknesses = new ArrayList<MonsterWeakness>();
-        MonsterWeaknessCursor cursor = mHelper.queryWeaknessFromMonster(id);
-        cursor.moveToFirst();
-
-        while(!cursor.isAfterLast()) {
-            weaknesses.add(cursor.getWeakness());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return weaknesses;
+    public List<MonsterWeakness> queryMonsterWeaknessArray(long id) {
+        MonsterWeaknessCursor cursor = queryWeaknessFromMonster(id);
+        return MHUtils.cursorToList(cursor, MonsterWeaknessCursor::getWeakness);
     }
 
 /********************************* QUEST QUERIES ******************************************/    
@@ -644,21 +502,13 @@ public class DataManager {
     }
     
     /* Get an array of Quest based on hub */
-    public ArrayList<Quest> queryQuestArrayHub(String hub) {
-        ArrayList<Quest> quests = new ArrayList<Quest>();
+    public List<Quest> queryQuestArrayHub(String hub) {
         QuestCursor cursor = mHelper.queryQuestHub(hub);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            quests.add(cursor.getQuest());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return quests;
+        return MHUtils.cursorToList(cursor, QuestCursor::getQuest);
     }
     
     /* Get a Cursor that has a list of Quest based on hub */
-        public QuestCursor queryQuestHub(String hub) {
+    public QuestCursor queryQuestHub(String hub) {
         return mHelper.queryQuestHub(hub);
     }
 
@@ -677,34 +527,6 @@ public class DataManager {
     public QuestRewardCursor queryQuestRewardQuest(long id) {
         return mHelper.queryQuestRewardQuest(id);
     }
-
-    /* Get an array of QuestReward based on Item */
-    public ArrayList<QuestReward> queryQuestRewardArrayItem(long id) {
-        ArrayList<QuestReward> rewards = new ArrayList<QuestReward>();
-        QuestRewardCursor cursor = mHelper.queryQuestRewardItem(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            rewards.add(cursor.getQuestReward());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return rewards;
-    }
-
-    /* Get an array of QuestReward based on Quest */
-    public ArrayList<QuestReward> queryQuestRewardArrayQuest(long id) {
-        ArrayList<QuestReward> rewards = new ArrayList<QuestReward>();
-        QuestRewardCursor cursor = mHelper.queryQuestRewardQuest(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            rewards.add(cursor.getQuestReward());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return rewards;
-    }
     
 /********************************* SKILL QUERIES ******************************************/    
 
@@ -715,20 +537,6 @@ public class DataManager {
     /* Get a Cursor that has a list of all Skills from a specific SkillTree */
     public SkillCursor querySkillFromTree(long id) {
         return mHelper.querySkillFromTree(id);
-    }
-    
-    /* Get an array of Skill from a specific SkillTree */
-    public ArrayList<Skill> querySkillArray(long id) {
-        ArrayList<Skill> skills = new ArrayList<Skill>();
-        SkillCursor cursor = mHelper.querySkillFromTree(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            skills.add(cursor.getSkill());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return skills;
     }
         
 /********************************* SKILL TREE QUERIES ******************************************/    
@@ -783,24 +591,6 @@ public class DataManager {
         String wtype = c.getString(0);
         c.close();
         return wtype;
-    }
-
-    /* Get an array that has a list of Weapons based on weapon type
-    * This method is for preloading info for weapons to prevent lots of
-    * work in binding a view to a list */
-    public ArrayList<Weapon> queryWeaponTypeArray(String type) {
-        WeaponCursor cursor = mHelper.queryWeaponType(type, false);
-
-        cursor.moveToFirst();
-        ArrayList<Weapon> weapons = new ArrayList<Weapon>();
-        int i = 0;
-
-        while(cursor.isAfterLast() == false) {
-            weapons.add(cursor.getWeapon());
-            cursor.moveToNext();
-        }
-
-        return weapons;
     }
 
     /* Get an array of weapon expandable list items

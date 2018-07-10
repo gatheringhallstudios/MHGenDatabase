@@ -18,6 +18,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.QuestClickListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Pieced together from: Android samples:
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 public class QuestExpandableListFragment extends Fragment {
     private String mHub;
     private static final String ARG_HUB = "QUEST_HUB";
-    private ArrayList<Quest> quests;
     private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 "};
 
     private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
@@ -64,7 +64,7 @@ public class QuestExpandableListFragment extends Fragment {
 
     private void populateList() {
         children = new ArrayList<ArrayList<Quest>>();
-        quests = DataManager.get(getActivity()).queryQuestArrayHub(mHub);
+        List<Quest> quests = DataManager.get(getActivity()).queryQuestArrayHub(mHub);
         ArrayList<Quest> g1 = new ArrayList<Quest>();
         ArrayList<Quest> g2 = new ArrayList<Quest>();
         ArrayList<Quest> g3 = new ArrayList<Quest>();
