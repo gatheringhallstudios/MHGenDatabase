@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armor;
+package com.ghstudios.android.features.armor.list;
 
 import android.app.Activity;
 import android.content.Context;

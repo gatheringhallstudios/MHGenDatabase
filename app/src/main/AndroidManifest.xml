@@ -65,16 +65,16 @@
 
         <!-- ARMOR LIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.armor.ArmorListPagerActivity"
+            android:name="com.ghstudios.android.features.armor.list.ArmorListPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.armor.ArmorDetailActivity"
+            android:name="com.ghstudios.android.features.armor.ArmorSetDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.armor.ArmorListPagerActivity" />
+                android:value="com.ghstudios.android.features.armor.list.ArmorListPagerActivity" />
         </activity>
 
         <!-- LOCATION LIST SECTION -->

@@ -51,7 +51,12 @@ abstract class BasePagerActivity : GenericActivity() {
          * @param title   The title to display for the tab
          * @param builder A TabFactory or lambda that builds the tab fragment
          */
-        fun addTab(title: String, builder: PagerTab.Factory)
+        //fun addTab(title: String, builder: PagerTab.Factory)
+
+        /**
+         * Adds a tab to the fragment.
+         */
+        fun addTab(title: String, builder: () -> Fragment)
 
         /**
          * Sets the default selected tab idx
@@ -70,7 +75,7 @@ abstract class BasePagerActivity : GenericActivity() {
             private set
         private val tabs = ArrayList<PagerTab>()
 
-        override fun addTab(title: String, builder: PagerTab.Factory) {
+        override fun addTab(title: String, builder: () -> Fragment) {
             tabs.add(PagerTab(title, builder))
         }
 

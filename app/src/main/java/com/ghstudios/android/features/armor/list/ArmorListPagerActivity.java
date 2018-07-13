@@ -1,8 +1,9 @@
-package com.ghstudios.android.features.armor;
+package com.ghstudios.android.features.armor.list;
 
 import android.content.Intent;
 
 import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.features.armor.list.ArmorExpandableListFragment;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 import com.ghstudios.android.BasePagerActivity;

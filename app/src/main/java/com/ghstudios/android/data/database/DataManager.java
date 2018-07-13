@@ -34,6 +34,7 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.classes.WyporiumTrade;
 import com.ghstudios.android.components.WeaponListEntry;
+import com.ghstudios.android.data.classes.meta.ArmorMetadata;
 import com.ghstudios.android.data.classes.meta.ItemMetadata;
 import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.data.cursors.ASBSessionCursor;
@@ -169,6 +170,15 @@ public class DataManager {
     }
     
 /********************************* ARMOR QUERIES ******************************************/    
+
+    public List<ArmorMetadata> getArmorSetMetadataByFamily(long familyId) {
+        return metadataDao.queryArmorSetMetadataByFamily(familyId);
+    }
+
+
+    public List<ArmorMetadata> getArmorSetMetadataByArmor(long armorId) {
+        return metadataDao.queryArmorSetMetadataByArmor(armorId);
+    }
 
     /* Get a Cursor that has a list of all Armors */
     public ArmorCursor queryArmor() {

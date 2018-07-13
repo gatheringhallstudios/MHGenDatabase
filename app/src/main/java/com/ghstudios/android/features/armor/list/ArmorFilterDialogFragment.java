@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armor;
+package com.ghstudios.android.features.armor.list;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,7 +15,7 @@ import android.widget.*;
 
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armor.ArmorExpandableListFragment;
+import com.ghstudios.android.features.armor.list.ArmorExpandableListFragment;
 
 public class ArmorFilterDialogFragment extends DialogFragment {
 

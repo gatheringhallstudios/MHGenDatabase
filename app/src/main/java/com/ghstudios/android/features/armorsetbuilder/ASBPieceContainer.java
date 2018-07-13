@@ -19,7 +19,7 @@ import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.decorations.DecorationDetailActivity;
-import com.ghstudios.android.features.armor.ArmorListPagerActivity;
+import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationListActivity;
 
 import java.io.IOException;

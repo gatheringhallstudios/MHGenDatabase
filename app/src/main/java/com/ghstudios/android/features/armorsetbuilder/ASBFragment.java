@@ -16,7 +16,7 @@ import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.MHUtils;
-import com.ghstudios.android.features.armor.ArmorListPagerActivity;
+import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 
 /**
  * This is where the magic happens baby. Users can define a custom armor set in this fragment.

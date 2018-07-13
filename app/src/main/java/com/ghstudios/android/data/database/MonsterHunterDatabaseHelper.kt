@@ -43,6 +43,7 @@ import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.mhgendatabase.R
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 
@@ -695,7 +696,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val projectionMap = HashMap<String, String>()
 
         projectionMap["_id"] = a + "." + S.COLUMN_ARENA_QUESTS_ID + " AS " + "_id"
-        projectionMap[S.COLUMN_ARENA_QUESTS_NAME] = a + "." + S.COLUMN_ARENA_QUESTS_NAME + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
+        projectionMap[S.COLUMN_ARENA_QUESTS_NAME] = a + "." + localizeColumn(S.COLUMN_ARENA_QUESTS_NAME) + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
         projectionMap[S.COLUMN_ARENA_QUESTS_GOAL] = a + "." + S.COLUMN_ARENA_QUESTS_GOAL
         projectionMap[S.COLUMN_ARENA_QUESTS_LOCATION_ID] = a + "." + S.COLUMN_ARENA_QUESTS_LOCATION_ID
         projectionMap[S.COLUMN_ARENA_QUESTS_REWARD] = a + "." + S.COLUMN_ARENA_QUESTS_REWARD
@@ -704,7 +705,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ARENA_QUESTS_TIME_A] = a + "." + S.COLUMN_ARENA_QUESTS_TIME_A
         projectionMap[S.COLUMN_ARENA_QUESTS_TIME_B] = a + "." + S.COLUMN_ARENA_QUESTS_TIME_B
 
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + localizeColumn(S.COLUMN_LOCATIONS_NAME) + " AS " + l + S.COLUMN_LOCATIONS_NAME
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()

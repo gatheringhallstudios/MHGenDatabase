@@ -3,6 +3,7 @@ package com.ghstudios.android.data.database
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.util.*
@@ -77,4 +78,43 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             }.firstOrNull()
         }
     }
+
+    private fun parseArmorSetMetadataCursor(c: Cursor): List<ArmorMetadata> {
+        c.use {
+            return c.toList {
+                ArmorMetadata(
+                        id = it.getLong("_id"),
+                        name = it.getString("name") ?: "",
+                        slot = it.getString("slot") ?: "",
+                        rarity = it.getInt("rarity"),
+                        icon_name = it.getString("icon_name") ?: ""
+                )
+            }
+        }
+    }
+
+    fun queryArmorSetMetadataByFamily(family: Long): List<ArmorMetadata> {
+        val cursor = db.rawQuery("""
+            SELECT a._id, a.slot, i.$col_name name, i.icon_name, i.rarity
+            FROM armor a
+                JOIN items i
+                    ON i._id = a._id
+            WHERE family = ?
+        """, arrayOf(family.toString()))
+
+        return parseArmorSetMetadataCursor(cursor)
+    }
+
+    fun queryArmorSetMetadataByArmor(armorId: Long): List<ArmorMetadata> {
+        val cursor = db.rawQuery("""
+            SELECT a._id, a.slot, i.name name, i.icon_name, i.rarity
+            FROM armor a
+                JOIN items i
+                    ON i._id = a._id
+            WHERE family = (SELECT family FROM armor WHERE _id = ?)
+        """, arrayOf(armorId.toString()))
+
+        return parseArmorSetMetadataCursor(cursor)
+    }
+
 }
