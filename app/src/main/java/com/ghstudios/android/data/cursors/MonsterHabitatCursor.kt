@@ -28,7 +28,7 @@ class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
                 rest = getLong(S.COLUMN_HABITAT_REST)
 
                 // Assign areas (Split the areas string)
-                areas = getString(S.COLUMN_HABITAT_AREAS)
+                areas = getString(S.COLUMN_HABITAT_AREAS, "")
                         .split(",")
                         .dropLastWhile { it.isEmpty() }
                         .map { it.toLong() }
@@ -45,8 +45,8 @@ class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
                 // Assign monster
                 monster = Monster().apply {
                     id = getLong("m" + S.COLUMN_MONSTERS_ID)
-                    name = getString("m" + S.COLUMN_MONSTERS_NAME)
-                    fileLocation = getString("m" + S.COLUMN_MONSTERS_FILE_LOCATION)
+                    name = getString("m" + S.COLUMN_MONSTERS_NAME, "")
+                    fileLocation = getString("m" + S.COLUMN_MONSTERS_FILE_LOCATION, "")
                     monsterClass = getInt("m" + S.COLUMN_MONSTERS_CLASS)
                 }
             }

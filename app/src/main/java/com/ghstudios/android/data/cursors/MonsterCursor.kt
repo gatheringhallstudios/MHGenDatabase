@@ -23,11 +23,11 @@ class MonsterCursor(c: Cursor) : CursorWrapper(c) {
         get() {
             return Monster().apply {
                 id = getLong(S.COLUMN_MONSTERS_ID)
-                name = getString(S.COLUMN_MONSTERS_NAME)
-                jpnName = getString(S.COLUMN_MONSTERS_JPN_NAME)
+                name = getString(S.COLUMN_MONSTERS_NAME, "")
+                jpnName = getString(S.COLUMN_MONSTERS_JPN_NAME, "")
                 monsterClass = getInt(S.COLUMN_MONSTERS_CLASS)
-                fileLocation = getString(S.COLUMN_MONSTERS_FILE_LOCATION)
-                signatureMove = getString(S.COLUMN_MONSTERS_SIGNATURE_MOVE)
+                fileLocation = getString(S.COLUMN_MONSTERS_FILE_LOCATION, "")
+                signatureMove = getString(S.COLUMN_MONSTERS_SIGNATURE_MOVE, "")
             }
         }
 }

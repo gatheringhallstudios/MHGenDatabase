@@ -1,12 +1,11 @@
 package com.ghstudios.android.data.database
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
-import com.ghstudios.android.data.util.getBoolean
-import com.ghstudios.android.data.util.getString
-import com.ghstudios.android.data.util.localizeColumn
+import com.ghstudios.android.data.util.*
 import com.ghstudios.android.toList
 
 /**
@@ -35,7 +34,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             cursor.toList {
                 MonsterMetadata(
                         id = monsterId,
-                        name = it.getString("name"),
+                        name = it.getString("name") ?: "",
                         hasDamageData = it.getBoolean("has_damage"),
                         hasStatusData = it.getBoolean("has_status")
                 )
@@ -68,7 +67,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             cursor.toList {
                 ItemMetadata(
                         id = itemId,
-                        name = it.getString("name"),
+                        name = it.getString("name") ?: "",
                         usedInCombining = it.getBoolean("usedInCombining"),
                         usedInCrafting = it.getBoolean("usedInCrafting"),
                         isMonsterReward = it.getBoolean("isMonsterReward"),

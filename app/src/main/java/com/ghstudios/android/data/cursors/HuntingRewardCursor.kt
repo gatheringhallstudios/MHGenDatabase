@@ -39,8 +39,8 @@ class HuntingRewardCursor(c: Cursor) : CursorWrapper(c) {
 
             huntingReward.monster = Monster().apply {
                 id = getLong(S.COLUMN_HUNTING_REWARDS_MONSTER_ID)
-                name = getString("monster_name")
-                fileLocation = getString("monster_icon_name")
+                name = getString("monster_name") ?: ""
+                fileLocation = getString("monster_icon_name") ?: ""
             }
 
             return huntingReward

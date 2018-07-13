@@ -9,8 +9,17 @@ fun Cursor.getLong(columnName: String): Long {
 /**
  * Retrieves the value of the requested column as a string, using the column name.
  */
-fun Cursor.getString(columnName: String) : String {
+fun Cursor.getString(columnName: String) : String? {
     return this.getString(getColumnIndex(columnName))
+}
+
+
+/**
+ * Retrieves the value of the requested column as a string, using the column name.
+ * Returns the default value if null
+ */
+fun Cursor.getString(columnName: String, default: String = "") : String {
+    return this.getString(columnName) ?: default
 }
 
 /**
