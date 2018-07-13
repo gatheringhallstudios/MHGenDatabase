@@ -30,8 +30,9 @@ class HuntingRewardsDao(val dbMainHelper: SQLiteOpenHelper) {
                     ON h.item_id = i._id
                 LEFT OUTER JOIN monsters m
                     ON h.monster_id = m._id
+            WHERE h.item_id = ?
             ORDER BY m._id ASC, h.rank DESC, h._id ASC
-        """, emptyArray()))
+        """, arrayOf(id.toString())))
     }
 
     /*
