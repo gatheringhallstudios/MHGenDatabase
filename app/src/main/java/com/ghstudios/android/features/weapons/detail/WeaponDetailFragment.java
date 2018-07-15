@@ -88,7 +88,7 @@ public class WeaponDetailFragment extends Fragment {
         titleBar.setAltTitleText(weapon.getJpnName());
         titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
-        rarityCell.setValueText("" + weapon.getRarity());
+        rarityCell.setValueText(weapon.getRarityString());
         attackCell.setValueText("" + weapon.getAttack());
         affinityCell.setValueText(weapon.getAffinity()+"%");
         slotsCell.setValueText("" + weapon.getSlotString());

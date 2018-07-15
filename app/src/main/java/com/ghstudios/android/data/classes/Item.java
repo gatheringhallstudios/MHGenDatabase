@@ -88,6 +88,11 @@ public class  Item {
 		return rarity;
 	}
 
+	public String getRarityString(){
+		if(rarity==11) return "X";
+		return Integer.toString(rarity);
+	}
+
 
 	public void setRarity(int rarity) {
 		this.rarity = rarity;

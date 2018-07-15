@@ -102,7 +102,7 @@ public class ItemDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        rareCell.setValueText(String.valueOf(mItem.getRarity()));
+        rareCell.setValueText(mItem.getRarityString());
         carryCell.setValueText(String.valueOf(mItem.getCarryCapacity()));
         buyCell.setValueText(cellBuy);
         sellCell.setValueText(cellSell);

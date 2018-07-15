@@ -113,7 +113,7 @@ public class DecorationDetailFragment extends Fragment {
 
         getActivity().setTitle(decorationName);
 
-        String cellRare = "" + decoration.getRarity();
+        String cellRare = decoration.getRarityString();
         String cellBuy = "" + decoration.getBuy() + "z";
         String cellSell = "" + decoration.getSell() + "z";
 

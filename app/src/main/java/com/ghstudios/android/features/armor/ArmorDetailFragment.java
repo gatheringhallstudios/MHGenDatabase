@@ -154,7 +154,7 @@ public class ArmorDetailFragment extends Fragment {
         String cellPart = "" + armor.getSlot();
         String cellDefense = "" + armor.getDefense() + "~" + armor.getMaxDefense();
         String cellSlot = armor.getSlotString();
-        String cellRare = "" + armor.getRarity();
+        String cellRare = armor.getRarityString();
 
         rareView.setValueText(cellRare);
         slotsReqView.setValueText(cellSlot);

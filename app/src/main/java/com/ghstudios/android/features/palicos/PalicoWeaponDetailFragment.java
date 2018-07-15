@@ -115,7 +115,7 @@ public class PalicoWeaponDetailFragment extends Fragment implements
 
 
         _creationCost.setText(Integer.toString(wep.getCreation_cost()));
-        _rarity.setText(Integer.toString(wep.getItem().getRarity()));
+        _rarity.setText(wep.getItem().getRarityString());
         _description.setText(wep.getItem().getDescription());
 
 
