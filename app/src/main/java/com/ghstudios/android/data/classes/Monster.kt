@@ -17,7 +17,7 @@ class Monster {
     var jpnName = ""        // Japanese name
     var monsterClass = 0    // Large / small
     var fileLocation = ""    // File location for image
-    var signatureMove = "" // Signature moves
+    var metadata = 0        //metadata (IsG:IsHigh:IsLow)
 
     val monsterSize get() = when(monsterClass) {
         0 -> MonsterSize.LARGE

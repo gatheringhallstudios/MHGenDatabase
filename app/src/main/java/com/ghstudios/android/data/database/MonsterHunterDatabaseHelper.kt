@@ -98,7 +98,7 @@ For queries with JOINs:
 //Version 5 - v1.1.1 - Added more localized data / July DLC
 //Version 6 - v1.1.2 - Sept/Oct DLC
 
-private val DATABASE_NAME = "mhgen.db"
+private val DATABASE_NAME = "mhgu.db"
 private val DATABASE_VERSION = 6
 
 /**
@@ -987,7 +987,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_SELL] = "i." + S.COLUMN_ITEMS_SELL
         projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "i." + S.COLUMN_ITEMS_DESCRIPTION
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = "i." + S.COLUMN_ITEMS_ICON_NAME
-        projectionMap[S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX] = "i." + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX
         projectionMap[S.COLUMN_DECORATIONS_NUM_SLOTS] = "d." + S.COLUMN_DECORATIONS_NUM_SLOTS
         projectionMap["skill_1_id"] = "s1." + S.COLUMN_SKILL_TREES_ID + " AS " + "skill_1_id"
         projectionMap["skill_1_name"] = "s1." + S.COLUMN_SKILL_TREES_NAME + " AS " + "skill_1_name"
@@ -2202,7 +2201,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_SELL] = i + "." + S.COLUMN_ITEMS_SELL
         projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
-        projectionMap[S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX] = i + "." + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
@@ -2718,7 +2716,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_SELL] = i + "." + S.COLUMN_ITEMS_SELL
         projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
-        projectionMap[S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX] = i + "." + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
@@ -2952,7 +2949,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_SELL] = i + "." + S.COLUMN_ITEMS_SELL
         projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
-        projectionMap[S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX] = i + "." + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()

@@ -1,7 +1,6 @@
 package com.ghstudios.android.data.database
 
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
@@ -24,7 +23,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryMonsterMetadata(monsterId : Long): MonsterMetadata? {
         val cursor = db.rawQuery("""
-            SELECT m._id, m.$col_name name,
+            SELECT m._id, m.$col_name name,metadata,
                 (SELECT 1 FROM monster_damage d WHERE d.monster_id = m._id LIMIT 1) has_damage,
                 (SELECT 1 FROM monster_status s WHERE s.monster_id = m._id LIMIT 1) has_status
             FROM monsters m
@@ -33,11 +32,15 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
 
         return cursor.use {
             cursor.toList {
+                var meta = it.getInt("metadata")
                 MonsterMetadata(
                         id = monsterId,
                         name = it.getString("name") ?: "",
                         hasDamageData = it.getBoolean("has_damage"),
-                        hasStatusData = it.getBoolean("has_status")
+                        hasStatusData = it.getBoolean("has_status"),
+                        hasLowRank = meta.and(1) > 0,
+                        hasHighRank = meta.and(2)> 0,
+                        hasGRank =  meta.and(4)>0
                 )
             }.firstOrNull()
         }

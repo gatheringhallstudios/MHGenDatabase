@@ -94,7 +94,7 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         private static final int[] indColors = {R.color.rare_1, R.color.rare_2,
                 R.color.rare_3, R.color.rare_4, R.color.rare_5,
                 R.color.rare_6, R.color.rare_7, R.color.rare_8, R.color.rare_9,
-                R.color.rare_10};
+                R.color.rare_10, R.color.rare_11};
 
         public WeaponViewHolder(View weaponView) {
             super(weaponView);

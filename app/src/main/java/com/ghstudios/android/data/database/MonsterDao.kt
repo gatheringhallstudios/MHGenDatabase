@@ -19,7 +19,7 @@ class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
         get() = localizeColumn("name")
 
     private val monster_columns
-        get() = "_id, $column_name name, name_ja, class, icon_name, signature_move"
+        get() = "_id, $column_name name, name_ja, class, icon_name, metadata "
 
     /**
      * Get all monsters

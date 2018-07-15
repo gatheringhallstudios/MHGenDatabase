@@ -38,7 +38,7 @@ public class ItemCursor extends CursorWrapper {
 		int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
 		String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
-		String armor_dupe_name_fix = getString(getColumnIndex(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
+		boolean account = getInt(getColumnIndex(S.COLUMN_ITEMS_ACCOUNT)) == 1;
 
 		item.setId(itemId);
 		item.setName(name);
@@ -51,7 +51,7 @@ public class ItemCursor extends CursorWrapper {
 		item.setSell(sell);
 		item.setDescription(description);
 		item.setFileLocation(fileLocation);
-		item.setArmorDupeNameFix(armor_dupe_name_fix);
+		item.setAccount(account);
 
 		return item;
 	}

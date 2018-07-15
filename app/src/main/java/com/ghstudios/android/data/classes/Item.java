@@ -16,7 +16,7 @@ public class  Item {
 	private int sell;						// Sell amount
 	private String description;				// Item description
 	private String file_location;			// File location for image
-	private String armor_dupe_name_fix;		// unused at the moment?
+	private boolean account;
 	
 	/* Default Constructor */
 	public Item() {
@@ -31,7 +31,6 @@ public class  Item {
 		this.sell = -1;
 		this.description = "";
 		this.file_location = "";
-		this.armor_dupe_name_fix = "";
 	}
 
 	/* Getters and Setters */
@@ -214,15 +213,11 @@ public class  Item {
 		return cellImage;
 	}
 
-	public String getArmorDupeNameFix() {
-		return armor_dupe_name_fix;
+	public void setAccount(boolean account){
+		this.account = account;
 	}
 
-
-	public void setArmorDupeNameFix(String armor_dupe_name_fix) {
-		this.armor_dupe_name_fix = armor_dupe_name_fix;
-	}
-
+	public boolean IsAccountItem(){return account;}
 
 }
 

@@ -37,7 +37,6 @@ public class DecorationCursor extends CursorWrapper {
 		int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
 		String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
-		String armor_dupe_name_fix = getString(getColumnIndex(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
 		
 		int num_slots = getInt(getColumnIndex(S.COLUMN_DECORATIONS_NUM_SLOTS));
 		
@@ -59,7 +58,6 @@ public class DecorationCursor extends CursorWrapper {
 		decoration.setSell(sell);
 		decoration.setDescription(description);
 		decoration.setFileLocation(fileLocation);
-		decoration.setArmorDupeNameFix(armor_dupe_name_fix);		
 		
 		decoration.setNumSlots(num_slots);
 		

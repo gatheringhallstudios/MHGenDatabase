@@ -99,7 +99,6 @@ public class WeaponCursor extends CursorWrapper {
 		int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
 		String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
-		String armor_dupe_name_fix = getString(getColumnIndex(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
 
 		weapon.setId(itemId);
 		weapon.setName(name);
@@ -111,7 +110,6 @@ public class WeaponCursor extends CursorWrapper {
 		weapon.setBuy(buy);
 		weapon.setSell(sell);
 		weapon.setDescription(description);
-		weapon.setArmorDupeNameFix(armor_dupe_name_fix);
         weapon.setParentId(parent_id);
 
 		// note: not actually used for weapons, but here for completeness

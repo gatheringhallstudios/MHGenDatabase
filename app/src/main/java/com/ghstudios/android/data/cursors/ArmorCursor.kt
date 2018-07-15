@@ -46,7 +46,6 @@ class ArmorCursor(c: Cursor) : CursorWrapper(c) {
                 sell = getInt(S.COLUMN_ITEMS_SELL)
                 description = getString(S.COLUMN_ITEMS_DESCRIPTION)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
-                armorDupeNameFix = getString(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX)
             }
         }
 }

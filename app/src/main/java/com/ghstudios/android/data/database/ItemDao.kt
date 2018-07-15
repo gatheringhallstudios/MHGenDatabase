@@ -24,7 +24,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
     private val item_columns
         get() = "_id, $column_name name, name_ja, $column_description description, " +
-                "type, sub_type, rarity, carry_capacity, buy, sell, icon_name, armor_dupe_name_fix "
+                "type, sub_type, rarity, carry_capacity, buy, sell, icon_name, account "
 
     // todo: add family, remove "item only" fields like carry cap
     private val armor_columns

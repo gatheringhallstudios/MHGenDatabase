@@ -122,7 +122,7 @@ public class S {
 	public static final String COLUMN_ITEMS_SELL = "sell";
 	public static final String COLUMN_ITEMS_DESCRIPTION = "description";
 	public static final String COLUMN_ITEMS_ICON_NAME = "icon_name";
-	public static final String COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX = "armor_dupe_name_fix";
+	public static final String COLUMN_ITEMS_ACCOUNT = "account";
 	
 	// Item to Skill Tree
 	public static final String TABLE_ITEM_TO_SKILL_TREE = "item_to_skill_tree";
@@ -144,16 +144,6 @@ public class S {
 	public static final String COLUMN_LOCATIONS_NAME = "name";
 	public static final String COLUMN_LOCATIONS_MAP = "map";
 	
-	// Moga Woods Rewards
-	public static final String TABLE_MOGA_WOODS_REWARDS = "moga_woods_rewards";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_ID = "_id";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_MONSTER_ID = "monster_id";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_TIME = "time";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_ITEM_ID = "item_id";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_COMMODITY_STARS = "commodity_stars";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_KILL_PERCENTAGE = "kill_percentage";
-	public static final String COLUMN_MOGA_WOODS_REWARDS_CAPTURE_PERCENTAGE = "capture_percentage";
-	
 	// Monster
 	public static final String TABLE_MONSTERS = "monsters";
 	public static final String COLUMN_MONSTERS_ID = "_id";
@@ -162,7 +152,7 @@ public class S {
 	public static final String COLUMN_MONSTERS_CLASS = "class";
 	public static final String COLUMN_MONSTERS_FILE_LOCATION = "icon_name";
 	public static final String COLUMN_MONSTERS_SORT_NAME = "sort_name";
-	public static final String COLUMN_MONSTERS_SIGNATURE_MOVE = "signature_move";
+	public static final String COLUMN_MONSTERS_METADATA = "metadata";
 
     // Monster Habitat
     public static final String TABLE_HABITAT = "monster_habitat";

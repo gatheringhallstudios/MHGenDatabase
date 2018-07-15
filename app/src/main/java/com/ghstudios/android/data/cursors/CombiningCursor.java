@@ -69,7 +69,6 @@ public class CombiningCursor extends CursorWrapper {
 		int item_sell = getInt(getColumnIndex(prefix + S.COLUMN_ITEMS_SELL));
 		String item_description = getString(getColumnIndex(prefix + S.COLUMN_ITEMS_DESCRIPTION));
 		String item_fileLocation = getString(getColumnIndex(prefix + S.COLUMN_ITEMS_ICON_NAME));
-		String item_armor_dupe_name_fix = getString(getColumnIndex(prefix + S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
 
 		item.setId(item_id);
 		item.setName(item_name);
@@ -81,7 +80,6 @@ public class CombiningCursor extends CursorWrapper {
 		item.setSell(item_sell);
 		item.setDescription(item_description);
 		item.setFileLocation(item_fileLocation);
-		item.setArmorDupeNameFix(item_armor_dupe_name_fix);
 		
 		return item;
 	}

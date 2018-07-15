@@ -42,10 +42,10 @@ public class DrawSharpness extends View {
     private int mheight;
     private int mwidth;
 
-    private final int maxsharpness = 40;
+    private final int maxsharpness = 45;
 
 	public static int orangeColor = Color.rgb(255, 150, 0);
-	//int purpleColor = Color.rgb(120, 81, 169);
+    public static int purpleColor = Color.rgb(120, 81, 169);
     public static int blueColor = Color.rgb(20,131,208);
 
 	Paint paint = new Paint();
@@ -211,10 +211,10 @@ public class DrawSharpness extends View {
         paint.setColor(Color.WHITE);
         canvas.drawRect(start, bartop, end, barbottom, paint);
 
-//        start = end;
-//        end = end + (int) (ipurple*scalefactor);
-//        paint.setColor(purpleColor);
-//        canvas.drawRect(start, bartop, end, barbottom, paint);
+        start = end;
+        end = end + (int) (ipurple*scalefactor);
+        paint.setColor(purpleColor);
+        canvas.drawRect(start, bartop, end, barbottom, paint);
     }
 
 }
