@@ -1831,7 +1831,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_QUESTS_TYPE] = q + "." + S.COLUMN_QUESTS_TYPE
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
         projectionMap[S.COLUMN_QUESTS_LOCATION_ID] = q + "." + S.COLUMN_QUESTS_LOCATION_ID
-        //projectionMap.put(S.COLUMN_QUESTS_LOCATION_TIME, q + "." + S.COLUMN_QUESTS_LOCATION_TIME);
         projectionMap[S.COLUMN_QUESTS_TIME_LIMIT] = q + "." + S.COLUMN_QUESTS_TIME_LIMIT
         projectionMap[S.COLUMN_QUESTS_FEE] = q + "." + S.COLUMN_QUESTS_FEE
         projectionMap[S.COLUMN_QUESTS_REWARD] = q + "." + S.COLUMN_QUESTS_REWARD
@@ -1844,6 +1843,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP
         projectionMap[S.COLUMN_QUESTS_FLAVOR] = q + "." + S.COLUMN_QUESTS_FLAVOR
+        projectionMap[S.COLUMN_QUESTS_METADATA] = q + "." + S.COLUMN_QUESTS_METADATA
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()

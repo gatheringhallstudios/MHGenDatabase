@@ -228,16 +228,7 @@ public class S {
 	public static final String COLUMN_MONSTER_TO_QUEST_MONSTER_ID = "monster_id";
 	public static final String COLUMN_MONSTER_TO_QUEST_QUEST_ID = "quest_id";
 	public static final String COLUMN_MONSTER_TO_QUEST_UNSTABLE = "unstable"; 
-	
-	// Planting
-	public static final String TABLE_PLANTING = "planting";
-	public static final String COLUMN_PLANTING_ID = "_id";
-	public static final String COLUMN_PLANTING_PLANTED_ITEM_ID = "planted_item_id";
-	public static final String COLUMN_PLANTING_RECEIVED_ITEM_ID = "received_item_id";
-	public static final String COLUMN_PLANTING_STACK_SIZE = "stack_size";
-	public static final String COLUMN_PLANTING_PERCENTAGE = "percentage";
-	public static final String COLUMN_PLANTING_POOL_TYPE = "pool_type";
-	
+
 	// Quests
 	public static final String TABLE_QUESTS = "quests";
 	public static final String COLUMN_QUESTS_ID = "_id";
@@ -248,7 +239,6 @@ public class S {
 	public static final String COLUMN_QUESTS_TYPE = "type";
 	public static final String COLUMN_QUESTS_STARS = "stars";
 	public static final String COLUMN_QUESTS_LOCATION_ID = "location_id";
-	public static final String COLUMN_QUESTS_LOCATION_TIME = "location_time";
 	public static final String COLUMN_QUESTS_TIME_LIMIT = "time_limit";
 	public static final String COLUMN_QUESTS_FEE = "fee";
 	public static final String COLUMN_QUESTS_REWARD = "reward";
@@ -259,12 +249,8 @@ public class S {
     public static final String COLUMN_QUESTS_GOAL_TYPE = "goal_type";
 	public static final String COLUMN_QUESTS_HUNTER_TYPE = "hunter_type";
 	public static final String COLUMN_QUESTS_FLAVOR = "flavor";
+	public static final String COLUMN_QUESTS_METADATA = "metadata";
 
-    // Quest Pre-Requirements
-    public static final String TABLE_QUEST_PREREQS = "quest_prereqs";
-    public static final String COLUMN_QUEST_PREREQS_ID = "_id";
-    public static final String COLUMN_QUEST_PREREQS_QUEST_ID = "quest_id";
-    public static final String COLUMN_QUEST_PREREQS_PREREQ_ID = "prereq_id";
 	
 	// Quest Rewards
 	public static final String TABLE_QUEST_REWARDS = "quest_rewards";

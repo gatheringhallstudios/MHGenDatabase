@@ -1,16 +1,15 @@
 package com.ghstudios.android.features.quests;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.loader.QuestLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.locations.LocationDetailPagerActivity;
 
@@ -40,22 +38,23 @@ public class QuestDetailFragment extends Fragment {
     
     private Quest mQuest;
     private View mView;
-    private LinearLayout mQuestLocationLayout;
+
+    @BindView(R.id.location_layout) LinearLayout mQuestLocationLayout;
+    @BindView(R.id.location_image) ImageView questLocationImageView;
 
     @BindView(R.id.titlebar) TitleBarCell titleBarCell;
-
     @BindView(R.id.level) TextView levelTextView;
     @BindView(R.id.hub) TextView hubTextView;
     @BindView(R.id.reward) ColumnLabelTextCell rewardCell;
     @BindView(R.id.hrp) ColumnLabelTextCell hrpCell;
     @BindView(R.id.fee) ColumnLabelTextCell feeCell;
 
-    TextView questtv2;
-    TextView questtv7;
-    TextView questtv8;
-    TextView questtv9;
-    TextView questtv10;
-    TextView mFlavor;
+    @BindView(R.id.goal) TextView goalTextView;
+    @BindView(R.id.location) TextView locationTextView;
+    @BindView(R.id.subquest) TextView subquestTextView;
+    @BindView(R.id.subhrp) TextView subquestHrpTextView;
+    @BindView(R.id.subreward) TextView subRewardTextView;
+    @BindView(R.id.description) TextView mFlavor;
 
     public static QuestDetailFragment newInstance(long questId) {
         Bundle args = new Bundle();
@@ -66,62 +65,41 @@ public class QuestDetailFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        QuestDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(QuestDetailViewModel.class);
+
+        viewModel.getQuest().observe(this, quest -> {
+            mQuest = quest;
+            updateUI();
+        });
+
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // Check for a Quest ID as an argument, and find the monster
-        Bundle args = getArguments();
-        if (args != null) {
-            long questId = args.getLong(ARG_QUEST_ID, -1);
-            if (questId != -1) {
-                LoaderManager lm = getLoaderManager();
-                lm.initLoader(R.id.quest_detail_fragment, args, new QuestLoaderCallbacks());
-            }
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quest_detail, container, false);
-
-        // Get member reference
-        mView = view;
 
         ButterKnife.bind(this, view);
 
-        questtv2 = (TextView) view.findViewById(R.id.goal);
-        questtv7 = (TextView) view.findViewById(location);
-        questtv8 = (TextView) view.findViewById(R.id.subquest);
-        questtv9 = (TextView) view.findViewById(R.id.subhrp);
-        questtv10 = (TextView) view.findViewById(R.id.subreward);
-        mQuestLocationLayout = (LinearLayout) mView.findViewById(R.id.location_layout);
-        mFlavor = (TextView) view.findViewById(R.id.description);
-
         // Click listener for quest location
-        mQuestLocationLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // The id argument will be the Monster ID; CursorAdapter gives us this
-                // for free
-                Intent i = new Intent(getActivity(), LocationDetailPagerActivity.class);
-                long id = (long)v.getTag();
-                if(id>100) id = id-100;
-                i.putExtra(LocationDetailPagerActivity.EXTRA_LOCATION_ID, id);
-                startActivity(i);
-            }
+        mQuestLocationLayout.setOnClickListener(v -> {
+            // The id argument will be the Monster ID; CursorAdapter gives us this
+            // for free
+            Intent i = new Intent(getActivity(), LocationDetailPagerActivity.class);
+            long id = (long)v.getTag();
+            if(id>100) id = id-100;
+            i.putExtra(LocationDetailPagerActivity.EXTRA_LOCATION_ID, id);
+            startActivity(i);
         });
 
         return view;
     }
+
     
     private void updateUI() {
-
         // Add list of monsters and habitats
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().add(
@@ -133,7 +111,6 @@ public class QuestDetailFragment extends Fragment {
         String cellHrp = "" + mQuest.getHrp();
         String cellReward = "" + mQuest.getReward() + "z";
         String cellFee = "" + mQuest.getFee() + "z";
-        //String time = mQuest.getLocationTime().equals("") ? "" : " (" + mQuest.getLocationTime() + ")";
         String cellLocation = mQuest.getLocation().getName();
         String cellSubGoal = mQuest.getSubGoal();
         String cellSubHrp = "" + mQuest.getSubHrp();
@@ -153,16 +130,14 @@ public class QuestDetailFragment extends Fragment {
         rewardCell.setValueText(cellReward);
         feeCell.setValueText(cellFee);
 
-        questtv2.setText(cellGoal);
-        questtv7.setText(cellLocation);
-        questtv7.setTag(mQuest.getLocation().getId());
-        questtv8.setText(cellSubGoal);
-        questtv9.setText(cellSubHrp);
-        questtv10.setText(cellSubReward);
+        goalTextView.setText(cellGoal);
+        locationTextView.setText(cellLocation);
+        locationTextView.setTag(mQuest.getLocation().getId());
+        subquestTextView.setText(cellSubGoal);
+        subquestHrpTextView.setText(cellSubHrp);
+        subRewardTextView.setText(cellSubReward);
         mQuestLocationLayout.setTag(mQuest.getLocation().getId());
         mFlavor.setText(flavor);
-
-        ImageView questLocationImageView = (ImageView) mView.findViewById(R.id.location_image);
 
         // Get Location based on ID and set image thumbnail
         DataManager dm = DataManager.get(getContext());
@@ -171,7 +146,6 @@ public class QuestDetailFragment extends Fragment {
 
         questLocationImageView.setTag(mQuest.getLocation().getId());
         new LoadImage(questLocationImageView, cellImage, getContext()).execute();
-        
     }
 
     /**
@@ -192,25 +166,6 @@ public class QuestDetailFragment extends Fragment {
                 return R.drawable.quest_icon_grey;
             default:
                 return R.drawable.quest_icon_red;
-        }
-    }
-    
-    private class QuestLoaderCallbacks implements LoaderCallbacks<Quest> {
-        
-        @Override
-        public Loader<Quest> onCreateLoader(int id, Bundle args) {
-            return new QuestLoader(getActivity(), args.getLong(ARG_QUEST_ID));
-        }
-        
-        @Override
-        public void onLoadFinished(Loader<Quest> loader, Quest run) {
-            mQuest = run;
-            updateUI();
-        }
-        
-        @Override
-        public void onLoaderReset(Loader<Quest> loader) {
-            // Do nothing
         }
     }
 

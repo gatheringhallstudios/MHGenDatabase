@@ -85,9 +85,11 @@ public class MonsterListFragment extends ListFragment implements
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
-		mAdapter = new MonsterGridCursorAdapter(getActivity(),
-				(MonsterCursor) cursor);
-		setListAdapter(mAdapter);
+		if(mAdapter == null) {
+			mAdapter = new MonsterGridCursorAdapter(getActivity(),
+					(MonsterCursor) cursor);
+			setListAdapter(mAdapter);
+		}
 	}
 
 	@Override

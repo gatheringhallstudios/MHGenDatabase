@@ -37,7 +37,6 @@ public class QuestCursor extends CursorWrapper {
 		int type = getInt(getColumnIndex(S.COLUMN_QUESTS_TYPE));	//0=Normal,1=Key,2=Urgent
 		String stars = getString(getColumnIndex(S.COLUMN_QUESTS_STARS));
 		long locationId = getLong(getColumnIndex(S.COLUMN_QUESTS_LOCATION_ID));
-		//String locationTime = getString(getColumnIndex(S.COLUMN_QUESTS_LOCATION_TIME));
 		int timeLimit = getInt(getColumnIndex(S.COLUMN_QUESTS_TIME_LIMIT));
 		int fee = getInt(getColumnIndex(S.COLUMN_QUESTS_FEE));
 		int reward = getInt(getColumnIndex(S.COLUMN_QUESTS_REWARD));
@@ -48,6 +47,7 @@ public class QuestCursor extends CursorWrapper {
 		int goal_type = getInt(getColumnIndex(S.COLUMN_QUESTS_GOAL_TYPE));
 		int hunter_type = getInt(getColumnIndex(S.COLUMN_QUESTS_HUNTER_TYPE));
 		String flavor = getString(getColumnIndex(S.COLUMN_QUESTS_FLAVOR));
+		int metadata = getInt(getColumnIndex(S.COLUMN_QUESTS_METADATA));
 
 		quest.setId(questId);
 		quest.setName(name);
@@ -64,10 +64,10 @@ public class QuestCursor extends CursorWrapper {
         quest.setSubReward(sub_reward);
         quest.setSubHrp(sub_hrp);
 		quest.setHunterType(hunter_type);
-		//quest.setLocationTime(locationTime);
 		quest.setGoalType(goal_type);
 		location.setId(locationId);
 		quest.setFlavor(flavor);
+		quest.setMetadata(metadata);
 		
 		String locName = getString(getColumnIndex("l" + S.COLUMN_LOCATIONS_NAME));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_LOCATIONS_MAP));

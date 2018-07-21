@@ -1,8 +1,9 @@
 package com.ghstudios.android.features.quests;
 
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
+import android.arch.lifecycle.ViewModelProviders;
+import com.ghstudios.android.data.classes.Quest;
 
 public class QuestDetailPagerActivity extends BasePagerActivity {
     /**
@@ -14,11 +15,18 @@ public class QuestDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long questId = getIntent().getLongExtra(EXTRA_QUEST_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getQuest(questId).getName());
+
+        QuestDetailViewModel viewModel = ViewModelProviders.of(this).get(QuestDetailViewModel.class);
+        Quest q = viewModel.setQuest(questId);
+
+        setTitle(q.getName());
 
         tabs.addTab("Detail", () ->
                 QuestDetailFragment.newInstance(questId)
         );
+
+        //TODO: Add item tab if gathering quest.
+
         tabs.addTab("Rewards", () ->
                 QuestRewardFragment.newInstance(questId)
         );

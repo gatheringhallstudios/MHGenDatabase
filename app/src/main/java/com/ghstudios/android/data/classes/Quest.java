@@ -23,7 +23,7 @@ public class Quest {
     private int sub_reward;			// Subquest reward in zenny
     private int sub_hrp;			// Subquest Hunting rank points
 	private String flavor;		// Quest prompt/description
-
+    private int metadata;
 	private int goal_type;			//Quest goal -> one of the following constants:
 
 	public static final int QUEST_GOAL_HUNT=0;
@@ -202,6 +202,12 @@ public class Quest {
 	public void setFlavor(String flavor) {
 		this.flavor = flavor;
 	}
+
+	public void setMetadata(int metadata){this.metadata = metadata;}
+
+	public boolean HasGathingItem(){return (metadata & 1) > 0;}
+
+	public boolean HasAcademyPointRequirement(){return (metadata & 2)> 0;}
 
 	@Override
 	public String toString(){

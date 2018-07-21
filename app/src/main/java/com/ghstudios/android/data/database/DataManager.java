@@ -2,6 +2,7 @@ package com.ghstudios.android.data.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.ASBSession;
@@ -614,19 +615,25 @@ public class DataManager {
         WeaponListEntry currentEntry;
         Weapon currentWeapon;
 
-        int parent_id;
-        while(cursor.isAfterLast() == false) {
+        while(!cursor.isAfterLast()){
             currentWeapon = cursor.getWeapon();
             currentEntry = new WeaponListEntry(currentWeapon);
+            weaponDict.put(currentWeapon.getId(),currentEntry);
+            cursor.moveToNext();
+        }
+
+        int parent_id;
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            currentWeapon = cursor.getWeapon();
+            currentEntry = weaponDict.get(currentWeapon.getId());
 
             parent_id = currentWeapon.getParentId();
-
             if(parent_id != 0) {
-                weaponDict.get(new Long(parent_id)).addChild(currentEntry);
+                weaponDict.get((long) parent_id).addChild(currentEntry);
             }
 
             weapons.add(currentEntry);
-            weaponDict.put(currentWeapon.getId(),currentEntry);
             cursor.moveToNext();
         }
 

@@ -50,6 +50,9 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     val habitatData = MutableLiveData<List<Habitat>>()
     val damageData = MutableLiveData<List<MonsterDamage>>()
     val statusData = MutableLiveData<List<MonsterStatus>>()
+    val rewardLRData = MutableLiveData<List<HuntingReward>>()
+    val rewardHRData = MutableLiveData<List<HuntingReward>>()
+    val rewardGData = MutableLiveData<List<HuntingReward>>()
 
     var monsterId = -1L
     private var metadata: MonsterMetadata? = null
@@ -82,6 +85,10 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
             damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
             statusData.postValue(dataManager.queryMonsterStatus(monsterId))
+
+            if(metadata?.hasLowRank == true) rewardLRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"LR").toList { it.huntingReward })
+            if(metadata?.hasHighRank == true) rewardHRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"HR").toList { it.huntingReward })
+            if(metadata?.hasGRank == true) rewardGData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"G").toList { it.huntingReward })
         }
 
         return metadata!!

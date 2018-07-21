@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,7 @@ public class MonsterQuestFragment extends ListFragment implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         // Create an adapter to point at this cursor
-
+        Log.i("Test","OnLoadFinished");
         MonsterToQuestListCursorAdapter adapter = new MonsterToQuestListCursorAdapter(
                 getActivity(), (MonsterToQuestCursor) cursor);
         setListAdapter(adapter);
