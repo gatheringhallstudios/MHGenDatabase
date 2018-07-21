@@ -48,6 +48,7 @@ public class QuestCursor extends CursorWrapper {
 		int hunter_type = getInt(getColumnIndex(S.COLUMN_QUESTS_HUNTER_TYPE));
 		String flavor = getString(getColumnIndex(S.COLUMN_QUESTS_FLAVOR));
 		int metadata = getInt(getColumnIndex(S.COLUMN_QUESTS_METADATA));
+		String rank = getString(getColumnIndex(S.COLUMN_QUESTS_RANK));
 
 		quest.setId(questId);
 		quest.setName(name);
@@ -68,6 +69,7 @@ public class QuestCursor extends CursorWrapper {
 		location.setId(locationId);
 		quest.setFlavor(flavor);
 		quest.setMetadata(metadata);
+		quest.setRank(rank);
 		
 		String locName = getString(getColumnIndex("l" + S.COLUMN_LOCATIONS_NAME));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_LOCATIONS_MAP));

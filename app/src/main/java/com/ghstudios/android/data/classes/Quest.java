@@ -25,6 +25,7 @@ public class Quest {
 	private String flavor;		// Quest prompt/description
     private int metadata;
 	private int goal_type;			//Quest goal -> one of the following constants:
+	private String rank;
 
 	public static final int QUEST_GOAL_HUNT=0;
 	public static final int QUEST_GOAL_SLAY=1;
@@ -208,6 +209,9 @@ public class Quest {
 	public boolean HasGathingItem(){return (metadata & 1) > 0;}
 
 	public boolean HasAcademyPointRequirement(){return (metadata & 2)> 0;}
+
+	public void setRank(String r){ rank = r;}
+	public String getRank(){return rank;}
 
 	@Override
 	public String toString(){

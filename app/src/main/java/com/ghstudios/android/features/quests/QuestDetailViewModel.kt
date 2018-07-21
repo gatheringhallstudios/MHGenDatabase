@@ -3,6 +3,7 @@ package com.ghstudios.android.features.quests
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.classes.MonsterToQuest
 import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.data.classes.QuestReward
@@ -20,6 +21,7 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
     val rewards = MutableLiveData<List<QuestReward>>()
     val monsters = MutableLiveData<List<MonsterToQuest>>()
     val quest = MutableLiveData<Quest>()
+    val gatherings = MutableLiveData<List<Gathering>>()
 
     fun setQuest(questId: Long): Quest{
         this.quest.value = dataManager.getQuest(questId)
@@ -27,6 +29,9 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
         loggedThread("Quest Load") {
             monsters.postValue(dataManager.queryMonsterToQuestQuest(questId).toList { it.monsterToQuest })
             rewards.postValue(dataManager.queryQuestRewardQuest(questId).toList { it.questReward })
+            if(quest.value!!.HasGathingItem()){
+                gatherings.postValue((dataManager.queryGatheringForQuest(quest.value!!.id,quest.value!!.location.id%100,quest.value!!.rank).toList { it.gathering }))
+            }
         }
         return quest.value!!
     }

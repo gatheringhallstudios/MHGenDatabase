@@ -93,6 +93,7 @@ public class DataManager {
     private MonsterDao monsterDao;
     private ItemDao itemDao;
     private HuntingRewardsDao huntingRewardsDao;
+    private GatheringDao gatheringDao;
     
     /* Singleton design */
     private DataManager(Context appContext) {
@@ -102,6 +103,7 @@ public class DataManager {
         monsterDao = new MonsterDao(mHelper);
         itemDao = new ItemDao(mHelper);
         huntingRewardsDao = new HuntingRewardsDao(mHelper);
+        gatheringDao = new GatheringDao(mHelper);
     }
     
     public static DataManager get(Context c) {
@@ -285,6 +287,10 @@ public class DataManager {
     /* Get a Cursor that has a list of Gathering based on Location and Quest rank */
     public GatheringCursor queryGatheringLocationRank(long id, String rank) {
         return mHelper.queryGatheringLocationRank(id, rank);
+    }
+
+    public GatheringCursor queryGatheringForQuest(long questId, long locationId, String rank){
+        return gatheringDao.queryGatheringsForQuest(questId,locationId,rank);
     }
 
     

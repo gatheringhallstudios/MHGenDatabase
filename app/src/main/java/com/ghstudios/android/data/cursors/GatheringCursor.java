@@ -10,7 +10,7 @@ import com.ghstudios.android.data.database.S;
 
 /**
  * A convenience class to wrap a cursor that returns rows from the "gathering"
- * table. The {@link getGathering()} method will give you a Gathering instance
+ * table. The getGathering() method will give you a Gathering instance
  * representing the current row.
  */
 public class GatheringCursor extends CursorWrapper {
@@ -28,62 +28,45 @@ public class GatheringCursor extends CursorWrapper {
 			return null;
 
 		Gathering gathering = new Gathering();
-		
-		long id = getLong(getColumnIndex(S.COLUMN_GATHERING_ID));
-		String area = getString(getColumnIndex(S.COLUMN_GATHERING_AREA));
-		String site = getString(getColumnIndex(S.COLUMN_GATHERING_SITE));
-		String rank = getString(getColumnIndex(S.COLUMN_GATHERING_RANK));
-        Float rate = getFloat(getColumnIndex(S.COLUMN_GATHERING_RATE));
-		int group = getInt(getColumnIndex(S.COLUMN_GATHERING_GROUP));
-		int fixed = getInt(getColumnIndex(S.COLUMN_GATHERING_FIXED));
-		int rare = getInt(getColumnIndex(S.COLUMN_GATHERING_RARE));
-		int quantity = getInt(getColumnIndex(S.COLUMN_GATHERING_QUANTITY));
-		
-		gathering.setId(id);
+
+		String area = getString(S.COLUMN_GATHERING_AREA);
+		String site = getString(S.COLUMN_GATHERING_SITE);
+		String rank = getString(S.COLUMN_GATHERING_RANK);
+        Float rate = (float)getInt(S.COLUMN_GATHERING_RATE);
+		int group = getInt(S.COLUMN_GATHERING_GROUP);
+		int fixed = getInt(S.COLUMN_GATHERING_FIXED);
+		int rare = getInt(S.COLUMN_GATHERING_RARE);
+		int quantity = getInt(S.COLUMN_GATHERING_QUANTITY,1);
+
 		gathering.setArea(area);
 		gathering.setSite(site);
 		gathering.setRank(rank);
         gathering.setRate(rate);
 		gathering.setGroup(group);
-		gathering.setFixed(fixed==1);
+		gathering.setFixed(fixed == 1);
 		gathering.setRare(rare == 1);
 		gathering.setQuantity(quantity);
 		
 		// Get the Item
 		Item item = new Item();
 		
-		long itemId = getLong(getColumnIndex(S.COLUMN_GATHERING_ITEM_ID));
-		String itemName = getString(getColumnIndex("i" + S.COLUMN_ITEMS_NAME));
-//			String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
-//			String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
-//			int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
-//			int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
-//			int buy = getInt(getColumnIndex(S.COLUMN_ITEMS_BUY));
-//			int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
-//			String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
-			String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
-//			String armor_dupe_name_fix = getString(getColumnIndex(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
+		long itemId = getLong(S.COLUMN_GATHERING_ITEM_ID,-1);
+		String itemName = getString("i" + S.COLUMN_ITEMS_NAME);
+		String fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME);
+
 
 		item.setId(itemId);
 		item.setName(itemName);
-//			item.setJpnName(jpnName);
-//			item.setType(type);
-//			item.setRarity(rarity);
-//			item.setCarryCapacity(carry_capacity);
-//			item.setBuy(buy);
-//			item.setSell(sell);
-//			item.setDescription(description);
-			item.setFileLocation(fileLocation);
-//			item.setArmorDupeNameFix(armor_dupe_name_fix);
+		item.setFileLocation(fileLocation);
 		
 		gathering.setItem(item);
 
 		// Get the Location
 		Location location = new Location();
 
-		long locationId = getLong(getColumnIndex(S.COLUMN_GATHERING_LOCATION_ID));
-		String locationName = getString(getColumnIndex("l" + S.COLUMN_LOCATIONS_NAME));
-	    String fileLocationLoc = getString(getColumnIndex("l" + S.COLUMN_LOCATIONS_MAP));
+		long locationId = getLong(S.COLUMN_GATHERING_LOCATION_ID,-1);
+		String locationName = getString("l" + S.COLUMN_LOCATIONS_NAME);
+	    String fileLocationLoc = getString("l" + S.COLUMN_LOCATIONS_MAP);
 
 		location.setId(locationId);
 		location.setName(locationName);
@@ -92,6 +75,32 @@ public class GatheringCursor extends CursorWrapper {
 		gathering.setLocation(location);
 		
 		return gathering;
+	}
+
+	private String getString(String columnName){
+		return getString(columnName,"");
+	}
+
+	private String getString(String columnName, String defaultValue){
+		int columnIndex = getColumnIndex(columnName);
+		if(columnIndex == -1) return defaultValue;
+		return getString(columnIndex);
+	}
+
+	private int getInt(String columnName){ return getInt(columnName,0);}
+
+	private int getInt(String columnName, int defaultValue){
+		int columnIndex = getColumnIndex(columnName);
+		if(columnIndex == -1) return defaultValue;
+		return getInt(columnIndex);
+	}
+
+	private long getLong(String columnName){ return getLong(columnName,0);}
+
+	private long getLong(String columnName, long defaultValue){
+		int columnIndex = getColumnIndex(columnName);
+		if(columnIndex == -1) return defaultValue;
+		return getLong(columnIndex);
 	}
 
 }

@@ -1828,6 +1828,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[q + S.COLUMN_QUESTS_JPN_NAME] = q + "." + S.COLUMN_QUESTS_JPN_NAME + " AS " + q + S.COLUMN_QUESTS_JPN_NAME
         projectionMap[S.COLUMN_QUESTS_GOAL] = q + "." + S.COLUMN_QUESTS_GOAL
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
+        projectionMap[S.COLUMN_QUESTS_RANK] = q + "." + S.COLUMN_QUESTS_RANK
         projectionMap[S.COLUMN_QUESTS_TYPE] = q + "." + S.COLUMN_QUESTS_TYPE
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
         projectionMap[S.COLUMN_QUESTS_LOCATION_ID] = q + "." + S.COLUMN_QUESTS_LOCATION_ID

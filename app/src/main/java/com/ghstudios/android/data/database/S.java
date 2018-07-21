@@ -238,6 +238,7 @@ public class S {
 	public static final String COLUMN_QUESTS_HUB = "hub";
 	public static final String COLUMN_QUESTS_TYPE = "type";
 	public static final String COLUMN_QUESTS_STARS = "stars";
+	public static final String COLUMN_QUESTS_RANK = "rank";
 	public static final String COLUMN_QUESTS_LOCATION_ID = "location_id";
 	public static final String COLUMN_QUESTS_TIME_LIMIT = "time_limit";
 	public static final String COLUMN_QUESTS_FEE = "fee";
