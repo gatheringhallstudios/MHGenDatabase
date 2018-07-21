@@ -3,6 +3,8 @@ package com.ghstudios.android
 import android.content.Context
 import android.database.Cursor
 import android.graphics.drawable.Drawable
+import android.support.annotation.DrawableRes
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import kotlin.concurrent.thread
 import kotlin.system.measureTimeMillis
@@ -31,6 +33,15 @@ inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
  */
 fun Context.getAssetDrawable(path: String?): Drawable? {
     return MHUtils.loadAssetDrawable(this, path ?: "")
+}
+
+/**
+ * Extension: Retrieves a drawable associated with a resource id
+ * via ContextCompat using the called context.
+ */
+@Suppress("NOTHING_TO_INLINE")
+inline fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
+    return ContextCompat.getDrawable(this, id)
 }
 
 // todo: determine proper home. Unlike the other db extensions, this is also "general use"
