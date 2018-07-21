@@ -2,14 +2,11 @@ package com.ghstudios.android
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ghstudios.android.components.RecyclerViewDivider
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -44,7 +41,7 @@ open class RecyclerViewFragment : Fragment() {
      */
     fun enableDivider() {
         if (this.recyclerView.itemDecorationCount == 0) {
-            val divider = RecyclerViewDivider(recyclerView)
+            val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             this.recyclerView.addItemDecoration(divider)
         }
     }
