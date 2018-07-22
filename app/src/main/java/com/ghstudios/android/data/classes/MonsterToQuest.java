@@ -10,6 +10,7 @@ public class MonsterToQuest {
 	private Quest quest;		// Quest
 	Habitat habitat;			// Habitat
 	private int unstable;	// Unstable or not
+	private boolean hyper;
 	
 	/* Default Constructors */
 	public MonsterToQuest() {
@@ -53,5 +54,13 @@ public class MonsterToQuest {
 
 	public void setUnstable(int unstable) {
 		this.unstable = unstable;
+	}
+
+	public void setHyper(boolean hyper){
+		this.hyper = hyper;
+	}
+
+	public boolean isHyper() {
+		return hyper;
 	}
 }

@@ -294,6 +294,8 @@
     <string name="quest_detail_subquest_reward">Subquest Reward</string>
     <string name="quest_detail_subquest_hrp">Subquest HRP</string>
     <string name="quest_detail_description">Description</string>
+    <string name="unstable">Unstable</string>
+    <string name="hyper">Hyper</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>

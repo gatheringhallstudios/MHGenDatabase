@@ -1330,6 +1330,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_QUEST_ID] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_QUEST_ID
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
+        projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
@@ -1373,6 +1374,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_MONSTER_ID
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_QUEST_ID] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_QUEST_ID
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
+        projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
         projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION

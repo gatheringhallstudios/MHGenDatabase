@@ -181,7 +181,8 @@ public class S {
 	public static final String COLUMN_MONSTER_TO_QUEST_ID = "_id";
 	public static final String COLUMN_MONSTER_TO_QUEST_MONSTER_ID = "monster_id";
 	public static final String COLUMN_MONSTER_TO_QUEST_QUEST_ID = "quest_id";
-	public static final String COLUMN_MONSTER_TO_QUEST_UNSTABLE = "unstable"; 
+	public static final String COLUMN_MONSTER_TO_QUEST_UNSTABLE = "unstable";
+	public static final String COLUMN_MONSTER_TO_QUEST_HYPER = "hyper";
 
 	// Quests
 	public static final String TABLE_QUESTS = "quests";

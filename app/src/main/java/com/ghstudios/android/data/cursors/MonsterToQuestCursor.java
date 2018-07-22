@@ -11,7 +11,7 @@ import com.ghstudios.android.data.database.S;
 
 /**
  * A convenience class to wrap a cursor that returns rows from the "monster_to_quest"
- * table. The {@link getMonsterToQuest()} method will give you a MonsterToQuest instance
+ * table. The getMonsterToQuest() method will give you a MonsterToQuest instance
  * representing the current row.
  */
 public class MonsterToQuestCursor extends CursorWrapper {
@@ -32,10 +32,11 @@ public class MonsterToQuestCursor extends CursorWrapper {
 		
 		long id = getLong(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_ID));
 		int unstable = getInt(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_UNSTABLE));
+		boolean hyper = getInt(getColumnIndex(S.COLUMN_MONSTER_TO_QUEST_HYPER)) == 1;
 
 		monster_to_quest.setId(id);
 		monster_to_quest.setUnstable(unstable);
-
+		monster_to_quest.setHyper(hyper);
 
 		// Get the Quest
 		Quest quest = new Quest();

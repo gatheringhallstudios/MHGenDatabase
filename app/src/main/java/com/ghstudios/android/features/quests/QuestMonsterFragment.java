@@ -1,17 +1,12 @@
 package com.ghstudios.android.features.quests;
 
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ClickListeners.MonsterClickListener;
 import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterToQuest;
-import com.ghstudios.android.data.cursors.MonsterToQuestCursor;
-import com.ghstudios.android.loader.MonsterToQuestListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ClickListeners.MonsterClickListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -91,12 +84,21 @@ public class QuestMonsterFragment extends Fragment {
             TextView startTextView = view.findViewById(R.id.habitat_start);
             TextView travelTextView = view.findViewById(R.id.habitat_travel);
             TextView endTextView = view.findViewById(R.id.habitat_end);
+            TextView hyperTextView = view.findViewById(R.id.detail_monster_hyper);
 
             String cellMonsterText = monsterToQuest.getMonster().getName();
-            String cellUnstableText = monsterToQuest.getUnstable()==1?"Unstable":"";
+
+            if(monsterToQuest.getUnstable()==1){
+                unstableTextView.setVisibility(View.VISIBLE);
+                unstableTextView.setText(R.string.unstable);
+            } else unstableTextView.setVisibility(View.GONE);
+
+            if(monsterToQuest.isHyper()){
+                hyperTextView.setVisibility(View.VISIBLE);
+                hyperTextView.setText(R.string.hyper);
+            } else hyperTextView.setVisibility(View.GONE);
 
             monsterTextView.setText(cellMonsterText);
-            unstableTextView.setText(cellUnstableText);
 
             Drawable i = null;
             String cellImage = "icons_monster/"

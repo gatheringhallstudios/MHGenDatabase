@@ -102,20 +102,25 @@ public class MonsterQuestFragment extends ListFragment implements
                     .getMonsterToQuest();
 
             // Set up the text view
-            LinearLayout itemLayout = (LinearLayout) view
-                    .findViewById(R.id.listitem);
-            TextView questTextView = (TextView) view
-                    .findViewById(R.id.quest_name);
-            TextView starsTextView = (TextView) view
-                    .findViewById(R.id.quest_stars);
-            TextView unstableTextView = (TextView) view
-                    .findViewById(R.id.quest_unstable);
+            LinearLayout itemLayout = view.findViewById(R.id.listitem);
+            TextView questTextView = view.findViewById(R.id.quest_name);
+            TextView starsTextView = view.findViewById(R.id.quest_stars);
+            TextView unstableTextView = view.findViewById(R.id.quest_unstable);
+            TextView hyperTextView = view.findViewById(R.id.quest_hyper);
 
             String cellQuestText = monsterToQuest.getQuest().getName();
             String starsText = monsterToQuest.getQuest().getStars();
-            String cellUnstableText = (monsterToQuest.getUnstable()==1?"Unstable":"");
 
-            unstableTextView.setText(cellUnstableText);
+            if(monsterToQuest.getUnstable()==1) {
+                unstableTextView.setVisibility(View.VISIBLE);
+                unstableTextView.setText(R.string.unstable);
+            }else unstableTextView.setVisibility(View.GONE);
+
+            if(monsterToQuest.isHyper()){
+                hyperTextView.setVisibility(View.VISIBLE);
+                hyperTextView.setText(R.string.hyper);
+            } else hyperTextView.setVisibility(View.GONE);
+
             
             questTextView.setText(cellQuestText);
             starsTextView.setText(starsText);
