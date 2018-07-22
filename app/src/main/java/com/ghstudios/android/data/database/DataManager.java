@@ -2,19 +2,14 @@ package com.ghstudios.android.data.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSet;
-import com.ghstudios.android.data.classes.ArenaQuest;
-import com.ghstudios.android.data.classes.ArenaReward;
 import com.ghstudios.android.data.classes.Armor;
-import com.ghstudios.android.data.classes.Combining;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
-import com.ghstudios.android.data.classes.Gathering;
-import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.classes.Location;
@@ -22,26 +17,20 @@ import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterSize;
 import com.ghstudios.android.data.classes.MonsterStatus;
-import com.ghstudios.android.data.classes.MonsterToArena;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.classes.Quest;
-import com.ghstudios.android.data.classes.QuestReward;
-import com.ghstudios.android.data.classes.Skill;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.classes.WyporiumTrade;
-import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.meta.ArmorMetadata;
 import com.ghstudios.android.data.classes.meta.ItemMetadata;
 import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.data.cursors.ASBSessionCursor;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
-import com.ghstudios.android.data.cursors.ArenaQuestCursor;
-import com.ghstudios.android.data.cursors.ArenaRewardCursor;
 import com.ghstudios.android.data.cursors.ArmorCursor;
 import com.ghstudios.android.data.cursors.CombiningCursor;
 import com.ghstudios.android.data.cursors.ComponentCursor;
@@ -58,7 +47,6 @@ import com.ghstudios.android.data.cursors.MonsterCursor;
 import com.ghstudios.android.data.cursors.MonsterDamageCursor;
 import com.ghstudios.android.data.cursors.MonsterHabitatCursor;
 import com.ghstudios.android.data.cursors.MonsterStatusCursor;
-import com.ghstudios.android.data.cursors.MonsterToArenaCursor;
 import com.ghstudios.android.data.cursors.MonsterToQuestCursor;
 import com.ghstudios.android.data.cursors.MonsterWeaknessCursor;
 import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
@@ -113,64 +101,7 @@ public class DataManager {
         }
         return sDataManager;
     }
-    
-/********************************* ARENA QUESTS QUERIES ******************************************/    
-    
-    /* Get a Cursor that has a list of all ArenaQuests */
-    public ArenaQuestCursor queryArenaQuests() {
-        return mHelper.queryArenaQuests();
-    }
-    
-    /* Get a specific ArenaQuest */
-    public ArenaQuest getArenaQuest(long id) {
-        ArenaQuest arenaQuest = null;
-        ArenaQuestCursor cursor = mHelper.queryArenaQuest(id);
-        cursor.moveToFirst();                // Point to first row
-        
-        if (!cursor.isAfterLast())            // Make sure cursor is not empty
-            arenaQuest = cursor.getArenaQuest();
-        cursor.close();
-        return arenaQuest;
-    }
-    
-/********************************* ARENA REWARD QUERIES ******************************************/
-    /* Get a Cursor that has a list of ArenaReward based on Item */
-    public ArenaRewardCursor queryArenaRewardItem(long id) {
-        return mHelper.queryArenaRewardItem(id);
-    }
 
-    /* Get a Cursor that has a list of ArenaReward based on ArenaQuest */
-    public ArenaRewardCursor queryArenaRewardArena(long id) {
-        return mHelper.queryArenaRewardArena(id);
-    }
-    
-    /* Get an array of ArenaReward based on Item */
-    public ArrayList<ArenaReward> queryArenaRewardArrayItem(long id) {
-        ArrayList<ArenaReward> rewards = new ArrayList<ArenaReward>();
-        ArenaRewardCursor cursor = mHelper.queryArenaRewardItem(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            rewards.add(cursor.getArenaReward());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return rewards;
-    }
-    
-    /* Get an array of ArenaReward based on ArenaQuet */
-    public ArrayList<ArenaReward> queryArenaRewardArrayArena(long id) {
-        ArrayList<ArenaReward> rewards = new ArrayList<ArenaReward>();
-        ArenaRewardCursor cursor = mHelper.queryArenaRewardArena(id);
-        cursor.moveToFirst();
-        
-        while(!cursor.isAfterLast()) {
-            rewards.add(cursor.getArenaReward());
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return rewards;
-    }
     
 /********************************* ARMOR QUERIES ******************************************/    
 
@@ -447,17 +378,6 @@ public class DataManager {
     public List<MonsterStatus> queryMonsterStatus(long id) {
         MonsterStatusCursor cursor = mHelper.queryMonsterStatus(id);
         return MHUtils.cursorToList(cursor, MonsterStatusCursor::getStatus);
-    }
-
-/********************************* MONSTER TO ARENA QUERIES ******************************************/
-    /* Get a Cursor that has a list of MonsterToArena based on Monster */
-    public MonsterToArenaCursor queryMonsterToArenaMonster(long id) {
-        return mHelper.queryMonsterToArenaMonster(id);
-    }
-    
-    /* Get a Cursor that has a list of MonsterToArena based on ArenaQuest */
-    public MonsterToArenaCursor queryMonsterToArenaArena(long id) {
-        return mHelper.queryMonsterToArenaArena(id);
     }
         
 /********************************* MONSTER TO QUEST QUERIES ******************************************/

@@ -7,26 +7,6 @@ package com.ghstudios.android.data.database;
  */
 public class S {
 	
-	// Arena Quests
-	public static final String TABLE_ARENA_QUESTS = "arena_quests";
-	public static final String COLUMN_ARENA_QUESTS_ID = "_id";
-	public static final String COLUMN_ARENA_QUESTS_NAME = "name";
-	public static final String COLUMN_ARENA_QUESTS_GOAL = "goal";
-	public static final String COLUMN_ARENA_QUESTS_LOCATION_ID = "location_id";
-	public static final String COLUMN_ARENA_QUESTS_REWARD = "reward";
-	public static final String COLUMN_ARENA_QUESTS_NUM_PARTICIPANTS = "num_participants";
-	public static final String COLUMN_ARENA_QUESTS_TIME_S = "time_s";
-	public static final String COLUMN_ARENA_QUESTS_TIME_A = "time_a";
-	public static final String COLUMN_ARENA_QUESTS_TIME_B = "time_b";
-
-	// Arena Rewards
-	public static final String TABLE_ARENA_REWARDS = "arena_rewards";
-	public static final String COLUMN_ARENA_REWARDS_ID = "_id";
-	public static final String COLUMN_ARENA_REWARDS_ARENA_ID = "arena_id";
-	public static final String COLUMN_ARENA_REWARDS_ITEM_ID = "item_id";
-	public static final String COLUMN_ARENA_REWARDS_PERCENTAGE = "percentage";
-	public static final String COLUMN_ARENA_REWARDS_STACK_SIZE = "stack_size";
-	
 	// Armor
 	public static final String TABLE_ARMOR = "armor";
 	public static final String COLUMN_ARMOR_ID = "_id";
@@ -41,15 +21,6 @@ public class S {
 	public static final String COLUMN_ARMOR_GENDER = "gender";
 	public static final String COLUMN_ARMOR_HUNTER_TYPE = "hunter_type";
 	public static final String COLUMN_ARMOR_NUM_SLOTS = "num_slots";
-
-	// Charms
-	public static final String TABLE_CHARMS = "charms";
-	public static final String COLUMN_CHARMS_ID = "_id";
-	public static final String COLUMN_CHARMS_NUM_SLOTS = "num_slots";
-	public static final String COLUMN_CHARMS_SKILL_TREE_1_ID = "skill_tree_1_id";
-	public static final String COLUMN_CHARMS_SKILL_TREE_1_AMOUNT = "skill_tree_1_amount";
-	public static final String COLUMN_CHARMS_SKILL_TREE_2_ID = "skill_tree_2_id";
-	public static final String COLUMN_CHARMS_SKILL_TREE_2_AMOUNT = "skill_tree_2_amount";
 	
 	// Combining
 	public static final String TABLE_COMBINING = "combining";
@@ -87,17 +58,6 @@ public class S {
 	public static final String COLUMN_GATHERING_RARE = "rare";
     public static final String COLUMN_GATHERING_RATE = "percentage";
     public static final String COLUMN_GATHERING_QUANTITY = "quantity";
-
-	// Hunting Fleet
-	public static final String TABLE_HUNTING_FLEET = "hunting_fleet";
-	public static final String COLUMN_HUNTING_FLEET_ID = "_id";
-	public static final String COLUMN_HUNTING_FLEET_TYPE = "type";
-	public static final String COLUMN_HUNTING_FLEET_LEVEL = "level";
-	public static final String COLUMN_HUNTING_FLEET_LOCATION = "location";
-	public static final String COLUMN_HUNTING_FLEET_ITEM_ID = "item_id";
-	public static final String COLUMN_HUNTING_FLEET_AMOUNT = "amount";
-	public static final String COLUMN_HUNTING_FLEET_PERCENTAGE = "percentage";
-	public static final String COLUMN_HUNTING_FLEET_RANK = "rank";
 	
 	// Hunting Rewards
 	public static final String TABLE_HUNTING_REWARDS = "hunting_rewards";
@@ -215,12 +175,6 @@ public class S {
 	public static final String COLUMN_MONSTER_DAMAGE_THUNDER = "thunder";
 	public static final String COLUMN_MONSTER_DAMAGE_DRAGON = "dragon";
 	public static final String COLUMN_MONSTER_DAMAGE_KO = "ko";
-
-	// Monster to Arena
-	public static final String TABLE_MONSTER_TO_ARENA = "monster_to_arena";
-	public static final String COLUMN_MONSTER_TO_ARENA_ID = "_id";
-	public static final String COLUMN_MONSTER_TO_ARENA_MONSTER_ID = "monster_id";
-	public static final String COLUMN_MONSTER_TO_ARENA_ARENA_ID = "arena_id";
 	
 	// Monster to Quest
 	public static final String TABLE_MONSTER_TO_QUEST = "monster_to_quest";

@@ -7,56 +7,19 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Xml
-
 import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.cursors.ASBSessionCursor
-import com.ghstudios.android.data.cursors.ASBSetCursor
-import com.ghstudios.android.data.cursors.ArenaQuestCursor
-import com.ghstudios.android.data.cursors.ArenaRewardCursor
-import com.ghstudios.android.data.cursors.ArmorCursor
-import com.ghstudios.android.data.cursors.CombiningCursor
-import com.ghstudios.android.data.cursors.ComponentCursor
-import com.ghstudios.android.data.cursors.DecorationCursor
-import com.ghstudios.android.data.cursors.GatheringCursor
-import com.ghstudios.android.data.cursors.HornMelodiesCursor
-import com.ghstudios.android.data.cursors.HuntingRewardCursor
-import com.ghstudios.android.data.cursors.ItemCursor
-import com.ghstudios.android.data.cursors.ItemToMaterialCursor
-import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor
-import com.ghstudios.android.data.cursors.LocationCursor
-import com.ghstudios.android.data.cursors.MonsterAilmentCursor
-import com.ghstudios.android.data.cursors.MonsterDamageCursor
-import com.ghstudios.android.data.cursors.MonsterHabitatCursor
-import com.ghstudios.android.data.cursors.MonsterStatusCursor
-import com.ghstudios.android.data.cursors.MonsterToArenaCursor
-import com.ghstudios.android.data.cursors.MonsterToQuestCursor
-import com.ghstudios.android.data.cursors.MonsterWeaknessCursor
-import com.ghstudios.android.data.cursors.PalicoWeaponCursor
-import com.ghstudios.android.data.cursors.QuestCursor
-import com.ghstudios.android.data.cursors.QuestRewardCursor
-import com.ghstudios.android.data.cursors.SkillCursor
-import com.ghstudios.android.data.cursors.SkillTreeCursor
-import com.ghstudios.android.data.cursors.WeaponCursor
-import com.ghstudios.android.data.cursors.WeaponTreeCursor
-import com.ghstudios.android.data.cursors.WishlistComponentCursor
-import com.ghstudios.android.data.cursors.WishlistCursor
-import com.ghstudios.android.data.cursors.WishlistDataCursor
-import com.ghstudios.android.data.cursors.WyporiumTradeCursor
+import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
 import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.mhgendatabase.R
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
-
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
-
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.Arrays
-import java.util.HashMap
-import java.util.LinkedHashMap
+import java.util.*
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
 import kotlin.concurrent.write
@@ -620,181 +583,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     fun deleteRecord(table: String, where: String, args: Array<String>): Boolean {
         return writableDatabase.delete(table, where, args) > 0
     }
-
-    /**
-     * ****************************** ARENA QUEST QUERIES *****************************************
-     */
-
-    /*
-	 * Get all arena quests
-	 */
-    fun queryArenaQuests(): ArenaQuestCursor {
-
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ARENA_QUESTS
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ArenaQuestCursor(wrapJoinHelper(builderArenaQuest(), qh))
-    }
-
-    /*
-     * Get a specific arena quest
-     */
-    fun queryArenaQuest(id: Long): ArenaQuestCursor {
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_ARENA_QUESTS
-        qh.Columns = null
-        qh.Selection = "a." + S.COLUMN_ARENA_QUESTS_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ArenaQuestCursor(wrapJoinHelper(builderArenaQuest(), qh))
-    }
-
-    /*
-     * Get all arena quests based on location
-     */
-    fun queryArenaQuestLocation(id: Long): ArenaQuestCursor {
-
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ARENA_QUESTS
-        qh.Selection = "a." + S.COLUMN_ARENA_QUESTS_LOCATION_ID + " = ? "
-        qh.SelectionArgs = arrayOf("" + id)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ArenaQuestCursor(wrapJoinHelper(builderArenaQuest(), qh))
-    }
-
-    /*
-     * Helper method to query for ArenaQuest
-     */
-    private fun builderArenaQuest(): SQLiteQueryBuilder {
-        //		SELECT a._id AS _id, a.name AS aname, a.location_id, a.reward.,
-        //		a.num_participants, a.time_s, a.time_a, a.time_b,
-        //		l.name AS lname
-        //		FROM arena_quests AS a
-        //		LEFT OUTER JOIN locations AS l on a.location_id = l._id;
-
-        val a = "a"
-        val l = "l"
-
-        val projectionMap = HashMap<String, String>()
-
-        projectionMap["_id"] = a + "." + S.COLUMN_ARENA_QUESTS_ID + " AS " + "_id"
-        projectionMap[S.COLUMN_ARENA_QUESTS_NAME] = a + "." + localizeColumn(S.COLUMN_ARENA_QUESTS_NAME) + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
-        projectionMap[S.COLUMN_ARENA_QUESTS_GOAL] = a + "." + S.COLUMN_ARENA_QUESTS_GOAL
-        projectionMap[S.COLUMN_ARENA_QUESTS_LOCATION_ID] = a + "." + S.COLUMN_ARENA_QUESTS_LOCATION_ID
-        projectionMap[S.COLUMN_ARENA_QUESTS_REWARD] = a + "." + S.COLUMN_ARENA_QUESTS_REWARD
-        projectionMap[S.COLUMN_ARENA_QUESTS_NUM_PARTICIPANTS] = a + "." + S.COLUMN_ARENA_QUESTS_NUM_PARTICIPANTS
-        projectionMap[S.COLUMN_ARENA_QUESTS_TIME_S] = a + "." + S.COLUMN_ARENA_QUESTS_TIME_S
-        projectionMap[S.COLUMN_ARENA_QUESTS_TIME_A] = a + "." + S.COLUMN_ARENA_QUESTS_TIME_A
-        projectionMap[S.COLUMN_ARENA_QUESTS_TIME_B] = a + "." + S.COLUMN_ARENA_QUESTS_TIME_B
-
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + localizeColumn(S.COLUMN_LOCATIONS_NAME) + " AS " + l + S.COLUMN_LOCATIONS_NAME
-
-        //Create new querybuilder
-        val QB = SQLiteQueryBuilder()
-
-        QB.tables = S.TABLE_ARENA_QUESTS + " AS a" + " LEFT OUTER JOIN " + S.TABLE_LOCATIONS +
-                " AS l " + " ON " + "a." + S.COLUMN_ARENA_QUESTS_LOCATION_ID + " = " + "l." + S.COLUMN_LOCATIONS_ID
-
-        QB.setProjectionMap(projectionMap)
-        return QB
-    }
-
-    /**
-     * ****************************** ARENA REWARD QUERIES *****************************************
-     */
-
-    /*
-	 * Get all reward arena quests based on item
-	 */
-    fun queryArenaRewardItem(id: Long): ArenaRewardCursor {
-
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ARENA_REWARDS
-        qh.Selection = "ar." + S.COLUMN_ARENA_REWARDS_ITEM_ID + " = ? "
-        qh.SelectionArgs = arrayOf("" + id)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = "ar." + S.COLUMN_ARENA_REWARDS_PERCENTAGE + " DESC"
-        qh.Limit = null
-
-        return ArenaRewardCursor(wrapJoinHelper(builderArenaReward(), qh))
-    }
-
-    /*
-     * Get all arena quest reward items based on arena quest
-     */
-    fun queryArenaRewardArena(id: Long): ArenaRewardCursor {
-
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Table = S.TABLE_ARENA_REWARDS
-        qh.Selection = "ar." + S.COLUMN_ARENA_REWARDS_ARENA_ID + " = ? "
-        qh.SelectionArgs = arrayOf("" + id)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return ArenaRewardCursor(wrapJoinHelper(builderArenaReward(), qh))
-    }
-
-    /*
-     * Helper method to query for ArenaReward
-     */
-    private fun builderArenaReward(): SQLiteQueryBuilder {
-        //		SELECT ar._id AS _id, ar.arena_id, ar.item_id,
-        //		ar.percentage, ar.stack_size,
-        //		a.name AS aname, i.name AS iname
-        //		FROM quest_rewards AS ar
-        //		LEFT OUTER JOIN arena_quests AS a ON ar.arena_id = q._id
-        //		LEFT OUTER JOIN items AS i ON ar.item_id = i._id;
-
-        val ar = "ar"
-        val i = "i"
-        val a = "a"
-
-        val projectionMap = HashMap<String, String>()
-
-        projectionMap["_id"] = ar + "." + S.COLUMN_ARENA_REWARDS_ID + " AS " + "_id"
-        projectionMap[S.COLUMN_ARENA_REWARDS_ITEM_ID] = ar + "." + S.COLUMN_ARENA_REWARDS_ITEM_ID
-        projectionMap[S.COLUMN_ARENA_REWARDS_ARENA_ID] = ar + "." + S.COLUMN_ARENA_REWARDS_ARENA_ID
-        projectionMap[S.COLUMN_ARENA_REWARDS_PERCENTAGE] = ar + "." + S.COLUMN_ARENA_REWARDS_PERCENTAGE
-        projectionMap[S.COLUMN_ARENA_REWARDS_STACK_SIZE] = ar + "." + S.COLUMN_ARENA_REWARDS_STACK_SIZE
-
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
-        projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
-        projectionMap[a + S.COLUMN_ARENA_QUESTS_NAME] = a + "." + S.COLUMN_ARENA_QUESTS_NAME + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
-
-        //Create new querybuilder
-        val QB = SQLiteQueryBuilder()
-
-        QB.tables = S.TABLE_ARENA_REWARDS + " AS ar" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "ar." +
-                S.COLUMN_ARENA_REWARDS_ITEM_ID + " = " + "i." + S.COLUMN_ITEMS_ID + " LEFT OUTER JOIN " + S.TABLE_ARENA_QUESTS +
-                " AS a " + " ON " + "ar." + S.COLUMN_ARENA_REWARDS_ARENA_ID + " = " + "a." + S.COLUMN_ARENA_QUESTS_ID
-
-        QB.setProjectionMap(projectionMap)
-        return QB
-    }
-
 
     /**
      * ****************************** COMPONENT QUERIES *****************************************
@@ -1475,86 +1263,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.Limit = null
 
         return MonsterDamageCursor(wrapHelper(qh))
-    }
-
-    /**
-     * ****************************** MONSTER TO ARENA QUERIES *****************************************
-     */
-
-    /*
-	 * Get all arena quests based on monster
-	 */
-    fun queryMonsterToArenaMonster(id: Long): MonsterToArenaCursor {
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_MONSTER_TO_ARENA
-        qh.Columns = null
-        qh.Selection = "mta." + S.COLUMN_MONSTER_TO_ARENA_MONSTER_ID + " = ? "
-        qh.SelectionArgs = arrayOf("" + id)
-        qh.GroupBy = "a." + S.COLUMN_ARENA_QUESTS_NAME
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return MonsterToArenaCursor(wrapJoinHelper(builderMonsterToArena(qh.Distinct), qh))
-    }
-
-    /*
-     * Get all monsters based on arena quest
-     */
-    fun queryMonsterToArenaArena(id: Long): MonsterToArenaCursor {
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_MONSTER_TO_ARENA
-        qh.Columns = null
-        qh.Selection = "mta." + S.COLUMN_MONSTER_TO_ARENA_ARENA_ID + " = ? "
-        qh.SelectionArgs = arrayOf("" + id)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return MonsterToArenaCursor(wrapJoinHelper(builderMonsterToArena(qh.Distinct), qh))
-    }
-
-    /*
-     * Helper method to query for MonsterToArena
-     */
-    private fun builderMonsterToArena(Distinct: Boolean): SQLiteQueryBuilder {
-        //		SELECT mta._id AS _id, mta.monster_id, mta.arena_id,
-        //		m.name AS mname, a.name AS aname,
-        //		FROM monster_to_arena AS mta
-        //		LEFT OUTER JOIN monsters AS m ON mta.monster_id = m._id
-        //		LEFT OUTER JOIN arena_quests AS a ON mta.arena_id = a._id;
-
-        val mta = "mta"
-        val m = "m"
-        val a = "a"
-
-        val projectionMap = HashMap<String, String>()
-
-        projectionMap["_id"] = mta + "." + S.COLUMN_MONSTER_TO_ARENA_ID + " AS " + "_id"
-
-        projectionMap[S.COLUMN_MONSTER_TO_ARENA_ID] = mta + "." + S.COLUMN_MONSTER_TO_ARENA_ID
-        projectionMap[S.COLUMN_MONSTER_TO_ARENA_MONSTER_ID] = mta + "." + S.COLUMN_MONSTER_TO_ARENA_MONSTER_ID
-        projectionMap[S.COLUMN_MONSTER_TO_ARENA_ARENA_ID] = mta + "." + S.COLUMN_MONSTER_TO_ARENA_ARENA_ID
-
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
-        projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
-        projectionMap[a + S.COLUMN_ARENA_QUESTS_NAME] = a + "." + S.COLUMN_ARENA_QUESTS_NAME + " AS " + a + S.COLUMN_ARENA_QUESTS_NAME
-
-        //Create new querybuilder
-        val QB = SQLiteQueryBuilder()
-
-        QB.tables = S.TABLE_MONSTER_TO_ARENA + " AS mta" + " LEFT OUTER JOIN " + S.TABLE_MONSTERS + " AS m" + " ON " + "mta." +
-                S.COLUMN_MONSTER_TO_ARENA_MONSTER_ID + " = " + "m." + S.COLUMN_MONSTERS_ID + " LEFT OUTER JOIN " + S.TABLE_ARENA_QUESTS +
-                " AS a " + " ON " + "mta." + S.COLUMN_MONSTER_TO_ARENA_ARENA_ID + " = " + "a." + S.COLUMN_ARENA_QUESTS_ID
-
-        QB.setDistinct(Distinct)
-        QB.setProjectionMap(projectionMap)
-        return QB
     }
 
     /**
