@@ -44,25 +44,25 @@ public class PalicoWeaponDetailFragment extends Fragment implements
         View v = inflater.inflate(R.layout.fragment_palico_weapon_detail, parent, false);
 
         //Get all needed views
-        _titleBar = (TextView) v.findViewById(R.id.detail_title_bar_text);
-        _attackMelee = (TextView)v.findViewById(R.id.detail_weapon_melee);
-        _attackRanged = (TextView)v.findViewById(R.id.detail_weapon_ranged);
-        _elementMelee = (TextView)v.findViewById(R.id.detail_weapon_element_melee);
-        _elementRanged = (TextView)v.findViewById(R.id.detail_weapon_element_ranged);
-        _elementText = (TextView)v.findViewById(R.id.detail_weapon_element_text);
-        _affinityMelee = (TextView)v.findViewById(R.id.detail_weapon_affinity_melee);
-        _affinityRanged = (TextView)v.findViewById(R.id.detail_weapon_affinity_ranged);
+        _titleBar = v.findViewById(R.id.detail_title_bar_text);
+        _attackMelee = v.findViewById(R.id.detail_weapon_melee);
+        _attackRanged = v.findViewById(R.id.detail_weapon_ranged);
+        _elementMelee = v.findViewById(R.id.detail_weapon_element_melee);
+        _elementRanged = v.findViewById(R.id.detail_weapon_element_ranged);
+        _elementText = v.findViewById(R.id.detail_weapon_element_text);
+        _affinityMelee = v.findViewById(R.id.detail_weapon_affinity_melee);
+        _affinityRanged = v.findViewById(R.id.detail_weapon_affinity_ranged);
 
-        _defenseText = (TextView)v.findViewById(R.id.detail_weapon_defense_text);
-        _defenseValue = (TextView)v.findViewById(R.id.detail_weapon_defense);
+        _defenseText = v.findViewById(R.id.detail_weapon_defense_text);
+        _defenseValue = v.findViewById(R.id.detail_weapon_defense);
 
-        _blunt = (TextView)v.findViewById(R.id.detail_weapon_blunt);
-        _balance = (TextView)v.findViewById(R.id.detail_weapon_balance);
-        _creationCost = (TextView)v.findViewById(R.id.detail_weapon_creation);
-        _rarity = (TextView)v.findViewById(R.id.detail_weapon_rarity);
-        _description = (TextView)v.findViewById(R.id.detail_weapon_description);
+        _blunt = v.findViewById(R.id.detail_weapon_blunt);
+        _balance = v.findViewById(R.id.detail_weapon_balance);
+        _creationCost = v.findViewById(R.id.detail_weapon_creation);
+        _rarity = v.findViewById(R.id.detail_weapon_rarity);
+        _description = v.findViewById(R.id.detail_weapon_description);
 
-        _sharpnessLayout = (LinearLayout)v.findViewById(R.id.detail_weapon_sharpness);
+        _sharpnessLayout = v.findViewById(R.id.detail_weapon_sharpness);
 
         return v;
     }
@@ -135,6 +135,9 @@ public class PalicoWeaponDetailFragment extends Fragment implements
                 break;
             case 5:
                 color = Color.WHITE;
+                break;
+            case 6:
+                color = DrawSharpness.purpleColor;
                 break;
             default:
                 break;

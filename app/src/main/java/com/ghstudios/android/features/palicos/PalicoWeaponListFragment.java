@@ -96,35 +96,35 @@ public class PalicoWeaponListFragment extends ListFragment implements
             AssetManager manager = context.getAssets();
 
             // Set up the text view
-            TextView weaponNameTextView = (TextView) view.findViewById(R.id.name_text);
-            ImageView monsterImage = (ImageView) view.findViewById(R.id.item_image);
+            TextView weaponNameTextView = view.findViewById(R.id.name_text);
+            ImageView monsterImage = view.findViewById(R.id.item_image);
 
-            TextView att_melee = (TextView)view.findViewById(R.id.attack_melee_text);
-            TextView att_ranged = (TextView)view.findViewById(R.id.attack_ranged_text);
+            TextView att_melee = view.findViewById(R.id.attack_melee_text);
+            TextView att_ranged = view.findViewById(R.id.attack_ranged_text);
 
-            ImageView element_melee = (ImageView)view.findViewById(R.id.element_melee_image);
-            ImageView element_ranged = (ImageView)view.findViewById(R.id.element_ranged_image);
-            TextView element_melee_text = (TextView)view.findViewById(R.id.element_melee_text);
-            TextView element_ranged_text = (TextView)view.findViewById(R.id.element_ranged_text);
+            ImageView element_melee = view.findViewById(R.id.element_melee_image);
+            ImageView element_ranged = view.findViewById(R.id.element_ranged_image);
+            TextView element_melee_text = view.findViewById(R.id.element_melee_text);
+            TextView element_ranged_text = view.findViewById(R.id.element_ranged_text);
             element_melee.setVisibility(View.VISIBLE);
             element_ranged.setVisibility(View.VISIBLE);
             element_melee_text.setVisibility(View.VISIBLE);
             element_ranged_text.setVisibility(View.VISIBLE);
 
-            TextView affinity_melee = (TextView)view.findViewById(R.id.affinity_melee_text);
-            TextView affinity_ranged = (TextView)view.findViewById(R.id.affinity_ranged_text);
+            TextView affinity_melee = view.findViewById(R.id.affinity_melee_text);
+            TextView affinity_ranged = view.findViewById(R.id.affinity_ranged_text);
             affinity_melee.setVisibility(View.VISIBLE);
             affinity_ranged.setVisibility(View.VISIBLE);
 
-            LinearLayout shaprnessLayout = (LinearLayout)view.findViewById(R.id.sharpness);
+            LinearLayout shaprnessLayout = view.findViewById(R.id.sharpness);
 
-            TextView defense = (TextView)view.findViewById(R.id.defense_text);
+            TextView defense = view.findViewById(R.id.defense_text);
             defense.setVisibility(View.VISIBLE);
 
-            TextView balance = (TextView)view.findViewById(R.id.balance_text);
+            TextView balance = view.findViewById(R.id.balance_text);
             balance.setText(wep.getBalanceString());
 
-            LinearLayout  itemLayout = (LinearLayout) view.findViewById(R.id.clickable_layout);
+            LinearLayout  itemLayout = view.findViewById(R.id.clickable_layout);
 
             String cellText = wep.getItem().getName();
             String cellImage = "icons_weapons/" + wep.getItem().getFileLocation();
@@ -195,6 +195,9 @@ public class PalicoWeaponListFragment extends ListFragment implements
                     break;
                 case 5:
                     color = Color.WHITE;
+                    break;
+                case 6:
+                    color = DrawSharpness.purpleColor;
                     break;
                 default:
                     break;
