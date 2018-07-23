@@ -31,6 +31,10 @@ public class LocationDetailPagerActivity extends BasePagerActivity {
         tabs.addTab("High Rank", () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_HR)
         );
+
+        tabs.addTab("G Rank", () ->
+                LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_G)
+        );
     }
 
     @Override
