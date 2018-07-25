@@ -2,6 +2,10 @@ package com.ghstudios.android.data.util
 
 import android.database.Cursor
 
+fun Cursor.hasColumn(columnName: String): Boolean {
+    return getColumnIndex(columnName) != -1
+}
+
 fun Cursor.getLong(columnName: String): Long {
     return this.getLong(getColumnIndex(columnName))
 }

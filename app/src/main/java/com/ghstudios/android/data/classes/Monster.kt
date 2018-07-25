@@ -17,7 +17,12 @@ class Monster {
     var jpnName = ""        // Japanese name
     var monsterClass = 0    // Large / small
     var fileLocation = ""    // File location for image
-    var metadata = 0        //metadata (IsG:IsHigh:IsLow)
+
+    /**
+     * Bitwise flags assembled as an integer.
+     * flags are hasLR/hasHR/hasG
+     */
+    var metadata = 0
 
     val monsterSize get() = when(monsterClass) {
         0 -> MonsterSize.LARGE

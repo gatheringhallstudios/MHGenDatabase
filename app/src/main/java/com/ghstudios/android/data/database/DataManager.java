@@ -220,7 +220,7 @@ public class DataManager {
         return mHelper.queryGatheringLocationRank(id, rank);
     }
 
-    public GatheringCursor queryGatheringForQuest(long questId, long locationId, String rank){
+    public GatheringCursor queryGatheringForQuest(long questId, long locationId, String rank) {
         return gatheringDao.queryGatheringsForQuest(questId,locationId,rank);
     }
 

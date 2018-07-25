@@ -88,12 +88,12 @@ public class QuestMonsterFragment extends Fragment {
 
             String cellMonsterText = monsterToQuest.getMonster().getName();
 
-            if(monsterToQuest.getUnstable()==1){
+            if (monsterToQuest.isUnstable()) {
                 unstableTextView.setVisibility(View.VISIBLE);
                 unstableTextView.setText(R.string.unstable);
             } else unstableTextView.setVisibility(View.GONE);
 
-            if(monsterToQuest.isHyper()){
+            if (monsterToQuest.isHyper()) {
                 hyperTextView.setVisibility(View.VISIBLE);
                 hyperTextView.setText(R.string.hyper);
             } else hyperTextView.setVisibility(View.GONE);

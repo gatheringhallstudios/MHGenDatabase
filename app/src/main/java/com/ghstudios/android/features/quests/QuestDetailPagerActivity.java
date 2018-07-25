@@ -25,8 +25,9 @@ public class QuestDetailPagerActivity extends BasePagerActivity {
                 QuestDetailFragment.newInstance(questId)
         );
 
-        if(q.HasGathingItem())
+        if (q.getHasGatheringItem()) {
             tabs.addTab("Items", QuestItemFragment::new);
+        }
 
         tabs.addTab("Rewards", () ->
                 QuestRewardFragment.newInstance(questId)

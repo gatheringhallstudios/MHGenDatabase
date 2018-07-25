@@ -23,16 +23,25 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
     val quest = MutableLiveData<Quest>()
     val gatherings = MutableLiveData<List<Gathering>>()
 
-    fun setQuest(questId: Long): Quest{
-        this.quest.value = dataManager.getQuest(questId)
+    fun setQuest(questId: Long): Quest {
+        if (questId == quest.value?.id) {
+            return quest.value!!
+        }
+
+        val quest = dataManager.getQuest(questId)
+        this.quest.value = quest
 
         loggedThread("Quest Load") {
             monsters.postValue(dataManager.queryMonsterToQuestQuest(questId).toList { it.monsterToQuest })
             rewards.postValue(dataManager.queryQuestRewardQuest(questId).toList { it.questReward })
-            if(quest.value!!.HasGathingItem()){
-                gatherings.postValue((dataManager.queryGatheringForQuest(quest.value!!.id,quest.value!!.location.id%100,quest.value!!.rank).toList { it.gathering }))
+
+            if (quest.hasGatheringItem){
+                val locationId = quest.location?.id ?: -1
+                val gatherData = dataManager.queryGatheringForQuest(quest.id, locationId, quest.rank).toList { it.gathering }
+                gatherings.postValue(gatherData)
             }
         }
-        return quest.value!!
+
+        return quest
     }
 }
