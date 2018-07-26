@@ -37,6 +37,7 @@ class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryMonsters(size: MonsterSize): MonsterCursor {
         val monsterClass = when(size) {
+            MonsterSize.DEVIANT -> 2
             MonsterSize.SMALL -> 1
             MonsterSize.LARGE -> 0
         }

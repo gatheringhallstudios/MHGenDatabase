@@ -3,7 +3,8 @@ package com.ghstudios.android.data.classes
 // todo: move elsewhere
 enum class MonsterSize {
     SMALL,
-    LARGE
+    LARGE,
+    DEVIANT
 }
 
 /*
@@ -26,6 +27,7 @@ class Monster {
 
     val monsterSize get() = when(monsterClass) {
         0 -> MonsterSize.LARGE
-        else -> MonsterSize.SMALL
+        1 -> MonsterSize.SMALL
+        else -> MonsterSize.DEVIANT
     }
 }

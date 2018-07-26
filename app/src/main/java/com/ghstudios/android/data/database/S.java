@@ -273,7 +273,7 @@ public class S {
     public static final String COLUMN_WEAPONS_TREE_DEPTH = "tree_depth";
     public static final String COLUMN_WEAPONS_PARENT_ID = "parent_id";
 
-	// Weapons
+	// Palico Weapons
 	public static final String TABLE_PALICO_WEAPONS = "palico_weapons";
 	public static final String COLUMN_PALICO_WEAPONS_ID = "_id";
 	public static final String COLUMN_PALICO_WEAPONS_CREATION_COST = "creation_cost";
@@ -288,6 +288,17 @@ public class S {
 	public static final String COLUMN_PALICO_WEAPONS_AFFINITY_RANGED = "affinity_ranged";
 	public static final String COLUMN_PALICO_WEAPONS_BLUNT = "blunt";
 	public static final String COLUMN_PALICO_WEAPONS_BALANCE = "balance";
+	
+	// Palico Armor
+	public static final String TABLE_PALICO_ARMOR = "palico_armor";
+	public static final String COLUMN_PALICO_ARMOR_ID = "_id";
+	public static final String COLUMN_PALICO_ARMOR_DEFENSE = "defense";
+	public static final String COLUMN_PALICO_ARMOR_FIRE_RES = "fire_res";
+	public static final String COLUMN_PALICO_ARMOR_THUNDER_RES = "thunder_res";
+	public static final String COLUMN_PALICO_ARMOR_DRAGON_RES = "dragon_res";
+	public static final String COLUMN_PALICO_ARMOR_WATER_RES = "water_res";
+	public static final String COLUMN_PALICO_ARMOR_ICE_RES = "ice_res";
+	public static final String COLUMN_PALICO_ARMOR_FAMILY = "family";
 	
     // Horn Melodies
     public static final String TABLE_HORN_MELODIES = "horn_melodies";

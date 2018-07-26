@@ -18,6 +18,7 @@ import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterSize;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.classes.MonsterWeakness;
+import com.ghstudios.android.data.classes.PalicoArmor;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.classes.SkillTree;
@@ -49,6 +50,7 @@ import com.ghstudios.android.data.cursors.MonsterHabitatCursor;
 import com.ghstudios.android.data.cursors.MonsterStatusCursor;
 import com.ghstudios.android.data.cursors.MonsterToQuestCursor;
 import com.ghstudios.android.data.cursors.MonsterWeaknessCursor;
+import com.ghstudios.android.data.cursors.PalicoArmorCursor;
 import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
 import com.ghstudios.android.data.cursors.QuestCursor;
 import com.ghstudios.android.data.cursors.QuestRewardCursor;
@@ -641,8 +643,20 @@ public class DataManager {
         cursor.close();
         return w;
     }
-    
-/********************************* WISHLIST QUERIES ******************************************/    
+
+    public PalicoArmorCursor queryPalicoArmor(){
+        return mHelper.queryPalicoArmors();
+    }
+
+    public PalicoArmor getPalicoArmor(long id){
+        PalicoArmorCursor cursor = mHelper.queryPalicoArmor(id);
+        cursor.moveToFirst();
+        PalicoArmor w = cursor.getArmor();
+        cursor.close();
+        return w;
+    }
+
+/********************************* WISHLIST QUERIES ******************************************/
     /* Get a Cursor that has a list of all Wishlists */
     public WishlistCursor queryWishlists() {
         return mHelper.queryWishlists();

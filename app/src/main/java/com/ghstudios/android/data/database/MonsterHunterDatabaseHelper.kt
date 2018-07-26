@@ -2099,6 +2099,68 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return QB
     }
 
+
+    /**
+     * ****************************** PALICO ARMOR QUERIES *****************************************
+     */
+
+    fun queryPalicoArmors(): PalicoArmorCursor {
+
+        val qh = QueryHelper()
+        qh.Columns = null
+        qh.Table = S.TABLE_PALICO_ARMOR
+        qh.Selection = null
+        qh.SelectionArgs = null
+        qh.GroupBy = null
+        qh.Having = null
+        qh.OrderBy = S.COLUMN_PALICO_ARMOR_FAMILY + "," +S.COLUMN_ITEMS_RARITY
+        qh.Limit = null
+
+        return PalicoArmorCursor(wrapJoinHelper(builderPalicoArmor(), qh))
+    }
+
+    fun queryPalicoArmor(id: Long): PalicoArmorCursor {
+        val qh = QueryHelper()
+        qh.Columns = null
+        qh.Table = S.TABLE_PALICO_WEAPONS
+        qh.Selection = "w." + S.COLUMN_PALICO_ARMOR_ID + "=?"
+        qh.SelectionArgs = arrayOf(java.lang.Long.toString(id))
+        qh.GroupBy = null
+        qh.Having = null
+        qh.OrderBy = null
+        qh.Limit = null
+        return PalicoArmorCursor(wrapJoinHelper(builderPalicoArmor(), qh))
+    }
+
+    private fun builderPalicoArmor(): SQLiteQueryBuilder {
+        val w = "w"
+        val i = "i"
+
+        val projectionMap = HashMap<String, String>()
+
+        projectionMap["_id"] = w + "." + S.COLUMN_PALICO_ARMOR_ID + " AS " + "_id"
+        projectionMap[S.COLUMN_PALICO_ARMOR_DEFENSE] = w + "." + S.COLUMN_PALICO_ARMOR_DEFENSE
+        projectionMap[S.COLUMN_PALICO_ARMOR_DRAGON_RES] = w + "." + S.COLUMN_PALICO_ARMOR_DRAGON_RES
+        projectionMap[S.COLUMN_PALICO_ARMOR_FIRE_RES] = w + "." + S.COLUMN_PALICO_ARMOR_FIRE_RES
+        projectionMap[S.COLUMN_PALICO_ARMOR_ICE_RES] = w + "." + S.COLUMN_PALICO_ARMOR_ICE_RES
+        projectionMap[S.COLUMN_PALICO_ARMOR_THUNDER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_THUNDER_RES
+        projectionMap[S.COLUMN_PALICO_ARMOR_WATER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_WATER_RES
+
+        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
+
+        //Create new querybuilder
+        val QB = SQLiteQueryBuilder()
+
+        QB.tables = S.TABLE_PALICO_ARMOR + " AS w" + " LEFT OUTER JOIN " + S.TABLE_ITEMS + " AS i" + " ON " + "w." +
+                S.COLUMN_PALICO_ARMOR_ID + " = " + "i." + S.COLUMN_ITEMS_ID
+
+        QB.setProjectionMap(projectionMap)
+        return QB
+    }
+
     /**
      * ****************************** WISHLIST QUERIES *****************************************
      */
