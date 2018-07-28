@@ -6,6 +6,7 @@ import android.database.CursorWrapper
 import com.ghstudios.android.data.classes.Habitat
 import com.ghstudios.android.data.classes.Location
 import com.ghstudios.android.data.classes.Monster
+import com.ghstudios.android.data.classes.MonsterClassConverter
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
 import com.ghstudios.android.data.util.getLong
@@ -47,7 +48,7 @@ class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
                     id = getLong("m" + S.COLUMN_MONSTERS_ID)
                     name = getString("m" + S.COLUMN_MONSTERS_NAME, "")
                     fileLocation = getString("m" + S.COLUMN_MONSTERS_FILE_LOCATION, "")
-                    monsterClass = getInt("m" + S.COLUMN_MONSTERS_CLASS)
+                    monsterClass = MonsterClassConverter.deserialize(getInt("m" + S.COLUMN_MONSTERS_CLASS))
                 }
             }
         }

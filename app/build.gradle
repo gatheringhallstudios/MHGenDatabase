@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-// apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 
 // This handles both kotlin and java. Use kapt instead of annotationProcessor
 apply plugin: 'kotlin-kapt'
@@ -38,6 +38,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+androidExtensions {
+    // Enables KTX viewbinding to work on viewholders as well
+    experimental = true
 }
 
 dependencies {
