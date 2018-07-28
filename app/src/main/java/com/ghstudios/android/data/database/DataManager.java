@@ -8,6 +8,7 @@ import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.data.classes.ArmorFamily;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
@@ -33,6 +34,7 @@ import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.data.cursors.ASBSessionCursor;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.cursors.ArmorCursor;
+import com.ghstudios.android.data.cursors.ArmorFamilyCursor;
 import com.ghstudios.android.data.cursors.CombiningCursor;
 import com.ghstudios.android.data.cursors.ComponentCursor;
 import com.ghstudios.android.data.cursors.DecorationCursor;
@@ -66,6 +68,8 @@ import com.ghstudios.android.data.cursors.WyporiumTradeCursor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 
 /*
@@ -130,6 +134,27 @@ public class DataManager {
     public List<Armor> queryArmorArrayType(int type) {
         ArmorCursor cursor = itemDao.queryArmorType(type);
         return MHUtils.cursorToList(cursor, ArmorCursor::getArmor);
+    }
+
+    public List<ArmorFamily> queryArmorFamilies(){
+        ArmorFamilyCursor cursor = itemDao.queryArmorFamilies();
+
+        ArrayList<ArmorFamily> results = new ArrayList();
+
+        cursor.moveToFirst();
+        ArmorFamily family = cursor.getArmor();
+        results.add(family);
+        while (cursor.moveToNext()) {
+            ArmorFamily newFamily = cursor.getArmor();
+            if(family.getId() == newFamily.getId())
+            {
+                family.getSkills().add(newFamily.getSkills().get(0));
+            }else{
+                family = newFamily;
+                results.add(family);
+            }
+        }
+        return results;
     }
     
 /********************************* COMBINING QUERIES ******************************************/

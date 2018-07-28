@@ -6,6 +6,7 @@ import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.cursors.ArmorCursor
+import com.ghstudios.android.data.cursors.ArmorFamilyCursor
 import com.ghstudios.android.data.cursors.CombiningCursor
 import com.ghstudios.android.data.cursors.ItemCursor
 import com.ghstudios.android.data.util.SqlFilter
@@ -184,4 +185,16 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2'
         """, arrayOf(type.toString())))
     }
+
+    fun queryArmorFamilies() : ArmorFamilyCursor{
+        return ArmorFamilyCursor(db.rawQuery("""
+            SELECT af._id,af.name,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
+            FROM armor_families af
+                JOIN armor a on a.family=af._id
+                JOIN item_to_skill_tree its on a._id=its.item_id
+                JOIN skill_trees st on st._id=its.skill_tree_id
+            GROUP BY af._id,its.skill_tree_id;
+        """, emptyArray()))
+    }
+
 }

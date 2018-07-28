@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.*;
 
 import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.data.classes.ArmorFamily;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.database.DataManager;
@@ -44,10 +46,10 @@ public class ArmorExpandableListFragment extends Fragment {
     private static final String DIALOG_FILTER = "filter";
     private static final int REQUEST_FILTER = 0;
 
-    private int mType;
-    private String[] slots = {"Head", "Body", "Arms", "Waist", "Legs"};
+    private String[] slots = {"Rare 1", "Rare 2", "Rare 3", "Rare 4", "Rare 5",
+                                "Rare 6","Rare 7","Rare 8","Rare 9","Rare 10","Rare X"};
 
-    private ArrayList<ArrayList<Armor>> children;
+    private ArrayList<ArrayList<ArmorFamily>> children;
 
     private ExpandableListView elv;
     private ArmorListAdapter adapter;
@@ -66,12 +68,6 @@ public class ArmorExpandableListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mType = Armor.ARMOR_TYPE_BOTH;
-        Bundle args = getArguments();
-        if (args != null) {
-            mType = args.getInt(ARG_TYPE);
-        }
-
         filter = new ArmorFilter();
 
         if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
@@ -87,45 +83,16 @@ public class ArmorExpandableListFragment extends Fragment {
      * Updates the list of armors according to the filter's criteria.
      */
     private void populateList() {
-        children = new ArrayList<ArrayList<Armor>>();
-        List<Armor> armors = DataManager.get(getActivity()).queryArmorArrayType(mType);
+        children = new ArrayList<>();
+        List<ArmorFamily> families = DataManager.get(getActivity()).queryArmorFamilies();
 
-        ArrayList<Armor> g1 = new ArrayList<Armor>();
-        ArrayList<Armor> g2 = new ArrayList<Armor>();
-        ArrayList<Armor> g3 = new ArrayList<Armor>();
-        ArrayList<Armor> g4 = new ArrayList<Armor>();
-        ArrayList<Armor> g5 = new ArrayList<Armor>();
+        //Add all 11 rarities
+        for(int i=0;i<11;i++)
+            children.add(new ArrayList<>());
 
-        for (int i = 0; i < armors.size(); i++) {
-            if (filter == null || filter.armorPassesFilter(armors.get(i))) {
-                switch (armors.get(i).getSlot()) {
-
-                    case "Head":
-                        g1.add(armors.get(i));
-                        break;
-                    case "Body":
-                        g2.add(armors.get(i));
-                        break;
-                    case "Arms":
-                        g3.add(armors.get(i));
-                        break;
-                    case "Waist":
-                        g4.add(armors.get(i));
-                        break;
-                    case "Legs":
-                        g5.add(armors.get(i));
-                        break;
-                    default:
-                        break;
-                }
-            }
+        for (int i = 0; i < families.size(); i++) {
+            children.get(families.get(i).getRarity()-1).add(families.get(i));
         }
-
-        children.add(g1);
-        children.add(g2);
-        children.add(g3);
-        children.add(g4);
-        children.add(g5);
 
         if (adapter != null) {
             adapter.notifyDataSetChanged();
@@ -138,29 +105,9 @@ public class ArmorExpandableListFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
-//        setContextMenu(v);
-
-        elv = (ExpandableListView) v
-                .findViewById(R.id.expandableListView);
-
+        elv = v.findViewById(R.id.expandableListView);
         adapter = new ArmorListAdapter(slots);
         elv.setAdapter(adapter);
-
-//        elv.setOnChildClickListener(new OnChildClickListener() {
-//
-//            @Override
-//            public boolean onChildClick(ExpandableListView arg0, View arg1,
-//                                        int arg2, int arg3, long id) {
-//
-//                Intent i = new Intent(getActivity(), ArmorDetailActivity.class);
-//                i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, (long) arg1.getTag());
-//
-//                startActivity(i);
-//
-//                return false;
-//            }
-//        });
-
         return v;
     }
 
@@ -262,11 +209,6 @@ public class ArmorExpandableListFragment extends Fragment {
         @Override
         public View getGroupView(int i, boolean b, View view,
                                  ViewGroup viewGroup) {
-//            TextView textView = new TextView(
-//                    ArmorExpandableListFragment.this.getActivity());
-//            textView.setText(getGroup(i).toString());
-//            return textView;
-
             View v = view;
             Context context = viewGroup.getContext();
             LayoutInflater inflater = (LayoutInflater) context
@@ -298,30 +240,22 @@ public class ArmorExpandableListFragment extends Fragment {
         @Override
         public View getChildView(int groupPosition, int childPosition,
                                  boolean isLastChild, View convertView, ViewGroup parent) {
-
             View v = convertView;
             Context context = parent.getContext();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.fragment_armor_expandablelist_child_item, parent,
+            v = inflater.inflate(R.layout.cell_armor_family_listitem, parent,
                     false);
 
-            LinearLayout root = (LinearLayout) v.findViewById(R.id.root);
-            TextView armorTextView = (TextView) v.findViewById(R.id.name_text);
-            ImageView armorImageView = (ImageView) v.findViewById(R.id.icon);
+            ConstraintLayout root = (ConstraintLayout) v;
+            TextView armorTextView = v.findViewById(R.id.family_name);
+            ImageView armorImageView = v.findViewById(R.id.icon);
 
-            armorTextView.setText(getChild(groupPosition, childPosition)
-                    .toString());
+            ArmorFamily family = (ArmorFamily) getChild(groupPosition,childPosition);
 
-            String slot = ((Armor) getChild(groupPosition, childPosition))
-                    .getSlot();
+            armorTextView.setText(family.getName());
 
-            String cellImage = "icons_armor/icons_"
-                    + slot.toLowerCase()
-                    + "/"
-                    + slot.toLowerCase()
-                    + ((Item) getChild(groupPosition, childPosition))
-                    .getRarity() + ".png";
+            String cellImage = "icons_armor/icons_body/body" + family.getRarity() + ".png";
 
             Drawable armorImage = null;
 
@@ -334,23 +268,40 @@ public class ArmorExpandableListFragment extends Fragment {
 
             armorImageView.setImageDrawable(armorImage);
 
-            long armorId = ((Armor) getChild(groupPosition, childPosition)).getId();
+            TextView minDef = v.findViewById(R.id.min_defense);
+            TextView maxDef = v.findViewById(R.id.max_defense);
+            minDef.setText(Integer.toString(family.getMinDef()));
+            maxDef.setText(Integer.toString(family.getMaxDef()));
 
-            root.setTag(armorId);
+            //Set Skills
+            TextView[] skills = {v.findViewById(R.id.skill_1),
+                                v.findViewById(R.id.skill_2),
+                                v.findViewById(R.id.skill_3),
+                                v.findViewById(R.id.skill_4),
+                                v.findViewById(R.id.skill_5)};
+
+            for(int i=0;i<skills.length;i++){
+                if(i < family.getSkills().size()){
+                    skills[i].setVisibility(View.VISIBLE);
+                    skills[i].setText(family.getSkills().get(i));
+                }
+                else{
+                    skills[i].setVisibility(View.GONE);
+                }
+            }
+
+
+
+            root.setTag(family.getId());
 
             if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                root.setOnClickListener(new ArmorClickListener(context, armorId, getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
+                root.setOnClickListener(new ArmorClickListener(context, family.getId(), getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
             }
             else {
-                root.setOnClickListener(new ArmorClickListener(context, armorId));
+                root.setOnClickListener(new ArmorClickListener(context, family.getId()));
             }
 
             return v;
-
-//            TextView textView = new TextView(
-//                    ArmorExpandableListFragment.this.getActivity());
-//            textView.setText(getChild(groupPosition, childPosition).toString());
-//            return textView;
         }
 
         @Override
