@@ -15,18 +15,15 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 
-import com.ghstudios.android.AppSettings
 import com.ghstudios.android.ClickListeners.LocationClickListener
-import com.ghstudios.android.MHUtils
 import com.ghstudios.android.components.SectionHeaderCell
 import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.mhgendatabase.R
 
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.ghstudios.android.ElementRegistry
+import com.ghstudios.android.*
 import com.ghstudios.android.data.classes.*
-import com.ghstudios.android.getAssetDrawable
 
 private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weaknessRating) {
     WeaknessRating.WEAK -> R.drawable.effectiveness_2
@@ -78,8 +75,7 @@ class MonsterSummaryFragment : Fragment() {
         viewModel.monsterData.observe(this, Observer { monster ->
             if (monster == null) return@Observer
 
-            val cellImage = "icons_monster/" + monster.fileLocation
-            val monsterImage = context?.getAssetDrawable(cellImage)
+            val monsterImage = AssetLoader.loadIconFor(monster)
 
             headerView.setIconDrawable(monsterImage)
             headerView.setTitleText(monster.name)
@@ -194,9 +190,8 @@ class MonsterSummaryFragment : Fragment() {
             areaTextView.text = habitat.areas?.joinToString(", ")
             restTextView.text = habitat.rest.toString()
 
-            val cellImage = "icons_location/" + habitat.location?.fileLocationMini
-            val mapImage = context?.getAssetDrawable(cellImage)
-            mapView.setImageDrawable(mapImage)
+            val icon = habitat.location?.let { AssetLoader.loadIconFor(it) }
+            mapView.setImageDrawable(icon)
 
             val locationId = habitat.location?.id
             if (locationId != null) {

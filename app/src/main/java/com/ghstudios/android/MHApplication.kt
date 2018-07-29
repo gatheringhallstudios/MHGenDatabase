@@ -6,7 +6,8 @@ class MHApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // intiialize app settings
+        // initialize app settings
         AppSettings.bindApplication(this)
+        AssetLoader.bindApplication(this)
     }
 }

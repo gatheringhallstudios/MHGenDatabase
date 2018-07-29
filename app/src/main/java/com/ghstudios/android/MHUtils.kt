@@ -66,7 +66,7 @@ object MHUtils {
                 Drawable.createFromStream(it, null)
             }
         } catch (ex: Exception) {
-            Log.e("MHGenUtils", "Failed to load asset $path", ex)
+            Log.e("MHGenUtils", "Failed to load asset $path")
             null
         }
     }
