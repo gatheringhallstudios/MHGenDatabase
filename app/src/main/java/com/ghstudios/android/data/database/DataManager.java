@@ -88,6 +88,7 @@ public class DataManager {
     private ItemDao itemDao;
     private HuntingRewardsDao huntingRewardsDao;
     private GatheringDao gatheringDao;
+    private SkillDao skillDao;
     
     /* Singleton design */
     private DataManager(Context appContext) {
@@ -98,6 +99,7 @@ public class DataManager {
         itemDao = new ItemDao(mHelper);
         huntingRewardsDao = new HuntingRewardsDao(mHelper);
         gatheringDao = new GatheringDao(mHelper);
+        skillDao = new SkillDao(mHelper);
     }
     
     public static DataManager get(Context c) {
@@ -121,14 +123,12 @@ public class DataManager {
     }
 
     /* Get a Cursor that has a list of all Armors */
-    public ArmorCursor queryArmor() {
-        return itemDao.queryArmor();
-    }
+    public ArmorCursor queryArmor() { return itemDao.queryArmor(); }
     
     /* Get a specific Armor */
-    public Armor getArmor(long id) {
-        return itemDao.queryArmor(id);
-    }
+    public Armor getArmor(long id) { return itemDao.queryArmor(id); }
+
+    public List<Armor> getArmorByFamily(long id){ return itemDao.queryArmorByFamily(id); }
     
     /* Get an array of Armor based on hunter type */
     public List<Armor> queryArmorArrayType(int type) {
@@ -136,8 +136,8 @@ public class DataManager {
         return MHUtils.cursorToList(cursor, ArmorCursor::getArmor);
     }
 
-    public List<ArmorFamily> queryArmorFamilies(){
-        ArmorFamilyCursor cursor = itemDao.queryArmorFamilies();
+    public List<ArmorFamily> queryArmorFamilies(int type){
+        ArmorFamilyCursor cursor = itemDao.queryArmorFamilies(type);
 
         ArrayList<ArmorFamily> results = new ArrayList();
 
@@ -318,6 +318,22 @@ public class DataManager {
         }
         cursor.close();
         return itst;
+    }
+
+    /** Get an array of ItemToSkillTree based on Item */
+    public HashMap<Long,List<ItemToSkillTree>> queryItemToSkillTreeArrayByArmorFamily(long id) {
+        List<ItemToSkillTree> skills = skillDao.queryItemToSkillTreeForArmorFamily(id);
+        HashMap<Long,List<ItemToSkillTree>> results = new HashMap<>();
+
+        for(ItemToSkillTree item:skills){
+            if(results.containsKey(item.getItem().getId())){
+                results.get(item.getItem().getId()).add(item);
+            }else{
+                results.put(item.getItem().getId(),new ArrayList<>());
+                results.get(item.getItem().getId()).add(item);
+            }
+        }
+        return results;
     }
 
 /********************************* ITEM TO MATERIAL QUERIES ******************************************/

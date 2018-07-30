@@ -23,10 +23,6 @@ public class ArmorListPagerActivity extends BasePagerActivity {
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_GUNNER)
         );
 
-        tabs.addTab("Both", () ->
-                ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_BOTH)
-        );
-
         // Enable back button if we're coming from the set builder
         if (getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
             super.disableDrawerIndicator();

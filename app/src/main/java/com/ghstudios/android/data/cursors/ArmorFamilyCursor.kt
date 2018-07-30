@@ -15,6 +15,7 @@ class ArmorFamilyCursor(c:Cursor) : CursorWrapper(c){
                 minDef = getInt("min")
                 maxDef = getInt("max")
                 name = getString("name")
+                rarity = getInt("rarity")
                 val pv = getInt("point_value")
                 skills.add(getString("st_name")+( if(pv>0) "+" else "")+pv.toString())
             }

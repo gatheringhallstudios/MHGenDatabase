@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ghstudios.android.data.classes.Armor.ARMOR_TYPE_BLADEMASTER;
+
 /**
  * Pieced together from: Android samples:
  * com.example.android.apis.view.ExpandableList1
@@ -43,18 +45,14 @@ public class ArmorExpandableListFragment extends Fragment {
     public static final String KEY_FILTER_SLOTS = "FILTER_SLOTS";
     public static final String KEY_FILTER_SLOTS_SPECIFICATION = "FILTER_SLOTS_SPEC";
 
-    private static final String DIALOG_FILTER = "filter";
-    private static final int REQUEST_FILTER = 0;
-
     private String[] slots = {"Rare 1", "Rare 2", "Rare 3", "Rare 4", "Rare 5",
                                 "Rare 6","Rare 7","Rare 8","Rare 9","Rare 10","Rare X"};
 
     private ArrayList<ArrayList<ArmorFamily>> children;
+    private int hunterType;
 
     private ExpandableListView elv;
     private ArmorListAdapter adapter;
-
-    private ArmorFilter filter;
 
     public static ArmorExpandableListFragment newInstance(int type) {
         Bundle args = new Bundle();
@@ -68,15 +66,8 @@ public class ArmorExpandableListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        filter = new ArmorFilter();
-
-        if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-            filter.setRank(Rank.values()[getActivity().getIntent().getIntExtra(ASBPagerActivity.EXTRA_SET_RANK, -1)]);
-        }
-
+        hunterType = getArguments().getInt(ARG_TYPE,ARMOR_TYPE_BLADEMASTER);
         populateList();
-
-        setHasOptionsMenu(true);
     }
 
     /**
@@ -84,7 +75,7 @@ public class ArmorExpandableListFragment extends Fragment {
      */
     private void populateList() {
         children = new ArrayList<>();
-        List<ArmorFamily> families = DataManager.get(getActivity()).queryArmorFamilies();
+        List<ArmorFamily> families = DataManager.get(getActivity()).queryArmorFamilies(hunterType);
 
         //Add all 11 rarities
         for(int i=0;i<11;i++)
@@ -115,50 +106,6 @@ public class ArmorExpandableListFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_armor_list, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.filter_armor:
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                ArmorFilterDialogFragment dialog = new ArmorFilterDialogFragment();
-
-                Bundle b = new Bundle();
-                b.putSerializable(KEY_FILTER_RANK, filter.getRank());
-                b.putInt(KEY_FILTER_SLOTS, filter.getSlots());
-                b.putSerializable(KEY_FILTER_SLOTS_SPECIFICATION, filter.getSlotsSpecification());
-
-                dialog.setArguments(b);
-                dialog.setTargetFragment(this, REQUEST_FILTER);
-                dialog.show(fm, DIALOG_FILTER);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_FILTER:
-                    Rank rank = (Rank) data.getSerializableExtra(ArmorFilterDialogFragment.EXTRA_RANK);
-                    filter.setRank(rank);
-
-                    int slots = data.getIntExtra(ArmorFilterDialogFragment.EXTRA_SLOTS, -1);
-                    filter.setSlots(slots);
-
-                    ArmorFilterDialogFragment.FilterSpecification slotsSpecificiation = (ArmorFilterDialogFragment.FilterSpecification) data.getSerializableExtra(ArmorFilterDialogFragment.EXTRA_SLOTS_SPEC);
-                    filter.setSlotsSpecification(slotsSpecificiation);
-
-                    populateList();
-
-                    break;
-            }
-        }
     }
 
     public class ArmorListAdapter extends BaseExpandableListAdapter {
@@ -211,12 +158,12 @@ public class ArmorExpandableListFragment extends Fragment {
                                  ViewGroup viewGroup) {
             View v = view;
             Context context = viewGroup.getContext();
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.fragment_armor_expandablelist_group_item, viewGroup,
-                    false);
 
-            TextView armorGroupTextView = (TextView) v.findViewById(R.id.name_text);
+            if(v == null) {
+                v = LayoutInflater.from(context).inflate(R.layout.fragment_armor_expandablelist_group_item, viewGroup, false);
+            }
+
+            TextView armorGroupTextView = v.findViewById(R.id.name_text);
 
             armorGroupTextView.setText(getGroup(i).toString());
 
@@ -242,10 +189,10 @@ public class ArmorExpandableListFragment extends Fragment {
                                  boolean isLastChild, View convertView, ViewGroup parent) {
             View v = convertView;
             Context context = parent.getContext();
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.cell_armor_family_listitem, parent,
-                    false);
+
+            if(v == null) {
+                v = LayoutInflater.from(context).inflate(R.layout.cell_armor_family_listitem, parent, false);
+            }
 
             ConstraintLayout root = (ConstraintLayout) v;
             TextView armorTextView = v.findViewById(R.id.family_name);
@@ -307,60 +254,6 @@ public class ArmorExpandableListFragment extends Fragment {
         @Override
         public boolean isChildSelectable(int i, int i1) {
             return true;
-        }
-    }
-
-    public static class ArmorFilter {
-
-        public ArmorFilter() {
-            rank = null;
-            slots = -1;
-            slotsSpecification = null;
-        }
-
-        private Rank rank;
-        private int slots;
-        private ArmorFilterDialogFragment.FilterSpecification slotsSpecification;
-
-        public Rank getRank() {
-            return rank;
-        }
-
-        public void setRank(Rank rank) {
-            this.rank = rank;
-        }
-
-        public int getSlots() {
-            return slots;
-        }
-
-        public void setSlots(int slots) {
-            this.slots = slots;
-        }
-
-        public ArmorFilterDialogFragment.FilterSpecification getSlotsSpecification() {
-            return slotsSpecification;
-        }
-
-        public void setSlotsSpecification(ArmorFilterDialogFragment.FilterSpecification slotsSpecification) {
-            this.slotsSpecification = slotsSpecification;
-        }
-
-        public boolean armorPassesFilter(Armor armor) {
-            boolean passes = true;
-            if (rank != null) {
-                passes = armor.getRarity() <= rank.getArmorMaximumRarity() && armor.getRarity() >= rank.getArmorMinimumRarity();
-            }
-
-            if (passes && slots != -1) {
-                passes = armor.getNumSlots() >= slots;
-            }
-
-            if (passes && slotsSpecification != null) {
-                passes = slotsSpecification.qualifies(armor.getNumSlots(), slots);
-            }
-
-            return passes;
         }
     }
 }

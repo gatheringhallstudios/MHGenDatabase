@@ -175,6 +175,17 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /**
+     * Get armor for family
+     */
+    fun queryArmorByFamily(id: Long): List<Armor>? {
+        return ArmorCursor(db.rawQuery("""
+            SELECT $armor_columns
+            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            WHERE a.family = ?
+        """, arrayOf(id.toString()))).toList { it.armor }
+    }
+
+    /**
      * Get a specific armor based on hunter type.
      * If "BOTH" is passed, then its equivalent to querying all armor
      */
@@ -186,15 +197,16 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, arrayOf(type.toString())))
     }
 
-    fun queryArmorFamilies() : ArmorFamilyCursor{
+    fun queryArmorFamilies(type: Int) : ArmorFamilyCursor{
         return ArmorFamilyCursor(db.rawQuery("""
-            SELECT af._id,af.name,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
+            SELECT af._id,af.name,af.rarity,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
                 JOIN armor a on a.family=af._id
                 JOIN item_to_skill_tree its on a._id=its.item_id
                 JOIN skill_trees st on st._id=its.skill_tree_id
+            WHERE a.hunter_type=@type OR a.hunter_type=2
             GROUP BY af._id,its.skill_tree_id;
-        """, emptyArray()))
+        """, arrayOf(type.toString())))
     }
 
 }

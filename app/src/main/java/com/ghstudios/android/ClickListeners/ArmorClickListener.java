@@ -31,7 +31,7 @@ public class ArmorClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent i = new Intent(c, ArmorSetDetailPagerActivity.class);
-        i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, id);
+        i.putExtra(ArmorSetDetailPagerActivity.EXTRA_FAMILY_ID, id);
 
         // If we are being called by something else
         if (activity != null) {

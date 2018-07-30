@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/divider1"
+            style="@style/SectionDivider"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/data_row"
+            style="@style/cell_column_row">
+
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/rare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/item_rarity"
+                tools:valueText="6" />
+
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/slots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="Slots"
+                tools:valueText="●●●" />
+
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/defense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/armor_defense"
+                tools:valueText="5~50" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <FrameLayout
+            android:id="@+id/divider2"
+            style="@style/SectionDivider" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/margin_large">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fire Res:"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Water Res:"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ice Res:"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thunder Res:"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dragon Res:"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fire_res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/water_res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/ice_res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/thunder_res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/dragon_res"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/skill_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.ghstudios.android.components.SectionHeaderCell
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/item_skills" />
+
+            <LinearLayout
+                android:id="@+id/skill_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Attack"
+                    app:valueText="1"
+                    tools:visibility="visible" />
+
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Defense"
+                    app:valueText="-1"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/piece_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/armor_pieces"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/armor_pieces_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/recipe_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.ghstudios.android.components.ItemRecipeCell
+            android:id="@+id/recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Button android:id="@+id/select_button"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/asb_action_select"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:elevation="3dp"
+            android:clickable="true"/>
+
+    </LinearLayout>
+</ScrollView>
