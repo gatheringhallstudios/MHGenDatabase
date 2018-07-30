@@ -2,6 +2,7 @@ package com.ghstudios.android
 
 import android.app.Application
 import android.graphics.drawable.Drawable
+import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.Location
 import com.ghstudios.android.data.classes.Monster
 
@@ -28,6 +29,11 @@ object AssetLoader {
     fun loadIconFor(location: Location): Drawable? {
         val path = "icons_location/" + location.fileLocationMini
         return ctx.getAssetDrawable(path)
+    }
+
+    @JvmStatic
+    fun loadIconFor(item: Item): Drawable? {
+        return ctx.getAssetDrawable(item.itemImage)
     }
 
     // todo: add more overloads for "base" objects. Don't add special ones for composite objects.
