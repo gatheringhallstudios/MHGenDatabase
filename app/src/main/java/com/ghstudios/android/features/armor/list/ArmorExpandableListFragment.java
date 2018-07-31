@@ -3,6 +3,7 @@ package com.ghstudios.android.features.armor.list;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -14,6 +15,8 @@ import android.widget.*;
 import android.support.v4.app.FragmentManager;
 import android.view.*;
 
+import com.ghstudios.android.MHApplication;
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.ArmorFamily;
 import com.ghstudios.android.data.classes.Item;
@@ -180,7 +183,6 @@ public class ArmorExpandableListFragment extends Fragment {
                     }
                 }
             }
-
             return v;
         }
 
@@ -202,18 +204,8 @@ public class ArmorExpandableListFragment extends Fragment {
 
             armorTextView.setText(family.getName());
 
-            String cellImage = "icons_armor/icons_body/body" + family.getRarity() + ".png";
-
-            Drawable armorImage = null;
-
-            try {
-                armorImage = Drawable.createFromStream(context.getAssets()
-                        .open(cellImage), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            armorImageView.setImageDrawable(armorImage);
+            armorImageView.setImageResource(MHUtils.getDrawableId(context,"armor_body"));
+            armorImageView.setColorFilter(context.getResources().getIntArray(R.array.rare_colors)[family.getRarity()-1], PorterDuff.Mode.MULTIPLY);
 
             TextView minDef = v.findViewById(R.id.min_defense);
             TextView maxDef = v.findViewById(R.id.max_defense);
@@ -237,15 +229,13 @@ public class ArmorExpandableListFragment extends Fragment {
                 }
             }
 
-
-
             root.setTag(family.getId());
 
             if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                root.setOnClickListener(new ArmorClickListener(context, family.getId(), getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
+                root.setOnClickListener(new ArmorClickListener(context, family.getId(),true, getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
             }
             else {
-                root.setOnClickListener(new ArmorClickListener(context, family.getId()));
+                root.setOnClickListener(new ArmorClickListener(context, family.getId(),true));
             }
 
             return v;

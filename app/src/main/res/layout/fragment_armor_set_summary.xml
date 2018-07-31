@@ -26,13 +26,6 @@
                 tools:valueText="6" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
-                android:id="@+id/slots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:labelText="Slots"
-                tools:valueText="●●●" />
-
-            <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/defense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,7 +160,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelText="@string/armor_pieces"
-            android:visibility="gone"
             tools:visibility="visible" />
 
         <LinearLayout

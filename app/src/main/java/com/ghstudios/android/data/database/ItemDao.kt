@@ -5,10 +5,7 @@ import com.ghstudios.android.AppSettings
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Item
-import com.ghstudios.android.data.cursors.ArmorCursor
-import com.ghstudios.android.data.cursors.ArmorFamilyCursor
-import com.ghstudios.android.data.cursors.CombiningCursor
-import com.ghstudios.android.data.cursors.ItemCursor
+import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.firstOrNull
@@ -207,6 +204,23 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE a.hunter_type=@type OR a.hunter_type=2
             GROUP BY af._id,its.skill_tree_id;
         """, arrayOf(type.toString())))
+    }
+
+    fun queryComponentsByArmorFamily(family: Int):ComponentCursor{
+        return ComponentCursor(db.rawQuery("""
+            SELECT c._id,SUM(c.quantity) AS quantity,c.type,
+                   c.created_item_id,cr.name AS crname,cr.type AS crtype,
+                        cr.rarity AS crrarity,cr.icon_name AS cricon_name,cr.sub_type AS crsub_type,
+                   c.component_item_id,co.name AS coname,co.type AS cotype,
+                        co.rarity AS corarity,co.icon_name AS coicon_name,co.sub_type AS cosub_type
+            FROM armor a
+                JOIN components c ON c.created_item_id = a._id
+                JOIN items cr ON cr._id=a._id
+                JOIN items co ON co._id=c.component_item_id
+            WHERE a.family=?
+            GROUP BY c.component_item_id
+            ORDER BY quantity DESC
+        """,arrayOf(family.toString())))
     }
 
 }

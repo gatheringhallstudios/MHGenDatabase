@@ -7,11 +7,13 @@ import android.arch.lifecycle.ViewModelProviders
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.loggedThread
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.toList
 
 class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
@@ -22,6 +24,7 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
 
     var armors = MutableLiveData<List<Armor>>()
     var skills = MutableLiveData<HashMap<Long,List<ItemToSkillTree>>>()
+    var components = MutableLiveData<List<Component>>()
 
     fun initByFamily(familyId: Long): List<ArmorMetadata> {
         if (this.familyId == familyId) {
@@ -49,6 +52,8 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
             armors.postValue(dataManager.getArmorByFamily(metadata.first().family.toLong()))
             //Get Skills
             skills.postValue(dataManager.queryItemToSkillTreeArrayByArmorFamily(metadata.first().family.toLong()))
+            //Get Components
+            components.postValue(dataManager.queryComponentCreateByArmorFamily(metadata.first().family).toList { it.component })
         }
     }
 }
@@ -74,7 +79,8 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
             false -> viewModel.initByArmor(armorId)
         }
 
-        //TODO: Add summary if > 1
+        title = metadata.first().familyName
+
         if(metadata.size > 1){
             tabs.addTab(getString(R.string.summary)){ ArmorSetSummaryFragment() }
         }
