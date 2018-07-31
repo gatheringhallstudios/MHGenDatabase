@@ -1,12 +1,5 @@
 package com.ghstudios.android.data.classes
 
-// todo: move elsewhere
-enum class MonsterSize {
-    SMALL,
-    LARGE,
-    DEVIANT
-}
-
 /*
  * Class for Monster
  */
@@ -16,7 +9,9 @@ class Monster {
     var id: Long = -1                // Monster id
     var name = ""            // Monster name
     var jpnName = ""        // Japanese name
-    var monsterClass = 0    // Large / small
+
+    var monsterClass = MonsterClass.LARGE
+
     var fileLocation = ""    // File location for image
 
     /**
@@ -24,10 +19,4 @@ class Monster {
      * flags are hasLR/hasHR/hasG
      */
     var metadata = 0
-
-    val monsterSize get() = when(monsterClass) {
-        0 -> MonsterSize.LARGE
-        1 -> MonsterSize.SMALL
-        else -> MonsterSize.DEVIANT
-    }
 }

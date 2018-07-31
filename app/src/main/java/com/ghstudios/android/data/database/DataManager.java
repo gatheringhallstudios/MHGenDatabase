@@ -16,7 +16,7 @@ import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
-import com.ghstudios.android.data.classes.MonsterSize;
+import com.ghstudios.android.data.classes.MonsterClass;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.classes.PalicoArmor;
@@ -379,18 +379,25 @@ public class DataManager {
         return metadataDao.queryMonsterMetadata(id);
     }
 
+    /**
+     * Returns a cursor that iterates over all monsters of a particular type
+     */
+    public MonsterCursor queryMonsters(MonsterClass monsterClass) {
+        return monsterDao.queryMonsters(monsterClass);
+    }
+
     public MonsterCursor queryMonsters() {
         return monsterDao.queryMonsters();
     }
     
     /* Get a Cursor that has a list of all small Monster */    
     public MonsterCursor querySmallMonsters() {
-        return monsterDao.queryMonsters(MonsterSize.SMALL);
+        return monsterDao.queryMonsters(MonsterClass.SMALL);
     }
 
     /* Get a Cursor that has a list of all large Monster */    
     public MonsterCursor queryLargeMonsters() {
-        return monsterDao.queryMonsters(MonsterSize.LARGE);
+        return monsterDao.queryMonsters(MonsterClass.LARGE);
     }
 
     public MonsterCursor queryMonstersSearch(String searchTerm) {

@@ -2,7 +2,8 @@ package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.data.classes.Monster
-import com.ghstudios.android.data.classes.MonsterSize
+import com.ghstudios.android.data.classes.MonsterClass
+import com.ghstudios.android.data.classes.MonsterClassConverter
 import com.ghstudios.android.data.cursors.MonsterCursor
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
@@ -33,14 +34,14 @@ class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /**
-     * Get all small monsters
+     * Get all monsters of a particular size. If null, returns all monsters
      */
-    fun queryMonsters(size: MonsterSize): MonsterCursor {
-        val monsterClass = when(size) {
-            MonsterSize.DEVIANT -> 2
-            MonsterSize.SMALL -> 1
-            MonsterSize.LARGE -> 0
+    fun queryMonsters(size: MonsterClass?): MonsterCursor {
+        if (size == null) {
+            return queryMonsters()
         }
+
+        val monsterClass = MonsterClassConverter.serialize(size)
 
         return MonsterCursor(db.rawQuery("""
             SELECT $monster_columns

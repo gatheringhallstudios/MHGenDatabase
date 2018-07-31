@@ -17,6 +17,18 @@
             tools:iconSrc="@drawable/drawer_items"
             tools:titleText="Barrel Bomb L+"/>
 
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_medium"
+            style="@style/text_medium"
+            android:textColor="@color/weapon_property_color"
+            tools:text="Upgraded Large Barrel Bomb. Effective against large monsters."/>
+
         <FrameLayout style="@style/SectionDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
@@ -53,54 +65,29 @@
         </com.google.android.flexbox.FlexboxLayout>
 
 
-        <FrameLayout
-            style="@style/SectionDivider"
-            android:layout_marginBottom="@dimen/margin_large"/>
+        <FrameLayout style="@style/SectionDivider"/>
 
+        <!-- Combination section, make sure to make it visible if items exist -->
         <LinearLayout
+            android:id="@+id/combination_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_small_secondary"
-                android:text="@string/item_description"/>
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_medium"
-                android:textColor="@color/weapon_property_color"
-                tools:text="Upgraded Large Barrel Bomb. Effective against large monsters."/>
 
-
-            <!-- Combination section, make sure to make it visible if items exist -->
-            <LinearLayout
-                android:id="@+id/combination_section"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <com.ghstudios.android.components.SectionHeaderCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/margin_medium"
-
-                android:visibility="gone"
-                tools:visibility="visible">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/text_small_secondary"
-                    android:text="@string/item_combinations" />
-                <android.support.v7.widget.RecyclerView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/craft_combinations"
-                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
+                app:labelText="@string/item_combinations"/>
+            <android.support.v7.widget.RecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/craft_combinations"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
-
     </LinearLayout>
+
 </ScrollView>

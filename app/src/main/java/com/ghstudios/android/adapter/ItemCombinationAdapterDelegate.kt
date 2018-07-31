@@ -8,105 +8,60 @@ import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.BasicItemClickListener
-import com.ghstudios.android.MHUtils
+import com.ghstudios.android.adapter.common.SimpleListDelegate
+import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.mhgendatabase.R
-import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
+import kotlinx.android.synthetic.main.fragment_combining_listitem.*
 
 /**
  * An adapter delegate that can be added to any adapter delegate adapter.
  * Renders item combination information
  */
-class ItemCombinationAdapterDelegate: AbsListItemAdapterDelegate<Combining, Any, ItemCombinationAdapterDelegate.CombinationViewHolder>() {
-    /**
-     * Enables whether to show the left and right side padding. Use if the list is part of another element.
-     * Set this before adding items to the adapter. Defaults to true.
-     */
-    var showSideMargins = true
-
+class ItemCombinationAdapterDelegate: SimpleListDelegate<Combining>() {
     /**
      * Sets whether the result item performs navigation. Defaults to true.
      * Use before adding items to the adapter
      */
     var resultItemNavigationEnabled = true
 
-    override fun isForViewType(item: Any, items: List<Any>, position: Int): Boolean {
-        return item is Combining
-    }
+    override fun isForViewType(obj: Any) = obj is Combining
 
-    override fun onCreateViewHolder(parent: ViewGroup): CombinationViewHolder {
+    override fun onCreateView(parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.fragment_combining_listitem, parent, false)
-
-        if (!showSideMargins) {
-            // note: left/right is listed as padding.
-            // top/bottom is margins and is not affected by this function
-            view.setPadding(0, 0, 0, 0)
-        }
-
-        return CombinationViewHolder(view)
+        return inflater.inflate(R.layout.fragment_combining_listitem, parent, false)
     }
 
-    override fun onBindViewHolder(combination: Combining, holder: CombinationViewHolder, payloads: MutableList<Any>) {
-        holder.bindItem(combination)
-    }
+    override fun bindView(viewHolder: SimpleViewHolder, data: Combining) {
+        val context = viewHolder.context
 
-    inner class CombinationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.item_text1) lateinit var itemtv1: TextView
-        @BindView(R.id.item_text2) lateinit var itemtv2: TextView
-        @BindView(R.id.item_text3) lateinit var itemtvResult: TextView
+        viewHolder.result_icon.setImageDrawable(AssetLoader.loadIconFor(data.createdItem))
+        viewHolder.item1_icon.setImageDrawable(AssetLoader.loadIconFor(data.item1))
+        viewHolder.item2_icon.setImageDrawable(AssetLoader.loadIconFor(data.item2))
 
-        @BindView(R.id.item_img1) lateinit var itemiv1: ImageView
-        @BindView(R.id.item_img2) lateinit var itemiv2: ImageView
-        @BindView(R.id.item_img3) lateinit var itemivResult: ImageView
+        viewHolder.result_name.text = data.createdItem.name
+        viewHolder.item1_name.text = data.item1.name
+        viewHolder.item2_name.text = data.item2.name
 
-        @BindView(R.id.item1) lateinit var itemlayout1 : ViewGroup
-        @BindView(R.id.item2) lateinit var itemlayout2: ViewGroup
-        @BindView(R.id.item3) lateinit var itemlayoutResult: ViewGroup
+        viewHolder.percentage.text = "${data.percentage}%"
 
-        @BindView(R.id.percentage) lateinit var percenttv : TextView
-        @BindView(R.id.amt) lateinit var amttv : TextView
-
-        init {
-            ButterKnife.bind(this, itemView)
+        val min = data.amountMadeMin
+        val max = data.amountMadeMax
+        viewHolder.yield_amount.text = "x" + when (min == max) {
+            true -> min.toString()
+            false -> "$min-$max"
         }
 
-        fun bindItem(item : Combining) {
-            val context = itemView.context
+        viewHolder.item1.setOnClickListener(BasicItemClickListener(context, data.item1.id))
+        viewHolder.item2.setOnClickListener(BasicItemClickListener(context, data.item2.id))
 
-            val cellImage1 = "icons_items/" + item.item1.fileLocation
-            val cellImage2 = "icons_items/" + item.item2.fileLocation
-            val cellImage3 = "icons_items/" + item.createdItem.fileLocation
-
-            val i1 = MHUtils.loadAssetDrawable(context, cellImage1)
-            val i2 = MHUtils.loadAssetDrawable(context, cellImage2)
-            val i3 = MHUtils.loadAssetDrawable(context, cellImage3)
-
-            itemiv1.setImageDrawable(i1)
-            itemiv2.setImageDrawable(i2)
-            itemivResult.setImageDrawable(i3)
-
-            itemtv1.text = item.item1.name
-            itemtv2.text = item.item2.name
-            itemtvResult.text = item.createdItem.name
-
-            val percentage = "${item.percentage}%"
-            percenttv.text = percentage
-
-            val min = item.amountMadeMin
-            val max = item.amountMadeMax
-            amttv.text = when (min == max) {
-                true -> min.toString()
-                false -> "$min-$max"
-            }
-
-            itemlayout1.setOnClickListener(BasicItemClickListener(context, item.item1.id))
-            itemlayout2.setOnClickListener(BasicItemClickListener(context, item.item2.id))
-
-            if (resultItemNavigationEnabled) {
-                itemlayoutResult.setOnClickListener(BasicItemClickListener(context, item.createdItem.id))
-            }
+        if (resultItemNavigationEnabled) {
+            viewHolder.itemView.setOnClickListener(BasicItemClickListener(context, data.createdItem.id))
+        } else {
+            // disable selectable item background
+            viewHolder.itemView.setBackgroundResource(0)
         }
     }
 }

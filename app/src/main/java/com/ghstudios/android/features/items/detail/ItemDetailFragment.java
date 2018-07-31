@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
-import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate;
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter;
 import com.ghstudios.android.components.ColumnLabelTextCell;
@@ -73,9 +73,8 @@ public class ItemDetailFragment extends Fragment {
 
             combinationSection.setVisibility(View.VISIBLE);
 
-            // DO NOT PUT ADAPTER AS AN INSTANCE VARIABLE (or it'll leak)
+            // DO NOT PUT ADAPTER AS AN INSTANCE VARIABLE OF THE FRAGMENT (or it'll leak)
             ItemCombinationAdapterDelegate delegate = new ItemCombinationAdapterDelegate();
-            delegate.setShowSideMargins(false);
             delegate.setResultItemNavigationEnabled(false);
             BasicListDelegationAdapter<Object> adapter = new BasicListDelegationAdapter<>(delegate);
             adapter.setItems(items);
@@ -86,11 +85,13 @@ public class ItemDetailFragment extends Fragment {
 
     private void populateItem(Item mItem) {
         // Set title icon and image
-        Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), mItem.getItemImage());
+        Drawable itemImage = AssetLoader.loadIconFor(mItem);
         titleCell.setIconDrawable(itemImage);
         titleCell.setTitleText(mItem.getName());
         titleCell.setAltTitleText(mItem.getJpnName());
         titleCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+
+        descriptionTextView.setText(mItem.getDescription());
 
         String cellSell = "" + mItem.getSell() + "z";
         String cellBuy = "" + mItem.getBuy() + "z";
@@ -106,8 +107,5 @@ public class ItemDetailFragment extends Fragment {
         carryCell.setValueText(String.valueOf(mItem.getCarryCapacity()));
         buyCell.setValueText(cellBuy);
         sellCell.setValueText(cellSell);
-
-        descriptionTextView.setText(mItem.getDescription());
     }
-
 }
