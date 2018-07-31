@@ -607,6 +607,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return ComponentCursor(wrapJoinHelper(builderComponent(), qh))
     }
 
+
     /*
      * Get all components for a component item
      */

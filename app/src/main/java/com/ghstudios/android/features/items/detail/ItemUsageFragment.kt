@@ -7,15 +7,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-
-import com.ghstudios.android.data.classes.Component
-import com.ghstudios.android.mhgendatabase.R
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.MHUtils
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
+import com.ghstudios.android.data.classes.Component
+import com.ghstudios.android.mhgendatabase.R
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 
 /**
@@ -23,7 +24,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
  */
 class ItemUsageFragment : RecyclerViewFragment() {
     companion object {
-        private val ARG_ITEM_ID = "COMPONENT_ID"
+        private const val ARG_ITEM_ID = "COMPONENT_ID"
 
         @JvmStatic
         fun newInstance(id: Long): ItemUsageFragment {
@@ -81,7 +82,7 @@ class UsageAdapterDelegate : AbsListItemAdapterDelegate<Component, Any, UsageAda
             val amtTextView = itemView.findViewById<TextView>(R.id.amt)
             val typeTextView = itemView.findViewById<TextView>(R.id.type)
 
-            val created = component!!.created
+            val created = component.created
             val createdId = created.id
 
             val nameText = created.name

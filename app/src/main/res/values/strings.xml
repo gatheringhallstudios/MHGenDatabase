@@ -299,6 +299,8 @@
     <string name="quest_detail_description">Description</string>
     <string name="unstable">Unstable</string>
     <string name="hyper">Hyper</string>
+    <string name="armor_pieces">Armor Pieces</string>
+    <string name="summary">summary</string>
 
     <string-array name="talisman_names">
         <item>Pawn,Talisman-White.png</item>

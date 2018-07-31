@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +24,6 @@ import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
-import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
@@ -33,9 +31,9 @@ import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
+import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
 import java.util.List;
 
@@ -97,8 +95,8 @@ public class ArmorDetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_armor_detail,
                 container, false);
 
@@ -114,15 +112,12 @@ public class ArmorDetailFragment extends Fragment {
         if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
             Button selectButton = view.findViewById(R.id.select_button);
             selectButton.setVisibility(View.VISIBLE);
-            selectButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    long armorId = getArguments().getLong(ARG_ARMOR_ID);
-                    Intent intent = getActivity().getIntent();
-                    intent.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, armorId);
-                    getActivity().setResult(Activity.RESULT_OK, intent);
-                    getActivity().finish();
-                }
+            selectButton.setOnClickListener(v -> {
+                long armorId = getArguments().getLong(ARG_ARMOR_ID);
+                Intent intent = getActivity().getIntent();
+                intent.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, armorId);
+                getActivity().setResult(Activity.RESULT_OK, intent);
+                getActivity().finish();
             });
         }
         
@@ -141,8 +136,6 @@ public class ArmorDetailFragment extends Fragment {
         if (armor == null) return;
 
         this.armor = armor;
-
-        getActivity().setTitle(armor.getName());
 
         Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), armor.getItemImage());
 

@@ -90,6 +90,8 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
                         name = it.getString("name") ?: "",
                         slot = it.getString("slot") ?: "",
                         rarity = it.getInt("rarity"),
+                        family = it.getInt("family"),
+                        familyName = it.getString("fname") ?: "",
                         icon_name = it.getString("icon_name") ?: ""
                 )
             }
@@ -98,10 +100,11 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
 
     fun queryArmorSetMetadataByFamily(family: Long): List<ArmorMetadata> {
         val cursor = db.rawQuery("""
-            SELECT a._id, a.slot, i.$col_name name, i.icon_name, i.rarity
+            SELECT a._id, a.slot, i.$col_name name, i.icon_name,a.family, i.rarity, af.name AS fname
             FROM armor a
                 JOIN items i
                     ON i._id = a._id
+                JOIN armor_families af ON af._id=a.family
             WHERE family = ?
         """, arrayOf(family.toString()))
 
@@ -110,10 +113,11 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
 
     fun queryArmorSetMetadataByArmor(armorId: Long): List<ArmorMetadata> {
         val cursor = db.rawQuery("""
-            SELECT a._id, a.slot, i.name name, i.icon_name, i.rarity
+            SELECT a._id, a.slot, i.name name, i.icon_name,a.family, i.rarity, af.name AS fname
             FROM armor a
                 JOIN items i
                     ON i._id = a._id
+                JOIN armor_families af ON af._id=a.family
             WHERE family = (SELECT family FROM armor WHERE _id = ?)
         """, arrayOf(armorId.toString()))
 

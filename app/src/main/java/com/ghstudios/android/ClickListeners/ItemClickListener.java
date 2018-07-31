@@ -26,7 +26,7 @@ public class ItemClickListener implements View.OnClickListener {
             case "Weapon":
                 return new WeaponClickListener(c, id);
             case "Armor":
-                return new ArmorClickListener(c, id);
+                return new ArmorClickListener(c, id,false);
             case "Decoration":
                 return new DecorationClickListener(c, id);
             case "Materials":

@@ -5,5 +5,7 @@ data class ArmorMetadata(
     val name: String,
     val slot: String,
     val rarity: Int,
+    val family: Int,
+    val familyName: String,
     val icon_name: String
 )

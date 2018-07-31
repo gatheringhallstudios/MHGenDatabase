@@ -180,7 +180,7 @@ public class SkillTreeArmorFragment extends ListFragment implements
 			skillItemImageView.setImageDrawable(i);
 
 			root.setTag(skill.getItem().getId());
-            root.setOnClickListener(new ArmorClickListener(context, skill.getItem().getId()));
+            root.setOnClickListener(new ArmorClickListener(context, skill.getItem().getId(),false));
 		}
 	}
 

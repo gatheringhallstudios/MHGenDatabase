@@ -107,4 +107,17 @@ object MHUtils {
     @JvmStatic fun <T> createLiveData(builder: Builder<T>): LiveData<T> {
         return createLiveData { builder.build() }
     }
+
+    private val hashMap = HashMap<String,Int>()
+    /**
+     * Returns the resource Id for a drawable in the res/drawable by String. Caches results in a
+     * dictionary for future lookups.
+     */
+    @JvmStatic fun getDrawableId(c : Context, s : String) : Int{
+        if(hashMap.containsKey(s)) return hashMap[s]!!
+        val res = c.resources.getIdentifier("drawable/" + s.toLowerCase(),null,c.packageName)
+        hashMap[s.toLowerCase()] = res
+        return res
+    }
+
 }

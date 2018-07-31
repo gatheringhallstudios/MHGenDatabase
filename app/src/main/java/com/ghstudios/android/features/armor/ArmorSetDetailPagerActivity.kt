@@ -2,11 +2,18 @@ package com.ghstudios.android.features.armor
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModelProviders
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
+import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.Component
+import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.loggedThread
+import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.toList
 
 class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
@@ -15,12 +22,17 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
     private var armorId = -1L
     lateinit var metadata: List<ArmorMetadata>
 
+    var armors = MutableLiveData<List<Armor>>()
+    var skills = MutableLiveData<HashMap<Long,List<ItemToSkillTree>>>()
+    var components = MutableLiveData<List<Component>>()
+
     fun initByFamily(familyId: Long): List<ArmorMetadata> {
         if (this.familyId == familyId) {
             return metadata
         }
 
         metadata = dataManager.getArmorSetMetadataByFamily(familyId)
+        loadArmorData()
         return metadata
     }
 
@@ -30,7 +42,19 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
         }
 
         metadata = dataManager.getArmorSetMetadataByArmor(armorId)
+        loadArmorData()
         return metadata
+    }
+
+    private fun loadArmorData(){
+        loggedThread("ArmorFamily Data") {
+            //Get Armors
+            armors.postValue(dataManager.getArmorByFamily(metadata.first().family.toLong()))
+            //Get Skills
+            skills.postValue(dataManager.queryItemToSkillTreeArrayByArmorFamily(metadata.first().family.toLong()))
+            //Get Components
+            components.postValue(dataManager.queryComponentCreateByArmorFamily(metadata.first().family).toList { it.component })
+        }
     }
 }
 
@@ -55,15 +79,20 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
             false -> viewModel.initByArmor(armorId)
         }
 
+        title = metadata.first().familyName
+
+        if(metadata.size > 1){
+            tabs.addTab(getString(R.string.summary)){ ArmorSetSummaryFragment() }
+        }
+
         for ((idx, armorData) in metadata.withIndex()) {
             tabs.addTab(armorData.slot) {
                 ArmorDetailFragment.newInstance(armorData.id)
             }
 
             // If this is the armor we came here for, set it as the default tab
-            // todo: if adding a set detail fragment, add +1
             if (armorData.id == armorId) {
-                tabs.setDefaultItem(idx)
+                tabs.setDefaultItem(idx + if(metadata.size>1) 1 else 0)
             }
         }
     }

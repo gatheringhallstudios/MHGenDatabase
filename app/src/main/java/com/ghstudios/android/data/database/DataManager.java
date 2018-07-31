@@ -8,6 +8,7 @@ import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.data.classes.ArmorFamily;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
@@ -33,6 +34,7 @@ import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.data.cursors.ASBSessionCursor;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.cursors.ArmorCursor;
+import com.ghstudios.android.data.cursors.ArmorFamilyCursor;
 import com.ghstudios.android.data.cursors.CombiningCursor;
 import com.ghstudios.android.data.cursors.ComponentCursor;
 import com.ghstudios.android.data.cursors.DecorationCursor;
@@ -67,6 +69,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 
 /*
  * Singleton class
@@ -84,6 +88,7 @@ public class DataManager {
     private ItemDao itemDao;
     private HuntingRewardsDao huntingRewardsDao;
     private GatheringDao gatheringDao;
+    private SkillDao skillDao;
     
     /* Singleton design */
     private DataManager(Context appContext) {
@@ -94,6 +99,7 @@ public class DataManager {
         itemDao = new ItemDao(mHelper);
         huntingRewardsDao = new HuntingRewardsDao(mHelper);
         gatheringDao = new GatheringDao(mHelper);
+        skillDao = new SkillDao(mHelper);
     }
     
     public static DataManager get(Context c) {
@@ -117,19 +123,38 @@ public class DataManager {
     }
 
     /* Get a Cursor that has a list of all Armors */
-    public ArmorCursor queryArmor() {
-        return itemDao.queryArmor();
-    }
+    public ArmorCursor queryArmor() { return itemDao.queryArmor(); }
     
     /* Get a specific Armor */
-    public Armor getArmor(long id) {
-        return itemDao.queryArmor(id);
-    }
+    public Armor getArmor(long id) { return itemDao.queryArmor(id); }
+
+    public List<Armor> getArmorByFamily(long id){ return itemDao.queryArmorByFamily(id); }
     
     /* Get an array of Armor based on hunter type */
     public List<Armor> queryArmorArrayType(int type) {
         ArmorCursor cursor = itemDao.queryArmorType(type);
         return MHUtils.cursorToList(cursor, ArmorCursor::getArmor);
+    }
+
+    public List<ArmorFamily> queryArmorFamilies(int type){
+        ArmorFamilyCursor cursor = itemDao.queryArmorFamilies(type);
+
+        ArrayList<ArmorFamily> results = new ArrayList();
+
+        cursor.moveToFirst();
+        ArmorFamily family = cursor.getArmor();
+        results.add(family);
+        while (cursor.moveToNext()) {
+            ArmorFamily newFamily = cursor.getArmor();
+            if(family.getId() == newFamily.getId())
+            {
+                family.getSkills().add(newFamily.getSkills().get(0));
+            }else{
+                family = newFamily;
+                results.add(family);
+            }
+        }
+        return results;
     }
     
 /********************************* COMBINING QUERIES ******************************************/
@@ -146,6 +171,10 @@ public class DataManager {
     /* Get a Cursor that has a list of Components based on the created Item */
     public ComponentCursor queryComponentCreated(long id) {
         return mHelper.queryComponentCreated(id);
+    }
+
+    public ComponentCursor queryComponentCreateByArmorFamily(int familyId){
+        return itemDao.queryComponentsByArmorFamily(familyId);
     }
 
     /* Get a Cursor that has a list of Components based on the component Item */
@@ -293,6 +322,22 @@ public class DataManager {
         }
         cursor.close();
         return itst;
+    }
+
+    /** Get an array of ItemToSkillTree based on Item */
+    public HashMap<Long,List<ItemToSkillTree>> queryItemToSkillTreeArrayByArmorFamily(long id) {
+        List<ItemToSkillTree> skills = skillDao.queryItemToSkillTreeForArmorFamily(id);
+        HashMap<Long,List<ItemToSkillTree>> results = new HashMap<>();
+
+        for(ItemToSkillTree item:skills){
+            if(results.containsKey(item.getItem().getId())){
+                results.get(item.getItem().getId()).add(item);
+            }else{
+                results.put(item.getItem().getId(),new ArrayList<>());
+                results.get(item.getItem().getId()).add(item);
+            }
+        }
+        return results;
     }
 
 /********************************* ITEM TO MATERIAL QUERIES ******************************************/

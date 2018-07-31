@@ -44,11 +44,25 @@
     <color name="rare_3">#FBD646</color>
     <color name="rare_4">#F287A2</color>
     <color name="rare_5">#57D284</color>
-    <color name="rare_6">#7F6DFF</color>
+    <color name="rare_6">#90b0f8</color>
     <color name="rare_7">#FF3E56</color>
     <color name="rare_8">#9ACCFF</color>
     <color name="rare_9">#FF9A53</color>
     <color name="rare_10">#FF33FF</color>
-    <color name="rare_11">#4B0082</color>
+    <color name="rare_11">#5834b8</color>
+
+    <array name="rare_colors">
+        <item>#FFFFFF</item>
+        <item>@color/rare_2</item>
+        <item>@color/rare_3</item>
+        <item>@color/rare_4</item>
+        <item>@color/rare_5</item>
+        <item>@color/rare_6</item>
+        <item>@color/rare_7</item>
+        <item>@color/rare_8</item>
+        <item>@color/rare_9</item>
+        <item>@color/rare_10</item>
+        <item>@color/rare_11</item>
+    </array>
 
 </resources>
