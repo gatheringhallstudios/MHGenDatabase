@@ -124,9 +124,7 @@ public class DecorationDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        Drawable image = MHUtils.loadAssetDrawable(getContext(), decoration.getItemImage());
-
-        titleView.setIconDrawable(image);
+        titleView.setIcon(decoration);
         titleView.setTitleText(decorationName);
         titleView.setAltTitleText(decoration.getJpnName());
         titleView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
@@ -163,9 +161,7 @@ public class DecorationDetailFragment extends Fragment {
 
             for (Component component : recipe) {
                 Item item = component.getComponent();
-                Drawable itemIcon = MHUtils.loadAssetDrawable(getContext(), item.getItemImage());
-
-                View itemCell = cell.addItem(itemIcon, item.getName(), component.getQuantity());
+                View itemCell = cell.addItem(item, item.getName(), component.getQuantity());
                 itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
             }
 

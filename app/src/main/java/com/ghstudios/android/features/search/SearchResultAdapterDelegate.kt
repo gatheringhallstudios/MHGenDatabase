@@ -8,27 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.ghstudios.android.*
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.MonsterClickListener
 import com.ghstudios.android.ClickListeners.QuestClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.data.classes.*
-import com.ghstudios.android.getAssetDrawable
-import com.ghstudios.android.getDrawableCompat
 import com.ghstudios.android.mhgendatabase.R
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 
 
 /**
  * A simple handler class used to create mappings for the Universal Search results.
- * Override EITHER getImagePath or getImageResource so that getImage() will handle the rest.
+ * Handler should override getImageResource or the T data object should implement the ITintedIcon
+ * interface so that getImage() will handle the rest.
  * @param <T>
  */
 abstract class ResultHandler<in T> {
-    open fun getImagePath(obj: T): String? {
-        return null
-    }
-
     open fun getImageResource(obj: T): Int {
         return -1
     }
@@ -37,31 +33,24 @@ abstract class ResultHandler<in T> {
     abstract fun getType(obj: T): String
     abstract fun createListener(ctx: Context, obj: T): View.OnClickListener
 
-    fun getImage(obj: T, ctx: Context): Drawable? {
-        val imagePath = this.getImagePath(obj)
-        if (imagePath != null) {
-            return ctx.getAssetDrawable(imagePath)
-        } else {
-            return ctx.getDrawableCompat(this.getImageResource(obj))
+    fun setImage(imgView:ImageView, obj: T) {
+        val resource = this.getImageResource(obj)
+        if(resource == -1){
+            if(obj is ITintedIcon)
+                AssetLoader.setIcon(imgView,obj)
+        }
+        else {
+            imgView.setImageResource(getImageResource(obj))
+            imgView.setColorFilter(0xFFFFFF)
         }
     }
 }
 
 private val handlers = mapOf(
         Monster::class.java to object : ResultHandler<Monster>() {
-            override fun getImagePath(obj: Monster): String? {
-                return "icons_monster/" + obj.fileLocation
-            }
-
             override fun getName(obj: Monster) = obj.name
-
-            override fun getType(obj: Monster): String {
-                return "Monster"
-            }
-
-            override fun createListener(ctx: Context, obj: Monster): View.OnClickListener {
-                return MonsterClickListener(ctx, obj.id)
-            }
+            override fun getType(obj: Monster) = "Monster"
+            override fun createListener(ctx: Context, obj: Monster) = MonsterClickListener(ctx, obj.id)
         },
 
         Quest::class.java to object : ResultHandler<Quest>() {
@@ -75,45 +64,21 @@ private val handlers = mapOf(
             }
 
             override fun getName(obj: Quest) = obj.name
-
-            override fun getType(obj: Quest): String {
-                return "Quest"
-            }
-
-            override fun createListener(ctx: Context, obj: Quest): View.OnClickListener {
-                return QuestClickListener(ctx, obj.id)
-            }
+            override fun getType(obj: Quest) = "Quest"
+            override fun createListener(ctx: Context, obj: Quest) = QuestClickListener(ctx, obj.id)
         },
 
         SkillTree::class.java to object : ResultHandler<SkillTree>() {
-            override fun getImagePath(skill: SkillTree) = "icons_items/Bomb-White.png"
+            override fun getImageResource(obj: SkillTree) = R.drawable.icon_bomb
             override fun getName(obj: SkillTree) = obj.name
-
-            override fun getType(obj: SkillTree): String {
-                return "Skill Tree"
-            }
-
-            override fun createListener(ctx: Context, obj: SkillTree): View.OnClickListener {
-                return SkillClickListener(ctx, obj.id)
-            }
+            override fun getType(obj: SkillTree) = "Skill Tree"
+            override fun createListener(ctx: Context, obj: SkillTree) = SkillClickListener(ctx, obj.id)
         },
 
         Item::class.java to  object : ResultHandler<Item>() {
-            override fun getImagePath(item: Item) =item.itemImage
             override fun getName(obj: Item) = obj.name
-
-            override fun getType(obj: Item): String {
-                var type: String? = obj.type
-                if (type == null || type == "") {
-                    // todo: localize, but item types should be localized too
-                    type = "Item"
-                }
-                return type
-            }
-
-            override fun createListener(ctx: Context, obj: Item): View.OnClickListener {
-                return ItemClickListener(ctx, obj)
-            }
+            override fun getType(obj: Item) = obj.type ?: "Item"
+            override fun createListener(ctx: Context, obj: Item) = ItemClickListener(ctx, obj)
         }
 )
 
@@ -135,9 +100,9 @@ class SearchResultAdapterDelegate: AbsListItemAdapterDelegate<Any, Any, SearchRe
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.findViewById<ImageView>(R.id.result_image)
-        val nameView = itemView.findViewById<TextView>(R.id.result_name)
-        val typeView = itemView.findViewById<TextView>(R.id.result_type)
+        private val imageView = itemView.findViewById<ImageView>(R.id.result_image)
+        private val nameView = itemView.findViewById<TextView>(R.id.result_name)
+        private val typeView = itemView.findViewById<TextView>(R.id.result_type)
 
         fun bindView(result: Any) {
             val originalClass = result!!.javaClass
@@ -150,9 +115,8 @@ class SearchResultAdapterDelegate: AbsListItemAdapterDelegate<Any, Any, SearchRe
 
             val handler = handlers[originalClass] as ResultHandler<Any>
 
-            val image = handler.getImage(result, itemView.context)
+            handler.setImage(imageView, result)
 
-            imageView.setImageDrawable(image)
             nameView.text = handler.getName(result)
             typeView.text = handler.getType(result)
 

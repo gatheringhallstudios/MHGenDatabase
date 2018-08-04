@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.AssetRegistry;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.cursors.PalicoWeaponCursor;
@@ -63,8 +64,10 @@ public class PalicoWeaponListFragment extends ListFragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        PalicoWeaponCursorAdapter adapter = new PalicoWeaponCursorAdapter(getActivity(), cursor);
-        setListAdapter(adapter);
+        if(getListAdapter() == null) {
+            PalicoWeaponCursorAdapter adapter = new PalicoWeaponCursorAdapter(getActivity(), cursor);
+            setListAdapter(adapter);
+        }
     }
 
     @Override
@@ -93,7 +96,6 @@ public class PalicoWeaponListFragment extends ListFragment implements
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             PalicoWeapon wep = _cursor.getWeapon();
-            AssetManager manager = context.getAssets();
 
             // Set up the text view
             TextView weaponNameTextView = view.findViewById(R.id.name_text);
@@ -127,21 +129,9 @@ public class PalicoWeaponListFragment extends ListFragment implements
             LinearLayout  itemLayout = view.findViewById(R.id.clickable_layout);
 
             String cellText = wep.getItem().getName();
-            String cellImage = "icons_weapons/" + wep.getItem().getFileLocation();
-
             weaponNameTextView.setText(cellText);
 
-            // Read a Bitmap from Assets
-            try {
-
-                InputStream open = manager.open(cellImage);
-                Bitmap bitmap = BitmapFactory.decodeStream(open);
-                // Assign the bitmap to an ImageView in this layout
-                monsterImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-                monsterImage.setImageResource(android.R.color.transparent);
-            }
+            AssetLoader.setIcon(monsterImage,wep.getItem());
 
             att_melee.setText(Integer.toString(wep.getAttackMelee()));
             att_ranged.setText(Integer.toString(wep.getAttackRanged()));

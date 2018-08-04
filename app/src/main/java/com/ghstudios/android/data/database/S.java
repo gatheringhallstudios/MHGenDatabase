@@ -82,6 +82,7 @@ public class S {
 	public static final String COLUMN_ITEMS_SELL = "sell";
 	public static final String COLUMN_ITEMS_DESCRIPTION = "description";
 	public static final String COLUMN_ITEMS_ICON_NAME = "icon_name";
+	public static final String COLUMN_ITEMS_ICON_COLOR = "icon_color";
 	public static final String COLUMN_ITEMS_ACCOUNT = "account";
 	
 	// Item to Skill Tree

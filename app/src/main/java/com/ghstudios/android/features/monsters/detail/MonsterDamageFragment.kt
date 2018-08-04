@@ -70,12 +70,8 @@ class MonsterDamageFragment : Fragment() {
 
         viewModel.monsterData.observe(this, Observer { monster ->
             if (monster == null) return@Observer
-
-            val cellImage = "icons_monster/" + monster.fileLocation
-            val monsterImage = context?.getAssetDrawable(cellImage)
-
             mMonsterLabelTextView.text = monster.name
-            mMonsterIconImageView.setImageDrawable(monsterImage)
+            AssetLoader.setIcon(mMonsterIconImageView,monster)
         })
 
         viewModel.damageData.observe(this, Observer<List<MonsterDamage>> { this.populateDamage(it) })

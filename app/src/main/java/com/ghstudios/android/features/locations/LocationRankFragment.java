@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.Gathering;
@@ -143,14 +144,14 @@ public class LocationRankFragment extends ListFragment implements
 			Gathering gathering = mGatheringCursor.getGathering();
 
 			// Set up the text view
-			RelativeLayout itemLayout = (RelativeLayout) view
+			RelativeLayout itemLayout = view
 					.findViewById(R.id.listitem);
-			ImageView itemImageView = (ImageView) view
+			ImageView itemImageView = view
 					.findViewById(R.id.item_image);
 
-			TextView itemTextView = (TextView) view.findViewById(R.id.item);
-            TextView rateTextView = (TextView) view.findViewById(R.id.percentage);
-			TextView amountTextView = (TextView)view.findViewById(R.id.amount);
+			TextView itemTextView = view.findViewById(R.id.item);
+            TextView rateTextView = view.findViewById(R.id.percentage);
+			TextView amountTextView = view.findViewById(R.id.amount);
 
 			String cellItemText = gathering.getItem().getName();
             long rate = (long) gathering.getRate();
@@ -159,18 +160,7 @@ public class LocationRankFragment extends ListFragment implements
             rateTextView.setText(Long.toString(rate) + "%");
 			amountTextView.setText("x" + gathering.getQuantity());
 
-			Drawable i = null;
-			String cellImage = "icons_items/"
-					+ gathering.getItem().getFileLocation();
-
-			try {
-				i = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			itemImageView.setImageDrawable(i);
+			AssetLoader.setIcon(itemImageView,gathering.getItem());
 
 			itemLayout.setTag(gathering.getItem().getId());
 			itemLayout.setOnClickListener(new BasicItemClickListener(context,

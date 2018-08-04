@@ -5,9 +5,11 @@ import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.Melody;
 import com.ghstudios.android.data.cursors.HornMelodiesCursor;
 import com.ghstudios.android.loader.HornMelodyListCursorLoader;
@@ -94,16 +97,16 @@ public class WeaponSongFragment extends ListFragment implements
             Melody melody = mHornMelodiesCursor.getMelody();
 
             // Get assignable TextViews
-            TextView effect1TextView = (TextView) view.findViewById(R.id.effect1);
-            TextView effect2TextView = (TextView) view.findViewById(R.id.effect2);
-            TextView durationTextView = (TextView) view.findViewById(R.id.duration);
-            TextView extensionTextView = (TextView) view.findViewById(R.id.extension);
+            TextView effect1TextView = view.findViewById(R.id.effect1);
+            TextView effect2TextView = view.findViewById(R.id.effect2);
+            TextView durationTextView = view.findViewById(R.id.duration);
+            TextView extensionTextView = view.findViewById(R.id.extension);
 
             // Get assignable ImageViews
-            ImageView note1ImageView = (ImageView) view.findViewById(R.id.horn_note1);
-            ImageView note2ImageView = (ImageView) view.findViewById(R.id.horn_note2);
-            ImageView note3ImageView = (ImageView) view.findViewById(R.id.horn_note3);
-            ImageView note4ImageView = (ImageView) view.findViewById(R.id.horn_note4);
+            ImageView note1ImageView = view.findViewById(R.id.horn_note1);
+            ImageView note2ImageView = view.findViewById(R.id.horn_note2);
+            ImageView note3ImageView = view.findViewById(R.id.horn_note3);
+            ImageView note4ImageView = view.findViewById(R.id.horn_note4);
 
             // Assign Effect 1
             String cellText = melody.getEffect1();
@@ -139,75 +142,19 @@ public class WeaponSongFragment extends ListFragment implements
             // Get string version of song
             String song = melody.getSong();
 
-            // Read a Bitmap from Assets
-            AssetManager manager = context.getAssets();
-            InputStream open = null;
-            Bitmap bitmap = null;
-            try {
-                // Note 1
-                if(song.length()>=1) {
-                    open = manager.open(getNoteImage(song.charAt(0)));
-                    bitmap = BitmapFactory.decodeStream(open);
-                    note1ImageView.setImageBitmap(bitmap);
-                }
-                else note1ImageView.setImageBitmap(null);
-                // Note 2
-                if(song.length()>=2) {
-                    open = manager.open(getNoteImage(song.charAt(1)));
-                    bitmap = BitmapFactory.decodeStream(open);
-                    note2ImageView.setImageBitmap(bitmap);
-                }
-                else note2ImageView.setImageBitmap(null);
-                // Note 3
-                if(song.length()>=3) {
-                    open = manager.open(getNoteImage(song.charAt(2)));
-                    bitmap = BitmapFactory.decodeStream(open);
-                    note3ImageView.setImageBitmap(bitmap);
-                }
-                else note3ImageView.setImageBitmap(null);
-                // Note 4
-                if(song.length()>=4) {
-                    open = manager.open(getNoteImage(song.charAt(3)));
-                    bitmap = BitmapFactory.decodeStream(open);
-                    note4ImageView.setImageBitmap(bitmap);
-                }
-                else note4ImageView.setImageBitmap(null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (open != null) {
-                    // Close input stream
-                    try{open.close();
-                    }catch(IOException e){
-                        e.printStackTrace();
-                    }
-                }
+            note1ImageView.setImageResource(R.drawable.icon_music_note);
+            note1ImageView.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(song.charAt(0))), PorterDuff.Mode.MULTIPLY);
+
+            note2ImageView.setImageResource(R.drawable.icon_music_note);
+            note2ImageView.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(song.charAt(1))), PorterDuff.Mode.MULTIPLY);
+
+            if(song.length()>2) {
+                note3ImageView.setVisibility(View.VISIBLE);
+                note3ImageView.setImageResource(R.drawable.icon_music_note);
+                note3ImageView.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(song.charAt(2))), PorterDuff.Mode.MULTIPLY);
+            }else{
+                note3ImageView.setVisibility(View.INVISIBLE);
             }
         }
-    }
-
-
-    public static String getNoteImage(char note) {
-        String file = "icons_monster_info/";
-
-        switch (note) {
-            case 'B':
-                return file + "Note.blue.png";
-            case 'C':
-                return file + "Note.aqua.png";
-            case 'G':
-                return file + "Note.green.png";
-            case 'O':
-                return file + "Note.orange.png";
-            case 'P':
-                return file + "Note.purple.png";
-            case 'R':
-                return file + "Note.red.png";
-            case 'W':
-                return file + "Note.white.png";
-            case 'Y':
-                return file + "Note.yellow.png";
-        }
-        return "";
     }
 }

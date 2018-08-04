@@ -37,9 +37,9 @@ class ItemCombinationAdapterDelegate: SimpleListDelegate<Combining>() {
     override fun bindView(viewHolder: SimpleViewHolder, data: Combining) {
         val context = viewHolder.context
 
-        viewHolder.result_icon.setImageDrawable(AssetLoader.loadIconFor(data.createdItem))
-        viewHolder.item1_icon.setImageDrawable(AssetLoader.loadIconFor(data.item1))
-        viewHolder.item2_icon.setImageDrawable(AssetLoader.loadIconFor(data.item2))
+        AssetLoader.setIcon(viewHolder.result_icon,data.createdItem)
+        AssetLoader.setIcon(viewHolder.item1_icon,data.item1)
+        AssetLoader.setIcon(viewHolder.item2_icon,data.item2)
 
         viewHolder.result_name.text = data.createdItem.name
         viewHolder.item1_name.text = data.item1.name

@@ -21,8 +21,7 @@ class MonsterListAdapter: SimpleRecyclerViewAdapter<Monster>() {
     }
 
     override fun bindView(viewHolder: SimpleViewHolder, monster: Monster) {
-        val icon = AssetLoader.loadIconFor(monster)
-        viewHolder.item_image.setImageDrawable(icon)
+        AssetLoader.setIcon(viewHolder.item_image,monster)
         viewHolder.item_label.text = monster.name
         viewHolder.itemView.tag = monster.id
         viewHolder.itemView.setOnClickListener(MonsterClickListener(viewHolder.context, monster.id))

@@ -41,6 +41,8 @@ public class PalicoWeaponCursor extends CursorWrapper {
         i.setRarity(getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY)));
         i.setDescription(getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION)));
         i.setFileLocation(getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME)));
+        i.setIconColor(getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR)));
+        i.setType("Palico Weapon");
 
         weapon.setItem(i);
         return weapon;

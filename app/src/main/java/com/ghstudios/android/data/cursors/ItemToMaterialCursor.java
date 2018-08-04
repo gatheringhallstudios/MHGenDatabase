@@ -35,12 +35,14 @@ public class ItemToMaterialCursor extends CursorWrapper {
         String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
         int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
         String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
+        int color = getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR));
 
         item.setId(itemId);
         item.setName(itemName);
         item.setType(type);
         item.setRarity(rarity);
         item.setFileLocation(fileLocation);
+        item.setIconColor(color);
         itemToMat.setItem(item);
 
         return itemToMat;

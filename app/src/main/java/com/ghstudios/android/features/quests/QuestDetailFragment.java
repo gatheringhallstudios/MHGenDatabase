@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Location;
@@ -144,13 +145,11 @@ public class QuestDetailFragment extends Fragment {
         Location loc = dm.getLocation(mQuest.getLocation().getId());
         String cellImage = "icons_location/" + loc.getFileLocationMini();
 
-        questLocationImageView.setTag(mQuest.getLocation().getId());
-        new LoadImage(questLocationImageView, cellImage, getContext()).execute();
+        AssetLoader.setIcon(questLocationImageView,mQuest.getLocation());
     }
 
     /**
-     * TODO: Needs to be defined in a better way that avoids repetition,
-     * but this is the easiest way for now.
+     * Get icon for quest
      * @param quest
      * @return
      */
@@ -166,40 +165,6 @@ public class QuestDetailFragment extends Fragment {
                 return R.drawable.quest_icon_grey;
             default:
                 return R.drawable.quest_icon_red;
-        }
-    }
-
-    protected class LoadImage extends AsyncTask<Void,Void,Drawable> {
-        private ImageView mImage;
-        private String path;
-        private String imagePath;
-        private Context context;
-
-        public LoadImage(ImageView imv, String imagePath, Context c) {
-            this.mImage = imv;
-            this.path = imv.getTag().toString();
-            this.imagePath = imagePath;
-            this.context = c;
-        }
-
-        @Override
-        protected Drawable doInBackground(Void... arg0) {
-            Drawable d = null;
-
-            try {
-                d = Drawable.createFromStream(context.getAssets().open(imagePath),
-                        null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return d;
-        }
-
-        protected void onPostExecute(Drawable result) {
-            if (mImage.getTag().toString().equals(path)) {
-                mImage.setImageDrawable(result);
-            }
         }
     }
 }

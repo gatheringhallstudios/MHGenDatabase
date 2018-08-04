@@ -8,7 +8,7 @@ import com.ghstudios.android.data.database.S;
 
 /**
  * A convenience class to wrap a cursor that returns rows from the "items"
- * table. The {@link getItem()} method will give you an Item instance
+ * table. The getItem() method will give you an Item instance
  * representing the current row.
  */
 public class ItemCursor extends CursorWrapper {
@@ -38,6 +38,7 @@ public class ItemCursor extends CursorWrapper {
 		int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
 		String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
+		int color = getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR));
 		boolean account = getInt(getColumnIndex(S.COLUMN_ITEMS_ACCOUNT)) == 1;
 
 		item.setId(itemId);
@@ -51,6 +52,7 @@ public class ItemCursor extends CursorWrapper {
 		item.setSell(sell);
 		item.setDescription(description);
 		item.setFileLocation(fileLocation);
+		item.setIconColor(color);
 		item.setAccount(account);
 
 		return item;

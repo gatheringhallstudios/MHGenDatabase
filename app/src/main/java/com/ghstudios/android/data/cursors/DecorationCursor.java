@@ -37,6 +37,7 @@ public class DecorationCursor extends CursorWrapper {
 		int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
 		String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
 		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
+		int color = getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR));
 		
 		int num_slots = getInt(getColumnIndex(S.COLUMN_DECORATIONS_NUM_SLOTS));
 		
@@ -58,6 +59,7 @@ public class DecorationCursor extends CursorWrapper {
 		decoration.setSell(sell);
 		decoration.setDescription(description);
 		decoration.setFileLocation(fileLocation);
+		decoration.setIconColor(color);
 		
 		decoration.setNumSlots(num_slots);
 		

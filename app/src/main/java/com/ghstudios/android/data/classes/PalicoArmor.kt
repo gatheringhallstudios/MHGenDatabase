@@ -10,4 +10,5 @@ class PalicoArmor {
     var iceRes: Int = -1                  // Ice resistance
     var family: Int = 0
     var item: Item? = null
+
 }

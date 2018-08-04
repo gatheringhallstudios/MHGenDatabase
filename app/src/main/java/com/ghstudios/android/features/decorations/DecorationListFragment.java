@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -22,14 +21,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
+import com.ghstudios.android.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.cursors.DecorationCursor;
+import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 import com.ghstudios.android.loader.DecorationListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
-
-import java.io.IOException;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class DecorationListFragment extends ListFragment implements
@@ -136,15 +134,15 @@ public class DecorationListFragment extends ListFragment implements
             // Get the decoration for the current row
             Decoration decoration = mDecorationCursor.getDecoration();
 
-            RelativeLayout itemLayout = (RelativeLayout) view.findViewById(R.id.listitem);
+            RelativeLayout itemLayout = view.findViewById(R.id.listitem);
 
             // Set up the text view
-            ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-            TextView decorationNameTextView = (TextView) view.findViewById(R.id.item);
-            TextView skill1TextView = (TextView) view.findViewById(R.id.skill1);
-            TextView skill1amtTextView = (TextView) view.findViewById(R.id.skill1_amt);
-            TextView skill2TextView = (TextView) view.findViewById(R.id.skill2);
-            TextView skill2amtTextView = (TextView) view.findViewById(R.id.skill2_amt);
+            ImageView itemImageView = view.findViewById(R.id.item_image);
+            TextView decorationNameTextView = view.findViewById(R.id.item);
+            TextView skill1TextView = view.findViewById(R.id.skill1);
+            TextView skill1amtTextView = view.findViewById(R.id.skill1_amt);
+            TextView skill2TextView = view.findViewById(R.id.skill2);
+            TextView skill2amtTextView = view.findViewById(R.id.skill2_amt);
 
             String decorationNameText = decoration.getName();
             String skill1Text = decoration.getSkill1Name();
@@ -155,16 +153,7 @@ public class DecorationListFragment extends ListFragment implements
                 skill2amtText = skill2amtText + decoration.getSkill2Point();
             }
 
-            Drawable i = null;
-            String cellImage = "icons_items/" + decoration.getFileLocation();
-            try {
-                i = Drawable.createFromStream(
-                        context.getAssets().open(cellImage), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            itemImageView.setImageDrawable(i);
+            AssetLoader.setIcon(itemImageView,decoration);
 
             decorationNameTextView.setText(decorationNameText);
             skill1TextView.setText(skill1Text);

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.cursors.LocationCursor;
 import com.ghstudios.android.loader.LocationListCursorLoader;
@@ -27,8 +29,6 @@ import java.io.IOException;
 
 public class LocationListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
-
-	private LocationListCursorAdapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class LocationListFragment extends ListFragment implements
                 false);
 	}
 
+	@NonNull
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		// You only ever load the runs, so assume this is the case
@@ -53,15 +54,15 @@ public class LocationListFragment extends ListFragment implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
-		mAdapter = new LocationListCursorAdapter(getActivity(),
-				(LocationCursor) cursor);
-        setListAdapter(mAdapter);
+		if(getListAdapter() == null) {
+			setListAdapter(new LocationListCursorAdapter(getActivity(), (LocationCursor) cursor));
+		}
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
+	public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 		// Stop using the cursor (via the adapter)
 		setListAdapter(null);
 	}
@@ -70,7 +71,7 @@ public class LocationListFragment extends ListFragment implements
 
 		private LocationCursor mLocationCursor;
 
-		public LocationListCursorAdapter(Context context, LocationCursor cursor) {
+		LocationListCursorAdapter(Context context, LocationCursor cursor) {
 			super(context, cursor, 0);
 			mLocationCursor = cursor;
 		}
@@ -88,61 +89,20 @@ public class LocationListFragment extends ListFragment implements
 		public void bindView(View view, Context context, Cursor cursor) {
 			// Get the monster for the current row
 			Location location = mLocationCursor.getLocation();
-			AssetManager manager = context.getAssets();
 
-			RelativeLayout listLayout = (RelativeLayout) view
-					.findViewById(R.id.listitem);
+			RelativeLayout listLayout = view.findViewById(R.id.listitem);
 
 			// Set up the text view
-			TextView locationNameTextView = (TextView) view
-					.findViewById(R.id.item_label);
-			ImageView locationImage = (ImageView) view
-					.findViewById(R.id.item_image);
+			TextView locationNameTextView = view.findViewById(R.id.item_label);
+			ImageView locationImage = view.findViewById(R.id.item_image);
 
 			String cellText = location.getName();
-			String cellImage = "icons_location/" + location.getFileLocationMini();
-
 			locationNameTextView.setText(cellText);
 
-			// Read a Bitmap from Assets
-            locationImage.setTag(location.getId());
-			new LoadImage(locationImage, cellImage).execute();
+			AssetLoader.setIcon(locationImage,location);
 
 			listLayout.setTag(location.getId());
             listLayout.setOnClickListener(new LocationClickListener(context, location.getId()));
 		}
-
-        protected class LoadImage extends AsyncTask<Void,Void,Drawable> {
-            private ImageView mImage;
-            private String path;
-            private String imagePath;
-
-            public LoadImage(ImageView imv, String imagePath) {
-                this.mImage = imv;
-                this.path = imv.getTag().toString();
-                this.imagePath = imagePath;
-            }
-
-            @Override
-            protected Drawable doInBackground(Void... arg0) {
-                Drawable d = null;
-
-                try {
-                    d = Drawable.createFromStream(mImage.getContext().getAssets().open(imagePath),
-                            null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return d;
-            }
-
-            protected void onPostExecute(Drawable result) {
-                if (mImage.getTag().toString().equals(path)) {
-                    mImage.setImageDrawable(result);
-                }
-            }
-        }
 	}
-
 }

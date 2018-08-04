@@ -22,7 +22,7 @@
                 style="@style/small_image"
                 android:id="@id/item_image"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/switch_axe1"/>
+                android:src="@drawable/talisman"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"

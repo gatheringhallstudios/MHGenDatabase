@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.PalicoArmor
 
 import com.ghstudios.android.mhgendatabase.R
@@ -44,9 +46,12 @@ class PalicoArmorListFragment : ListFragment() {
                 v = convertView
             val nameTextview:TextView = v.findViewById(R.id.name_text)
             val defenseTextView:TextView = v.findViewById(R.id.defense)
+            val imageView: ImageView = v.findViewById(R.id.item_image)
 
             nameTextview.text = getItem(position)?.item?.name
             defenseTextView.text = getItem(position)?.defense?.toString()
+
+            AssetLoader.setIcon(imageView,getItem(position)?.item!!)
 
             return v
         }

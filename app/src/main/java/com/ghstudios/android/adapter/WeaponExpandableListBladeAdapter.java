@@ -2,6 +2,8 @@ package com.ghstudios.android.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.components.DrawSharpness;
@@ -54,13 +57,13 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
             //
             // BLADE VIEWS
 
-            specialView = (TextView) weaponView.findViewById(R.id.special_text);
-            sharpnessDrawable = (DrawSharpness) weaponView.findViewById(R.id.sharpness);
+            specialView = weaponView.findViewById(R.id.special_text);
+            sharpnessDrawable = weaponView.findViewById(R.id.sharpness);
 
 
-            note1v = (ImageView) weaponView.findViewById(R.id.note_image_1);
-            note2v = (ImageView) weaponView.findViewById(R.id.note_image_2);
-            note3v = (ImageView) weaponView.findViewById(R.id.note_image_3);
+            note1v = weaponView.findViewById(R.id.note_image_1);
+            note2v = weaponView.findViewById(R.id.note_image_2);
+            note3v = weaponView.findViewById(R.id.note_image_3);
 
         }
     }
@@ -89,29 +92,14 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
             holder.specialView.setVisibility(View.VISIBLE);
             holder.specialView.setText("NOTES: ");
 
-            final Bitmap bitmap = getBitmapFromMemCache(getNoteDrawable(special.charAt(0)));
-            if(bitmap != null) {
-                holder.note1v.setImageBitmap(bitmap);
-            } else {
-                new LoadImage(holder.note1v, getNoteDrawable(special.charAt(0))).execute();
-            }
+            holder.note1v.setImageResource(R.drawable.icon_music_note);
+            holder.note1v.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(special.charAt(0))), PorterDuff.Mode.MULTIPLY);
 
-            final Bitmap bitmap2 = getBitmapFromMemCache(getNoteDrawable(special.charAt(1)));
-            if(bitmap2 != null) {
-                holder.note2v.setImageBitmap(bitmap2);
-            } else {
-                new LoadImage(holder.note2v, getNoteDrawable(special.charAt(1))).execute();
-            }
+            holder.note2v.setImageResource(R.drawable.icon_music_note);
+            holder.note2v.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(special.charAt(1))), PorterDuff.Mode.MULTIPLY);
 
-            final Bitmap bitmap3 = getBitmapFromMemCache(getNoteDrawable(special.charAt(2)));
-            if(bitmap3 != null) {
-                holder.note3v.setImageBitmap(bitmap3);
-            } else {
-                new LoadImage(holder.note3v, getNoteDrawable(special.charAt(2))).execute();
-            }
-
-
-
+            holder.note3v.setImageResource(R.drawable.icon_music_note);
+            holder.note3v.setColorFilter(ContextCompat.getColor(mContext, MHUtils.getNoteColor(special.charAt(2))), PorterDuff.Mode.MULTIPLY);
         }
         else if (type.equals("Gunlance")) {
             holder.specialView.setVisibility(View.VISIBLE);
@@ -129,36 +117,4 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
         holder.sharpnessDrawable.invalidate();
     }
 
-    private String getNoteDrawable(char note) {
-        String file = "icons_monster_info/";
-
-        switch (note) {
-            case 'B':
-                file = file + "Note.blue.png";
-                break;
-            case 'C':
-                file = file + "Note.aqua.png";
-                break;
-            case 'G':
-                file = file + "Note.green.png";
-                break;
-            case 'O':
-                file = file + "Note.orange.png";
-                break;
-            case 'P':
-                file = file + "Note.purple.png";
-                break;
-            case 'R':
-                file = file + "Note.red.png";
-                break;
-            case 'W':
-                file = file + "Note.white.png";
-                break;
-            case 'Y':
-                file = file + "Note.yellow.png";
-                break;
-        }
-
-        return file;
-    }
 }

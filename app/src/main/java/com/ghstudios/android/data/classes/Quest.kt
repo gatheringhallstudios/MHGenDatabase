@@ -1,9 +1,12 @@
 package com.ghstudios.android.data.classes
 
+import com.ghstudios.android.ITintedIcon
+
 /*
  * Class for Quest
  */
 class Quest {
+
     companion object {
         const val QUEST_GOAL_HUNT = 0
         const val QUEST_GOAL_SLAY = 1
@@ -32,15 +35,6 @@ class Quest {
 
     // 0 = Hunter / 1 = Cat
     var hunterType: Int = 0
-
-    //private String locationTime;// Day or Night
-    /*public String getLocationTime() {
-		return locationTime;
-	}*/
-
-    /*public void setLocationTime(String locationTime) {
-		this.locationTime = locationTime;
-	}*/
 
     var timeLimit: Int = -1
     var fee: Int = -1

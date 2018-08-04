@@ -1,19 +1,11 @@
 package com.ghstudios.android.features.quests;
 
-import java.io.IOException;
-import java.util.List;
-
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ClickListeners.BasicItemClickListener;
 import com.ghstudios.android.SectionArrayAdapter;
-import com.github.monxalo.android.widget.SectionCursorAdapter;
 import com.ghstudios.android.data.classes.QuestReward;
-import com.ghstudios.android.data.cursors.QuestRewardCursor;
-import com.ghstudios.android.data.database.S;
-import com.ghstudios.android.loader.QuestRewardListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
+
+import java.util.List;
 
 public class QuestRewardFragment extends ListFragment{
 	private static final String ARG_QUEST_ID = "QUEST_ID";
@@ -98,17 +89,7 @@ public class QuestRewardFragment extends ListFragment{
 			String percent = "" + cellPercentageText + "%";
 			percentageTextView.setText(percent);
 
-			Drawable i = null;
-			String cellImage = "icons_items/" + questReward.getItem().getFileLocation();
-			
-			try {
-				i = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			itemImageView.setImageDrawable(i);
+			AssetLoader.setIcon(itemImageView,questReward.getItem());
 
 			itemLayout.setTag(questReward.getItem().getId());
             itemLayout.setOnClickListener(new BasicItemClickListener(context, questReward.getItem()

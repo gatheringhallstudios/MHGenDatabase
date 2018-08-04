@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.MHUtils;
@@ -137,10 +138,8 @@ public class ArmorDetailFragment extends Fragment {
 
         this.armor = armor;
 
-        Drawable itemImage = MHUtils.loadAssetDrawable(getContext(), armor.getItemImage());
-
         titleBar.setTitleText(armor.getName());
-        titleBar.setIconDrawable(itemImage);
+        titleBar.setIcon(armor);
         titleBar.setAltTitleText(armor.getJpnName());
         titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
@@ -153,7 +152,7 @@ public class ArmorDetailFragment extends Fragment {
         slotsReqView.setValueText(cellSlot);
         partView.setValueText(cellPart);
         defenseView.setValueText(cellDefense);
-        
+
         fireResTextView.setText(String.valueOf(armor.getFireRes()));
         waterResTextView.setText(String.valueOf(armor.getWaterRes()));
         iceResTextView.setText(String.valueOf(armor.getIceRes()));
@@ -194,9 +193,7 @@ public class ArmorDetailFragment extends Fragment {
 
         for (Component component : recipe) {
             Item item = component.getComponent();
-            Drawable itemIcon = MHUtils.loadAssetDrawable(getContext(), item.getItemImage());
-
-            View itemCell = recipeView.addItem(itemIcon, item.getName(), component.getQuantity());
+            View itemCell = recipeView.addItem(item, item.getName(), component.getQuantity());
             itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
         }
     }

@@ -16,7 +16,7 @@ class SkillDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryItemToSkillTreeForArmorFamily(familyId: Long): List<ItemToSkillTree> {
         val cursor = db.rawQuery("""
             SELECT its._id,its.skill_tree_id,st.$column_name AS sname,its.point_value,a._id AS item_id,
-                i.$column_name AS iname,i.rarity,i.type,i.icon_name
+                i.$column_name AS iname,i.rarity,i.type,i.icon_name,i.icon_color
             FROM armor a
                 JOIN items i on a._id=i._id
                 JOIN item_to_skill_tree its on a._id=its.item_id

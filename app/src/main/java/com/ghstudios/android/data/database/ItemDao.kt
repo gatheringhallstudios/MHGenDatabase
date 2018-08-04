@@ -22,14 +22,14 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
     private val item_columns
         get() = "_id, $column_name name, name_ja, $column_description description, " +
-                "type, sub_type, rarity, carry_capacity, buy, sell, icon_name, account "
+                "type, sub_type, rarity, carry_capacity, buy, sell, icon_name, icon_color, account "
 
     // todo: add family, remove "item only" fields like carry cap
     private val armor_columns
         get() = "_id, $column_name name, name_ja, $column_description description, " +
                 "rarity, slot, gender, hunter_type, num_slots, " +
                 "defense, max_defense, fire_res, thunder_res, dragon_res, water_res, ice_res, " +
-                "type, sub_type, carry_capacity, buy, sell, icon_name, armor_dupe_name_fix"
+                "type, sub_type, carry_capacity, buy, sell, icon_name, icon_color "
 
 
     /**
@@ -89,7 +89,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
         val columns = arrayOf(
                 "_id", "name_ja", "type", "sub_type", "rarity", "carry_capacity",
-                "buy", "sell", "icon_name", "armor_dupe_name_fix")
+                "buy", "sell", "icon_name", "icon_color")
 
         val colName = localizeColumn("$table.name")
         val colDescription = localizeColumn("$table.description")
@@ -211,8 +211,10 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             SELECT c._id,SUM(c.quantity) AS quantity,c.type,
                    c.created_item_id,cr.name AS crname,cr.type AS crtype,
                         cr.rarity AS crrarity,cr.icon_name AS cricon_name,cr.sub_type AS crsub_type,
+                        cr.icon_color AS cricon_color,
                    c.component_item_id,co.name AS coname,co.type AS cotype,
-                        co.rarity AS corarity,co.icon_name AS coicon_name,co.sub_type AS cosub_type
+                        co.rarity AS corarity,co.icon_name AS coicon_name,co.sub_type AS cosub_type,
+                        co.icon_color AS coicon_color
             FROM armor a
                 JOIN components c ON c.created_item_id = a._id
                 JOIN items cr ON cr._id=a._id

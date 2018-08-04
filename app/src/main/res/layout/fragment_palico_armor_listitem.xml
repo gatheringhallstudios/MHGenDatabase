@@ -11,7 +11,7 @@
         style="@style/small_image"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"
-        android:src="@drawable/quest_icon_red"
+        android:src="@drawable/icon_palico_head"
         android:layout_gravity="center_vertical">
     </ImageView>
     <TextView

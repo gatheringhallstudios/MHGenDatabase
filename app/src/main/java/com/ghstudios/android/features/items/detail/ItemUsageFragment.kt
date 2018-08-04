@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.MHUtils
 import com.ghstudios.android.RecyclerViewFragment
@@ -93,9 +94,7 @@ class UsageAdapterDelegate : AbsListItemAdapterDelegate<Component, Any, UsageAda
             amtTextView.text = amtText
             typeTextView.text = typeText
 
-            val cellImage = created.itemImage
-            val image = MHUtils.loadAssetDrawable(itemView.context, cellImage)
-            itemImageView.setImageDrawable(image)
+            AssetLoader.setIcon(itemImageView,created)
 
             itemLayout.tag = createdId
             itemLayout.setOnClickListener(ItemClickListener(itemView.context, created))

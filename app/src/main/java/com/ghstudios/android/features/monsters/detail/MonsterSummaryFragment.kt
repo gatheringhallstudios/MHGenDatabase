@@ -75,9 +75,7 @@ class MonsterSummaryFragment : Fragment() {
         viewModel.monsterData.observe(this, Observer { monster ->
             if (monster == null) return@Observer
 
-            val monsterImage = AssetLoader.loadIconFor(monster)
-
-            headerView.setIconDrawable(monsterImage)
+            headerView.setIcon(monster)
             headerView.setTitleText(monster.name)
             headerView.setAltTitleText(monster.jpnName)
             headerView.setAltTitleEnabled(AppSettings.isJapaneseEnabled)
@@ -190,8 +188,7 @@ class MonsterSummaryFragment : Fragment() {
             areaTextView.text = habitat.areas?.joinToString(", ")
             restTextView.text = habitat.rest.toString()
 
-            val icon = habitat.location?.let { AssetLoader.loadIconFor(it) }
-            mapView.setImageDrawable(icon)
+            AssetLoader.setIcon(mapView,habitat.location!!)
 
             val locationId = habitat.location?.id
             if (locationId != null) {

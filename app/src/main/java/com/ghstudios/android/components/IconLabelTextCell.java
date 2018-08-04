@@ -17,6 +17,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.ghstudios.android.AssetLoader;
+import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
 
 /**
@@ -88,6 +90,10 @@ public class IconLabelTextCell extends FrameLayout {
 
         // Invalidate to trigger layout update
         invalidate();
+    }
+
+    public void setLeftIcon(ITintedIcon icon){
+        AssetLoader.setIcon(imageView,icon);
     }
 
     public void setLabelText(String labelText) {

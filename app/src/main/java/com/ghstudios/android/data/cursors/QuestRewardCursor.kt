@@ -65,6 +65,7 @@ class QuestRewardCursor(c: Cursor) : CursorWrapper(c) {
                 id = getLong(S.COLUMN_QUEST_REWARDS_ITEM_ID)
                 name = getString("i" + S.COLUMN_ITEMS_NAME)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
+                iconColor = getInt(S.COLUMN_ITEMS_ICON_COLOR)
             }
 
             questReward.quest = Quest().apply {

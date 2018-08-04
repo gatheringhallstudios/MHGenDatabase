@@ -43,29 +43,18 @@ public class WishlistComponentCursor extends CursorWrapper {
 		
 		long itemId = getLong(getColumnIndex(S.COLUMN_WISHLIST_COMPONENT_COMPONENT_ID));
 		String itemName = getString(getColumnIndex(S.COLUMN_ITEMS_NAME));
-//			String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
-			String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
-            String sub_type = getString(getColumnIndex(S.COLUMN_ITEMS_SUB_TYPE));
-			int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
-//			int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
-//			int buy = getInt(getColumnIndex(S.COLUMN_ITEMS_BUY));
-//			int sell = getInt(getColumnIndex(S.COLUMN_ITEMS_SELL));
-//			String description = getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION));
-			String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
-//			String armor_dupe_name_fix = getString(getColumnIndex(S.COLUMN_ITEMS_ARMOR_DUPE_NAME_FIX));
+		String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
+		String sub_type = getString(getColumnIndex(S.COLUMN_ITEMS_SUB_TYPE));
+		int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
+		String fileLocation = getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME));
+		item.setIconColor(getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR)));
 
 		item.setId(itemId);
 		item.setName(itemName);
-//			item.setJpnName(jpnName);
-			item.setType(type);
-            item.setSubType(sub_type);
-			item.setRarity(rarity);
-//			item.setCarryCapacity(carry_capacity);
-//			item.setBuy(buy);
-//			item.setSell(sell);
-//			item.setDescription(description);
-			item.setFileLocation(fileLocation);
-//			item.setArmorDupeNameFix(armor_dupe_name_fix);
+		item.setType(type);
+		item.setSubType(sub_type);
+		item.setRarity(rarity);
+		item.setFileLocation(fileLocation);
 		
 		wishlistComponent.setItem(item);
 		

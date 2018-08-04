@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.cursors.HuntingRewardCursor;
@@ -102,10 +103,7 @@ public class ItemMonsterFragment extends ListFragment {
             itemLayout.setOnClickListener(new MonsterClickListener(context,
                     huntingReward.getMonster().getId()));
 
-            String cellImage = "icons_monster/" + huntingReward.getMonster().getFileLocation();
-            Drawable i = MHUtils.loadAssetDrawable(context, cellImage);
-
-            monsterImageView.setImageDrawable(i);
+            AssetLoader.setIcon(monsterImageView,huntingReward.getMonster());
         }
     }
 }

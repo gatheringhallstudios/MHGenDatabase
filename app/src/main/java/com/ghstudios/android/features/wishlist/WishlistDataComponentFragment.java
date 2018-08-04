@@ -26,6 +26,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
@@ -78,8 +79,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_wishlist_component_list, container, false);
 
-		mListView = (ListView) v.findViewById(android.R.id.list);
-		mTotalCostView = (TextView) v.findViewById(R.id.total_cost_value);
+		mListView = v.findViewById(android.R.id.list);
+		mTotalCostView = v.findViewById(R.id.total_cost_value);
 		
 		return v;
 	}
@@ -213,10 +214,10 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			final WishlistComponent component = mWishlistComponentCursor.getWishlistComponent();
 
 			// Set up the text view
-			LinearLayout root = (LinearLayout) view.findViewById(R.id.listitem);
-			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-			final TextView itemTextView = (TextView) view.findViewById(R.id.item_name);
-			TextView amtTextView = (TextView) view.findViewById(R.id.text_qty_required);
+			LinearLayout root = view.findViewById(R.id.listitem);
+			ImageView itemImageView = view.findViewById(R.id.item_image);
+			final TextView itemTextView = view.findViewById(R.id.item_name);
+			TextView amtTextView = view.findViewById(R.id.text_qty_required);
 
 			final long componentrowid = component.getId();
 			final long componentid = component.getItem().getId();
@@ -240,7 +241,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			/***************** SPINNER FOR QTY_HAVE DISPLAY **************************/
 
 			// Assign Spinner
-			final Spinner spinner = (Spinner) view.findViewById(R.id.spinner_component_qty);
+			final Spinner spinner = view.findViewById(R.id.spinner_component_qty);
 			// Create an ArrayAdapter containing all possible values for spinner, 0 -> quantity
 			ArrayList<Integer> options = new ArrayList<>();
 			for(int i = 0; i<=100; i++){
@@ -287,20 +288,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
 			
 			/********************* END SPINNER ***********************/
 
-
-			// Draw image
-			String cellImage = component.getItem().getItemImage();
-
-			Drawable itemImage = null;
-			try {
-				itemImage = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			itemImageView.setImageDrawable(itemImage);
+			AssetLoader.setIcon(itemImageView,component.getItem());
 
 			root.setOnClickListener(new ItemClickListener(context, component.getItem()));
 			root.setTag(componentid);

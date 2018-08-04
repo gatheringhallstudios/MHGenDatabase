@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armor.ArmorDetailActivity;
 import com.ghstudios.android.mhgendatabase.R;
@@ -48,47 +51,38 @@ public class ASBPieceContainer extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_armor_set_builder_piece_container, this);
 
-        icon = (ImageView) findViewById(R.id.armor_builder_item_icon);
-        text = (TextView) findViewById(R.id.armor_builder_item_name);
+        icon = findViewById(R.id.armor_builder_item_icon);
+        text = findViewById(R.id.armor_builder_item_name);
 
         decorationStates = new ImageView[3];
-        decorationStates[0] = (ImageView) findViewById(R.id.decoration_1_state);
-        decorationStates[1] = (ImageView) findViewById(R.id.decoration_2_state);
-        decorationStates[2] = (ImageView) findViewById(R.id.decoration_3_state);
+        decorationStates[0] = findViewById(R.id.decoration_1_state);
+        decorationStates[1] = findViewById(R.id.decoration_2_state);
+        decorationStates[2] = findViewById(R.id.decoration_3_state);
 
-        text.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (session.isEquipmentSelected(pieceIndex)) {
-                    requestPieceInfo();
-                }
+        text.setOnClickListener(v -> {
+            if (session.isEquipmentSelected(pieceIndex)) {
+                requestPieceInfo();
             }
         });
 
-        equipmentButton = (ImageView) findViewById(R.id.add_equipment_button);
-        equipmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!session.isEquipmentSelected(pieceIndex)) {
-                    onAddEquipment();
-                } else {
-                    onRemoveEquipment();
-                }
+        equipmentButton = findViewById(R.id.add_equipment_button);
+        equipmentButton.setOnClickListener(v -> {
+            if (!session.isEquipmentSelected(pieceIndex)) {
+                onAddEquipment();
+            } else {
+                onRemoveEquipment();
             }
         });
 
         decorationView = new DecorationView();
 
 
-        dropDownArrow = (ImageView) findViewById(R.id.drop_down_arrow);
-        dropDownArrow.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (decorationView.container.getVisibility() == GONE) {
-                    showDecorations();
-                } else {
-                    hideDecorations();
-                }
+        dropDownArrow = findViewById(R.id.drop_down_arrow);
+        dropDownArrow.setOnClickListener(v -> {
+            if (decorationView.container.getVisibility() == GONE) {
+                showDecorations();
+            } else {
+                hideDecorations();
             }
         });
     }
@@ -265,42 +259,36 @@ public class ASBPieceContainer extends LinearLayout {
         ViewGroup container;
 
         public DecorationView() {
-            container = (ViewGroup) findViewById(R.id.decorations);
+            container = findViewById(R.id.decorations);
 
             decorationNames = new TextView[3];
-            decorationNames[0] = (TextView) findViewById(R.id.decoration_1_name);
-            decorationNames[1] = (TextView) findViewById(R.id.decoration_2_name);
-            decorationNames[2] = (TextView) findViewById(R.id.decoration_3_name);
+            decorationNames[0] = findViewById(R.id.decoration_1_name);
+            decorationNames[1] = findViewById(R.id.decoration_2_name);
+            decorationNames[2] = findViewById(R.id.decoration_3_name);
 
             decorationIcons = new ImageView[3];
-            decorationIcons[0] = (ImageView) findViewById(R.id.decoration_1_icon);
-            decorationIcons[1] = (ImageView) findViewById(R.id.decoration_2_icon);
-            decorationIcons[2] = (ImageView) findViewById(R.id.decoration_3_icon);
+            decorationIcons[0] = findViewById(R.id.decoration_1_icon);
+            decorationIcons[1] = findViewById(R.id.decoration_2_icon);
+            decorationIcons[2] = findViewById(R.id.decoration_3_icon);
 
             decorationMenuButtons = new ImageView[3];
-            decorationMenuButtons[0] = (ImageView) findViewById(R.id.decoration_1_menu);
-            decorationMenuButtons[1] = (ImageView) findViewById(R.id.decoration_2_menu);
-            decorationMenuButtons[2] = (ImageView) findViewById(R.id.decoration_3_menu);
+            decorationMenuButtons[0] = findViewById(R.id.decoration_1_menu);
+            decorationMenuButtons[1] = findViewById(R.id.decoration_2_menu);
+            decorationMenuButtons[2] = findViewById(R.id.decoration_3_menu);
 
             for (int i = 0; i < 3; i++) {
                 final int decorationIndex = i;
-                decorationNames[i].setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                            requestDecorationInfo(decorationIndex);
-                        }
+                decorationNames[i].setOnClickListener(v -> {
+                    if (session.decorationIsReal(pieceIndex, decorationIndex)) {
+                        requestDecorationInfo(decorationIndex);
                     }
                 });
 
-                decorationMenuButtons[i].setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                            requestRemoveDecoration(decorationIndex);
-                        } else {
-                            requestAddDecoration();
-                        }
+                decorationMenuButtons[i].setOnClickListener(v -> {
+                    if (session.decorationIsReal(pieceIndex, decorationIndex)) {
+                        requestRemoveDecoration(decorationIndex);
+                    } else {
+                        requestAddDecoration();
                     }
                 });
             }
@@ -312,7 +300,7 @@ public class ASBPieceContainer extends LinearLayout {
             if (session.getEquipment(pieceIndex) != null) {
                 boolean addButtonExists = false;
                 for (int i = 0; i < decorationNames.length; i++) {
-                    decorationIcons[i].setImageDrawable(fetchDecorationIcon(pieceIndex, i));
+                    fetchDecorationIcon(decorationIcons[i],pieceIndex, i);
 
                     if (session.decorationIsReal(pieceIndex, i)) {
                         decorationNames[i].setText(session.getDecoration(pieceIndex, i).getName());
@@ -350,21 +338,12 @@ public class ASBPieceContainer extends LinearLayout {
             }
         }
 
-        private Drawable fetchDecorationIcon(int pieceIndex, int decorationIndex) {
-            String imagePath = "icons_items/";
+        private void fetchDecorationIcon(ImageView iv,int pieceIndex, int decorationIndex) {
             if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                imagePath += session.getDecoration(pieceIndex, decorationIndex).getFileLocation();
+                AssetLoader.setIcon(iv,session.getDecoration(pieceIndex,decorationIndex));
             } else if (session.decorationIsDummy(pieceIndex, decorationIndex)) {
-                imagePath += "Jewel-Unknown.png";
-            } else {
-                return null;
-            }
-
-            try {
-                return Drawable.createFromStream(getContext().getAssets().open(imagePath), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
+                iv.setImageResource(R.drawable.icon_jewel);
+                iv.setColorFilter(0xFFFFFF, PorterDuff.Mode.MULTIPLY);
             }
         }
 

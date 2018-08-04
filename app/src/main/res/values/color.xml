@@ -65,4 +65,42 @@
         <item>@color/rare_11</item>
     </array>
 
+    <color name="item_white">#ffffff</color>
+    <color name="item_red">#f85858</color>
+    <color name="item_green">#70c888</color>
+    <color name="item_blue">#90b0f8</color>
+    <color name="item_yellow">#f8d058</color>
+    <color name="item_purple">#b890c0</color>
+    <color name="item_cyan">#98d8f0</color>
+    <color name="item_orange">#f89858</color>
+    <color name="item_pink">#e890a0</color>
+    <color name="item_yellow_green">#c6f29f</color>
+    <color name="item_grey">#a0a0a0</color>
+    <color name="item_gold">#e2a626</color>
+    <color name="item_teal">#5cccff</color>
+    <color name="item_dark_green">#639929</color>
+    <color name="item_dark_red">#aa3c3c</color>
+    <color name="item_dark_blue">#4066bb</color>
+    <color name="item_dark_purple">#803a8e</color>
+
+    <array name="item_colors">
+        <item>@color/item_white</item>
+        <item>@color/item_red</item>
+        <item>@color/item_green</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_yellow</item>
+        <item>@color/item_purple</item>
+        <item>@color/item_cyan</item>
+        <item>@color/item_orange</item>
+        <item>@color/item_pink</item>
+        <item>@color/item_yellow_green</item>
+        <item>@color/item_grey</item>
+        <item>@color/item_gold</item>
+        <item>@color/item_teal</item>
+        <item>@color/item_dark_green</item>
+        <item>@color/item_dark_red</item>
+        <item>@color/item_dark_blue</item>
+        <item>@color/item_dark_purple</item>
+    </array>
+
 </resources>

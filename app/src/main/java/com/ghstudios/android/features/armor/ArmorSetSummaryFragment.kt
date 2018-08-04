@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.MHApplication
@@ -122,10 +123,7 @@ class ArmorSetSummaryFragment : Fragment() {
                     armorView.findViewById(R.id.skill_3),
                     armorView.findViewById(R.id.skill_4))
             skillsTvs.forEach { it?.visibility=View.GONE }
-            val resource = MHUtils.getDrawableId(context!!,"armor_"+it.slot)
-            icon?.setImageResource(resource)
-            val color = context!!.resources.getIntArray(R.array.rare_colors)[it.rarity-1]
-            icon?.setColorFilter(color,PorterDuff.Mode.MULTIPLY)
+            AssetLoader.setIcon(icon!!,it)
             name?.text = it.name
             slots?.text = it.slotString
             if(skills.containsKey(it.id)){
@@ -153,9 +151,7 @@ class ArmorSetSummaryFragment : Fragment() {
 
         for (component in recipe) {
             val item = component.component
-            val itemIcon = MHUtils.loadAssetDrawable(context!!, item.itemImage)
-
-            val itemCell = recipeView.addItem(itemIcon, item.name, component.quantity)
+            val itemCell = recipeView.addItem(item, item.name, component.quantity)
             itemCell.setOnClickListener(ItemClickListener(context, item))
         }
     }

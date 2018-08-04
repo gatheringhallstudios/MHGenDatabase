@@ -4,12 +4,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.*
 import android.database.Cursor
-import android.graphics.drawable.Drawable
 import android.support.annotation.*
 import android.util.*
+import com.ghstudios.android.mhgendatabase.R
 
-import java.io.IOException
-import java.io.InputStream
 import java.util.ArrayList
 
 /**
@@ -55,23 +53,6 @@ object MHUtils {
     }
 
     /**
-     * Loads an image from the Assets folder as a drawable
-     * @param ctx
-     * @param path
-     * @return
-     */
-    @JvmStatic fun loadAssetDrawable(ctx: Context, path: String): Drawable? {
-        return try {
-            ctx.assets.open(path).use {
-                Drawable.createFromStream(it, null)
-            }
-        } catch (ex: Exception) {
-            Log.e("MHGenUtils", "Failed to load asset $path")
-            null
-        }
-    }
-
-    /**
      * Extracts every value in a cursor, returning a list of objects.
      * This method exhausts the cursor and closes it.
      */
@@ -114,10 +95,39 @@ object MHUtils {
      * dictionary for future lookups.
      */
     @JvmStatic fun getDrawableId(c : Context, s : String) : Int{
-        if(hashMap.containsKey(s)) return hashMap[s]!!
-        val res = c.resources.getIdentifier("drawable/" + s.toLowerCase(),null,c.packageName)
-        hashMap[s.toLowerCase()] = res
-        return res
+        var id = hashMap[s]
+        if(id != null) return id
+        id = c.resources.getIdentifier("drawable/" + s.toLowerCase(),null,c.packageName)
+        hashMap[s.toLowerCase()] = id
+        return id
+    }
+
+    private val colorArrayHash = HashMap<Int,IntArray>()
+    /**
+     * Returns and Caches int array. Used mostly for rare_colors and item_color arrays.
+     * Probably a small optimization, but since this will be called for every image,
+     * caching is a good idea.
+     */
+    @JvmStatic fun getIntArray(c : Context, id : Int) : IntArray{
+        var array = colorArrayHash[id]
+        if(array != null) return array
+        array = c.resources.getIntArray(id)
+        colorArrayHash[id] = array
+        return array
+    }
+
+    @JvmStatic fun getNoteColor(note: Char): Int {
+        when (note) {
+            'B' -> return R.color.item_dark_blue
+            'C' -> return R.color.item_cyan
+            'G' -> return R.color.item_dark_green
+            'O' -> return R.color.item_orange
+            'P' -> return R.color.item_dark_purple
+            'R' -> return R.color.item_dark_red
+            'W' -> return R.color.item_white
+            'Y' -> return R.color.item_yellow
+        }
+        return R.color.item_white
     }
 
 }

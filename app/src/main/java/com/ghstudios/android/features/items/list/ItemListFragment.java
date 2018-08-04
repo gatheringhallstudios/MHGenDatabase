@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.cursors.ItemCursor;
@@ -112,9 +113,7 @@ public class ItemListFragment extends ListFragment implements
 
             itemNameTextView.setText(cellText);
 
-            String cellImage = item.getItemImage();
-            Drawable itemImage = MHUtils.loadAssetDrawable(context, cellImage);
-            itemImageView.setImageDrawable(itemImage);
+            AssetLoader.setIcon(itemImageView,item);
 
             view.setOnClickListener(new ItemClickListener(context, item));
         }

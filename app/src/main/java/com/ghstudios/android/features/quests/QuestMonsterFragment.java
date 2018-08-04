@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ClickListeners.MonsterClickListener;
 import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.classes.MonsterToQuest;
@@ -100,17 +101,7 @@ public class QuestMonsterFragment extends Fragment {
 
             monsterTextView.setText(cellMonsterText);
 
-            Drawable i = null;
-            String cellImage = "icons_monster/"
-                    + monsterToQuest.getMonster().getFileLocation();
-            try {
-                i = Drawable.createFromStream(
-                        getContext().getAssets().open(cellImage), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            monsterImageView.setImageDrawable(i);
+            AssetLoader.setIcon(monsterImageView,monsterToQuest.getMonster());
 
             Habitat habitat = monsterToQuest.getHabitat();
             if(habitat != null){

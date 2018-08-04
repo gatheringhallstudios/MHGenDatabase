@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.Habitat;
 import com.ghstudios.android.data.cursors.MonsterHabitatCursor;
 import com.ghstudios.android.loader.MonsterHabitatListCursorLoader;
@@ -122,14 +123,13 @@ public class LocationHabitatFragment extends ListFragment implements
             Habitat habitat = mHabitatCursor.getHabitat();
 
             // Set up the text view
-            RelativeLayout itemLayout = (RelativeLayout) view
-                    .findViewById(R.id.listitem);
+            RelativeLayout itemLayout = view.findViewById(R.id.listitem);
 
-            ImageView monsterImageView = (ImageView) view.findViewById(R.id.mapImage);
-            TextView monsterTextView = (TextView) view.findViewById(R.id.map);
-            TextView startTextView = (TextView) view.findViewById(R.id.start);
-            TextView areaTextView = (TextView) view.findViewById(R.id.move);
-            TextView restTextView = (TextView) view.findViewById(R.id.rest);
+            ImageView monsterImageView = view.findViewById(R.id.mapImage);
+            TextView monsterTextView = view.findViewById(R.id.map);
+            TextView startTextView = view.findViewById(R.id.start);
+            TextView areaTextView = view.findViewById(R.id.move);
+            TextView restTextView = view.findViewById(R.id.rest);
 
             long start = habitat.getStart();
             long[] area = habitat.getAreas();
@@ -145,17 +145,7 @@ public class LocationHabitatFragment extends ListFragment implements
                 }
             }
 
-            Drawable i = null;
-            String cellImage = "icons_monster/"
-                    + habitat.getMonster().getFileLocation();
-            try {
-                i = Drawable.createFromStream(
-                        context.getAssets().open(cellImage), null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            monsterImageView.setImageDrawable(i);
+            AssetLoader.setIcon(monsterImageView,habitat.getMonster());
 
             monsterTextView.setText(habitat.getMonster().getName());
             startTextView.setText(Long.toString(start));

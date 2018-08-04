@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
+import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
 
 import butterknife.BindView;
@@ -74,6 +76,10 @@ public class TitleBarCell extends FrameLayout {
 
         // Invalidate to trigger layout update
         invalidate();
+    }
+
+    public void setIcon(ITintedIcon icon){
+        AssetLoader.setIcon(imageView,icon);
     }
 
     /**

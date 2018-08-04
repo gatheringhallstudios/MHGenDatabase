@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
@@ -106,29 +107,18 @@ public class ComponentListFragment extends ListFragment implements
 			Item item = component.getComponent();
 
 			// Set up the text view
-			LinearLayout itemLayout = (LinearLayout) view
-					.findViewById(R.id.listitem);
-			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-			TextView itemTextView = (TextView) view.findViewById(R.id.item);
-			TextView amtTextView = (TextView) view.findViewById(R.id.amt);
+			LinearLayout itemLayout = view.findViewById(R.id.listitem);
+			ImageView itemImageView = view.findViewById(R.id.item_image);
+			TextView itemTextView = view.findViewById(R.id.item);
+			TextView amtTextView = view.findViewById(R.id.amt);
 			
 			String nameText = item.getName();
 			String amtText = "" + component.getQuantity();
 			
 			itemTextView.setText(nameText);
 			amtTextView.setText(amtText);
-			
-			Drawable i = null;
-			String cellImage = item.getItemImage();
 
-			try {
-				i = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			itemImageView.setImageDrawable(i);
+			AssetLoader.setIcon(itemImageView,item);
 
 			itemLayout.setTag(item.getId());
 			itemLayout.setOnClickListener(new ItemClickListener(context, item));

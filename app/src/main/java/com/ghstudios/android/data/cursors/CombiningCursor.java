@@ -9,7 +9,7 @@ import com.ghstudios.android.data.database.S;
 
 /**
  * A convenience class to wrap a cursor that returns rows from the "combining"
- * table. The {@link getCombining()} method will give you a Combining instance
+ * table. The getCombining() method will give you a Combining instance
  * representing the current row.
  */
 public class CombiningCursor extends CursorWrapper {
@@ -69,6 +69,7 @@ public class CombiningCursor extends CursorWrapper {
 		int item_sell = getInt(getColumnIndex(prefix + S.COLUMN_ITEMS_SELL));
 		String item_description = getString(getColumnIndex(prefix + S.COLUMN_ITEMS_DESCRIPTION));
 		String item_fileLocation = getString(getColumnIndex(prefix + S.COLUMN_ITEMS_ICON_NAME));
+		int item_color = getInt(getColumnIndex(prefix + S.COLUMN_ITEMS_ICON_COLOR));
 
 		item.setId(item_id);
 		item.setName(item_name);
@@ -80,7 +81,8 @@ public class CombiningCursor extends CursorWrapper {
 		item.setSell(item_sell);
 		item.setDescription(item_description);
 		item.setFileLocation(item_fileLocation);
-		
+		item.setIconColor(item_color);
+
 		return item;
 	}
 }

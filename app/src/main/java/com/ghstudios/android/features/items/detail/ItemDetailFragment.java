@@ -85,8 +85,7 @@ public class ItemDetailFragment extends Fragment {
 
     private void populateItem(Item mItem) {
         // Set title icon and image
-        Drawable itemImage = AssetLoader.loadIconFor(mItem);
-        titleCell.setIconDrawable(itemImage);
+        titleCell.setIcon(mItem);
         titleCell.setTitleText(mItem.getName());
         titleCell.setAltTitleText(mItem.getJpnName());
         titleCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());

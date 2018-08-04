@@ -46,6 +46,8 @@ public class ComponentCursor extends CursorWrapper {
 		int rarity1 = getInt(getColumnIndex("cr" + S.COLUMN_ITEMS_RARITY));
 		String fileLocation1 = getString(getColumnIndex("cr" + S.COLUMN_ITEMS_ICON_NAME));
 		String subtype = getString(getColumnIndex("cr" + S.COLUMN_ITEMS_SUB_TYPE));
+		int color = getInt(getColumnIndex("cr"+S.COLUMN_ITEMS_ICON_COLOR));
+
 
 		created.setId(itemId1);
 		created.setName(itemName1);
@@ -53,6 +55,7 @@ public class ComponentCursor extends CursorWrapper {
         created.setType(type1);
         created.setRarity(rarity1);
         created.setFileLocation(fileLocation1);
+        created.setIconColor(color);
 		
 		component.setCreated(created);
 
@@ -65,6 +68,7 @@ public class ComponentCursor extends CursorWrapper {
         int rarity2 = getInt(getColumnIndex("co" + S.COLUMN_ITEMS_RARITY));
         String fileLocation2 = getString(getColumnIndex("co" + S.COLUMN_ITEMS_ICON_NAME));
         String subtype2 = getString(getColumnIndex("co" + S.COLUMN_ITEMS_SUB_TYPE));
+		color = getInt(getColumnIndex("co"+S.COLUMN_ITEMS_ICON_COLOR));
 
 		comp.setId(itemId2);
 		comp.setName(itemName2);
@@ -72,6 +76,7 @@ public class ComponentCursor extends CursorWrapper {
         comp.setRarity(rarity2);
         comp.setType(itemType2);
         comp.setFileLocation(fileLocation2);
+        comp.setIconColor(color);
 		
 		component.setComponent(comp);
 		

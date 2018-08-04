@@ -1,12 +1,10 @@
 package com.ghstudios.android.features.weapons;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -45,7 +43,14 @@ public class WeaponSelectionListFragment extends ListFragment {
 			"Lance", "Gunlance", "Switch Axe", "Charge Blade", "Insect Glaive", "Light Bowgun", "Heavy Bowgun",
 			"Bow" };
 
-	static final Drawable[] drawables = new Drawable[14];
+	static final int[] resources = new int[]{
+			R.drawable.icon_great_sword,R.drawable.icon_long_sword,
+			R.drawable.icon_sword_and_shield,R.drawable.icon_dual_blades,
+			R.drawable.icon_hammer,R.drawable.icon_hunting_horn,
+			R.drawable.icon_lance,R.drawable.icon_gunlance,
+			R.drawable.icon_switch_axe,R.drawable.icon_charge_blade,
+			R.drawable.icon_insect_glaive,R.drawable.icon_light_bowgun,
+			R.drawable.icon_heavy_bowgun,R.drawable.icon_bow};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,36 +64,15 @@ public class WeaponSelectionListFragment extends ListFragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_generic_list, parent, false);
 
-        String imageLocation = "";
-        for(int i = 0; i < weapons.length; i++)
-        {
-            imageLocation = weapons[i].toLowerCase().replaceAll(" ","_");
-            imageLocation = "icons_weapons/icons_" + imageLocation + "/" + imageLocation + "1.png";
-
-            Drawable d = null;
-
-            try {
-                d = Drawable.createFromStream(parent.getContext().getAssets().open(imageLocation),
-                        null);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            drawables[i] = d;
-        }
-
-        ArrayList<Drawable> mItems = new ArrayList<Drawable>(
-                Arrays.asList(drawables));
-
-        mAdapter = new WeaponItemAdapter(mItems);
-
+        ArrayList<String> items = new ArrayList<>(Arrays.asList(weapons));
+        mAdapter = new WeaponItemAdapter(items);
         setListAdapter(mAdapter);
 
 		return v;
 	}
 
-	private class WeaponItemAdapter extends ArrayAdapter<Drawable> {
-		public WeaponItemAdapter(ArrayList<Drawable> items) {
+	private class WeaponItemAdapter extends ArrayAdapter<String> {
+		public WeaponItemAdapter(ArrayList<String> items) {
 			super(getActivity(), 0, items);
 		}
 
@@ -101,16 +85,15 @@ public class WeaponSelectionListFragment extends ListFragment {
 						parent, false);
 			}
 
-			Drawable item = getItem(position);
+			String item = getItem(position);
 
-			TextView textView = (TextView) convertView.findViewById(R.id.item_label);
-			ImageView imageView = (ImageView) convertView
-					.findViewById(R.id.item_image);
+			TextView textView = convertView.findViewById(R.id.item_label);
+			ImageView imageView = convertView.findViewById(R.id.item_image);
 
-            RelativeLayout itemLayout = (RelativeLayout) convertView.findViewById(R.id.listitem);
+            RelativeLayout itemLayout = convertView.findViewById(R.id.listitem);
 
-			textView.setText(weapons[position]);
-			imageView.setImageDrawable(item);
+			textView.setText(item);
+			imageView.setImageResource(resources[position]);
 
 			itemLayout.setOnClickListener(new WeaponListClickListener(convertView.getContext(), position));
 

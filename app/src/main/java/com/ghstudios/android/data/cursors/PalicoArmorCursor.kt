@@ -26,6 +26,8 @@ class PalicoArmorCursor(c: Cursor) : CursorWrapper(c) {
                 description = getString(S.COLUMN_ITEMS_DESCRIPTION)
                 rarity = getInt(S.COLUMN_ITEMS_RARITY)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
+                iconColor = getInt(S.COLUMN_ITEMS_ICON_NAME)
+                type = "Palico Armor"
             }
         }
     }

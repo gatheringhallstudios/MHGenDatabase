@@ -28,14 +28,6 @@ inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
 }
 
 /**
- * Extension: Loads a drawable from the assets folder.
- * Returns null on failure.
- */
-fun Context.getAssetDrawable(path: String?): Drawable? {
-    return MHUtils.loadAssetDrawable(this, path ?: "")
-}
-
-/**
  * Extension: Retrieves a drawable associated with a resource id
  * via ContextCompat using the called context.
  */

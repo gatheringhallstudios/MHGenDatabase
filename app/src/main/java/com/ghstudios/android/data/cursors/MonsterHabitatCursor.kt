@@ -40,7 +40,6 @@ class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
                     id = 2
                     name = getString("l" + S.COLUMN_LOCATIONS_NAME)
                     fileLocation = getString("l" + S.COLUMN_LOCATIONS_MAP)
-                    fileLocationMini = fileLocation.dropLast(4) + "_mini.png"
                 }
 
                 // Assign monster

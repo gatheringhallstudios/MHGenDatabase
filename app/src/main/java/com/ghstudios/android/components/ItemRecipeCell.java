@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
 
 import butterknife.BindView;
@@ -73,9 +74,9 @@ public class ItemRecipeCell extends LinearLayout {
         }
     }
 
-    public View addItem(Drawable icon, String itemName, int qty) {
+    public View addItem(ITintedIcon icon, String itemName, int qty) {
         IconLabelTextCell cell = new IconLabelTextCell(getContext());
-        cell.setLeftIconDrawable(icon);
+        cell.setLeftIcon(icon);
         cell.setLabelText(itemName);
         cell.setValueText(String.valueOf(qty));
 

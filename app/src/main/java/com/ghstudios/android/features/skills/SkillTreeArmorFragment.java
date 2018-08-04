@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
 import com.ghstudios.android.features.armor.ArmorDetailActivity;
@@ -141,43 +142,18 @@ public class SkillTreeArmorFragment extends ListFragment implements
 			ItemToSkillTree skill = mItemToSkillTreeCursor.getItemToSkillTree();
 
 			// Set up the text view
-			LinearLayout root = (LinearLayout) view.findViewById(R.id.listitem);
-			ImageView skillItemImageView = (ImageView) view.findViewById(R.id.item_image);
-			TextView skillItemTextView = (TextView) view.findViewById(R.id.item);
-			TextView skillAmtTextView = (TextView) view.findViewById(R.id.amt);
+			LinearLayout root = view.findViewById(R.id.listitem);
+			ImageView skillItemImageView = view.findViewById(R.id.item_image);
+			TextView skillItemTextView = view.findViewById(R.id.item);
+			TextView skillAmtTextView = view.findViewById(R.id.amt);
 			
 			String nameText = skill.getItem().getName();
 			String amtText = "" + skill.getPoints();
 			
 			skillItemTextView.setText(nameText);
 			skillAmtTextView.setText(amtText);
-			
-			Drawable i = null;
-			
-			String part = "";
-			if (mType.equals("Head")) {
-				part = "head";
-			} else if (mType.equals("Body")) {
-				part = "body";
-			} else if (mType.equals("Arms")) {
-				part = "arms";
-			} else if (mType.equals("Waist")) {
-				part = "waist";
-			} else if (mType.equals("Legs")) {
-				part = "legs";
-			}
-			
-			String cellImage = "icons_armor/icons_" + part + "/" + part + 
-						skill.getItem().getRarity() + ".png";
-			
-			try {
-				i = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			skillItemImageView.setImageDrawable(i);
+
+			AssetLoader.setIcon(skillItemImageView,skill.getItem());
 
 			root.setTag(skill.getItem().getId());
             root.setOnClickListener(new ArmorClickListener(context, skill.getItem().getId(),false));

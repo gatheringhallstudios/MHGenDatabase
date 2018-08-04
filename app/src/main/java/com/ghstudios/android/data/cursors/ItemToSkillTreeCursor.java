@@ -10,7 +10,7 @@ import com.ghstudios.android.data.database.S;
 
 /**
  * A convenience class to wrap a cursor that returns rows from the "item_to_skill_tree"
- * table. The {@link getItemToSkillTree()} method will give you a ItemToSkillTree instance
+ * table. The getItemToSkillTree() method will give you an ItemToSkillTree instance
  * representing the current row.
  */
 public class ItemToSkillTreeCursor extends CursorWrapper {
@@ -49,6 +49,7 @@ public class ItemToSkillTreeCursor extends CursorWrapper {
 		item.setType(type);
 		item.setRarity(rarity);
 		item.setFileLocation(fileLocation);
+		item.setIconColor(getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR)));
 		
 		itemToSkillTree.setItem(item);
 		

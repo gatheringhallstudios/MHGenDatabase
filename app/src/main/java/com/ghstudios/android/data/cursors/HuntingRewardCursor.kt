@@ -35,6 +35,7 @@ class HuntingRewardCursor(c: Cursor) : CursorWrapper(c) {
                 id = getLong(S.COLUMN_HUNTING_REWARDS_ITEM_ID)
                 name = getString("item_name")
                 fileLocation = getString("item_icon_name")
+                iconColor = getInt("item_icon_color")
             }
 
             huntingReward.monster = Monster().apply {

@@ -1,10 +1,13 @@
 package com.ghstudios.android
 
 import android.app.Application
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
+import android.widget.ImageView
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.Location
 import com.ghstudios.android.data.classes.Monster
+import com.ghstudios.android.mhgendatabase.R
 
 /**
  * A static class used to load icons for various database objects.
@@ -20,21 +23,12 @@ object AssetLoader {
     }
 
     @JvmStatic
-    fun loadIconFor(monster: Monster): Drawable? {
-        val cellImage = "icons_monster/" + monster.fileLocation
-        return ctx.getAssetDrawable(cellImage)
+    fun setIcon(iv:ImageView,item:ITintedIcon){
+        var resId = MHUtils.getDrawableId(ctx,item.getIconResourceString())
+        if(resId <= 0) resId = R.drawable.icon_quest_mark
+        iv.setImageResource(resId)
+        val arr = MHUtils.getIntArray(ctx,item.getColorArrayId())
+        iv.setColorFilter(arr[item.getIconColorIndex()],PorterDuff.Mode.MULTIPLY)
     }
 
-    @JvmStatic
-    fun loadIconFor(location: Location): Drawable? {
-        val path = "icons_location/" + location.fileLocationMini
-        return ctx.getAssetDrawable(path)
-    }
-
-    @JvmStatic
-    fun loadIconFor(item: Item): Drawable? {
-        return ctx.getAssetDrawable(item.itemImage)
-    }
-
-    // todo: add more overloads for "base" objects. Don't add special ones for composite objects.
 }

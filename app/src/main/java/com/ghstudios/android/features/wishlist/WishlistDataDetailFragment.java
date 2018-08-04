@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistDataCursor;
@@ -79,7 +80,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_wishlist_item_list, container, false);
 
-		mListView = (ListView) v.findViewById(android.R.id.list);
+		mListView = v.findViewById(android.R.id.list);
 		
 		return v;
 	}
@@ -249,11 +250,11 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			final WishlistData data = mWishlistDataCursor.getWishlistData();
 
 			// Set up the text view
-			LinearLayout root = (LinearLayout) view.findViewById(R.id.listitem);
-			ImageView itemImageView = (ImageView) view.findViewById(R.id.item_image);
-			TextView itemTextView = (TextView) view.findViewById(R.id.item);
-			TextView amtTextView = (TextView) view.findViewById(R.id.amt);
-			TextView extraTextView = (TextView) view.findViewById(R.id.extra);
+			LinearLayout root = view.findViewById(R.id.listitem);
+			ImageView itemImageView = view.findViewById(R.id.item_image);
+			TextView itemTextView = view.findViewById(R.id.item);
+			TextView amtTextView = view.findViewById(R.id.amt);
+			TextView extraTextView = view.findViewById(R.id.extra);
 			
 			final long id = data.getItem().getId();
 			final String nameText = data.getItem().getName();
@@ -274,33 +275,16 @@ public class WishlistDataDetailFragment extends ListFragment implements
 			amtTextView.setText(amtText);
 			extraTextView.setText(extraText);
 
-			// Draw image
-			String cellImage = data.getItem().getItemImage();
-
-			Drawable itemImage = null;
-			try {
-				itemImage = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			itemImageView.setImageDrawable(itemImage);
-
-            //root.setClickable(false);
+			AssetLoader.setIcon(itemImageView,data.getItem());
 
 			root.setOnClickListener(new ItemClickListener(context, data.getItem()));
 
-			root.setOnLongClickListener(new View.OnLongClickListener() {
-				@Override
-				public boolean onLongClick(View view) {
-					WishlistDataDeleteDialogFragment dialogDelete = WishlistDataDeleteDialogFragment.newInstance(data.getId(), nameText);
-					dialogDelete.setTargetFragment(WishlistDataDetailFragment.this, REQUEST_WISHLIST_DATA_DELETE);
-					dialogDelete.show(getFragmentManager(), DIALOG_WISHLIST_DATA_DELETE);
-					return true;
-				}
-			});
+			root.setOnLongClickListener(view1 -> {
+                WishlistDataDeleteDialogFragment dialogDelete = WishlistDataDeleteDialogFragment.newInstance(data.getId(), nameText);
+                dialogDelete.setTargetFragment(WishlistDataDetailFragment.this, REQUEST_WISHLIST_DATA_DELETE);
+                dialogDelete.show(getFragmentManager(), DIALOG_WISHLIST_DATA_DELETE);
+                return true;
+            });
 
 		}
 	}

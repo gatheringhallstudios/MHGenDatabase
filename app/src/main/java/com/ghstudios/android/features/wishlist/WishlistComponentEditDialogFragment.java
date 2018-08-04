@@ -55,26 +55,22 @@ public class WishlistComponentEditDialogFragment extends DialogFragment {
 			.setTitle("Set your quantity for '" + name + "'")
 			.setView(v)
 			.setNegativeButton(android.R.string.cancel, null)
-			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				
-	               @Override
-	               public void onClick(DialogInterface dialog, int id) {
-	            	   String input = quantityInput.getText().toString();
-	            	   if (input.equals("")) {
-		   				   Toast.makeText(getActivity(), "Please put a quantity!", 
-		   						   Toast.LENGTH_SHORT).show();
-		   				   return;
-	            	   }
-	            	   
-            		   int quantity = Integer.parseInt(input);
-            		               		   
-            		   DataManager.get(getActivity()).queryUpdateWishlistComponentNotes(
-            				   getArguments().getLong(ARG_WISHLIST_COMPONENT_ID), quantity);
-            		   
-	   				   Toast.makeText(getActivity(), "Edited '" + name + "'", Toast.LENGTH_SHORT).show();
-	            	   sendResult(Activity.RESULT_OK, true);
-	               }
-			})
+			.setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                String input = quantityInput.getText().toString();
+                if (input.equals("")) {
+                       Toast.makeText(getActivity(), "Please put a quantity!",
+                               Toast.LENGTH_SHORT).show();
+                       return;
+                }
+
+                int quantity = Integer.parseInt(input);
+
+                DataManager.get(getActivity()).queryUpdateWishlistComponentNotes(
+                        getArguments().getLong(ARG_WISHLIST_COMPONENT_ID), quantity);
+
+                   Toast.makeText(getActivity(), "Edited '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
+            })
 			.create();
 	}
 }

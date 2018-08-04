@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toStartOf="@+id/initial"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/sword_and_shield1" />
+        tools:src="@drawable/talisman" />
 
     <TextView
         android:id="@+id/initial"

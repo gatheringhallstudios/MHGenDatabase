@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
@@ -130,17 +131,8 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 			
 			skillItemTextView.setText(nameText);
 			skillAmtTextView.setText(amtText);
-			
-			Drawable i = null;
-			String cellImage = "icons_items/" + skill.getItem().getFileLocation();
-			try {
-				i = Drawable.createFromStream(
-						context.getAssets().open(cellImage), null);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			skillItemImageView.setImageDrawable(i);
+
+			AssetLoader.setIcon(skillItemImageView,skill.getItem());
 			
 			root.setTag(skill.getItem().getId());
             root.setOnClickListener(new DecorationClickListener(context, skill.getItem().getId()));

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.BasicItemClickListener
 import com.ghstudios.android.SectionArrayAdapter
 import com.ghstudios.android.data.classes.HuntingReward
@@ -51,9 +52,8 @@ class MonsterRewardFragment : ListFragment() {
             return LayoutInflater.from(context!!).inflate(R.layout.fragment_monster_reward_listitem,parent,false)
         }
 
-        override fun bindView(view: View?, context: Context?, item: HuntingReward?) {
-            val huntingReward = item!!
-            if(view == null) return
+        override fun bindView(view: View?, context: Context?, huntingReward: HuntingReward?) {
+            if(view == null || huntingReward == null) return
 
             val itemLayout = view.findViewById<View>(R.id.listitem) as RelativeLayout
             val itemImageView = view.findViewById<View>(R.id.item_image) as ImageView
@@ -73,16 +73,7 @@ class MonsterRewardFragment : ListFragment() {
             val percent = "$cellPercentageText%"
             percentageTextView.text = percent
 
-            var i: Drawable? = null
-            val cellImage = "icons_items/" + huntingReward.item!!.fileLocation
-            try {
-                i = Drawable.createFromStream(
-                        context?.assets?.open(cellImage), null)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
-            itemImageView.setImageDrawable(i)
+            AssetLoader.setIcon(itemImageView,huntingReward.item!!)
 
             itemLayout.tag = huntingReward.item!!.id
             itemLayout.setOnClickListener(BasicItemClickListener(context, huntingReward.item!!.id))

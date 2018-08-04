@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.loader.LocationLoader;
 import com.ghstudios.android.mhgendatabase.R;
@@ -60,35 +61,16 @@ public class LocationDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_location_detail, container, false);
 		
-		mLocationLabelTextView = (TextView) view.findViewById(R.id.map_text);
-		mLocationIconImageView = (ImageView) view.findViewById(R.id.map_image);
+		mLocationLabelTextView = view.findViewById(R.id.map_text);
+		mLocationIconImageView = view.findViewById(R.id.map_image);
 		
 		return view;
 	}
 	
-	private void updateUI() throws IOException {
+	private void updateUI() {
 		String cellText = mLocation.getName();
-		String cellImage = "icons_location/" + mLocation.getFileLocation();
-		
 		mLocationLabelTextView.setText(cellText);
-		
-		// Read a Bitmap from Assets
-        AssetManager manager = getActivity().getAssets();
-        InputStream open = null;
-        
-        try {
-            open = manager.open(cellImage);
-            Bitmap bitmap = BitmapFactory.decodeStream(open);
-            // Assign the bitmap to an ImageView in this layout
-            mLocationIconImageView.setImageBitmap(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
-        finally{
-        	if(open != null){
-        		open.close();
-        	}
-        }
+		AssetLoader.setIcon(mLocationIconImageView,mLocation);
 	}
 	
 	private class LocationLoaderCallbacks implements LoaderCallbacks<Location> {
@@ -101,12 +83,7 @@ public class LocationDetailFragment extends Fragment {
 		@Override
 		public void onLoadFinished(Loader<Location> loader, Location run) {
 			mLocation = run;
-			try {
-				updateUI();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			updateUI();
 		}
 		
 		@Override

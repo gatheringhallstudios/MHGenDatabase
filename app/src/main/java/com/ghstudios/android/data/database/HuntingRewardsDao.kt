@@ -16,7 +16,7 @@ class HuntingRewardsDao(val dbMainHelper: SQLiteOpenHelper) {
 
     private val reward_columns
         get() = "h._id, h.monster_id, h.item_id, h.condition, h.rank, h.stack_size, h.percentage, " +
-                "$column_item_name item_name, i.icon_name item_icon_name, " +
+                "$column_item_name item_name, i.icon_name item_icon_name,icon_color item_icon_color, " +
                 "$column_monster_name monster_name, m.icon_name monster_icon_name"
 
     /*

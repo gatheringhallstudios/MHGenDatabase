@@ -46,6 +46,7 @@ class ArmorCursor(c: Cursor) : CursorWrapper(c) {
                 sell = getInt(S.COLUMN_ITEMS_SELL)
                 description = getString(S.COLUMN_ITEMS_DESCRIPTION)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
+                iconColor = getInt(S.COLUMN_ITEMS_ICON_COLOR)
             }
         }
 }

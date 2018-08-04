@@ -42,6 +42,7 @@ class GatheringCursor(c: Cursor) : CursorWrapper(c) {
                 id = getLong(S.COLUMN_GATHERING_ITEM_ID)
                 name = getString("i" + S.COLUMN_ITEMS_NAME)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
+                iconColor = getInt(S.COLUMN_ITEMS_ICON_COLOR)
             }
 
             gathering.location = Location().apply {

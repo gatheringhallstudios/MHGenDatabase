@@ -82,8 +82,7 @@ public class WeaponDetailFragment extends Fragment {
     }
 
     protected void populateWeapon(Weapon weapon) {
-        Drawable weaponIcon = MHUtils.loadAssetDrawable(getContext(), weapon.getItemImage());
-        titleBar.setIconDrawable(weaponIcon);
+        titleBar.setIcon(weapon);
         titleBar.setTitleText(weapon.getName());
         titleBar.setAltTitleText(weapon.getJpnName());
         titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());

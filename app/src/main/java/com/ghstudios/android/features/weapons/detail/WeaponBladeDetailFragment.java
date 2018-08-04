@@ -1,24 +1,18 @@
 package com.ghstudios.android.features.weapons.detail;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.components.DrawSharpness;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.components.DrawSharpness;
 
 public class WeaponBladeDetailFragment extends WeaponDetailFragment {
 
@@ -44,29 +38,29 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment {
         View view = inflater.inflate(R.layout.fragment_weapon_blade_detail,
                 container, false);
 
-        mWeaponDescription = (TextView) view
+        mWeaponDescription = view
                 .findViewById(R.id.detail_weapon_description);
-        mWeaponSharpnessDrawnView = (DrawSharpness) view
+        mWeaponSharpnessDrawnView = view
                 .findViewById(R.id.detail_weapon_blade_sharpness);
-        mWeaponDefenseTextView = (TextView) view
+        mWeaponDefenseTextView = view
                 .findViewById(R.id.detail_weapon_defense);
-        mWeaponDefenseTextTextView=(TextView) view
+        mWeaponDefenseTextTextView= view
                 .findViewById(R.id.detail_weapon_defense_text);
-        mWeaponCreationTextView = (TextView) view
+        mWeaponCreationTextView = view
                 .findViewById(R.id.detail_weapon_creation);
-        mWeaponUpgradeTextView = (TextView) view
+        mWeaponUpgradeTextView = view
                 .findViewById(R.id.detail_weapon_upgrade);
-        mWeaponSpecialTypeTextView = (TextView) view
+        mWeaponSpecialTypeTextView = view
                 .findViewById(R.id.detail_weapon_blade_special);
-        mWeaponSpecialTextView = (TextView) view
+        mWeaponSpecialTextView = view
                 .findViewById(R.id.detail_weapon_blade_special_value);
-        mWeaponNoteText = (TextView)view.findViewById(R.id.detail_weapon_blade_note_text);
+        mWeaponNoteText = view.findViewById(R.id.detail_weapon_blade_note_text);
         NoteContainer = view.findViewById(R.id.detail_weapon_note_container);
-        mWeaponNote1ImageView = (ImageView) view
+        mWeaponNote1ImageView = view
                 .findViewById(R.id.detail_weapon_blade_note1);
-        mWeaponNote2ImageView = (ImageView) view
+        mWeaponNote2ImageView = view
                 .findViewById(R.id.detail_weapon_blade_note2);
-        mWeaponNote3ImageView = (ImageView) view
+        mWeaponNote3ImageView = view
                 .findViewById(R.id.detail_weapon_blade_note3);
 
         return view;
@@ -85,15 +79,14 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment {
         if (mWeapon.getWtype().equals("Hunting Horn")) {
             String notes = mWeapon.getHornNotes();
 
-            Drawable[] images = new Drawable[3];
-            for (int idx = 0; idx < 3; idx++) {
-                String noteAsset = getNoteImage(notes.charAt(idx));
-                images[idx] = MHUtils.loadAssetDrawable(getContext(), noteAsset);
-            }
+            mWeaponNote1ImageView.setImageResource(R.drawable.icon_music_note);
+            mWeaponNote1ImageView.setColorFilter(ContextCompat.getColor(getContext(), MHUtils.getNoteColor(notes.charAt(0))), PorterDuff.Mode.MULTIPLY);
 
-            mWeaponNote1ImageView.setImageDrawable(images[0]);
-            mWeaponNote2ImageView.setImageDrawable(images[1]);
-            mWeaponNote3ImageView.setImageDrawable(images[2]);
+            mWeaponNote2ImageView.setImageResource(R.drawable.icon_music_note);
+            mWeaponNote2ImageView.setColorFilter(ContextCompat.getColor(getContext(),MHUtils.getNoteColor(notes.charAt(1))), PorterDuff.Mode.MULTIPLY);
+
+            mWeaponNote3ImageView.setImageResource(R.drawable.icon_music_note);
+            mWeaponNote3ImageView.setColorFilter(ContextCompat.getColor(getContext(),MHUtils.getNoteColor(notes.charAt(2))), PorterDuff.Mode.MULTIPLY);
         }
         else
         {
@@ -120,30 +113,6 @@ public class WeaponBladeDetailFragment extends WeaponDetailFragment {
             mWeaponSpecialTextView.setVisibility(View.GONE);
             mWeaponSpecialTypeTextView.setVisibility(View.GONE);
         }
-    }
-
-    public static String getNoteImage(char note) {
-        String file = "icons_monster_info/";
-
-        switch (note) {
-            case 'B':
-                return file + "Note.blue.png";
-            case 'C':
-                return file + "Note.aqua.png";
-            case 'G':
-                return file + "Note.green.png";
-            case 'O':
-                return file + "Note.orange.png";
-            case 'P':
-                return file + "Note.purple.png";
-            case 'R':
-                return file + "Note.red.png";
-            case 'W':
-                return file + "Note.white.png";
-            case 'Y':
-                return file + "Note.yellow.png";
-        }
-        return "";
     }
 
 }
