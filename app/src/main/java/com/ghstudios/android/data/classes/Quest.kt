@@ -14,6 +14,10 @@ class Quest {
         const val QUEST_GOAL_DELIVER = 3
         const val QUEST_GOAL_HUNTATHON = 4
         const val QUEST_GOAL_MARATHON = 5
+
+        const val QUEST_TYPE_NONE = 0
+        const val QUEST_TYPE_KEY = 1
+        const val QUEST_TYPE_URGENT = 2
     }
 
     /* Getters and Setters */

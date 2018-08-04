@@ -24,15 +24,25 @@
         style="@style/text_medium"
         tools:text="Break things"/>
 
-    <TextView
-        android:id="@+id/key"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|right"
         android:layout_weight="0.2"
-        android:layout_gravity="center"
-        style="@style/text_small_secondary"
-        tools:text="Key"/>
+        android:orientation="vertical"
+        android:gravity="right|center_vertical">
+        <TextView
+            android:id="@+id/key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/key_badge"
+            android:text="Key"/>
+        <TextView
+            android:id="@+id/urgent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/urgent_badge"
+            android:text="Urgent"/>
+    </LinearLayout>
     
 
 </LinearLayout>

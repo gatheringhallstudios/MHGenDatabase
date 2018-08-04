@@ -36,7 +36,9 @@
     <color name="weapon_property_color">#565656</color>
     <color name="weapon_header_property_color">#565656</color>
 
-    <color name="hyper_indicator_color">#6120a3</color>
+    <color name="hyper_badge_color">#6120a3</color>
+    <color name="key_badge_color">#dbd034</color>
+    <color name="urgent_badge_color">#db7134</color>
 
     <!-- RARITY COLORS -->
     <color name="rare_1">#757575</color>

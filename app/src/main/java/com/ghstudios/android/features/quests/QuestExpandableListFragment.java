@@ -129,7 +129,7 @@ public class QuestExpandableListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
-        ExpandableListView elv = (ExpandableListView) v
+        ExpandableListView elv = v
                 .findViewById(R.id.expandableListView);
         if (mHub.equals("Village")) {
             elv.setAdapter(new QuestListAdapter(caravan));
@@ -207,18 +207,18 @@ public class QuestExpandableListFragment extends Fragment {
                     R.layout.fragment_quest_expandablelist_group_item,
                     viewGroup, false);
 
-            TextView questGroupTextView = (TextView) v.findViewById(R.id.numstars);
+            TextView questGroupTextView = v.findViewById(R.id.numstars);
             ImageView[] stars = new ImageView[10];
-            stars[0] = (ImageView) v.findViewById(R.id.star1);
-            stars[1] = (ImageView) v.findViewById(R.id.star2);
-            stars[2] = (ImageView) v.findViewById(R.id.star3);
-            stars[3] = (ImageView) v.findViewById(R.id.star4);
-            stars[4] = (ImageView) v.findViewById(R.id.star5);
-            stars[5] = (ImageView) v.findViewById(R.id.star6);
-            stars[6] = (ImageView) v.findViewById(R.id.star7);
-            stars[7] = (ImageView) v.findViewById(R.id.star8);
-            stars[8] = (ImageView) v.findViewById(R.id.star9);
-            stars[9] = (ImageView) v.findViewById(R.id.star10);
+            stars[0] = v.findViewById(R.id.star1);
+            stars[1] = v.findViewById(R.id.star2);
+            stars[2] = v.findViewById(R.id.star3);
+            stars[3] = v.findViewById(R.id.star4);
+            stars[4] = v.findViewById(R.id.star5);
+            stars[5] = v.findViewById(R.id.star6);
+            stars[6] = v.findViewById(R.id.star7);
+            stars[7] = v.findViewById(R.id.star8);
+            stars[8] = v.findViewById(R.id.star9);
+            stars[9] = v.findViewById(R.id.star10);
 
             for (int j = 0; j <= i; j++) {
                 stars[j].setVisibility(View.VISIBLE);
@@ -232,9 +232,6 @@ public class QuestExpandableListFragment extends Fragment {
         @Override
         public View getChildView(int i, int i1, boolean b, View view,
                                  ViewGroup viewGroup) {
-            // TextView textView = new TextView(
-            // QuestExpandableListFragment.this.getActivity());
-
             View v = view;
             Context context = viewGroup.getContext();
             LayoutInflater inflater = (LayoutInflater) context
@@ -243,10 +240,11 @@ public class QuestExpandableListFragment extends Fragment {
                     R.layout.fragment_quest_expandablelist_child_item,
                     viewGroup, false);
 
-            ImageView iv = (ImageView)v.findViewById(R.id.item_image);
-            TextView questChildTextView = (TextView) v.findViewById(R.id.name_text);
-            TextView keyChildTextView = (TextView) v.findViewById(R.id.key);
-            LinearLayout root = (LinearLayout) v.findViewById(R.id.root);
+            ImageView iv = v.findViewById(R.id.item_image);
+            TextView questChildTextView = v.findViewById(R.id.name_text);
+            TextView keyTextView = v.findViewById(R.id.key);
+            TextView urgentTextView = v.findViewById(R.id.urgent);
+            LinearLayout root = v.findViewById(R.id.root);
 
             Quest q = (Quest)getChild(i,i1);
 
@@ -260,9 +258,19 @@ public class QuestExpandableListFragment extends Fragment {
                 iv.setImageResource(R.drawable.quest_icon_red);
 
             questChildTextView.setText(getChild(i, i1).toString());
-
-            String key = ((Quest) getChild(i, i1)).getTypeText();
-            keyChildTextView.setText(key);
+            if(q.getType() == Quest.QUEST_TYPE_NONE)
+            {
+                keyTextView.setVisibility(View.GONE);
+                urgentTextView.setVisibility(View.GONE);
+            }
+            else if(q.getType() == Quest.QUEST_TYPE_KEY){
+                urgentTextView.setVisibility(View.GONE);
+                keyTextView.setVisibility(View.VISIBLE);
+            }
+            else{
+                urgentTextView.setVisibility(View.VISIBLE);
+                keyTextView.setVisibility(View.GONE);
+            }
 
             long questId = ((Quest) getChild(i, i1)).getId();
 
