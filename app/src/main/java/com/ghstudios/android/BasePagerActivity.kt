@@ -24,6 +24,8 @@ import java.util.concurrent.atomic.AtomicInteger
 
 abstract class BasePagerActivity : GenericActivity() {
 
+    private var hideTabsIfSingularFlag: Boolean = false
+
     /**
      * Called when the fragment wants the tabs, but after Butterknife
      * has binded the view
@@ -44,6 +46,14 @@ abstract class BasePagerActivity : GenericActivity() {
         fragment.resetTabs(tabs, idx)
     }
 
+    /**
+     * Sets the pager activity to hide the tab strip if there is only one fragment to show.
+     * This is a one way operation, once enabled it cannot be disabled.
+     */
+    fun hideTabsIfSingular() {
+        hideTabsIfSingularFlag = true
+    }
+
     interface TabAdder {
         /**
          * Adds a tab to the fragment
@@ -55,6 +65,9 @@ abstract class BasePagerActivity : GenericActivity() {
 
         /**
          * Adds a tab to the fragment.
+         *
+         * @param title   The title to display for the tab
+         * @param builder A lambda that builds the tab fragment
          */
         fun addTab(title: String, builder: () -> Fragment)
 
@@ -63,10 +76,6 @@ abstract class BasePagerActivity : GenericActivity() {
          * @param idx
          */
         fun setDefaultItem(idx: Int)
-    }
-
-    interface TabAddingFunction {
-        operator fun invoke(adder: TabAdder)
     }
 
     /** Internal only implementation of the TabAdder  */
@@ -121,19 +130,25 @@ abstract class BasePagerActivity : GenericActivity() {
          * Function to reset pager tabs using a list of PagerTab objects.
          */
         fun resetTabs(tabs: List<PagerTab>, idx: Int) {
-            // check if we're over 4 tabs. If so, make scrollable. This is the old app behavior
-            if (tabs.size > 4) {
-                tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-            } else {
-                tabLayout.tabMode = TabLayout.MODE_FIXED
-            }
-
             // Initialize ViewPager (tab behavior)
             viewPager.adapter = GenericPagerAdapter(this, tabs)
-            tabLayout.setupWithViewPager(viewPager)
 
-            if (idx > 0) {
-                viewPager.currentItem = idx
+            val parentActivity = activity as BasePagerActivity
+            if (parentActivity.hideTabsIfSingularFlag && tabs.size <= 1) {
+                // if there's only one tab and the flag is set, hide the tabs
+                tabLayout.visibility = View.GONE
+            } else {
+                // check if we're over 4 tabs. If so, make scrollable.
+                if (tabs.size > 4) {
+                    tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+                } else {
+                    tabLayout.tabMode = TabLayout.MODE_FIXED
+                }
+                tabLayout.setupWithViewPager(viewPager)
+
+                if (idx > 0) {
+                    viewPager.currentItem = idx
+                }
             }
         }
     }

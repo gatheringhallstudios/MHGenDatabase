@@ -15,6 +15,8 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
 
     @Override
     public void onAddTabs(TabAdder tabs) {
+        hideTabsIfSingular();
+
         long itemId = getIntent().getLongExtra(EXTRA_ITEM_ID, -1);
 
         ItemDetailViewModel viewModel = ViewModelProviders.of(this).get(ItemDetailViewModel.class);
