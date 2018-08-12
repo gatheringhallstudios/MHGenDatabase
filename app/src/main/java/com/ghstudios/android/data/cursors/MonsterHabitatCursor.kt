@@ -37,7 +37,7 @@ class MonsterHabitatCursor(c: Cursor) : CursorWrapper(c) {
 
                 // Assign location (subset of results)
                 location = Location().apply {
-                    id = 2
+                    id = getLong("l"+S.COLUMN_LOCATIONS_ID)
                     name = getString("l" + S.COLUMN_LOCATIONS_NAME)
                     fileLocation = getString("l" + S.COLUMN_LOCATIONS_MAP)
                 }
