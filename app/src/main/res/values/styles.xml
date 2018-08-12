@@ -59,7 +59,7 @@
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
-        <item name="android:listDivider">@drawable/generic_divider</item>
+        <item name="android:listDivider">@drawable/divider_solid</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">

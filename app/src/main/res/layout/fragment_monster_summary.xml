@@ -70,7 +70,7 @@
             android:id="@+id/habitat_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@drawable/generic_divider"
+            android:divider="@drawable/divider_solid"
             android:orientation="vertical"
             android:showDividers="middle">
 
