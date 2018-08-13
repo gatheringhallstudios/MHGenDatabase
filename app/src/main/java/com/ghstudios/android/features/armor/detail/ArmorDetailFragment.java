@@ -1,9 +1,8 @@
-package com.ghstudios.android.features.armor;
+package com.ghstudios.android.features.armor.detail;
 
 import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,10 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
-import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextCell;
@@ -46,7 +43,7 @@ public class ArmorDetailFragment extends Fragment {
 
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
-    private ArmorViewModel viewModel;
+    private ArmorDetailViewModel viewModel;
     private Armor armor; // set using the viewmodel
 
     @BindView(R.id.titlebar)
@@ -83,7 +80,7 @@ public class ArmorDetailFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        viewModel = ViewModelProviders.of(this).get(ArmorViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ArmorDetailViewModel.class);
 
         // Check for a Item ID as an argument, and find the item
         Bundle args = getArguments();
@@ -116,7 +113,7 @@ public class ArmorDetailFragment extends Fragment {
             selectButton.setOnClickListener(v -> {
                 long armorId = getArguments().getLong(ARG_ARMOR_ID);
                 Intent intent = getActivity().getIntent();
-                intent.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, armorId);
+                intent.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, armorId);
                 getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             });

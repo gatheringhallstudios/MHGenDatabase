@@ -5,8 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
-import com.ghstudios.android.features.armor.ArmorSetDetailPagerActivity;
+import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
 
 public class ArmorClickListener implements View.OnClickListener {
 

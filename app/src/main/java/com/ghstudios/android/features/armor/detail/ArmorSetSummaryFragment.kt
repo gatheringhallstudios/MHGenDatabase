@@ -1,8 +1,7 @@
-package com.ghstudios.android.features.armor
+package com.ghstudios.android.features.armor.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -16,14 +15,12 @@ import butterknife.ButterKnife
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
-import com.ghstudios.android.MHApplication
-import com.ghstudios.android.MHUtils
 import com.ghstudios.android.components.ColumnLabelTextCell
 import com.ghstudios.android.components.ItemRecipeCell
 import com.ghstudios.android.components.LabelTextCell
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Component
-import com.ghstudios.android.data.classes.ItemToSkillTree
+import com.ghstudios.android.data.classes.SkillTreePoints
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -43,6 +40,8 @@ class ArmorSetSummaryFragment : Fragment() {
     @BindView(R.id.rare) lateinit var rareView: ColumnLabelTextCell
     @BindView(R.id.weapon_type) lateinit var typeView: ColumnLabelTextCell
     @BindView(R.id.defense) lateinit var defenseView: ColumnLabelTextCell
+
+    @BindView(R.id.armor_pieces_layout) lateinit var armorListView: ViewGroup
 
     @BindView(R.id.skill_section) lateinit var skillSection: ViewGroup
     @BindView(R.id.skill_list) lateinit var skillListView: LinearLayout
@@ -65,14 +64,15 @@ class ArmorSetSummaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProviders.of(activity!!).get(ArmorSetDetailViewModel::class.java)
-        viewModel.armors.observe(this, Observer { populateArmor(it) })
-        viewModel.skills.observe(this, Observer { populateSkills(it,viewModel.armors.value) })
-        viewModel.components.observe(this, Observer { populateComponents(it)})
+        viewModel.armors.observe(this, Observer(::populateArmor))
+        viewModel.setSkills.observe(this, Observer(::populateSkills))
+        viewModel.setComponents.observe(this, Observer(::populateComponents))
     }
 
-    private fun populateArmor(armors: List<Armor>?){
-        if(armors == null) return
+    private fun populateArmor(armorPoints: List<ArmorSkillPoints>?){
+        if(armorPoints == null) return
 
+        val armors = armorPoints.map { it.armor }
 
         val cellDefense = armors.sumBy { it.defense }.toString() + "~" + armors.sumBy { it.maxDefense }
 
@@ -90,73 +90,64 @@ class ArmorSetSummaryFragment : Fragment() {
         thunderResTextView.text = armors.sumBy { it.thunderRes }.toString()
         dragonResTextView.text = armors.sumBy { it.dragonRes }.toString()
 
-    }
+        val inflater = LayoutInflater.from(context)
 
-    private fun populateSkills(skills: HashMap<Long,List<ItemToSkillTree>>?, armors:List<Armor>?){
-        if(skills == null || armors == null)return
-
-
-        //skills is organized per armor piece, switch it to total for each skill
-        val skillTotal = HashMap<Long,ItemToSkillTree>()
-        skills.forEach { it.value.forEach {
-            if(skillTotal.containsKey(it.skillTree.id)){
-                skillTotal[it.skillTree.id]!!.points += it.points
-            }else{
-                skillTotal[it.skillTree.id] = ItemToSkillTree().apply {
-                    id = it.id
-                    points = it.points
-                    skillTree = it.skillTree
-                }
-            }
-        } }
-
-        skillListView.removeAllViews()
-        if (skillTotal.size == 0) {
-            skillSection.visibility = View.GONE
-            return
-        }
-
-        skillSection.visibility = View.VISIBLE
-        for (skill in skillTotal.values) {
-            val skillItem = LabelTextCell(context)
-            skillItem.setLabelText(skill.skillTree.name)
-            skillItem.setValueText(skill.points.toString())
-
-            skillItem.setOnClickListener(
-                    SkillClickListener(context, skill.skillTree.id)
-            )
-
-            skillListView.addView(skillItem)
-        }
-
-        //Load Armor List
-        val armorLayout:LinearLayout? = view?.findViewById(R.id.armor_pieces_layout)
-        armors.forEach {
-            val armorView = LayoutInflater.from(context).inflate(R.layout.fragment_armor_set_piece_listitem,armorLayout,false)
+        // Populate the armor piece list
+        for ((armor, skills) in armorPoints) {
+            val armorView = inflater.inflate(R.layout.fragment_armor_set_piece_listitem, armorListView,false)
             val icon: ImageView? = armorView.findViewById(R.id.icon)
             val name:TextView? = armorView.findViewById(R.id.name)
             val slots:TextView? = armorView.findViewById(R.id.slots)
+
+            AssetLoader.setIcon(icon!!,armor)
+            name?.text = armor.name
+            slots?.text = armor.slotString
+
             val skillsTvs : Array<TextView?> = arrayOf(armorView.findViewById(R.id.skill_1),
                     armorView.findViewById(R.id.skill_2),
                     armorView.findViewById(R.id.skill_3),
                     armorView.findViewById(R.id.skill_4))
             skillsTvs.forEach { it?.visibility=View.GONE }
-            AssetLoader.setIcon(icon!!,it)
-            name?.text = it.name
-            slots?.text = it.slotString
-            if(skills.containsKey(it.id)){
-                for(i in skills[it.id]!!.indices){
-                    skillsTvs[i]?.visibility = View.VISIBLE
-                    val points = skills[it.id]!![i].points
-                    val skillString = skills[it.id]!![i].skillTree.name + if(points>0) "+$points" else points
-                    skillsTvs[i]?.text = skillString
-                }
-            }
-            armorLayout?.addView(armorView)
-        }
 
+            for((i, skill) in skills.withIndex()) {
+                    skillsTvs[i]?.visibility = View.VISIBLE
+                    val points = skill.points
+                    val skillString = skill.skillTree?.name + if(points>0) "+$points" else points
+                    skillsTvs[i]?.text = skillString
+            }
+
+            armorListView.addView(armorView)
+        }
     }
 
+    /**
+     * Populates the view with armor set skills gained from equipping the entire set.
+     */
+    private fun populateSkills(skills: List<SkillTreePoints>?){
+        if (skills == null || skills.isEmpty()) {
+            skillSection.visibility = View.GONE
+            return
+        }
+
+        skillListView.removeAllViews()
+        skillSection.visibility = View.VISIBLE
+
+        for (skill in skills) {
+            val skillItem = LabelTextCell(context)
+            skillItem.setLabelText(skill.skillTree?.name)
+            skillItem.setValueText(skill.points.toString())
+
+            skillItem.setOnClickListener(
+                    SkillClickListener(context, skill.skillTree?.id)
+            )
+
+            skillListView.addView(skillItem)
+        }
+    }
+
+    /**
+     * Populates the view with the setComponents needed to build the entire set.
+     */
     private fun populateComponents(recipe:List<Component>?){
         if (recipe == null || recipe.isEmpty()) {
             recipeHeader.visibility = View.GONE

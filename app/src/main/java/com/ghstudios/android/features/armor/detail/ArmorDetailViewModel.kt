@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armor
+package com.ghstudios.android.features.armor.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -10,7 +10,10 @@ import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
 
-class ArmorViewModel(app: Application) : AndroidViewModel(app) {
+/**
+ * A ViewModel representing information for a single piece of armor.
+ */
+class ArmorDetailViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
     val armorData = MutableLiveData<Armor>()

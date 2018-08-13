@@ -3,7 +3,6 @@ package com.ghstudios.android.features.wishlist;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -30,7 +29,7 @@ import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
-import com.ghstudios.android.features.armor.ArmorDetailActivity;
+import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
 import com.ghstudios.android.features.decorations.DecorationDetailActivity;
 import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.ghstudios.android.features.weapons.detail.WeaponDetailPagerActivity;
@@ -38,7 +37,6 @@ import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class WishlistDataComponentFragment extends ListFragment implements
@@ -145,8 +143,8 @@ public class WishlistDataComponentFragment extends ListFragment implements
 				i.putExtra(WeaponDetailPagerActivity.EXTRA_WEAPON_ID, mId);
 				break;
 			case "Armor":
-				i = new Intent(getActivity(), ArmorDetailActivity.class);
-				i.putExtra(ArmorDetailActivity.EXTRA_ARMOR_ID, mId);
+				i = new Intent(getActivity(), ArmorSetDetailPagerActivity.class);
+				i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, mId);
 				break;
 			case "Decoration":
 				i = new Intent(getActivity(), DecorationDetailActivity.class);

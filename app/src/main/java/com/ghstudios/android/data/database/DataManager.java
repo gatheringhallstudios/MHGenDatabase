@@ -173,7 +173,7 @@ public class DataManager {
         return mHelper.queryComponentCreated(id);
     }
 
-    public ComponentCursor queryComponentCreateByArmorFamily(int familyId){
+    public ComponentCursor queryComponentCreateByArmorFamily(long familyId){
         return itemDao.queryComponentsByArmorFamily(familyId);
     }
 

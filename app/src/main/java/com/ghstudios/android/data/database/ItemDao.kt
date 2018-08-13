@@ -194,7 +194,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, arrayOf(type.toString())))
     }
 
-    fun queryArmorFamilies(type: Int) : ArmorFamilyCursor{
+    fun queryArmorFamilies(type: Int): ArmorFamilyCursor{
         return ArmorFamilyCursor(db.rawQuery("""
             SELECT af._id,af.name,af.rarity,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
@@ -206,7 +206,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, arrayOf(type.toString())))
     }
 
-    fun queryComponentsByArmorFamily(family: Int):ComponentCursor{
+    fun queryComponentsByArmorFamily(family: Long): ComponentCursor {
         return ComponentCursor(db.rawQuery("""
             SELECT c._id,SUM(c.quantity) AS quantity,c.type,
                    c.created_item_id,cr.name AS crname,cr.type AS crtype,
