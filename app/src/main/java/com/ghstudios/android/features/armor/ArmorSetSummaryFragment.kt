@@ -26,9 +26,22 @@ import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.mhgendatabase.R
 
+/**
+ * Figures out what kind of armor set type the entirety of the armor set uses.
+ * It assumes a mix of ANY and one other. It returns that one other, or ANY if its the only type.
+ */
+fun determineArmorSetType(armor: List<Armor>): Int {
+    val types = armor.map {it.hunterType }.distinct()
+    if (types.size == 1) {
+        return types[0]
+    }
+    return types.first { it != Armor.ARMOR_TYPE_BOTH }
+}
+
 class ArmorSetSummaryFragment : Fragment() {
 
     @BindView(R.id.rare) lateinit var rareView: ColumnLabelTextCell
+    @BindView(R.id.weapon_type) lateinit var typeView: ColumnLabelTextCell
     @BindView(R.id.defense) lateinit var defenseView: ColumnLabelTextCell
 
     @BindView(R.id.skill_section) lateinit var skillSection: ViewGroup
@@ -65,6 +78,11 @@ class ArmorSetSummaryFragment : Fragment() {
 
         rareView.setValueText(armors.first().rarityString)
         defenseView.setValueText(cellDefense)
+        typeView.setValueText(getString(when (determineArmorSetType(armors)) {
+            Armor.ARMOR_TYPE_BLADEMASTER -> R.string.armor_type_blade
+            Armor.ARMOR_TYPE_GUNNER -> R.string.armor_type_gunner
+            else -> R.string.armor_type_both
+        }))
 
         fireResTextView.text = armors.sumBy { it.fireRes }.toString()
         waterResTextView.text = armors.sumBy { it.waterRes }.toString()

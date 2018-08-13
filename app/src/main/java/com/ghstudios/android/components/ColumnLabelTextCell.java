@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
@@ -58,6 +59,11 @@ public class ColumnLabelTextCell extends ConstraintLayout {
 
     public void setLabelText(String labelText) {
         labelView.setText(labelText);
+        if (labelText == null || labelText.isEmpty()) {
+            labelView.setVisibility(View.GONE);
+        } else {
+            labelView.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setValueText(String valueText) {

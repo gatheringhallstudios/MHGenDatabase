@@ -171,6 +171,10 @@
     <!-- Armor detail -->
     <string name="armor_part">Part</string>
     <string name="armor_defense">Defense</string>
+    <string name="armor_type_both">Any</string>
+    <string name="armor_type_blade_short">Blade</string>
+    <string name="armor_type_blade">Blademaster</string>
+    <string name="armor_type_gunner">Gunner</string>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_text_total">Total cost</string>

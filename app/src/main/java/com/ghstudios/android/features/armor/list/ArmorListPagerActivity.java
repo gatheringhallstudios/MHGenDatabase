@@ -15,11 +15,11 @@ public class ArmorListPagerActivity extends BasePagerActivity {
     public void onAddTabs(TabAdder tabs) {
         setTitle(R.string.armor);
 
-        tabs.addTab("Blade", () ->
+        tabs.addTab(getString(R.string.armor_type_blade_short), () ->
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_BLADEMASTER)
         );
 
-        tabs.addTab("Gunner", () ->
+        tabs.addTab(getString(R.string.armor_type_gunner), () ->
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_GUNNER)
         );
 
