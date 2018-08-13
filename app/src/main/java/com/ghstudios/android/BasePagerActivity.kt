@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-
 import com.ghstudios.android.mhgendatabase.R
 
 import java.util.ArrayList
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Abstract Base Activity for implementing screens with multiple tabs.
@@ -52,6 +50,14 @@ abstract class BasePagerActivity : GenericActivity() {
      */
     fun hideTabsIfSingular() {
         hideTabsIfSingularFlag = true
+    }
+
+    /**
+     * Sets the currently selected tab to the tab index
+     */
+    fun setSelectedTab(tabIndex: Int) {
+        val fragment = this.detail as InnerPagerFragment
+        fragment.setSelectedTab(tabIndex)
     }
 
     interface TabAdder {
@@ -98,7 +104,7 @@ abstract class BasePagerActivity : GenericActivity() {
         }
     }
 
-    class InnerPagerFragment: Fragment() {
+    class InnerPagerFragment : Fragment() {
 
         lateinit var tabLayout: TabLayout
         lateinit var viewPager: ViewPager
@@ -150,6 +156,13 @@ abstract class BasePagerActivity : GenericActivity() {
                     viewPager.currentItem = idx
                 }
             }
+        }
+
+        /**
+         * Sets the currently selected tab to the tab index
+         */
+        fun setSelectedTab(tabIndex: Int) {
+            viewPager.currentItem = tabIndex
         }
     }
 }

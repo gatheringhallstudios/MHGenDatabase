@@ -13,6 +13,7 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.ghstudios.android.AssetLoader
+import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.components.ColumnLabelTextCell
@@ -93,7 +94,10 @@ class ArmorSetSummaryFragment : Fragment() {
         val inflater = LayoutInflater.from(context)
 
         // Populate the armor piece list
-        for ((armor, skills) in armorPoints) {
+        for ((idx, armorPointsEntry) in armorPoints.withIndex()) {
+            val armor = armorPointsEntry.armor
+            val skills = armorPointsEntry.skills
+
             val armorView = inflater.inflate(R.layout.fragment_armor_set_piece_listitem, armorListView,false)
             val icon: ImageView? = armorView.findViewById(R.id.icon)
             val name:TextView? = armorView.findViewById(R.id.name)
@@ -114,6 +118,12 @@ class ArmorSetSummaryFragment : Fragment() {
                     val points = skill.points
                     val skillString = skill.skillTree?.name + if(points>0) "+$points" else points
                     skillsTvs[i]?.text = skillString
+            }
+
+            // clicking on the armor piece should change to the tab to that armor
+            armorView.setOnClickListener {
+                val activity = this.activity as BasePagerActivity
+                activity.setSelectedTab(idx + 1)
             }
 
             armorListView.addView(armorView)
