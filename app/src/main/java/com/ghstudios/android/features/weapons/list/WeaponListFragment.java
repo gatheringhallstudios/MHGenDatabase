@@ -60,7 +60,7 @@ public class WeaponListFragment extends RecyclerViewFragment {
         }
 
         View.OnLongClickListener listener = (v) -> {
-            collapseItem(v);
+            toggleAdapterItem(v);
             return true;
         };
 
@@ -79,10 +79,10 @@ public class WeaponListFragment extends RecyclerViewFragment {
      * Collapses an item in the list using its view
      * @param v
      */
-    protected void collapseItem(View v) {
+    protected void toggleAdapterItem(View v) {
         if (mAdapter != null) {
             int position = this.getRecyclerView().getChildAdapterPosition(v);
-            mAdapter.collapseGroup(position);
+            mAdapter.toggleGroup(position);
         }
     }
 

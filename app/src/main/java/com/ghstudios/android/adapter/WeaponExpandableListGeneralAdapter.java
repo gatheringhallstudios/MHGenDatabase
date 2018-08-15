@@ -38,39 +38,9 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
      */
     private final int mPaddingDP = 4;
 
-    // Image cache
-    protected LruCache<String, Bitmap> mImageCache;
-
     public WeaponExpandableListGeneralAdapter(Context context, View.OnLongClickListener listener) {
         this.mContext = context;
         this.mListener = listener;
-
-        // Get max available VM memory, exceeding this amount will throw an
-        // OutOfMemory exception. Stored in kilobytes as LruCache takes an
-        // int in its constructor.
-        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
-
-        // Use 1/8th of the available memory for this memory cache.
-        final int cacheSize = maxMemory / 8;
-
-        mImageCache = new LruCache<String, Bitmap>(cacheSize) {
-            @Override
-            protected int sizeOf(String key, Bitmap draw) {
-                // The cache size will be measured in kilobytes rather than
-                // number of items.
-                return draw.getByteCount() / 1024;
-            }
-        };
-    }
-
-    public Bitmap getBitmapFromMemCache(String key) {
-        return mImageCache.get(key);
-    }
-
-    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
-        if (getBitmapFromMemCache(key) == null) {
-            mImageCache.put(key, bitmap);
-        }
     }
 
     protected static class WeaponViewHolder extends RecyclerView.ViewHolder {
@@ -105,15 +75,15 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
             //
 
             // Set the layout id
-            weaponLayout = (LinearLayout) weaponView.findViewById(R.id.main_layout);
-            clickableLayout = (RelativeLayout) weaponView.findViewById(R.id.clickable_layout);
+            weaponLayout = weaponView.findViewById(R.id.main_layout);
+            clickableLayout = weaponView.findViewById(R.id.clickable_layout);
 
             // Find all views
-            nameView = (TextView) weaponView.findViewById(R.id.name_text);
-            attackView = (TextView) weaponView.findViewById(R.id.attack_text);
-            slotView = (TextView) weaponView.findViewById(R.id.slots_text);
-            affinityView = (TextView) weaponView.findViewById(R.id.affinity_text);
-            defenseView = (TextView) weaponView.findViewById(R.id.defense_text);
+            nameView = weaponView.findViewById(R.id.name_text);
+            attackView = weaponView.findViewById(R.id.attack_text);
+            slotView = weaponView.findViewById(R.id.slots_text);
+            affinityView = weaponView.findViewById(R.id.affinity_text);
+            defenseView = weaponView.findViewById(R.id.defense_text);
             
             colorBand = weaponView.findViewById(R.id.color_band);
             indentView = weaponView.findViewById(R.id.indent_view);
@@ -152,9 +122,7 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         //
         // Get the weapons name
         //
-        String name = "";
-        int wFinal = weapon.getWFinal();
-        name = name + weapon.getName();
+        String name = weapon.getName();
         // Add ? to indicate that a weapon is create-able
         if(weapon.getCreationCost() > 0)
             name = name+"\u2605";
@@ -204,38 +172,6 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         holder.arrow.setVisibility(View.INVISIBLE);
         if (weaponEntry.isGroup() && weaponEntry.getGroupSize() > 0) {
             holder.arrow.setVisibility(View.VISIBLE);
-        }
-    }
-
-    protected class LoadImage extends AsyncTask<Void,Void,Bitmap> {
-        private ImageView mImage;
-        private String path;
-        private String imagePath;
-
-        public LoadImage(ImageView imv, String imagePath) {
-            this.mImage = imv;
-            this.path = imv.getTag().toString();
-            this.imagePath = imagePath;
-        }
-
-        @Override
-        protected Bitmap doInBackground(Void... arg0) {
-            Bitmap d = null;
-            try {
-                d = BitmapFactory.decodeStream(mImage.getContext().getAssets().open(imagePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            addBitmapToMemoryCache(imagePath, d);
-
-            return d;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            if (mImage.getTag().toString().equals(path)) {
-                mImage.setImageBitmap(result);
-            }
         }
     }
 }
