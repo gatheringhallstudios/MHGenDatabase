@@ -1,13 +1,36 @@
 package com.ghstudios.android
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ghstudios.android.mhgendatabase.R
+
+/**
+ * A special version of a recyclerview that updates the adapter
+ * to null when it is detatched from the window.
+ * Used internally by the RecyclerViewFragment.
+ * Do not use for nested recyclerviews.
+ */
+class DetachingRecyclerView : RecyclerView {
+    constructor(context: Context): super(context)
+
+    constructor(context: Context, attrs: AttributeSet?):
+            super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int):
+            super(context, attrs, defStyle)
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        adapter = null
+    }
+}
 
 /**
  * Creates a fragment that contains a recyclerview.
@@ -18,21 +41,21 @@ open class RecyclerViewFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
         private set
 
+    private lateinit var emptyView: View
+
     /**
      * Overrides onCreateView to return a list_generic.
      * Instead of overriding this, override "onViewCreated".
      */
     final override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?,
                                     savedInstanceState: Bundle?): View? {
-        recyclerView = inflater.inflate(
-                R.layout.fragment_recyclerview_generic,
-                parent,
-                false) as RecyclerView
+        // the leak is actually handled by the special subclass recyclerview in the inflated layout
+        val view = inflater.inflate(R.layout.fragment_recyclerview_main, parent,false)
 
-        // Adds a divider
+        recyclerView = view.findViewById(R.id.content_recyclerview)
+        emptyView = view.findViewById(R.id.empty_view)
 
-
-        return recyclerView
+        return view
     }
 
     /**
@@ -55,12 +78,12 @@ open class RecyclerViewFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        // Removes the adapter from the recyclerview on destroy
-        // This also causes the adapter to unregister the view,
-        // which prevents a potential cyclical reference memory leak.
-        recyclerView.adapter = null
+    /**
+     * Shows the empty view instead of the recycler view.
+     * There is no way to revert. Only call this once you're SURE there is no data.
+     */
+    fun showEmptyView() {
+        recyclerView.visibility = View.GONE
+        emptyView.visibility = View.VISIBLE
     }
 }
