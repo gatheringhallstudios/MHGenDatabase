@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:divider="@drawable/divider_solid"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
+
+        <ImageView
+            style="@style/small_image"
+            android:src="@drawable/element_fire"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/armor_res_fire"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/fire_res"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:textColor="@color/text_color"
+            tools:text="-2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
+
+        <ImageView
+            style="@style/small_image"
+            android:src="@drawable/element_water"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/armor_res_water"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/water_res"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:textColor="@color/text_color"
+            tools:text="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
+
+        <ImageView
+            style="@style/small_image"
+            android:src="@drawable/element_thunder"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/armor_res_thunder"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/thunder_res"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:textColor="@color/text_color"
+            tools:text="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
+
+        <ImageView
+            style="@style/small_image"
+            android:src="@drawable/element_ice"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/armor_res_ice"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/ice_res"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:textColor="@color/text_color"
+            tools:text="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
+
+        <ImageView
+            style="@style/small_image"
+            android:src="@drawable/element_dragon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/armor_res_dragon"
+            android:textColor="@color/text_color" />
+
+        <TextView
+            android:id="@+id/dragon_res"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:textColor="@color/text_color"
+            tools:text="2"/>
+    </LinearLayout>
+
+</LinearLayout>

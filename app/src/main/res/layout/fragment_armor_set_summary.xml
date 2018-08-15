@@ -41,87 +41,10 @@
             android:id="@+id/divider2"
             style="@style/SectionDivider" />
 
-
-        <LinearLayout
+        <include layout="@layout/fragment_armor_resists"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/margin_large">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fire Res:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Water Res:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ice Res:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thunder Res:"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dragon Res:"
-                    android:textColor="@color/text_color" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".6"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/fire_res"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/water_res"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/ice_res"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/thunder_res"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-
-                <TextView
-                    android:id="@+id/dragon_res"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color" />
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_marginBottom="@dimen/margin_large"/>
 
         <LinearLayout
             android:id="@+id/skill_section"

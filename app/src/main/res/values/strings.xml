@@ -175,6 +175,12 @@
     <string name="armor_type_blade_short">Blade</string>
     <string name="armor_type_blade">Blademaster</string>
     <string name="armor_type_gunner">Gunner</string>
+    <string name="armor_title_set">Set</string>
+    <string name="armor_res_fire">Fire Res:</string>
+    <string name="armor_res_water">Water Res:</string>
+    <string name="armor_res_thunder">Thunder Res:</string>
+    <string name="armor_res_ice">Ice Res:</string>
+    <string name="armor_res_dragon">Dragon Res:</string>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_text_total">Total cost</string>
