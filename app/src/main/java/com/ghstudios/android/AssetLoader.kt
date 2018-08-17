@@ -3,6 +3,7 @@ package com.ghstudios.android
 import android.app.Application
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
 import android.widget.ImageView
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.Location
@@ -22,13 +23,27 @@ object AssetLoader {
         application = app
     }
 
+    /**
+     * Loads a tinted icon using an ITintedIcon, returning it as a Drawable
+     */
     @JvmStatic
-    fun setIcon(iv:ImageView,item:ITintedIcon){
+    fun loadIconFor(item: ITintedIcon): Drawable? {
         var resId = MHUtils.getDrawableId(ctx,item.getIconResourceString())
-        if(resId <= 0) resId = R.drawable.icon_quest_mark
-        iv.setImageResource(resId)
-        val arr = MHUtils.getIntArray(ctx,item.getColorArrayId())
-        iv.setColorFilter(arr[item.getIconColorIndex()],PorterDuff.Mode.MULTIPLY)
+        if (resId <= 0) {
+            resId = R.drawable.icon_quest_mark
+        }
+
+        val arr = MHUtils.getIntArray(ctx, item.getColorArrayId())
+        val color = arr[item.getIconColorIndex()]
+
+        val image = ContextCompat.getDrawable(ctx, resId)?.mutate()
+        image?.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+
+        return image
     }
 
+    @JvmStatic
+    fun setIcon(iv: ImageView, item: ITintedIcon) {
+        iv.setImageDrawable(loadIconFor(item))
+    }
 }
