@@ -1,6 +1,7 @@
 package com.ghstudios.android.features.armor.detail
 
 import android.arch.lifecycle.ViewModelProviders
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.mhgendatabase.R
@@ -19,6 +20,7 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
 
     override fun onAddTabs(tabs: TabAdder) {
         this.hideTabsIfSingular()
+        this.setTabBehavior(BasePagerActivity.TabBehavior.FIXED)
 
         val armorId = intent.getLongExtra(EXTRA_ARMOR_ID, -1)
         val familyId = intent.getLongExtra(EXTRA_FAMILY_ID, -1)
@@ -36,7 +38,8 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
         }
 
         for ((idx, armorData) in metadata.withIndex()) {
-            tabs.addTab(armorData.slot) {
+            val icon = AssetLoader.loadIconFor(armorData)
+            tabs.addTab("", icon) {
                 ArmorDetailFragment.newInstance(armorData.id)
             }
 
