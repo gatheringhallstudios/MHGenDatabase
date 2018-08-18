@@ -14,6 +14,8 @@ import com.ghstudios.android.MenuSection;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Unit;
+
 public class ASBPagerActivity extends BasePagerActivity {
 
     public static final String EXTRA_FROM_SET_BUILDER = "com.daviancorp.android.ui.detail.from_set_builder";
@@ -94,16 +96,18 @@ public class ASBPagerActivity extends BasePagerActivity {
         public void onLoadFinished(Loader<ASBSession> loader, ASBSession run) {
             session = run;
 
-            // Load the tabs now that we have a session
-            ArrayList<PagerTab> tabs = new ArrayList<>();
-            tabs.add(new PagerTab("Equipment", () ->
-                    ASBFragment.newInstance(session.getRank(), session.getHunterType())
-            ));
-            tabs.add(new PagerTab("Skills", () ->
-                    ASBSkillsListFragment.newInstance()
-            ));
+            resetTabs((tabs) -> {
+                // Load the tabs now that we have a session
+                tabs.addTab("Equipment", () ->
+                        ASBFragment.newInstance(session.getRank(), session.getHunterType())
+                );
+                tabs.addTab("Skills", () ->
+                        ASBSkillsListFragment.newInstance()
+                );
 
-            resetTabs(tabs);
+                // kotlin interop nonesense requirement
+                return Unit.INSTANCE;
+            });
 
             updateASBSetChangedListeners();
         }

@@ -1,5 +1,6 @@
 package com.ghstudios.android
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -21,7 +22,17 @@ import java.util.ArrayList
  */
 
 abstract class BasePagerActivity : GenericActivity() {
+    companion object {
+        const val ARG_TAB_BEHAVIOR = "ARG_TAB_BEHAVIOR"
+    }
 
+    enum class TabBehavior {
+        AUTO,
+        FIXED,
+        SCROLLING
+    }
+
+    private var behavior = TabBehavior.AUTO
     private var hideTabsIfSingularFlag: Boolean = false
 
     /**
@@ -35,13 +46,28 @@ abstract class BasePagerActivity : GenericActivity() {
         return InnerPagerFragment()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // restore tab behavior variable...or default to auto
+        behavior = savedInstanceState?.getSerializable(ARG_TAB_BEHAVIOR) as TabBehavior?
+                ?: TabBehavior.AUTO
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putSerializable(ARG_TAB_BEHAVIOR, behavior)
+    }
+
     /**
-     * Function to reset pager tabs using a list of PagerTab objects.
+     * Function to reset pager tabs, using a callback with a provided tab adder
      */
-    @JvmOverloads
-    fun resetTabs(tabs: List<PagerTab>, idx: Int = -1) {
+    fun resetTabs(builder: (TabAdder) -> Unit) {
+        val adder = InnerTabAdder()
+        builder(adder)
+
         val fragment = this.detail as InnerPagerFragment
-        fragment.resetTabs(tabs, idx)
+        fragment.resetTabs(adder.getTabs(), adder.defaultIdx)
     }
 
     /**
@@ -60,14 +86,25 @@ abstract class BasePagerActivity : GenericActivity() {
         fragment.setSelectedTab(tabIndex)
     }
 
+    /**
+     * Sets the tab behavior. Defaults to AUTO.
+     * Currently only works if set in onAddTabs. Midlife updates do nothing.
+     */
+    fun setTabBehavior(behavior: TabBehavior) {
+        this.behavior = behavior
+
+        // todo: update if already initialized
+    }
+
+
     interface TabAdder {
         /**
-         * Adds a tab to the fragment
+         * Adds a tab to the fragment, including a drawable
          *
          * @param title   The title to display for the tab
-         * @param builder A TabFactory or lambda that builds the tab fragment
+         * @param builder A lambda that builds the tab fragment
          */
-        //fun addTab(title: String, builder: PagerTab.Factory)
+        fun addTab(title: String, icon: Drawable?, builder: () -> Fragment)
 
         /**
          * Adds a tab to the fragment.
@@ -84,14 +121,28 @@ abstract class BasePagerActivity : GenericActivity() {
         fun setDefaultItem(idx: Int)
     }
 
+    /**
+     * Internal pairing of a pager tab and icon.
+     * Icons are defined at the view level, not the adapter level.
+     * SpannableStrings have issues with tabs, even with textAllCaps false.
+     */
+    internal class PagerIconTab(
+            val icon: Drawable?,
+            val tab: PagerTab
+    )
+
     /** Internal only implementation of the TabAdder  */
     private class InnerTabAdder : TabAdder {
         var defaultIdx = -1
             private set
-        private val tabs = ArrayList<PagerTab>()
+        private val tabs = ArrayList<PagerIconTab>()
+
+        override fun addTab(title: String, icon: Drawable?, builder: () -> Fragment) {
+            tabs.add(PagerIconTab(icon, PagerTab(title, builder)))
+        }
 
         override fun addTab(title: String, builder: () -> Fragment) {
-            tabs.add(PagerTab(title, builder))
+            this.addTab(title, null, builder)
         }
 
         override fun setDefaultItem(idx: Int) {
@@ -99,15 +150,17 @@ abstract class BasePagerActivity : GenericActivity() {
             defaultIdx = idx
         }
 
-        fun getTabs(): List<PagerTab> {
+        fun getTabs(): List<PagerIconTab> {
             return tabs
         }
     }
 
-    class InnerPagerFragment : Fragment() {
+    internal class InnerPagerFragment : Fragment() {
 
         lateinit var tabLayout: TabLayout
         lateinit var viewPager: ViewPager
+
+        private var initialized = false
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val v = inflater.inflate(R.layout.activity_pager, container, false)
@@ -129,40 +182,64 @@ abstract class BasePagerActivity : GenericActivity() {
                 resetTabs(tabs, defaultIdx)
             }
 
+            initialized = true
+
             return v
         }
 
         /**
          * Function to reset pager tabs using a list of PagerTab objects.
          */
-        fun resetTabs(tabs: List<PagerTab>, idx: Int) {
+        fun resetTabs(tabs: List<PagerIconTab>, selectedTabIdx: Int) {
             // Initialize ViewPager (tab behavior)
-            viewPager.adapter = GenericPagerAdapter(this, tabs)
+            viewPager.adapter = GenericPagerAdapter(this, tabs.map { it.tab })
 
             val parentActivity = activity as BasePagerActivity
             if (parentActivity.hideTabsIfSingularFlag && tabs.size <= 1) {
                 // if there's only one tab and the flag is set, hide the tabs
                 tabLayout.visibility = View.GONE
             } else {
-                // check if we're over 4 tabs. If so, make scrollable.
-                if (tabs.size > 4) {
-                    tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-                } else {
-                    tabLayout.tabMode = TabLayout.MODE_FIXED
-                }
                 tabLayout.setupWithViewPager(viewPager)
 
-                if (idx > 0) {
-                    viewPager.currentItem = idx
+                // check if we're over 4 tabs. If so, make scrollable.
+                updateTabBehavior()
+
+                if (selectedTabIdx > 0) {
+                    viewPager.currentItem = selectedTabIdx
+                }
+
+                // Bind icons. Must be done after the viewpager is set up
+                for ((idx, tab) in tabs.withIndex()) {
+                    tabLayout.getTabAt(idx)?.icon = tab.icon
+                }
+            }
+        }
+
+        private fun updateTabBehavior() {
+            val parentActivity = activity as BasePagerActivity
+            val type = parentActivity.behavior
+
+            tabLayout.tabMode = when (type) {
+                TabBehavior.FIXED -> TabLayout.MODE_FIXED
+                TabBehavior.SCROLLING -> TabLayout.MODE_SCROLLABLE
+                TabBehavior.AUTO -> when (tabLayout.tabCount > 4) {
+                    true -> TabLayout.MODE_SCROLLABLE
+                    false -> TabLayout.MODE_FIXED
                 }
             }
         }
 
         /**
-         * Sets the currently selected tab to the tab index
+         * Sets the currently selected tab to the tab index.
          */
         fun setSelectedTab(tabIndex: Int) {
             viewPager.currentItem = tabIndex
+
+            // if initialized, we need to update the tab behavior,
+            // otherwise we can wait, it'll get updated later
+            if (initialized) {
+                updateTabBehavior()
+            }
         }
     }
 }
