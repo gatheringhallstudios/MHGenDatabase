@@ -28,18 +28,24 @@ object AssetLoader {
      */
     @JvmStatic
     fun loadIconFor(item: ITintedIcon): Drawable? {
-        var resId = MHUtils.getDrawableId(ctx,item.getIconResourceString())
+        var resId = MHUtils.getDrawableId(ctx, item.getIconResourceString())
         if (resId <= 0) {
             resId = R.drawable.icon_quest_mark
         }
 
-        val arr = MHUtils.getIntArray(ctx, item.getColorArrayId())
+        val image = ContextCompat.getDrawable(ctx, resId)
+
+        val arrId = item.getColorArrayId()
+        if (arrId == 0) {
+            return image
+        }
+
+        // Tint the icon - we have an array id
+        val arr = MHUtils.getIntArray(ctx, arrId)
         val color = arr[item.getIconColorIndex()]
-
-        val image = ContextCompat.getDrawable(ctx, resId)?.mutate()
-        image?.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
-
-        return image
+        return image?.mutate()?.apply {
+            setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+        }
     }
 
     @JvmStatic
