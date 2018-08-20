@@ -21,18 +21,26 @@ open class Converter<DBClass, AppClass>(vararg pairs: Pair<DBClass, AppClass>) {
 
         results
     }
-
+    
     /**
      * Convert from an app type to a db type.
      */
     fun serialize(obj: AppClass): DBClass {
-        return fromMap[obj] ?: throw IllegalArgumentException("Cannot serialize $obj")
+        try {
+            return fromMap.getValue(obj)
+        } catch (ex: Exception) {
+            throw IllegalArgumentException("Cannot serialize $obj")
+        }
     }
 
     /**
      * Convert from a db type to an app type.
      */
     fun deserialize(obj: DBClass): AppClass {
-        return toMap[obj] ?: throw IllegalArgumentException("Cannot deserialize $obj")
+        try {
+            return toMap.getValue(obj)
+        } catch (ex: Exception) {
+            throw IllegalArgumentException("Cannot deserialize $obj")
+        }
     }
 }
