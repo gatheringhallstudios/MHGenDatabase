@@ -30,7 +30,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
-import com.ghstudios.android.features.decorations.DecorationListActivity;
+import com.ghstudios.android.features.decorations.list.DecorationListActivity;
 import com.ghstudios.android.features.items.list.ItemListActivity;
 import com.ghstudios.android.features.locations.LocationListActivity;
 import com.ghstudios.android.features.palicos.PalicoPagerActivity;

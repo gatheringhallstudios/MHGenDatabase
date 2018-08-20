@@ -19,9 +19,9 @@ import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
-import com.ghstudios.android.features.decorations.DecorationListActivity;
+import com.ghstudios.android.features.decorations.list.DecorationListActivity;
 
 import java.io.IOException;
 import java.io.InputStream;

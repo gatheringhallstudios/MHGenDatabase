@@ -1,11 +1,8 @@
 package com.ghstudios.android.features.skills;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -25,7 +22,7 @@ import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
 
 public class SkillTreeDecorationFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

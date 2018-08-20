@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.decorations;
+package com.ghstudios.android.features.decorations.list;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -26,6 +26,7 @@ import com.ghstudios.android.ClickListeners.DecorationClickListener;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.cursors.DecorationCursor;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
+import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
 import com.ghstudios.android.loader.DecorationListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 

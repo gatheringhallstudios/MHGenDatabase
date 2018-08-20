@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.decorations;
+package com.ghstudios.android.features.decorations.detail;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

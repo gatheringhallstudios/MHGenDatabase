@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
 
 /**
  * Created by Mark on 2/24/2015.

@@ -1,13 +1,11 @@
-package com.ghstudios.android.features.decorations;
+package com.ghstudios.android.features.decorations.detail;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,9 +17,7 @@ import android.widget.LinearLayout;
 import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.MHUtils;
 import com.ghstudios.android.components.ColumnLabelTextCell;
-import com.ghstudios.android.components.IconLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
@@ -93,7 +89,7 @@ public class DecorationDetailFragment extends Fragment {
             return;
         }
 
-        DecorationViewModel viewModel = ViewModelProviders.of(this).get(DecorationViewModel.class);
+        DecorationDetailViewModel viewModel = ViewModelProviders.of(this).get(DecorationDetailViewModel.class);
         viewModel.setDecoration(decorationId);
 
         viewModel.getDecorationData().observe(this, this::populateDecoration);

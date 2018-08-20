@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.decorations
+package com.ghstudios.android.features.decorations.detail
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
@@ -6,7 +6,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Decoration
-import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.loggedThread
 import com.ghstudios.android.toList
@@ -16,7 +15,7 @@ import com.ghstudios.android.toList
  */
 data class SkillPoints(val skillId: Long, val skillName: String, val points: Int)
 
-class DecorationViewModel(app: Application) : AndroidViewModel(app) {
+class DecorationDetailViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
     val decorationData = MutableLiveData<Decoration>()
     val componentData = MutableLiveData<Map<String, List<Component>>>()

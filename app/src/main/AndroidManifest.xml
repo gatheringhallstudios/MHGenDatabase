@@ -127,17 +127,17 @@
 
         <!-- DECORATION SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.decorations.DecorationListActivity"
+            android:name="com.ghstudios.android.features.decorations.list.DecorationListActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.decorations.DecorationDetailActivity"
+            android:name="com.ghstudios.android.features.decorations.detail.DecorationDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.decorations.DecorationListActivity" />
+                android:value="com.ghstudios.android.features.decorations.list.DecorationListActivity" />
         </activity>
 
         <!-- WEAPON SECTION -->

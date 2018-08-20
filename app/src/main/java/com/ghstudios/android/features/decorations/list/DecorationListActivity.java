@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.decorations;
+package com.ghstudios.android.features.decorations.list;
 
 import android.content.Intent;
 import android.os.Bundle;

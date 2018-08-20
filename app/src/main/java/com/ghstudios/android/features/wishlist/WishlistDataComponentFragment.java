@@ -31,7 +31,7 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
-import com.ghstudios.android.features.decorations.DecorationDetailActivity;
+import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
 import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity;
 import com.ghstudios.android.features.weapons.detail.WeaponDetailPagerActivity;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
