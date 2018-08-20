@@ -35,11 +35,10 @@ abstract class ResultHandler<in T> {
 
     fun setImage(imgView:ImageView, obj: T) {
         val resource = this.getImageResource(obj)
-        if(resource == -1){
-            if(obj is ITintedIcon)
-                AssetLoader.setIcon(imgView,obj)
-        }
-        else {
+        if (resource == -1) {
+            if (obj is ITintedIcon)
+                AssetLoader.setIcon(imgView, obj)
+        } else {
             imgView.setImageResource(getImageResource(obj))
             imgView.setColorFilter(0xFFFFFF)
         }
@@ -57,15 +56,6 @@ private fun createHandlers(ctx: Context) = mapOf(
         },
 
         Quest::class.java to object : ResultHandler<Quest>() {
-            override fun getImageResource(q: Quest): Int {
-                return when {
-                    q.hunterType == 1 -> R.drawable.quest_cat
-                    q.goalType == Quest.QUEST_GOAL_DELIVER -> R.drawable.quest_icon_green
-                    q.goalType == Quest.QUEST_GOAL_CAPTURE -> R.drawable.quest_icon_grey
-                    else -> R.drawable.quest_icon_red
-                }
-            }
-
             override fun getName(obj: Quest) = obj.name
             override fun getType(obj: Quest) = ctx.getString(R.string.type_quest)
             override fun createListener(ctx: Context, obj: Quest) = QuestClickListener(ctx, obj.id)
@@ -101,7 +91,6 @@ class SearchResultAdapterDelegate(ctx: Context): AbsListItemAdapterDelegate<Any,
     private val handlers = createHandlers(ctx.applicationContext)
 
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
-        // todo: IconLabelTextView instead? We're using the old one here
         val inflater = LayoutInflater.from(parent.context)
         val v = inflater.inflate(R.layout.fragment_searchresult_listitem, parent, false)
         return ViewHolder(v)

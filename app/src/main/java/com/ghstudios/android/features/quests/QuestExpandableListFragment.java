@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
@@ -232,11 +233,10 @@ public class QuestExpandableListFragment extends Fragment {
         @Override
         public View getChildView(int i, int i1, boolean b, View view,
                                  ViewGroup viewGroup) {
-            View v = view;
             Context context = viewGroup.getContext();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(
+            View v = inflater.inflate(
                     R.layout.fragment_quest_expandablelist_child_item,
                     viewGroup, false);
 
@@ -247,15 +247,7 @@ public class QuestExpandableListFragment extends Fragment {
             LinearLayout root = v.findViewById(R.id.root);
 
             Quest q = (Quest)getChild(i,i1);
-
-            if(q.getHunterType() == 1)
-                iv.setImageResource(R.drawable.quest_cat);
-            else if(q.getGoalType() == Quest.QUEST_GOAL_DELIVER)
-                iv.setImageResource(R.drawable.quest_icon_green);
-            else if(q.getGoalType() == Quest.QUEST_GOAL_CAPTURE)
-                iv.setImageResource(R.drawable.quest_icon_grey);
-            else
-                iv.setImageResource(R.drawable.quest_icon_red);
+            AssetLoader.setIcon(iv, q);
 
             questChildTextView.setText(getChild(i, i1).toString());
             if(q.getType() == Quest.QUEST_TYPE_NONE)

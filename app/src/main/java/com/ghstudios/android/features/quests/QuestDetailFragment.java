@@ -119,7 +119,7 @@ public class QuestDetailFragment extends Fragment {
         String flavor = mQuest.getFlavor();
 
         // bind title bar
-        titleBarCell.setIconResource(getIconForQuest(mQuest));
+        titleBarCell.setIconDrawable(AssetLoader.loadIconFor(mQuest));
         titleBarCell.setTitleText(mQuest.getName());
         titleBarCell.setAltTitleText(mQuest.getJpnName());
         titleBarCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
@@ -141,30 +141,6 @@ public class QuestDetailFragment extends Fragment {
         mFlavor.setText(flavor);
 
         // Get Location based on ID and set image thumbnail
-        DataManager dm = DataManager.get(getContext());
-        Location loc = dm.getLocation(mQuest.getLocation().getId());
-        String cellImage = "icons_location/" + loc.getFileLocationMini();
-
-        AssetLoader.setIcon(questLocationImageView,mQuest.getLocation());
-    }
-
-    /**
-     * Get icon for quest
-     * @param quest
-     * @return
-     */
-    private int getIconForQuest(Quest quest) {
-        if (quest.getHunterType() == 1) {
-            return R.drawable.quest_cat;
-        }
-
-        switch (quest.getGoalType()) {
-            case Quest.QUEST_GOAL_DELIVER:
-                return R.drawable.quest_icon_green;
-            case Quest.QUEST_GOAL_CAPTURE:
-                return R.drawable.quest_icon_grey;
-            default:
-                return R.drawable.quest_icon_red;
-        }
+        AssetLoader.setIcon(questLocationImageView, mQuest.getLocation());
     }
 }

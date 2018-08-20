@@ -5,8 +5,7 @@ import com.ghstudios.android.ITintedIcon
 /*
  * Class for Quest
  */
-class Quest {
-
+class Quest: ITintedIcon {
     companion object {
         const val QUEST_GOAL_HUNT = 0
         const val QUEST_GOAL_SLAY = 1
@@ -89,6 +88,13 @@ class Quest {
 
     fun HasAcademyPointRequirement(): Boolean {
         return metadata and 2 > 0
+    }
+
+    override fun getIconResourceString() = when {
+        hunterType == 1 -> "quest_cat"
+        goalType == Quest.QUEST_GOAL_DELIVER -> "quest_icon_green"
+        goalType == Quest.QUEST_GOAL_CAPTURE -> "quest_icon_grey"
+        else -> "quest_icon_red"
     }
 
     override fun toString(): String {
