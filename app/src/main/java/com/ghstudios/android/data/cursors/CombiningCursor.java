@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.ghstudios.android.data.classes.Combining;
+import com.ghstudios.android.data.classes.Converters;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.S;
 
@@ -74,7 +75,7 @@ public class CombiningCursor extends CursorWrapper {
 		item.setId(item_id);
 		item.setName(item_name);
 		item.setJpnName(item_jpnName);
-		item.setType(item_type);
+		item.setType(Converters.getItemTypeConverter().deserialize(item_type));
 		item.setRarity(item_rarity);
 		item.setCarryCapacity(item_carry_capacity);
 		item.setBuy(item_buy);

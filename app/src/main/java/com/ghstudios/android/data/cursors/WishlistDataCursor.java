@@ -3,6 +3,7 @@ package com.ghstudios.android.data.cursors;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import com.ghstudios.android.data.classes.Converters;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.WishlistData;
 import com.ghstudios.android.data.database.S;
@@ -53,7 +54,7 @@ public class WishlistDataCursor extends CursorWrapper {
 
 		item.setId(itemId);
 		item.setName(itemName);
-		item.setType(type);
+		item.setType(Converters.getItemTypeConverter().deserialize(type));
 		item.setSubType(sub_type);
 		item.setRarity(rarity);
 		item.setBuy(buy);

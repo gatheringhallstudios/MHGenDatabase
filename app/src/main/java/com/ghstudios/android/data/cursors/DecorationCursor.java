@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.ghstudios.android.data.classes.Decoration;
+import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.database.S;
 
 /**
@@ -30,7 +31,6 @@ public class DecorationCursor extends CursorWrapper {
 		long decorationId = getLong(getColumnIndex("_id"));
 		String name = getString(getColumnIndex("item_name"));
 		String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
-		String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
 		int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
 		int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
 		int buy = getInt(getColumnIndex(S.COLUMN_ITEMS_BUY));
@@ -52,7 +52,7 @@ public class DecorationCursor extends CursorWrapper {
 		decoration.setId(decorationId);
 		decoration.setName(name);
 		decoration.setJpnName(jpnName);
-		decoration.setType(type);
+		decoration.setType(ItemType.DECORATION);
 		decoration.setRarity(rarity);
 		decoration.setCarryCapacity(carry_capacity);
 		decoration.setBuy(buy);

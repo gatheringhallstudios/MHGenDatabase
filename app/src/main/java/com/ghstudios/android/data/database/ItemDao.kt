@@ -2,9 +2,7 @@ package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.AppSettings
-import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.data.classes.Combining
-import com.ghstudios.android.data.classes.Item
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
@@ -37,7 +35,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
 
     /**
-     * Get all items
+     * Get all items, including equipment like armor and weapons
      */
     fun queryItems(): ItemCursor {
         return ItemCursor(db.rawQuery("""
@@ -47,7 +45,22 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, emptyArray()))
     }
 
-    /*
+    /**
+     * Queries all normal items and materials (aka non-equipment)
+     */
+    fun queryBasicItems(): ItemCursor {
+        val typeItem = ItemTypeConverter.serialize(ItemType.ITEM)
+        val typeMaterial = ItemTypeConverter.serialize(ItemType.MATERIAL)
+
+        return ItemCursor(db.rawQuery("""
+            SELECT $item_columns
+            FROM items
+            WHERE type IN (?, ?)
+            ORDER BY _id
+        """, arrayOf(typeItem, typeMaterial)))
+    }
+
+    /**
      * Get a specific item
      */
     fun queryItem(id: Long): Item? {
@@ -58,8 +71,8 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, arrayOf(id.toString()))).toList { it.item }.firstOrNull()
     }
 
-    /*
-     * Get items based on search text
+    /**
+     * Get items based on search text. Gets all items, including armor and equipment.
      */
     fun queryItemSearch(searchTerm: String?): ItemCursor {
         if (searchTerm?.trim().isNullOrBlank()) {

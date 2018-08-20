@@ -35,3 +35,13 @@ val MonsterClassConverter = Converter(
         1 to MonsterClass.SMALL,
         2 to MonsterClass.DEVIANT
 )
+
+val ItemTypeConverter = Converter(
+        "" to ItemType.ITEM,
+        "Decoration" to ItemType.DECORATION,
+        "Palico Weapon" to ItemType.PALICO_WEAPON,
+        "Palico Armor" to ItemType.PALICO_ARMOR,
+        "Weapon" to ItemType.WEAPON,
+        "Armor" to ItemType.ARMOR,
+        "Materials" to ItemType.MATERIAL
+)

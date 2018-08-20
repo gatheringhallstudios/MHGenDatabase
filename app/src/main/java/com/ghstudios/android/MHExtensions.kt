@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.util.Log
+import android.widget.ImageView
 import kotlin.concurrent.thread
 import kotlin.system.measureTimeMillis
 
@@ -55,4 +56,12 @@ fun <T, J : Cursor> J.toList(process: (J) -> T) : List<T> {
 fun <T, J : Cursor> J.firstOrNull(process: (J) -> T) : T? {
     // todo: implement asSequence() extension, use that one
     return this.toList(process).firstOrNull()
+}
+
+/**
+ * Extension function that sets an ImageView to use an ITintedIcon, loaded via the AssetLoader.
+ */
+@Suppress("NOTHING_TO_INLINE")
+inline fun ImageView.setImageAsset(icon: ITintedIcon) {
+    AssetLoader.setIcon(this, icon)
 }

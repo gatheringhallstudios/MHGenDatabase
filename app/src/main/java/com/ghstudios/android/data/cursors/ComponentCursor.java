@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.ghstudios.android.data.classes.Component;
+import com.ghstudios.android.data.classes.Converters;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.S;
 
@@ -52,7 +53,7 @@ public class ComponentCursor extends CursorWrapper {
 		created.setId(itemId1);
 		created.setName(itemName1);
         created.setSubType(subtype);
-        created.setType(type1);
+        created.setType(Converters.getItemTypeConverter().deserialize(type1));
         created.setRarity(rarity1);
         created.setFileLocation(fileLocation1);
         created.setIconColor(color);
@@ -74,7 +75,7 @@ public class ComponentCursor extends CursorWrapper {
 		comp.setName(itemName2);
         comp.setSubType(subtype2);
         comp.setRarity(rarity2);
-        comp.setType(itemType2);
+        comp.setType(Converters.getItemTypeConverter().deserialize(itemType2));
         comp.setFileLocation(fileLocation2);
         comp.setIconColor(color);
 		

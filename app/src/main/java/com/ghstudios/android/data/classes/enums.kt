@@ -22,3 +22,13 @@ enum class MonsterClass {
     LARGE,
     DEVIANT
 }
+
+enum class ItemType {
+    ITEM,
+    DECORATION,
+    WEAPON,
+    PALICO_WEAPON,
+    PALICO_ARMOR,
+    ARMOR,
+    MATERIAL
+}

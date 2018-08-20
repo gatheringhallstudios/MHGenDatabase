@@ -3,6 +3,7 @@ package com.ghstudios.android.data.cursors
 import android.database.Cursor
 import android.database.CursorWrapper
 import com.ghstudios.android.data.classes.Item
+import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.data.classes.PalicoArmor
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
@@ -27,7 +28,7 @@ class PalicoArmorCursor(c: Cursor) : CursorWrapper(c) {
                 rarity = getInt(S.COLUMN_ITEMS_RARITY)
                 fileLocation = getString(S.COLUMN_ITEMS_ICON_NAME)
                 iconColor = getInt(S.COLUMN_ITEMS_ICON_NAME)
-                type = "Palico Armor"
+                type = ItemType.PALICO_ARMOR
             }
         }
     }

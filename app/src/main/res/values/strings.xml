@@ -55,6 +55,18 @@
     <string name="changelog_ok_button">OK</string>
     <string name="changelog_show_full">More…</string>
 
+    <!-- Various data types (for search results and things like that) -->
+    <string name="type_monster">Monster</string>
+    <string name="type_quest">Quest</string>
+    <string name="type_skill_tree">Quest</string>
+    <string name="type_item">Item</string>
+    <string name="type_weapon">Weapon</string>
+    <string name="type_armor">Armor</string>
+    <string name="type_decoration">Decoration</string>
+    <string name="type_palico_weapon">Palico Weapon</string>
+    <string name="type_palico_armor">Palico Armor</string>
+    <string name="type_material">Material</string>
+
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

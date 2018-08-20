@@ -171,7 +171,7 @@ class ArmorSetSummaryFragment : Fragment() {
         for (component in recipe) {
             val item = component.component
             val itemCell = recipeView.addItem(item, item.name, component.quantity)
-            itemCell.setOnClickListener(ItemClickListener(context, item))
+            itemCell.setOnClickListener(ItemClickListener(context!!, item))
         }
     }
 }

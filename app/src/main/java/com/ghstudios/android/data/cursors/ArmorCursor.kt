@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.database.CursorWrapper
 
 import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.ItemTypeConverter
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
 import com.ghstudios.android.data.util.getLong
@@ -38,7 +39,7 @@ class ArmorCursor(c: Cursor) : CursorWrapper(c) {
                 hunterType = getInt(S.COLUMN_ARMOR_HUNTER_TYPE)
                 numSlots = getInt(S.COLUMN_ARMOR_NUM_SLOTS)
 
-                type = getString(S.COLUMN_ITEMS_TYPE)
+                type = ItemTypeConverter.deserialize(getString(S.COLUMN_ITEMS_TYPE) ?: "")
                 subType = getString(S.COLUMN_ITEMS_SUB_TYPE)
                 rarity = getInt(S.COLUMN_ITEMS_RARITY)
                 carryCapacity = getInt(S.COLUMN_ITEMS_CARRY_CAPACITY)

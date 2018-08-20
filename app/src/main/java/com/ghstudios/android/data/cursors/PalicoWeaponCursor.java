@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.ghstudios.android.data.classes.Item;
+import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.data.database.S;
 
@@ -42,7 +43,7 @@ public class PalicoWeaponCursor extends CursorWrapper {
         i.setDescription(getString(getColumnIndex(S.COLUMN_ITEMS_DESCRIPTION)));
         i.setFileLocation(getString(getColumnIndex(S.COLUMN_ITEMS_ICON_NAME)));
         i.setIconColor(getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR)));
-        i.setType("Palico Weapon");
+        i.setType(ItemType.PALICO_WEAPON);
 
         weapon.setItem(i);
         return weapon;

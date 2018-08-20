@@ -3,6 +3,7 @@ package com.ghstudios.android.data.cursors;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
+import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.database.S;
 
@@ -91,7 +92,6 @@ public class WeaponCursor extends CursorWrapper {
 		long itemId = getLong(getColumnIndex(S.COLUMN_ITEMS_ID));
 		String name = getString(getColumnIndex(S.COLUMN_ITEMS_NAME));
 		String jpnName = getString(getColumnIndex(S.COLUMN_ITEMS_JPN_NAME));
-		String type = getString(getColumnIndex(S.COLUMN_ITEMS_TYPE));
 		String subType = getString(getColumnIndex(S.COLUMN_ITEMS_SUB_TYPE));
 		int rarity = getInt(getColumnIndex(S.COLUMN_ITEMS_RARITY));
 		int carry_capacity = getInt(getColumnIndex(S.COLUMN_ITEMS_CARRY_CAPACITY));
@@ -103,7 +103,7 @@ public class WeaponCursor extends CursorWrapper {
 		weapon.setId(itemId);
 		weapon.setName(name);
 		weapon.setJpnName(jpnName);
-		weapon.setType(type);
+		weapon.setType(ItemType.WEAPON);
 		weapon.setSubType(subType);
 		weapon.setRarity(rarity);
 		weapon.setCarryCapacity(carry_capacity);

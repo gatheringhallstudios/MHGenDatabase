@@ -13,17 +13,17 @@ import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
  * which internally requests the viewmodel to update a livedata of search results
  */
 class UniversalSearchFragment : RecyclerViewFragment() {
-    private val adapter = BasicListDelegationAdapter(
-        SearchResultAdapterDelegate()
-    )
-
     private val viewModel by lazy {
         ViewModelProviders.of(this).get(UniversalSearchViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setAdapter(adapter)
         enableDivider()
+
+        val adapter = BasicListDelegationAdapter(
+                SearchResultAdapterDelegate(context!!)
+        )
+        setAdapter(adapter)
 
         viewModel.searchResults.observe(this, Observer { results ->
             adapter.items = results ?: emptyList()

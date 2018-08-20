@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ghstudios.android.AssetLoader;
+import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
@@ -129,24 +130,24 @@ public class WishlistDataComponentFragment extends ListFragment implements
 		mListView.setItemChecked(position, false);
 		Intent i = null;
 		long mId = (long) v.getTag();
-		String itemtype;
 
 		WishlistComponent component;
 
 		WishlistComponentCursor mycursor = (WishlistComponentCursor) l.getItemAtPosition(position);
 		component = mycursor.getWishlistComponent();
-		itemtype = component.getItem().getType();
+		ItemType itemtype = component.getItem().getType();
 
+		// todo: Find a way to create intents using only the item. Why can't we use ItemClickListener?
 		switch(itemtype){
-			case "Weapon":
+			case WEAPON:
 				i = new Intent(getActivity(), WeaponDetailPagerActivity.class);
 				i.putExtra(WeaponDetailPagerActivity.EXTRA_WEAPON_ID, mId);
 				break;
-			case "Armor":
+			case ARMOR:
 				i = new Intent(getActivity(), ArmorSetDetailPagerActivity.class);
 				i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, mId);
 				break;
-			case "Decoration":
+			case DECORATION:
 				i = new Intent(getActivity(), DecorationDetailActivity.class);
 				i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId);
 				break;

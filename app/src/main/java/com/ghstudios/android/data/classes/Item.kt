@@ -15,7 +15,7 @@ open class Item : ITintedIcon {
      */
     var jpnName: String? = ""
 
-    var type: String? = ""
+    var type: ItemType = ItemType.ITEM
     var subType: String? = ""
 
     var rarity: Int = -1
@@ -43,7 +43,9 @@ open class Item : ITintedIcon {
     override fun getIconResourceString() = fileLocation ?: ""
 
     internal fun usesRarity() = when (type) {
-        "Weapon", "Armor", "Palico Weapon", "Palico Armor" -> true
+        ItemType.WEAPON, ItemType.ARMOR,
+        ItemType.PALICO_WEAPON, ItemType.PALICO_ARMOR -> true
+
         else -> false
     }
 

@@ -13,6 +13,7 @@ import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
+import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
@@ -282,6 +283,15 @@ public class DataManager {
      */
     public ItemMetadata queryItemMetadata(long id) {
         return metadataDao.queryItemMetadata(id);
+    }
+
+    /**
+     * Returns a cursor that iterates over regular items.
+     * Regular items are items that you can find in the item box or crafting materials (like Rathalos Item)
+     * @return
+     */
+    public ItemCursor queryBasicItems() {
+        return itemDao.queryBasicItems();
     }
 
     /* Get a Cursor that has a list of all Items */
@@ -957,7 +967,7 @@ public class DataManager {
             String type = wd.getPath();
             
             // Check path if the entry is a Weapon
-            if ((i.getType()).equals("Weapon")) {
+            if (i.getType() == ItemType.WEAPON) {
                 WeaponCursor wc = mHelper.queryWeapon(i.getId());
                 wc.moveToFirst();
                 

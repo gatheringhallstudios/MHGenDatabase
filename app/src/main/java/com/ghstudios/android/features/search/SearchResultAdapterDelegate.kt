@@ -46,10 +46,13 @@ abstract class ResultHandler<in T> {
     }
 }
 
-private val handlers = mapOf(
+/**
+ * Creates a mapping of data type -> handler. Context is used to retrieve the localized type names
+ */
+private fun createHandlers(ctx: Context) = mapOf(
         Monster::class.java to object : ResultHandler<Monster>() {
             override fun getName(obj: Monster) = obj.name
-            override fun getType(obj: Monster) = "Monster"
+            override fun getType(obj: Monster) = ctx.getString(R.string.type_monster)
             override fun createListener(ctx: Context, obj: Monster) = MonsterClickListener(ctx, obj.id)
         },
 
@@ -64,25 +67,39 @@ private val handlers = mapOf(
             }
 
             override fun getName(obj: Quest) = obj.name
-            override fun getType(obj: Quest) = "Quest"
+            override fun getType(obj: Quest) = ctx.getString(R.string.type_quest)
             override fun createListener(ctx: Context, obj: Quest) = QuestClickListener(ctx, obj.id)
         },
 
         SkillTree::class.java to object : ResultHandler<SkillTree>() {
             override fun getImageResource(obj: SkillTree) = R.drawable.icon_bomb
             override fun getName(obj: SkillTree) = obj.name
-            override fun getType(obj: SkillTree) = "Skill Tree"
+            override fun getType(obj: SkillTree) = ctx.getString(R.string.type_skill_tree)
             override fun createListener(ctx: Context, obj: SkillTree) = SkillClickListener(ctx, obj.id)
         },
 
         Item::class.java to  object : ResultHandler<Item>() {
             override fun getName(obj: Item) = obj.name ?: ""
-            override fun getType(obj: Item) = obj.type ?: "Item"
+            override fun getType(obj: Item) = when (obj.type) {
+                ItemType.ITEM -> ctx.getString(R.string.type_item)
+                ItemType.WEAPON -> ctx.getString(R.string.type_weapon)
+                ItemType.ARMOR -> ctx.getString(R.string.type_armor)
+                ItemType.PALICO_WEAPON -> ctx.getString(R.string.type_palico_weapon)
+                ItemType.PALICO_ARMOR -> ctx.getString(R.string.type_palico_armor)
+                ItemType.DECORATION -> ctx.getString(R.string.type_decoration)
+                ItemType.MATERIAL -> ctx.getString(R.string.type_material)
+            }
             override fun createListener(ctx: Context, obj: Item) = ItemClickListener(ctx, obj)
         }
 )
 
-class SearchResultAdapterDelegate: AbsListItemAdapterDelegate<Any, Any, SearchResultAdapterDelegate.ViewHolder>() {
+/**
+ * Creates a new adapter delegate to display search results.
+ * Context is used to cache and retrieve translations.
+ */
+class SearchResultAdapterDelegate(ctx: Context): AbsListItemAdapterDelegate<Any, Any, SearchResultAdapterDelegate.ViewHolder>() {
+    private val handlers = createHandlers(ctx.applicationContext)
+
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
         // todo: IconLabelTextView instead? We're using the old one here
         val inflater = LayoutInflater.from(parent.context)
