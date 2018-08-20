@@ -76,7 +76,7 @@ private val handlers = mapOf(
         },
 
         Item::class.java to  object : ResultHandler<Item>() {
-            override fun getName(obj: Item) = obj.name
+            override fun getName(obj: Item) = obj.name ?: ""
             override fun getType(obj: Item) = obj.type ?: "Item"
             override fun createListener(ctx: Context, obj: Item) = ItemClickListener(ctx, obj)
         }

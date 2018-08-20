@@ -53,7 +53,7 @@ public class ItemCursor extends CursorWrapper {
 		item.setDescription(description);
 		item.setFileLocation(fileLocation);
 		item.setIconColor(color);
-		item.setAccount(account);
+		item.setAccountItem(account);
 
 		return item;
 	}

@@ -43,6 +43,6 @@ class Armor : Equipment() {
 
 
     override fun toString(): String {
-        return this.name
+        return this.name ?: ""
     }
 }

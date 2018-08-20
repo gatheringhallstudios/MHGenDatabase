@@ -2,6 +2,7 @@
 package com.ghstudios.android.data.classes
 
 import android.util.Log
+import com.ghstudios.android.data.util.Converter
 
 val TAG = "MHGUDataConverter"
 
@@ -28,3 +29,9 @@ fun getElementFromString(elementStr: String?) = when(elementStr ?: "") {
         ElementStatus.NONE
     }
 }
+
+val MonsterClassConverter = Converter(
+        0 to MonsterClass.LARGE,
+        1 to MonsterClass.SMALL,
+        2 to MonsterClass.DEVIANT
+)
