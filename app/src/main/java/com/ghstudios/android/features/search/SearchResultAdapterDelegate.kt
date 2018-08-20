@@ -40,7 +40,6 @@ abstract class ResultHandler<in T> {
                 AssetLoader.setIcon(imgView, obj)
         } else {
             imgView.setImageResource(getImageResource(obj))
-            imgView.setColorFilter(0xFFFFFF)
         }
     }
 }
