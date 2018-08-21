@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -41,7 +44,11 @@ open class RecyclerViewFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
         private set
 
+    private lateinit var recyclerViewContainer: View
+    private lateinit var textField: EditText
     private lateinit var emptyView: View
+
+    private var previousListener: TextWatcher? = null
 
     /**
      * Overrides onCreateView to return a list_generic.
@@ -52,7 +59,9 @@ open class RecyclerViewFragment : Fragment() {
         // the leak is actually handled by the special subclass recyclerview in the inflated layout
         val view = inflater.inflate(R.layout.fragment_recyclerview_main, parent,false)
 
+        recyclerViewContainer = view.findViewById(R.id.recyclerview_container)
         recyclerView = view.findViewById(R.id.content_recyclerview)
+        textField = view.findViewById(R.id.input_search)
         emptyView = view.findViewById(R.id.empty_view)
 
         return view
@@ -78,12 +87,31 @@ open class RecyclerViewFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
+    fun enableFilter(onUpdate: (String) -> Unit) {
+        textField.visibility = View.VISIBLE
+
+        if (previousListener != null) {
+            textField.removeTextChangedListener(previousListener)
+        }
+
+        previousListener = object : TextWatcher {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val value = (s?.toString() ?: "").trim()
+                onUpdate(value)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        }
+        textField.addTextChangedListener(previousListener)
+    }
+
     /**
      * Shows the empty view instead of the recycler view.
      * There is no way to revert. Only call this once you're SURE there is no data.
      */
     fun showEmptyView() {
-        recyclerView.visibility = View.GONE
+        recyclerViewContainer.visibility = View.GONE
         emptyView.visibility = View.VISIBLE
     }
 }
