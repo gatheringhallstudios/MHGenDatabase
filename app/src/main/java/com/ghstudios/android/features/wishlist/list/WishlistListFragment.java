@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ghstudios.android.ClickListeners.WishlistClickListener;
 import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.cursors.WishlistCursor;
 import com.ghstudios.android.features.wishlist.detail.WishlistDeleteDialogFragment;
@@ -31,7 +32,6 @@ import com.ghstudios.android.features.wishlist.detail.WishlistRenameDialogFragme
 import com.ghstudios.android.loader.WishlistListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
-@SuppressLint("NewApi")
 public class WishlistListFragment extends ListFragment implements
         LoaderCallbacks<Cursor> {
 
@@ -122,6 +122,7 @@ public class WishlistListFragment extends ListFragment implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) return;
+
         if (requestCode == REQUEST_ADD) {
             if(data.getBooleanExtra(WishlistAddDialogFragment.EXTRA_ADD, false)) {
                 updateUI();
@@ -201,25 +202,6 @@ public class WishlistListFragment extends ListFragment implements
 
             // Assign menu click listener if we decide to go that route
             //Toast debugmsg = Toast.makeText(c, "Long clicked ID " + id, Toast.LENGTH_SHORT);
-        }
-    }
-
-    // Click listener to open Wishlist Details when a wishlist is clicked
-    public static class WishlistClickListener implements View.OnClickListener {
-        private Context c;
-        private Long id;
-
-        public WishlistClickListener(Context context, Long id) {
-            super();
-            this.id = id;
-            this.c = context;
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(c, WishlistDetailPagerActivity.class);
-            i.putExtra(WishlistDetailPagerActivity.EXTRA_WISHLIST_ID, id);
-            c.startActivity(i);
         }
     }
 }
