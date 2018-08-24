@@ -164,16 +164,16 @@
 
         <!-- WISHLIST SECTION -->
         <activity
-            android:name="com.ghstudios.android.features.wishlist.WishlistListActivity"
+            android:name="com.ghstudios.android.features.wishlist.list.WishlistListActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.wishlist.WishlistDetailPagerActivity"
+            android:name="com.ghstudios.android.features.wishlist.detail.WishlistDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ghstudios.android.features.wishlist.WishlistListActivity" />
+                android:value="com.ghstudios.android.features.wishlist.list.WishlistListActivity" />
         </activity>
 
         <!-- ARMOR SET BUILDER ACTIVITY -->

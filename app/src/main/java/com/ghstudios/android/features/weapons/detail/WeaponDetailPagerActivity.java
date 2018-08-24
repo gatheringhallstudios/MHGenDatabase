@@ -7,15 +7,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.features.weapons.detail.WeaponBladeDetailFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponBowDetailFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponBowgunDetailFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponDetailAmmoFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponDetailCoatingFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponSongFragment;
-import com.ghstudios.android.features.weapons.detail.WeaponTreeFragment;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.wishlist.WishlistDataAddDialogFragment;
+import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.components.ComponentListFragment;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;

@@ -38,7 +38,7 @@ import com.ghstudios.android.features.quests.QuestListPagerActivity;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
 import com.ghstudios.android.features.search.UniversalSearchActivity;
 import com.ghstudios.android.features.weapons.WeaponSelectionListActivity;
-import com.ghstudios.android.features.wishlist.WishlistListActivity;
+import com.ghstudios.android.features.wishlist.list.WishlistListActivity;
 
 import de.cketti.library.changelog.ChangeLog;
 

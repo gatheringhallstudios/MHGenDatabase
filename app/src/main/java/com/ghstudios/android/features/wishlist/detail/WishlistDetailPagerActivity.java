@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.wishlist;
+package com.ghstudios.android.features.wishlist.detail;
 
 import android.support.v4.app.Fragment;
 import android.view.Menu;
@@ -39,8 +39,8 @@ public class WishlistDetailPagerActivity extends BasePagerActivity implements Wi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_wishlist_details, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_wishlist_details, menu);
         return true;
     }
 
