@@ -6,8 +6,8 @@ import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 /**
  * A temporary inner object containing an armor piece and its associated skill points

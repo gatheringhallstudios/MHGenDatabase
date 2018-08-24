@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.components.DrawSharpness;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;

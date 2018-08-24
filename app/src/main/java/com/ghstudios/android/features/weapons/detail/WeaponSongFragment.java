@@ -1,10 +1,7 @@
 package com.ghstudios.android.features.weapons.detail;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -18,14 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.Melody;
 import com.ghstudios.android.data.cursors.HornMelodiesCursor;
 import com.ghstudios.android.loader.HornMelodyListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Joseph on 7/1/2016.

@@ -6,7 +6,7 @@ import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.util.*
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.toList
 
 /**
  * A database dao concerned with retrieving "metadata" objects.

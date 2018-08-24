@@ -6,8 +6,8 @@ import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 enum class WeaknessRating {
     IMMUNE,
@@ -69,7 +69,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
         this.monsterId = monsterId
         this.metadata = dataManager.queryMonsterMetadata(monsterId)
 
-        loggedThread(name="Monster Loading") {
+        loggedThread(name = "Monster Loading") {
             // load and post metadata and monster first (high priority)
             monsterData.postValue(dataManager.getMonster(monsterId))
 
@@ -77,7 +77,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             val weaknessRaw = dataManager.queryMonsterWeaknessArray(monsterId)
 
             // this is a bigger process, so run this in a different thread while we continue loading data
-            loggedThread(name="Weakness processing") {
+            loggedThread(name = "Weakness processing") {
                 weaknessData.postValue(processWeaknessData(weaknessRaw))
             }
 
@@ -86,9 +86,9 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
             damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
             statusData.postValue(dataManager.queryMonsterStatus(monsterId))
 
-            if(metadata?.hasLowRank == true) rewardLRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"LR").toList { it.huntingReward })
-            if(metadata?.hasHighRank == true) rewardHRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"HR").toList { it.huntingReward })
-            if(metadata?.hasGRank == true) rewardGData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId,"G").toList { it.huntingReward })
+            if (metadata?.hasLowRank == true) rewardLRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId, "LR").toList { it.huntingReward })
+            if (metadata?.hasHighRank == true) rewardHRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId, "HR").toList { it.huntingReward })
+            if (metadata?.hasGRank == true) rewardGData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId, "G").toList { it.huntingReward })
         }
 
         return metadata!!

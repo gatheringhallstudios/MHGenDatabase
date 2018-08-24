@@ -1,7 +1,6 @@
 package com.ghstudios.android.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.components.DrawSharpness;

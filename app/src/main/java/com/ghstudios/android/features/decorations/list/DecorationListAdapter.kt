@@ -1,20 +1,13 @@
 package com.ghstudios.android.features.decorations.list
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import com.ghstudios.android.AssetLoader
-import com.ghstudios.android.ClickListeners.DecorationClickListener
 import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Decoration
-import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.mhgendatabase.R
-import com.ghstudios.android.setImageAsset
+import com.ghstudios.android.util.setImageAsset
 import kotlinx.android.synthetic.main.fragment_decoration_listitem.*
 
 /**

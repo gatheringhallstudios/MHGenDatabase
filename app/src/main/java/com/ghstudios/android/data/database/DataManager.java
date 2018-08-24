@@ -3,7 +3,7 @@ package com.ghstudios.android.data.database;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.ghstudios.android.MHUtils;
+import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.data.classes.ASBSet;

@@ -8,8 +8,8 @@ import com.ghstudios.android.data.classes.MonsterToQuest
 import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.data.classes.QuestReward
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 /**
  * A ViewModel for the entirety of quest detail data.
@@ -35,7 +35,7 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
             monsters.postValue(dataManager.queryMonsterToQuestQuest(questId).toList { it.monsterToQuest })
             rewards.postValue(dataManager.queryQuestRewardQuest(questId).toList { it.questReward })
 
-            if (quest.hasGatheringItem){
+            if (quest.hasGatheringItem) {
                 val locationId = quest.location?.id ?: -1
                 val gatherData = dataManager.queryGatheringForQuest(quest.id, locationId, quest.rank).toList { it.gathering }
                 gatherings.postValue(gatherData)

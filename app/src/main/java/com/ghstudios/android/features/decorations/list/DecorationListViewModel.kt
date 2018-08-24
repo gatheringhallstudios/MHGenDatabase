@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.toList
 
 class DecorationListViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)

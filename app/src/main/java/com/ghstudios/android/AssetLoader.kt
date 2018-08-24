@@ -5,10 +5,8 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
-import com.ghstudios.android.data.classes.Item
-import com.ghstudios.android.data.classes.Location
-import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.MHUtils
 
 /**
  * A static class used to load icons for various database objects.

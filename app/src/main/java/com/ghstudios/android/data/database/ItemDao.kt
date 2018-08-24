@@ -6,8 +6,8 @@ import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
-import com.ghstudios.android.firstOrNull
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.firstOrNull
+import com.ghstudios.android.util.toList
 
 class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase
@@ -46,7 +46,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /**
-     * Queries all normal items and materials (aka non-equipment)
+     * Queries all normal items and materials
      */
     fun queryBasicItems(): ItemCursor {
         val typeItem = ItemTypeConverter.serialize(ItemType.ITEM)

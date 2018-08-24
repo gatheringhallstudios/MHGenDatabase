@@ -2,10 +2,9 @@ package com.ghstudios.android.data.database
 
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.data.classes.ItemToSkillTree
-import com.ghstudios.android.data.classes.SkillTree
 import com.ghstudios.android.data.cursors.ItemToSkillTreeCursor
 import com.ghstudios.android.data.util.localizeColumn
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.toList
 
 class SkillDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase

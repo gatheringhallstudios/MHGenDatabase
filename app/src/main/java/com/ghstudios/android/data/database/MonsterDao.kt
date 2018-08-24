@@ -7,7 +7,7 @@ import com.ghstudios.android.data.classes.MonsterClassConverter
 import com.ghstudios.android.data.cursors.MonsterCursor
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.toList
 
 /**
  * A class used to perform queries retrieving monster data,

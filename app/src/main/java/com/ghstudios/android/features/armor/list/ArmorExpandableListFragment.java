@@ -1,10 +1,7 @@
 package com.ghstudios.android.features.armor.list;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -12,21 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import android.support.v4.app.FragmentManager;
 import android.view.*;
 
-import com.ghstudios.android.MHApplication;
-import com.ghstudios.android.MHUtils;
-import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.ArmorFamily;
-import com.ghstudios.android.data.classes.Item;
-import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

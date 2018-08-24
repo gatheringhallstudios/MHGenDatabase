@@ -5,8 +5,8 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.toList
 import com.ghstudios.android.util.ThrottledExecutor
+import com.ghstudios.android.util.toList
 import kotlin.system.measureTimeMillis
 
 class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {

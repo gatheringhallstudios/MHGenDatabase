@@ -3,7 +3,6 @@ package com.ghstudios.android.features.monsters.detail
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -15,14 +14,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TableLayout
-import android.widget.TableRow
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 
 import com.ghstudios.android.*
-import com.ghstudios.android.MHUtils
 import com.ghstudios.android.data.classes.MonsterDamage
 import com.ghstudios.android.data.classes.MonsterStatus
 import com.ghstudios.android.mhgendatabase.R

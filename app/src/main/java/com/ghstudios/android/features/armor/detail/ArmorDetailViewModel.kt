@@ -7,8 +7,8 @@ import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 /**
  * A ViewModel representing information for a single piece of armor.
@@ -33,7 +33,7 @@ class ArmorDetailViewModel(app: Application) : AndroidViewModel(app) {
 
         this.armorId = armorId
 
-        loggedThread(name="Armor Loading") {
+        loggedThread(name = "Armor Loading") {
             armorData.postValue(dataManager.getArmor(armorId))
 
             skillData.postValue(dataManager.queryItemToSkillTreeArrayItem(armorId))

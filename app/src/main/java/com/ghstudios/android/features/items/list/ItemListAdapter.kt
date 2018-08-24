@@ -8,7 +8,7 @@ import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.mhgendatabase.R
-import com.ghstudios.android.setImageAsset
+import com.ghstudios.android.util.setImageAsset
 import kotlinx.android.synthetic.main.fragment_item_listitem.*
 
 class ItemListAdapter : SimpleRecyclerViewAdapter<Item>() {

@@ -3,14 +3,14 @@ package com.ghstudios.android.features.items.detail
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
-import com.ghstudios.android.MHUtils
+import com.ghstudios.android.util.MHUtils
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 data class ItemUsage(
         val combinations: List<Combining>,
@@ -52,7 +52,7 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
         this.itemId = itemId
         this.metadata = dataManager.queryItemMetadata(itemId)
 
-        loggedThread(name="Item Loading") {
+        loggedThread(name = "Item Loading") {
             itemData.postValue(dataManager.getItem(itemId))
 
             // query crafting usage

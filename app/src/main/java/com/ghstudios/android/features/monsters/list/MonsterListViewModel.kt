@@ -6,8 +6,8 @@ import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.data.classes.MonsterClass
 import com.ghstudios.android.data.database.DataManager
-import com.ghstudios.android.loggedThread
-import com.ghstudios.android.toList
+import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 /**
  * A viewmodel meant to be used by the MonsterListFragment

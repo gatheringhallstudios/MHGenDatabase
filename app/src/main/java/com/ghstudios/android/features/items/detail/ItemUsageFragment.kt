@@ -12,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ItemClickListener
-import com.ghstudios.android.MHUtils
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter

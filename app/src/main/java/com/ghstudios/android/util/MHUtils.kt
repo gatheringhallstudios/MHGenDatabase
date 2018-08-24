@@ -1,4 +1,4 @@
-package com.ghstudios.android
+package com.ghstudios.android.util
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -103,6 +103,7 @@ object MHUtils {
     }
 
     private val colorArrayHash = HashMap<Int,IntArray>()
+    
     /**
      * Returns and Caches int array. Used mostly for rare_colors and item_color arrays.
      * Probably a small optimization, but since this will be called for every image,
