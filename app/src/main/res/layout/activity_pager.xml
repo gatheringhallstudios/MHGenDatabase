@@ -13,12 +13,11 @@
         android:background="@color/primary_color"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabTextColor="@color/text_primary_color"
+        app:tabTextColor="@color/text_primary_unselected_color"
         app:tabSelectedTextColor="@color/text_primary_color"
         app:tabIndicatorColor="@color/accent_color"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="@dimen/elevation_action_bar"
-
+        android:stateListAnimator="@animator/appbar_elevated"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v4.view.ViewPager

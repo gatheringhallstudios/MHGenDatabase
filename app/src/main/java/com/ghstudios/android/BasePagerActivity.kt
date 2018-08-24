@@ -1,9 +1,11 @@
 package com.ghstudios.android
 
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
@@ -168,6 +170,7 @@ abstract class BasePagerActivity : GenericActivity() {
             tabLayout = v.findViewById(R.id.tab_layout)
             viewPager = v.findViewById(R.id.pager)
 
+
             val activity = this.activity as BasePagerActivity
 
             // Setup tabs
@@ -183,6 +186,20 @@ abstract class BasePagerActivity : GenericActivity() {
             }
 
             initialized = true
+
+            tabLayout.addOnTabSelectedListener( object : TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    val col = ContextCompat.getColor(activity,R.color.text_primary_color)
+                    tab?.icon?.setColorFilter(col,PorterDuff.Mode.MULTIPLY)
+                }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    val col = ContextCompat.getColor(activity,R.color.text_primary_unselected_color)
+                    tab?.icon?.setColorFilter(col,PorterDuff.Mode.MULTIPLY)
+                }
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    onTabSelected(tab)
+                }
+            })
 
             return v
         }
@@ -211,7 +228,10 @@ abstract class BasePagerActivity : GenericActivity() {
                 // Bind icons. Must be done after the viewpager is set up
                 for ((idx, tab) in tabs.withIndex()) {
                     tabLayout.getTabAt(idx)?.icon = tab.icon
+                    tabLayout.getTabAt(idx)?.icon?.setColorFilter(ContextCompat.getColor(context!!,R.color.text_primary_unselected_color),PorterDuff.Mode.MULTIPLY)
                 }
+
+                tabLayout.getTabAt(selectedTabIdx)?.icon?.setColorFilter(ContextCompat.getColor(context!!,R.color.text_primary_color),PorterDuff.Mode.MULTIPLY)
             }
         }
 
