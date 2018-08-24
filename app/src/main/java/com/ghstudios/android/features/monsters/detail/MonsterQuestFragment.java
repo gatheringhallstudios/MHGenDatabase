@@ -109,7 +109,7 @@ public class MonsterQuestFragment extends ListFragment implements
             TextView hyperTextView = view.findViewById(R.id.quest_hyper);
 
             String cellQuestText = monsterToQuest.getQuest().getName();
-            String starsText = monsterToQuest.getQuest().getStars();
+            String starsText = monsterToQuest.getQuest().getStarString();
 
             if (monsterToQuest.isUnstable()) {
                 unstableTextView.setVisibility(View.VISIBLE);

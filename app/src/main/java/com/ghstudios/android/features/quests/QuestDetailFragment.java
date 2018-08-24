@@ -126,7 +126,7 @@ public class QuestDetailFragment extends Fragment {
 
         // bind details section
         hubTextView.setText(mQuest.getHub());
-        levelTextView.setText(String.valueOf(mQuest.getStars()));
+        levelTextView.setText(mQuest.getStarString());
         hrpCell.setValueText(cellHrp);
         rewardCell.setValueText(cellReward);
         feeCell.setValueText(cellFee);

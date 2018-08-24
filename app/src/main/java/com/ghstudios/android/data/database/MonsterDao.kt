@@ -76,4 +76,14 @@ class MonsterDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE _id = ?
         """, arrayOf(id.toString()))).toList { it.monster }.firstOrNull()
     }
+
+    fun queryDeviantMonsterNames():Array<String>{
+        return db.rawQuery("""
+            SELECT DISTINCT permit_monster_id, m.$column_name
+            FROM quests
+            JOIN monsters m ON m._id=permit_monster_id
+            WHERE hub="Permit"
+            ORDER BY stars
+        """, emptyArray()).toList { it.getString(1) }.toTypedArray()
+    }
 }

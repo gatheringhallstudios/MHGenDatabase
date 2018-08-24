@@ -16,8 +16,8 @@ import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Monster;
-import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterClass;
+import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.classes.MonsterWeakness;
 import com.ghstudios.android.data.classes.PalicoArmor;
@@ -69,8 +69,6 @@ import com.ghstudios.android.data.cursors.WyporiumTradeCursor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 
 /*
@@ -396,18 +394,8 @@ public class DataManager {
         return monsterDao.queryMonsters(monsterClass);
     }
 
-    public MonsterCursor queryMonsters() {
-        return monsterDao.queryMonsters();
-    }
-    
-    /* Get a Cursor that has a list of all small Monster */    
-    public MonsterCursor querySmallMonsters() {
-        return monsterDao.queryMonsters(MonsterClass.SMALL);
-    }
-
-    /* Get a Cursor that has a list of all large Monster */    
-    public MonsterCursor queryLargeMonsters() {
-        return monsterDao.queryMonsters(MonsterClass.LARGE);
+    public String[] questDeviantMonsterNames(){
+        return monsterDao.queryDeviantMonsterNames();
     }
 
     public MonsterCursor queryMonstersSearch(String searchTerm) {

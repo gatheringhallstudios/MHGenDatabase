@@ -18,7 +18,9 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.QuestClickListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,13 +34,10 @@ import java.util.List;
 public class QuestExpandableListFragment extends Fragment {
     private String mHub;
     private static final String ARG_HUB = "QUEST_HUB";
-    private String[] caravan = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 "};
-
-    private String[] guild = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
-
-    private String[] event = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 "};
-
-    private String[] permit = {"1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ","8","9","10"};
+    private String[] caravan = {"1", "2", "3", "4", "5", "6","7","8","9","10"};
+    private String[] guild = {"1", "2", "3", "4", "5", "6", "7","G1","G2","G3","G4"};
+    private String[] event = {"1", "2", "3", "4", "5", "6", "7","G1","G2","G3","G4"};
+    private String[] permit=null;
 
     private ArrayList<ArrayList<Quest>> children;
 
@@ -64,65 +63,25 @@ public class QuestExpandableListFragment extends Fragment {
     }
 
     private void populateList() {
-        children = new ArrayList<ArrayList<Quest>>();
+        children = new ArrayList<>();
         List<Quest> quests = DataManager.get(getActivity()).queryQuestArrayHub(mHub);
-        ArrayList<Quest> g1 = new ArrayList<Quest>();
-        ArrayList<Quest> g2 = new ArrayList<Quest>();
-        ArrayList<Quest> g3 = new ArrayList<Quest>();
-        ArrayList<Quest> g4 = new ArrayList<Quest>();
-        ArrayList<Quest> g5 = new ArrayList<Quest>();
-        ArrayList<Quest> g6 = new ArrayList<Quest>();
-        ArrayList<Quest> g7 = new ArrayList<Quest>();
-        ArrayList<Quest> g8 = new ArrayList<Quest>();
-        ArrayList<Quest> g9 = new ArrayList<Quest>();
-        ArrayList<Quest> g10 = new ArrayList<Quest>();
+        HashMap<String,ArrayList<Quest>> questGroups = new HashMap<>();
         for (int i = 0; i < quests.size(); i++) {
-            switch (quests.get(i).getStars()) {
+            String grouping = quests.get(i).getStars();
 
-                case "1":
-                    g1.add(quests.get(i));
-                    break;
-                case "2":
-                    g2.add(quests.get(i));
-                    break;
-                case "3":
-                    g3.add(quests.get(i));
-                    break;
-                case "4":
-                    g4.add(quests.get(i));
-                    break;
-                case "5":
-                    g5.add(quests.get(i));
-                    break;
-                case "6":
-                    g6.add(quests.get(i));
-                    break;
-                case "7":
-                    g7.add(quests.get(i));
-                    break;
-                case "8":
-                    g8.add(quests.get(i));
-                    break;
-                case "9":
-                    g9.add(quests.get(i));
-                    break;
-                case "10":
-                    g10.add(quests.get(i));
-                    break;
-                default:
-                    break;
+            //Permit quests aren't grouped by stars, but by permit monster id
+            if(mHub == "Permit")
+                grouping = Integer.toString(quests.get(i).getPermitMonsterId());
+
+            if(questGroups.containsKey(grouping)){
+                questGroups.get(grouping).add(quests.get(i));
+            }else{
+                ArrayList<Quest> qs = new ArrayList<>();
+                qs.add(quests.get(i));
+                children.add(qs);
+                questGroups.put(grouping,qs);
             }
         }
-        children.add(g1);
-        children.add(g2);
-        children.add(g3);
-        children.add(g4);
-        children.add(g5);
-        children.add(g6);
-        children.add(g7);
-        children.add(g8);
-        children.add(g9);
-        children.add(g10);
     }
 
     @Override
@@ -137,6 +96,7 @@ public class QuestExpandableListFragment extends Fragment {
         } else if(mHub.equals("Guild")) {
             elv.setAdapter(new QuestListAdapter(guild));
         } else if(mHub.equals("Permit")){
+            permit = DataManager.get(getActivity()).questDeviantMonsterNames();
             elv.setAdapter(new QuestListAdapter(permit));
         }
         else{
@@ -195,12 +155,7 @@ public class QuestExpandableListFragment extends Fragment {
         @Override
         public View getGroupView(int i, boolean b, View view,
                                  ViewGroup viewGroup) {
-            // TextView textView = new TextView(
-            // QuestExpandableListFragment.this.getActivity());
-            // textView.setText(getGroup(i).toString());
-            // return textView;
-
-            View v = view;
+            View v;
             Context context = viewGroup.getContext();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -221,8 +176,22 @@ public class QuestExpandableListFragment extends Fragment {
             stars[8] = v.findViewById(R.id.star9);
             stars[9] = v.findViewById(R.id.star10);
 
-            for (int j = 0; j <= i; j++) {
-                stars[j].setVisibility(View.VISIBLE);
+            if(quests == permit) {
+                for (int j = 0; j <= 9; j++) {
+                    stars[j].setVisibility(View.INVISIBLE);
+                }
+            }else if(quests == caravan){
+                for (int j = 0; j <= i; j++) {
+                    stars[j].setVisibility(View.VISIBLE);
+                }
+            } else{
+                if(i<7){
+                    for (int j = 0; j <= i; j++) {
+                        stars[j].setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    stars[0].setVisibility(View.VISIBLE);
+                }
             }
 
             questGroupTextView.setText(getGroup(i).toString());

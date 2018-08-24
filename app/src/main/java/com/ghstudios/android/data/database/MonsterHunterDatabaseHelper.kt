@@ -1497,11 +1497,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val qh = QueryHelper()
         qh.Columns = null
         qh.Table = S.TABLE_QUESTS
-        qh.Selection = "q." + S.COLUMN_QUESTS_HUB + " = ? AND q." + S.COLUMN_QUESTS_NAME + " <> ''"
+        qh.Selection = "q." + S.COLUMN_QUESTS_HUB + " = ?"
         qh.SelectionArgs = arrayOf(hub)
         qh.GroupBy = null
         qh.Having = null
-        qh.OrderBy = null
+        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else null
         qh.Limit = null
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
@@ -1562,6 +1562,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP
         projectionMap[S.COLUMN_QUESTS_FLAVOR] = q + "." + S.COLUMN_QUESTS_FLAVOR
         projectionMap[S.COLUMN_QUESTS_METADATA] = q + "." + S.COLUMN_QUESTS_METADATA
+        projectionMap[S.COLUMN_QUESTS_PERMIT_MONSTER_ID] = q + "." + S.COLUMN_QUESTS_PERMIT_MONSTER_ID
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()

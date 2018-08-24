@@ -87,7 +87,7 @@ public class ItemQuestFragment extends ListFragment {
             TextView percentageTextView = view.findViewById(R.id.percentage);
 
             String cellQuestText = questReward.getQuest().getName();
-            String cellLevelText = questReward.getQuest().getStars();
+            String cellLevelText = questReward.getQuest().getStarString();
             String cellSlotText = questReward.getRewardSlot();
             int cellAmountText = questReward.getStackSize();
             int cellPercentageText = questReward.getPercentage();

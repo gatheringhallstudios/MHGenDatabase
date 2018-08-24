@@ -207,6 +207,7 @@ public class S {
 	public static final String COLUMN_QUESTS_HUNTER_TYPE = "hunter_type";
 	public static final String COLUMN_QUESTS_FLAVOR = "flavor";
 	public static final String COLUMN_QUESTS_METADATA = "metadata";
+	public static final String COLUMN_QUESTS_PERMIT_MONSTER_ID="permit_monster_id";
 
 	
 	// Quest Rewards

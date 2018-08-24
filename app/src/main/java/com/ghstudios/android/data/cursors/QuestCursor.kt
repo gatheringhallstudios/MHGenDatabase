@@ -44,7 +44,10 @@ class QuestCursor(c: Cursor) : CursorWrapper(c) {
                 flavor = getString(S.COLUMN_QUESTS_FLAVOR)
                 metadata = getInt(S.COLUMN_QUESTS_METADATA)
                 rank = getString(S.COLUMN_QUESTS_RANK)
+                permitMonsterId = getInt(S.COLUMN_QUESTS_PERMIT_MONSTER_ID)
             }
+
+            if(quest.name.isEmpty()) quest.name = quest.jpnName
 
             quest.location = Location().apply {
                 id = getLong(S.COLUMN_QUESTS_LOCATION_ID)

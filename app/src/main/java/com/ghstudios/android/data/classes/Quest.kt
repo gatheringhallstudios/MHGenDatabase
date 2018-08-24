@@ -67,6 +67,16 @@ class Quest: ITintedIcon {
 
     var metadata: Int = 0
 
+    var permitMonsterId:Int=0
+
+    val starString:String
+        get(){
+            val sval = stars!!
+            val s = stars!!.toInt()
+            if(s<=10) return sval
+            else return "G"+(s-10)
+        }
+
     // todo: we'll need a better way to do this that allows localization
     val typeText: String
         get() {
