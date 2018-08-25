@@ -1,11 +1,9 @@
 package com.ghstudios.android
 
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
@@ -192,15 +190,12 @@ abstract class BasePagerActivity : GenericActivity() {
             initialized = true
 
             // Update the tab's icon color when the tab changes
-            // todo: change color entries to special shade types. The icon color will be tinted if text color changes
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    val col = ContextCompat.getColor(activity,R.color.text_primary_color)
-                    tab?.icon?.setColorFilter(col,PorterDuff.Mode.MULTIPLY)
+                    styleTabIcon(tab, isSelected = true)
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    val col = ContextCompat.getColor(activity,R.color.text_primary_unselected_color)
-                    tab?.icon?.setColorFilter(col,PorterDuff.Mode.MULTIPLY)
+                    styleTabIcon(tab, isSelected = false)
                 }
                 override fun onTabReselected(tab: TabLayout.Tab?) {
                     onTabSelected(tab)
@@ -234,11 +229,21 @@ abstract class BasePagerActivity : GenericActivity() {
                 // Bind icons. Must be done after the viewpager is set up
                 for ((idx, tab) in tabs.withIndex()) {
                     tabLayout.getTabAt(idx)?.icon = tab.icon
-                    tabLayout.getTabAt(idx)?.icon?.setColorFilter(ContextCompat.getColor(context!!,R.color.text_primary_unselected_color),PorterDuff.Mode.MULTIPLY)
+                    styleTabIcon(tabLayout.getTabAt(idx), isSelected = false)
                 }
 
-                tabLayout.getTabAt(selectedTabIdx)?.icon?.setColorFilter(ContextCompat.getColor(context!!,R.color.text_primary_color),PorterDuff.Mode.MULTIPLY)
+                styleTabIcon(tabLayout.getTabAt(selectedTabIdx), isSelected = true)
             }
+        }
+
+        /**
+         * Internal helper to style the tab's icon based on selection state.
+         * Note: If tab icon opacity can be controlled by a style, do that instead.
+         */
+        private fun styleTabIcon(tab: TabLayout.Tab?, isSelected: Boolean) = when (isSelected) {
+            // mutate prevents changes to the cached icon version. Re-mutating does nothing, so this is safe
+            true -> tab?.icon?.mutate()?.alpha = 255
+            false -> tab?.icon?.mutate()?.alpha = 160 // todo: don't use magic number?
         }
 
         /**
