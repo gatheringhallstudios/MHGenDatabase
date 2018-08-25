@@ -8,15 +8,15 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_color"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabTextColor="@color/text_primary_unselected_color"
-        app:tabSelectedTextColor="@color/text_primary_color"
+        app:tabSelectedTextColor="@color/accent_color"
         app:tabIndicatorColor="@color/accent_color"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:stateListAnimator="@animator/appbar_elevated"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/background_color"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
