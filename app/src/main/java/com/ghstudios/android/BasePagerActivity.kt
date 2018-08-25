@@ -22,7 +22,6 @@ import java.util.ArrayList
  * If switching to single activity, replace for the fragment version.
  * Everything else is the same.
  */
-
 abstract class BasePagerActivity : GenericActivity() {
     companion object {
         const val ARG_TAB_BEHAVIOR = "ARG_TAB_BEHAVIOR"
@@ -157,6 +156,10 @@ abstract class BasePagerActivity : GenericActivity() {
         }
     }
 
+    /**
+     * Internal fragment used to render the actual tab view.
+     * Used by the BasePagerActivity.
+     */
     internal class InnerPagerFragment : Fragment() {
 
         lateinit var tabLayout: TabLayout
@@ -173,11 +176,11 @@ abstract class BasePagerActivity : GenericActivity() {
 
             val activity = this.activity as BasePagerActivity
 
-            // Setup tabs
+            // Setup tabs - the user should configure via the activity's onAddTabs function
             val adder = InnerTabAdder()
             activity.onAddTabs(adder)
 
-            // get results
+            // get results from the onAddTabs call via the adder.
             val tabs = adder.getTabs()
             val defaultIdx = adder.defaultIdx
 
@@ -185,9 +188,12 @@ abstract class BasePagerActivity : GenericActivity() {
                 resetTabs(tabs, defaultIdx)
             }
 
+            // Lets certain functions know that initialization has occured.
             initialized = true
 
-            tabLayout.addOnTabSelectedListener( object : TabLayout.OnTabSelectedListener{
+            // Update the tab's icon color when the tab changes
+            // todo: change color entries to special shade types. The icon color will be tinted if text color changes
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     val col = ContextCompat.getColor(activity,R.color.text_primary_color)
                     tab?.icon?.setColorFilter(col,PorterDuff.Mode.MULTIPLY)
@@ -235,6 +241,10 @@ abstract class BasePagerActivity : GenericActivity() {
             }
         }
 
+        /**
+         * Internal function to update certain behaviors based on the internal state.
+         * Currently used to control whether the tabs should be fixed or scrolling.
+         */
         private fun updateTabBehavior() {
             val parentActivity = activity as BasePagerActivity
             val type = parentActivity.behavior
