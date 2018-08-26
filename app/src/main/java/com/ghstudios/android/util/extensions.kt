@@ -3,11 +3,8 @@ package com.ghstudios.android.util
 import android.content.Context
 import android.database.Cursor
 import android.graphics.drawable.Drawable
-import android.os.Bundle
 import android.support.annotation.DrawableRes
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import com.ghstudios.android.MHUtils
 
 
 // A collection of extension functions used by the app.
