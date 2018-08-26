@@ -195,6 +195,10 @@
     <string name="armor_res_dragon">Dragon Res:</string>
 
     <!-- Wishlist stuff -->
+    <string name="wishlist_quantity_label">Quantity:</string>
+    <string name="wishlist_quantity_hint">Quantity</string>
+    <string name="wishlist_add_title">Add to which wishlist?</string>
+    <string name="wishlist_add_success">Added to %s wishlist</string>
     <string name="wishlist_text_total">Total cost</string>
     <string-array name="test_array">
         <item>0</item>

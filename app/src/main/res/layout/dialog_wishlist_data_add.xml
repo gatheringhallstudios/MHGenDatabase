@@ -1,28 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
-    
-    <View
-	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
-	    android:background="@android:color/darker_gray"/>
-    
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:text="Quantity:"
-        android:textSize="20dp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:minWidth="240dp">
 
-    <EditText
-        android:id="@+id/add"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/wishlist_select"
+        style="@style/SpinnerStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
-        android:hint="Quantity"
-        android:inputType="number" />
+        android:layout_margin="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:entries="Text,Hello">
+    </Spinner>
 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/path_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/wishlist_select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/quantity_section"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/path_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Create"
+                tools:visibility="visible"
+                android:visibility="gone"/>
+
+            <!--<RadioButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--tools:text="Improve"-->
+                <!--tools:visibility="visible"-->
+                <!--android:visibility="gone"/>-->
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quantity_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/wishlist_select"
+        app:layout_constraintStart_toEndOf="@id/path_section"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            style="@style/text_medium_alt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wishlist_quantity_label" />
+
+        <EditText
+            android:id="@+id/add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wishlist_quantity_hint"
+            android:inputType="number"
+            android:text="1"/>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

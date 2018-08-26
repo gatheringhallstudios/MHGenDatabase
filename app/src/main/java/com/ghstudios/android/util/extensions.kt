@@ -3,7 +3,9 @@ package com.ghstudios.android.util
 import android.content.Context
 import android.database.Cursor
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.support.annotation.DrawableRes
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 
 
@@ -11,6 +13,16 @@ import android.support.v4.content.ContextCompat
 // Only those that could reasonably belong to a separate library should be here.
 // Anything with stronger coupling on non-android objects should not be here
 
+/**
+ * Adds a bundle to a fragment and then returns the fragment.
+ * A lambda is used to set values to the bundle
+ */
+fun <T: Fragment> T.applyArguments(block: Bundle.() -> Unit): T {
+    val bundle = Bundle()
+    bundle.block()
+    this.arguments = bundle
+    return this
+}
 
 /**
  * Extension function that converts a cursor to a list of objects using a transformation function.
