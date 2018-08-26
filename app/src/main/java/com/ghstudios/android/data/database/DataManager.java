@@ -2,6 +2,7 @@ package com.ghstudios.android.data.database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 
 import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.components.WeaponListEntry;
@@ -285,11 +286,20 @@ public class DataManager {
 
     /**
      * Returns a cursor that iterates over regular items.
-     * Regular items are items that you can find in the item box or crafting materials (like Rathalos Item)
+     * Regular items are items that you can find in the item box
      * @return
      */
     public ItemCursor queryBasicItems() {
-        return itemDao.queryBasicItems();
+        return itemDao.queryBasicItems("");
+    }
+
+    /**
+     * Returns a cursor that iterates over regular items (filterable).
+     * Regular items are items that you can find in the item box
+     * @return
+     */
+    public ItemCursor queryBasicItems(@NonNull String searchTerm) {
+        return itemDao.queryBasicItems(searchTerm);
     }
 
     /* Get a Cursor that has a list of all Items */

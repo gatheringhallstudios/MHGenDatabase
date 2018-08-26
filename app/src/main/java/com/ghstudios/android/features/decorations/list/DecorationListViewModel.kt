@@ -10,6 +10,10 @@ import com.ghstudios.android.util.toList
 class DecorationListViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get(app.applicationContext)
 
+    /**
+     * LiveData containing the current value of the filter.
+     * The decoration list derives off this to load the query.
+     */
     private val filterSource = MutableLiveData<String>()
 
     val decorationData = Transformations.map(filterSource) { filter ->

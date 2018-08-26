@@ -13,6 +13,9 @@ class ItemListFragment : RecyclerViewFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         this.enableDivider()
+        enableFilter {
+            viewModel.setFilter(it)
+        }
 
         val adapter = ItemListAdapter()
         setAdapter(adapter)

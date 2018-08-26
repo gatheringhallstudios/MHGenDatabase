@@ -46,18 +46,30 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /**
-     * Queries all normal items and materials
+     * Queries all normal items, controllable via an optional search filter
      */
-    fun queryBasicItems(): ItemCursor {
+    fun queryBasicItems(searchTerm: String = ""): ItemCursor {
         val typeItem = ItemTypeConverter.serialize(ItemType.ITEM)
-        val typeMaterial = ItemTypeConverter.serialize(ItemType.MATERIAL)
 
-        return ItemCursor(db.rawQuery("""
-            SELECT $item_columns
-            FROM items
-            WHERE type IN (?, ?)
-            ORDER BY _id
-        """, arrayOf(typeItem, typeMaterial)))
+        if (searchTerm.isEmpty()) {
+            // return all basic items
+            return ItemCursor(db.rawQuery("""
+                SELECT $item_columns
+                FROM items
+                WHERE type IN (?)
+                ORDER BY _id
+            """, arrayOf(typeItem)))
+        } else {
+            // return all basic items, filtered
+            val filter = SqlFilter(column_name, searchTerm)
+            return ItemCursor(db.rawQuery("""
+                SELECT $item_columns
+                FROM items
+                WHERE type in (?)
+                  AND ${filter.predicate}
+                ORDER BY _id
+            """, arrayOf(typeItem, *filter.parameters)))
+        }
     }
 
     /**
