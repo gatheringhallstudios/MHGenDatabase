@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.preferences
+package com.ghstudios.android.features.meta
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

@@ -24,8 +24,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ghstudios.android.features.meta.AboutActivity;
 import com.ghstudios.android.features.monsters.list.MonsterListPagerActivity;
-import com.ghstudios.android.features.preferences.PreferencesActivity;
+import com.ghstudios.android.features.meta.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
@@ -183,9 +184,8 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
                 return true;
 
             case R.id.about:
-                FragmentManager fm = getSupportFragmentManager();
-                AboutDialogFragment dialog = new AboutDialogFragment();
-                dialog.show(fm, DIALOG_ABOUT);
+                Intent about = new Intent(ctx, AboutActivity.class);
+                startActivity(about);
                 return true;
 
             case R.id.send_feedback:

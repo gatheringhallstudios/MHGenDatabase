@@ -15,7 +15,7 @@
             android:name="com.ghstudios.android.features.search.UniversalSearchActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name="com.ghstudios.android.features.preferences.PreferencesActivity"
+        <activity android:name="com.ghstudios.android.features.meta.PreferencesActivity"
             android:label="@string/title_preferences"
             android:screenOrientation="portrait" />
 
@@ -193,6 +193,12 @@
         <!-- WYPORIUM TRADE SECTION -->
         <activity
             android:name="com.ghstudios.android.components.list.WyporiumTradeListActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+
+        <!-- About Page -->
+        <activity
+            android:name="com.ghstudios.android.features.meta.AboutActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
 

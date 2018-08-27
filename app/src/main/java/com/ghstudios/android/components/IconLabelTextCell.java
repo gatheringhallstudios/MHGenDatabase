@@ -5,11 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -98,6 +96,10 @@ public class IconLabelTextCell extends FrameLayout {
 
     public void setLabelText(String labelText) {
         labelView.setText(labelText);
+    }
+
+    public CharSequence getLabelText() {
+        return labelView.getText();
     }
 
     /**

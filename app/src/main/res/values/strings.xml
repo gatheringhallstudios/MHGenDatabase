@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGen Database</string>
     <string name="app_name_launcher">MHGen DB</string>
@@ -14,24 +14,11 @@
 
     <string name="about">About</string>
     <string name="about_message">
-                                MHGen Database v1.00
-                                \n\n
-                                Developed by Gathering Hall Studios\n
-                                http://gatheringhallstudios.com
-                                \n\n
-                                Contribute at:\n
-                                https://github.com/gatheringhallstudios/MHGenDatabase
-                                \n\n
-                                Special Thanks to:\n
-                                Kiranico\n
-                                Ping
-                                \n\n
-                                Uses the following open source libraries:\n
-                                * android-section-adapter\n
-                                * android-sqlite-asset-helper\n
-                                * multilevelexpindlistview\n
-                                * android-flowlayout
-        						</string>
+        Gathering Hall Studios is an open source team of designers and developers
+        dedicated to building high-quality apps for the Monster Hunter series.
+        If you’d like to join or contribute, we’re always open.
+        Contact us at contact@gatheringhallstudios.com or visit our Discord.
+    </string>
 
     <string name="placeholder_unknown">Unknown</string>
     <string name="filter_final_option">Final Only</string>

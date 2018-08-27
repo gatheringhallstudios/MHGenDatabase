@@ -70,6 +70,15 @@
         <item name="colorAccent">@color/accent_color</item>
     </style>
 
+    <style name="Description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/margin_large</item>
+        <item name="android:paddingRight">@dimen/margin_large</item>
+        <item name="android:paddingTop">@dimen/margin_large</item>
+        <item name="android:paddingBottom">@dimen/margin_large</item>
+    </style>
+
     <style name="SpinnerStyle" parent="Base.Widget.AppCompat.Spinner.Underlined">
         <item name="android:textAppearance">@style/SpinnerItemTextAppearance</item>
     </style>
