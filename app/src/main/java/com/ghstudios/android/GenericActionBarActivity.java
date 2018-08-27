@@ -27,7 +27,7 @@ import android.view.View;
 import com.ghstudios.android.features.monsters.list.MonsterListPagerActivity;
 import com.ghstudios.android.features.preferences.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.ASBSetListActivity;
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.list.DecorationListActivity;

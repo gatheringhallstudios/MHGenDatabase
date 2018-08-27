@@ -221,11 +221,13 @@
     <string name="three_slot_jewel">●●●</string>
 
     <!-- ASB List stuff -->
-
     <string name="activity_asb_sets">Armor Sets</string>
 
     <string name="dialog_title_add_asb_set">New Set</string>
     <string name="dialog_title_edit_asb_set">Edit Set</string>
+    <string name="asb_dialog_name_hint">Set Name</string>
+    <string name="asb_dialog_rank">Rank</string>
+    <string name="asb_dialog_hunter_type">Hunter Type</string>
 
     <string name="context_action_asb_delete">Delete</string>
     <string name="context_action_asb_edit_data">Edit Data</string>

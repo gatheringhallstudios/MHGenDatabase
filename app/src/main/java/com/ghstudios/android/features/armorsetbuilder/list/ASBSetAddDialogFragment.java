@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.list;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,9 +6,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -60,17 +63,18 @@ public class ASBSetAddDialogFragment extends DialogFragment {
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View addView = inflater.inflate(R.layout.dialog_asb_set_add, null);
-        final EditText nameInput = (EditText) addView.findViewById(R.id.name_text);
 
-        final Spinner rankSpinner = (Spinner) addView.findViewById(R.id.spinner_rank);
+        final EditText nameInput = addView.findViewById(R.id.name_text);
+        final Spinner rankSpinner = addView.findViewById(R.id.spinner_rank);
+        final Spinner hunterTypeSpinner = addView.findViewById(R.id.spinner_hunter_type);
+
         rankSpinner.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.rank, R.layout.view_spinner_item));
         ((ArrayAdapter) rankSpinner.getAdapter()).setDropDownViewResource(R.layout.view_spinner_dropdown_item);
 
-        final Spinner hunterTypeSpinner = (Spinner) addView.findViewById(R.id.spinner_hunter_type);
         hunterTypeSpinner.setAdapter(ArrayAdapter.createFromResource(getActivity(), R.array.hunter_type, R.layout
                 .view_spinner_item));
         ((ArrayAdapter) hunterTypeSpinner.getAdapter()).setDropDownViewResource(R.layout.view_spinner_dropdown_item);
@@ -81,20 +85,25 @@ public class ASBSetAddDialogFragment extends DialogFragment {
             hunterTypeSpinner.setSelection(getArguments().getInt(ARG_HUNTER_TYPE));
         }
 
-        return new AlertDialog.Builder(getActivity())
+        Dialog d = new AlertDialog.Builder(getActivity())
                 .setTitle(!isEditing ? R.string.dialog_title_add_asb_set : R.string.dialog_title_edit_asb_set)
                 .setView(addView)
                 .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                    String name = nameInput.getText().toString();
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        String name = nameInput.getText().toString();
-
-
-                        sendResult(Activity.RESULT_OK, name, rankSpinner.getSelectedItemPosition(), hunterTypeSpinner.getSelectedItemPosition());
-                    }
+                    int rankIdx = rankSpinner.getSelectedItemPosition();
+                    int hunterTypeIdx = hunterTypeSpinner.getSelectedItemPosition();
+                    sendResult(Activity.RESULT_OK, name, rankIdx, hunterTypeIdx);
                 })
                 .create();
+
+        // Allow the auto-focused name input to pop up the onscreen keyboard
+        Window window = d.getWindow();
+        if (window != null) {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        }
+
+        return d;
     }
 }
