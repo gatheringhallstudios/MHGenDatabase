@@ -8,7 +8,7 @@ import android.view.View
 
 import com.ghstudios.android.ClickListeners.DecorationClickListener
 import com.ghstudios.android.RecyclerViewFragment
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 
 

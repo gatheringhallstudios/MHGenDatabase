@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.detail;
 
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -105,7 +105,7 @@ public class ASBPagerActivity extends BasePagerActivity {
                         ASBSkillsListFragment.newInstance()
                 );
 
-                // kotlin interop nonesense requirement
+                // Required for Kotlin interop
                 return Unit.INSTANCE;
             });
 

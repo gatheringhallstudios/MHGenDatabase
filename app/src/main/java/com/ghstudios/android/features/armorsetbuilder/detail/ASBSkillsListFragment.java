@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.detail;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -20,6 +20,9 @@ import com.ghstudios.android.ClickListeners.SkillClickListener;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Fragment to display the list of skills granted from an armor set.
+ */
 public class ASBSkillsListFragment extends Fragment implements ASBPagerActivity.OnASBSetActivityUpdateListener {
 
     private ASBSession session;

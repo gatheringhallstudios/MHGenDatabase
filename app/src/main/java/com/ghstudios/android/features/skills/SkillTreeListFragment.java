@@ -20,7 +20,7 @@ import com.ghstudios.android.data.cursors.SkillTreeCursor;
 import com.ghstudios.android.loader.SkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 
 public class SkillTreeListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

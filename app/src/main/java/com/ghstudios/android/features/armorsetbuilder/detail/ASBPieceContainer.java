@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.detail;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,6 +26,10 @@ import com.ghstudios.android.features.decorations.list.DecorationListActivity;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Custom view used to display a single armor piece for the ASB.
+ * Displays the armor piece and all associated slots.
+ */
 public class ASBPieceContainer extends LinearLayout {
     private ASBFragment parentFragment;
 

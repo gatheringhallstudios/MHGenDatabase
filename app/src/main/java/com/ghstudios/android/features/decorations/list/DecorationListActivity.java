@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.MenuSection;
 

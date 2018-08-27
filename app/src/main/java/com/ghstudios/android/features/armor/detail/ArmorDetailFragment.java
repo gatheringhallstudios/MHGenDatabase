@@ -29,7 +29,7 @@ import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
-import com.ghstudios.android.features.armorsetbuilder.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
 

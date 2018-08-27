@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.detail;
 
 import android.content.Context;
 import android.content.Intent;

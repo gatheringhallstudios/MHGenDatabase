@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.armorsetbuilder;
+package com.ghstudios.android.features.armorsetbuilder.detail;
 
 import android.app.Activity;
 import android.app.AlertDialog;
