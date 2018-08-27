@@ -1,10 +1,15 @@
 package com.ghstudios.android.features.search;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.GenericActivity;
@@ -68,5 +73,21 @@ public class UniversalSearchActivity extends GenericActivity {
         searchView.requestFocusFromTouch();
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Close software keyboard when navigating back from search using the action bar.
+        try {
+            View selectedView = this.getCurrentFocus();
+            if (selectedView != null) {
+                InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(selectedView.getWindowToken(), 0);
+            }
+        } catch (Exception ex) {
+            Log.w(getClass().getName(), "Error closing keyboard navigating from UniversalSearch", ex);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
