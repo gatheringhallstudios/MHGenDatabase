@@ -7,20 +7,34 @@
     android:orientation="vertical"
     android:minWidth="240dp">
 
-    <Spinner
-        android:id="@+id/wishlist_select"
-        style="@style/SpinnerStyle"
+    <FrameLayout
+        android:id="@+id/wishlist_name_section"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_large"
-        android:layout_marginLeft="@dimen/margin_large"
-        android:layout_marginRight="@dimen/margin_large"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:entries="Text,Hello">
-    </Spinner>
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large">
 
+        <Spinner
+            android:id="@+id/wishlist_select"
+            style="@style/SpinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:entries="Text,Hello"
+            android:visibility="gone"
+            tools:visibility="visible">
+        </Spinner>
+
+        <EditText
+            android:id="@+id/wishlist_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/wishlist_name_hint"
+            android:visibility="gone"/>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/path_section"
@@ -29,7 +43,7 @@
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_large"
-        app:layout_constraintTop_toBottomOf="@id/wishlist_select"
+        app:layout_constraintTop_toBottomOf="@id/wishlist_name_section"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/quantity_section"
@@ -66,7 +80,7 @@
         android:layout_marginTop="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
-        app:layout_constraintTop_toBottomOf="@id/wishlist_select"
+        app:layout_constraintTop_toBottomOf="@id/wishlist_name_section"
         app:layout_constraintStart_toEndOf="@id/path_section"
         app:layout_constraintEnd_toEndOf="parent">
 

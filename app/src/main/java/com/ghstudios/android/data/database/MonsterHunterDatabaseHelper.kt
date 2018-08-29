@@ -2233,8 +2233,8 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return WishlistCursor(wrapHelper(qh))
     }
 
-    /*
-     * Add a wishlist
+    /**
+     * Add a wishlist, and returns the wishlist's id
      */
     fun queryAddWishlist(name: String): Long {
         val values = ContentValues()

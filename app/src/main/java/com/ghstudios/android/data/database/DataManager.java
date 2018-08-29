@@ -727,9 +727,9 @@ public class DataManager {
         return mHelper.queryWishlist(id);
     }
 
-    /* Add a new Wishlist with a given name */
-    public void queryAddWishlist(String name) {
-        mHelper.queryAddWishlist(name);
+    /** Add a new Wishlist with a given name and returns the id. */
+    public long queryAddWishlist(String name) {
+        return mHelper.queryAddWishlist(name);
     }
 
     /* Update a specific Wishlist with a new name */

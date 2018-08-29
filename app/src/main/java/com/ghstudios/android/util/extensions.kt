@@ -34,6 +34,15 @@ fun <T, J : Cursor> J.toList(process: (J) -> T) : List<T> {
     })
 }
 
+
+/**
+ * Extension function that pulls one entry from a cursor using a transform function,
+ * or throws a NoSuchElementException if it doesn't exist.
+ */
+fun <T, J : Cursor> J.first(process: (J) -> T): T {
+    return this.toList(process).first()
+}
+
 /**
  * Extension function that pulls one entry from a cursor using a transform function,
  * or null if the cursor is empty.
