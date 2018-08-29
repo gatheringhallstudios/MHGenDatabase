@@ -33,8 +33,7 @@ public class WishlistDeleteDialogFragment extends DialogFragment {
         Intent i = new Intent();
         i.putExtra(EXTRA_DELETE, delete);
         
-        getTargetFragment()
-            .onActivityResult(getTargetRequestCode(), resultCode, i);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, i);
     }
     
     @Override
@@ -43,16 +42,12 @@ public class WishlistDeleteDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
             .setTitle("Delete '" + name + "' wishlist?")
             .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                
-                   @Override
-                   public void onClick(DialogInterface dialog, int id) {
-                       DataManager.get(getActivity()).queryDeleteWishlist(
-                               getArguments().getLong(ARG_WISHLIST_ID));
-                       
-                          Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
-                       sendResult(Activity.RESULT_OK, true);
-                   }
+            .setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                long wishlistId = getArguments().getLong(ARG_WISHLIST_ID);
+                DataManager.get(getActivity()).queryDeleteWishlist(wishlistId);
+
+                Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
             })
             .create();
     }

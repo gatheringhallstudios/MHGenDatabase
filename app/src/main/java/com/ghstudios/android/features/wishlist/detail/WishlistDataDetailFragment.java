@@ -92,7 +92,7 @@ public class WishlistDataDetailFragment extends ListFragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentManager fm = getFragmentManager();
 
         switch (item.getItemId()) {
             case R.id.wishlist_rename: // Launch Rename Wishlist dialog
@@ -129,14 +129,14 @@ public class WishlistDataDetailFragment extends ListFragment implements
 
         switch (requestCode){
             case WishlistListFragment.REQUEST_RENAME: // After wishlist is renamed
-                if(data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
+                if (data.getBooleanExtra(WishlistRenameDialogFragment.EXTRA_RENAME, false)) {
                     // Cast parent activity in order to call refresh title method
                     ((WishlistDetailPagerActivity) getActivity()).refreshTitle();
                     updateUI();
                 }
                 return;
             case WishlistListFragment.REQUEST_DELETE: // After wishlist is deleted
-                if(data.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
+                if (data.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
                     // Exit current activity
                     Intent intent = new Intent(getActivity(), WishlistListActivity.class);
                     startActivity(intent);
