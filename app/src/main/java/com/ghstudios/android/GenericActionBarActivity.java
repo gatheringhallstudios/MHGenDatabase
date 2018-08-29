@@ -97,10 +97,12 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         // Display changelog on first run after update
-        ChangeLog cl = new ChangeLog(this);
-        if (cl.isFirstRun()) {
-            cl.getLogDialog().show();
-        }
+        // On the initial release, there's no need for a changelog
+        // todo: replace for something more up-to-date
+//        ChangeLog cl = new ChangeLog(this);
+//        if (cl.isFirstRun()) {
+//            cl.getLogDialog().show();
+//        }
 
         // Handler to implement drawer delay and runnable
         mHandler = new Handler();
@@ -173,28 +175,28 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
         // Handle "Other" menu first.
         switch (itemId) {
-            case R.id.settings:
-                Intent preferences = new Intent(ctx, PreferencesActivity.class);
-                startActivity(preferences);
-                return true;
-
-            case R.id.change_log:
-                ChangeLog cl = new ChangeLog(this);
-                cl.getFullLogDialog().show();
-                return true;
+//            case R.id.settings:
+//                Intent preferences = new Intent(ctx, PreferencesActivity.class);
+//                startActivity(preferences);
+//                return true;
+//
+//            case R.id.change_log:
+//                ChangeLog cl = new ChangeLog(this);
+//                cl.getFullLogDialog().show();
+//                return true;
 
             case R.id.about:
                 Intent about = new Intent(ctx, AboutActivity.class);
                 startActivity(about);
                 return true;
 
-            case R.id.send_feedback:
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.setType("text/email");
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
-                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
-                startActivity(Intent.createChooser(email, "Send Feedback:"));
-                return true;
+//            case R.id.send_feedback:
+//                Intent email = new Intent(Intent.ACTION_SEND);
+//                email.setType("text/email");
+//                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
+//                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
+//                startActivity(Intent.createChooser(email, "Send Feedback:"));
+//                return true;
         }
 
         // Set navigation actions
