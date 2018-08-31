@@ -1501,7 +1501,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.SelectionArgs = arrayOf(hub)
         qh.GroupBy = null
         qh.Having = null
-        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else null
+        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else S.COLUMN_QUESTS_SORT_ORDER
         qh.Limit = null
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
