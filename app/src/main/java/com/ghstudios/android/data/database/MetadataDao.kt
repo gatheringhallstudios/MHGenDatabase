@@ -90,7 +90,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
                         name = it.getString("name") ?: "",
                         slot = it.getString("slot") ?: "",
                         rarity = it.getInt("rarity"),
-                        family = it.getInt("family"),
+                        family = it.getLong("family"),
                         familyName = it.getString("fname") ?: "",
                         icon_name = it.getString("icon_name") ?: ""
                 )
@@ -113,7 +113,7 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
 
     fun queryArmorSetMetadataByArmor(armorId: Long): List<ArmorMetadata> {
         val cursor = db.rawQuery("""
-            SELECT a._id, a.slot, i.name name, i.icon_name,a.family, i.rarity, af.name AS fname
+            SELECT a._id, a.slot, i.name name, i.icon_name, a.family, i.rarity, af.name AS fname
             FROM armor a
                 JOIN items i
                     ON i._id = a._id

@@ -186,6 +186,7 @@
     <string name="wishlist_quantity_label">Quantity:</string>
     <string name="wishlist_quantity_hint">Quantity</string>
     <string name="wishlist_add_title">Add to which wishlist?</string>
+    <string name="wishlist_add_set_title">Add armorset to which wishlist?</string>
     <string name="wishlist_add_success">Added to %s wishlist</string>
     <string name="wishlist_text_total">Total cost</string>
     <string name="wishlist_error_name_required">Wishlist name is required</string>

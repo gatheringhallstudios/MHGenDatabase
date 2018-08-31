@@ -27,7 +27,11 @@ data class ArmorSkillPoints(
 class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get()
 
-    private var familyId = -1L
+    var familyId = -1L
+        private set
+
+    val familyName get() = metadata.firstOrNull()?.familyName ?: ""
+
     private var armorId = -1L
     lateinit var metadata: List<ArmorMetadata>
 
@@ -55,7 +59,9 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
             return metadata
         }
 
-        metadata = dataManager.getArmorSetMetadataByFamily(familyId)
+        this.metadata = dataManager.getArmorSetMetadataByFamily(familyId)
+        this.familyId = familyId
+
         loadArmorData()
         return metadata
     }
@@ -69,7 +75,9 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
             return metadata
         }
 
-        metadata = dataManager.getArmorSetMetadataByArmor(armorId)
+        this.metadata = dataManager.getArmorSetMetadataByArmor(armorId)
+        this.familyId = metadata.firstOrNull()?.family ?: -1L
+
         loadArmorData()
         return metadata
     }

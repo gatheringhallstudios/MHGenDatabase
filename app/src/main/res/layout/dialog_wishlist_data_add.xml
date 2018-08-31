@@ -7,6 +7,13 @@
     android:orientation="vertical"
     android:minWidth="240dp">
 
+    <!-- Used to prevent the below edittext from auto-focus -->
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px"/>
+
     <FrameLayout
         android:id="@+id/wishlist_name_section"
         android:layout_width="0dp"

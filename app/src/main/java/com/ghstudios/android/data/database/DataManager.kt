@@ -3,13 +3,11 @@ package com.ghstudios.android.data.database
 import android.app.Application
 import android.content.Context
 
-import com.ghstudios.android.util.MHUtils
 import com.ghstudios.android.components.WeaponListEntry
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBSet
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorFamily
-import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.ItemToSkillTree
@@ -26,8 +24,6 @@ import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.data.classes.SkillTree
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.classes.Wishlist
-import com.ghstudios.android.data.classes.WishlistComponent
-import com.ghstudios.android.data.classes.WishlistData
 import com.ghstudios.android.data.classes.WyporiumTrade
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
@@ -35,7 +31,6 @@ import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.cursors.ASBSessionCursor
 import com.ghstudios.android.data.cursors.ASBSetCursor
 import com.ghstudios.android.data.cursors.ArmorCursor
-import com.ghstudios.android.data.cursors.ArmorFamilyCursor
 import com.ghstudios.android.data.cursors.CombiningCursor
 import com.ghstudios.android.data.cursors.ComponentCursor
 import com.ghstudios.android.data.cursors.DecorationCursor
@@ -50,7 +45,6 @@ import com.ghstudios.android.data.cursors.MonsterAilmentCursor
 import com.ghstudios.android.data.cursors.MonsterCursor
 import com.ghstudios.android.data.cursors.MonsterDamageCursor
 import com.ghstudios.android.data.cursors.MonsterHabitatCursor
-import com.ghstudios.android.data.cursors.MonsterStatusCursor
 import com.ghstudios.android.data.cursors.MonsterToQuestCursor
 import com.ghstudios.android.data.cursors.MonsterWeaknessCursor
 import com.ghstudios.android.data.cursors.PalicoArmorCursor
@@ -60,7 +54,6 @@ import com.ghstudios.android.data.cursors.QuestRewardCursor
 import com.ghstudios.android.data.cursors.SkillCursor
 import com.ghstudios.android.data.cursors.SkillTreeCursor
 import com.ghstudios.android.data.cursors.WeaponCursor
-import com.ghstudios.android.data.cursors.WeaponTreeCursor
 import com.ghstudios.android.data.cursors.WishlistComponentCursor
 import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
@@ -745,62 +738,81 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.queryWishlistData(id)
     }
 
-    /* Add an entry to a specific wishlist with the given item and quantity */
-    fun queryAddWishlistData(wishlist_id: Long, item_id: Long, quantity: Int, path: String) {
+    /**
+     * Add an entry to a specific wishlist with the given item and quantity
+     * Updates the existing entry if it already exists.
+     */
+    fun queryAddWishlistData(wishlistId: Long, itemId: Long, quantity: Int, path: String) {
+        helperQueryAddWishlistItem(wishlistId, itemId, quantity, path)
+        helperQueryAddWishlistComponents(wishlistId, itemId, quantity, path)
+        helperQueryUpdateWishlistSatisfied(wishlistId)
+    }
 
-        val cursor = mHelper.queryWishlistData(wishlist_id, item_id, path)
+
+    /**
+     * Adds all armor pieces in an armor family to a wishlist.
+     * Updates any existing entries to update quantity.
+     */
+    fun queryAddWishlistArmorFamily(wishlistId: Long, familyId: Long, quantity: Int, path: String) {
+        val pieces = getArmorByFamily(familyId)
+        for (armor in pieces) {
+            helperQueryAddWishlistItem(wishlistId, armor.id, quantity, path)
+            helperQueryAddWishlistComponents(wishlistId, armor.id, quantity, path)
+        }
+
+        helperQueryUpdateWishlistSatisfied(wishlistId)
+    }
+
+    /**
+     * Internal helper to add or update
+     */
+    private fun helperQueryAddWishlistItem(wishlistId: Long, itemId: Long, quantity: Int, path: String) {
+        val cursor = mHelper.queryWishlistData(wishlistId, itemId, path)
         cursor.moveToFirst()
 
         if (cursor.isAfterLast) {
             // Add new entry to wishlist_data
-            mHelper.queryAddWishlistData(wishlist_id, item_id, quantity, path)
+            mHelper.queryAddWishlistData(wishlistId, itemId, quantity, path)
         } else {
             // Update existing entry
             val data = cursor.wishlistData
-            val id = data!!.id
+            val id = data.id
             val total = data.quantity + quantity
 
             mHelper.queryUpdateWishlistDataQuantity(id, total)
         }
         cursor.close()
-
-        helperQueryAddWishlistData(wishlist_id, item_id, quantity, path)
-        helperQueryUpdateWishlistSatisfied(wishlist_id)
     }
 
-    /* Helper method: Add an entry to a wishlist,
-     *        and add the necessary components from the chosen path
+    /**
+     * Adds the components of an item to the wishlist components.
+     * These insert or update existing wishlist component rows.
      */
-    private fun helperQueryAddWishlistData(wishlist_id: Long, item_id: Long, quantity: Int, path: String) {
+    private fun helperQueryAddWishlistComponents(wishlist_id: Long, item_id: Long, quantity: Int, path: String) {
         // Get the components for the entry
-        val cc = mHelper.queryComponentCreatedType(item_id, path)
-        cc.moveToFirst()
-
-        var wc: WishlistComponentCursor? = null
+        val itemComponents = mHelper.queryComponentCreatedType(item_id, path).toList {
+            it.component
+        }
 
         // Add each component to the wishlist component list
-        while (!cc.isAfterLast) {
-            val component_id = cc.component!!.component.id
-            val c_amt = cc.component!!.quantity * quantity
+        // We first iterate over the components in a recipe
+        for (component in itemComponents) {
+            val component_id = component.component.id
+            val c_amt = component.quantity * quantity
 
-            wc = mHelper.queryWishlistComponent(wishlist_id, component_id)
-            wc.moveToFirst()
+            // now add or update the existing entry in the wishlist components table
+            val entry = mHelper.queryWishlistComponent(wishlist_id, component_id)
+                    .firstOrNull { it.wishlistComponent }
 
-            if (wc.isAfterLast) {
+            if (entry == null) {
                 // Add component entry to wishlist_component
                 mHelper.queryAddWishlistComponent(wishlist_id, component_id, c_amt)
             } else {
                 // Update component entry to wishlist_component
-                val wc_id = wc.wishlistComponent!!.id
-                val old_amt = wc.wishlistComponent!!.quantity
-
-                mHelper.queryUpdateWishlistComponentQuantity(wc_id, old_amt + c_amt)
+                val newQuantity = entry.quantity + c_amt
+                mHelper.queryUpdateWishlistComponentQuantity(entry.id, newQuantity)
             }
-            wc.close()
-
-            cc.moveToNext()
         }
-        cc.close()
     }
 
     /* Update an entry to the given quantity */
@@ -954,66 +966,46 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /**
      * From a specified wishlist id, check if any WishlistData can be built
+     * Updates the "satisfied" status of all wishlists.
+     * TODO: Perhaps find a way such that "satisfied" isn't required
      */
-    fun helperQueryUpdateWishlistSatisfied(wishlist_id: Long) {
-        val wdc = mHelper.queryWishlistData(wishlist_id)
-        wdc.moveToFirst()
-
-        var wd: WishlistData? = null
-        var wc: WishlistComponent? = null
-        var wcc: WishlistComponentCursor? = null
-
-        var c: Component? = null
-        var cc: ComponentCursor? = null
-
-        var path: String
-        var created_id: Long
-        var component_id: Long
-        var required_amt: Int
-        var have_amt: Int
-        var satisfied: Int
+    fun helperQueryUpdateWishlistSatisfied(wishlistId: Long) {
+        val wishlistData = mHelper.queryWishlistData(wishlistId).toList {
+            it.wishlistData
+        }
 
         // For every WishlistData
-        while (!wdc.isAfterLast) {
-            satisfied = 1            // Set true until unsatisfied
-            wd = wdc.wishlistData
-            created_id = wd!!.item.id
-            path = wd.path
+        for (wd in wishlistData) {
+            // Starts off as satisfied. May update to unsatisfied depending on materials
+            var satisfied = true
 
-            cc = mHelper.queryComponentCreatedType(created_id, path)
-            cc.moveToFirst()
+            val created_id = wd.item.id
+            val path = wd.path
+
+            val components = mHelper.queryComponentCreatedType(created_id, path).toList {
+                it.component
+            }
 
             // For every component of the current WishlistData entry
-            while (!cc.isAfterLast) {
-                c = cc.component
-                component_id = c!!.component.id
+            for (c in components) {
+                val component_id = c!!.component.id
 
-                wcc = mHelper.queryWishlistComponent(wishlist_id, component_id)
-                wcc.moveToFirst()
-                wc = wcc.wishlistComponent
+                val component = mHelper.queryWishlistComponent(wishlistId, component_id).first { it.wishlistComponent }
 
                 // Get the amounts
-                required_amt = c.quantity
-                have_amt = wc!!.notes
+                val required_amt = c.quantity
+                val have_amt = component.notes
 
                 // Check if user does not have enough materials
                 if (have_amt < required_amt) {
-                    satisfied = 0
+                    satisfied = false
                     break
                 }
-
-                wcc.close()
-                cc.moveToNext()
             }
-
-            cc.close()
 
             // Update the WishlistData entry
             mHelper.queryUpdateWishlistDataSatisfied(wd.id, satisfied)
-            wdc.moveToNext()
         }
-
-        wdc.close()
     }
 
     /********************************* ARMOR SET BUILDER QUERIES  */

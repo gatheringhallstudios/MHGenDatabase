@@ -4,9 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -22,6 +20,9 @@ import com.ghstudios.android.components.LabelTextCell
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.SkillTreePoints
+import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment
+import com.ghstudios.android.features.wishlist.external.WishlistItemType
+import com.ghstudios.android.features.wishlist.list.WishlistListFragment.DIALOG_WISHLIST_ADD
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -56,6 +57,15 @@ class ArmorSetSummaryFragment : Fragment() {
     @BindView(R.id.thunder_res) lateinit var thunderResTextView: TextView
     @BindView(R.id.dragon_res) lateinit var dragonResTextView: TextView
 
+    private val viewModel by lazy {
+        ViewModelProviders.of(activity!!).get(ArmorSetDetailViewModel::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_armor_set_summary, container,false)
         ButterKnife.bind(this,view)
@@ -64,7 +74,7 @@ class ArmorSetSummaryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProviders.of(activity!!).get(ArmorSetDetailViewModel::class.java)
+
         viewModel.armors.observe(this, Observer(::populateArmor))
         viewModel.setSkills.observe(this, Observer(::populateSkills))
         viewModel.setComponents.observe(this, Observer(::populateComponents))
@@ -172,6 +182,25 @@ class ArmorSetSummaryFragment : Fragment() {
             val item = component.component
             val itemCell = recipeView.addItem(item, item.name, component.quantity)
             itemCell.setOnClickListener(ItemClickListener(context!!, item))
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_add_to_wishlist, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.add_to_wishlist -> {
+                val fm = this.fragmentManager
+                WishlistDataAddDialogFragment.newInstance(
+                        WishlistItemType.ARMORSET,
+                        viewModel.familyId,
+                        viewModel.familyName).show(fm, DIALOG_WISHLIST_ADD)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

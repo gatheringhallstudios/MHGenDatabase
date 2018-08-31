@@ -2464,10 +2464,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return updateRecord(S.TABLE_WISHLIST_DATA, strFilter, values)
     }
 
-    /*
-     * Update a wishlist data to a specific wishlist
+    /**
+     * Update a wishlist item's satisfied status
      */
-    fun queryUpdateWishlistDataSatisfied(id: Long, satisfied: Int): Int {
+    fun queryUpdateWishlistDataSatisfied(id: Long, satisfied: Boolean): Int {
         val strFilter = S.COLUMN_WISHLIST_DATA_ID + " = " + id
 
         val values = ContentValues()
