@@ -199,7 +199,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     /**
      * Get armor for family
      */
-    fun queryArmorByFamily(id: Long): List<Armor>? {
+    fun queryArmorByFamily(id: Long): List<Armor> {
         return ArmorCursor(db.rawQuery("""
             SELECT $armor_columns
             FROM armor a LEFT OUTER JOIN items i USING (_id)

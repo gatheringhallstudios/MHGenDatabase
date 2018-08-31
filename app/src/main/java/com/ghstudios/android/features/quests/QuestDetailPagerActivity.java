@@ -19,6 +19,11 @@ public class QuestDetailPagerActivity extends BasePagerActivity {
         QuestDetailViewModel viewModel = ViewModelProviders.of(this).get(QuestDetailViewModel.class);
         Quest q = viewModel.setQuest(questId);
 
+        if (q == null) {
+            showFatalError();
+            return;
+        }
+
         setTitle(q.getName());
 
         tabs.addTab("Detail", () ->

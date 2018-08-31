@@ -15,17 +15,14 @@ import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
 import com.ghstudios.android.util.first
-import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
 
 /**
  * A dialog created to decide which wishlist to add an item to.
  */
 class WishlistDataAddDialogFragment : DialogFragment() {
-    private var item_id: Long = 0
-
     companion object {
-        private val REQUEST_PATH = 1
+        private const val ARG_WISHLIST_TYPE = "WISHLIST_DATA_TYPE"
 
         private val ARG_WISHLIST_DATA_ID = "WISHLIST_DATA_ID"
         private val ARG_WISHLIST_DATA_WEAPON_NAME = "WISHLIST_DATA_WEAPON_NAME"
@@ -43,19 +40,26 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         }
     }
 
+    // todo: move to viewmodel? Do DialogFragments use ViewModels?
+    private var itemId: Long = -1
+
+    private lateinit var wishlists: List<Wishlist>
+    private lateinit var paths: List<String>
+
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        itemId = arguments?.getLong(ARG_WISHLIST_DATA_ID) ?: -1
+
         // todo: refactor to a facade
-        val wishlists = DataManager.get(activity).queryWishlists().toList { it.wishlist }
+        with(DataManager.get(activity!!)) {
+            wishlists = queryWishlists().toList { it.wishlist }
+            paths = queryComponentCreateImprove(itemId)
+        }
 
         return showSelectWishlistDialog(wishlists)
     }
 
     private fun showSelectWishlistDialog(wishlists: List<Wishlist>): Dialog {
-        item_id = arguments?.getLong(ARG_WISHLIST_DATA_ID) ?: -1
-
-        // todo: move somewhere else
-        val paths = DataManager.get(activity).queryComponentCreateImprove(item_id)
-
         val inflater = LayoutInflater.from(this.context)
         val dialogView = inflater.inflate(R.layout.dialog_wishlist_data_add, null)
         val wishlistSelect = dialogView.findViewById<Spinner>(R.id.wishlist_select)
@@ -78,7 +82,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
 
         // If there are any "path" items, add them to the path selection area
         // Also select the first one
-        if (paths.size >= 1) {
+        if (paths.isNotEmpty()) {
             pathSelect.removeAllViews()
             for (path in paths) {
                 pathSelect.addView(RadioButton(context).apply {
@@ -103,7 +107,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         dialog.setOnShowListener {
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 try {
-                    val dataManager = DataManager.get(activity)
+                    val dataManager = DataManager.get(activity!!)
 
                     // Initial pass - validation. Perform before doing anything
                     if (wishlists.isEmpty() && wishlistNameEntry.text.isBlank()) {
@@ -140,7 +144,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
                     }
 
                     // Add to wishlist
-                    dataManager.queryAddWishlistData(wishlist.id, item_id, quantity, path)
+                    dataManager.queryAddWishlistData(wishlist.id, itemId, quantity, path)
 
                     // Show success message.
                     val message = getString(R.string.wishlist_add_success, wishlist.name)

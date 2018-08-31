@@ -50,4 +50,9 @@ public abstract class GenericActivity extends GenericActionBarActivity {
     public Fragment getDetail() {
         return detail;
     }
+
+    public void showFatalError() {
+        // todo: implement
+        // make it override the fragment with a fatal error message
+    }
 }

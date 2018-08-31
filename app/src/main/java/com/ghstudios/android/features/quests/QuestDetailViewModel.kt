@@ -3,6 +3,7 @@ package com.ghstudios.android.features.quests
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.classes.MonsterToQuest
 import com.ghstudios.android.data.classes.Quest
@@ -23,7 +24,7 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
     val quest = MutableLiveData<Quest>()
     val gatherings = MutableLiveData<List<Gathering>>()
 
-    fun setQuest(questId: Long): Quest {
+    fun setQuest(questId: Long): Quest? {
         if (questId == quest.value?.id) {
             return quest.value!!
         }
@@ -31,13 +32,20 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
         val quest = dataManager.getQuest(questId)
         this.quest.value = quest
 
+        if (quest == null) {
+            Log.e(this.javaClass.simpleName, "Quest id is unexpectedly null")
+            return null
+        }
+
         loggedThread("Quest Load") {
             monsters.postValue(dataManager.queryMonsterToQuestQuest(questId).toList { it.monsterToQuest })
             rewards.postValue(dataManager.queryQuestRewardQuest(questId).toList { it.questReward })
 
             if (quest.hasGatheringItem) {
                 val locationId = quest.location?.id ?: -1
-                val gatherData = dataManager.queryGatheringForQuest(quest.id, locationId, quest.rank).toList { it.gathering }
+                val gatherData = dataManager.queryGatheringForQuest(quest.id, locationId, quest.rank ?: "").toList {
+                    it.gathering
+                }
                 gatherings.postValue(gatherData)
             }
         }

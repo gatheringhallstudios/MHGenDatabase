@@ -66,7 +66,8 @@ class WeaponListViewModel(app: Application) : AndroidViewModel(app) {
 
         this.currentState = newState
 
-        if (newState.weaponType == null || newState.weaponType == "") {
+        val weaponType = newState.weaponType
+        if (weaponType == null || weaponType == "") {
             return // nothing to load
         }
 

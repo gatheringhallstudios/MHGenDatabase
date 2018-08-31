@@ -22,11 +22,8 @@ class MonsterWeaknessCursor(c: Cursor) : CursorWrapper(c) {
     // This isn't in the current version of the DB yet.
     //String monstername = getString(S.COLUMN_WEAKNESS_MONSTER_NAME));
     //weakness.setMonstername(monstername);
-    val weakness: MonsterWeakness?
+    val weakness: MonsterWeakness
         get() {
-            if (isBeforeFirst || isAfterLast)
-                return null
-
             val weakness = MonsterWeakness()
 
             with (weakness) {
