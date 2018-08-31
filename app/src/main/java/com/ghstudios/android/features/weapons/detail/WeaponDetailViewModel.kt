@@ -8,6 +8,7 @@ import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
 data class WeaponElementData(
@@ -19,7 +20,9 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
     val weaponData = MutableLiveData<Weapon>()
-    val componentData = MutableLiveData<List<Component>>();
+
+    val createComponentData = MutableLiveData<List<Component>>()
+    val improveComponentData = MutableLiveData<List<Component>>()
 
     /**
      * Live data that returns weapon element or status data once a weapon is loaded.
@@ -56,12 +59,14 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
 
         this.weaponId = weaponId
 
-        Thread {
+        loggedThread("Weapon Detail Loading") {
             weaponData.postValue(dataManager.getWeapon(weaponId))
             val components = dataManager.queryComponentCreated(weaponId).toList {
                 it.component
             }
-            componentData.postValue(components)
-        }.start()
+
+            createComponentData.postValue(components.filter { it.type == Component.TYPE_CREATE })
+            improveComponentData.postValue(components.filter { it.type == Component.TYPE_IMPROVE })
+        }
     }
 }

@@ -764,7 +764,7 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /**
-     * Internal helper to add or update
+     * Internal helper to add or update a wishlist item (without any of the usual cascades)
      */
     private fun helperQueryAddWishlistItem(wishlistId: Long, itemId: Long, quantity: Int, path: String) {
         val cursor = mHelper.queryWishlistData(wishlistId, itemId, path)

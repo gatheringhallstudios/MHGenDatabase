@@ -76,36 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="10" />
-            <!--Upgrade Cost-->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/weapon_upgrade_cost" />
 
-            <TextView
-                android:id="@+id/detail_weapon_upgrade"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="48000z" />
-            <!--Creation Cost-->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/weapon_creation_cost" />
-
-            <TextView
-                android:id="@+id/detail_weapon_creation"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="-" />
-
-            <!--Creation Cost-->
+            <!--Description-->
             <TextView
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
@@ -122,19 +94,7 @@
                 tools:text="5"
                 android:textColor="@color/weapon_property_color" />
         </LinearLayout>
-        <com.ghstudios.android.components.SectionHeaderCell
-            android:id="@+id/recipe_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:labelText="@string/item_crafting"
-            android:visibility="gone"
-            tools:visibility="visible" />
 
-        <com.ghstudios.android.components.ItemRecipeCell
-            android:id="@+id/recipe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:visibility="visible" />
+        <include layout="@layout/fragment_weapon_detail_recipe"/>
     </LinearLayout>
 </ScrollView>

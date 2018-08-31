@@ -300,8 +300,8 @@
     <string name="weapon_sharpness">Sharpness</string>
     <string name="weapon_notes">Notes</string>
     <string name="weapon_phial_type">Phial Type</string>
-    <string name="weapon_upgrade_cost">Upgrade Cost</string>
-    <string name="weapon_creation_cost">Creation Cost</string>
+    <string name="weapon_upgrade">Upgrade</string>
+    <string name="weapon_create">Create</string>
     <string name="weapon_charges">Charges</string>
     <string name="weapon_arc">Arc</string>
     <string name="weapon_recoil">Recoil</string>
