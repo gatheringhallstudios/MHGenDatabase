@@ -11,8 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ghstudios.android.AppSettings;
+import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.TitleBarCell;
+import com.ghstudios.android.data.classes.Component;
+import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -34,6 +38,12 @@ public class WeaponDetailFragment extends Fragment {
     private ColumnLabelTextCell element2Cell;
     private ColumnLabelTextCell affinityCell;
     private ColumnLabelTextCell slotsCell;
+
+    //@BindView(R.id.recipe_header)
+    View recipeHeader;
+
+    //@BindView(R.id.recipe)
+    ItemRecipeCell recipeView;
 
     protected TextView mWeaponDescription, mWeaponDefenseTextView,
             mWeaponDefenseTextTextView,
@@ -75,8 +85,12 @@ public class WeaponDetailFragment extends Fragment {
         affinityCell = view.findViewById(R.id.affinity);
         slotsCell = view.findViewById(R.id.slots);
 
+        recipeView = view.findViewById(R.id.recipe);
+        recipeHeader = view.findViewById(R.id.recipe_header);
+
         viewModel.getWeaponData().observe(this, this::populateWeapon);
         viewModel.getWeaponElementData().observe(this, this::populateElementData);
+        viewModel.getComponentData().observe(this,this::populateComponents);
     }
 
     protected void populateWeapon(Weapon weapon) {
@@ -140,6 +154,23 @@ public class WeaponDetailFragment extends Fragment {
             element2Cell.setLabelText(data.getElement());
             element2Cell.setValueText(String.valueOf(data.getValue()));
             element2Cell.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void populateComponents(List<Component> components){
+        if (components == null || components.isEmpty()) {
+            recipeHeader.setVisibility(View.GONE);
+            recipeView.setVisibility(View.GONE);
+            return;
+        }
+
+        recipeHeader.setVisibility(View.VISIBLE);
+        recipeView.setVisibility(View.VISIBLE);
+
+        for (Component component : components) {
+            Item item = component.getComponent();
+            View itemCell = recipeView.addItem(item, item.getName(), component.getQuantity());
+            itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
         }
     }
 }

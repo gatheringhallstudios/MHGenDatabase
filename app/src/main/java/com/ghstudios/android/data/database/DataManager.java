@@ -647,49 +647,7 @@ public class DataManager {
     
     /* Get a Cursor that has a list of Weapons in the weapon tree for a specified weapon */
     public WeaponCursor queryWeaponTree(long id) {
-        ArrayList<Long> ids = new ArrayList<Long>();
-        ids.add(id);            // Add specified weapon to returned array
-        
-        long currentId = id;
-        WeaponTreeCursor cursor = null;
-        
-        // Get ancestors and add them at the beginning of the tree
-        do {
-            cursor = mHelper.queryWeaponTreeParent(currentId);
-            cursor.moveToFirst();
-            
-            if(cursor.isAfterLast())
-                break;
-            
-            currentId = cursor.getWeapon().getId();
-            ids.add(0, currentId);
-            
-            cursor.close();
-        }
-        while (true);
-        
-        currentId = id;        // set current id back to specified weapon
-
-        // Get children only; exclude descendants of children
-        cursor = mHelper.queryWeaponTreeChild(currentId);
-        cursor.moveToFirst();
-        
-        if(!cursor.isAfterLast()) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                ids.add(cursor.getWeapon().getId());
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-        
-        // Convert Arraylist to a regular array to return
-        long[] idArray = new long[ids.size()];
-        for (int i = 0; i < idArray.length; i++) {
-            idArray[i] = ids.get(i);
-        }
-
-        return mHelper.queryWeapons(idArray);
-        
+        return mHelper.queryWeaponFamily(id);
     }
 
     public PalicoWeaponCursor queryPalicoWeapons(){

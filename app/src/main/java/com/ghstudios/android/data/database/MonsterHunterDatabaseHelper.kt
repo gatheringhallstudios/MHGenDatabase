@@ -1862,6 +1862,22 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return WeaponCursor(wrapJoinHelper(builderWeapon(), qh))
     }
 
+    // This is a little bit of a hack that relies on
+    // knowing how the weapon ids are used.
+    fun queryWeaponFamily(id: Long): WeaponCursor {
+
+        val qh = QueryHelper()
+        qh.Columns = null
+        qh.Selection = """(w.${S.COLUMN_ITEMS_ID} & 0xFFFF00) = (? & 0xFFFF00)"""
+        qh.SelectionArgs = arrayOf(id.toString())
+        qh.GroupBy = null
+        qh.Having = null
+        qh.OrderBy = null
+        qh.Limit = null
+
+        return WeaponCursor(wrapJoinHelper(builderWeapon(), qh))
+    }
+
     /*
      * Helper method to query for weapon
      */

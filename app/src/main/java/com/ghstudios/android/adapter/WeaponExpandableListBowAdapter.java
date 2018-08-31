@@ -41,7 +41,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
         return viewHolder;
     }
 
-    private static class WeaponBowViewHolder extends WeaponElementViewHolder {
+    public static class WeaponBowViewHolder extends WeaponElementViewHolder {
         // Bow
         FixedImageView powerv;
         FixedImageView crangev;
@@ -56,7 +56,7 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
         TextView chargetv;
 
 
-        WeaponBowViewHolder(View weaponView) {
+        public WeaponBowViewHolder(View weaponView) {
             super(weaponView);
 
             //
@@ -75,80 +75,85 @@ public class WeaponExpandableListBowAdapter extends WeaponExpandableListElementA
             paintv = weaponView.findViewById(R.id.paint);
 
         }
+
+        @Override
+        public void bindView(Context context, WeaponListEntry entry) {
+            super.bindView(context, entry);
+
+            Weapon weapon = entry.weapon;
+
+            String arc = weapon.getRecoil();
+
+            arctv.setText(arc);
+            chargetv.setText(weapon.getChargeString());
+
+            // Clear images
+            powerv.setImageDrawable(null);
+            crangev.setImageDrawable(null);
+            poisonv.setImageDrawable(null);
+            parav.setImageDrawable(null);
+            sleepv.setImageDrawable(null);
+            exhaustv.setImageDrawable(null);
+            slimev.setImageDrawable(null);
+            paintv.setImageDrawable(null);
+
+            powerv.setVisibility(View.GONE);
+            crangev.setVisibility(View.GONE);
+            poisonv.setVisibility(View.GONE);
+            parav.setVisibility(View.GONE);
+            sleepv.setVisibility(View.GONE);
+            exhaustv.setVisibility(View.GONE);
+            slimev.setVisibility(View.GONE);
+            paintv.setVisibility(View.GONE);
+
+            //TODO:make the actual field in the db an int.
+            int coatings = Integer.parseInt(weapon.getCoatings());
+
+            //Power 1 and 2 are bits 11,10
+            boolean power = ((coatings & 0x0400)>0) || ((coatings & 0x0200)>0);
+
+            if (power) {
+                powerv.setImageResource(R.drawable.icon_bottle);
+                powerv.setColorFilter(ContextCompat.getColor(context,R.color.item_red), PorterDuff.Mode.MULTIPLY);
+                powerv.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x20)>0) {
+                poisonv.setImageResource(R.drawable.icon_bottle);
+                poisonv.setColorFilter(ContextCompat.getColor(context,R.color.item_purple), PorterDuff.Mode.MULTIPLY);
+                poisonv.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x10)>0) {
+                parav.setImageResource(R.drawable.icon_bottle);
+                parav.setColorFilter(ContextCompat.getColor(context,R.color.item_yellow), PorterDuff.Mode.MULTIPLY);
+                parav.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x08)>0) {
+                sleepv.setImageResource(R.drawable.icon_bottle);
+                sleepv.setColorFilter(ContextCompat.getColor(context,R.color.item_cyan), PorterDuff.Mode.MULTIPLY);
+                sleepv.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x40)>0) {
+                crangev.setImageResource(R.drawable.icon_bottle);
+                crangev.setColorFilter(ContextCompat.getColor(context,R.color.item_white), PorterDuff.Mode.MULTIPLY);
+                crangev.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x04)>0) {
+                exhaustv.setImageResource(R.drawable.icon_bottle);
+                exhaustv.setColorFilter(ContextCompat.getColor(context,R.color.item_blue), PorterDuff.Mode.MULTIPLY);
+                exhaustv.setVisibility(View.VISIBLE);
+            }
+            if ((coatings & 0x02)>0) {
+                slimev.setImageResource(R.drawable.icon_bottle);
+                slimev.setColorFilter(ContextCompat.getColor(context,R.color.item_orange), PorterDuff.Mode.MULTIPLY);
+                slimev.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         super.onBindViewHolder(viewHolder, position);
-
         WeaponBowViewHolder holder = (WeaponBowViewHolder) viewHolder;
-        Weapon weapon = ((WeaponListEntry) getItemAt(position)).weapon;
-
-        String arc = weapon.getRecoil();
-
-        holder.arctv.setText(arc);
-        holder.chargetv.setText(weapon.getChargeString());
-
-        // Clear images
-        holder.powerv.setImageDrawable(null);
-        holder.crangev.setImageDrawable(null);
-        holder.poisonv.setImageDrawable(null);
-        holder.parav.setImageDrawable(null);
-        holder.sleepv.setImageDrawable(null);
-        holder.exhaustv.setImageDrawable(null);
-        holder.slimev.setImageDrawable(null);
-        holder.paintv.setImageDrawable(null);
-
-        holder.powerv.setVisibility(View.GONE);
-        holder.crangev.setVisibility(View.GONE);
-        holder.poisonv.setVisibility(View.GONE);
-        holder.parav.setVisibility(View.GONE);
-        holder.sleepv.setVisibility(View.GONE);
-        holder.exhaustv.setVisibility(View.GONE);
-        holder.slimev.setVisibility(View.GONE);
-        holder.paintv.setVisibility(View.GONE);
-
-        //TODO:make the actual field in the db an int.
-        int coatings = Integer.parseInt(weapon.getCoatings());
-
-        //Power 1 and 2 are bits 11,10
-        boolean power = ((coatings & 0x0400)>0) || ((coatings & 0x0200)>0);
-
-        if (power) {
-            holder.powerv.setImageResource(R.drawable.icon_bottle);
-            holder.powerv.setColorFilter(ContextCompat.getColor(mContext,R.color.item_red), PorterDuff.Mode.MULTIPLY);
-            holder.powerv.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x20)>0) {
-            holder.poisonv.setImageResource(R.drawable.icon_bottle);
-            holder.poisonv.setColorFilter(ContextCompat.getColor(mContext,R.color.item_purple), PorterDuff.Mode.MULTIPLY);
-            holder.poisonv.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x10)>0) {
-            holder.parav.setImageResource(R.drawable.icon_bottle);
-            holder.parav.setColorFilter(ContextCompat.getColor(mContext,R.color.item_yellow), PorterDuff.Mode.MULTIPLY);
-            holder.parav.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x08)>0) {
-            holder.sleepv.setImageResource(R.drawable.icon_bottle);
-            holder.sleepv.setColorFilter(ContextCompat.getColor(mContext,R.color.item_cyan), PorterDuff.Mode.MULTIPLY);
-            holder.sleepv.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x40)>0) {
-            holder.crangev.setImageResource(R.drawable.icon_bottle);
-            holder.crangev.setColorFilter(ContextCompat.getColor(mContext,R.color.item_white), PorterDuff.Mode.MULTIPLY);
-            holder.crangev.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x04)>0) {
-            holder.exhaustv.setImageResource(R.drawable.icon_bottle);
-            holder.exhaustv.setColorFilter(ContextCompat.getColor(mContext,R.color.item_blue), PorterDuff.Mode.MULTIPLY);
-            holder.exhaustv.setVisibility(View.VISIBLE);
-        }
-        if ((coatings & 0x02)>0) {
-            holder.slimev.setImageResource(R.drawable.icon_bottle);
-            holder.slimev.setColorFilter(ContextCompat.getColor(mContext,R.color.item_orange), PorterDuff.Mode.MULTIPLY);
-            holder.slimev.setVisibility(View.VISIBLE);
-        }
-
+        holder.bindView(mContext,(WeaponListEntry) getItemAt(position));
     }
 }

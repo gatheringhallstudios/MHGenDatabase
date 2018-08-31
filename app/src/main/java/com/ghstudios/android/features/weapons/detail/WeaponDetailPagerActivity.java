@@ -61,12 +61,8 @@ public class WeaponDetailPagerActivity extends BasePagerActivity {
             );
         }
 
-        tabs.addTab("Family Tree", () ->
+        tabs.addTab("Family", () ->
                 WeaponTreeFragment.newInstance(weaponId)
-        );
-
-        tabs.addTab("Components", () ->
-                ComponentListFragment.newInstance(weaponId)
         );
     }
 

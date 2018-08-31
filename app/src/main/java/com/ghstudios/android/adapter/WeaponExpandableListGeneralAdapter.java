@@ -43,7 +43,7 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         this.mListener = listener;
     }
 
-    protected static class WeaponViewHolder extends RecyclerView.ViewHolder {
+    public static class WeaponViewHolder extends RecyclerView.ViewHolder {
         private View view;
 
         public LinearLayout weaponLayout;
@@ -88,6 +88,62 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
             colorBand = weaponView.findViewById(R.id.color_band);
             indentView = weaponView.findViewById(R.id.indent_view);
             arrow = weaponView.findViewById(R.id.arrow);
+        }
+
+        public void bindView(Context context, WeaponListEntry entry){
+            int padding = 4;
+            Weapon weapon = entry.weapon;
+            String name = weapon.getName();
+            // Add ? to indicate that a weapon is create-able
+            if(weapon.getCreationCost() > 0)
+                name = name+"\u2605";
+
+            // Get the weapons attack
+            String attack = "DMG: " + weapon.getAttackString();
+
+            //
+            // Get affinity and defense
+            //
+            String affinity = "";
+            if (weapon.getAffinity().length() > 0) {
+                affinity = weapon.getAffinity() + "%";
+            }
+
+
+            String defense = "";
+            if (weapon.getDefense() != 0) {
+                defense = "DEF: " + weapon.getDefense();
+            }
+
+            //
+            // Set remaining items
+            //
+            nameView.setText(name);
+            attackView.setText(attack);
+            slotView.setText(weapon.getSlotString());
+            affinityView.setText(affinity);
+            defenseView.setText(defense);
+
+            view.setOnClickListener(new WeaponClickListener(context, weapon.getId()));
+
+            //
+            // Handle indentation
+            //
+
+            //colorBand.setVisibility(View.VISIBLE);
+            setColorBandColor(weapon.getRarity()-1);
+
+            int leftPadding = Utils.getPaddingPixels(context, padding)
+                    * (entry.getIndentation());
+            setPaddingLeft(leftPadding);
+
+            //
+            // Handle groups
+            //
+            arrow.setVisibility(View.INVISIBLE);
+            if (entry.isGroup() && entry.getGroupSize() > 0) {
+                arrow.setVisibility(View.VISIBLE);
+            }
         }
 
         public void setPaddingLeft(int paddingLeft) {
