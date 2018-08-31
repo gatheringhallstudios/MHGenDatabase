@@ -643,48 +643,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get a Cursor that has a list of Weapons in the weapon tree for a specified weapon */
     fun queryWeaponTree(id: Long): WeaponCursor {
-        val ids = ArrayList<Long>()
-        ids.add(id)            // Add specified weapon to returned array
-
-        var currentId = id
-        var cursor: WeaponTreeCursor? = null
-
-        // Get ancestors and add them at the beginning of the tree
-        do {
-            cursor = mHelper.queryWeaponTreeParent(currentId)
-            cursor.moveToFirst()
-
-            if (cursor.isAfterLast)
-                break
-
-            currentId = cursor.weapon!!.id
-            ids.add(0, currentId)
-
-            cursor.close()
-        } while (true)
-
-        currentId = id        // set current id back to specified weapon
-
-        // Get children only; exclude descendants of children
-        cursor = mHelper.queryWeaponTreeChild(currentId)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast) {
-            for (i in 0 until cursor.count) {
-                ids.add(cursor.weapon!!.id)
-                cursor.moveToNext()
-            }
-        }
-        cursor.close()
-
-        // Convert Arraylist to a regular array to return
-        val idArray = LongArray(ids.size)
-        for (i in idArray.indices) {
-            idArray[i] = ids[i]
-        }
-
-        return mHelper.queryWeapons(idArray)
-
+        return mHelper.queryWeaponFamily(id)
     }
 
     fun queryPalicoWeapons(): PalicoWeaponCursor {

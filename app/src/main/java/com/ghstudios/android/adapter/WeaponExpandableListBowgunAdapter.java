@@ -36,7 +36,7 @@ public class WeaponExpandableListBowgunAdapter extends WeaponExpandableListGener
         return viewHolder;
     }
 
-    private static class WeaponBowgunViewHolder extends WeaponViewHolder {
+    public static class WeaponBowgunViewHolder extends WeaponViewHolder {
         // Gunner
         TextView recoiltv;
         TextView steadytv;
@@ -52,6 +52,27 @@ public class WeaponExpandableListBowgunAdapter extends WeaponExpandableListGener
             recoiltv = (TextView) weaponView.findViewById(R.id.recoil_text);
             steadytv = (TextView) weaponView.findViewById(R.id.deviation_text);
         }
+
+        @Override
+        public void bindView(Context context, WeaponListEntry entry) {
+            super.bindView(context, entry);
+
+            Weapon weapon = entry.weapon;
+
+            String reload = weapon.getReloadSpeed();
+            String recoil = weapon.getRecoil();
+            String steady = weapon.getDeviation();
+
+
+            if (steady.startsWith("Left/Right")) {
+                String[] tempSteady = steady.split(":");
+                steady = "L/R:" + tempSteady[1];
+            }
+
+            reloadtv.setText("REL: " + reload);
+            recoiltv.setText("REC: " + recoil);
+            steadytv.setText("DEV: " + steady);
+        }
     }
 
     @Override
@@ -59,21 +80,6 @@ public class WeaponExpandableListBowgunAdapter extends WeaponExpandableListGener
         super.onBindViewHolder(viewHolder, position);
 
         WeaponBowgunViewHolder holder = (WeaponBowgunViewHolder) viewHolder;
-        Weapon weapon = ((WeaponListEntry) getItemAt(position)).weapon;
-
-
-        String reload = weapon.getReloadSpeed();
-        String recoil = weapon.getRecoil();
-        String steady = weapon.getDeviation();
-
-
-        if (steady.startsWith("Left/Right")) {
-            String[] tempSteady = steady.split(":");
-            steady = "L/R:" + tempSteady[1];
-        }
-
-        holder.reloadtv.setText("REL: " + reload);
-        holder.recoiltv.setText("REC: " + recoil);
-        holder.steadytv.setText("DEV: " + steady);
+        holder.bindView(mContext,(WeaponListEntry)getItemAt(position));
     }
 }

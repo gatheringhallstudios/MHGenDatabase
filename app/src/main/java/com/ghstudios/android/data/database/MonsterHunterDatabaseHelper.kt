@@ -1501,7 +1501,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.SelectionArgs = arrayOf(hub)
         qh.GroupBy = null
         qh.Having = null
-        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else null
+        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else S.COLUMN_QUESTS_SORT_ORDER
         qh.Limit = null
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
@@ -1854,6 +1854,22 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             qh.Selection += "AND w." + S.COLUMN_WEAPONS_FINAL + " = 1 "
         }
         qh.SelectionArgs = arrayOf(type)
+        qh.GroupBy = null
+        qh.Having = null
+        qh.OrderBy = null
+        qh.Limit = null
+
+        return WeaponCursor(wrapJoinHelper(builderWeapon(), qh))
+    }
+
+    // This is a little bit of a hack that relies on
+    // knowing how the weapon ids are used.
+    fun queryWeaponFamily(id: Long): WeaponCursor {
+
+        val qh = QueryHelper()
+        qh.Columns = null
+        qh.Selection = """(w.${S.COLUMN_ITEMS_ID} & 0xFFFF00) = (? & 0xFFFF00)"""
+        qh.SelectionArgs = arrayOf(id.toString())
         qh.GroupBy = null
         qh.Having = null
         qh.OrderBy = null

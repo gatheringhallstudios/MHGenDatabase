@@ -137,5 +137,19 @@
                 android:textColor="@color/weapon_property_color"
                 tools:text="5" />
         </LinearLayout>
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/recipe_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.ghstudios.android.components.ItemRecipeCell
+            android:id="@+id/recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </LinearLayout>
 </ScrollView>

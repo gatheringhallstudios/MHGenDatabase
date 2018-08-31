@@ -5,8 +5,10 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
+import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.util.toList
 
 data class WeaponElementData(
         val element: String?,
@@ -17,6 +19,7 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
     val weaponData = MutableLiveData<Weapon>()
+    val componentData = MutableLiveData<List<Component>>();
 
     /**
      * Live data that returns weapon element or status data once a weapon is loaded.
@@ -55,6 +58,10 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
 
         Thread {
             weaponData.postValue(dataManager.getWeapon(weaponId))
+            val components = dataManager.queryComponentCreated(weaponId).toList {
+                it.component
+            }
+            componentData.postValue(components)
         }.start()
     }
 }

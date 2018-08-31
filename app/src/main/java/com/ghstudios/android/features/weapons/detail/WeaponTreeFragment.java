@@ -14,6 +14,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.adapter.WeaponExpandableListBladeAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListBowAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListBowgunAdapter;
+import com.ghstudios.android.adapter.WeaponExpandableListGeneralAdapter;
+import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.cursors.WeaponCursor;
 import com.ghstudios.android.loader.WeaponTreeListCursorLoader;
@@ -77,39 +82,31 @@ public class WeaponTreeFragment extends ListFragment implements
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
             // Use a layout inflater to get a row view
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            return inflater.inflate(R.layout.fragment_weapon_tree,
-                    parent, false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View v;
+
+            Weapon w = mWeaponCursor.getWeapon();
+            if (w.getWtype().equals(Weapon.BOW)) {
+                v = inflater.inflate(R.layout.fragment_weapon_tree_item_bow, parent, false);
+                v.setTag(new WeaponExpandableListBowAdapter.WeaponBowViewHolder(v));
+            }
+            else if (w.getWtype().equals(Weapon.HEAVY_BOWGUN) || w.getWtype().equals(Weapon.LIGHT_BOWGUN)) {
+                v = inflater.inflate(R.layout.fragment_weapon_tree_item_bowgun, parent, false);
+                v.setTag(new WeaponExpandableListBowgunAdapter.WeaponBowgunViewHolder(v));
+            }
+            else {
+                v = inflater.inflate(R.layout.fragment_weapon_tree_item_blademaster, parent, false);
+                v.setTag(new WeaponExpandableListBladeAdapter.WeaponBladeViewHolder(v));
+            }
+            return v;
         }
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             // Get the weapon for the current row
             Weapon weapon = mWeaponCursor.getWeapon();
-
-            // Set up the text view
-            RelativeLayout weaponLayout = (RelativeLayout) view.findViewById(R.id.listitem);
-            weaponLayout.setTag(weapon.getId());
-            weaponLayout.setOnClickListener(new WeaponClickListener(context, weapon.getId()));
-            
-            TextView weaponView = (TextView) view.findViewById(R.id.name_text);
-            String cellWeaponText = weapon.getName();
-
-            if(weapon.getCreationCost() > 0){
-                cellWeaponText = cellWeaponText + "\u2605";
-            }
-
-            weaponView.setText(cellWeaponText);
-
-            View arrowView = (View) view.findViewById(R.id.arrow);
-            arrowView.setVisibility(view.GONE);
-            if ((weapon.getId() <= weaponId) && (weapon.getWFinal() == 0)) {
-                arrowView.setVisibility(view.VISIBLE);
-            }
-            if (weapon.getId() == weaponId) {
-                weaponView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-            }
+            WeaponListEntry entry = new WeaponListEntry(weapon);
+            ((WeaponExpandableListGeneralAdapter.WeaponViewHolder) view.getTag()).bindView(context,entry);
         }
     }
 
