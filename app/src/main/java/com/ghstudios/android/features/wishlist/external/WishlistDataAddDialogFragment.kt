@@ -2,6 +2,8 @@ package com.ghstudios.android.features.wishlist.external
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -9,13 +11,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import com.ghstudios.android.data.classes.Wishlist
 
-import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
-import com.ghstudios.android.util.first
-import com.ghstudios.android.util.toList
 
 enum class WishlistItemType {
     ITEM,
@@ -49,35 +47,27 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         }
     }
 
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(WishlistAddItemViewModel::class.java)
+    }
+
     private val TAG = javaClass.simpleName
 
-    // todo: move to viewmodel? Do DialogFragments use ViewModels?
-    private lateinit var itemType: WishlistItemType
-    private var itemId: Long = -1
-
-    private lateinit var wishlists: List<Wishlist>
-    private lateinit var paths: List<String>
-
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        itemType = arguments?.getSerializable(ARG_WISHLIST_TYPE) as WishlistItemType
-        itemId = arguments?.getLong(ARG_WISHLIST_DATA_ID) ?: -1
+        viewModel.loadWishlists()
 
-        // validation, show error in console
-        if (itemId < 0) {
-            Log.e(TAG, "Item added to wishlist is -1, this means there was an error")
-            // todo: show a different error dialog message instead
-        }
-
-        val dataManager = DataManager.get()
-
-        wishlists = dataManager.queryWishlists().toList { it.wishlist }
-        paths = when (itemType) {
-            WishlistItemType.ITEM -> dataManager.queryComponentCreateImprove(itemId)
-            WishlistItemType.ARMORSET -> listOf("Create") // todo: localize
-        }
+        val itemType = arguments?.getSerializable(ARG_WISHLIST_TYPE) as WishlistItemType
+        val itemId = arguments?.getLong(ARG_WISHLIST_DATA_ID) ?: -1
+        viewModel.setItem(itemType, itemId)
 
         return showSelectWishlistDialog()
+    }
+
+    override fun onResume() {
+        // reload wishlists on resume, in case there any changes
+        viewModel.loadWishlists()
+
+        super.onResume()
     }
 
     private fun showSelectWishlistDialog(): Dialog {
@@ -88,35 +78,47 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         val pathSelect = dialogView.findViewById<RadioGroup>(R.id.path_select)
         val quantityInput = dialogView.findViewById<EditText>(R.id.add)
 
-        if (wishlists.isEmpty()) {
-            // There's no wishlist, so ask the user to enter one
-            wishlistNameEntry.visibility = View.VISIBLE
-        } else {
-            // Bind selectable wishlists
-            wishlistSelect.visibility = View.VISIBLE
-            wishlistSelect.adapter = ArrayAdapter(
-                    this.context,
-                    R.layout.support_simple_spinner_dropdown_item,
-                    wishlists.map { it.name }.toTypedArray())
-        }
+        // observe the list of wishlists. If there are any changes, update
+        viewModel.allWishlists.observe(this, Observer { wishlists ->
+            if (wishlists == null) return@Observer // not loaded
 
+            if (wishlists.isEmpty()) {
+                // There's no wishlist, so ask the user to enter one
+                wishlistSelect.visibility = View.GONE
+                wishlistNameEntry.visibility = View.VISIBLE
+            } else {
+                // Bind selectable wishlists
+                wishlistSelect.visibility = View.VISIBLE
+                wishlistNameEntry.visibility = View.GONE
 
-        // If there are any "path" items, add them to the path selection area
-        // Also select the first one
-        if (paths.isNotEmpty()) {
-            pathSelect.removeAllViews()
-            for (path in paths) {
-                pathSelect.addView(RadioButton(context).apply {
-                    this.text = path
-                    tag = path
-                })
+                wishlistSelect.adapter = ArrayAdapter(
+                        this.context,
+                        R.layout.support_simple_spinner_dropdown_item,
+                        wishlists.map { it.name }.toTypedArray())
             }
+        })
 
-            pathSelect.check(pathSelect.getChildAt(0).id)
-        }
+        // Observe paths and add them to the path selection area
+        // Also select the first one
+        viewModel.itemPaths.observe(this, Observer { paths ->
+            if (paths == null) return@Observer // not loaded
+
+            pathSelect.removeAllViews()
+            if (paths.isNotEmpty()) {
+                for (path in paths) {
+                    pathSelect.addView(RadioButton(context).apply {
+                        this.text = path
+                        tag = path
+                    })
+                }
+
+                pathSelect.check(pathSelect.getChildAt(0).id)
+            }
+        })
+
 
         // Determine the title for the dialog
-        val title = when (itemType) {
+        val title = when (viewModel.itemType) {
             WishlistItemType.ITEM -> getString(R.string.wishlist_add_title)
             WishlistItemType.ARMORSET -> getString(R.string.wishlist_add_set_title)
         }
@@ -135,50 +137,40 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         dialog.setOnShowListener {
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 try {
-                    // Initial pass - validation. Perform before doing anything
-                    if (wishlists.isEmpty() && wishlistNameEntry.text.isBlank()) {
-                        Toast.makeText(activity, R.string.wishlist_error_name_required, Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-
-                    // Validate quantity
-                    val quantity = quantityInput.text.toString().toIntOrNull()
-                    if (quantity == null) {
-                        Toast.makeText(activity, R.string.wishlist_error_quantity_required, Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-                    if (quantity < 0 || quantity > 99) {
-                        Toast.makeText(activity, R.string.wishlist_error_quantity_invalid, Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-
-                    // Pull the selected crafting path (Create/Upgrade/Create B/etc)
-                    val pathItem = pathSelect.findViewById<RadioButton>(pathSelect.checkedRadioButtonId)
+                    // get path
+                    val selectedPathButtonId = pathSelect.checkedRadioButtonId
+                    val pathItem = pathSelect.findViewById<RadioButton>(selectedPathButtonId)
                     val path = pathItem?.tag as? String ?: "Create"
 
-                    // if wishlists are empty, create a new wishlist...and then use that one
-                    // otherwise pull the wishlist via its idx
-                    val wishlist = when (wishlists.isEmpty()) {
+                    // get quantity value
+                    val quantity = quantityInput.text.toString().toIntOrNull()
+
+                    val result = when (wishlistNameEntry.visibility == View.VISIBLE) {
                         true -> {
-                            val dataManager = DataManager.get()
-                            val wishlistName = wishlistNameEntry.text.toString().trim()
-                            val newWishlistId = dataManager.queryAddWishlist(wishlistName)
-                            dataManager.queryWishlist(newWishlistId).first { it.wishlist }
+                            // making a new wishlist
+                            val name = wishlistNameEntry.text.toString().trim()
+                            viewModel.addToWishlist(name, quantity, path)
                         }
                         false -> {
-                            wishlists[wishlistSelect.selectedItemPosition]
+                            val idx = wishlistSelect.selectedItemPosition
+                            viewModel.addToWishlist(idx, quantity, path)
                         }
                     }
 
-                    // Delegate result
-                    handleResult(wishlist, path, quantity)
+                    // test the result...and close if its a success
+                    when (result) {
+                        is WishlistSuccessResult -> {
+                            // Show success message.
+                            val message = getString(R.string.wishlist_add_success, result.wishlistName)
+                            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
 
-                    // Show success message.
-                    val message = getString(R.string.wishlist_add_success, wishlist.name)
-                    Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
-
-                    // We're done, exit
-                    dialog.dismiss()
+                            // We're done, exit
+                            dialog.dismiss()
+                        }
+                        is WishlistErrorResult -> {
+                            Toast.makeText(activity, result.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
                 } catch (ex: Exception) {
                     Toast.makeText(activity, R.string.wishlist_error_unknown, Toast.LENGTH_SHORT).show()
@@ -188,22 +180,5 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         }
 
         return dialog
-    }
-
-    /**
-     * Helper that performs the actual logic of adding the item to the selected wishlist and path.
-     * The data is assumed to be successfully validated
-     * todo: move to something else to handle this sort of business logic.
-     */
-    private fun handleResult(wishlist: Wishlist, path: String, quantity: Int) {
-        val dataManager = DataManager.get()
-
-        // Add to wishlist
-        when (itemType) {
-            WishlistItemType.ITEM ->
-                dataManager.queryAddWishlistData(wishlist.id, itemId, quantity, path)
-            WishlistItemType.ARMORSET ->
-                dataManager.queryAddWishlistArmorFamily(wishlist.id, itemId, quantity, path)
-        }
     }
 }
