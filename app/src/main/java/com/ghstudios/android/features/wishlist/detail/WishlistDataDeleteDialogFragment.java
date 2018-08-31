@@ -49,7 +49,7 @@ public class WishlistDataDeleteDialogFragment extends DialogFragment {
                 
                    @Override
                    public void onClick(DialogInterface dialog, int id) {
-                       DataManager.get(getActivity()).queryDeleteWishlistData(
+                       DataManager.get().queryDeleteWishlistData(
                                getArguments().getLong(ARG_WISHLIST_DATA_ID));
                        
                           Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();

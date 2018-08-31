@@ -16,7 +16,7 @@ private data class ViewModelState(val weaponType : String?, val filterFinal: Boo
  * A viewmodel that stores state data for the WeaponListFragment
  */
 class WeaponListViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     /**
      * Private variable that stores the internal state of the view model.

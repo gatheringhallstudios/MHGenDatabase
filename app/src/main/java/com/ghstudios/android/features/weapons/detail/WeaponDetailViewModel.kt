@@ -14,7 +14,7 @@ data class WeaponElementData(
 )
 
 class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
-    val dataManager = DataManager.get(app.applicationContext)
+    val dataManager = DataManager.get()
 
     val weaponData = MutableLiveData<Weapon>()
 

@@ -9,7 +9,7 @@ import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
 class PalicoArmorListViewModel(app : Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
     val armors = MutableLiveData<List<PalicoArmor>>()
 
     fun loadList() {

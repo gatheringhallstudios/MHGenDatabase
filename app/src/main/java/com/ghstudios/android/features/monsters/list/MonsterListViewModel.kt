@@ -13,7 +13,7 @@ import com.ghstudios.android.util.toList
  * A viewmodel meant to be used by the MonsterListFragment
  */
 class MonsterListViewModel(app: Application): AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app)
+    private val dataManager = DataManager.get()
 
     private var initialized = false
     private var currentClass: MonsterClass? = null

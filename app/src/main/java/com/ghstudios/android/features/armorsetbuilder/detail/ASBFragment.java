@@ -144,28 +144,28 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
             public void perform(ASBSession session, Context context, Intent data) {
                 long armorId = data.getLongExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, -1);
 
-                String armorType = DataManager.get(context).getArmor(armorId).getSlot();
+                String armorType = DataManager.get().getArmor(armorId).getSlot();
 
                 switch (armorType) {
                     case "Head":
-                        session.setEquipment(ASBSession.HEAD, DataManager.get(context).getArmor(armorId));
-                        DataManager.get(context).queryPutASBSessionArmor(session.getId(), armorId, ASBSession.HEAD);
+                        session.setEquipment(ASBSession.HEAD, DataManager.get().getArmor(armorId));
+                        DataManager.get().queryPutASBSessionArmor(session.getId(), armorId, ASBSession.HEAD);
                         break;
                     case "Body":
-                        session.setEquipment(ASBSession.BODY, DataManager.get(context).getArmor(armorId));
-                        DataManager.get(context).queryPutASBSessionArmor(session.getId(), armorId, ASBSession.BODY);
+                        session.setEquipment(ASBSession.BODY, DataManager.get().getArmor(armorId));
+                        DataManager.get().queryPutASBSessionArmor(session.getId(), armorId, ASBSession.BODY);
                         break;
                     case "Arms":
-                        session.setEquipment(ASBSession.ARMS, DataManager.get(context).getArmor(armorId));
-                        DataManager.get(context).queryPutASBSessionArmor(session.getId(), armorId, ASBSession.ARMS);
+                        session.setEquipment(ASBSession.ARMS, DataManager.get().getArmor(armorId));
+                        DataManager.get().queryPutASBSessionArmor(session.getId(), armorId, ASBSession.ARMS);
                         break;
                     case "Waist":
-                        session.setEquipment(ASBSession.WAIST, DataManager.get(context).getArmor(armorId));
-                        DataManager.get(context).queryPutASBSessionArmor(session.getId(), armorId, ASBSession.WAIST);
+                        session.setEquipment(ASBSession.WAIST, DataManager.get().getArmor(armorId));
+                        DataManager.get().queryPutASBSessionArmor(session.getId(), armorId, ASBSession.WAIST);
                         break;
                     case "Legs":
-                        session.setEquipment(ASBSession.LEGS, DataManager.get(context).getArmor(armorId));
-                        DataManager.get(context).queryPutASBSessionArmor(session.getId(), armorId, ASBSession.LEGS);
+                        session.setEquipment(ASBSession.LEGS, DataManager.get().getArmor(armorId));
+                        DataManager.get().queryPutASBSessionArmor(session.getId(), armorId, ASBSession.LEGS);
                         break;
                 }
             }
@@ -177,11 +177,11 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
                 long decorationId = data.getLongExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, -1);
                 int pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
 
-                Decoration decoration = DataManager.get(context).getDecoration(decorationId);
+                Decoration decoration = DataManager.get().getDecoration(decorationId);
                 int decorationIndex = session.addDecoration(pieceIndex, decoration);
 
                 if (decorationIndex != -1 && pieceIndex != -1) {
-                    DataManager.get(context).queryPutASBSessionDecoration(session.getId(), decorationId, pieceIndex, decorationIndex);
+                    DataManager.get().queryPutASBSessionDecoration(session.getId(), decorationId, pieceIndex, decorationIndex);
                 }
             }
         },
@@ -200,7 +200,7 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
                 long skill2Id = -1;
                 int skill2Points = 0;
 
-                SkillTree skill1Tree = DataManager.get(context).getSkillTree(skill1Id);
+                SkillTree skill1Tree = DataManager.get().getSkillTree(skill1Id);
                 talisman = new ASBTalisman(skill1Tree, skill1Points, typeIndex);
                 talisman.setName(MHUtils.splitStringInArrayByComma(R.array.talisman_names, typeIndex, 0, context) + " Talisman");
                 talisman.setNumSlots(slots);
@@ -209,12 +209,12 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
                     skill2Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1);
                     skill2Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, -1);
 
-                    SkillTree skill2Tree = DataManager.get(context).getSkillTree(skill2Id);
+                    SkillTree skill2Tree = DataManager.get().getSkillTree(skill2Id);
                     talisman.setSkill2(skill2Tree);
                     talisman.setSkill2Points(skill2Points);
                 }
 
-                DataManager.get(context).queryCreateASBSessionTalisman(session.getId(), typeIndex, slots, skill1Id, skill1Points, skill2Id, skill2Points);
+                DataManager.get().queryCreateASBSessionTalisman(session.getId(), typeIndex, slots, skill1Id, skill1Points, skill2Id, skill2Points);
 
                 session.setEquipment(ASBSession.TALISMAN, talisman);
             }
@@ -227,9 +227,9 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
                 session.removeEquipment(pieceIndex);
 
                 if (pieceIndex == ASBSession.TALISMAN) {
-                    DataManager.get(context).queryRemoveASBSessionTalisman(session.getId());
+                    DataManager.get().queryRemoveASBSessionTalisman(session.getId());
                 } else {
-                    DataManager.get(context).queryRemoveASBSessionArmor(session.getId(), pieceIndex);
+                    DataManager.get().queryRemoveASBSessionArmor(session.getId(), pieceIndex);
                 }
             }
         },
@@ -241,7 +241,7 @@ public class ASBFragment extends Fragment implements ASBPagerActivity.OnASBSetAc
                 int decorationIndex = data.getIntExtra(ASBPagerActivity.EXTRA_DECORATION_INDEX, -1);
 
                 session.removeDecoration(pieceIndex, decorationIndex);
-                DataManager.get(context).queryRemoveASBSessionDecoration(session.getId(), pieceIndex, decorationIndex);
+                DataManager.get().queryRemoveASBSessionDecoration(session.getId(), pieceIndex, decorationIndex);
             }
         };
 

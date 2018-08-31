@@ -7,7 +7,7 @@ import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.util.toList
 
 class CombiningListViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
     val combinationData = MHUtils.createLiveData {
         dataManager.queryCombinings().toList { it.combining }
     }

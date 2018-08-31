@@ -44,7 +44,7 @@ public class WishlistDeleteDialogFragment extends DialogFragment {
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(android.R.string.ok, (dialog, id) -> {
                 long wishlistId = getArguments().getLong(ARG_WISHLIST_ID);
-                DataManager.get(getActivity()).queryDeleteWishlist(wishlistId);
+                DataManager.get().queryDeleteWishlist(wishlistId);
 
                 Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
                 sendResult(Activity.RESULT_OK, true);

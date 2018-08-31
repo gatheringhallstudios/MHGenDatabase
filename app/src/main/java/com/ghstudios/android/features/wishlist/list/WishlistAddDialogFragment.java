@@ -46,7 +46,7 @@ public class WishlistAddDialogFragment extends DialogFragment {
                    @Override
                    public void onClick(DialogInterface dialog, int id) {
                        String name = nameInput.getText().toString();
-                       DataManager.get(getActivity()).queryAddWishlist(name);
+                       DataManager.get().queryAddWishlist(name);
 
                           Toast.makeText(getActivity(), "Added '" + name + "'", Toast.LENGTH_SHORT).show();
                        sendResult(Activity.RESULT_OK, true);

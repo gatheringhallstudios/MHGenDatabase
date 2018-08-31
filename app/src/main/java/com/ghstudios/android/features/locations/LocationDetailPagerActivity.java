@@ -14,7 +14,7 @@ public class LocationDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long locationId = getIntent().getLongExtra(EXTRA_LOCATION_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getLocation(locationId).getName());
+        setTitle(DataManager.get().getLocation(locationId).getName());
 
         tabs.addTab("Map", () ->
                 LocationDetailFragment.newInstance(locationId)

@@ -17,7 +17,7 @@ import com.ghstudios.android.util.toList
  * This should be attached to the activity or fragment owning the viewpager.
  */
 class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     val rewards = MutableLiveData<List<QuestReward>>()
     val monsters = MutableLiveData<List<MonsterToQuest>>()

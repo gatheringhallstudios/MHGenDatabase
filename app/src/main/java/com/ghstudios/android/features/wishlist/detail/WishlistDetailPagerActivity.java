@@ -22,7 +22,7 @@ public class WishlistDetailPagerActivity extends BasePagerActivity implements Wi
     public void onAddTabs(TabAdder tabs) {
         // Set Title
         long id = getIntent().getLongExtra(EXTRA_WISHLIST_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getWishlist(id).getName());
+        setTitle(DataManager.get().getWishlist(id).getName());
 
         Fragment detailFragment = WishlistDataDetailFragment.newInstance(id);
         Fragment componentFragment = WishlistDataComponentFragment.newInstance(id);
@@ -48,6 +48,6 @@ public class WishlistDetailPagerActivity extends BasePagerActivity implements Wi
     public void refreshTitle(){
         // Set again after wishlist is renamed
         long id = getIntent().getLongExtra(EXTRA_WISHLIST_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getWishlist(id).getName());
+        setTitle(DataManager.get().getWishlist(id).getName());
     }
 }

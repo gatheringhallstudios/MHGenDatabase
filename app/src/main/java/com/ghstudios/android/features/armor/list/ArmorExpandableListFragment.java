@@ -69,7 +69,7 @@ public class ArmorExpandableListFragment extends Fragment {
      */
     private void populateList() {
         children = new ArrayList<>();
-        List<ArmorFamily> families = DataManager.get(getActivity()).queryArmorFamilies(hunterType);
+        List<ArmorFamily> families = DataManager.get().queryArmorFamilies(hunterType);
 
         //Add all 11 rarities
         for(int i=0;i<11;i++)

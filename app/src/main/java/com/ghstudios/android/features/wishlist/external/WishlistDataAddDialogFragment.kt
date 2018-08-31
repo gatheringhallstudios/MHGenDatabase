@@ -51,7 +51,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         itemId = arguments?.getLong(ARG_WISHLIST_DATA_ID) ?: -1
 
         // todo: refactor to a facade
-        with(DataManager.get(activity!!)) {
+        with(DataManager.get()) {
             wishlists = queryWishlists().toList { it.wishlist }
             paths = queryComponentCreateImprove(itemId)
         }
@@ -107,7 +107,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         dialog.setOnShowListener {
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 try {
-                    val dataManager = DataManager.get(activity!!)
+                    val dataManager = DataManager.get()
 
                     // Initial pass - validation. Perform before doing anything
                     if (wishlists.isEmpty() && wishlistNameEntry.text.isBlank()) {

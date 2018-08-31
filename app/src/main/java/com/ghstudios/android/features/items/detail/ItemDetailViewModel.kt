@@ -18,7 +18,7 @@ data class ItemUsage(
 )
 
 class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     val itemData = MutableLiveData<Item>()
     val craftData = MutableLiveData<List<Combining>>()

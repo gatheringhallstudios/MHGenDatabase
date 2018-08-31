@@ -27,7 +27,7 @@ public class PalicoWeaponDetailActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         id = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
-        PalicoWeapon wep = DataManager.get(getApplicationContext()).getPalicoWeapon(id);
+        PalicoWeapon wep = DataManager.get().getPalicoWeapon(id);
         name = wep.getItem().getName();
         setTitle(R.string.palicos);
 

@@ -337,7 +337,7 @@ public class ASBSession {
 
         if (equipment[pieceIndex] != null) {
             if (pieceIndex != TALISMAN) {
-                for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
+                for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
                     skills.put(itemToSkillTree.getSkillTree(), itemToSkillTree.getPoints());
                 }
             } else {
@@ -350,7 +350,7 @@ public class ASBSession {
 
             for (Decoration d : decorations[pieceIndex]) {
                 if (d != null) {
-                    for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(d.getId())) {
+                    for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(d.getId())) {
                         SkillTree skillTreeToAddTo = null;
 
                         for (SkillTree skillTree : skills.keySet()) {

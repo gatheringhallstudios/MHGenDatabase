@@ -14,7 +14,7 @@ import com.ghstudios.android.util.toList
  * A ViewModel representing information for a single piece of armor.
  */
 class ArmorDetailViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     val armorData = MutableLiveData<Armor>()
     val skillData = MutableLiveData<List<ItemToSkillTree>>()

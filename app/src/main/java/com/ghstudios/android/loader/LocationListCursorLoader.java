@@ -14,6 +14,6 @@ public class LocationListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		// Query the list of all locations
-		return DataManager.get(getContext()).queryLocations();
+		return DataManager.get().queryLocations();
 	}
 }

@@ -8,7 +8,7 @@ import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.util.toList
 
 class ItemListViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     /**
      * LiveData containing the current value of the filter.

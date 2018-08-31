@@ -136,7 +136,7 @@ public class ASBTalismanSkillContainer extends LinearLayout {
     }
 
     public void setSkillTree(long id) {
-        SkillTree s = DataManager.get(getContext()).getSkillTree(id);
+        SkillTree s = DataManager.get().getSkillTree(id);
         setSkillTree(s);
     }
 

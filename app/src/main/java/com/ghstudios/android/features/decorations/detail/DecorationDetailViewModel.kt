@@ -16,7 +16,7 @@ import com.ghstudios.android.util.toList
 data class SkillPoints(val skillId: Long, val skillName: String, val points: Int)
 
 class DecorationDetailViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
     val decorationData = MutableLiveData<Decoration>()
     val componentData = MutableLiveData<Map<String, List<Component>>>()
 

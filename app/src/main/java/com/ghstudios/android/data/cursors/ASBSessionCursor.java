@@ -25,7 +25,7 @@ public class ASBSessionCursor extends CursorWrapper {
 
         long id = getLong(getColumnIndex(S.COLUMN_ASB_SET_ID));
 
-        ASBSet set = DataManager.get(context).getASBSet(id);
+        ASBSet set = DataManager.get().getASBSet(id);
         session.setASBSet(set);
 
         long headId = getLong(getColumnIndex(S.COLUMN_HEAD_ARMOR_ID));
@@ -185,21 +185,21 @@ public class ASBSessionCursor extends CursorWrapper {
 
     private static Armor getArmorById(Context context, long id) {
         if (id != 0 && id != -1) {
-            return DataManager.get(context).getArmor(id);
+            return DataManager.get().getArmor(id);
         }
         else return null;
     }
 
     private static Decoration getDecorationById(Context context, long id) {
         if (id != 0 && id != -1) {
-            return DataManager.get(context).getDecoration(id);
+            return DataManager.get().getDecoration(id);
         }
         else return null;
     }
 
     private static SkillTree getSkillTreeById(Context context, long id) {
         if (id != 0 && id != -1) {
-            return DataManager.get(context).getSkillTree(id);
+            return DataManager.get().getSkillTree(id);
         }
         else return null;
     }

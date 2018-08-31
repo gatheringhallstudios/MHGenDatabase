@@ -19,6 +19,6 @@ public class ItemToMaterialListCursorLoader extends SQLiteCursorLoader {
 
     @Override
     protected ItemToMaterialCursor loadCursor() {
-        return new ItemToMaterialCursor(DataManager.get(getContext()).queryItemsForMaterial(id));
+        return new ItemToMaterialCursor(DataManager.get().queryItemsForMaterial(id));
     }
 }

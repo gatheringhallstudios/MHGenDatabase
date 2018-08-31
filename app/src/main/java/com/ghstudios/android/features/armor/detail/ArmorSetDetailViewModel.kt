@@ -25,7 +25,7 @@ data class ArmorSkillPoints(
  * TODO: They shouldn't, they should all use the same viewmodel to save data. Consider refactor.
  */
 class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
     private var familyId = -1L
     private var armorId = -1L

@@ -17,7 +17,7 @@ public class PalicoWeaponListCursorLoader extends SQLiteCursorLoader {
 
     @Override
     protected Cursor loadCursor() {
-        PalicoWeaponCursor cursor = DataManager.get(getContext()).queryPalicoWeapons();
+        PalicoWeaponCursor cursor = DataManager.get().queryPalicoWeapons();
         return cursor;
     }
 

@@ -89,7 +89,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                     int rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1);
                     int hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1);
 
-                    DataManager.get(getActivity()).queryAddASBSet(
+                    DataManager.get().queryAddASBSet(
                             name,
                             rank,
                             hunterType
@@ -105,7 +105,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                     int rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1);
                     int hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1);
 
-                    DataManager.get(getActivity()).queryUpdateASBSet(id, name, rank, hunterType);
+                    DataManager.get().queryUpdateASBSet(id, name, rank, hunterType);
 
                     updateUI();
                     break;
@@ -163,7 +163,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_edit_data:
-                        ASBSet set = DataManager.get(getActivity()).getASBSet(l.getCheckedItemIds()[0]);
+                        ASBSet set = DataManager.get().getASBSet(l.getCheckedItemIds()[0]);
 
                         FragmentManager fm = getActivity().getSupportFragmentManager();
                         ASBSetAddDialogFragment dialog = ASBSetAddDialogFragment.newInstance(
@@ -196,7 +196,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 for (long id : l.getCheckedItemIds()) {
-                                    DataManager.get(getActivity()).queryDeleteASBSet(id);
+                                    DataManager.get().queryDeleteASBSet(id);
                                 }
                                 updateUI();
                             }
@@ -204,7 +204,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                         .setNegativeButton(android.R.string.cancel, null);
 
                 if (l.getCheckedItemCount() == 1) {
-                    b.setMessage(getResources().getString(R.string.dialog_message_delete, DataManager.get(getActivity()).getASBSet(l.getCheckedItemIds()[0]).getName()))
+                    b.setMessage(getResources().getString(R.string.dialog_message_delete, DataManager.get().getASBSet(l.getCheckedItemIds()[0]).getName()))
                             .setTitle(R.string.asb_dialog_title_delete_set);
                 }
                 else {
@@ -221,7 +221,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 for (long id : l.getCheckedItemIds()) {
-                                    DataManager.get(getActivity()).queryAddASBSet(id);
+                                    DataManager.get().queryAddASBSet(id);
                                 }
                                 updateUI();
                             }
@@ -229,7 +229,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                         .setNegativeButton(android.R.string.cancel, null);
 
                 if (l.getCheckedItemCount() == 1) {
-                    b.setMessage(getResources().getString(R.string.dialog_message_copy, DataManager.get(getActivity()).getASBSet(l.getCheckedItemIds()[0]).getName()))
+                    b.setMessage(getResources().getString(R.string.dialog_message_copy, DataManager.get().getASBSet(l.getCheckedItemIds()[0]).getName()))
                             .setTitle(R.string.asb_dialog_title_copy_set);
                 }
                 else {

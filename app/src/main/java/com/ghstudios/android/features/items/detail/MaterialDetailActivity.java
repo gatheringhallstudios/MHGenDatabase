@@ -20,7 +20,7 @@ public class MaterialDetailActivity extends GenericActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         id = getIntent().getLongExtra(EXTRA_MATERIAL_ITEM_ID,0);
-        setTitle(DataManager.get(getApplicationContext()).getItem(id).getName());
+        setTitle(DataManager.get().getItem(id).getName());
 
         // Tag as top level activity
         //super.setAsTopLevel();

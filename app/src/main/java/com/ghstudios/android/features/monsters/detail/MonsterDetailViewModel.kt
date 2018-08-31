@@ -41,7 +41,7 @@ data class MonsterWeaknessResult(
  * This should be attached to the activty or fragment owning the viewpager.
  */
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get(app.applicationContext)
+    private val dataManager = DataManager.get()
 
 
     val monsterData = MutableLiveData<Monster>()

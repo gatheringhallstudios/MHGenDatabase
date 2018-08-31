@@ -179,7 +179,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
         started = true;
         
         // Show the total price
-        int totalPrice = DataManager.get(getActivity()).queryWishlistPrice(wishlistId);
+        int totalPrice = DataManager.get().queryWishlistPrice(wishlistId);
         mTotalCostView.setText(totalPrice + "z");
     }
 
@@ -261,7 +261,7 @@ public class WishlistDataComponentFragment extends ListFragment implements
                         long id) {
 
                     // Edit qtyhave for the component's row
-                    DataManager.get(context).queryUpdateWishlistComponentNotes(componentrowid, position);
+                    DataManager.get().queryUpdateWishlistComponentNotes(componentrowid, position);
 
                     // Change item color if requirement is met
                     if ((Integer)spinner.getItemAtPosition(position) >= qtyreq) {

@@ -29,14 +29,14 @@ public class WeaponDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         weaponId = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
-        name = DataManager.get(getApplicationContext()).getWeapon(weaponId).getName();
+        name = DataManager.get().getWeapon(weaponId).getName();
 
         //JOE: This is so we can add/remove tabs as needed based on type.
         //Goes against the design of doing queries on the UI Thread, but
         //this query is super fast and won't cause issues.
         //
         //Possible redesign is to pass in the wtype, almost all links here should know it.
-        String wtype = DataManager.get(this).getWeaponType(weaponId);
+        String wtype = DataManager.get().getWeaponType(weaponId);
 
         // Set activity title to display weapon type
         setTitle(wtype);

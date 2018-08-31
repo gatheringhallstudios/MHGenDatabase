@@ -16,7 +16,7 @@ public class SkillTreeDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long skillTreeId = getIntent().getLongExtra(EXTRA_SKILLTREE_ID, -1);
-        setTitle(DataManager.get(getApplicationContext()).getSkillTree(skillTreeId).getName());
+        setTitle(DataManager.get().getSkillTree(skillTreeId).getName());
 
         tabs.addTab(getString(R.string.skill_tab_detail), () ->
                 SkillTreeDetailFragment.newInstance(skillTreeId)

@@ -11,7 +11,7 @@ import kotlin.system.measureTimeMillis
 
 class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
     private val TAG = javaClass.simpleName
-    private val db = DataManager.get(app)
+    private val db = DataManager.get()
 
     // this prevents search from being overwhelmed and makes everything orderly
     private val executor = ThrottledExecutor()

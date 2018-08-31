@@ -1,5 +1,6 @@
 package com.ghstudios.android.data.database
 
+import android.app.Application
 import android.content.Context
 
 import com.ghstudios.android.util.MHUtils
@@ -64,6 +65,7 @@ import com.ghstudios.android.data.cursors.WishlistComponentCursor
 import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
+import com.ghstudios.android.util.first
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
 
@@ -81,11 +83,16 @@ class DataManager private constructor(private val mAppContext: Context) {
         // note: not using lateinit due to incompatibility error with @JvmStatic
         private var sDataManager: DataManager? = null
 
-        @JvmStatic fun get(c: Context): DataManager {
+        @JvmStatic fun bindApplication(app: Application) {
             if (sDataManager == null) {
                 // Use the application context to avoid leaking activities
-                sDataManager = DataManager(c.applicationContext)
-                return sDataManager!!
+                sDataManager = DataManager(app.applicationContext)
+            }
+        }
+
+        @JvmStatic fun get(): DataManager {
+            if (sDataManager == null) {
+                throw UninitializedPropertyAccessException("Cannot call get without first binding the application")
             }
 
             return sDataManager!!

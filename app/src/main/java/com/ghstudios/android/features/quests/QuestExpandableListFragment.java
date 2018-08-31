@@ -64,7 +64,7 @@ public class QuestExpandableListFragment extends Fragment {
 
     private void populateList() {
         children = new ArrayList<>();
-        List<Quest> quests = DataManager.get(getActivity()).queryQuestArrayHub(mHub);
+        List<Quest> quests = DataManager.get().queryQuestArrayHub(mHub);
         HashMap<String,ArrayList<Quest>> questGroups = new HashMap<>();
         for (int i = 0; i < quests.size(); i++) {
             String grouping = quests.get(i).getStars();
@@ -96,7 +96,7 @@ public class QuestExpandableListFragment extends Fragment {
         } else if(mHub.equals("Guild")) {
             elv.setAdapter(new QuestListAdapter(guild));
         } else if(mHub.equals("Permit")){
-            permit = DataManager.get(getActivity()).questDeviantMonsterNames();
+            permit = DataManager.get().questDeviantMonsterNames();
             elv.setAdapter(new QuestListAdapter(permit));
         }
         else{

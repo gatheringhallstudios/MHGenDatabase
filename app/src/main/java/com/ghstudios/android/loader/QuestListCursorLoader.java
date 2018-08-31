@@ -29,13 +29,13 @@ public class QuestListCursorLoader extends SQLiteCursorLoader {
 	protected Cursor loadCursor() {
 		if (hub == null && stars == null) {
 			// Query the list of all quests
-			return DataManager.get(getContext()).queryQuests();
+			return DataManager.get().queryQuests();
 		} else if (stars == null) {
 			// Query the list of quests based on hub
-			return DataManager.get(getContext()).queryQuestHub(hub);
+			return DataManager.get().queryQuestHub(hub);
 		} else {
 			// Query the list of quests based on hub and stars
-			return DataManager.get(getContext()).queryQuestHubStar(hub, stars);
+			return DataManager.get().queryQuestHubStar(hub, stars);
 		}
 	}
 }

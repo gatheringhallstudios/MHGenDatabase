@@ -178,7 +178,8 @@ public class WishlistDataDetailFragment extends ListFragment implements
         // If we are becoming visible, then...
         if (isVisibleToUser) {
             // Update wishlist with items that are 'satisfied'
-            DataManager.get(getContext()).helperQueryUpdateWishlistSatisfied(getArguments().getLong(ARG_ID));
+            long wishlistId = getArguments().getLong(ARG_ID);
+            DataManager.get().helperQueryUpdateWishlistSatisfied(wishlistId);
             updateUI();
         }
     }

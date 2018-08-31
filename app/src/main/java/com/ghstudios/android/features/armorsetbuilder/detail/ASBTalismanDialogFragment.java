@@ -149,7 +149,7 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
             int talismanSkillNumber = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_INDEX, -1);
             long skillTreeId = data.getLongExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, -1);
 
-            talismanSkillContainers[talismanSkillNumber].setSkillTree(DataManager.get(getActivity()).getSkillTree(skillTreeId));
+            talismanSkillContainers[talismanSkillNumber].setSkillTree(DataManager.get().getSkillTree(skillTreeId));
             talismanSkillContainers[talismanSkillNumber].requestFocus();
         }
     }
