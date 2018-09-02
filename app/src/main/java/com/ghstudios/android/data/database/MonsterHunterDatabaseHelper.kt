@@ -55,14 +55,9 @@ For queries with JOINs:
 
 
 //Version 1 - v1.0   - Initial Release
-//Version 2 - v1.0.1 - Added Alternate Damages/Weaknesses/Ailments
-//Version 3 - v1.0.2 - Fixed issues with some quest data
-//Version 4 - v1.1.0 - Changed Weaknesses / Fixed some data bugs / Default Wishlists+Set
-//Version 5 - v1.1.1 - Added more localized data / July DLC
-//Version 6 - v1.1.2 - Sept/Oct DLC
 
 private val DATABASE_NAME = "mhgu.db"
-private val DATABASE_VERSION = 6
+private val DATABASE_VERSION = 1
 
 /**
  * Initialize the helper object
