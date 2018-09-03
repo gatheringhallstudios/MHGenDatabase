@@ -7,6 +7,7 @@ import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.PorterDuff
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,6 +28,11 @@ import com.ghstudios.android.util.setImageAsset
 
 import java.io.IOException
 import java.io.InputStream
+
+/**
+ * Image alpha value for unselected items
+ */
+private const val unselectedAlpha = 160
 
 /**
  * Custom view used to display a single armor piece for the ASB.
@@ -98,6 +104,9 @@ class ASBPieceContainer
                 hideDecorations()
             }
         }
+
+        // Reflect current state
+        updateContents()
     }
 
     /**
@@ -113,17 +122,30 @@ class ASBPieceContainer
      * Internal helper to update the displayed armor piece based on the session selected equipment
      */
     private fun updateArmorPiece() {
-        val isSelected = session.isEquipmentSelected(pieceIndex)
+        val selectedEquipment = session.getEquipment(pieceIndex)
+        text.text = selectedEquipment?.name
 
+        // Set image based on equipment
         if (isSelected) {
-            val selectedEquipment = session.getEquipment(pieceIndex)
-            text.text = selectedEquipment.name
             icon.setImageAsset(selectedEquipment)
         } else {
-            text.text = null
-            icon.setImageBitmap(fetchIcon(1))
+            // Since no equipment is selected, load the "empty image"
+            val resId = when(pieceIndex) {
+                ASBSession.HEAD -> R.drawable.armor_head
+                ASBSession.BODY -> R.drawable.armor_body
+                ASBSession.ARMS -> R.drawable.armor_arms
+                ASBSession.WAIST -> R.drawable.armor_waist
+                ASBSession.LEGS -> R.drawable.armor_legs
+                ASBSession.TALISMAN -> R.drawable.talisman
+                else -> 0
+            }
+
+            val image = ContextCompat.getDrawable(context, resId)?.mutate()
+            image?.alpha = unselectedAlpha
+            icon.setImageDrawable(image)
         }
 
+        // set the add/remove button based on equipment
         equipmentButton.setImageResource(when (isSelected) {
             true -> R.drawable.ic_remove
             false -> R.drawable.ic_add
@@ -157,71 +179,6 @@ class ASBPieceContainer
         decorationView.container.visibility = View.GONE
         equipmentButton.visibility = View.VISIBLE
         dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_down_arrow))
-    }
-
-    /**
-     * Helper method that retrieves a rarity-appropriate equipment icon.
-     */
-    private fun fetchIcon(rarity: Int): Bitmap? {
-        var slot = ""
-        when (pieceIndex) {
-            ASBSession.HEAD -> slot = "head"
-            ASBSession.BODY -> slot = "body"
-            ASBSession.ARMS -> slot = "arms"
-            ASBSession.WAIST -> slot = "waist"
-            ASBSession.LEGS -> slot = "legs"
-            ASBSession.TALISMAN -> {
-                var imageRes: String
-                try {
-                    if (session.isEquipmentSelected(ASBSession.TALISMAN)) {
-                        imageRes = "icons_items/" + resources.getStringArray(R.array.talisman_names)[session.talisman.typeIndex].split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1]
-                    } else {
-                        imageRes = "icons_items/Talisman-White.png"
-                    }
-                } catch (e: ArrayIndexOutOfBoundsException) {
-                    Log.e("ASB",
-                            "Image not found for " + resources.getStringArray(R.array.talisman_names)[session.talisman.typeIndex])
-                    imageRes = "icons_items/Talisman-White.png"
-                }
-
-                Log.d("ASB", "Attempting to open $imageRes")
-                val manager = context.assets
-                val stream: InputStream
-
-                try {
-                    stream = manager.open(imageRes)
-                    val bitmap = BitmapFactory.decodeStream(stream)
-
-                    stream.close()
-
-                    return bitmap
-
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    return null
-                }
-
-            }
-        }
-
-        val imageRes = "icons_armor/icons_" + slot + "/" + slot + rarity.toString() + ".png"
-
-        Log.d("ASB", "Attempting to open $imageRes")
-        val manager = context.assets
-        val stream: InputStream
-
-        try {
-            stream = manager.open(imageRes)
-            val bitmap = BitmapFactory.decodeStream(stream)
-
-            stream.close()
-
-            return bitmap
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
-
     }
 
     private fun onAddEquipment() {
