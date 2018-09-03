@@ -102,15 +102,18 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
         // todo: consider an alternative talisman object
         // todo: find better way of loading talismans
-        val talisman = ASBTalisman(skill1Tree, data.skill1Points, data.typeIndex)
-        val name = MHUtils.splitStringInArrayByComma(R.array.talisman_names, data.typeIndex, 0, app.applicationContext)
-        talisman.name = app.getString(R.string.talisman_full_name, name)
+        val talisman = ASBTalisman(data.typeIndex)
+        val typeName = app.resources.getStringArray(R.array.talisman_names)[data.typeIndex]
+        talisman.name = app.getString(R.string.talisman_full_name, typeName)
         talisman.numSlots = data.numSlots
+
+        if (skill1Tree != null) {
+            talisman.setFirstSkill(skill1Tree, data.skill1Points)
+        }
 
         if (data.skill2Id >= 0) {
             val skill2Tree = dataManager.getSkillTree(data.skill2Id)
-            talisman.skill2 = skill2Tree
-            talisman.skill2Points = data.skill2Points
+            talisman.setSecondSkill(skill2Tree, data.skill2Points)
         }
 
         dataManager.queryCreateASBSessionTalisman(

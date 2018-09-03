@@ -23,6 +23,7 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
+import com.ghstudios.android.util.setImageAsset
 
 import java.io.IOException
 import java.io.InputStream
@@ -108,16 +109,25 @@ class ASBPieceContainer
         decorationView.update()
     }
 
+    /**
+     * Internal helper to update the displayed armor piece based on the session selected equipment
+     */
     private fun updateArmorPiece() {
-        if (session.isEquipmentSelected(pieceIndex)) {
-            text.text = session.getEquipment(pieceIndex).name
-            icon.setImageBitmap(fetchIcon(session.getEquipment(pieceIndex).rarity))
-            equipmentButton.setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
+        val isSelected = session.isEquipmentSelected(pieceIndex)
+
+        if (isSelected) {
+            val selectedEquipment = session.getEquipment(pieceIndex)
+            text.text = selectedEquipment.name
+            icon.setImageAsset(selectedEquipment)
         } else {
             text.text = null
             icon.setImageBitmap(fetchIcon(1))
-            equipmentButton.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
         }
+
+        equipmentButton.setImageResource(when (isSelected) {
+            true -> R.drawable.ic_remove
+            false -> R.drawable.ic_add
+        })
     }
 
     private fun updateDecorationsPreview() {
@@ -218,7 +228,7 @@ class ASBPieceContainer
         if (pieceIndex == ASBSession.TALISMAN) {
             val d = ASBTalismanDialogFragment.newInstance()
             d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
-            d.show(parentFragment!!.activity!!.supportFragmentManager, "TALISMAN")
+            d.show(parentFragment!!.fragmentManager, "TALISMAN")
         } else {
             val i = Intent(context, ArmorListPagerActivity::class.java)
             i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)

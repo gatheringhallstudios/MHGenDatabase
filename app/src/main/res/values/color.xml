@@ -126,4 +126,21 @@
         <item>@color/item_dark_purple</item>
     </array>
 
+    <array name="talisman_colors">
+        <item>@color/item_white</item>
+        <item>@color/item_purple</item>
+        <item>@color/item_yellow</item>
+        <item>@color/item_pink</item>
+        <item>@color/item_green</item>
+        <item>@color/item_cyan</item>
+        <item>@color/item_red</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
+    </array>
+
 </resources>

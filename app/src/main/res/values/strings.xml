@@ -326,20 +326,20 @@
 
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
-        <item>Pawn,Talisman-White.png</item>
-        <item>Bishop,Talisman-Purple.png</item>
-        <item>Knight,Talisman-Yellow.png</item>
-        <item>Rook,Talisman-Pink.png</item>
-        <item>Queen,Talisman-Green.png</item>
-        <item>King,Talisman-Cyan.png</item>
-        <item>Dragon,Talisman-Red.png</item>
-        <item>Unknowable,Talisman-Blue.png</item>
-        <item>Mystic,Talisman-Orange.png</item>
-        <item>Hero,Talisman-Blue.png</item>
-        <item>Legend,Talisman-Orange.png</item>
-        <item>Creator,Talisman-Magenta.png</item>
-        <item>Sage,Talisman-Magenta.png</item>
-        <item>Miracle,Talisman-Magenta.png</item>
+        <item>Pawn</item>
+        <item>Bishop</item>
+        <item>Knight</item>
+        <item>Rook</item>
+        <item>Queen</item>
+        <item>King</item>
+        <item>Dragon</item>
+        <item>Unknowable</item>
+        <item>Mystic</item>
+        <item>Hero</item>
+        <item>Legend</item>
+        <item>Creator</item>
+        <item>Sage</item>
+        <item>Miracle</item>
     </string-array>
 
     <string-array name="slot_values">
