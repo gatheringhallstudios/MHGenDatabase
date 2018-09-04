@@ -53,13 +53,6 @@ public class WeaponSelectionListFragment extends ListFragment {
 			R.drawable.icon_heavy_bowgun,R.drawable.icon_bow};
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_generic_list, parent, false);

@@ -16,6 +16,7 @@ import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.components.WeaponListEntry;
 
 /**
+ * Adapter used to create weapons that show element information.
  * Created by Mark on 3/3/2015.
  */
 public abstract class WeaponExpandableListElementAdapter extends WeaponExpandableListGeneralAdapter {
@@ -103,10 +104,5 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
             awakenView.setText(awakenText);
 
         }
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        super.onBindViewHolder(viewHolder, position);
     }
 }

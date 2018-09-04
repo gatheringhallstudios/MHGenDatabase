@@ -33,14 +33,16 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
 
     protected final Context mContext;
 
-    /**
-     * Unit of indentation.
-     */
-    private final int mPaddingDP = 4;
-
     public WeaponExpandableListGeneralAdapter(Context context, View.OnLongClickListener listener) {
         this.mContext = context;
         this.mListener = listener;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        WeaponViewHolder holder = (WeaponViewHolder) viewHolder;
+        WeaponListEntry weaponEntry = (WeaponListEntry) getItemAt(position);
+        holder.bindView(mContext, weaponEntry);
     }
 
     public static class WeaponViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +67,11 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
                 R.color.rare_3, R.color.rare_4, R.color.rare_5,
                 R.color.rare_6, R.color.rare_7, R.color.rare_8, R.color.rare_9,
                 R.color.rare_10, R.color.rare_11};
+
+        /**
+         * Unit of indentation.
+         */
+        private final int mPaddingDP = 4;
 
         public WeaponViewHolder(View weaponView) {
             super(weaponView);
@@ -91,8 +98,8 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         }
 
         public void bindView(Context context, WeaponListEntry entry){
-            int padding = 4;
             Weapon weapon = entry.weapon;
+
             String name = weapon.getName();
             // Add ? to indicate that a weapon is create-able
             if(weapon.getCreationCost() > 0)
@@ -133,7 +140,7 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
             //colorBand.setVisibility(View.VISIBLE);
             setColorBandColor(weapon.getRarity()-1);
 
-            int leftPadding = Utils.getPaddingPixels(context, padding)
+            int leftPadding = Utils.getPaddingPixels(context, mPaddingDP)
                     * (entry.getIndentation());
             setPaddingLeft(leftPadding);
 
@@ -154,80 +161,6 @@ public abstract class WeaponExpandableListGeneralAdapter extends MultiLevelExpIn
         public void setColorBandColor(int indentation) {
             int color = view.getContext().getResources().getColor(indColors[indentation]);
             colorBand.setBackgroundColor(color);
-        }
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        WeaponViewHolder holder = (WeaponViewHolder) viewHolder;
-        WeaponListEntry weaponEntry = (WeaponListEntry) getItemAt(position);
-        Weapon weapon = weaponEntry.weapon;
-
-        //
-        // Set the image for the weapon
-        //
-        /*
-        holder.iconView.setTag(weapon.getId());
-        final Bitmap bitmap = getBitmapFromMemCache(weapon.getFileLocation());
-        if(bitmap != null) {
-            holder.iconView.setImageBitmap(bitmap);
-        } else {
-            new LoadImage(holder.iconView, weapon.getFileLocation()).execute();
-        }
-        */
-        //
-        // Get the weapons name
-        //
-        String name = weapon.getName();
-        // Add ? to indicate that a weapon is create-able
-        if(weapon.getCreationCost() > 0)
-            name = name+"\u2605";
-
-        // Get the weapons attack
-        String attack = "DMG: " + weapon.getAttackString();
-
-        //
-        // Get affinity and defense
-        //
-        String affinity = "";
-        if (weapon.getAffinity().length() > 0) {
-            affinity = weapon.getAffinity() + "%";
-        }
-
-
-        String defense = "";
-        if (weapon.getDefense() != 0) {
-            defense = "DEF: " + weapon.getDefense();
-        }
-
-        //
-        // Set remaining items
-        //
-        holder.nameView.setText(name);
-        holder.attackView.setText(attack);
-        holder.slotView.setText(weapon.getSlotString());
-        holder.affinityView.setText(affinity);
-        holder.defenseView.setText(defense);
-
-        holder.view.setOnClickListener(new WeaponClickListener(mContext, weapon.getId()));
-
-        //
-        // Handle indentation
-        //
-
-        //holder.colorBand.setVisibility(View.VISIBLE);
-        holder.setColorBandColor(weapon.getRarity()-1);
-
-        int leftPadding = Utils.getPaddingPixels(mContext, mPaddingDP)
-                * (weaponEntry.getIndentation());
-        holder.setPaddingLeft(leftPadding);
-
-        //
-        // Handle groups
-        //
-        holder.arrow.setVisibility(View.INVISIBLE);
-        if (weaponEntry.isGroup() && weaponEntry.getGroupSize() > 0) {
-            holder.arrow.setVisibility(View.VISIBLE);
         }
     }
 }
