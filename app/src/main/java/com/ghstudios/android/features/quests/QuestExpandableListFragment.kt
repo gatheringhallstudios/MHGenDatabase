@@ -56,28 +56,35 @@ class QuestExpandableListFragment : Fragment() {
         }
 
         if (mHub == "Permit") {
+            val monsters = dataManager.questDeviantMonsterNames()
+
             // Permit quests group by monster instead
             val groupedQuests = allQuests.groupBy { it.permitMonsterId }
-            val monsters = dataManager.questDeviantMonsterNames()
+
             groups = groupedQuests.values.withIndex().map {
                 val idx = it.index
                 val quests = it.value
-                QuestGroup(monsters[idx], quests)
+                QuestGroup(monsters[idx], -1, quests)
             }
+
         } else {
+            // Create a mapping from stars to the displayed value
+            // Necessary because quests are sometimes out of order
             val labelMap = when (mHub) {
                 "Village" -> village.zip(village).toMap() // village maps to self
                 "Guild" -> guildStars.zip(guild).toMap()
                 else -> guildStars.zip(event).toMap()
             }
 
+            // quests grouped by stars
             val groupedQuests = allQuests.groupBy { it.stars }
 
+            // Transform to label/questlist combo, sorted by label position ascending
             groups = groupedQuests.map {
                 val stars = it.key
                 val quests = it.value
-                QuestGroup(labelMap[stars] ?: "", quests)
-            }
+                QuestGroup(labelMap[stars] ?: "", stars?.toInt() ?: -1, quests)
+            }.sortedBy { labelMap.values.indexOf(it.name) }
         }
     }
 

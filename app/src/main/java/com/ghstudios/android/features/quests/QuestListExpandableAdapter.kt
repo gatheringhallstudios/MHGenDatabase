@@ -21,6 +21,7 @@ enum class QuestAdapterType {
 
 class QuestGroup(
         val name: String,
+        val stars: Int,
         val quests: List<Quest>
 )
 
@@ -38,7 +39,7 @@ class QuestListExpandableAdapter(
     override fun getGroupId(i: Int) = i.toLong()
     override fun getChildId(groupPosition: Int, childPosition: Int) = groupPosition * 200L + childPosition
 
-    override fun getGroup(i: Int) = questGroups[i].name
+    override fun getGroup(i: Int) = questGroups[i]
 
     override fun getChild(groupPosition: Int, childPosition: Int): Any {
         return questGroups[groupPosition].quests[childPosition]
@@ -66,17 +67,19 @@ class QuestListExpandableAdapter(
         stars[8] = v.findViewById(R.id.star9)
         stars[9] = v.findViewById(R.id.star10)
 
+        val group = getGroup(groupPosition)
+
         if (type == QuestAdapterType.PERMIT) {
             for (j in 0..9) {
                 stars[j]?.visibility = View.INVISIBLE
             }
         } else if (type == QuestAdapterType.VILLAGE) {
-            for (j in 0..groupPosition) {
+            for (j in 0 until group.stars) {
                 stars[j]?.visibility = View.VISIBLE
             }
         } else {
-            if (groupPosition < 7) {
-                for (j in 0..groupPosition) {
+            if (group.stars <= 10) {
+                for (j in 0 until group.stars) {
                     stars[j]?.visibility = View.VISIBLE
                 }
             } else {
@@ -84,7 +87,7 @@ class QuestListExpandableAdapter(
             }
         }
 
-        questGroupTextView.text = getGroup(groupPosition)
+        questGroupTextView.text = group.name
 
         return v
     }
