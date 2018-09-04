@@ -4,10 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.ghstudios.android.data.classes.Gathering
-import com.ghstudios.android.data.classes.MonsterToQuest
-import com.ghstudios.android.data.classes.Quest
-import com.ghstudios.android.data.classes.QuestReward
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
@@ -23,6 +20,7 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
     val monsters = MutableLiveData<List<MonsterToQuest>>()
     val quest = MutableLiveData<Quest>()
     val gatherings = MutableLiveData<List<Gathering>>()
+    val huntingRewards = MutableLiveData<List<HuntingReward>>()
 
     fun setQuest(questId: Long): Quest? {
         if (questId == quest.value?.id) {
@@ -47,6 +45,11 @@ class QuestDetailViewModel(app : Application) : AndroidViewModel(app) {
                     it.gathering
                 }
                 gatherings.postValue(gatherData)
+            }else if(quest.hasHuntingRewardItem){
+                val rewardData = dataManager.queryHuntingRewardForQuest(quest.id,quest.rank?:"").toList {
+                    it.huntingReward
+                }
+                huntingRewards.postValue(rewardData)
             }
         }
 

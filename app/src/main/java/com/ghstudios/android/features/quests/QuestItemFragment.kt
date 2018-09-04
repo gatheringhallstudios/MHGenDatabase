@@ -8,9 +8,14 @@ import android.support.v4.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
+import com.ghstudios.android.ClickListeners.MonsterClickListener
 import com.ghstudios.android.SectionArrayAdapter
 import com.ghstudios.android.data.classes.Gathering
+import com.ghstudios.android.data.classes.HuntingReward
 import com.ghstudios.android.mhgendatabase.R
 
 class QuestItemFragment : ListFragment() {
@@ -23,12 +28,16 @@ class QuestItemFragment : ListFragment() {
 
         val viewModel = ViewModelProviders.of(activity!!).get(QuestDetailViewModel::class.java)
         viewModel.gatherings.observe(this,Observer<List<Gathering>>{this.populateGatherings(it)})
+        viewModel.huntingRewards.observe(this,Observer<List<HuntingReward>>{this.populateHuntingRewards(it)})
     }
 
     private fun populateGatherings(gatherings:List<Gathering>?){
         listAdapter = GatheringAdapter(this.context!!,gatherings!!)
     }
 
+    private fun populateHuntingRewards(rewards:List<HuntingReward>?){
+        listAdapter = HuntingRewardAdapter(this.context!!,rewards!!)
+    }
 
     private class GatheringAdapter(context: Context, items:List<Gathering>) : SectionArrayAdapter<Gathering>(context,items,R.layout.listview_generic_header){
 
@@ -53,5 +62,44 @@ class QuestItemFragment : ListFragment() {
             rateTextView.text = java.lang.Long.toString(rate) + "%"
         }
     }
+    private class HuntingRewardAdapter(context: Context, items:List<HuntingReward>) : SectionArrayAdapter<HuntingReward>(context,items,R.layout.listview_generic_header){
 
+        override fun getGroupName(item: HuntingReward?): String {
+            return item?.item?.name ?: ""
+        }
+
+        override fun newView(context: Context?, item: HuntingReward?, parent: ViewGroup?): View {
+            return LayoutInflater.from(context!!).inflate(R.layout.fragment_item_monster_listitem,parent,false)
+        }
+
+        override fun bindView(view: View?, context: Context?, hr: HuntingReward?) {
+            if(hr == null || view == null) return
+
+            val itemLayout = view.findViewById<RelativeLayout>(R.id.listitem)
+
+            val rankTextView = view.findViewById<TextView>(R.id.rank)
+            val monsterTextView = view.findViewById<TextView>(R.id.monster)
+            val methodTextView = view.findViewById<TextView>(R.id.method)
+            val amountTextView = view.findViewById<TextView>(R.id.amount)
+            val percentageTextView = view.findViewById<TextView>(R.id.percentage)
+            val monsterImageView = view.findViewById<ImageView>(R.id.monster_image)
+
+            val cellAmountText = hr.stackSize
+            val cellPercentageText = hr.percentage
+            hr.percentage
+            rankTextView.text = hr.rank
+            monsterTextView.text = hr.monster?.name
+            methodTextView.text = hr.condition
+            amountTextView.text = "x$cellAmountText"
+
+            val percent = "$cellPercentageText%"
+            percentageTextView.text = percent
+
+            itemLayout.tag = hr.monster?.id
+            itemLayout.setOnClickListener(MonsterClickListener(context,
+                    hr.monster!!.id))
+
+            AssetLoader.setIcon(monsterImageView, hr.monster!!)
+        }
+    }
 }

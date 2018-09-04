@@ -36,6 +36,21 @@ class HuntingRewardsDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /*
+    * Get all hunting reward monsters based on item and rank
+    */
+    fun queryHuntingRewardForQuest(questId: Long, rank: String): HuntingRewardCursor {
+        return HuntingRewardCursor(db.rawQuery("""
+            SELECT $reward_columns
+            FROM item_to_quest itq
+                INNER JOIN hunting_rewards h ON h.item_id = itq.item_id
+                INNER JOIN items i ON i._id = itq.item_id
+                INNER JOIN monsters m ON m._id = h.monster_id
+            WHERE itq.quest_id = ? AND h.rank = ?
+            ORDER BY m._id
+        """, arrayOf(questId.toString(),rank)))
+    }
+
+    /*
      * Get all hunting reward items based on monster
      */
     fun queryHuntingRewardMonster(id: Long): HuntingRewardCursor {

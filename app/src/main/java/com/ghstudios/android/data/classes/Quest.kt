@@ -95,6 +95,7 @@ class Quest: ITintedIcon {
      * Resolves to true if the quest contains a gathering item
      */
     val hasGatheringItem get() = metadata and 1 > 0
+    val hasHuntingRewardItem get() = metadata and 4 > 0
 
     fun HasAcademyPointRequirement(): Boolean {
         return metadata and 2 > 0

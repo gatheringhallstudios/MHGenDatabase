@@ -248,7 +248,7 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     fun queryGatheringForQuest(questId: Long, locationId: Long, rank: String): GatheringCursor {
-        return gatheringDao.queryGatheringsForQuest(questId, locationId, rank)
+        return gatheringDao.queryGatheringsForQuest(questId, if(locationId>=100) locationId-100 else locationId, rank)
     }
 
 
@@ -257,6 +257,11 @@ class DataManager private constructor(private val mAppContext: Context) {
     /* Get a Cursor that has a list of HuntingReward based on Item */
     fun queryHuntingRewardItem(id: Long): HuntingRewardCursor {
         return huntingRewardsDao.queryHuntingRewardItem(id)
+    }
+
+    /* Get a Cursor that has a list of HuntingReward based on Item and Rank*/
+    fun queryHuntingRewardForQuest(id: Long, rank: String): HuntingRewardCursor {
+        return huntingRewardsDao.queryHuntingRewardForQuest(id,rank)
     }
 
     /* Get a Cursor that has a list of HuntingReward based on Monster */
