@@ -39,9 +39,6 @@ public class ArmorExpandableListFragment extends Fragment {
     public static final String KEY_FILTER_SLOTS = "FILTER_SLOTS";
     public static final String KEY_FILTER_SLOTS_SPECIFICATION = "FILTER_SLOTS_SPEC";
 
-    private String[] slots = {"Rare 1", "Rare 2", "Rare 3", "Rare 4", "Rare 5",
-                                "Rare 6","Rare 7","Rare 8","Rare 9","Rare 10","Rare X"};
-
     private ArrayList<ArrayList<ArmorFamily>> children;
     private int hunterType;
 
@@ -90,8 +87,10 @@ public class ArmorExpandableListFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_generic_expandable_list, container, false);
+
+        String[] armorRarityLevels = getResources().getStringArray(R.array.armor_rarity_levels);
         elv = v.findViewById(R.id.expandableListView);
-        adapter = new ArmorListAdapter(slots);
+        adapter = new ArmorListAdapter(armorRarityLevels);
         elv.setAdapter(adapter);
         return v;
     }

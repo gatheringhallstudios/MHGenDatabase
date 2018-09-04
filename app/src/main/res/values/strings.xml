@@ -166,7 +166,7 @@
     <string name="skill_tab_waist">Waist</string>
     <string name="skill_tab_legs">Legs</string>
 
-    <!-- Armor detail -->
+    <!-- Armor -->
     <string name="armor_part">Part</string>
     <string name="armor_defense">Defense</string>
     <string name="armor_type_both">Any</string>
@@ -179,6 +179,19 @@
     <string name="armor_res_thunder">Thunder Res:</string>
     <string name="armor_res_ice">Ice Res:</string>
     <string name="armor_res_dragon">Dragon Res:</string>
+    <string-array name="armor_rarity_levels">
+        <item>Rare 1</item>
+        <item>Rare 2</item>
+        <item>Rare 3</item>
+        <item>Rare 4</item>
+        <item>Rare 5</item>
+        <item>Rare 6</item>
+        <item>Rare 7</item>
+        <item>Rare 8</item>
+        <item>Rare 9</item>
+        <item>Rare 10</item>
+        <item>Rare X</item>
+    </string-array>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_name_hint">Wishlist Name</string>
@@ -214,7 +227,8 @@
     <string name="two_slot_jewel">●●</string>
     <string name="three_slot_jewel">●●●</string>
 
-    <!-- ASB List stuff -->
+
+    <!-- Armor Set Builder Stuff !-->
     <string name="activity_asb_sets">Armor Sets</string>
 
     <string name="dialog_title_add_asb_set">New Set</string>
@@ -226,10 +240,10 @@
     <string name="context_action_asb_edit_data">Edit Data</string>
     <string name="context_action_asb_copy">Copy</string>
 
-    <!-- Armor Set Builder Stuff !-->
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
     <string name="asb_tab_skills">Skills</string>
+    <string name="activity_asb_armor_picker">Select Armor</string>
 
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slot">No slot</string>
@@ -265,7 +279,7 @@
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
 
-
+    <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
     <string name="ammo_divider">" • "</string>
     <string name="rapid_fire_short_wait">Short</string>

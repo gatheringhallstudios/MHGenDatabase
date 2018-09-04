@@ -19,7 +19,7 @@ class ArmorSelectAllFragment : Fragment() {
      * ViewModel (anchored to parent)
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ArmorSelectAllViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(ArmorSelectViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

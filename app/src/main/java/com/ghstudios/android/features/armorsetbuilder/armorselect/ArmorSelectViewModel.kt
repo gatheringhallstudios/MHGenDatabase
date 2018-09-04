@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 
 
@@ -18,21 +19,23 @@ fun getSlotForPieceIndex(pieceIndex: Int) = when(pieceIndex) {
     else -> ""
 }
 
-class ArmorSelectAllViewModel(private val app: Application): AndroidViewModel(app) {
+class ArmorSelectViewModel(private val app: Application): AndroidViewModel(app) {
     private val dataManager = DataManager.get()
 
     val allArmorData = MutableLiveData<List<ArmorGroup>>()
 
     fun initialize(asbIndex: Int, hunterType: Int) {
         val armorSlot = getSlotForPieceIndex(asbIndex)
+        val rarityLevels = app.resources.getStringArray(R.array.armor_rarity_levels)
 
         loggedThread("Armor Select armor loading") {
             val armorSkillPoints = dataManager.queryArmorSkillPointsByType(armorSlot, hunterType)
-            val allArmorItems = armorSkillPoints.groupBy { it.armor.rarity }.map {
+            val allArmorItems = armorSkillPoints.groupBy { it.armor.rarity }.toSortedMap().map {
                 val rarity = it.key
                 val armorPieces = it.value
 
-                ArmorGroup(rarity.toString(), armorPieces)
+                val labelName = rarityLevels[rarity-1]
+                ArmorGroup(labelName, armorPieces)
             }
             allArmorData.postValue(allArmorItems)
         }
