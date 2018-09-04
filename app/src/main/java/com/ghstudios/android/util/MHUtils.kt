@@ -26,33 +26,6 @@ object MHUtils {
     }
 
     /**
-     * Attempts to split the specified string by a comma.
-     * Note: Avoid using this for new code. Its...awkward
-     * @param stringArray The `string-array` resource from which to parse.
-     * @param index The index in the string array to fetch a string from.
-     * @param part The 0-based index of final piece of the string to retrieve.
-     * @return The `part` index of a group of strings created by splitting the desired string by commas.
-     */
-    @JvmStatic fun splitStringInArrayByComma(@ArrayRes stringArray: Int, index: Int, part: Int, context: Context): String {
-        val fullString: String
-
-        try {
-            fullString = context.resources.getStringArray(stringArray)[index]
-        } catch (e: ArrayIndexOutOfBoundsException) {
-            Log.e("App", "The string array resource does not have the specified index.")
-            return ""
-        }
-
-        try {
-            return fullString.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[part]
-        } catch (e: ArrayIndexOutOfBoundsException) {
-            Log.e("App", "The specified string in the array does not have a comma in it.")
-            return ""
-        }
-
-    }
-
-    /**
      * Extracts every value in a cursor, returning a list of objects.
      * This method exhausts the cursor and closes it.
      */

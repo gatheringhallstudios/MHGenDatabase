@@ -153,16 +153,15 @@ public class ASBSessionCursor extends CursorWrapper {
         }
 
         if (talismanExists == 1) {
-            ASBTalisman talisman = new ASBTalisman();
-            talisman.setName(MHUtils.splitStringInArrayByComma(R.array.talisman_names, talismanType, 0, context) + " Talisman");
-            talisman.setTypeIndex(talismanType);
+            ASBTalisman talisman = new ASBTalisman(talismanType);
+
+            String typeName = context.getResources().getStringArray(R.array.talisman_names)[talismanType];
+            talisman.setName(context.getString(R.string.talisman_full_name, typeName));
             talisman.setNumSlots(talismanSlots);
-            talisman.setSkill1(getSkillTreeById(context, talismanSkill1Id));
-            talisman.setSkill1Points(talismanSkill1Points);
+            talisman.setFirstSkill(getSkillTreeById(context, talismanSkill1Id), talismanSkill1Points);
 
             if (talismanSkill2Id != -1) {
-                talisman.setSkill2(getSkillTreeById(context, talismanSkill2Id));
-                talisman.setSkill2Points(talismanSkill2Points);
+                talisman.setSecondSkill(getSkillTreeById(context, talismanSkill2Id), talismanSkill2Points);
             }
 
             session.setEquipment(ASBSession.TALISMAN, talisman, false);

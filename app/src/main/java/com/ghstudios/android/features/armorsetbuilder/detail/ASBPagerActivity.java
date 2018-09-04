@@ -1,8 +1,10 @@
 package com.ghstudios.android.features.armorsetbuilder.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListFragment;
@@ -40,80 +42,27 @@ public class ASBPagerActivity extends BasePagerActivity {
     public static final int REQUEST_CODE_REMOVE_PIECE = 540;
     public static final int REQUEST_CODE_REMOVE_DECORATION = 541;
 
-    private ASBSession session;
-
-    private List<OnASBSetActivityUpdateListener> onASBSetActivityUpdateListeners;
 
     @Override
     public void onAddTabs(TabAdder tabs) {
-        onASBSetActivityUpdateListeners = new ArrayList<>();
-
         setTitle(getIntent().getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME));
+        long asbId = getIntent().getLongExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, -1);
 
-        LoaderManager lm = getSupportLoaderManager();
-        lm.initLoader(R.id.asb_set_activity, null, new ASBSetLoaderCallbacks());
+        try {
+            ASBDetailViewModel viewModel = ViewModelProviders.of(this).get(ASBDetailViewModel.class);
+            viewModel.loadSession(asbId);
 
-        // we don't add tabs here. Tabs are reset when the loader complete
-    }
+            tabs.addTab(getString(R.string.asb_tab_equipment), ASBFragment::new);
+            tabs.addTab(getString(R.string.asb_tab_skills), ASBSkillsListFragment::new);
 
-    @Override
-    public void onPause() {
-        super.onPause();
+        } catch (Exception ex) {
+            showFatalError();
+            Log.e(getClass().getSimpleName(), "Fatal error loading ASB", ex);
+        }
     }
 
     @Override
     protected int getSelectedSection() {
         return MenuSection.ARMOR_SET_BUILDER;
-    }
-
-    public ASBSession getASBSession() {
-        return session;
-    }
-
-    public void addASBSetChangedListener(OnASBSetActivityUpdateListener a) {
-        onASBSetActivityUpdateListeners.add(a);
-    }
-
-    public void updateASBSetChangedListeners() {
-        if (onASBSetActivityUpdateListeners != null) {
-            for (OnASBSetActivityUpdateListener a : onASBSetActivityUpdateListeners) {
-                a.onASBActivityUpdated(session);
-            }
-        }
-    }
-
-    public interface OnASBSetActivityUpdateListener {
-        void onASBActivityUpdated(ASBSession s);
-    }
-
-    private class ASBSetLoaderCallbacks implements LoaderManager.LoaderCallbacks<ASBSession> {
-        @Override
-        public Loader<ASBSession> onCreateLoader(int id, Bundle args) {
-            return new ASBSessionLoader(ASBPagerActivity.this, getIntent().getLongExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, -1));
-        }
-
-        @Override
-        public void onLoadFinished(Loader<ASBSession> loader, ASBSession run) {
-            session = run;
-
-            resetTabs((tabs) -> {
-                // Load the tabs now that we have a session
-                tabs.addTab("Equipment", () ->
-                        ASBFragment.newInstance(session.getRank(), session.getHunterType())
-                );
-                tabs.addTab("Skills", () ->
-                        ASBSkillsListFragment.newInstance()
-                );
-
-                // Required for Kotlin interop
-                return Unit.INSTANCE;
-            });
-
-            updateASBSetChangedListeners();
-        }
-
-        @Override
-        public void onLoaderReset(Loader<ASBSession> loader) {
-        }
     }
 }

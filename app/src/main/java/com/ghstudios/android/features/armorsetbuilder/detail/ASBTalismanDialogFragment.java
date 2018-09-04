@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.ghstudios.android.data.classes.ASBTalisman;
+import com.ghstudios.android.data.classes.SkillTreePoints;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity;
@@ -45,12 +46,13 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
         Bundle args = new Bundle();
         args.putInt(ARG_TYPE_INDEX, talisman.getTypeIndex());
         args.putInt(ARG_SLOTS, talisman.getNumSlots());
-        args.putLong(ARG_SKILL_1_ID, talisman.getSkill1().getId());
-        args.putInt(ARG_SKILL_1_POINTS, talisman.getSkill1Points());
+        args.putLong(ARG_SKILL_1_ID, talisman.getFirstSkill().getSkillTree().getId());
+        args.putInt(ARG_SKILL_1_POINTS, talisman.getFirstSkill().getPoints());
 
-        if (talisman.getSkill2() != null) {
-            args.putLong(ARG_SKILL_2_ID, talisman.getSkill2().getId());
-            args.putInt(ARG_SKILL_2_POINTS, talisman.getSkill2Points());
+        SkillTreePoints secondSkill = talisman.getSecondSkill();
+        if (secondSkill != null) {
+            args.putLong(ARG_SKILL_2_ID, secondSkill.getSkillTree().getId());
+            args.putInt(ARG_SKILL_2_POINTS, secondSkill.getPoints());
         } else {
             args.putLong(ARG_SKILL_2_ID, -1);
         }

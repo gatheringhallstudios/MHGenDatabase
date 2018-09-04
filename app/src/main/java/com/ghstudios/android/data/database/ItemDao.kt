@@ -4,8 +4,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.AppSettings
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
-import com.ghstudios.android.data.util.SqlFilter
-import com.ghstudios.android.data.util.localizeColumn
+import com.ghstudios.android.data.util.*
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
 
@@ -23,11 +22,15 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
                 "type, sub_type, rarity, carry_capacity, buy, sell, icon_name, icon_color, account "
 
     // todo: add family, remove "item only" fields like carry cap
-    private val armor_columns
-        get() = "_id, $column_name name, name_ja, $column_description description, " +
-                "rarity, slot, gender, hunter_type, num_slots, " +
-                "defense, max_defense, fire_res, thunder_res, dragon_res, water_res, ice_res, " +
-                "type, sub_type, carry_capacity, buy, sell, icon_name, icon_color "
+    /**
+     * Returns columns for armor, prefixed using an armor prefix and item prefix
+     * to avoid ambiguity
+     */
+    private fun armor_columns(a : String, i: String) =
+            "$a._id, $i.$column_name name, $i.name_ja, $column_description description, " +
+            "rarity, slot, gender, hunter_type, num_slots, " +
+            "defense, max_defense, fire_res, thunder_res, dragon_res, water_res, ice_res, " +
+            "type, sub_type, carry_capacity, buy, sell, icon_name, icon_color "
 
 
     /**
@@ -180,7 +183,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryArmor(): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
-            SELECT $armor_columns
+            SELECT ${armor_columns("a", "i")}
             FROM armor a LEFT OUTER JOIN items i USING (_id)
         """, emptyArray()))
     }
@@ -190,7 +193,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryArmor(id: Long): Armor? {
         return ArmorCursor(db.rawQuery("""
-            SELECT $armor_columns
+            SELECT ${armor_columns("a", "i")}
             FROM armor a LEFT OUTER JOIN items i USING (_id)
             WHERE a._id = ?
         """, arrayOf(id.toString()))).firstOrNull { it.armor }
@@ -201,22 +204,66 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     fun queryArmorByFamily(id: Long): List<Armor> {
         return ArmorCursor(db.rawQuery("""
-            SELECT $armor_columns
+            SELECT ${armor_columns("a", "i")}
             FROM armor a LEFT OUTER JOIN items i USING (_id)
             WHERE a.family = ?
         """, arrayOf(id.toString()))).toList { it.armor }
     }
 
     /**
-     * Get a specific armor based on hunter type.
+     * Get a list of armor based on hunter type.
      * If "BOTH" is passed, then its equivalent to querying all armor
      */
     fun queryArmorType(type: Int): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
-            SELECT $armor_columns
+            SELECT ${armor_columns("a", "i")}
             FROM armor a LEFT OUTER JOIN items i USING (_id)
             WHERE a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2'
         """, arrayOf(type.toString())))
+    }
+
+    /**
+     * Get a list of armor based on hunter type with a list of all awarded skill points.
+     * If "BOTH" is passed, then its equivalent to querying all armor.
+     * If NULL is passed for armorSlot, then it queries all armor types.
+     */
+    fun queryArmorSkillPointsByType(armorSlot: String, hunterType: Int): List<ArmorSkillPoints> {
+        // note we use armor cursor as its basically armor + a few columns
+        val cursor = ArmorCursor(db.rawQuery("""
+            SELECT ${armor_columns("a", "i")}, st._id as st_id, st.$column_name AS st_name, st.name_ja as st_name_ja, its.point_value
+            FROM armor a
+                LEFT OUTER JOIN items i USING (_id)
+                JOIN item_to_skill_tree its on its.item_id = a._id
+                JOIN skill_trees st on st._id = its.skill_tree_id
+            WHERE (a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2')
+              AND (a.slot = @slot OR @slot IS NULL)
+            ORDER BY a._id ASC
+        """, arrayOf(hunterType.toString(), armorSlot)))
+
+        // stores armor and skills as its processed
+        val armorMap = LinkedHashMap<Long, Armor>()
+        val armorToSkills = LinkedHashMap<Long, MutableList<SkillTreePoints>>()
+
+        // Iterate cursor
+        cursor.use {
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong("_id")
+                armorMap.getOrPut(id) { cursor.armor }
+
+                val skillPoints = SkillTreePoints(SkillTree(
+                        cursor.getLong("st_id"),
+                        cursor.getString("st_name"),
+                        cursor.getString("st_name_ja")
+                ), cursor.getInt("point_value"))
+
+                armorToSkills.getOrPut(id) { mutableListOf() }.add(skillPoints)
+            }
+        }
+
+        // assemble results
+        return armorToSkills.map {
+            ArmorSkillPoints(armorMap[it.key]!!, it.value)
+        }
     }
 
     fun queryArmorFamilies(type: Int): ArmorFamilyCursor{

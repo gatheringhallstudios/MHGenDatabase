@@ -38,7 +38,7 @@
     <color name="divider_color">#36000000</color>
     <color name="subheading_color">@color/light_accent_color</color>
 
-    <color name="list_background">#ffffff</color>
+    <color name="list_background">#f5f5f5</color> <!-- note, this might actually be unused? it does nothing in list_view_generic -->
     <color name="list_text">#333333</color>
 
     <color name="text_color">#333333</color>
@@ -124,6 +124,23 @@
         <item>@color/item_dark_red</item>
         <item>@color/item_dark_blue</item>
         <item>@color/item_dark_purple</item>
+    </array>
+
+    <array name="talisman_colors">
+        <item>@color/item_white</item>
+        <item>@color/item_purple</item>
+        <item>@color/item_yellow</item>
+        <item>@color/item_pink</item>
+        <item>@color/item_green</item>
+        <item>@color/item_cyan</item>
+        <item>@color/item_red</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
     </array>
 
 </resources>

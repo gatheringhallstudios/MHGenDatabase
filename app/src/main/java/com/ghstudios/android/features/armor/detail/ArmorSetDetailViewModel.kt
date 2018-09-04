@@ -10,14 +10,6 @@ import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
 /**
- * A temporary inner object containing an armor piece and its associated skill points
- */
-data class ArmorSkillPoints(
-        val armor: Armor,
-        val skills: List<SkillTreePoints>
-)
-
-/**
  * A viewmodel binded to the activity containing all armor pieces,
  * as well as the armor set summary itself.
  *

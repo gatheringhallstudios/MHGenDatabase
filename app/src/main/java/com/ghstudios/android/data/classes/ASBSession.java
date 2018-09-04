@@ -341,10 +341,16 @@ public class ASBSession {
                     skills.put(itemToSkillTree.getSkillTree(), itemToSkillTree.getPoints());
                 }
             } else {
-                skills.put(getTalisman().getSkill1(), getTalisman().getSkill1Points());
+                ASBTalisman talisman = getTalisman();
+                SkillTreePoints firstSkill = talisman.getFirstSkill();
+                SkillTreePoints secondSkill = talisman.getSecondSkill();
 
-                if (getTalisman().getSkill2() != null) {
-                    skills.put(getTalisman().getSkill2(), getTalisman().getSkill2Points());
+                if (firstSkill != null) {
+                    skills.put(firstSkill.getSkillTree(), firstSkill.getPoints());
+                }
+
+                if (secondSkill != null) {
+                    skills.put(secondSkill.getSkillTree(), secondSkill.getPoints());
                 }
             }
 

@@ -9,9 +9,7 @@
     <RelativeLayout
         style="@style/list_item"
         android:layout_width="match_parent"
-        android:background="@color/list_background"
         android:orientation="horizontal">
-
 
         <LinearLayout
             android:layout_width="match_parent"
