@@ -4,27 +4,7 @@ import android.app.Application
 import android.content.Context
 
 import com.ghstudios.android.components.WeaponListEntry
-import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ASBSet
-import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.data.classes.ArmorFamily
-import com.ghstudios.android.data.classes.Decoration
-import com.ghstudios.android.data.classes.Item
-import com.ghstudios.android.data.classes.ItemToSkillTree
-import com.ghstudios.android.data.classes.ItemType
-import com.ghstudios.android.data.classes.Location
-import com.ghstudios.android.data.classes.Monster
-import com.ghstudios.android.data.classes.MonsterClass
-import com.ghstudios.android.data.classes.MonsterDamage
-import com.ghstudios.android.data.classes.MonsterStatus
-import com.ghstudios.android.data.classes.MonsterWeakness
-import com.ghstudios.android.data.classes.PalicoArmor
-import com.ghstudios.android.data.classes.PalicoWeapon
-import com.ghstudios.android.data.classes.Quest
-import com.ghstudios.android.data.classes.SkillTree
-import com.ghstudios.android.data.classes.Weapon
-import com.ghstudios.android.data.classes.Wishlist
-import com.ghstudios.android.data.classes.WyporiumTrade
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
@@ -132,6 +112,14 @@ class DataManager private constructor(private val mAppContext: Context) {
     fun queryArmorArrayType(type: Int): List<Armor> {
         val cursor = itemDao.queryArmorType(type)
         return cursor.toList { it.armor }
+    }
+
+    /**
+     * Get a list of armor based on hunter type with a list of all awarded skill points.
+     * If "BOTH" is passed, then its equivalent to querying all armor
+     */
+    fun queryArmorSkillPointsByType(armorSlot: String, hunterType: Int): List<ArmorSkillPoints> {
+        return itemDao.queryArmorSkillPointsByType(armorSlot, hunterType)
     }
 
     fun queryArmorFamilies(type: Int): List<ArmorFamily> {

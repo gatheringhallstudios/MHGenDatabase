@@ -14,9 +14,16 @@ class Armor : Equipment() {
         const val GENDER_MALE = 0
         const val GENDER_FEMALE = 1
         const val GENDER_BOTH = 2
+
+        const val ARMOR_SLOT_HEAD = "Head"
+        const val ARMOR_SLOT_BODY = "Body"
+        const val ARMOR_SLOT_ARMS = "Arms"
+        const val ARMOR_SLOT_WAIST = "Waist"
+        const val ARMOR_SLOT_LEGS = "Legs"
     }
 
     /* Getters and Setters */
+
     /** Equipment type */
     var slot: String? = ""
 

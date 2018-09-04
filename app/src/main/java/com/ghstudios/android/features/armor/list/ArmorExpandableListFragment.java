@@ -161,19 +161,6 @@ public class ArmorExpandableListFragment extends Fragment {
 
             armorGroupTextView.setText(getGroup(i).toString());
 
-            if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                int piece = getActivity().getIntent().getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1);
-
-                if (piece != -1) {
-                    elv.setDividerHeight(0);
-                    if (i != piece) {
-                        v = new FrameLayout(context); // We hide the group if it's not the type of armor we're looking for
-                    }
-                    else {
-                        elv.expandGroup(i);
-                    }
-                }
-            }
             return v;
         }
 
@@ -221,13 +208,7 @@ public class ArmorExpandableListFragment extends Fragment {
             }
 
             root.setTag(family.getId());
-
-            if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-                root.setOnClickListener(new ArmorClickListener(context, family.getId(),true, getActivity(), ASBPagerActivity.REQUEST_CODE_ADD_PIECE));
-            }
-            else {
-                root.setOnClickListener(new ArmorClickListener(context, family.getId(),true));
-            }
+            root.setOnClickListener(new ArmorClickListener(context, family.getId(),true));
 
             return v;
         }

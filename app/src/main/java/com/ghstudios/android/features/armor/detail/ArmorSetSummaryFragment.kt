@@ -18,6 +18,7 @@ import com.ghstudios.android.components.ColumnLabelTextCell
 import com.ghstudios.android.components.ItemRecipeCell
 import com.ghstudios.android.components.LabelTextCell
 import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.ArmorSkillPoints
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.SkillTreePoints
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment

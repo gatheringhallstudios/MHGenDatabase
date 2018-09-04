@@ -23,6 +23,7 @@ import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
 import com.ghstudios.android.util.setImageAsset
 
@@ -187,7 +188,7 @@ class ASBPieceContainer
             d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
             d.show(parentFragment!!.fragmentManager, "TALISMAN")
         } else {
-            val i = Intent(context, ArmorListPagerActivity::class.java)
+            val i = Intent(context, ArmorSelectActivity::class.java)
             i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
             i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
             i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, session.rank)
