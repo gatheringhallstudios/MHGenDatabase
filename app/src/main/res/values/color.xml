@@ -38,7 +38,7 @@
     <color name="divider_color">#36000000</color>
     <color name="subheading_color">@color/light_accent_color</color>
 
-    <color name="list_background">#ffffff</color>
+    <color name="list_background">#f5f5f5</color> <!-- note, this might actually be unused? it does nothing in list_view_generic -->
     <color name="list_text">#333333</color>
 
     <color name="text_color">#333333</color>
