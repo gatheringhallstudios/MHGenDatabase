@@ -14,7 +14,7 @@
         <com.ghstudios.android.components.TitleBarCell
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:iconSrc="@drawable/icon_egg"
+            app:iconSrc="@drawable/ic_mascot"
             app:titleText="MHGU Database"/>
 
         <FrameLayout style="@style/SectionDivider"/>
@@ -38,7 +38,7 @@
             <com.ghstudios.android.components.IconLabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:iconSrc="@drawable/icon_egg"
+                app:iconSrc="@drawable/ic_mascot"
                 app:labelText="Website"
                 android:tag="http://gatheringhallstudios.com/" />
 
@@ -94,7 +94,7 @@
         <com.ghstudios.android.components.SectionHeaderCell
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:labelText="Credits (MHGen and previous apps)" />
+            app:labelText="Credits (MHGen)" />
 
         <LinearLayout
             android:layout_width="match_parent"
