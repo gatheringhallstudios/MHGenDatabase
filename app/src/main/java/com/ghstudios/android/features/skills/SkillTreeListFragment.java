@@ -53,10 +53,11 @@ public class SkillTreeListFragment extends ListFragment implements
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
-		SkillTreeListCursorAdapter adapter = new SkillTreeListCursorAdapter(
-				getActivity(), (SkillTreeCursor) cursor);
-		setListAdapter(adapter);
-
+		if (getListAdapter() == null) {
+			SkillTreeListCursorAdapter adapter = new SkillTreeListCursorAdapter(
+					getActivity(), (SkillTreeCursor) cursor);
+			setListAdapter(adapter);
+		}
 	}
 
 	@Override

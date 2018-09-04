@@ -45,8 +45,7 @@ public class MonsterQuestFragment extends ListFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_generic_list, null);
-        return v;
+        return inflater.inflate(R.layout.fragment_generic_list, container, false);
     }
 
     @SuppressLint("NewApi")
@@ -64,10 +63,11 @@ public class MonsterQuestFragment extends ListFragment implements
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         // Create an adapter to point at this cursor
         Log.i("Test","OnLoadFinished");
-        MonsterToQuestListCursorAdapter adapter = new MonsterToQuestListCursorAdapter(
-                getActivity(), (MonsterToQuestCursor) cursor);
-        setListAdapter(adapter);
-
+        if (getListAdapter() == null) {
+            MonsterToQuestListCursorAdapter adapter = new MonsterToQuestListCursorAdapter(
+                    getActivity(), (MonsterToQuestCursor) cursor);
+            setListAdapter(adapter);
+        }
     }
 
     @Override

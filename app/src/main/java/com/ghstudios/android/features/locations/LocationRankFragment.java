@@ -66,8 +66,7 @@ public class LocationRankFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_generic_list, null);
-		return v;
+		return inflater.inflate(R.layout.fragment_generic_list, null);
 	}
 
 	@Override
@@ -88,10 +87,11 @@ public class LocationRankFragment extends ListFragment implements
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
-		GatheringListCursorAdapter adapter = new GatheringListCursorAdapter(
-				getActivity(), (GatheringCursor) cursor);
-		setListAdapter(adapter);
-
+		if (getListAdapter() == null) {
+			GatheringListCursorAdapter adapter = new GatheringListCursorAdapter(
+					getActivity(), (GatheringCursor) cursor);
+			setListAdapter(adapter);
+		}
 	}
 
 	@Override

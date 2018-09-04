@@ -54,10 +54,6 @@ public class LocationHabitatFragment extends ListFragment implements
         return fragment;
     }
 
-    public LocationHabitatFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +81,11 @@ public class LocationHabitatFragment extends ListFragment implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         // Create an adapter to point at this cursor
-
-        MonsterHabitatCursorAdapter adapter = new MonsterHabitatCursorAdapter(
-                getActivity(), (MonsterHabitatCursor) cursor);
-        setListAdapter(adapter);
-
+        if (getListAdapter() == null) {
+            MonsterHabitatCursorAdapter adapter = new MonsterHabitatCursorAdapter(
+                    getActivity(), (MonsterHabitatCursor) cursor);
+            setListAdapter(adapter);
+        }
     }
 
     @Override
