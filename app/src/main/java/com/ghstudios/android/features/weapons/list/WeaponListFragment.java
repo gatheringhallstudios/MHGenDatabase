@@ -92,14 +92,15 @@ public class WeaponListFragment extends RecyclerViewFragment {
         this.setAdapter(mAdapter);
 
         viewModel.getWeaponListData().observe(this, (weapons) -> {
+            mAdapter.clear();
             mAdapter.addAll(weapons);
-        });
 
-        // restore collapsed groups if we are restoring the fragment
-        if (viewModel.getCollapsedGroups() != null) {
-            mAdapter.restoreGroups(viewModel.getCollapsedGroups());
-            viewModel.setCollapsedGroups(null);
-        }
+            // restore collapsed groups if we are restoring the fragment
+            if (viewModel.getCollapsedGroups() != null) {
+                mAdapter.restoreGroups(viewModel.getCollapsedGroups());
+                viewModel.setCollapsedGroups(null);
+            }
+        });
     }
 
     @Override
