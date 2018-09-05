@@ -1,5 +1,6 @@
 package com.ghstudios.android.features.armorsetbuilder.armorselect
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import kotlinx.android.synthetic.main.fragment_generic_expandable_list.*
 
@@ -34,6 +36,13 @@ class ArmorSelectAllFragment : Fragment() {
 
             val adapter = ArmorExpandableListAdapter(it)
             this.expandableListView.setAdapter(adapter)
+
+            adapter.onArmorSelected = {
+                val intent = activity!!.intent
+                intent.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, it.id)
+                activity?.setResult(Activity.RESULT_OK, intent)
+                activity?.finish()
+            }
         })
     }
 }

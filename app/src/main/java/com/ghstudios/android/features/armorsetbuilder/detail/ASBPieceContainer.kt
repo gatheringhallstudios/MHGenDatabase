@@ -127,7 +127,7 @@ class ASBPieceContainer
         text.text = selectedEquipment?.name
 
         // Set image based on equipment
-        if (isSelected) {
+        if (selectedEquipment != null) {
             icon.setImageAsset(selectedEquipment)
         } else {
             // Since no equipment is selected, load the "empty image"
@@ -147,7 +147,7 @@ class ASBPieceContainer
         }
 
         // set the add/remove button based on equipment
-        equipmentButton.setImageResource(when (isSelected) {
+        equipmentButton.setImageResource(when (selectedEquipment != null) {
             true -> R.drawable.ic_remove
             false -> R.drawable.ic_add
         })

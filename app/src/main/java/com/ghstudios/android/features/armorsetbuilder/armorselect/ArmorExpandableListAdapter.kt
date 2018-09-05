@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSkillPoints
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.setImageAsset
@@ -21,6 +22,10 @@ class ArmorGroup(
  * is for ListViews.
  */
 class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpandableListAdapter() {
+    /**
+     * Sets the on armor selection callback
+     */
+    var onArmorSelected: ((Armor) -> Unit)? = null
 
     override fun hasStableIds() = true
     override fun isChildSelectable(groupPosition: Int, childPosition: Int) = true
@@ -67,6 +72,10 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
             val points = skill.points
             val skillString = skill.skillTree?.name + if(points>0) "+$points" else points
             skillsTvs[i]?.text = skillString
+        }
+
+        view.setOnClickListener {
+            onArmorSelected?.invoke(armor)
         }
 
         return view

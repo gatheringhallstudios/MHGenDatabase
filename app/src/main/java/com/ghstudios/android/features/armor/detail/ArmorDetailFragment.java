@@ -1,8 +1,6 @@
 package com.ghstudios.android.features.armor.detail;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,7 +26,6 @@ import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -105,19 +101,6 @@ public class ArmorDetailFragment extends Fragment {
         iceResTextView = view.findViewById(R.id.ice_res);
         thunderResTextView = view.findViewById(R.id.thunder_res);
         dragonResTextView = view.findViewById(R.id.dragon_res);
-
-        // If the originator of this fragment's activity was the Armor Set Builder...
-        if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
-            Button selectButton = view.findViewById(R.id.select_button);
-            selectButton.setVisibility(View.VISIBLE);
-            selectButton.setOnClickListener(v -> {
-                long armorId = getArguments().getLong(ARG_ARMOR_ID);
-                Intent intent = getActivity().getIntent();
-                intent.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, armorId);
-                getActivity().setResult(Activity.RESULT_OK, intent);
-                getActivity().finish();
-            });
-        }
         
         return view;
     }
