@@ -18,23 +18,52 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/title_text"
-        tools:text="Attack Jwl 1"
-        style="@style/title_bar_text"
-        app:layout_constraintStart_toEndOf="@id/generic_icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMaxTextSize="24sp"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeStepGranularity="2sp"
+        android:textColor="@color/text_color"
+        tools:text="Attack Jwl IS REALLY"
+        android:maxLines="1"
 
-        app:layout_constraintTop_toTopOf="@id/generic_icon"
-        app:layout_constraintBottom_toTopOf="@id/title_alt_text"/>
+        android:gravity="center_vertical"
+
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintVertical_bias="1"
+
+        app:layout_constraintStart_toEndOf="@id/generic_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/title_alt_text"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
     <TextView
         android:id="@+id/title_alt_text"
         tools:text="攻撃珠【１】"
-        style="@style/title_bar_alt_text"
+        android:layout_width="0dp"
+        android:layout_height="30sp"
+        android:textSize="18sp"
+        android:textColor="@color/text_color_secondary"
+        android:gravity="top
+"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+
+        app:layout_constraintVertical_bias="0.1"
+
         app:layout_constraintStart_toEndOf="@id/generic_icon"
         app:layout_constraintTop_toBottomOf="@id/title_text"
-        app:layout_constraintBottom_toBottomOf="@id/generic_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
         android:visibility="gone"
         tools:visibility="visible"/>

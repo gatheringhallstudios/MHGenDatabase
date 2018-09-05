@@ -329,6 +329,7 @@
         <item name="android:minHeight">@dimen/title_full_height</item>
     </style>
 
+    <!-- TODO: Only used by palic weapon detail. Phase it out -->
     <style name="title_bar_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -336,11 +337,6 @@
         <item name="android:paddingLeft">16dp</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text_color</item>
-    </style>
-
-    <style name="title_bar_alt_text" parent="title_bar_text">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/text_color_secondary</item>
     </style>
 
     <style name="cell_listitem_label">
