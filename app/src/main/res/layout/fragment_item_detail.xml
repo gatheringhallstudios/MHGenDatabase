@@ -17,17 +17,12 @@
             tools:iconSrc="@drawable/drawer_items"
             tools:titleText="Barrel Bomb L+"/>
 
+        <FrameLayout style="@style/SectionDivider"/>
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
-            android:layout_marginBottom="@dimen/margin_medium"
-            style="@style/text_medium"
-            android:textColor="@color/weapon_property_color"
-            tools:text="Upgraded Large Barrel Bomb. Effective against large monsters."/>
+            style="@style/Description"
+            tools:text="Upgraded Large Barrel Bomb. Effective against large monsters." />
 
         <FrameLayout style="@style/SectionDivider"/>
 

@@ -76,23 +76,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="10" />
-
-            <!--Description-->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/item_description" />
-
-            <TextView
-                android:id="@+id/detail_weapon_description"
-                style="@style/text_medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                tools:text="5"
-                android:textColor="@color/weapon_property_color" />
         </LinearLayout>
 
         <include layout="@layout/fragment_weapon_detail_recipe"/>
