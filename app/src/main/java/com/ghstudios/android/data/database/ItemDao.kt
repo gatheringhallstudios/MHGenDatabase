@@ -7,6 +7,7 @@ import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.*
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
+import com.ghstudios.android.util.useCursor
 
 class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     val db get() = dbMainHelper.writableDatabase
@@ -245,7 +246,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         val armorToSkills = LinkedHashMap<Long, MutableList<SkillTreePoints>>()
 
         // Iterate cursor
-        cursor.use {
+        cursor.useCursor {
             while (cursor.moveToNext()) {
                 val id = cursor.getLong("_id")
                 armorMap.getOrPut(id) { cursor.armor }

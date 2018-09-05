@@ -30,7 +30,7 @@ object MHUtils {
      * This method exhausts the cursor and closes it.
      */
     @JvmStatic fun <T, J : Cursor> cursorToList(c: J, transform: CursorProcessFunction<T, J>): List<T> {
-        c.use {
+        c.useCursor {
             val results = ArrayList<T>(c.count)
 
             while (c.moveToNext()) {

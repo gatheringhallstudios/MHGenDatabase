@@ -7,6 +7,7 @@ import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
 import com.ghstudios.android.data.util.*
 import com.ghstudios.android.util.toList
+import com.ghstudios.android.util.useCursor
 
 /**
  * A database dao concerned with retrieving "metadata" objects.
@@ -30,20 +31,18 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE m._id = ?
             """, arrayOf(monsterId.toString()))
 
-        return cursor.use {
-            cursor.toList {
-                var meta = it.getInt("metadata")
-                MonsterMetadata(
-                        id = monsterId,
-                        name = it.getString("name") ?: "",
-                        hasDamageData = it.getBoolean("has_damage"),
-                        hasStatusData = it.getBoolean("has_status"),
-                        hasLowRank = meta.and(1) > 0,
-                        hasHighRank = meta.and(2)> 0,
-                        hasGRank =  meta.and(4)>0
-                )
-            }.firstOrNull()
-        }
+        return cursor.toList {
+            val meta = it.getInt("metadata")
+            MonsterMetadata(
+                    id = monsterId,
+                    name = it.getString("name") ?: "",
+                    hasDamageData = it.getBoolean("has_damage"),
+                    hasStatusData = it.getBoolean("has_status"),
+                    hasLowRank = meta.and(1) > 0,
+                    hasHighRank = meta.and(2)> 0,
+                    hasGRank =  meta.and(4)>0
+            )
+        }.firstOrNull()
     }
 
     /**
@@ -67,34 +66,30 @@ class MetadataDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE item._id = ?
         """, arrayOf(itemId.toString()))
 
-        return cursor.use {
-            cursor.toList {
-                ItemMetadata(
-                        id = itemId,
-                        name = it.getString("name") ?: "",
-                        usedInCombining = it.getBoolean("usedInCombining"),
-                        usedInCrafting = it.getBoolean("usedInCrafting"),
-                        isMonsterReward = it.getBoolean("isMonsterReward"),
-                        isQuestReward = it.getBoolean("isQuestReward"),
-                        isGatherable = it.getBoolean("isGatherable")
-                )
-            }.firstOrNull()
-        }
+        return cursor.toList {
+            ItemMetadata(
+                    id = itemId,
+                    name = it.getString("name") ?: "",
+                    usedInCombining = it.getBoolean("usedInCombining"),
+                    usedInCrafting = it.getBoolean("usedInCrafting"),
+                    isMonsterReward = it.getBoolean("isMonsterReward"),
+                    isQuestReward = it.getBoolean("isQuestReward"),
+                    isGatherable = it.getBoolean("isGatherable")
+            )
+        }.firstOrNull()
     }
 
     private fun parseArmorSetMetadataCursor(c: Cursor): List<ArmorMetadata> {
-        c.use {
-            return c.toList {
-                ArmorMetadata(
-                        id = it.getLong("_id"),
-                        name = it.getString("name") ?: "",
-                        slot = it.getString("slot") ?: "",
-                        rarity = it.getInt("rarity"),
-                        family = it.getLong("family"),
-                        familyName = it.getString("fname") ?: "",
-                        icon_name = it.getString("icon_name") ?: ""
-                )
-            }
+        return c.toList {
+            ArmorMetadata(
+                    id = it.getLong("_id"),
+                    name = it.getString("name") ?: "",
+                    slot = it.getString("slot") ?: "",
+                    rarity = it.getInt("rarity"),
+                    family = it.getLong("family"),
+                    familyName = it.getString("fname") ?: "",
+                    icon_name = it.getString("icon_name") ?: ""
+            )
         }
     }
 

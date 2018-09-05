@@ -25,6 +25,22 @@ fun <T: Fragment> T.applyArguments(block: Bundle.() -> Unit): T {
 }
 
 /**
+ * Uses the cursor, automatically closing after executing the process.
+ * Use this instead of use {} because Cursor's are not "Closeable" pre API 16
+ */
+inline fun <J : Cursor, R> J.useCursor(process: (J) -> R): R {
+    try {
+        return process(this)
+    } catch (e: Throwable) {
+        throw e
+    } finally {
+        try {
+            close()
+        } catch (closeException: Throwable) {}
+    }
+}
+
+/**
  * Extension function that converts a cursor to a list of objects using a transformation function.
  * The cursor is closed at the completion of this method.
  */
