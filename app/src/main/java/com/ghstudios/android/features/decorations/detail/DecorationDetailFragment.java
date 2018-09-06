@@ -122,8 +122,6 @@ public class DecorationDetailFragment extends Fragment {
 
         titleView.setIcon(decoration);
         titleView.setTitleText(decorationName);
-        titleView.setAltTitleText(decoration.getJpnName());
-        titleView.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);

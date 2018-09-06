@@ -77,8 +77,6 @@ class MonsterSummaryFragment : Fragment() {
 
             headerView.setIcon(monster)
             headerView.setTitleText(monster.name)
-            headerView.setAltTitleText(monster.jpnName)
-            headerView.setAltTitleEnabled(AppSettings.isJapaneseEnabled)
         })
 
         viewModel.weaknessData.observe(this, Observer(::updateWeaknesses))

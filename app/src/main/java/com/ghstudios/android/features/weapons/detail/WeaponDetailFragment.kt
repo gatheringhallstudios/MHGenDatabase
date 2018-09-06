@@ -41,7 +41,6 @@ open class WeaponDetailFragment : Fragment() {
     // note: we can't use KTX or ButterKnife because of the awkward fragment inheritance strategy
 
     private var titleBar: TitleBarCell? = null
-    private var rarityCell: ColumnLabelTextCell? = null
     private var attackCell: ColumnLabelTextCell? = null
     private var element1Cell: ColumnLabelTextCell? = null
     private var element2Cell: ColumnLabelTextCell? = null
@@ -71,7 +70,6 @@ open class WeaponDetailFragment : Fragment() {
         // Bind general view elements
         // subclasses implement onCreateView, so we have to do it here instead
         titleBar = view.findViewById(R.id.titlebar)
-        rarityCell = view.findViewById(R.id.rare)
         attackCell = view.findViewById(R.id.attack)
         element1Cell = view.findViewById(R.id.element1)
         element2Cell = view.findViewById(R.id.element2)
@@ -88,12 +86,10 @@ open class WeaponDetailFragment : Fragment() {
     protected open fun populateWeapon(weapon: Weapon?) {
         if (weapon == null) return
 
-        titleBar!!.setIcon(weapon)
-        titleBar!!.setTitleText(weapon.name)
-        titleBar!!.setAltTitleText(weapon.jpnName)
-        titleBar!!.setAltTitleEnabled(AppSettings.isJapaneseEnabled)
+        titleBar?.setIcon(weapon)
+        titleBar?.setTitleText(weapon.name)
+        titleBar?.setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
 
-        rarityCell!!.setValueText(weapon.rarityString)
         attackCell!!.setValueText("" + weapon.attack)
         affinityCell!!.setValueText(weapon.affinity!! + "%")
         slotsCell!!.setValueText("" + weapon.slotString)

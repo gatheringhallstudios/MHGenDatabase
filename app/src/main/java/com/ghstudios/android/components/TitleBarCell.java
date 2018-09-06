@@ -29,11 +29,9 @@ public class TitleBarCell extends FrameLayout {
     @BindView(R.id.title_alt_text)
     TextView titleAltView;
 
-    boolean altEnabled = false;
-
     public TitleBarCell(Context context) {
         super(context);
-        init(null, "", "", false);
+        init(null, "", "");
     }
 
     public TitleBarCell(Context context, @Nullable AttributeSet attrs) {
@@ -46,18 +44,16 @@ public class TitleBarCell extends FrameLayout {
             Drawable drawable = attributes.getDrawable(R.styleable.TitleBarCell_iconSrc);
             String titleText = attributes.getString(R.styleable.TitleBarCell_titleText);
             String titleAltText = attributes.getString(R.styleable.TitleBarCell_titleAltText);
-            boolean altTitleEnabled = attributes.getBoolean(R.styleable.TitleBarCell_altTitleEnabled, false);
 
-            init(drawable, titleText, titleAltText, altTitleEnabled);
+            init(drawable, titleText, titleAltText);
         } finally {
             // Typed arrays should be recycled after use
             attributes.recycle();
         }
     }
 
-    public void init(Drawable drawable, String titleText, String titleAltText, boolean altTitleEnabled) {
-        LayoutInflater inflater = (LayoutInflater) getContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public void init(Drawable drawable, String titleText, String titleAltText) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.cell_title_bar, this, true);
 
         ButterKnife.bind(this);
@@ -65,7 +61,6 @@ public class TitleBarCell extends FrameLayout {
         setIconDrawable(drawable);
         setTitleText(titleText);
         setAltTitleText(titleAltText);
-        setAltTitleEnabled(altTitleEnabled);
     }
 
     /**
@@ -78,13 +73,13 @@ public class TitleBarCell extends FrameLayout {
         invalidate();
     }
 
+    /**
+     * Set custom drawable for the left icon generated via the ITintedIcon interface.
+     */
     public void setIcon(ITintedIcon icon){
-        AssetLoader.setIcon(imageView,icon);
+        AssetLoader.setIcon(imageView, icon);
     }
 
-    /**
-     * Set custom drawable for the left icon
-     */
     public void setIconResource(@DrawableRes int resId) {
         imageView.setImageResource(resId);
 
@@ -110,20 +105,11 @@ public class TitleBarCell extends FrameLayout {
     }
 
     /**
-     * Sets whether or not the alt text is enabled
-     * @param enabled
-     */
-    public void setAltTitleEnabled(boolean enabled) {
-        altEnabled = enabled;
-        maybeEnableAltText();
-    }
-
-    /**
      * Runs some logic to see if alt text should be enabled.
      */
     private void maybeEnableAltText() {
         CharSequence altText = titleAltView.getText();
-        if (altEnabled && altText != null && altText.length() > 0) {
+        if (altText != null && altText.length() > 0) {
             titleAltView.setVisibility(VISIBLE);
         } else {
             titleAltView.setVisibility(GONE);

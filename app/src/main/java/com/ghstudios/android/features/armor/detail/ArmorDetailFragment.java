@@ -45,7 +45,6 @@ public class ArmorDetailFragment extends Fragment {
     @BindView(R.id.titlebar)
     TitleBarCell titleBar;
 
-    @BindView(R.id.rare) ColumnLabelTextCell rareView;
     @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
     @BindView(R.id.defense) ColumnLabelTextCell defenseView;
     @BindView(R.id.part) ColumnLabelTextCell partView;
@@ -120,15 +119,12 @@ public class ArmorDetailFragment extends Fragment {
 
         titleBar.setTitleText(armor.getName());
         titleBar.setIcon(armor);
-        titleBar.setAltTitleText(armor.getJpnName());
-        titleBar.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+        titleBar.setAltTitleText(getString(R.string.value_rare, armor.getRarityString()));
 
         String cellPart = "" + armor.getSlot();
         String cellDefense = "" + armor.getDefense() + "~" + armor.getMaxDefense();
         String cellSlot = armor.getSlotString();
-        String cellRare = armor.getRarityString();
 
-        rareView.setValueText(cellRare);
         slotsReqView.setValueText(cellSlot);
         partView.setValueText(cellPart);
         defenseView.setValueText(cellDefense);

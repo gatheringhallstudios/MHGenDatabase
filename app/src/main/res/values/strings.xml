@@ -53,6 +53,9 @@
     <string name="type_palico_armor">Palico Armor</string>
     <string name="type_material">Material</string>
 
+    <!-- value strings -->
+    <string name="value_rare">Rare %s</string>
+
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

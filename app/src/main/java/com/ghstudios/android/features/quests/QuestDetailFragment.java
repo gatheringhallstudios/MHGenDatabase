@@ -121,8 +121,6 @@ public class QuestDetailFragment extends Fragment {
         // bind title bar
         titleBarCell.setIconDrawable(AssetLoader.loadIconFor(mQuest));
         titleBarCell.setTitleText(mQuest.getName());
-        titleBarCell.setAltTitleText(mQuest.getJpnName());
-        titleBarCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
 
         // bind details section
         hubTextView.setText(mQuest.getHub());

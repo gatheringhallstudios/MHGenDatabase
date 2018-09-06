@@ -29,7 +29,6 @@ public class ItemDetailFragment extends Fragment {
 
     @BindView(R.id.item_title) TitleBarCell titleCell;
 
-    @BindView(R.id.rare) ColumnLabelTextCell rareCell;
     @BindView(R.id.carry) ColumnLabelTextCell carryCell;
     @BindView(R.id.buy) ColumnLabelTextCell buyCell;
     @BindView(R.id.sell) ColumnLabelTextCell sellCell;
@@ -87,8 +86,7 @@ public class ItemDetailFragment extends Fragment {
         // Set title icon and image
         titleCell.setIcon(mItem);
         titleCell.setTitleText(mItem.getName());
-        titleCell.setAltTitleText(mItem.getJpnName());
-        titleCell.setAltTitleEnabled(AppSettings.isJapaneseEnabled());
+        titleCell.setAltTitleText(getString(R.string.value_rare, mItem.getRarityString()));
 
         descriptionTextView.setText(mItem.getDescription());
 
@@ -102,7 +100,6 @@ public class ItemDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        rareCell.setValueText(mItem.getRarityString());
         carryCell.setValueText(String.valueOf(mItem.getCarryCapacity()));
         buyCell.setValueText(cellBuy);
         sellCell.setValueText(cellSell);

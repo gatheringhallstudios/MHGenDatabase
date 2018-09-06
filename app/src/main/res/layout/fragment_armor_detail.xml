@@ -26,11 +26,11 @@
             style="@style/cell_column_row">
 
             <com.ghstudios.android.components.ColumnLabelTextCell
-                android:id="@+id/rare"
+                android:id="@+id/part"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:labelText="@string/item_rarity"
-                tools:valueText="6" />
+                app:labelText="@string/armor_part"
+                tools:valueText="Legs" />
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/slots"
@@ -45,13 +45,6 @@
                 android:layout_height="wrap_content"
                 app:labelText="@string/armor_defense"
                 tools:valueText="5~50" />
-
-            <com.ghstudios.android.components.ColumnLabelTextCell
-                android:id="@+id/part"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:labelText="@string/armor_part"
-                tools:valueText="Legs" />
         </com.google.android.flexbox.FlexboxLayout>
 
         <FrameLayout
