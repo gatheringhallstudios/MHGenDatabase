@@ -17,6 +17,13 @@
 
     <FrameLayout style="@style/SectionDivider"/>
 
+    <TextView
+        android:id="@+id/detail_weapon_description"
+        style="@style/Description"
+        tools:text="Description should go here" />
+
+    <FrameLayout style="@style/SectionDivider"/>
+
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/data_row"
         style="@style/cell_column_row">
