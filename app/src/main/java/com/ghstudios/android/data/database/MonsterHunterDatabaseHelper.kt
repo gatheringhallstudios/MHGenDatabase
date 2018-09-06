@@ -1957,17 +1957,12 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 * Get the parent weapon
 	 */
     fun queryWeaponTreeParent(id: Long): WeaponTreeCursor {
-
-        val qh = QueryHelper()
-        qh.Columns = null
-        qh.Selection = "i1." + S.COLUMN_ITEMS_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return WeaponTreeCursor(wrapJoinHelper(builderWeaponTreeParent(), qh))
+        return WeaponTreeCursor(writableDatabase.rawQuery("""
+            SELECT i._id AS _id,i.name AS name FROM components c
+            INNER JOIN weapons w on w._id = c.component_item_id
+            JOIN items i ON i._id = w._id
+            WHERE c.created_item_id=?
+        """,arrayOf(id.toString())))
     }
 
     /*

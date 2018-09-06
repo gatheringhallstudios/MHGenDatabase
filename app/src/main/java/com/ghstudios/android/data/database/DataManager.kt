@@ -632,6 +632,25 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.queryWeaponFamily(id)
     }
 
+    fun queryWeaponOrigins(id: Long):ArrayList<Weapon>{
+        val weapons = ArrayList<Weapon>()
+        var currentId = (id and 0xFFFF00)+1
+        while(true) {
+            val cursor = mHelper.queryWeaponTreeParent(currentId)
+            cursor.moveToFirst()
+            val weapon = cursor.weapon ?: break
+            cursor.close()
+
+            val wCur = mHelper.queryWeapon(weapon.id)
+            wCur.moveToFirst()
+            val w = wCur.weapon
+            weapons.add(w)
+            currentId = (w.id and 0xFFFF00) + 1
+            wCur.close()
+        }
+        return weapons
+    }
+
     fun queryPalicoWeapons(): PalicoWeaponCursor {
         return mHelper.queryPalicoWeapons()
     }

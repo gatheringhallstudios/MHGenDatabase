@@ -64,7 +64,6 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
             val components = dataManager.queryComponentCreated(weaponId).toList {
                 it.component
             }
-
             createComponentData.postValue(components.filter { it.type == Component.TYPE_CREATE })
             improveComponentData.postValue(components.filter { it.type == Component.TYPE_IMPROVE })
         }
