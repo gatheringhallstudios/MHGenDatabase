@@ -150,9 +150,9 @@
 
     <!-- Items -->
     <string name="item_rarity">Rare</string>
-    <string name="item_max">Max</string>
-    <string name="item_buy">Buy</string>
-    <string name="item_sell">Sell</string>
+    <string name="item_carry_max">Carry Max:</string>
+    <string name="item_buy">Buy Price</string>
+    <string name="item_sell">Sell Price:</string>
     <string name="item_description">Description</string>
     <string name="item_combinations">Combinations</string>
     <string name="item_skills">Skills</string>

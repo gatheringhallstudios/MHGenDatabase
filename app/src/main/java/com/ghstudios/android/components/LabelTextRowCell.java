@@ -2,11 +2,8 @@ package com.ghstudios.android.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +20,7 @@ import com.ghstudios.android.mhgendatabase.R;
  * data rows in RecyclerView or inside XML layouts.
  */
 
-public class LabelTextCell extends ConstraintLayout {
+public class LabelTextRowCell extends ConstraintLayout implements LabelValueComponent {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -34,26 +31,26 @@ public class LabelTextCell extends ConstraintLayout {
 
     boolean altEnabled = false;
 
-    public LabelTextCell(Context context, String labelText, String valueText) {
+    public LabelTextRowCell(Context context, String labelText, String valueText) {
         super(context);
         init(labelText, "", false, valueText);
     }
 
-    public LabelTextCell(Context context) {
+    public LabelTextRowCell(Context context) {
         super(context);
         init("", "", false, "");
     }
 
-    public LabelTextCell(Context context, @Nullable AttributeSet attrs) {
+    public LabelTextRowCell(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.LabelTextCell);
+        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.LabelTextRowCell);
 
         try {
-            String labelText = attributes.getString(R.styleable.LabelTextCell_labelText);
-            String labelAltText = attributes.getString(R.styleable.LabelTextCell_labelAltText);
-            boolean altTextEnabled = attributes.getBoolean(R.styleable.LabelTextCell_altTextEnabled, false);
-            String valueText = attributes.getString(R.styleable.LabelTextCell_valueText);
+            String labelText = attributes.getString(R.styleable.LabelTextRowCell_labelText);
+            String labelAltText = attributes.getString(R.styleable.LabelTextRowCell_labelAltText);
+            boolean altTextEnabled = attributes.getBoolean(R.styleable.LabelTextRowCell_altTextEnabled, false);
+            String valueText = attributes.getString(R.styleable.LabelTextRowCell_valueText);
 
             init(labelText, labelAltText, altTextEnabled, valueText);
         } finally {
@@ -74,7 +71,8 @@ public class LabelTextCell extends ConstraintLayout {
         setValueText(valueText);
     }
 
-    public void setLabelText(String labelText) {
+    @Override
+    public void setLabelText(CharSequence labelText) {
         labelView.setText(labelText);
     }
 
@@ -96,7 +94,8 @@ public class LabelTextCell extends ConstraintLayout {
         updateAltTextVisibility();
     }
 
-    public void setValueText(String valueText) {
+    @Override
+    public void setValueText(CharSequence valueText) {
         valueView.setText(valueText);
     }
 
@@ -110,5 +109,15 @@ public class LabelTextCell extends ConstraintLayout {
         } else {
             labelAltView.setVisibility(GONE);
         }
+    }
+
+    @Override
+    public CharSequence getLabelText() {
+        return labelView.getText();
+    }
+
+    @Override
+    public CharSequence getValueText() {
+        return valueView.getText();
     }
 }

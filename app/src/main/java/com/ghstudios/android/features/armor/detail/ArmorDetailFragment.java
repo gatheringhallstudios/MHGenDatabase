@@ -15,12 +15,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
-import com.ghstudios.android.components.LabelTextCell;
+import com.ghstudios.android.components.LabelTextRowCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
@@ -145,7 +144,7 @@ public class ArmorDetailFragment extends Fragment {
 
         skillSection.setVisibility(View.VISIBLE);
         for (ItemToSkillTree skill : skills) {
-            LabelTextCell skillItem = new LabelTextCell(getContext());
+            LabelTextRowCell skillItem = new LabelTextRowCell(getContext());
             skillItem.setLabelText(skill.getSkillTree().getName());
             skillItem.setValueText(String.valueOf(skill.getPoints()));
 

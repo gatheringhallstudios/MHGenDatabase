@@ -30,21 +30,23 @@
             android:id="@+id/data_row"
             style="@style/cell_column_row">
 
-            <com.ghstudios.android.components.ColumnLabelTextCell
+            <com.ghstudios.android.components.LabelValueCell
                 android:id="@+id/carry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:labelText="Carry Max"
+                app:labelText="@string/item_carry_max"
                 tools:valueText="99" />
 
+            <!-- Buy Price is currently hidden as the DB has incorrect info -->
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/buy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:labelText="@string/item_buy"
-                tools:valueText="80z" />
+                tools:valueText="80z"
+                android:visibility="gone"/>
 
-            <com.ghstudios.android.components.ColumnLabelTextCell
+            <com.ghstudios.android.components.LabelValueCell
                 android:id="@+id/sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

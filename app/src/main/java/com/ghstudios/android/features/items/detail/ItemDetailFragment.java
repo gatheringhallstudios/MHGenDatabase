@@ -17,6 +17,7 @@ import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate;
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter;
 import com.ghstudios.android.components.ColumnLabelTextCell;
+import com.ghstudios.android.components.LabelValueComponent;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.mhgendatabase.R;
@@ -29,9 +30,9 @@ public class ItemDetailFragment extends Fragment {
 
     @BindView(R.id.item_title) TitleBarCell titleCell;
 
-    @BindView(R.id.carry) ColumnLabelTextCell carryCell;
-    @BindView(R.id.buy) ColumnLabelTextCell buyCell;
-    @BindView(R.id.sell) ColumnLabelTextCell sellCell;
+    @BindView(R.id.carry) LabelValueComponent carryCell;
+    @BindView(R.id.buy) LabelValueComponent buyCell;
+    @BindView(R.id.sell) LabelValueComponent sellCell;
 
     @BindView(R.id.description) TextView descriptionTextView;
 

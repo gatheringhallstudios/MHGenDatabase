@@ -70,7 +70,7 @@
             android:divider="@drawable/divider_solid"
             android:showDividers="middle">
 
-            <com.ghstudios.android.components.LabelTextCell
+            <com.ghstudios.android.components.LabelTextRowCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
@@ -78,7 +78,7 @@
                 app:valueText="1"
                 tools:visibility="visible" />
 
-            <com.ghstudios.android.components.LabelTextCell
+            <com.ghstudios.android.components.LabelTextRowCell
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"

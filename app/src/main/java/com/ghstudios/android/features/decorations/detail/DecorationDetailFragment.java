@@ -14,12 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
-import com.ghstudios.android.components.LabelTextCell;
+import com.ghstudios.android.components.LabelTextRowCell;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
@@ -133,7 +132,7 @@ public class DecorationDetailFragment extends Fragment {
         skillListView.removeAllViews();
 
         for (SkillPoints skill : skills) {
-            LabelTextCell skillItem = new LabelTextCell(getContext());
+            LabelTextRowCell skillItem = new LabelTextRowCell(getContext());
             skillItem.setLabelText(skill.getSkillName());
             skillItem.setValueText(String.valueOf(skill.getPoints()));
             skillItem.setOnClickListener(new SkillClickListener(getContext(), skill.getSkillId()));

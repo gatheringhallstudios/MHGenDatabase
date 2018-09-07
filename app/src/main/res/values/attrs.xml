@@ -35,7 +35,7 @@
         <attr name="valueText" />
     </declare-styleable>
 
-    <declare-styleable name="LabelTextCell">
+    <declare-styleable name="LabelTextRowCell">
         <attr name="labelText" />
         <attr name="labelAltText" />
         <attr name="altTextEnabled" />
@@ -43,6 +43,11 @@
     </declare-styleable>
 
     <declare-styleable name="ColumnLabelTextCell">
+        <attr name="labelText" />
+        <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelValueCell">
         <attr name="labelText" />
         <attr name="valueText" />
     </declare-styleable>
