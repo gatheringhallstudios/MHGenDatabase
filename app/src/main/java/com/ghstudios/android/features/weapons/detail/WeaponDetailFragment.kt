@@ -81,10 +81,8 @@ open class WeaponDetailFragment : Fragment() {
 
         titleBar!!.setIcon(weapon)
         titleBar!!.setTitleText(weapon.name)
-        titleBar!!.setAltTitleText(weapon.jpnName)
-        titleBar!!.setAltTitleEnabled(AppSettings.isJapaneseEnabled)
-
-        rarityCell!!.setValueText(weapon.rarityString)
+        titleBar?.setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
+        
         attackCell!!.setValueText("" + weapon.attack)
         affinityCell!!.setValueText(weapon.affinity!! + "%")
         slotsCell!!.setValueText("" + weapon.slotString)
