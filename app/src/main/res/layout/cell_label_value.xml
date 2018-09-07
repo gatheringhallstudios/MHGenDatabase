@@ -11,9 +11,10 @@
 
     <TextView
         android:id="@+id/label_text"
-        style="@style/cell_column_value"
+        style="@style/cell_column_solovalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"
         tools:text="Sell Price and more text" />
 
