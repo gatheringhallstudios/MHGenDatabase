@@ -34,13 +34,14 @@ open class WeaponDetailFragment : Fragment() {
         }
     }
 
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(WeaponDetailViewModel::class.java)
-    }
+//    private val viewModel by lazy {
+//        ViewModelProviders.of(this).get(WeaponDetailViewModel::class.java)
+//    }
 
     // note: we can't use KTX or ButterKnife because of the awkward fragment inheritance strategy
 
     private var titleBar: TitleBarCell? = null
+    private var rarityCell: ColumnLabelTextCell? = null
     private var attackCell: ColumnLabelTextCell? = null
     private var element1Cell: ColumnLabelTextCell? = null
     private var element2Cell: ColumnLabelTextCell? = null
@@ -53,28 +54,20 @@ open class WeaponDetailFragment : Fragment() {
     protected var mWeaponCreationTextView: TextView? = null
     protected var mWeaponUpgradeTextView: TextView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Check for a Weapon ID as an argument, and find the weapon
-        val args = arguments
-        if (args != null) {
-            val weaponId = args.getLong(ARG_WEAPON_ID, -1)
-            viewModel.loadWeapon(weaponId)
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Bind general view elements
         // subclasses implement onCreateView, so we have to do it here instead
         titleBar = view.findViewById(R.id.titlebar)
+        rarityCell = view.findViewById(R.id.rare)
         attackCell = view.findViewById(R.id.attack)
         element1Cell = view.findViewById(R.id.element1)
         element2Cell = view.findViewById(R.id.element2)
         affinityCell = view.findViewById(R.id.affinity)
         slotsCell = view.findViewById(R.id.slots)
+
+        val viewModel = ViewModelProviders.of(activity!!).get(WeaponDetailViewModel::class.java)
 
         viewModel.weaponData.observe(this, Observer(::populateWeapon))
         viewModel.weaponElementData.observe(this, Observer(::populateElementData))
@@ -86,10 +79,12 @@ open class WeaponDetailFragment : Fragment() {
     protected open fun populateWeapon(weapon: Weapon?) {
         if (weapon == null) return
 
-        titleBar?.setIcon(weapon)
-        titleBar?.setTitleText(weapon.name)
-        titleBar?.setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
+        titleBar!!.setIcon(weapon)
+        titleBar!!.setTitleText(weapon.name)
+        titleBar!!.setAltTitleText(weapon.jpnName)
+        titleBar!!.setAltTitleEnabled(AppSettings.isJapaneseEnabled)
 
+        rarityCell!!.setValueText(weapon.rarityString)
         attackCell!!.setValueText("" + weapon.attack)
         affinityCell!!.setValueText(weapon.affinity!! + "%")
         slotsCell!!.setValueText("" + weapon.slotString)
@@ -121,7 +116,7 @@ open class WeaponDetailFragment : Fragment() {
             return
         }
 
-        if (items.size >= 1) {
+        if (items.isNotEmpty()) {
             val (element, value) = items[0]
             element1Cell!!.setLabelText(element)
             element1Cell!!.setValueText(value.toString())

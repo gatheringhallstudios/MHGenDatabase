@@ -16,6 +16,12 @@ data class WeaponElementData(
         val value: Long
 )
 
+data class WeaponFamilyWrapper(
+    val group:String?,
+    val weapon:Weapon,
+    val showLevel:Boolean
+)
+
 class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
@@ -23,6 +29,7 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
 
     val createComponentData = MutableLiveData<List<Component>>()
     val improveComponentData = MutableLiveData<List<Component>>()
+    val familyTreeData = MutableLiveData<List<WeaponFamilyWrapper>>()
 
     /**
      * Live data that returns weapon element or status data once a weapon is loaded.
@@ -66,6 +73,17 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
             }
             createComponentData.postValue(components.filter { it.type == Component.TYPE_CREATE })
             improveComponentData.postValue(components.filter { it.type == Component.TYPE_IMPROVE })
+        }
+
+        loggedThread("Weapon Family Loading"){
+            val famData = ArrayList<WeaponFamilyWrapper>()
+            val origins = dataManager.queryWeaponOrigins(weaponId).reversed()
+            for (w in origins) famData.add(WeaponFamilyWrapper("Origin",w,false))
+            val family = dataManager.queryWeaponTree(weaponId).toList { it.weapon }
+            for (w in family) famData.add(WeaponFamilyWrapper("Family",w,false))
+            val branches = dataManager.queryWeaponBranches(weaponId)
+            for (w in branches) famData.add(WeaponFamilyWrapper("Branches",w,true))
+            familyTreeData.postValue(famData)
         }
     }
 }

@@ -10,7 +10,6 @@ import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
-import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.mhgendatabase.R
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
@@ -1868,7 +1867,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         val qh = QueryHelper()
         qh.Columns = null
-        qh.Selection = """(w.${S.COLUMN_ITEMS_ID} & 0xFFFF00) = (? & 0xFFFF00)"""
+        qh.Selection = """(w.${S.COLUMN_ITEMS_ID} & 16776960) = (? & 16776960)"""
         qh.SelectionArgs = arrayOf(id.toString())
         qh.GroupBy = null
         qh.Having = null
@@ -1962,6 +1961,16 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             INNER JOIN weapons w on w._id = c.component_item_id
             JOIN items i ON i._id = w._id
             WHERE c.created_item_id=?
+        """,arrayOf(id.toString())))
+    }
+
+        fun queryWeaponFamilyBranches(id: Long):WeaponTreeCursor{
+        return WeaponTreeCursor(writableDatabase.rawQuery("""
+            SELECT i._id AS _id,i.name AS name FROM components c
+            JOIN weapons w on w._id = c.created_item_id
+            JOIN items i ON i._id = w._id
+            WHERE (c.component_item_id & 16776960)= (? & 16776960) AND
+                  (c.component_item_id & 16776960) != (c.created_item_id & 16776960)
         """,arrayOf(id.toString())))
     }
 

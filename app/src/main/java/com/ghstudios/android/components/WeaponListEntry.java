@@ -58,7 +58,7 @@ public class WeaponListEntry implements MultiLevelExpIndListAdapter.ExpIndData {
         return mIndentation;
     }
 
-    private void setIndentation(int indentation) {
+    public void setIndentation(int indentation) {
         mIndentation = indentation;
     }
 }

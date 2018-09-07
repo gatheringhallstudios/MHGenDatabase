@@ -1,5 +1,6 @@
 package com.ghstudios.android.features.weapons.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ghstudios.android.SectionArrayAdapter;
 import com.ghstudios.android.adapter.WeaponExpandableListBladeAdapter;
 import com.ghstudios.android.adapter.WeaponExpandableListBowAdapter;
 import com.ghstudios.android.adapter.WeaponExpandableListBowgunAdapter;
@@ -25,8 +27,10 @@ import com.ghstudios.android.loader.WeaponTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.WeaponClickListener;
 
-public class WeaponTreeFragment extends ListFragment implements
-        LoaderCallbacks<Cursor> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class WeaponTreeFragment extends ListFragment{
     private static final String ARG_WEAPON_ID = "WEAPON_ID";
     private long mWeaponId;
     
@@ -41,51 +45,50 @@ public class WeaponTreeFragment extends ListFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.weapon_tree_fragment, getArguments(), this);
+        WeaponDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(WeaponDetailViewModel.class);
+
+        viewModel.getFamilyTreeData().observe(this, this::populateFamilyTree);
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        // You only ever load the runs, so assume this is the case
-        mWeaponId = args.getLong(ARG_WEAPON_ID, -1);
-        
-        return new WeaponTreeListCursorLoader(getActivity(), mWeaponId);
+    void populateFamilyTree(List<WeaponFamilyWrapper> items){
+        setListAdapter(new WeaponTreeListAdapter(getContext(),items));
     }
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // Create an adapter to point at this cursor
-        WeaponTreeListCursorAdapter adapter = new WeaponTreeListCursorAdapter(
-                getActivity(), (WeaponCursor) cursor, mWeaponId);
-        setListAdapter(adapter);
+    private static class WeaponTreeListAdapter extends SectionArrayAdapter<WeaponFamilyWrapper> {
 
-    }
+        public WeaponTreeListAdapter(Context context, List<WeaponFamilyWrapper> items) {
+            super(context,items);
 
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        // Stop using the cursor (via the adapter)
-        setListAdapter(null);
-    }
-
-    private static class WeaponTreeListCursorAdapter extends CursorAdapter {
-
-        private WeaponCursor mWeaponCursor;
-        private long weaponId;
-
-        public WeaponTreeListCursorAdapter(Context context, WeaponCursor cursor, long id) {
-            super(context, cursor, 0);
-            mWeaponCursor = cursor;
-            weaponId = id;
         }
 
         @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        public String getGroupName(WeaponFamilyWrapper item) {
+            return item.getGroup();
+        }
+
+        @Override
+        public void bindView(View view, Context context, WeaponFamilyWrapper item) {
+            // Get the weapon for the current row
+            Weapon weapon = item.getWeapon();
+            WeaponListEntry entry = new WeaponListEntry(weapon);
+            if(item.getShowLevel()){
+                entry.setIndentation(10);
+                TextView level = view.findViewById(R.id.level);
+                level.setText("Lv"+Long.toString(weapon.getParentId() & 0xFF));
+                level.setVisibility(View.VISIBLE);
+            }else{
+                view.findViewById(R.id.level).setVisibility(View.INVISIBLE);
+            }
+            ((WeaponExpandableListGeneralAdapter.WeaponViewHolder) view.getTag()).bindView(context,entry);
+        }
+
+        @Override
+        public View newView(Context context, WeaponFamilyWrapper item, ViewGroup parent) {
             // Use a layout inflater to get a row view
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v;
 
-            Weapon w = mWeaponCursor.getWeapon();
+            Weapon w = item.getWeapon();
             if (w.getWtype().equals(Weapon.BOW)) {
                 v = inflater.inflate(R.layout.fragment_weapon_tree_item_bow, parent, false);
                 v.setTag(new WeaponExpandableListBowAdapter.WeaponBowViewHolder(v));
@@ -99,14 +102,6 @@ public class WeaponTreeFragment extends ListFragment implements
                 v.setTag(new WeaponExpandableListBladeAdapter.WeaponBladeViewHolder(v));
             }
             return v;
-        }
-
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            // Get the weapon for the current row
-            Weapon weapon = mWeaponCursor.getWeapon();
-            WeaponListEntry entry = new WeaponListEntry(weapon);
-            ((WeaponExpandableListGeneralAdapter.WeaponViewHolder) view.getTag()).bindView(context,entry);
         }
     }
 

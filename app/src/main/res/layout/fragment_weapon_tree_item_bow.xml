@@ -6,11 +6,19 @@
     android:clickable="false"
     android:orientation="horizontal">
 
-    <View
+    <LinearLayout
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:id="@+id/indent_view"
-        android:background="@color/divider_color" />
+        android:background="@color/divider_color" >
+        <TextView
+            android:id="@+id/level"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/text_medium"
+            android:gravity="center"/>
+    </LinearLayout>
 
     <View
         android:layout_width="4dp"

@@ -1,11 +1,13 @@
 package com.ghstudios.android.features.weapons.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
@@ -29,14 +31,14 @@ public class WeaponDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         weaponId = getIntent().getLongExtra(EXTRA_WEAPON_ID, -1);
-        name = DataManager.get().getWeapon(weaponId).getName();
+        Weapon w  = DataManager.get().getWeapon(weaponId);
+        name = w.getName();
 
-        //JOE: This is so we can add/remove tabs as needed based on type.
-        //Goes against the design of doing queries on the UI Thread, but
-        //this query is super fast and won't cause issues.
-        //
+        WeaponDetailViewModel viewModel = ViewModelProviders.of(this).get(WeaponDetailViewModel.class);
+        viewModel.loadWeapon(weaponId);
+
         //Possible redesign is to pass in the wtype, almost all links here should know it.
-        String wtype = DataManager.get().getWeaponType(weaponId);
+        String wtype = w.getWtype();
 
         // Set activity title to display weapon type
         setTitle(wtype);
