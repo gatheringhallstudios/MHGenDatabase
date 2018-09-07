@@ -372,6 +372,10 @@
         <item name="alignItems">center</item>
     </style>
 
+    <style name="cell_column_row_centered" parent="@style/cell_column_row">
+        <item name="justifyContent">space_evenly</item>
+    </style>
+
     <style name="cell_column_value">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>

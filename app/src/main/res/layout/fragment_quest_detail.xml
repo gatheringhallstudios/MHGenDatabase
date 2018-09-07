@@ -18,7 +18,14 @@
             tools:iconSrc="@drawable/drawer_quests"
             tools:titleText="Some Quest"/>
 
-        <FrameLayout style="@style/HorizontalDivider"/>
+        <FrameLayout style="@style/SectionDivider"/>
+
+        <TextView
+            android:id="@+id/goal"
+            style="@style/Description"
+            tools:text="Hunt a Lagiacrus" />
+
+        <FrameLayout style="@style/SectionDivider"/>
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/data_row"
@@ -73,14 +80,14 @@
                 tools:valueText="5000z" />
         </com.google.android.flexbox.FlexboxLayout>
 
-        <FrameLayout style="@style/HorizontalDivider"
-            android:layout_marginBottom="@dimen/margin_large"/>
+        <FrameLayout style="@style/SectionDivider"/>
 
         <!-- Monster List -->
         <TextView
             style="@style/text_small_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="16dp"
             android:text="@string/quest_detail_monsters" />
@@ -133,20 +140,6 @@
                     android:layout_marginBottom="0dp"
                     tools:text="Misty Peaks (N)" />
             </LinearLayout>
-
-            <!-- Goal -->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quest_detail_goal" />
-
-            <TextView
-                android:id="@+id/goal"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Hunt a Lagiacrus" />
 
             <!-- Subquest -->
             <TextView
