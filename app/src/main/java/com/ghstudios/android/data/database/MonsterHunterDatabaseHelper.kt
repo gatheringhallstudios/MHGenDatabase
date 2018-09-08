@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
+import android.util.Log
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.QuestHub
@@ -81,6 +82,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
     init {
         setForcedUpgrade()
+
+        if(ctx.deleteDatabase("mhgen.db"))
+            Log.i(TAG,"Deleted old database")
     }
 
     companion object {
@@ -441,37 +445,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
     override fun onForcedUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         super.onForcedUpgrade(db, oldVersion, newVersion)
-
-        when (oldVersion) {
-        //Fall through, so all old versions will perform the updates
-            1, 2, 3, 4 -> {
-                //Database version 4 removed G rank from ASB
-                db.execSQL("UPDATE " + S.TABLE_ASB_SETS + " SET " + S.COLUMN_ASB_SET_RANK + "=1 WHERE " + S.COLUMN_ASB_SET_RANK + ">=2")
-
-                //Create a default wishlist if none exist
-                var c: Cursor? = db.rawQuery("SELECT COUNT(*) FROM " + S.TABLE_WISHLIST, null)
-                if (c!!.moveToFirst() && c.getInt(0) == 0) {
-                    val cv = ContentValues()
-                    cv.put(S.COLUMN_WISHLIST_NAME, myContext.getString(R.string.default_wishlist_name))
-                    db.insert(S.TABLE_WISHLIST, null, cv)
-                }
-                c?.close()
-
-                //Create a default armor set
-                c = db.rawQuery("SELECT COUNT(*) FROM " + S.TABLE_ASB_SETS, null)
-                if (c!!.moveToFirst() && c.getInt(0) == 0) {
-                    val cv = ContentValues()
-                    cv.put(S.COLUMN_ASB_SET_NAME, myContext.getString(R.string.default_armor_set_name))
-                    cv.put(S.COLUMN_ASB_SET_RANK, 0)
-                    cv.put(S.COLUMN_ASB_SET_HUNTER_TYPE, 0)
-                    cv.put(S.COLUMN_TALISMAN_EXISTS, 0)
-                    db.insert(S.TABLE_ASB_SETS, null, cv)
-                }
-                c?.close()
-
-
-            }
-        }
+        
 
     }
 
