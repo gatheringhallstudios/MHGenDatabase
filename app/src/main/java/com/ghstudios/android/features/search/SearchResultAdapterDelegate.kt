@@ -56,7 +56,7 @@ private fun createHandlers(ctx: Context) = mapOf(
 
         Quest::class.java to object : ResultHandler<Quest>() {
             override fun getName(obj: Quest) = obj.name
-            override fun getType(obj: Quest) = ctx.getString(R.string.type_quest)
+            override fun getType(obj: Quest) = AssetLoader.localizeHub(obj.hub)
             override fun createListener(ctx: Context, obj: Quest) = QuestClickListener(ctx, obj.id)
         },
 

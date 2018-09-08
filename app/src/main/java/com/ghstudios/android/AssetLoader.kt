@@ -53,7 +53,8 @@ object AssetLoader {
     }
 
     /**
-     * Returns a localized string that represents the hub
+     * Returns a localized string that represents the hub type,
+     * aka Village/Guild/Event/Permit
      */
     @JvmStatic fun localizeHub(hub: QuestHub?) = when (hub) {
         QuestHub.VILLAGE -> ctx.getString(R.string.type_hub_village)

@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
@@ -44,7 +44,7 @@
     <!-- Various data types (for search results and things like that) -->
     <string name="type_monster">Monster</string>
     <string name="type_quest">Quest</string>
-    <string name="type_skill_tree">Quest</string>
+    <string name="type_skill_tree">Skill Tree</string>
     <string name="type_item">Item</string>
     <string name="type_weapon">Weapon</string>
     <string name="type_armor">Armor</string>
