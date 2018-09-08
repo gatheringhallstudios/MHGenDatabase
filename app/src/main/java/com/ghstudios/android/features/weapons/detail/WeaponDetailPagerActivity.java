@@ -93,7 +93,7 @@ public class WeaponDetailPagerActivity extends BasePagerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = new MenuInflater(getApplicationContext());
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_add_to_wishlist, menu);
         return true;
     }
