@@ -63,16 +63,26 @@
             android:orientation="vertical">
 
             <RadioButton
+                android:id="@+id/path_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Create"
                 tools:visibility="visible"
                 android:visibility="gone"/>
 
+            <RadioButton
+                android:id="@+id/path_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Improve"
+                tools:visibility="visible"
+                android:visibility="gone"/>
+
             <!--<RadioButton-->
+                <!--android:id="@+id/path_3"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
-                <!--tools:text="Improve"-->
+                <!--tools:text="Create"-->
                 <!--tools:visibility="visible"-->
                 <!--android:visibility="gone"/>-->
         </RadioGroup>

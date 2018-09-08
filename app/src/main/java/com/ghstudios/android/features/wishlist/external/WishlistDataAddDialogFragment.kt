@@ -14,6 +14,7 @@ import android.widget.*
 
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
+import java.util.*
 
 enum class WishlistItemType {
     ITEM,
@@ -99,19 +100,27 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         })
 
         // Observe paths and add them to the path selection area
+        // Paths require unique ids, so we assign them IDs from the ids.xml file
         // Also select the first one
         viewModel.itemPaths.observe(this, Observer { paths ->
             if (paths == null) return@Observer // not loaded
 
-            pathSelect.removeAllViews()
+            // Pre-pull radio buttons (adding programmatically has errors in older Android Versions)
+            val availableButtons = ArrayDeque<RadioButton>(listOf(
+                    pathSelect.findViewById(R.id.path_1),
+                    pathSelect.findViewById(R.id.path_2)
+            ))
+
             if (paths.isNotEmpty()) {
                 for (path in paths) {
-                    pathSelect.addView(RadioButton(context).apply {
+                    availableButtons.pop().apply {
                         this.text = path
                         tag = path
-                    })
+                        visibility = View.VISIBLE
+                    }
                 }
 
+                // check the first item
                 pathSelect.check(pathSelect.getChildAt(0).id)
             }
         })
@@ -134,7 +143,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
                 .create()
 
         // Handles the "ok" input option. We put it here so that we can validate w/o closing the dialog.
-        dialog.setOnShowListener {
+        dialog.setOnShowListener { _ ->
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 try {
                     // get path
