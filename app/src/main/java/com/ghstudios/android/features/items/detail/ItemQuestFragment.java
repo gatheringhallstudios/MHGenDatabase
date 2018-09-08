@@ -61,7 +61,7 @@ public class ItemQuestFragment extends ListFragment {
         @Override
         protected String getCustomGroup(Cursor c) {
             QuestReward questReward = ((QuestRewardCursor)c).getQuestReward();
-            return questReward.getQuest().getHub();
+            return questReward.getQuest().getHub().toString();
         }
 
         @Override

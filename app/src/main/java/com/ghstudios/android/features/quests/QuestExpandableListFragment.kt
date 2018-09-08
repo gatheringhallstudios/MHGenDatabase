@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListView
+import com.ghstudios.android.data.classes.QuestHub
 
 import com.ghstudios.android.data.database.DataManager
 import com.ghstudios.android.mhgendatabase.R
@@ -29,36 +30,34 @@ class QuestExpandableListFragment : Fragment() {
     companion object {
         private val ARG_HUB = "QUEST_HUB"
 
-        @JvmStatic fun newInstance(hub: String): QuestExpandableListFragment {
+        @JvmStatic fun newInstance(hub: QuestHub): QuestExpandableListFragment {
             val args = Bundle()
-            args.putString(ARG_HUB, hub)
+            args.putString(ARG_HUB, hub.toString())
             val f = QuestExpandableListFragment()
             f.arguments = args
             return f
         }
     }
 
-
-    private var mHub: String? = null
+    private lateinit var mHub: QuestHub
     private lateinit var groups: List<QuestGroup>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        mHub = arguments?.getString(ARG_HUB)
-        populateList()
+        mHub = QuestHub.from(arguments?.getString(ARG_HUB) ?: "Village")
+        populateList(mHub)
     }
 
-    private fun populateList() {
+    // todo: This logic should be moved to a viewmodel
+    private fun populateList(hub: QuestHub) {
         val dataManager = DataManager.get()
-        val allQuests = dataManager.queryQuestArrayHub(mHub!!).filter {
+        val allQuests = dataManager.queryQuestArrayHub(hub).filter {
             it.stars != "0" // no zero stars (todo: filter in data manager?)
         }
 
-        if (mHub == "Permit") {
-            val monsters = dataManager.questDeviantMonsterNames()
-
+        if (hub == QuestHub.PERMIT) {
             // Permit quests group by monster instead
+            val monsters = dataManager.questDeviantMonsterNames()
             val groupedQuests = allQuests.groupBy { it.permitMonsterId }
 
             groups = groupedQuests.values.withIndex().map {
@@ -70,10 +69,11 @@ class QuestExpandableListFragment : Fragment() {
         } else {
             // Create a mapping from stars to the displayed value
             // Necessary because quests are sometimes out of order
-            val labelMap = when (mHub) {
-                "Village" -> village.zip(village).toMap() // village maps to self
-                "Guild" -> guildStars.zip(guild).toMap()
-                else -> guildStars.zip(event).toMap()
+            val labelMap = when (hub) {
+                QuestHub.VILLAGE -> village.zip(village).toMap() // village maps to self
+                QuestHub.GUILD -> guildStars.zip(guild).toMap()
+                QuestHub.EVENT -> guildStars.zip(event).toMap()
+                QuestHub.PERMIT -> throw RuntimeException("This stretch of code can't handle Permit, unexpected error")
             }
 
             // quests grouped by stars
@@ -99,9 +99,9 @@ class QuestExpandableListFragment : Fragment() {
         val elv = view.findViewById<ExpandableListView>(R.id.expandableListView)
 
         val type = when (mHub) {
-            "Village" -> QuestAdapterType.VILLAGE
-            "Permit" -> QuestAdapterType.PERMIT
-            else -> QuestAdapterType.GUILD
+            QuestHub.VILLAGE -> QuestAdapterType.VILLAGE
+            QuestHub.PERMIT -> QuestAdapterType.PERMIT
+            QuestHub.GUILD, QuestHub.EVENT -> QuestAdapterType.GUILD
         }
 
         elv.setAdapter(QuestListExpandableAdapter(groups, type))

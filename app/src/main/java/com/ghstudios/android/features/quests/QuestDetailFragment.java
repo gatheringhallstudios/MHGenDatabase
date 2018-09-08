@@ -123,7 +123,7 @@ public class QuestDetailFragment extends Fragment {
         titleBarCell.setTitleText(mQuest.getName());
 
         // bind details section
-        hubTextView.setText(mQuest.getHub());
+        hubTextView.setText(AssetLoader.localizeHub(mQuest.getHub()));
         levelTextView.setText(mQuest.getStarString());
         hrpCell.setValueText(cellHrp);
         rewardCell.setValueText(cellReward);

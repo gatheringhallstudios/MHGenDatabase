@@ -5,6 +5,7 @@ import android.database.CursorWrapper
 
 import com.ghstudios.android.data.classes.Location
 import com.ghstudios.android.data.classes.Quest
+import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
 import com.ghstudios.android.data.util.getLong
@@ -29,7 +30,7 @@ class QuestCursor(c: Cursor) : CursorWrapper(c) {
                 name = getString("q" + S.COLUMN_QUESTS_NAME) ?: ""
                 jpnName = getString("q" + S.COLUMN_QUESTS_JPN_NAME) ?: ""
                 goal = getString(S.COLUMN_QUESTS_GOAL)
-                hub = getString(S.COLUMN_QUESTS_HUB)
+                hub = QuestHub.from(getString(S.COLUMN_QUESTS_HUB)!!)
                 type = getInt(S.COLUMN_QUESTS_TYPE)
                 stars = getString(S.COLUMN_QUESTS_STARS)
                 timeLimit = getInt(S.COLUMN_QUESTS_TIME_LIMIT)

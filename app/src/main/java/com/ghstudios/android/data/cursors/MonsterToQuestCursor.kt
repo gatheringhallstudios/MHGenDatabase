@@ -2,11 +2,8 @@ package com.ghstudios.android.data.cursors
 
 import android.database.Cursor
 import android.database.CursorWrapper
+import com.ghstudios.android.data.classes.*
 
-import com.ghstudios.android.data.classes.Habitat
-import com.ghstudios.android.data.classes.Monster
-import com.ghstudios.android.data.classes.MonsterToQuest
-import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.*
 
@@ -48,7 +45,7 @@ class MonsterToQuestCursor(c: Cursor) : CursorWrapper(c) {
             monster_to_quest.quest = Quest().apply {
                 id = getLong(S.COLUMN_MONSTER_TO_QUEST_QUEST_ID)
                 name = getString("q" + S.COLUMN_QUESTS_NAME) ?: ""
-                hub = getString(S.COLUMN_QUESTS_HUB)
+                hub = QuestHub.from(getString(S.COLUMN_QUESTS_HUB)!!)
                 stars = getString(S.COLUMN_QUESTS_STARS)
             }
 

@@ -1,6 +1,33 @@
 package com.ghstudios.android.data.classes
 
 import com.ghstudios.android.ITintedIcon
+import com.ghstudios.android.data.util.Converter
+
+
+/**
+ * Defines an enumeration describing a Quest Hub.
+ * Values can be converted from the Enum to a string via toString(),
+ * and from a string to an Enum via QuestHub.from()
+ */
+enum class QuestHub {
+    VILLAGE,
+    GUILD,
+    EVENT,
+    PERMIT;
+
+    companion object {
+        private val converter = Converter(
+                "Village" to VILLAGE,
+                "Guild" to GUILD,
+                "Event" to EVENT,
+                "Permit" to PERMIT
+        )
+
+        @JvmStatic fun from(value: String) = converter.deserialize(value)
+    }
+
+    override fun toString() = converter.serialize(this)
+}
 
 /*
  * Class for Quest
@@ -28,7 +55,7 @@ class Quest: ITintedIcon {
     var goal: String? = ""
 
     // Port or village
-    var hub: String? = ""
+    var hub: QuestHub? = null
 
     // 0=Normal,1=Key,2=Urgent
     var type: Int = 0

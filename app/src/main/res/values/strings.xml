@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
@@ -52,6 +52,10 @@
     <string name="type_palico_weapon">Palico Weapon</string>
     <string name="type_palico_armor">Palico Armor</string>
     <string name="type_material">Material</string>
+    <string name="type_hub_village">Village</string>
+    <string name="type_hub_guild">Guild</string>
+    <string name="type_hub_event">Event</string>
+    <string name="type_hub_permit">Permit</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>

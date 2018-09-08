@@ -483,18 +483,18 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get an array of Quest based on hub */
-    fun queryQuestArrayHub(hub: String): List<Quest> {
+    fun queryQuestArrayHub(hub: QuestHub): List<Quest> {
         val cursor = mHelper.queryQuestHub(hub)
         return cursor.toList { it.quest }
     }
 
     /* Get a Cursor that has a list of Quest based on hub */
-    fun queryQuestHub(hub: String): QuestCursor {
+    fun queryQuestHub(hub: QuestHub): QuestCursor {
         return mHelper.queryQuestHub(hub)
     }
 
     /* Get a Cursor that has a list of Quest based on hub and stars */
-    fun queryQuestHubStar(hub: String, stars: String): QuestCursor {
+    fun queryQuestHubStar(hub: QuestHub, stars: String): QuestCursor {
         return mHelper.queryQuestHubStar(hub, stars)
     }
 

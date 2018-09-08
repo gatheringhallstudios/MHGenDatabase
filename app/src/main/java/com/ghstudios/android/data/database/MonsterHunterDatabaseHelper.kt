@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
 import com.ghstudios.android.mhgendatabase.R
@@ -1491,16 +1492,16 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /*
      * Get a specific quest based on hub
      */
-    fun queryQuestHub(hub: String): QuestCursor {
+    fun queryQuestHub(hub: QuestHub): QuestCursor {
 
         val qh = QueryHelper()
         qh.Columns = null
         qh.Table = S.TABLE_QUESTS
         qh.Selection = "q." + S.COLUMN_QUESTS_HUB + " = ?"
-        qh.SelectionArgs = arrayOf(hub)
+        qh.SelectionArgs = arrayOf(hub.toString())
         qh.GroupBy = null
         qh.Having = null
-        qh.OrderBy = if(hub == "Permit") "_id,permit_monster_id" else S.COLUMN_QUESTS_SORT_ORDER
+        qh.OrderBy = if(hub == QuestHub.PERMIT) "_id,permit_monster_id" else S.COLUMN_QUESTS_SORT_ORDER
         qh.Limit = null
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
@@ -1509,7 +1510,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /*
      * Get a specific quest based on hub and stars
      */
-    fun queryQuestHubStar(hub: String, stars: String): QuestCursor {
+    fun queryQuestHubStar(hub: QuestHub, stars: String): QuestCursor {
 
         val qh = QueryHelper()
         qh.Columns = null
@@ -1517,7 +1518,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.Selection = "q." + S.COLUMN_QUESTS_HUB + " = ?" + " AND " +
                 "q." + S.COLUMN_QUESTS_STARS + " = ?" + " AND " +
                 "q." + S.COLUMN_QUESTS_NAME + " <> ''"
-        qh.SelectionArgs = arrayOf(hub, stars)
+        qh.SelectionArgs = arrayOf(hub.toString(), stars)
         qh.GroupBy = null
         qh.Having = null
         qh.OrderBy = null

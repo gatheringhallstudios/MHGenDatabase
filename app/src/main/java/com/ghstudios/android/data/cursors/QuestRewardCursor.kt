@@ -5,6 +5,7 @@ import android.database.CursorWrapper
 
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.Quest
+import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.classes.QuestReward
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
@@ -71,7 +72,7 @@ class QuestRewardCursor(c: Cursor) : CursorWrapper(c) {
             questReward.quest = Quest().apply {
                 id = getLong(S.COLUMN_QUEST_REWARDS_QUEST_ID)
                 name = getString("q" + S.COLUMN_QUESTS_NAME) ?: ""
-                hub = getString(S.COLUMN_QUESTS_HUB)
+                hub = QuestHub.from(getString(S.COLUMN_QUESTS_HUB)!!)
                 stars = getString(S.COLUMN_QUESTS_STARS)
             }
 

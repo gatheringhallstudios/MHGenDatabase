@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
+import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.MHUtils
 
@@ -49,5 +50,16 @@ object AssetLoader {
     @JvmStatic
     fun setIcon(iv: ImageView, item: ITintedIcon) {
         iv.setImageDrawable(loadIconFor(item))
+    }
+
+    /**
+     * Returns a localized string that represents the hub
+     */
+    @JvmStatic fun localizeHub(hub: QuestHub?) = when (hub) {
+        QuestHub.VILLAGE -> ctx.getString(R.string.type_hub_village)
+        QuestHub.GUILD -> ctx.getString(R.string.type_hub_guild)
+        QuestHub.EVENT -> ctx.getString(R.string.type_hub_event)
+        QuestHub.PERMIT -> ctx.getString(R.string.type_hub_permit)
+        null -> "NULL"
     }
 }
