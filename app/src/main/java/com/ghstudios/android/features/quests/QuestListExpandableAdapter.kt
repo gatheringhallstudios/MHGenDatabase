@@ -1,17 +1,15 @@
 package com.ghstudios.android.features.quests
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.QuestClickListener
 import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.setImageAsset
 
 enum class QuestAdapterType {
     VILLAGE,
@@ -102,18 +100,20 @@ class QuestListExpandableAdapter(
 
         val iv = v.findViewById<ImageView>(R.id.item_image)
         val questChildTextView = v.findViewById<TextView>(R.id.name_text)
+        val goalTextView = v.findViewById<TextView>(R.id.goal)
         val keyTextView = v.findViewById<TextView>(R.id.key)
         val urgentTextView = v.findViewById<TextView>(R.id.urgent)
-        val root = v.findViewById<LinearLayout>(R.id.root)
 
-        val q = getChild(i, i1) as Quest
-        AssetLoader.setIcon(iv, q)
+        val quest = getChild(i, i1) as Quest
+        iv.setImageAsset(quest)
 
-        questChildTextView.text = getChild(i, i1).toString()
-        if (q.type == Quest.QUEST_TYPE_NONE) {
+        questChildTextView.text = quest.name
+        goalTextView.text = quest.goal
+
+        if (quest.type == Quest.QUEST_TYPE_NONE) {
             keyTextView.visibility = View.GONE
             urgentTextView.visibility = View.GONE
-        } else if (q.type == Quest.QUEST_TYPE_KEY) {
+        } else if (quest.type == Quest.QUEST_TYPE_KEY) {
             urgentTextView.visibility = View.GONE
             keyTextView.visibility = View.VISIBLE
         } else {
@@ -121,10 +121,10 @@ class QuestListExpandableAdapter(
             keyTextView.visibility = View.GONE
         }
 
-        val questId = (getChild(i, i1) as Quest).id
+        val questId = quest.id
 
-        root.tag = questId
-        root.setOnClickListener(QuestClickListener(context, questId))
+        v.tag = questId
+        v.setOnClickListener(QuestClickListener(context, questId))
         return v
     }
 }
