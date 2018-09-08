@@ -60,6 +60,7 @@ object AssetLoader {
         QuestHub.VILLAGE -> ctx.getString(R.string.type_hub_village)
         QuestHub.GUILD -> ctx.getString(R.string.type_hub_guild)
         QuestHub.EVENT -> ctx.getString(R.string.type_hub_event)
+        QuestHub.ARENA -> ctx.getString(R.string.type_hub_arena)
         QuestHub.PERMIT -> ctx.getString(R.string.type_hub_permit)
         null -> "NULL"
     }

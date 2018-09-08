@@ -55,6 +55,7 @@
     <string name="type_hub_village">Village</string>
     <string name="type_hub_guild">Guild</string>
     <string name="type_hub_event">Event</string>
+    <string name="type_hub_arena">Arena</string>
     <string name="type_hub_permit">Permit</string>
 
     <!-- value strings -->

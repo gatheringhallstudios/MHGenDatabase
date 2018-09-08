@@ -74,6 +74,7 @@ class QuestExpandableListFragment : Fragment() {
                 QuestHub.GUILD -> guildStars.zip(guild).toMap()
                 QuestHub.EVENT -> guildStars.zip(event).toMap()
                 QuestHub.PERMIT -> throw RuntimeException("This stretch of code can't handle Permit, unexpected error")
+                QuestHub.ARENA -> throw UnsupportedOperationException("Arena is not supported")
             }
 
             // quests grouped by stars
@@ -102,6 +103,7 @@ class QuestExpandableListFragment : Fragment() {
             QuestHub.VILLAGE -> QuestAdapterType.VILLAGE
             QuestHub.PERMIT -> QuestAdapterType.PERMIT
             QuestHub.GUILD, QuestHub.EVENT -> QuestAdapterType.GUILD
+            QuestHub.ARENA -> throw UnsupportedOperationException("Arena is unsupported for expandable fragments")
         }
 
         elv.setAdapter(QuestListExpandableAdapter(groups, type))

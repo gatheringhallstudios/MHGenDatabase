@@ -13,6 +13,7 @@ enum class QuestHub {
     VILLAGE,
     GUILD,
     EVENT,
+    ARENA,
     PERMIT;
 
     companion object {
@@ -20,6 +21,7 @@ enum class QuestHub {
                 "Village" to VILLAGE,
                 "Guild" to GUILD,
                 "Event" to EVENT,
+                "Arena" to ARENA,
                 "Permit" to PERMIT
         )
 
