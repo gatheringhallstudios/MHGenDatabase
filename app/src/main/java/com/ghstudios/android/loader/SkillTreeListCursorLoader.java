@@ -14,6 +14,6 @@ public class SkillTreeListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		// Query the list of all skill trees
-		return DataManager.get(getContext()).querySkillTrees();
+		return DataManager.get().querySkillTrees();
 	}
 }

@@ -21,10 +21,10 @@ public class ComponentListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		if (from.equals(FROM_CREATED)) {
-			return DataManager.get(getContext()).queryComponentCreated(id);
+			return DataManager.get().queryComponentCreated(id);
 		}
 		else if(from.equals(FROM_COMPONENT)) {
-			return DataManager.get(getContext()).queryComponentComponent(id);
+			return DataManager.get().queryComponentComponent(id);
 		}
 		else {
 			return null;

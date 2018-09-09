@@ -11,9 +11,13 @@ public class SkillTree {
 	
 	/* Default Constructor */
 	public SkillTree() {
-		this.id = -1;
-		this.name = "";
-		this.jpn_name = "";
+		this(-1, "", "");
+	}
+
+	public SkillTree(long id, String name, String jpn_name) {
+		this.id = id;
+		this.name = name;
+		this.jpn_name = jpn_name;
 	}
 
 	/* Getters and Setters */

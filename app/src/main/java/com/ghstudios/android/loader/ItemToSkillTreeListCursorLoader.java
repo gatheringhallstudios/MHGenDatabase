@@ -32,11 +32,11 @@ public class ItemToSkillTreeListCursorLoader extends SQLiteCursorLoader {
 	protected Cursor loadCursor() {
 		if (from.equals(FROM_ITEM)) {
 			// Query the list of skill trees based on item
-			return DataManager.get(getContext()).queryItemToSkillTreeItem(id);
+			return DataManager.get().queryItemToSkillTreeItem(id);
 		}
 		else if(from.equals(FROM_SKILL_TREE)) {
 			// Query the list of items based on skill trees
-			return DataManager.get(getContext()).queryItemToSkillTreeSkillTree(id, type);
+			return DataManager.get().queryItemToSkillTreeSkillTree(id, type);
 		}
 		else {
 			return null;

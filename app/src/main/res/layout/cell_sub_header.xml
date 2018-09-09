@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:orientation="horizontal"
+    tools:parentTag="android.widget.FrameLayout">
+    <!-- This layout uses the merge tag so its actual layout is dependent on
+    the class that inflates it. Use parentTag is used to preview the layout in the editor -->
+
+    <include layout="@layout/listview_generic_header" />
+
+</merge>

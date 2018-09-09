@@ -1,32 +1,10 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
+﻿<resources>
 
-    <string name="app_name">MHGen Database</string>
-    <string name="app_name_launcher">MHGen DB</string>
+    <string name="app_name">MHGU Database</string>
+    <string name="app_name_launcher">MHGUDB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
-    <string name="about">About</string>
     <string name="action_settings">Settings</string>
-    <string name="about_message">
-                                MHGen Database v1.00
-                                \n\n
-                                Developed by Gathering Hall Studios\n
-                                http://gatheringhallstudios.com
-                                \n\n
-                                Contribute at:\n
-                                https://github.com/gatheringhallstudios/MHGenDatabase
-                                \n\n
-                                Special Thanks to:\n
-                                Kiranico\n
-                                Ping
-                                \n\n
-                                Uses the following open source libraries:\n
-                                * android-section-adapter\n
-                                * android-sqlite-asset-helper\n
-                                * multilevelexpindlistview\n
-                                * pagerslidingtabstrip\n
-                                * android-flowlayout
-        						</string>
     <string name="alert_button">Close</string>
     <string name="alert_rate">Rate!</string>
     <string name="cancel">Cancel</string>
@@ -34,8 +12,16 @@
     <string name="copy">Copy</string>
     <string name="submit">Submit</string>
 
+    <string name="about">About</string>
+    <string name="about_message">
+        Gathering Hall Studios is an open source team of designers and developers
+        dedicated to building high-quality apps for the Monster Hunter series.
+        Contact us at contact@gatheringhallstudios.com or visit our Discord.
+    </string>
+
     <string name="placeholder_unknown">Unknown</string>
     <string name="filter_final_option">Final Only</string>
+    <string name="empty_message">No Data</string>
     <string name="list_empty_message">Insufficient materials.</string>
 
     <string name="dialog_message_delete">\"%s\" will be deleted.</string>
@@ -55,24 +41,49 @@
     <string name="changelog_ok_button">OK</string>
     <string name="changelog_show_full">More…</string>
 
+    <!-- Various data types (for search results and things like that) -->
+    <string name="type_monster">Monster</string>
+    <string name="type_quest">Quest</string>
+    <string name="type_skill_tree">Skill Tree</string>
+    <string name="type_item">Item</string>
+    <string name="type_weapon">Weapon</string>
+    <string name="type_armor">Armor</string>
+    <string name="type_decoration">Decoration</string>
+    <string name="type_palico_weapon">Palico Weapon</string>
+    <string name="type_palico_armor">Palico Armor</string>
+    <string name="type_material">Material</string>
+    <string name="type_hub_village">Village</string>
+    <string name="type_hub_guild">Guild</string>
+    <string name="type_hub_event">Event</string>
+    <string name="type_hub_arena">Arena</string>
+    <string name="type_hub_permit">Permit</string>
+
+    <!-- value strings -->
+    <string name="value_rare">Rare %s</string>
+
+    <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="logo_description">Logo</string>
-    <string-array name="drawer_items">
-        <item>"Monsters,icons_items/Book-White.png"</item>
-        <item>"Weapons,icons_weapons/icons_sword_and_shield/sword_and_shield1.png"</item>
-        <item>"Armor,icons_armor/icons_body/body1.png"</item>
-        <item>"Quests,icons_items/Quest-Icon-White.png"</item>
-        <item>"Items,icons_items/Ore-White.png"</item>
-        <item>"Palicos,icons_weapons/cutting1.png</item>
-        <item>"Combining,icons_items/Liquid-White.png"</item>
-        <item>"Locations,icons_items/Map-Icon-White.png"</item>
-        <item>"Decorations,icons_items/Jewel-White.png"</item>
-        <item>"Skills,icons_items/Monster-Jewel-White.png"</item>
-        <item>"Armor Set Builder,icons_items/Talisman-White.png"</item>
-        <item>"Wishlists,icons_items/Mantle-White.png"</item>
-    </string-array>
+    <string name="drawer_monsters">Monsters</string>
+    <string name="drawer_weapons">Weapons</string>
+    <string name="drawer_armor">Armor</string>
+    <string name="drawer_quests">Quests</string>
+    <string name="drawer_items">Items</string>
+    <string name="drawer_palicos">Palicos</string>
+    <string name="drawer_combining">Combining</string>
+    <string name="drawer_locations">Locations</string>
+    <string name="drawer_decorations">Decorations</string>
+    <string name="drawer_skills">Skills</string>
+    <string name="drawer_asb">Armor Set Builder</string>
+    <string name="drawer_wishlists">Wishlists</string>
+    <string name="drawer_group_other">Other</string>
+    <string name="drawer_preferences">Settings</string>
+    <string name="drawer_feedback">Send Feedback</string>
+    <string name="drawer_changelog">Change Log</string>
 
+    <string name="logo_description">Logo</string>
+
+    <!-- Standard Menu Options -->
     <string name="option_list">List</string>
     <string name="option_grid">Grid</string>
     <string name="option_wishlist_add">Create Wishlist</string>
@@ -83,7 +94,10 @@
     <string name="option_wishlist_data_add">Add to wishlist</string>
     <string name="option_wishlist_data_edit">Edit quantity</string>
     <string name="option_wishlist_data_delete">Delete from wishlist</string>
-    <string name="search_title">Search item</string>
+
+    <!-- Page titles -->
+    <string name="title_search">Search item</string>
+    <string name="title_preferences">Settings</string>
     <string name="monsters">Monsters</string>
     <string name="palicos">Palicos</string>
     <string name="items">Items</string>
@@ -92,7 +106,8 @@
     <string name="quests">Quests</string>
     <string name="hunting_fleet">Hunting Fleet</string>
     <string name="skill_trees">Skills</string>
-    <string name="decorations">Decorations</string>
+    <string name="decoration_title">Decorations</string>
+    <string name="decoration_detail_title">Decoration</string>
     <string name="armor">Armor</string>
     <string name="monster_image">monster_image</string>
     <string name="monster_damage">monster_damage</string>
@@ -112,16 +127,93 @@
     Unicode Dash \u2015
     -->
 
-    <!-- Item details -->
-    <string name="item_rarity">Rarity</string>
-    <string name="item_max">Max</string>
-    <string name="item_buy">Buy</string>
-    <string name="item_sell">Sell</string>
+    <!-- Setting names -->
+    <string name="preference_data_language">Data Language</string>
+    <string name="preference_data_language_description">
+        The language used for data (not the app). Current: %s
+    </string>
+    <string name="preference_japanese">Show Japanese</string>
+    <string name="preference_japanese_description">
+        Show Japanese names alongside english ones.
+    </string>
+
+    <!-- Monsters -->
+    <string name="monster_tab_small">Small</string>
+    <string name="monster_tab_large">Large</string>
+    <string name="monster_tab_deviant">Deviant</string>
+    <string name="monster_summary_weaknesses">Weaknesses</string>
+    <string name="monster_summary_items">Items</string>
+    <string name="monster_ailments">Ailments</string>
+    <string name="monster_habitats">Habitats</string>
+    <string name="monster_damage_area">Area</string>
+    <string name="monster_status_icon">Status</string>
+    <string name="monster_status_initial">Initial</string>
+    <string name="monster_status_increase">Increase</string>
+    <string name="monster_status_max">Max</string>
+    <string name="monster_status_duration">Duration</string>
+    <string name="monster_status_damage">Damage</string>
+
+    <!-- Items -->
+    <string name="item_rarity">Rare</string>
+    <string name="item_carry_max">Carry Max:</string>
+    <string name="item_buy">Buy Price</string>
+    <string name="item_sell">Sell Price:</string>
     <string name="item_description">Description</string>
+    <string name="item_combinations">Combinations</string>
+    <string name="item_skills">Skills</string>
+    <string name="item_crafting">Crafting</string>
+    <string name="item_combination_yield">Yields</string>
+
+    <!-- Skill detail -->
+    <string name="skill_tab_detail">Detail</string>
+    <string name="skill_tab_decorations">Decorations</string>
+    <string name="skill_tab_head">Head</string>
+    <string name="skill_tab_body">Body</string>
+    <string name="skill_tab_arms">Arms</string>
+    <string name="skill_tab_waist">Waist</string>
+    <string name="skill_tab_legs">Legs</string>
+
+    <!-- Armor -->
+    <string name="armor_part">Part</string>
+    <string name="armor_defense">Defense</string>
+    <string name="armor_type_both">Any</string>
+    <string name="armor_type_blade_short">Blade</string>
+    <string name="armor_type_blade">Blademaster</string>
+    <string name="armor_type_gunner">Gunner</string>
+    <string name="armor_title_set">Set</string>
+    <string name="armor_res_fire">Fire Res:</string>
+    <string name="armor_res_water">Water Res:</string>
+    <string name="armor_res_thunder">Thunder Res:</string>
+    <string name="armor_res_ice">Ice Res:</string>
+    <string name="armor_res_dragon">Dragon Res:</string>
+    <string-array name="armor_rarity_levels">
+        <item>Rare 1</item>
+        <item>Rare 2</item>
+        <item>Rare 3</item>
+        <item>Rare 4</item>
+        <item>Rare 5</item>
+        <item>Rare 6</item>
+        <item>Rare 7</item>
+        <item>Rare 8</item>
+        <item>Rare 9</item>
+        <item>Rare 10</item>
+        <item>Rare X</item>
+    </string-array>
 
     <!-- Wishlist stuff -->
-
+    <string name="wishlist_name_hint">Wishlist Name</string>
+    <string name="wishlist_quantity_label">Quantity:</string>
+    <string name="wishlist_quantity_hint">Quantity</string>
+    <string name="wishlist_add_title">Add to which wishlist?</string>
+    <string name="wishlist_add_set_title">Add armorset to which wishlist?</string>
+    <string name="wishlist_add_success">Added to %s wishlist</string>
     <string name="wishlist_text_total">Total cost</string>
+    <string name="wishlist_error_name_required">Wishlist name is required</string>
+    <string name="wishlist_error_quantity_required">Quantity is required</string>
+    <string name="wishlist_error_quantity_invalid">Quantity is out of bounds</string>
+    <string name="wishlist_error_unknown">Unexpected error</string>
+    <string name="wishlist_tab_wishlist">Wishlist</string>
+    <string name="wishlist_tab_materials">Materials</string>
     <string-array name="test_array">
         <item>0</item>
         <item>1</item>
@@ -142,38 +234,23 @@
     <string name="two_slot_jewel">●●</string>
     <string name="three_slot_jewel">●●●</string>
 
-    <string name="image_location_fire">icons_monster_info/Fire.png</string>
-    <string name="image_location_water">icons_monster_info/Water.png</string>
-    <string name="image_location_thunder">icons_monster_info/Thunder.png</string>
-    <string name="image_location_ice">icons_monster_info/Ice.png</string>
-    <string name="image_location_dragon">icons_monster_info/Dragon.png</string>
-    <string name="image_location_poison">icons_monster_info/Poison.png</string>
-    <string name="image_location_paralysis">icons_monster_info/Paralysis.png</string>
-    <string name="image_location_sleep">icons_monster_info/Sleep.png</string>
-    <string name="image_location_pitfall_trap">icons_items/Trap-Green.png</string>
-    <string name="image_location_shock_trap">icons_items/Trap-Purple.png</string>
-    <string name="image_location_flash_bomb">icons_items/Bomb-Yellow.png</string>
-    <string name="image_location_sonic_bomb">icons_items/Bomb-Grey.png</string>
-    <string name="image_location_dung_bomb">icons_items/Dung.png</string>
-    <string name="image_location_meat">icons_items/Meat-White.png</string>
-    <string name="image_location_effectiveness_1">icons_monster_info/effectiveness-1.png</string>
-    <string name="image_location_effectiveness_2">icons_monster_info/effectiveness-2.png</string>
-    <string name="image_location_effectiveness_3">icons_monster_info/effectiveness-3.png</string>
 
-    <!-- ASB List stuff -->
-
+    <!-- Armor Set Builder Stuff !-->
     <string name="activity_asb_sets">Armor Sets</string>
 
     <string name="dialog_title_add_asb_set">New Set</string>
     <string name="dialog_title_edit_asb_set">Edit Set</string>
-
+    <string name="asb_dialog_name_hint">Set Name</string>
+    <string name="asb_dialog_rank">Rank</string>
+    <string name="asb_dialog_hunter_type">Hunter Type</string>
     <string name="context_action_asb_delete">Delete</string>
     <string name="context_action_asb_edit_data">Edit Data</string>
     <string name="context_action_asb_copy">Copy</string>
 
-    <!-- Armor Set Builder Stuff !-->
-
     <string name="activity_asb">Armor Set Builder</string>
+    <string name="asb_tab_equipment">Equipment</string>
+    <string name="asb_tab_skills">Skills</string>
+    <string name="activity_asb_armor_picker">Select Armor</string>
 
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slot">No slot</string>
@@ -209,7 +286,7 @@
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
 
-
+    <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
     <string name="ammo_divider">" • "</string>
     <string name="rapid_fire_short_wait">Short</string>
@@ -243,13 +320,15 @@
     <string name="weapon_sharpness">Sharpness</string>
     <string name="weapon_notes">Notes</string>
     <string name="weapon_phial_type">Phial Type</string>
-    <string name="weapon_upgrade_cost">Upgrade Cost</string>
-    <string name="weapon_creation_cost">Creation Cost</string>
+    <string name="weapon_upgrade">Upgrade</string>
+    <string name="weapon_create">Create</string>
     <string name="weapon_charges">Charges</string>
     <string name="weapon_arc">Arc</string>
     <string name="weapon_recoil">Recoil</string>
     <string name="weapon_reload">Reload</string>
     <string name="weapon_deviation">Deviation</string>
+
+    <!-- Quest Detail -->
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
@@ -258,23 +337,30 @@
     <string name="quest_detail_location">Location</string>
     <string name="quest_detail_goal">Goal</string>
     <string name="quest_detail_subquest">Subquest</string>
+    <string name="quest_detail_subquest_reward">Subquest Reward</string>
+    <string name="quest_detail_subquest_hrp">Subquest HRP</string>
     <string name="quest_detail_description">Description</string>
+    <string name="unstable">Unstable</string>
+    <string name="hyper">Hyper</string>
+    <string name="armor_pieces">Armor Pieces</string>
+    <string name="summary">summary</string>
 
+    <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
-        <item>Pawn,Talisman-White.png</item>
-        <item>Bishop,Talisman-Purple.png</item>
-        <item>Knight,Talisman-Yellow.png</item>
-        <item>Rook,Talisman-Pink.png</item>
-        <item>Queen,Talisman-Green.png</item>
-        <item>King,Talisman-Cyan.png</item>
-        <item>Dragon,Talisman-Red.png</item>
-        <item>Unknowable,Talisman-Blue.png</item>
-        <item>Mystic,Talisman-Orange.png</item>
-        <item>Hero,Talisman-Blue.png</item>
-        <item>Legend,Talisman-Orange.png</item>
-        <item>Creator,Talisman-Magenta.png</item>
-        <item>Sage,Talisman-Magenta.png</item>
-        <item>Miracle,Talisman-Magenta.png</item>
+        <item>Pawn</item>
+        <item>Bishop</item>
+        <item>Knight</item>
+        <item>Rook</item>
+        <item>Queen</item>
+        <item>King</item>
+        <item>Dragon</item>
+        <item>Unknowable</item>
+        <item>Mystic</item>
+        <item>Hero</item>
+        <item>Legend</item>
+        <item>Creator</item>
+        <item>Sage</item>
+        <item>Miracle</item>
     </string-array>
 
     <string-array name="slot_values">

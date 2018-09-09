@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="android.widget.LinearLayout"
+    tools:orientation="vertical">
+
+
+    <com.ghstudios.android.components.TitleBarCell
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:iconSrc="@drawable/drawer_weapons"
+        tools:titleText="Master Sword"/>
+
+    <FrameLayout style="@style/SectionDivider"/>
+
+    <TextView
+        android:id="@+id/detail_weapon_description"
+        style="@style/Description"
+        tools:text="Description should go here" />
+
+    <FrameLayout style="@style/SectionDivider"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/data_row"
+        style="@style/cell_column_row">
+
+        <com.ghstudios.android.components.ColumnLabelTextCell
+            android:id="@+id/attack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:labelText="@string/weapon_attack"
+            tools:valueText="380"/>
+
+        <com.ghstudios.android.components.ColumnLabelTextCell
+            android:id="@+id/element1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:labelText="Fire"
+            tools:valueText="28"/>
+
+        <com.ghstudios.android.components.ColumnLabelTextCell
+            android:id="@+id/element2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:labelText="Fire"
+            tools:valueText="28"/>
+
+        <com.ghstudios.android.components.ColumnLabelTextCell
+            android:id="@+id/affinity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:labelText="@string/weapon_affinity"
+            tools:valueText="5%"/>
+
+        <com.ghstudios.android.components.ColumnLabelTextCell
+            android:id="@+id/slots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:labelText="@string/weapon_slots"
+            tools:valueText="---"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <FrameLayout style="@style/SectionDivider"/>
+
+</merge>

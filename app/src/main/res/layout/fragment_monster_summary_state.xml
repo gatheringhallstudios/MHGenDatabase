@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Summary Section -->
+    <com.ghstudios.android.components.SectionHeaderCell
+        android:id="@+id/state_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:labelText="Normal State"/>
+
+    <!-- Weaknesses -->
+    <TextView
+        android:id="@+id/weakness_label"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_item_height"
+        android:minHeight="@dimen/list_item_height"
+        style="@style/text_medium"
+        android:gravity="center_vertical"
+
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/weakness_data"
+
+        android:text="@string/monster_summary_weaknesses"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/weakness_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_end"
+
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/state_name"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weakness_label">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <FrameLayout style="@style/HorizontalDividerFull"
+        android:id="@+id/divider1"
+        app:layout_constraintTop_toBottomOf="@id/weakness_label"/>
+
+    <!-- Traps and Bombs -->
+    <TextView
+        android:id="@+id/item_label"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_item_height"
+        android:minHeight="@dimen/list_item_height"
+        style="@style/text_medium"
+        android:gravity="center_vertical"
+
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/item_data"
+
+        android:text="@string/monster_summary_items"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/item_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_end"
+
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_label">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</android.support.constraint.ConstraintLayout>

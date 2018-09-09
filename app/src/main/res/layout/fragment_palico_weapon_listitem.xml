@@ -22,7 +22,7 @@
                 style="@style/small_image"
                 android:id="@id/item_image"
                 android:layout_marginRight="4dp"
-                android:src="@drawable/switch_axe1"/>
+                android:src="@drawable/talisman"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -71,7 +71,7 @@
                 android:layout_height="14dp"
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
-                tools:src="@drawable/fire"/>
+                tools:src="@drawable/element_fire"/>
             <TextView
                 android:id="@+id/element_melee_text"
                 android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_height="14dp"
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
-                tools:src="@drawable/fire"/>
+                tools:src="@drawable/element_fire"/>
             <TextView
                 android:id="@+id/element_ranged_text"
                 android:layout_width="wrap_content"

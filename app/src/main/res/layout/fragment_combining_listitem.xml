@@ -1,132 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listitem"
-    style="@style/list_item"
+    style="@style/list_item_basic"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_small"
     android:clickable="false"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp">
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground">
+    <!-- Note: padding/margin above are separated as an implementation detail.
+        The padding can be set to zero by code, the margin cannot.-->
 
-    <RelativeLayout
-        android:id="@+id/item3"
-        style="@style/list_sub_item"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
 
-        <TextView
-            android:id="@+id/percentage"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="false"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:text="95%" />
+    <ImageView
+        android:id="@+id/result_icon"
+        style="@style/large_image"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:src="@drawable/drawer_items" />
 
-        <TextView
-            android:id="@+id/amt"
-            style="@style/text_small"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:layout_toLeftOf="@+id/percentage"
-            android:gravity="center"
-            android:text="2" />
+    <TextView
+        android:id="@+id/result_name"
+        style="@style/text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        android:gravity="center_vertical"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/percentage"
+        app:layout_constraintStart_toEndOf="@id/result_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Potion" />
 
-        <ImageView
-            android:id="@+id/item_img3"
-            style="@style/main_image"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+    <TextView
+        android:id="@+id/percentage"
+        style="@style/text_small_secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/result_name"
+        app:layout_constraintTop_toBottomOf="@+id/result_name"
 
-        <TextView
-            android:id="@+id/item_text3"
-            style="@style/text_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_toRightOf="@+id/item_img3"
-            android:gravity="center_vertical"
-            android:text="Potion" />
-    </RelativeLayout>
+        tools:text="95%" />
+
+    <TextView
+        android:id="@+id/yield_amount"
+        style="@style/text_small_secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        tools:text="x3"
+        app:layout_constraintBaseline_toBaselineOf="@id/percentage"
+        app:layout_constraintStart_toEndOf="@id/percentage" />
 
     <LinearLayout
-        style="@style/list_item"
-        android:id="@+id/combining_ingredient_layout"
-        android:layout_width="fill_parent"
+        android:id="@+id/item1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/item3"
-        android:clickable="false"
-        android:gravity="right"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingLeft="@dimen/margin_large"
+        android:paddingRight="@dimen/margin_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item3">
 
-        <LinearLayout
-            android:id="@+id/item1"
+        <TextView
+            android:id="@+id/item1_name"
+            style="@style/text_small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            tools:text="Dragonbone Artifact" />
 
-            <TextView
-                android:id="@+id/item_text1"
-                style="@style/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:layout_toLeftOf="@+id/item_img2"
-                android:gravity="center_vertical"
-                tools:text="Dragonbone Artifact" />
-
-            <ImageView
-                android:id="@+id/item_img1"
-                style="@style/small_image"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="0dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/item2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/item_text2"
-                style="@style/text_small"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:gravity="center_vertical"
-                tools:text="Dragonbone Artifact" />
-
-            <ImageView
-                android:id="@+id/item_img2"
-                style="@style/small_image"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="0dp" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/item1_icon"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            tools:src="@drawable/drawer_items" />
 
     </LinearLayout>
 
-    <View android:layout_height="1dp"
-        android:layout_width="match_parent"
-        android:layout_below="@id/combining_ingredient_layout"
-        android:layout_marginTop="6dp"
-        android:background="@color/divider_color"/>
+    <LinearLayout
+        android:id="@+id/item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingLeft="@dimen/margin_large"
+        android:paddingRight="@dimen/margin_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item1">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/item2_name"
+            style="@style/text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            tools:text="Dragonbone Artifact" />
+
+        <ImageView
+            android:id="@+id/item2_icon"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            tools:src="@drawable/drawer_items" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

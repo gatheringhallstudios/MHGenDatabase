@@ -6,11 +6,19 @@
     android:clickable="true"
     android:orientation="horizontal">
 
-    <View
+    <LinearLayout
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:id="@+id/indent_view"
-        android:background="@color/divider_color" />
+        android:background="@color/divider_color" >
+        <TextView
+            android:id="@+id/level"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/text_medium"
+            android:gravity="center"/>
+    </LinearLayout>
 
     <View
         android:layout_width="4dp"
@@ -52,7 +60,7 @@
             <view
                 android:layout_width="92dp"
                 android:layout_height="20dp"
-                class="com.ghstudios.android.ui.general.DrawSharpness"
+                class="com.ghstudios.android.components.DrawSharpness"
                 android:id="@+id/sharpness"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true" />
@@ -116,7 +124,7 @@
                 android:gravity="right"
                 android:layout_toRightOf="@+id/attack_text" />
 
-            <com.ghstudios.android.ui.general.FixedImageView
+            <com.ghstudios.android.components.FixedImageView
                 android:id="@+id/element_image"
                 style="@style/tiny_image"
                 android:layout_toRightOf="@+id/awaken_text" />
@@ -131,7 +139,7 @@
                 android:textSize="12sp"
                 android:layout_toRightOf="@+id/element_image" />
 
-            <com.ghstudios.android.ui.general.FixedImageView
+            <com.ghstudios.android.components.FixedImageView
                 style="@style/tiny_image"
                 android:id="@+id/element_image2"
                 android:layout_toRightOf="@+id/element_text" />
@@ -160,7 +168,7 @@
                 android:layout_alignWithParentIfMissing="true"
                 android:layout_toLeftOf="@+id/note_image_1" />
 
-            <com.ghstudios.android.ui.general.FixedImageView
+            <com.ghstudios.android.components.FixedImageView
                 android:id="@+id/note_image_1"
                 style="@style/tiny_image"
                 android:layout_below="@+id/attack_text"
@@ -169,7 +177,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_toLeftOf="@+id/note_image_2" />
 
-            <com.ghstudios.android.ui.general.FixedImageView
+            <com.ghstudios.android.components.FixedImageView
                 android:id="@+id/note_image_2"
                 style="@style/tiny_image"
                 android:layout_alignTop="@+id/note_image_1"
@@ -177,7 +185,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_toLeftOf="@+id/note_image_3" />
 
-            <com.ghstudios.android.ui.general.FixedImageView
+            <com.ghstudios.android.components.FixedImageView
                 android:id="@+id/note_image_3"
                 style="@style/tiny_image"
                 android:layout_alignTop="@+id/note_image_2"

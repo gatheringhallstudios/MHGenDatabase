@@ -28,11 +28,11 @@ public class HuntingRewardListCursorLoader extends SQLiteCursorLoader {
 	protected Cursor loadCursor() {
 		if (from.equals(FROM_ITEM)) {
 			// Query the list of hunting reward based on item
-			return DataManager.get(getContext()).queryHuntingRewardItem(id);
+			return DataManager.get().queryHuntingRewardItem(id);
 		}
 		else if(from.equals(FROM_MONSTER)) {
 			// Query the list of hunting reward based on monster and rank
-			return DataManager.get(getContext()).queryHuntingRewardMonsterRank(id, rank);
+			return DataManager.get().queryHuntingRewardMonsterRank(id, rank);
 		}
 		else {
 			return null;

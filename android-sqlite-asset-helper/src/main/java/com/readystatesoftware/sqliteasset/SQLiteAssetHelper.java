@@ -179,6 +179,9 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
 
             // do force upgrade
             if (version != 0 && version < mForcedUpgradeVersion) {
+                // close old db - we need to close the old one before making a new one - added by Supe 8/16/2018
+                db.close();
+
                 db = createOrOpenDatabase(true);
                 db.setVersion(mNewVersion);
                 onForcedUpgrade(db,version,mNewVersion);
@@ -380,31 +383,29 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
     }
 
     private SQLiteDatabase createOrOpenDatabase(boolean force) throws SQLiteAssetException {
+        File file = new File (mDatabasePath + "/" + mName);
+        boolean fileExists = file.exists();
+
+        // If the file exists and force is enabled, assume there is a DB
+        if (fileExists && force) {
+            Log.w(TAG, "forcing database upgrade!");
+            copyDatabaseFromAssets();
+            return returnDatabase();
+        }
 
         // test for the existence of the db file first and don't attempt open
         // to prevent the error trace in log on API 14+
         SQLiteDatabase db = null;
-        File file = new File (mDatabasePath + "/" + mName);
-        if (file.exists()) {
+        if (fileExists) {
             db = returnDatabase();
         }
-        //SQLiteDatabase db = returnDatabase();
 
         if (db != null) {
-            // database already exists
-            if (force) {
-                Log.w(TAG, "forcing database upgrade!");
-                preCopyDatabase(db);
-                copyDatabaseFromAssets();
-                db = returnDatabase();
-                postCopyDatabase(db);
-            }
             return db;
         } else {
             // database does not exist, copy it from assets and return it
             copyDatabaseFromAssets();
-            db = returnDatabase();
-            return db;
+            return returnDatabase();
         }
     }
 

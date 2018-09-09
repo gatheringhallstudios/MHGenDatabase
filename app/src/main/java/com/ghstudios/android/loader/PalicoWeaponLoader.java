@@ -19,6 +19,6 @@ public class PalicoWeaponLoader extends DataLoader<PalicoWeapon> {
 
     @Override
     public PalicoWeapon loadInBackground() {
-        return DataManager.get(getContext()).getPalicoWeapon(id);
+        return DataManager.get().getPalicoWeapon(id);
     }
 }

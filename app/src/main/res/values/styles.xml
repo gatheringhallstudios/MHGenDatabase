@@ -56,14 +56,32 @@
         <item name="android:clipToPadding">false</item>
 
         <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <item name="android:listDivider">@drawable/divider_solid</item>
     </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorPrimary">@color/text_color</item>
         <item name="colorAccent">@color/accent_color</item>
     </style>
 
-    <style name="SpinnerStyle">
+    <style name="Description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/margin_large</item>
+        <item name="android:paddingRight">@dimen/margin_large</item>
+        <item name="android:paddingTop">@dimen/margin_medium</item>
+        <item name="android:paddingBottom">@dimen/margin_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="Base.Widget.AppCompat.Spinner.Underlined">
         <item name="android:textAppearance">@style/SpinnerItemTextAppearance</item>
     </style>
 
@@ -114,16 +132,23 @@
         <item name="android:paddingLeft">8dp</item>
     </style>
 
-    <!-- USE FOR ALL FULLSCREEN ACTIVITIES WHERE VIEWS COVER ALL BACKGROUND TO REDUCE OVERDRAW -->
-    <style name="FullScreenActivity" parent = "AppTheme">
-        <item name="android:windowBackground">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <style name="HorizontalDividerFull">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/divider_color</item>
     </style>
 
+    <style name="HorizontalDivider" parent="HorizontalDividerFull">
+        <item name="android:layout_marginLeft">@dimen/margin_medium</item>
+        <item name="android:layout_marginRight">@dimen/margin_medium</item>
+    </style>
+
+    <!-- Divides section like titles and column label sections -->
+    <style name="SectionDivider" parent="HorizontalDividerFull"/>
 
     <!-- Begin styles for lists -->
 
-    <style name="list" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="list">
         <item name="android:background">@drawable/clicked_states_white</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_width">fill_parent</item>
@@ -136,7 +161,7 @@
         <item name="android:fastScrollEnabled">true</item>
     </style>
 
-    <style name="damage_table_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="damage_table_item">
         <item name="android:layout_height">32dp</item>
     </style>
 
@@ -144,7 +169,7 @@
         <item name="android:groupIndicator">@null</item>
     </style>
 
-    <style name="expandable_group" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="expandable_group">
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/subheading_color</item>
@@ -153,10 +178,17 @@
 
     </style>
 
-    <style name="list_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="list_item_basic">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="list_item">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:minHeight">@dimen/list_item_height</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
@@ -165,7 +197,7 @@
 
 
     <!-- JOE: Results in a more dense list. Adheres to the android material design spec. -->
-    <style name="list_item_dense" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="list_item_dense">
         <item name="android:clickable">true</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -175,9 +207,9 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="list_sub_item" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:layout_height">40dp</item>
+    <style name="list_sub_item">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
@@ -188,13 +220,13 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="text_large" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="text_large">
         <item name="android:textColor">@color/color_states_enabled</item>
         <item name="android:textSize">25sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="text_medium" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="text_medium">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
@@ -204,24 +236,49 @@
         <item name="android:textColor">@color/color_states_enabled</item>
     </style>
 
-    <style name="text_medium_alt" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="text_medium_alt">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="text_small" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="text_small">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
-        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
-    <style name="text_small_secondary" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="text_small_secondary">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
-        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="hyper_badge">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@drawable/textview_badge_hyper</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+    </style>
+
+    <style name="key_badge">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@drawable/textview_badge_key</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+    </style>
+
+    <style name="urgent_badge">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@drawable/textview_badge_urgent</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
     </style>
 
     <style name="text_small.color_states_enabled">
@@ -232,33 +289,36 @@
         <item name="android:textColor">@color/text_color_unavailable</item>
     </style>
 
-    <style name="main_image" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="main_image">
         <item name="android:layout_height">28dp</item>
         <item name="android:layout_width">28dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="extra_large_image" parent="@style/main_image">
+    <style name="extra_large_image">
         <item name="android:layout_height">96dp</item>
         <item name="android:layout_width">96dp</item>
     </style>
 
-    <style name="large_image" parent="@style/main_image">
-        <item name="android:layout_height">48dp</item>
-        <item name="android:layout_width">48dp</item>
+    <style name="main_image_large" parent="main_image">
+        <item name="android:layout_height">@dimen/image_size_large</item>
+        <item name="android:layout_width">@dimen/image_size_large</item>
     </style>
 
-    <style name="small_image" parent="@style/main_image">
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_marginRight">8dp</item>
+    <style name="large_image">
+        <item name="android:layout_height">@dimen/image_size_large</item>
+        <item name="android:layout_width">@dimen/image_size_large</item>
     </style>
 
-    <style name="tiny_image" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="small_image">
+        <item name="android:layout_height">@dimen/image_size_small</item>
+        <item name="android:layout_width">@dimen/image_size_small</item>
+    </style>
+
+    <style name="tiny_image">
         <item name="android:layout_height">16dp</item>
         <item name="android:layout_width">16dp</item>
-        <item name="android:layout_gravity">center</item>
     </style>
 
 
@@ -267,17 +327,70 @@
     <!-- Styles for weapon/item detail pages -->
     <style name="title_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72dp</item>
-        <item name="android:background">@color/background_title_color</item>
+        <item name="android:layout_height">@dimen/title_full_height</item>
+        <item name="android:minHeight">@dimen/title_full_height</item>
     </style>
 
+    <!-- TODO: Only used by palic weapon detail. Phase it out -->
     <style name="title_bar_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:paddingLeft">16dp</item>
-        <item name="android:textSize">26sp</item>
-        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="cell_listitem_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="cell_listitem_alt_label" parent="cell_listitem_label">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_color_secondary</item>
+    </style>
+
+    <style name="cell_column">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="flexDirection">column</item>
+        <item name="alignItems">center</item>
+    </style>
+
+    <style name="cell_column_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/title_full_height</item>
+        <item name="android:layout_marginLeft">@dimen/margin_large</item>
+        <item name="android:layout_marginRight">@dimen/margin_large</item>
+        <item name="justifyContent">space_between</item>
+        <item name="alignItems">center</item>
+    </style>
+
+    <style name="cell_column_row_centered" parent="@style/cell_column_row">
+        <item name="justifyContent">space_evenly</item>
+    </style>
+
+    <style name="cell_column_value">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="cell_column_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
+    <style name="cell_column_solovalue">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 
     <style name="detail_value_text" parent="text_medium">
@@ -285,14 +398,18 @@
         <item name="android:textColor">@color/weapon_property_color</item>
     </style>
 
+    <style name="detail_value_medium_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/weapon_header_property_color</item>
+    </style>
+
     <style name="detail_header_text">
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 
     <style name="detail_subheader_text">
-        <item name="android:textSize">16sp</item>
-        <item name="android:paddingTop">4dp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
     </style>
 

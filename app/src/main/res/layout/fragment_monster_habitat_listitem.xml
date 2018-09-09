@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/mapImage"
-        style="@style/large_image"
+        style="@style/main_image_large"
         android:padding="4dp"
         android:layout_centerVertical="true" />
 

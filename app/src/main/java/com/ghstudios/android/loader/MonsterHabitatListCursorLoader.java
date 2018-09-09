@@ -33,10 +33,10 @@ public class MonsterHabitatListCursorLoader extends SQLiteCursorLoader {
      */
     protected Cursor loadCursor() {
         if (from.equals(FROM_MONSTER)) {
-            return DataManager.get(getContext()).queryHabitatMonster(id);
+            return DataManager.get().queryHabitatMonster(id);
         }
         else if(from.equals(FROM_LOCATION)) {
-            return DataManager.get(getContext()).queryHabitatLocation(id);
+            return DataManager.get().queryHabitatLocation(id);
         }
         else {
             return null;

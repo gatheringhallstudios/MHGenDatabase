@@ -20,7 +20,7 @@ public class WeaponTreeListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		// Query the list of weapons in the tree
-		return DataManager.get(getContext()).queryWeaponTree(id);
+		return DataManager.get().queryWeaponTree(id);
 
 	}
 }

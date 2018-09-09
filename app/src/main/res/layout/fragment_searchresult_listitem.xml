@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/list_item"
     android:layout_width="match_parent"
     android:id="@+id/listitem">
@@ -8,7 +10,29 @@
     <ImageView
         android:id="@+id/result_image"
         style="@style/main_image"
-        android:layout_centerVertical="true" />
+        tools:src="@drawable/item_meat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/result_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/text_medium"
+        tools:text="Trekker Jewel"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+
+        app:layout_constraintStart_toEndOf="@id/result_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/result_type"/>
 
     <TextView
         android:id="@+id/result_type"
@@ -17,23 +41,9 @@
         android:layout_gravity="center"
         android:gravity="center_vertical"
         style="@style/text_small"
-        android:text="Decoration"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true" />
+        tools:text="Decoration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/result_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
-        style="@style/text_medium"
-        android:text="Trekker Jewel"
-        android:layout_toRightOf="@id/result_image"
-        android:layout_toLeftOf="@id/result_type"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:layout_centerVertical="true" />
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

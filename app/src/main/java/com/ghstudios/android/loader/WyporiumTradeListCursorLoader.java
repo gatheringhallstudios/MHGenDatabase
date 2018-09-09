@@ -14,6 +14,6 @@ public class WyporiumTradeListCursorLoader extends SQLiteCursorLoader {
     @Override
     protected Cursor loadCursor() {
         // Query the list of all wyporium trades
-        return DataManager.get(getContext()).queryWyporiumTrades();
+        return DataManager.get().queryWyporiumTrades();
     }
 }

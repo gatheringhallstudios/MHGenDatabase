@@ -1,125 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/detail_decoration_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"/>
-
-        <TextView
-            android:id="@+id/detail_decoration_label"
-            android:layout_width="wrap_content"
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_color"/>
-    </LinearLayout>
+            tools:iconSrc="@drawable/drawer_decorations"
+            tools:titleText="Attack Jewel 3"
+            tools:titleAltText="攻撃珠【３】"
+            tools:altTitleEnabled="true"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        <FrameLayout
+            android:id="@+id/divider1"
+            style="@style/SectionDivider"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
-            android:orientation="vertical"
-            android:paddingLeft="10dp">
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/data_row"
+            style="@style/cell_column_row">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rare:"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Max:"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buy:"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sell:"
-                android:textColor="@color/text_color"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Slots Req:"
-                android:textColor="@color/text_color"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".8"
-            android:orientation="vertical">
-
-            <TextView
+            <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/rare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
+                app:labelText="@string/item_rarity"
+                tools:valueText="6" />
 
-            <TextView
-                android:id="@+id/max"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/slots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
+                app:labelText="Slots"
+                tools:valueText="●●●" />
 
-            <TextView
+            <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/buy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
+                app:labelText="@string/item_buy"
+                tools:valueText="80z" />
 
-            <TextView
+            <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"/>
+                app:labelText="@string/item_sell"
+                tools:valueText="80z" />
+        </com.google.android.flexbox.FlexboxLayout>
 
-            <TextView
-                android:id="@+id/slots_req"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_skills" />
+
+        <LinearLayout
+            android:id="@+id/skill_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@drawable/divider_solid"
+            android:showDividers="middle">
+
+            <com.ghstudios.android.components.LabelTextRowCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:labelText="Attack"
+                app:valueText="1"
+                tools:visibility="visible" />
+
+            <com.ghstudios.android.components.LabelTextRowCell
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:labelText="Defense"
+                app:valueText="-1"
+                tools:visibility="visible" />
         </LinearLayout>
+
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting" />
+
+        <LinearLayout
+            android:id="@+id/recipe_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.ghstudios.android.components.ItemRecipeCell
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:titleText="Recipe 1"
+                tools:visibility="visible" />
+
+            <com.ghstudios.android.components.ItemRecipeCell
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:titleText="Recipe 2"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-    <Button android:id="@+id/select_button"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/asb_action_select"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:elevation="3dp"
-        android:clickable="true"/>
-
-</LinearLayout>
+</ScrollView>

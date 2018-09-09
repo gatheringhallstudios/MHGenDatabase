@@ -1,11 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.ghstudios.android.monsterhunter4udatabase.MainActivity">
 
     <item
         android:id="@+id/add_to_wishlist"
         android:icon="@drawable/ic_menu_add"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:title="@string/option_wishlist_data_add"/>
 
 </menu>

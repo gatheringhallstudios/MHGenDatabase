@@ -337,20 +337,26 @@ public class ASBSession {
 
         if (equipment[pieceIndex] != null) {
             if (pieceIndex != TALISMAN) {
-                for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
+                for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
                     skills.put(itemToSkillTree.getSkillTree(), itemToSkillTree.getPoints());
                 }
             } else {
-                skills.put(getTalisman().getSkill1(), getTalisman().getSkill1Points());
+                ASBTalisman talisman = getTalisman();
+                SkillTreePoints firstSkill = talisman.getFirstSkill();
+                SkillTreePoints secondSkill = talisman.getSecondSkill();
 
-                if (getTalisman().getSkill2() != null) {
-                    skills.put(getTalisman().getSkill2(), getTalisman().getSkill2Points());
+                if (firstSkill != null) {
+                    skills.put(firstSkill.getSkillTree(), firstSkill.getPoints());
+                }
+
+                if (secondSkill != null) {
+                    skills.put(secondSkill.getSkillTree(), secondSkill.getPoints());
                 }
             }
 
             for (Decoration d : decorations[pieceIndex]) {
                 if (d != null) {
-                    for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(d.getId())) {
+                    for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(d.getId())) {
                         SkillTree skillTreeToAddTo = null;
 
                         for (SkillTree skillTree : skills.keySet()) {

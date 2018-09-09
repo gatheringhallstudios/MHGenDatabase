@@ -16,6 +16,6 @@ public class WeaponLoader extends DataLoader<Weapon> {
 	@Override
 	public Weapon loadInBackground() {
 		// Query the specific weapon
-		return DataManager.get(getContext()).getWeapon(mWeaponId);
+		return DataManager.get().getWeapon(mWeaponId);
 	}
 }
