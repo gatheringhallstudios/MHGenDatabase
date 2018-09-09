@@ -18,7 +18,7 @@ Source runs in Android Studio. Open it, compile it, and run the project. You may
 Located in `MHGenDatabase\app\src\main\assets\databases`.
 
 ### Art
-Located in `MHGenDatabase\app\src\main\assets\` and `MHGenDatabase\app\src\main\icon-res\drawable
+Located in `MHGenDatabase\app\src\main\assets\` and `MHGenDatabase\app\src\main\icon-res\drawable`
 
 ### Package Layout
 
