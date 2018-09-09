@@ -1,11 +1,18 @@
 package com.ghstudios.android.data.classes;
 
-/*
+// note: to convert this to kotlin, many program changes would be required.
+// TO avoid those program changes, component (the item) needs to be non-nullable.
+// If converted to kotlin, also update ComponentCursor to pass the item in the constructor to ensure it
+
+
+/**
  * Class for Component
  *
  * This is used for forging armor, weapons, and decorations
  */
 public class Component {
+	public static String TYPE_CREATE = "Create";
+	public static String TYPE_IMPROVE = "Improve";
 
 	private long id;			// Component id
 	private Item created;		// Created Item

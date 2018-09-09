@@ -1,197 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:style="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/detail_armor_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"></ImageView>
-
-        <TextView
-            android:id="@+id/detail_armor_label"
-            android:layout_width="wrap_content"
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:textColor="@color/text_color"
-            android:textSize="20sp"
-            android:textStyle="bold"></TextView>
-    </LinearLayout>
+            tools:iconSrc="@drawable/drawer_armor"
+            tools:titleText="Attack Jewel 3"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        <FrameLayout
+            android:id="@+id/divider1"
+            style="@style/SectionDivider"/>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".4"
-            android:orientation="vertical"
-            android:paddingLeft="10dp">
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/data_row"
+            style="@style/cell_column_row">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Part:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Defense:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Slot:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rare:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buy:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fire Res:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Water Res:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ice Res:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thunder Res:"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dragon Res:"
-                android:textColor="@color/text_color" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".6"
-            android:orientation="vertical">
-
-            <TextView
+            <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/part"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                app:labelText="@string/armor_part"
+                tools:valueText="Legs" />
 
-            <TextView
-                android:id="@+id/defense_text"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/slots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                app:labelText="Slots"
+                tools:valueText="●●●" />
 
-            <TextView
-                android:id="@+id/slot"
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/defense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                app:labelText="@string/armor_defense"
+                tools:valueText="5~50" />
+        </com.google.android.flexbox.FlexboxLayout>
 
-            <TextView
-                android:id="@+id/rare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+        <FrameLayout
+            android:id="@+id/divider2"
+            style="@style/SectionDivider" />
 
-            <TextView
-                android:id="@+id/buy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+        <include layout="@layout/fragment_armor_resists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_large"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/text_color" />
+        <LinearLayout
+            android:id="@+id/skill_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fire_res"
-                android:layout_width="wrap_content"
+            <com.ghstudios.android.components.SectionHeaderCell
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                app:labelText="@string/item_skills" />
 
-            <TextView
-                android:id="@+id/water_res"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/skill_list"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                android:orientation="vertical"
+                android:divider="@drawable/divider_solid"
+                android:showDividers="middle">
 
-            <TextView
-                android:id="@+id/ice_res"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Attack"
+                    app:valueText="1"
+                    tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/thunder_res"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
-
-            <TextView
-                android:id="@+id/dragon_res"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_color" />
+                <com.ghstudios.android.components.IconLabelTextCell
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:labelText="Defense"
+                    app:valueText="-1"
+                    tools:visibility="visible" />
+            </LinearLayout>
         </LinearLayout>
+
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:id="@+id/recipe_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/item_crafting"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.ghstudios.android.components.ItemRecipeCell
+            android:id="@+id/recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Button android:id="@+id/select_button"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/asb_action_select"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:elevation="3dp"
+            android:clickable="true"/>
+
     </LinearLayout>
-
-    <Button android:id="@+id/select_button"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/asb_action_select"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:elevation="3dp"
-        android:clickable="true"/>
-
-</LinearLayout>
+</ScrollView>

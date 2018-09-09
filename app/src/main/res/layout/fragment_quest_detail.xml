@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,105 +11,83 @@
         android:paddingBottom="14dp"
         android:orientation="vertical">
 
-        <RelativeLayout style="@style/title_bar">
-
-            <TextView
-                android:id="@+id/quest"
-                style="@style/title_bar_text"
-                tools:text="Title Bar Text" />
-        </RelativeLayout>
-
-        <LinearLayout
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="12dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="12dp">
+            tools:iconSrc="@drawable/drawer_quests"
+            tools:titleText="Some Quest"/>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <FrameLayout style="@style/SectionDivider"/>
 
-                <TextView
-                    android:id="@+id/reward"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    tools:text="4500z" />
+        <TextView
+            android:id="@+id/goal"
+            style="@style/Description"
+            tools:text="Hunt a Lagiacrus" />
 
-                <TextView
-                    style="@style/detail_subheader_text"
+        <FrameLayout style="@style/SectionDivider"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/data_row"
+            style="@style/cell_column_row">
+
+            <com.google.android.flexbox.FlexboxLayout
+                style="@style/cell_column">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_reward" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/hrp"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    tools:text="300" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/level"
+                        style="@style/cell_column_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="6"/>
+                    <ImageView
+                        style="@style/tiny_image"
+                        android:src="@drawable/impact"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        />
+                </LinearLayout>
 
                 <TextView
-                    style="@style/detail_subheader_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_hrp" />
-            </LinearLayout>
+                    android:id="@+id/hub"
+                    style="@style/cell_column_label"
+                    tools:text="Village"/>
+            </com.google.android.flexbox.FlexboxLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/reward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_reward"
+                tools:valueText="45000z"/>
 
-                <TextView
-                    android:id="@+id/fee"
-                    style="@style/detail_header_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="500z" />
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/hrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_hrp"
+                tools:valueText="300" />
 
-                <TextView
-                    style="@style/detail_subheader_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/quest_detail_fee" />
-            </LinearLayout>
-        </LinearLayout>
+            <com.ghstudios.android.components.ColumnLabelTextCell
+                android:id="@+id/fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelText="@string/quest_detail_fee"
+                tools:valueText="5000z" />
+        </com.google.android.flexbox.FlexboxLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/text_color_secondary" />
+        <FrameLayout style="@style/SectionDivider"/>
 
         <!-- Monster List -->
         <TextView
             style="@style/text_small_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="16dp"
             android:text="@string/quest_detail_monsters" />
@@ -124,8 +103,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
             android:orientation="vertical">
 
             <!-- Location -->
@@ -139,13 +118,15 @@
                 android:id="@+id/location_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/location_image"
-                    style="@style/large_image"
+                    style="@style/main_image_large"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="left"
@@ -159,36 +140,6 @@
                     android:layout_marginBottom="0dp"
                     tools:text="Misty Peaks (N)" />
             </LinearLayout>
-
-            <!-- Level -->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/quest_detail_level" />
-
-            <TextView
-                android:id="@+id/level"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Village 5" />
-
-
-            <!-- Goal -->
-            <TextView
-                style="@style/text_small_secondary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quest_detail_goal" />
-
-            <TextView
-                android:id="@+id/goal"
-                style="@style/detail_value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Hunt a Lagiacrus" />
 
             <!-- Subquest -->
             <TextView
@@ -209,7 +160,7 @@
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quest_detail_reward" />
+                android:text="@string/quest_detail_subquest_reward" />
 
             <TextView
                 android:id="@+id/subreward"
@@ -223,7 +174,7 @@
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quest_detail_hrp" />
+                android:text="@string/quest_detail_subquest_hrp" />
 
             <TextView
                 android:id="@+id/subhrp"

@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary_color">#3D564C</color>
-    <color name="dark_primary_color">#2D463C</color>
-    <color name="accent_color">#009688</color>
-    <color name="light_primary_color">#D7CCC8</color>
-    <color name="light_accent_color">#33009688</color>
+    <!--Green Theme-->
+    <!--<color name="primary_color">#3D564C</color>-->
+    <!--<color name="dark_primary_color">#2D463C</color>-->
+    <!--<color name="accent_color">#009688</color>-->
+    <!--<color name="light_primary_color">#D7CCC8</color>-->
+    <!--<color name="light_accent_color">#33009688</color>-->
+    <!--<color name="text_primary_color">#f5f5f5</color>-->
+    <!--<color name="text_primary_unselected_color">#7D968C</color>-->
 
+    <!--Red Theme-->
+    <!--<color name="primary_color">#5d1d1c</color>-->
+    <!--<color name="dark_primary_color">#330000</color>-->
+    <!--<color name="accent_color">#9c9691</color>-->
+    <!--<color name="light_primary_color">#8e4843</color>-->
+    <!--<color name="light_accent_color">#cdc7c1</color>-->
+    <!--<color name="text_primary_color">#f5f5f5</color>-->
+    <!--<color name="text_primary_unselected_color">#9d6d6c</color>-->
+
+    <!--Blue Theme-->
+    <color name="primary_color">#293f6f</color>
+    <color name="dark_primary_color">#1b2844</color>
+    <color name="accent_color">#f46e39</color>
+    <color name="light_primary_color">#48438e</color>
+    <color name="light_accent_color">#cdc7e1</color>
     <color name="text_primary_color">#f5f5f5</color>
-    <color name="text_color_secondary">#828282</color>
+    <color name="text_primary_unselected_color">#ababb3</color>
+
+
+    <color name="text_color_secondary">#737373</color>
 
     <color name="text_color_unavailable">#999999</color>
     <color name="text_color_focused">#343434</color>
 
     <color name="header_background_color">#dfdfdf</color>
-    <color name="divider_color">#1E000000</color>
+    <color name="divider_color">#36000000</color>
     <color name="subheading_color">@color/light_accent_color</color>
 
-    <color name="list_background">#ffffff</color>
+    <color name="list_background">#f5f5f5</color> <!-- note, this might actually be unused? it does nothing in list_view_generic -->
     <color name="list_text">#333333</color>
 
     <color name="text_color">#333333</color>
@@ -36,16 +57,90 @@
     <color name="weapon_property_color">#565656</color>
     <color name="weapon_header_property_color">#565656</color>
 
+    <color name="hyper_badge_color">#6120a3</color>
+    <color name="key_badge_color">#dbd034</color>
+    <color name="urgent_badge_color">#db7134</color>
+
     <!-- RARITY COLORS -->
     <color name="rare_1">#757575</color>
     <color name="rare_2">#B53BC6</color>
     <color name="rare_3">#FBD646</color>
     <color name="rare_4">#F287A2</color>
     <color name="rare_5">#57D284</color>
-    <color name="rare_6">#7F6DFF</color>
+    <color name="rare_6">#90b0f8</color>
     <color name="rare_7">#FF3E56</color>
     <color name="rare_8">#9ACCFF</color>
     <color name="rare_9">#FF9A53</color>
     <color name="rare_10">#FF33FF</color>
+    <color name="rare_11">#5834b8</color>
+
+    <array name="rare_colors">
+        <item>#FFFFFF</item>
+        <item>@color/rare_2</item>
+        <item>@color/rare_3</item>
+        <item>@color/rare_4</item>
+        <item>@color/rare_5</item>
+        <item>@color/rare_6</item>
+        <item>@color/rare_7</item>
+        <item>@color/rare_8</item>
+        <item>@color/rare_9</item>
+        <item>@color/rare_10</item>
+        <item>@color/rare_11</item>
+    </array>
+
+    <color name="item_white">#ffffff</color>
+    <color name="item_red">#f85858</color>
+    <color name="item_green">#70c888</color>
+    <color name="item_blue">#90b0f8</color>
+    <color name="item_yellow">#f8d058</color>
+    <color name="item_purple">#b890c0</color>
+    <color name="item_cyan">#98d8f0</color>
+    <color name="item_orange">#f89858</color>
+    <color name="item_pink">#e890a0</color>
+    <color name="item_yellow_green">#c6f29f</color>
+    <color name="item_grey">#a0a0a0</color>
+    <color name="item_gold">#e2a626</color>
+    <color name="item_teal">#5cccff</color>
+    <color name="item_dark_green">#639929</color>
+    <color name="item_dark_red">#aa3c3c</color>
+    <color name="item_dark_blue">#4066bb</color>
+    <color name="item_dark_purple">#803a8e</color>
+
+    <array name="item_colors">
+        <item>@color/item_white</item>
+        <item>@color/item_red</item>
+        <item>@color/item_green</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_yellow</item>
+        <item>@color/item_purple</item>
+        <item>@color/item_cyan</item>
+        <item>@color/item_orange</item>
+        <item>@color/item_pink</item>
+        <item>@color/item_yellow_green</item>
+        <item>@color/item_grey</item>
+        <item>@color/item_gold</item>
+        <item>@color/item_teal</item>
+        <item>@color/item_dark_green</item>
+        <item>@color/item_dark_red</item>
+        <item>@color/item_dark_blue</item>
+        <item>@color/item_dark_purple</item>
+    </array>
+
+    <array name="talisman_colors">
+        <item>@color/item_white</item>
+        <item>@color/item_purple</item>
+        <item>@color/item_yellow</item>
+        <item>@color/item_pink</item>
+        <item>@color/item_green</item>
+        <item>@color/item_cyan</item>
+        <item>@color/item_red</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/item_blue</item>
+        <item>@color/item_orange</item>
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
+        <item>@color/rare_10</item> <!-- magenta -->
+    </array>
 
 </resources>

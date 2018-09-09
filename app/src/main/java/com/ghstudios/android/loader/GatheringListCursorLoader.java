@@ -27,13 +27,13 @@ public class GatheringListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		if (from.equals(FROM_ITEM)) {
-			return DataManager.get(getContext()).queryGatheringItem(id);
+			return DataManager.get().queryGatheringItem(id);
 		}
 		else if(from.equals(FROM_LOCATION) && rank != null && !rank.equals("")) {
-			return DataManager.get(getContext()).queryGatheringLocationRank(id, rank);
+			return DataManager.get().queryGatheringLocationRank(id, rank);
 		}
 		else if(from.equals(FROM_LOCATION)) {
-			return DataManager.get(getContext()).queryGatheringLocation(id);
+			return DataManager.get().queryGatheringLocation(id);
 		}
 		else {
 			return null;

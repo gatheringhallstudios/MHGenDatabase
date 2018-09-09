@@ -12,7 +12,7 @@
         android:layout_margin="14dp"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/monster_image"
-        tools:src="@drawable/charge_blade1" />
+        tools:src="@drawable/armor_body" />
 
     <TextView
         android:id="@+id/detail_monster_label"

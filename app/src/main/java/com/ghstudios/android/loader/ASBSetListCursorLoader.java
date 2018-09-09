@@ -12,6 +12,6 @@ public class ASBSetListCursorLoader extends SQLiteCursorLoader {
 
     @Override
     protected Cursor loadCursor() {
-        return DataManager.get(getContext()).queryASBSets();
+        return DataManager.get().queryASBSets();
     }
 }

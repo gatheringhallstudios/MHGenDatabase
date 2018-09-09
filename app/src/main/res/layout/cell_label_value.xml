@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.LinearLayout">
+    <!-- This layout uses the merge tag so its actual layout is dependent on
+    the class that inflates it. Use parentTag is used to preview the layout in the editor -->
+
+
+    <TextView
+        android:id="@+id/label_text"
+        style="@style/cell_column_solovalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        tools:text="Sell Price and more text" />
+
+    <TextView
+        android:id="@+id/value_text"
+        style="@style/cell_column_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:maxLines="1"
+        tools:text="80z" />
+
+</merge>

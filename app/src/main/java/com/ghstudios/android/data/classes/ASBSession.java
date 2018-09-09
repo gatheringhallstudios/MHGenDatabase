@@ -20,6 +20,8 @@ public class ASBSession {
     public static final int LEGS = 4;
     public static final int TALISMAN = 5;
 
+    public static final int TORSO_UP_ID = 148; // Skilltree ID for the TorsoUp skill
+
     public static Decoration dummyDecoration = new Decoration();
 
     private Context context;
@@ -30,6 +32,8 @@ public class ASBSession {
     private Decoration[][] decorations;
 
     private List<SkillTreeInSet> skillTreesInSet;
+
+    private static int torsoUpCount; // This will keep track of Torso Up instances since they give 0 points.
 
     public ASBSession(Context context) {
 
@@ -286,6 +290,8 @@ public class ASBSession {
             skillTreeToSkillTreeInSet.put(pointsSet.getSkillTree().getId(), pointsSet);
         }
 
+        torsoUpCount = 0; // We're going to recount this every time.
+
         for (int i = 0; i < equipment.length; i++) {
 
             Log.v("ASB", "Reading skills from armor piece " + i);
@@ -293,6 +299,11 @@ public class ASBSession {
             Map<SkillTree, Integer> armorSkillTreePoints = getSkillsFromArmorPiece(i); // A map of the current piece of armor's skills, localized so we don't have to keep calling it
 
             for (SkillTree skillTree : armorSkillTreePoints.keySet()) {
+
+                // Count TorsoUp occurrences
+                if (skillTree.getId() == TORSO_UP_ID){
+                    torsoUpCount++;
+                }
 
                 SkillTreeInSet s; // The actual points set that we are working with that will be shown to the user
 
@@ -326,20 +337,26 @@ public class ASBSession {
 
         if (equipment[pieceIndex] != null) {
             if (pieceIndex != TALISMAN) {
-                for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
+                for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(equipment[pieceIndex].getId())) { // We add skills for armor
                     skills.put(itemToSkillTree.getSkillTree(), itemToSkillTree.getPoints());
                 }
             } else {
-                skills.put(getTalisman().getSkill1(), getTalisman().getSkill1Points());
+                ASBTalisman talisman = getTalisman();
+                SkillTreePoints firstSkill = talisman.getFirstSkill();
+                SkillTreePoints secondSkill = talisman.getSecondSkill();
 
-                if (getTalisman().getSkill2() != null) {
-                    skills.put(getTalisman().getSkill2(), getTalisman().getSkill2Points());
+                if (firstSkill != null) {
+                    skills.put(firstSkill.getSkillTree(), firstSkill.getPoints());
+                }
+
+                if (secondSkill != null) {
+                    skills.put(secondSkill.getSkillTree(), secondSkill.getPoints());
                 }
             }
 
             for (Decoration d : decorations[pieceIndex]) {
                 if (d != null) {
-                    for (ItemToSkillTree itemToSkillTree : DataManager.get(context).queryItemToSkillTreeArrayItem(d.getId())) {
+                    for (ItemToSkillTree itemToSkillTree : DataManager.get().queryItemToSkillTreeArrayItem(d.getId())) {
                         SkillTree skillTreeToAddTo = null;
 
                         for (SkillTree skillTree : skills.keySet()) {
@@ -393,13 +410,8 @@ public class ASBSession {
 
         public int getPoints(int pieceIndex, List<SkillTreeInSet> trees) {
             if (pieceIndex == BODY) {
-                int torsoUpPieces = 0;
-                for (SkillTreeInSet s : trees) {
-                    if (s.getSkillTree().getId() == 1) { // 1 is the ID of the Torso Up skill.
-                        torsoUpPieces++;
-                    }
-                }
-                return points[pieceIndex] * (torsoUpPieces + 1);
+                // TorsoUp stacks, so you multiply the skill * number of occurrences
+                return points[pieceIndex] * (torsoUpCount + 1);
             } else {
                 return points[pieceIndex];
             }

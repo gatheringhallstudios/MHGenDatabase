@@ -17,7 +17,7 @@ public class HornMelodyListCursorLoader extends SQLiteCursorLoader {
     @Override
     protected Cursor loadCursor() {
         // Query the list of skills from a skill tree
-        Weapon w = DataManager.get(getContext()).getWeapon(weaponId);
-        return DataManager.get(getContext()).queryMelodiesFromNotes(w.getHornNotes());
+        Weapon w = DataManager.get().getWeapon(weaponId);
+        return DataManager.get().queryMelodiesFromNotes(w.getHornNotes());
     }
 }

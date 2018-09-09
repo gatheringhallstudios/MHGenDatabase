@@ -17,6 +17,6 @@ public class WishlistDataListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		// Query the list of wishlist data based on wishlist
-		return DataManager.get(getContext()).queryWishlistData(id);
+		return DataManager.get().queryWishlistData(id);
 	}
 }

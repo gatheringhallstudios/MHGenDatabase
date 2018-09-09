@@ -245,8 +245,11 @@ public abstract class MultiLevelExpIndListAdapter extends RecyclerView.Adapter {
         firstItem.setIsGroup(true);
         firstItem.setGroupSize(groupSize);
 
-        notifyItemChanged(position);
-        notifyItemRangeRemoved(position + 1, groupSize);
+        // note: added by supe to fix animation bug on back button
+        if (mNotifyOnChange) {
+            notifyItemChanged(position);
+            notifyItemRangeRemoved(position + 1, groupSize);
+        }
     }
 
     /**

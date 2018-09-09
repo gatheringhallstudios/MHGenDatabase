@@ -16,6 +16,6 @@ public class LocationLoader extends DataLoader<Location> {
 	@Override
 	public Location loadInBackground() {
 		// Query the specific location
-		return DataManager.get(getContext()).getLocation(mLocationId);
+		return DataManager.get().getLocation(mLocationId);
 	}
 }

@@ -24,10 +24,10 @@ public class WeaponListCursorLoader extends SQLiteCursorLoader {
 	protected Cursor loadCursor() {
 		if (type == null) {
 			// Query the list of all weapons
-			return DataManager.get(getContext()).queryWeapon();
+			return DataManager.get().queryWeapon();
 		} else {
 			// Query the list of weapons based on type
-			return DataManager.get(getContext()).queryWeaponType(type);
+			return DataManager.get().queryWeaponType(type);
 		}
 	}
 }

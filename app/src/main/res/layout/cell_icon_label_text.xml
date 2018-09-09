@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    tools:orientation="horizontal"
+    android:background="?attr/selectableItemBackground">
+    <!-- This layout uses the merge tag so its actual layout is dependent on
+    the class that inflates it. Use parentTag is used to preview the layout in the editor -->
+
+    <ImageView
+        android:id="@+id/generic_icon"
+        style="@style/main_image"
+        android:layout_gravity="center_vertical"
+
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        android:src="@drawable/question_mark_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/label_text"
+        style="@style/cell_listitem_label"
+        app:layout_constraintBottom_toTopOf="@id/label_alt_text"
+        app:layout_constraintStart_toEndOf="@id/generic_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Some Label" />
+
+    <TextView
+        android:id="@+id/label_alt_text"
+        style="@style/cell_listitem_alt_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/generic_icon"
+        app:layout_constraintTop_toBottomOf="@id/label_text"
+        tools:text="攻撃珠【１】" />
+
+    <TextView
+        android:id="@+id/value_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:gravity="end"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Some value" />
+
+</android.support.constraint.ConstraintLayout>

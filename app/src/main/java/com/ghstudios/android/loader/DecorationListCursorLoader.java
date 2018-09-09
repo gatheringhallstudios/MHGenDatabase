@@ -16,6 +16,6 @@ public class DecorationListCursorLoader extends SQLiteCursorLoader {
 	@Override
 	protected Cursor loadCursor() {
 		// Query the list of decorations. Null/empty strings are handled
-		return DataManager.get(getContext()).queryDecorationsSearch(filter);
+		return DataManager.get().queryDecorationsSearch(filter);
 	}
 }

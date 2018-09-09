@@ -22,11 +22,11 @@ public class MonsterToQuestListCursorLoader extends SQLiteCursorLoader {
 	protected Cursor loadCursor() {
 		if (from.equals(FROM_MONSTER)) {
 			// Query the list of quests based on monster
-			return DataManager.get(getContext()).queryMonsterToQuestMonster(id);
+			return DataManager.get().queryMonsterToQuestMonster(id);
 		}
 		else if(from.equals(FROM_QUEST)) {
 			// Query the list of monsters based on quest
-			return DataManager.get(getContext()).queryMonsterToQuestQuest(id);
+			return DataManager.get().queryMonsterToQuestQuest(id);
 		}
 		else {
 			return null;

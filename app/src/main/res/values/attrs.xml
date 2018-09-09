@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="titleText" format="string" />
+    <attr name="titleAltText" format="string" />
+    <attr name="altTitleEnabled" format="boolean" />
+    <attr name="altTextEnabled" format="boolean" />
+    <attr name="labelText" format="string" />>
+    <attr name="labelAltText" format="string" />
+    <attr name="valueText" format="string" />
+
+    <declare-styleable name="SectionHeaderCell">
+        <attr name="labelText" />
+    </declare-styleable>
+
+    <declare-styleable name="SubHeaderCell">
+        <attr name="labelText" />
+    </declare-styleable>
+
     <declare-styleable name="TalismanSkill">
         <attr name="skillNumber" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleBarCell">
+        <attr name="iconSrc" />
+        <attr name="titleText" />
+        <attr name="titleAltText" />
+        <attr name="altTitleEnabled" />
+    </declare-styleable>
+
+    <declare-styleable name="IconLabelTextCell">
+        <attr name="iconSrc" />
+        <attr name="labelText" />
+        <attr name="labelAltText" />
+        <attr name="altTextEnabled" />
+        <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelTextRowCell">
+        <attr name="labelText" />
+        <attr name="labelAltText" />
+        <attr name="altTextEnabled" />
+        <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="ColumnLabelTextCell">
+        <attr name="labelText" />
+        <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelValueCell">
+        <attr name="labelText" />
+        <attr name="valueText" />
+    </declare-styleable>
+
+    <declare-styleable name="ItemRecipeCell">
+        <attr name="titleText" />
     </declare-styleable>
 </resources>
