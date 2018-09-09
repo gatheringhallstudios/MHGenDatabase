@@ -92,7 +92,7 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
             if (element2 != ElementStatus.NONE) {
                 elementIconView2.setTag(weapon.getId());
 
-                int elementIconId = AssetRegistry.getElementRegistry().get(element, R.color.transparent);
+                int elementIconId = AssetRegistry.getElementRegistry().get(element2, R.color.transparent);
                 Drawable icon = ContextCompat.getDrawable(context, elementIconId);
                 elementIconView2.setImageDrawable(icon);
 
