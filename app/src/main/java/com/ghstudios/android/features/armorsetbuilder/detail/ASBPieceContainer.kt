@@ -159,7 +159,7 @@ class ASBPieceContainer
                 decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
             } else if (session.decorationIsDummy(pieceIndex, i)) {
                 decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
-            } else if (session.getEquipment(pieceIndex).numSlots > i) {
+            } else if (session.getEquipment(pieceIndex)!!.numSlots > i) {
                 decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_empty))
             } else {
                 decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
@@ -210,12 +210,13 @@ class ASBPieceContainer
         parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
     }
 
+    // todo: handle scenario where piece is null.
     private fun requestPieceInfo() {
         if (pieceIndex == ASBSession.TALISMAN) {
             onAddEquipment()
         } else {
             val i = Intent(context, ArmorSetDetailPagerActivity::class.java)
-            i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).id)
+            i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex)?.id)
             context.startActivity(i)
         }
     }
@@ -265,13 +266,14 @@ class ASBPieceContainer
         }
 
         fun update() {
-            if (session.getEquipment(pieceIndex) != null) {
+            val equipment = session.getEquipment(pieceIndex)
+            if (equipment != null) {
                 var addButtonExists = false
                 for (i in decorationNames.indices) {
                     fetchDecorationIcon(decorationIcons[i], pieceIndex, i)
 
                     if (session.decorationIsReal(pieceIndex, i)) {
-                        decorationNames[i].text = session.getDecoration(pieceIndex, i).name
+                        decorationNames[i].text = session.getDecoration(pieceIndex, i)!!.name
                         decorationNames[i].setTextColor(resources.getColor(R.color.text_color))
 
                         decorationMenuButtons[i].setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
@@ -280,7 +282,7 @@ class ASBPieceContainer
                             decorationNames[i].text = session.findRealDecorationOfDummy(pieceIndex, i).name
 
                             decorationMenuButtons[i].setImageDrawable(null)
-                        } else if (session.getEquipment(pieceIndex).numSlots > i) {
+                        } else if (equipment.numSlots > i) {
                             decorationNames[i].setText(R.string.asb_empty_slot)
 
                             if (!addButtonExists) {
@@ -308,7 +310,7 @@ class ASBPieceContainer
 
         private fun fetchDecorationIcon(iv: ImageView, pieceIndex: Int, decorationIndex: Int) {
             if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                AssetLoader.setIcon(iv, session.getDecoration(pieceIndex, decorationIndex))
+                AssetLoader.setIcon(iv, session.getDecoration(pieceIndex, decorationIndex)!!)
             } else if (session.decorationIsDummy(pieceIndex, decorationIndex)) {
                 iv.setImageResource(R.drawable.icon_jewel)
                 iv.setColorFilter(0xFFFFFF, PorterDuff.Mode.MULTIPLY)
@@ -336,7 +338,7 @@ class ASBPieceContainer
             val i = Intent(parentFragment!!.activity, DecorationDetailActivity::class.java)
 
             i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID,
-                    session.getDecoration(pieceIndex, decorationIndex).id)
+                    session.getDecoration(pieceIndex, decorationIndex)?.id)
 
             parentFragment!!.startActivity(i)
         }
