@@ -51,6 +51,7 @@ class ASBPieceContainer
     private val decorationStates: List<ImageView>
     private val equipmentButton: ImageView
 
+    private val decorationHeader: View
     private val dropDownArrow: ImageView
     private val decorationView: DecorationView
 
@@ -64,6 +65,7 @@ class ASBPieceContainer
         icon = findViewById(R.id.armor_builder_item_icon)
         text = findViewById(R.id.armor_builder_item_name)
         equipmentButton = findViewById(R.id.add_equipment_button)
+        decorationHeader = findViewById(R.id.decoration_header)
         dropDownArrow = findViewById(R.id.drop_down_arrow)
 
         decorationStates = listOf(
@@ -98,12 +100,8 @@ class ASBPieceContainer
             }
         }
 
-        dropDownArrow.setOnClickListener { v ->
-            if (decorationView.container.visibility == View.GONE) {
-                showDecorations()
-            } else {
-                hideDecorations()
-            }
+        decorationHeader.setOnClickListener {
+            toggleDecorations()
         }
 
         // Reflect current state
@@ -166,6 +164,14 @@ class ASBPieceContainer
             } else {
                 decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
             }
+        }
+    }
+
+    fun toggleDecorations() {
+        if (decorationView.container.visibility == View.GONE) {
+            showDecorations()
+        } else {
+            hideDecorations()
         }
     }
 
