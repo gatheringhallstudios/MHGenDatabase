@@ -3,9 +3,12 @@ package com.ghstudios.android.data.classes
 /**
  * Class for ItemToSkillTree. Represents an item associated with a skill tree and a points value
  */
-class ItemToSkillTree: SkillTreePoints() {
+class ItemToSkillTree(skillTree: SkillTree): SkillTreePoints(skillTree) {
 
-    /* Getters and Setters */
-    var id: Long = -1                // Id
+    /**
+     * Id of the ItemToSkillTree entry. This is NOT the skilltree id
+     */
+    var id: Long = -1
+
     var item: Item? = null                // Item
 }

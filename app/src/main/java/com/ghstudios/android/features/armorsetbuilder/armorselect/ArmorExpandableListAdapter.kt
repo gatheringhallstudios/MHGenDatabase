@@ -70,7 +70,7 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
         for((i, skill) in skills.withIndex()) {
             skillsTvs[i]?.visibility = View.VISIBLE
             val points = skill.points
-            val skillString = skill.skillTree?.name + if(points>0) "+$points" else points
+            val skillString = skill.skillTree.name + if(points>0) "+$points" else points
             skillsTvs[i]?.text = skillString
         }
 
