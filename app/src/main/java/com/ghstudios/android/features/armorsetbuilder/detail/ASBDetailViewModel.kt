@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.database.DataManager
@@ -29,6 +30,8 @@ class Talisman(
  * outside of update events.
  */
 class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
+    private val TAG = javaClass.simpleName
+
     private val dataManager = DataManager.get()
 
     private var sessionId = -1L
@@ -59,7 +62,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
             else -> null
         }
 
-        if (armorEnum != null) {
+        if (armor != null && armorEnum != null) {
             session.setEquipment(armorEnum, armor)
             dataManager.queryPutASBSessionArmor(session.id, armorId, armorEnum)
 
@@ -81,6 +84,11 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun bindDecoration(pieceIndex: Int, decorationId: Long) {
         val decoration = dataManager.getDecoration(decorationId)
+        if (decoration == null) {
+            Log.e(TAG, "Unexpected Decoration Null $decorationId")
+            return
+        }
+
         val decorationIndex = session.addDecoration(pieceIndex, decoration)
 
         if (decorationIndex != -1 && pieceIndex != -1) {

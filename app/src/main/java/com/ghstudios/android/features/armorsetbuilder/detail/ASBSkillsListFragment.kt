@@ -73,7 +73,7 @@ class ASBSkillsListFragment : Fragment() {
             val talismanPoints = itemView.findViewById<View>(R.id.talisman) as TextView
             val totalPoints = itemView.findViewById<View>(R.id.total) as TextView
 
-            treeName.text = getItem(position)!!.skillTree.name
+            treeName.text = getItem(position)!!.skillTree?.name
 
             if (session.isEquipmentSelected(ASBSession.HEAD) && getItem(position)!!.getPoints(ASBSession.HEAD) != 0) {
                 headPoints.text = getItem(position)!!.getPoints(ASBSession.HEAD).toString()
@@ -112,7 +112,7 @@ class ASBSkillsListFragment : Fragment() {
                 totalPoints.setTypeface(null, Typeface.BOLD)
             }
 
-            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree.id))
+            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree!!.id))
 
             return itemView
         }
