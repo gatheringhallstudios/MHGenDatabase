@@ -3,13 +3,9 @@ package com.ghstudios.android.features.armorsetbuilder.detail
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.AssetManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.PorterDuff
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,17 +14,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.ghstudios.android.AssetLoader
+import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
-import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
 import com.ghstudios.android.util.setImageAsset
-
-import java.io.IOException
-import java.io.InputStream
 
 /**
  * Image alpha value for unselected items
@@ -46,8 +39,10 @@ class ASBPieceContainer
 (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
 
+    private val equipmentHeader: View
     private val icon: ImageView
-    private val text: TextView
+    private val equipmentNameView: TextView
+
     private val decorationStates: List<ImageView>
     private val equipmentButton: ImageView
 
@@ -62,8 +57,9 @@ class ASBPieceContainer
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.view_armor_set_builder_piece_container, this)
 
+        equipmentHeader = findViewById(R.id.equipment_header)
         icon = findViewById(R.id.armor_builder_item_icon)
-        text = findViewById(R.id.armor_builder_item_name)
+        equipmentNameView = findViewById(R.id.armor_builder_item_name)
         equipmentButton = findViewById(R.id.add_equipment_button)
         decorationHeader = findViewById(R.id.decoration_header)
         dropDownArrow = findViewById(R.id.drop_down_arrow)
@@ -86,14 +82,20 @@ class ASBPieceContainer
         this.pieceIndex = pieceIndex
         this.parentFragment = parentFragment
 
-        text.setOnClickListener {
-            if (session.isEquipmentSelected(pieceIndex)) {
-                requestPieceInfo()
+        equipmentHeader.setOnClickListener {
+            // If empty or is talisman, trigger the normal add routine
+            val equipment = session.getEquipment(pieceIndex)
+            if (pieceIndex == ASBSession.TALISMAN || equipment == null) {
+                onAddEquipment()
+                return@setOnClickListener
             }
+
+            // navigate to armor page
+            ArmorClickListener(context, equipment.id, false).onClick(it)
         }
 
-        equipmentButton.setOnClickListener { v ->
-            if (!session.isEquipmentSelected(pieceIndex)) {
+        equipmentButton.setOnClickListener {
+            if (session.getEquipment(pieceIndex) == null) {
                 onAddEquipment()
             } else {
                 onRemoveEquipment()
@@ -122,7 +124,7 @@ class ASBPieceContainer
      */
     private fun updateArmorPiece() {
         val selectedEquipment = session.getEquipment(pieceIndex)
-        text.text = selectedEquipment?.name
+        equipmentNameView.text = selectedEquipment?.name
 
         // Set image based on equipment
         if (selectedEquipment != null) {
@@ -152,17 +154,18 @@ class ASBPieceContainer
     }
 
     private fun updateDecorationsPreview() {
+        val equipment = session.getEquipment(pieceIndex)
         for (i in 0..2) {
-            if (!session.isEquipmentSelected(pieceIndex)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
+            if (equipment == null) {
+                decorationStates[i].setImageResource(R.drawable.decoration_none)
             } else if (session.decorationIsReal(pieceIndex, i)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
+                decorationStates[i].setImageResource(R.drawable.decoration_real)
             } else if (session.decorationIsDummy(pieceIndex, i)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
-            } else if (session.getEquipment(pieceIndex)!!.numSlots > i) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_empty))
+                decorationStates[i].setImageResource(R.drawable.decoration_real)
+            } else if (equipment.numSlots > i) {
+                decorationStates[i].setImageResource(R.drawable.decoration_empty)
             } else {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
+                decorationStates[i].setImageResource(R.drawable.decoration_none)
             }
         }
     }
@@ -188,6 +191,9 @@ class ASBPieceContainer
         dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_down_arrow))
     }
 
+    /**
+     * Function that handles a user's attempt to add new equipment
+     */
     private fun onAddEquipment() {
         if (pieceIndex == ASBSession.TALISMAN) {
             val d = ASBTalismanDialogFragment.newInstance()
@@ -204,21 +210,13 @@ class ASBPieceContainer
         }
     }
 
+    /**
+     * Function that handles a user's attempt to remove equipment
+     */
     private fun onRemoveEquipment() {
         val data = Intent()
         data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
         parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
-    }
-
-    // todo: handle scenario where piece is null.
-    private fun requestPieceInfo() {
-        if (pieceIndex == ASBSession.TALISMAN) {
-            onAddEquipment()
-        } else {
-            val i = Intent(context, ArmorSetDetailPagerActivity::class.java)
-            i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex)?.id)
-            context.startActivity(i)
-        }
     }
 
     private inner class DecorationView {
