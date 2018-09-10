@@ -20,11 +20,11 @@ public class ASBSession {
     public static final int LEGS = 4;
     public static final int TALISMAN = 5;
 
-    public static final int TORSO_UP_ID = 148; // Skilltree ID for the TorsoUp skill
+    // todo: move this to some sort of data constants location
+    public static final int TORSO_UP_ID = 203; // Skilltree ID for the TorsoUp skill
 
     public static Decoration dummyDecoration = new Decoration();
 
-    private Context context;
 
     private ASBSet asbSet;
 
@@ -35,14 +35,9 @@ public class ASBSession {
 
     private static int torsoUpCount; // This will keep track of Torso Up instances since they give 0 points.
 
-    public ASBSession(Context context) {
-
-        this.context = context;
-
+    public ASBSession() {
         equipment = new Equipment[6];
-
         decorations = new Decoration[6][3];
-
         skillTreesInSet = new ArrayList<>();
     }
 
@@ -280,6 +275,7 @@ public class ASBSession {
 
     /**
      * Adds any skills to the armor set's skill trees that were not there before, and removes those no longer there.
+     * Adding decorations and armor does not update skilltrees unless this method is called
      */
     public void updateSkillTreePointsSets() {
         skillTreesInSet.clear();

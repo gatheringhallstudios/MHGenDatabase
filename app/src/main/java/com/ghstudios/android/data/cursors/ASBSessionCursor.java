@@ -21,7 +21,7 @@ public class ASBSessionCursor extends CursorWrapper {
             return null;
         }
 
-        ASBSession session = new ASBSession(context);
+        ASBSession session = new ASBSession();
 
         long id = getLong(getColumnIndex(S.COLUMN_ASB_SET_ID));
 
