@@ -127,7 +127,7 @@ class ArmorSetSummaryFragment : Fragment() {
             for((i, skill) in skills.withIndex()) {
                     skillsTvs[i]?.visibility = View.VISIBLE
                     val points = skill.points
-                    val skillString = skill.skillTree?.name + if(points>0) "+$points" else points
+                    val skillString = skill.skillTree.name + if(points>0) "+$points" else points
                     skillsTvs[i]?.text = skillString
             }
 
@@ -155,11 +155,11 @@ class ArmorSetSummaryFragment : Fragment() {
 
         for (skill in skills) {
             val skillItem = LabelTextRowCell(context)
-            skillItem.setLabelText(skill.skillTree?.name)
+            skillItem.setLabelText(skill.skillTree.name)
             skillItem.setValueText(skill.points.toString())
 
             skillItem.setOnClickListener(
-                    SkillClickListener(context, skill.skillTree?.id)
+                    SkillClickListener(context, skill.skillTree.id)
             )
 
             skillListView.addView(skillItem)

@@ -28,7 +28,15 @@ public class ItemToSkillTreeCursor extends CursorWrapper {
 		if (isBeforeFirst() || isAfterLast())
 			return null;
 
-		ItemToSkillTree itemToSkillTree = new ItemToSkillTree();
+		// Get the SkillTree, ItemToSkillTree requires a SkillTree to exist before construction
+		SkillTree skillTree = new SkillTree();
+		long skillTreeId = getLong(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID));
+		String skillTreeName = getString(getColumnIndex("s" + S.COLUMN_SKILL_TREES_NAME));
+		skillTree.setId(skillTreeId);
+		skillTree.setName(skillTreeName);
+
+		// Create the ItemToSkillTree
+		ItemToSkillTree itemToSkillTree = new ItemToSkillTree(skillTree);
 		
 		long id = getLong(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_ID));
 		int points = getInt(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE));
@@ -53,17 +61,6 @@ public class ItemToSkillTreeCursor extends CursorWrapper {
 		item.setIconColor(getInt(getColumnIndex(S.COLUMN_ITEMS_ICON_COLOR)));
 		
 		itemToSkillTree.setItem(item);
-		
-		// Get the SkillTree
-		SkillTree skillTree = new SkillTree();
-
-		long skillTreeId = getLong(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID));
-		String skillTreeName = getString(getColumnIndex("s" + S.COLUMN_SKILL_TREES_NAME));
-
-		skillTree.setId(skillTreeId);
-		skillTree.setName(skillTreeName);
-		
-		itemToSkillTree.setSkillTree(skillTree);
 		
 		return itemToSkillTree;
 	}

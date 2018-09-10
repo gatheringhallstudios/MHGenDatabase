@@ -254,7 +254,9 @@ class ASBSession {
 
             val armorSkillTreePoints = getSkillsFromArmorPiece(i) // A map of the current piece of armor's skills, localized so we don't have to keep calling it
 
-            for (skillTree in armorSkillTreePoints.keys) {
+            for (skillTreePoints in armorSkillTreePoints) {
+                val skillTree = skillTreePoints.skillTree
+                val points = skillTreePoints.points
 
                 // Count TorsoUp occurrences
                 if (skillTree.id == TORSO_UP_ID.toLong()) {
@@ -278,7 +280,7 @@ class ASBSession {
                     s = skillTreeToSkillTreeInSet[skillTree.id]!! // Otherwise, we just find the skill tree set that's already there
                 }
 
-                s.setPoints(i, armorSkillTreePoints[skillTree]!!)
+                s.setPoints(i, points)
             }
         }
     }
@@ -288,30 +290,27 @@ class ASBSession {
      * @param pieceIndex The piece of armor to get the skills from.
      * @return A map of all the skills the armor piece provides along with the number of points in each.
      */
-    private fun getSkillsFromArmorPiece(pieceIndex: Int): Map<SkillTree, Int> {
+    private fun getSkillsFromArmorPiece(pieceIndex: Int): List<SkillTreePoints> {
         // todo: Don't query here you FOOL this is a data object
         val dataManager = DataManager.get()
 
-        val skills = HashMap<SkillTree, Int>()
+        val equipment = equipment[pieceIndex] ?: return emptyList()
 
-        val equipment = equipment[pieceIndex] ?: return skills
+        // mapping of skilltree id to skilltree points. The values are returned in the end
+        val skillCache = HashMap<Long, SkillTreePoints>()
 
         if (pieceIndex != TALISMAN) {
             val equipmentSkills = dataManager.queryItemToSkillTreeArrayItem(equipment.id)
             for (itemToSkillTree in equipmentSkills) { // We add skills for armor
-                skills[itemToSkillTree.skillTree!!] = itemToSkillTree.points
+                skillCache[itemToSkillTree.skillTree.id] = itemToSkillTree
             }
         } else {
             val talisman = talisman
-            val firstSkill = talisman.firstSkill
-            val secondSkill = talisman.secondSkill
-
-            if (firstSkill != null) {
-                skills[firstSkill.skillTree!!] = firstSkill.points
+            talisman.firstSkill?.let {
+                skillCache[it.skillTree.id] = it
             }
-
-            if (secondSkill != null) {
-                skills[secondSkill.skillTree!!] = secondSkill.points
+            talisman.secondSkill?.let {
+                skillCache[it.skillTree.id] = it
             }
         }
 
@@ -322,24 +321,18 @@ class ASBSession {
 
             val decorationSkills = dataManager.queryItemToSkillTreeArrayItem(d.id)
             for (itemToSkillTree in decorationSkills) {
-                val skillTreeId = itemToSkillTree.skillTree!!.id
+                val skillTree = itemToSkillTree.skillTree
                 val points = itemToSkillTree.points
 
-                // Find if the skill already exists. If so, add to it
-                val skillTreeToAddTo = skills.keys.find { it.id == skillTreeId}
-
-                if (skillTreeToAddTo != null) {
-                    // todo: figure out why its an add and remove instead of an update
-                    val newPoints = skills[skillTreeToAddTo]!! + points
-                    skills.remove(skillTreeToAddTo)
-                    skills[skillTreeToAddTo] = newPoints
+                if (skillTree.id in skillCache) {
+                    skillCache[skillTree.id]!!.points += points
                 } else {
-                    skills[itemToSkillTree.skillTree!!] = points
+                    skillCache[skillTree.id] = SkillTreePoints(skillTree, points)
                 }
             }
         }
 
-        return skills
+        return skillCache.values.toList()
     }
 
     /**
