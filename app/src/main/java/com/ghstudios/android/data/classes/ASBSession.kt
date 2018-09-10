@@ -78,18 +78,19 @@ class ASBSession {
     }
 
     fun getAvailableSlots(pieceIndex: Int): Int {
-        if (isEquipmentSelected(pieceIndex)) {
-            var decorationCount = 0
-            for (d in decorations[pieceIndex]) {
-                if (d != null) {
-                    decorationCount++
-                }
-            }
-
-            return equipment[pieceIndex]!!.numSlots - decorationCount
-        } else {
+        val equipment = getEquipment(pieceIndex)
+        if (equipment == null) {
             return 0
         }
+
+        var decorationCount = 0
+        for (d in decorations[pieceIndex]) {
+            if (d != null) {
+                decorationCount++
+            }
+        }
+
+        return equipment.numSlots - decorationCount
     }
 
     /**
@@ -191,14 +192,8 @@ class ASBSession {
     }
 
     /**
-     * @return True if the user has chosen or created a piece at the specified index, false otherwise.
-     */
-    fun isEquipmentSelected(pieceIndex: Int): Boolean {
-        return equipment[pieceIndex] != null
-    }
-
-    /**
      * @return A piece of the armor set based on the provided piece index.
+     * Returns null if there is no equipment in that slot.
      */
     fun getEquipment(pieceIndex: Int): Equipment? {
         return equipment[pieceIndex]
