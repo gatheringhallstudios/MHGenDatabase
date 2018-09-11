@@ -16,7 +16,6 @@ import android.widget.TextView
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
@@ -55,7 +54,7 @@ class ASBPieceContainer
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.view_armor_set_builder_piece_container, this)
+        inflater.inflate(R.layout.view_asb_piece_container, this)
 
         equipmentHeader = findViewById(R.id.equipment_header)
         icon = findViewById(R.id.armor_builder_item_icon)
@@ -219,41 +218,46 @@ class ASBPieceContainer
         parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
     }
 
+    /**
+     * Internal class that contains view elements for a single row of the DecorationView
+     */
+    private inner class DecorationLineViewHolder(val container: View) {
+        val iconView = container.findViewById<ImageView>(R.id.decoration_icon)
+        val nameView = container.findViewById<TextView>(R.id.decoration_name)
+        val buttonView = container.findViewById<ImageView>(R.id.decoration_menu)
+
+        fun clear() {
+            nameView.text = null
+            iconView.setImageDrawable(null)
+            buttonView.setImageDrawable(null)
+        }
+    }
+
+    /**
+     * Internal class that manages the view containing the list of decorations
+     */
     private inner class DecorationView {
-        internal var decorationNames: List<TextView>
-        internal var decorationIcons: List<ImageView>
-        internal var decorationMenuButtons: List<ImageView>
+        internal var decorationViews: List<DecorationLineViewHolder>
         internal var container: ViewGroup
 
         init {
             container = findViewById(R.id.decorations)
 
-            decorationNames = listOf(
-                    findViewById(R.id.decoration_1_name),
-                    findViewById(R.id.decoration_2_name),
-                    findViewById(R.id.decoration_3_name)
-            )
-
-            decorationIcons = listOf(
-                    findViewById(R.id.decoration_1_icon),
-                    findViewById(R.id.decoration_2_icon),
-                    findViewById(R.id.decoration_3_icon)
-            )
-
-            decorationMenuButtons = listOf(
-                    findViewById(R.id.decoration_1_menu),
-                    findViewById(R.id.decoration_2_menu),
-                    findViewById(R.id.decoration_3_menu)
+            decorationViews = listOf(
+                    DecorationLineViewHolder(findViewById(R.id.decoration_1_item)),
+                    DecorationLineViewHolder(findViewById(R.id.decoration_2_item)),
+                    DecorationLineViewHolder(findViewById(R.id.decoration_3_item))
             )
 
             for (i in 0..2) {
-                decorationNames[i].setOnClickListener { v ->
+                val vh = decorationViews[i]
+                vh.nameView.setOnClickListener { v ->
                     if (session.decorationIsReal(pieceIndex, i)) {
                         requestDecorationInfo(i)
                     }
                 }
 
-                decorationMenuButtons[i].setOnClickListener { v ->
+                vh.buttonView.setOnClickListener { v ->
                     if (session.decorationIsReal(pieceIndex, i)) {
                         requestRemoveDecoration(i)
                     } else {
@@ -265,43 +269,43 @@ class ASBPieceContainer
 
         fun update() {
             val equipment = session.getEquipment(pieceIndex)
-            if (equipment != null) {
-                var addButtonExists = false
-                for (i in decorationNames.indices) {
-                    fetchDecorationIcon(decorationIcons[i], pieceIndex, i)
 
-                    if (session.decorationIsReal(pieceIndex, i)) {
-                        decorationNames[i].text = session.getDecoration(pieceIndex, i)!!.name
-                        decorationNames[i].setTextColor(resources.getColor(R.color.text_color))
+            // If null, set all to blank
+            if (equipment == null) {
+                decorationViews.forEach { it.clear() }
+                return
+            }
 
-                        decorationMenuButtons[i].setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
-                    } else {
-                        if (session.decorationIsDummy(pieceIndex, i)) {
-                            decorationNames[i].text = session.findRealDecorationOfDummy(pieceIndex, i).name
+            // equipment is not null
+            var addButtonExists = false
+            for (i in decorationViews.indices) {
+                val vh = decorationViews[i]
 
-                            decorationMenuButtons[i].setImageDrawable(null)
-                        } else if (equipment.numSlots > i) {
-                            decorationNames[i].setText(R.string.asb_empty_slot)
+                fetchDecorationIcon(vh.iconView, pieceIndex, i)
 
-                            if (!addButtonExists) {
-                                decorationMenuButtons[i].setImageDrawable(resources.getDrawable(R.drawable.ic_add))
-                                addButtonExists = true
-                            } else {
-                                decorationMenuButtons[i].setImageDrawable(null)
-                            }
+                if (session.decorationIsReal(pieceIndex, i)) {
+                    vh.nameView.text = session.getDecoration(pieceIndex, i)!!.name
+                    vh.nameView.setTextColor(resources.getColor(R.color.text_color))
+                    vh.buttonView.setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
+                } else {
+                    if (session.decorationIsDummy(pieceIndex, i)) {
+                        vh.nameView.text = session.findRealDecorationOfDummy(pieceIndex, i).name
+                        vh.buttonView.setImageDrawable(null)
+                    } else if (equipment.numSlots > i) {
+                        vh.nameView.setText(R.string.asb_empty_slot)
+
+                        if (!addButtonExists) {
+                            vh.buttonView.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
+                            addButtonExists = true
                         } else {
-                            decorationNames[i].setText(R.string.asb_no_slot)
-
-                            decorationMenuButtons[i].setImageDrawable(null)
+                            vh.buttonView.setImageDrawable(null)
                         }
-
-                        decorationNames[i].setTextColor(resources.getColor(R.color.text_color_secondary))
+                    } else {
+                        vh.nameView.setText(R.string.asb_no_slot)
+                        vh.buttonView.setImageDrawable(null)
                     }
-                }
-            } else {
-                for (i in decorationNames.indices) {
-                    decorationNames[i].text = null
-                    decorationIcons[i].setImageDrawable(null)
+
+                    vh.nameView.setTextColor(resources.getColor(R.color.text_color_secondary))
                 }
             }
         }

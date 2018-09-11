@@ -51,7 +51,7 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         setOrientation(HORIZONTAL);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.view_armor_set_builder_talisman_skill, this, true);
+        inflater.inflate(R.layout.view_asb_talisman_skill, this, true);
 
         TextView label = (TextView) findViewById(R.id.label_skill);
         label.setText(labelText);

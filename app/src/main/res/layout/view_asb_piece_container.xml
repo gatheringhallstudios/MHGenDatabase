@@ -109,115 +109,13 @@
         android:paddingLeft="@dimen/image_size_small"
         tools:visibility="visible">
 
-        <RelativeLayout
-            style="@style/list_item"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginLeft="@dimen/margin_medium">
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_1_item"/>
 
-            <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_toLeftOf="@+id/decoration_1_menu">
-                <ImageView
-                    android:id="@+id/decoration_1_icon"
-                    style="@style/main_image"
-                    tools:src="@drawable/armor_body"/>
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_2_item"/>
 
-                <TextView
-                    android:id="@+id/decoration_1_name"
-                    style="@style/text_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:background="@drawable/dialog_clicked_states"
-                    android:text="@string/asb_no_slot" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/decoration_1_menu"
-                style="@style/small_image"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="0dp"
-                tools:src="@drawable/ic_add"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            style="@style/list_item"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginLeft="@dimen/margin_medium">
-
-            <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_toLeftOf="@+id/decoration_2_menu">
-                <ImageView
-                    android:id="@+id/decoration_2_icon"
-                    style="@style/main_image"
-                    tools:src="@drawable/armor_body"/>
-
-                <TextView
-                    android:id="@+id/decoration_2_name"
-                    style="@style/text_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:background="@drawable/dialog_clicked_states"
-                    android:text="@string/asb_no_slot" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/decoration_2_menu"
-                style="@style/small_image"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="0dp"
-                tools:src="@drawable/ic_add"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            style="@style/list_item"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginLeft="@dimen/margin_medium">
-
-            <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:layout_toLeftOf="@+id/decoration_3_menu">
-                <ImageView
-                    android:id="@+id/decoration_3_icon"
-                    style="@style/main_image"
-                    tools:src="@drawable/armor_body"/>
-
-                <TextView
-                    android:id="@+id/decoration_3_name"
-                    style="@style/text_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:background="@drawable/dialog_clicked_states"
-                    android:text="@string/asb_no_slot"/>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/decoration_3_menu"
-                style="@style/small_image"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="0dp"
-                tools:src="@drawable/ic_add"/>
-
-        </RelativeLayout>
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_3_item"/>
     </LinearLayout>
 </LinearLayout>
