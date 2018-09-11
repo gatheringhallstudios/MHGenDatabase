@@ -3,7 +3,6 @@ package com.ghstudios.android.features.armorsetbuilder.detail
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.PorterDuff
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -13,8 +12,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
-import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ArmorClickListener
+import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
@@ -44,12 +43,12 @@ class ASBPieceContainer
     private val icon: ImageView
     private val equipmentNameView: TextView
 
-    private val decorationStates: List<ImageView>
+    private val equipmentSlots: SlotsView
     private val equipmentButton: ImageView
 
     private val decorationHeader: View
     private val dropDownArrow: ImageView
-    private val decorationView: DecorationView
+    private val decorationSectionView: DecorationSectionView
 
     private lateinit var session: ASBSession
     private var pieceIndex: Int = 0
@@ -61,17 +60,12 @@ class ASBPieceContainer
         equipmentHeader = findViewById(R.id.equipment_header)
         icon = findViewById(R.id.armor_builder_item_icon)
         equipmentNameView = findViewById(R.id.armor_builder_item_name)
+        equipmentSlots = findViewById(R.id.equipment_slots)
         equipmentButton = findViewById(R.id.add_equipment_button)
         decorationHeader = findViewById(R.id.decoration_header)
         dropDownArrow = findViewById(R.id.drop_down_arrow)
 
-        decorationStates = listOf(
-                findViewById(R.id.decoration_1_state),
-                findViewById(R.id.decoration_2_state),
-                findViewById(R.id.decoration_3_state)
-        )
-
-        decorationView = DecorationView()
+        decorationSectionView = DecorationSectionView()
     }
 
     /**
@@ -117,7 +111,7 @@ class ASBPieceContainer
     fun updateContents() {
         updateArmorPiece()
         updateDecorationsPreview()
-        decorationView.update()
+        decorationSectionView.update()
     }
 
     /**
@@ -159,21 +153,11 @@ class ASBPieceContainer
 
         val numSlots = equipment?.numSlots ?: 0
         val usedSlots = numSlots - session.getAvailableSlots(pieceIndex)
-
-        for (i in 0..2) {
-            val view = decorationStates[i]
-            if (i >= numSlots) {
-                view.setImageResource(R.drawable.decoration_none)
-            } else if (i >= usedSlots) {
-                view.setImageResource(R.drawable.decoration_empty)
-            } else {
-                view.setImageResource(R.drawable.decoration_real)
-            }
-        }
+        equipmentSlots.setSlots(numSlots, usedSlots)
     }
 
     fun toggleDecorations() {
-        if (decorationView.container.visibility == View.GONE) {
+        if (decorationSectionView.container.visibility == View.GONE) {
             showDecorations()
         } else {
             hideDecorations()
@@ -182,13 +166,13 @@ class ASBPieceContainer
 
     fun showDecorations() {
         parentFragment!!.onDecorationsMenuOpened()
-        decorationView.container.visibility = View.VISIBLE
+        decorationSectionView.container.visibility = View.VISIBLE
         equipmentButton.visibility = View.INVISIBLE
         dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_up_arrow))
     }
 
     fun hideDecorations() {
-        decorationView.container.visibility = View.GONE
+        decorationSectionView.container.visibility = View.GONE
         equipmentButton.visibility = View.VISIBLE
         dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_down_arrow))
     }
@@ -222,7 +206,7 @@ class ASBPieceContainer
     }
 
     /**
-     * Internal class that contains view elements for a single row of the DecorationView
+     * Internal class that contains view elements for a single row of the DecorationSectionView
      */
     private inner class DecorationLineViewHolder(val container: View) {
         val iconView = container.findViewById<ImageView>(R.id.decoration_icon)
@@ -261,7 +245,7 @@ class ASBPieceContainer
     /**
      * Internal class that manages the view containing the list of decorations
      */
-    private inner class DecorationView {
+    private inner class DecorationSectionView {
         internal var decorationViews: List<DecorationLineViewHolder>
         internal var container: ViewGroup
 
