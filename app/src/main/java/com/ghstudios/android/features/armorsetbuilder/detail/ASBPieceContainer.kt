@@ -16,11 +16,13 @@ import android.widget.TextView
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
 import com.ghstudios.android.util.setImageAsset
+import java.util.*
 
 /**
  * Image alpha value for unselected items
@@ -154,17 +156,18 @@ class ASBPieceContainer
 
     private fun updateDecorationsPreview() {
         val equipment = session.getEquipment(pieceIndex)
+
+        val numSlots = equipment?.numSlots ?: 0
+        val usedSlots = numSlots - session.getAvailableSlots(pieceIndex)
+
         for (i in 0..2) {
-            if (equipment == null) {
-                decorationStates[i].setImageResource(R.drawable.decoration_none)
-            } else if (session.decorationIsReal(pieceIndex, i)) {
-                decorationStates[i].setImageResource(R.drawable.decoration_real)
-            } else if (session.decorationIsDummy(pieceIndex, i)) {
-                decorationStates[i].setImageResource(R.drawable.decoration_real)
-            } else if (equipment.numSlots > i) {
-                decorationStates[i].setImageResource(R.drawable.decoration_empty)
+            val view = decorationStates[i]
+            if (i >= numSlots) {
+                view.setImageResource(R.drawable.decoration_none)
+            } else if (i >= usedSlots) {
+                view.setImageResource(R.drawable.decoration_empty)
             } else {
-                decorationStates[i].setImageResource(R.drawable.decoration_none)
+                view.setImageResource(R.drawable.decoration_real)
             }
         }
     }
@@ -226,10 +229,32 @@ class ASBPieceContainer
         val nameView = container.findViewById<TextView>(R.id.decoration_name)
         val buttonView = container.findViewById<ImageView>(R.id.decoration_menu)
 
+        /**
+         * Sets the view to a certain decoration, and makes the view visible
+         */
+        fun setDecoration(decoration: Decoration) {
+            iconView.setImageAsset(decoration)
+            nameView.text = decoration.name
+            nameView.setTextColor(resources.getColor(R.color.text_color))
+            buttonView.setImageResource(R.drawable.ic_remove)
+            container.visibility = View.VISIBLE
+        }
+
+        fun showEmpty(slotsRemaining: Int) {
+            iconView.setImageDrawable(null)
+            nameView.setText(R.string.asb_empty_slot)
+            buttonView.setImageResource(R.drawable.ic_add)
+            container.visibility = View.VISIBLE
+        }
+
+        /**
+         * Clears the line and hides it from view
+         */
         fun clear() {
             nameView.text = null
             iconView.setImageDrawable(null)
             buttonView.setImageDrawable(null)
+            container.visibility = View.GONE
         }
     }
 
@@ -251,14 +276,16 @@ class ASBPieceContainer
 
             for (i in 0..2) {
                 val vh = decorationViews[i]
-                vh.nameView.setOnClickListener { v ->
-                    if (session.decorationIsReal(pieceIndex, i)) {
-                        requestDecorationInfo(i)
+                vh.nameView.setOnClickListener {
+                    val decoration = session.getDecoration(pieceIndex, i)
+                    if (decoration != null) {
+                        requestDecorationInfo(decoration)
                     }
                 }
 
-                vh.buttonView.setOnClickListener { v ->
-                    if (session.decorationIsReal(pieceIndex, i)) {
+                vh.buttonView.setOnClickListener {
+                    val decoration = session.getDecoration(pieceIndex, i)
+                    if (decoration != null) {
                         requestRemoveDecoration(i)
                     } else {
                         requestAddDecoration()
@@ -276,46 +303,27 @@ class ASBPieceContainer
                 return
             }
 
-            // equipment is not null
-            var addButtonExists = false
-            for (i in decorationViews.indices) {
-                val vh = decorationViews[i]
+            // Store a queue of all decoration lines.
+            // We iterate over decorations, and pop a view to apply it on.
+            // This will give better live performance over inflating.
+            val decorationViewQueue = ArrayDeque(decorationViews)
 
-                fetchDecorationIcon(vh.iconView, pieceIndex, i)
-
-                if (session.decorationIsReal(pieceIndex, i)) {
-                    vh.nameView.text = session.getDecoration(pieceIndex, i)!!.name
-                    vh.nameView.setTextColor(resources.getColor(R.color.text_color))
-                    vh.buttonView.setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
-                } else {
-                    if (session.decorationIsDummy(pieceIndex, i)) {
-                        vh.nameView.text = session.findRealDecorationOfDummy(pieceIndex, i).name
-                        vh.buttonView.setImageDrawable(null)
-                    } else if (equipment.numSlots > i) {
-                        vh.nameView.setText(R.string.asb_empty_slot)
-
-                        if (!addButtonExists) {
-                            vh.buttonView.setImageDrawable(resources.getDrawable(R.drawable.ic_add))
-                            addButtonExists = true
-                        } else {
-                            vh.buttonView.setImageDrawable(null)
-                        }
-                    } else {
-                        vh.nameView.setText(R.string.asb_no_slot)
-                        vh.buttonView.setImageDrawable(null)
-                    }
-
-                    vh.nameView.setTextColor(resources.getColor(R.color.text_color_secondary))
-                }
+            // Bind all decorations
+            for (decoration in session.getDecorations(pieceIndex)) {
+                val view = decorationViewQueue.pop()
+                view.setDecoration(decoration)
             }
-        }
 
-        private fun fetchDecorationIcon(iv: ImageView, pieceIndex: Int, decorationIndex: Int) {
-            if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                AssetLoader.setIcon(iv, session.getDecoration(pieceIndex, decorationIndex)!!)
-            } else if (session.decorationIsDummy(pieceIndex, decorationIndex)) {
-                iv.setImageResource(R.drawable.icon_jewel)
-                iv.setColorFilter(0xFFFFFF, PorterDuff.Mode.MULTIPLY)
+            // If slots are available, show an "add slot" line
+            val availableSlots = session.getAvailableSlots(pieceIndex)
+            if (availableSlots > 0) {
+                val view = decorationViewQueue.pop()
+                view.showEmpty(slotsRemaining = availableSlots)
+            }
+
+            // Clear any remaining views
+            for (view in decorationViewQueue) {
+                view.clear()
             }
         }
 
@@ -336,12 +344,13 @@ class ASBPieceContainer
             parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data)
         }
 
-        private fun requestDecorationInfo(decorationIndex: Int) {
+        /**
+         * Navigate to decoration page.
+         * TODO: Replace reference with navigator of some sort
+         */
+        private fun requestDecorationInfo(decoration: Decoration) {
             val i = Intent(parentFragment!!.activity, DecorationDetailActivity::class.java)
-
-            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID,
-                    session.getDecoration(pieceIndex, decorationIndex)?.id)
-
+            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, decoration.id)
             parentFragment!!.startActivity(i)
         }
     }

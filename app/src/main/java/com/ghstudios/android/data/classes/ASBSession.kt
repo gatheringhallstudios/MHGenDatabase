@@ -23,14 +23,12 @@ class ASBSession {
         const val WAIST = 3
         const val LEGS = 4
         const val TALISMAN = 5
-
-        var dummyDecoration = Decoration()
     }
 
     private var asbSet: ASBSet? = null
 
     private val equipment: Array<Equipment?> = arrayOfNulls(6)
-    private val decorations: Array<Array<Decoration?>> = Array(6) { arrayOfNulls<Decoration>(3) }
+    private val decorations: Array<MutableList<Decoration>> = Array(6) { mutableListOf<Decoration>() }
 
     val skillTreesInSet: MutableList<SkillTreeInSet>
 
@@ -60,68 +58,17 @@ class ASBSession {
     }
 
     fun getDecoration(pieceIndex: Int, decorationIndex: Int): Decoration? {
-        return decorations[pieceIndex][decorationIndex]
+        return decorations[pieceIndex].getOrNull(decorationIndex)
     }
 
-    /**
-     * @return True if the armor piece in question has any number of decorations, otherwise false.
-     */
-    fun hasDecorations(pieceIndex: Int): Boolean {
-        var decorationCount = 0
-        for (d in decorations[pieceIndex]) {
-            if (d != null) {
-                decorationCount++
-            }
-        }
-
-        return decorationCount > 0
+    fun getDecorations(pieceIndex: Int): List<Decoration> {
+        return decorations[pieceIndex]
     }
 
     fun getAvailableSlots(pieceIndex: Int): Int {
-        val equipment = getEquipment(pieceIndex)
-        if (equipment == null) {
-            return 0
-        }
-
-        var decorationCount = 0
-        for (d in decorations[pieceIndex]) {
-            if (d != null) {
-                decorationCount++
-            }
-        }
-
-        return equipment.numSlots - decorationCount
-    }
-
-    /**
-     * @return True if the slot is in use by an actual, user-selected decoration.
-     */
-    fun decorationIsReal(pieceIndex: Int, decorationIndex: Int): Boolean {
-        return decorations[pieceIndex][decorationIndex] != null && decorations[pieceIndex][decorationIndex] !== dummyDecoration
-    }
-
-    /**
-     * @return True if the designated slot is a "dummy" decoration - that is, the non-first slot in a decoration of
-     * size greater than 1 - and false if it is empty or an actual decoration.
-     */
-    fun decorationIsDummy(pieceIndex: Int, decorationIndex: Int): Boolean {
-        return getDecoration(pieceIndex, decorationIndex) === dummyDecoration
-    }
-
-    /**
-     * A utility method that finds the actual decoration causing a dummy to appear.
-     */
-    fun findRealDecorationOfDummy(pieceIndex: Int, decorationIndex: Int): Decoration {
-        if (getDecoration(pieceIndex, decorationIndex) !== dummyDecoration) {
-            throw IllegalArgumentException("The specified decoration must be a dummy!")
-        }
-
-        var i = decorationIndex
-        while (getDecoration(pieceIndex, i) === dummyDecoration) {
-            i--
-        }
-
-        return getDecoration(pieceIndex, i)!!
+        val equipment = getEquipment(pieceIndex) ?: return 0
+        val usedSlots = getDecorations(pieceIndex).sumBy { it.numSlots }
+        return equipment.numSlots - usedSlots
     }
 
     /**
@@ -135,25 +82,8 @@ class ASBSession {
     fun addDecoration(pieceIndex: Int, decoration: Decoration, updateSkills: Boolean = true): Int {
         Log.v("ASB", "Adding decoration at piece index $pieceIndex")
         if (getAvailableSlots(pieceIndex) >= decoration.numSlots) {
-            var i = 0
-            while (decorations[pieceIndex][i] != null) {
-                i++
-            }
-
-            decorations[pieceIndex][i] = decoration
-
-            if (decoration.numSlots == 2) {
-                decorations[pieceIndex][i + 1] = dummyDecoration
-            } else if (decoration.numSlots == 3) {
-                decorations[pieceIndex][i + 1] = dummyDecoration
-                decorations[pieceIndex][i + 2] = dummyDecoration
-            }
-
-            if (updateSkills) {
-                updateSkillTreePointsSets()
-            }
-
-            return i
+            decorations[pieceIndex].add(decoration)
+            return decorations[pieceIndex].size - 1
         } else {
             Log.e("ASB", "Cannot add that decoration!")
             return -1
@@ -167,27 +97,15 @@ class ASBSession {
      */
     @JvmOverloads
     fun removeDecoration(pieceIndex: Int, decorationIndex: Int, updateSkills: Boolean = true) {
-        if (decorations[pieceIndex][decorationIndex] !== dummyDecoration && decorations[pieceIndex][decorationIndex] != null) {
-            decorations[pieceIndex][decorationIndex] = null
+        val list = decorations[pieceIndex]
+        if (list.getOrNull(decorationIndex) == null) {
+            return
+        }
 
-            var i = 0
-            val newDecorations = arrayOfNulls<Decoration>(3) // We move all of the decorations to a new array so that they are all at the beginning
+        list.removeAt(decorationIndex)
 
-            for (d in decorations[pieceIndex]) {
-                if (d != null && d !== dummyDecoration) {
-                    newDecorations[i++] = d
-                }
-            }
-
-            while (i < newDecorations.size) {
-                newDecorations[i++] = null
-            }
-
-            decorations[pieceIndex] = newDecorations
-
-            if (updateSkills) {
-                updateSkillTreePointsSets()
-            }
+        if (updateSkills) {
+            updateSkillTreePointsSets()
         }
     }
 
@@ -224,9 +142,7 @@ class ASBSession {
             equipment[pieceIndex] = null
         }
 
-        for (i in 0 until decorations[pieceIndex].size) {
-            decorations[pieceIndex][i] = null
-        }
+        decorations[pieceIndex].clear()
 
         if (updateSkills) {
             updateSkillTreePointsSets()
@@ -315,10 +231,6 @@ class ASBSession {
         }
 
         for (d in decorations[pieceIndex]) {
-            if (d == null) {
-                continue
-            }
-
             val decorationSkills = dataManager.queryItemToSkillTreeArrayItem(d.id)
             for (itemToSkillTree in decorationSkills) {
                 val skillTree = itemToSkillTree.skillTree
