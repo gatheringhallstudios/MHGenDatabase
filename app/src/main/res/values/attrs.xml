@@ -55,4 +55,10 @@
     <declare-styleable name="ItemRecipeCell">
         <attr name="titleText" />
     </declare-styleable>
+
+    <declare-styleable name="SlotsView">
+        <attr name="hideExtras" format="boolean"/>
+        <attr name="maxSlots" format="integer"/>
+        <attr name="usedSlots" format="integer"/>
+    </declare-styleable>
 </resources>

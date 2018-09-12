@@ -100,6 +100,38 @@
             android:id="@+id/decoration_3_item"/>
 
         <LinearLayout
+            android:id="@+id/add_decoration"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <Space style="@style/main_image"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginLeft="@dimen/margin_medium"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/text_medium_alt"
+                android:layout_gravity="center_vertical"
+                android:text="@string/asb_empty_slot" />
+            <com.ghstudios.android.components.SlotsView
+                android:id="@+id/slots_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:hideExtras="true"
+                tools:maxSlots="2"/>
+            <ImageView
+                android:id="@+id/decoration_menu"
+                style="@style/small_image"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_add"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/decoration_blank_slate"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_item_height"
