@@ -243,9 +243,9 @@
     <string name="asb_dialog_name_hint">Set Name</string>
     <string name="asb_dialog_rank">Rank</string>
     <string name="asb_dialog_hunter_type">Hunter Type</string>
-    <string name="context_action_asb_delete">Delete</string>
-    <string name="context_action_asb_edit_data">Edit Data</string>
-    <string name="context_action_asb_copy">Copy</string>
+    <string name="asb_context_action_delete">Delete</string>
+    <string name="asb_context_action_edit_data">Edit Data</string>
+    <string name="asb_context_action_copy">Copy</string>
 
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
@@ -253,7 +253,7 @@
     <string name="activity_asb_armor_picker">Select Armor</string>
 
     <string name="asb_empty_slot">Empty slot</string>
-    <string name="asb_no_slot">No slot</string>
+    <string name="asb_no_slots">No slots</string>
     <string name="asb_action_select">Select</string>
 
     <string name="asb_action_add">Add</string>

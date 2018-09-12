@@ -290,8 +290,8 @@
     </style>
 
     <style name="main_image">
-        <item name="android:layout_height">28dp</item>
-        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">@dimen/image_size_medium</item>
+        <item name="android:layout_width">@dimen/image_size_medium</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_gravity">center</item>
     </style>

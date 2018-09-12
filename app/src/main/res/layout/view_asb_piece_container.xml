@@ -82,6 +82,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
         android:paddingStart="@dimen/image_size_small"
         android:paddingLeft="@dimen/image_size_small"
         tools:visibility="visible">
@@ -94,5 +98,25 @@
 
         <include layout="@layout/view_asb_decoration_listitem"
             android:id="@+id/decoration_3_item"/>
+
+        <LinearLayout
+            android:id="@+id/decoration_blank_slate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <Space style="@style/main_image" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_medium_alt"
+                android:layout_gravity="center_vertical"
+                android:text="@string/asb_no_slots"
+                />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

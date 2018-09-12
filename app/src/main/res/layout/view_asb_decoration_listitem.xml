@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
     android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:layout_marginStart="@dimen/margin_medium"
-    android:layout_marginLeft="@dimen/margin_medium">
+    android:gravity="center_vertical">
 
     <LinearLayout
         android:layout_height="match_parent"
@@ -15,7 +14,9 @@
         <ImageView
             android:id="@+id/decoration_icon"
             style="@style/main_image"
-            tools:src="@drawable/armor_body"/>
+            tools:src="@drawable/armor_body"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
 
         <TextView
             android:id="@+id/decoration_name"
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:background="@drawable/dialog_clicked_states"
-            android:text="@string/asb_no_slot" />
+            android:text="@string/asb_no_slots" />
     </LinearLayout>
 
     <ImageView

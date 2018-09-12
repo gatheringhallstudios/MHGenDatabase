@@ -28,5 +28,6 @@
 
     <dimen name="image_size_xsmall">16dp</dimen>
     <dimen name="image_size_small">24dp</dimen>
+    <dimen name="image_size_medium">28dp</dimen>
     <dimen name="image_size_large">48dp</dimen>
 </resources>
