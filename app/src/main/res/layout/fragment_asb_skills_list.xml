@@ -18,7 +18,7 @@
             android:layout_height="@dimen/damage_table_item_height"
             android:layout_weight="0.3"
             android:gravity="center_vertical"
-            android:text="Skill Tree"/>
+            android:text="@string/asb_skill_tree"/>
 
         <ImageView
             android:id="@+id/helmet"

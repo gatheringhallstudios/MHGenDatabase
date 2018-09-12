@@ -43,7 +43,7 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TalismanSkill, 0, 0);
 
         skillIndex = a.getInteger(R.styleable.TalismanSkill_skillNumber, 0);
-        String labelText = "Skill " + skillIndex;
+        String labelText = context.getString(R.string.asb_talisman_skill, skillIndex);
 
         a.recycle();
 
