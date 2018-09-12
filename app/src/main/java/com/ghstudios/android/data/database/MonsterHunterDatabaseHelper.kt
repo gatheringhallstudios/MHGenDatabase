@@ -61,9 +61,11 @@ For queries with JOINs:
 //Version 4 - v1.1.0 - Changed Weaknesses / Fixed some data bugs / Default Wishlists+Set
 //Version 5 - v1.1.1 - Added more localized data / July DLC
 //Version 6 - v1.1.2 - Sept/Oct DLC
+//Version 7 - v2.0.0 - MHGU Release
+//Version 8 - v2.0.2 - MHGU Data Fixes
 
 private val DATABASE_NAME = "mhgu.db"
-private val DATABASE_VERSION = 7
+private val DATABASE_VERSION = 8
 
 /**
  * Initialize the helper object
