@@ -112,6 +112,13 @@ class ASBPieceContainer
         updateArmorPiece()
         updateSlotsHeader()
         decorationSectionView.update()
+
+        // Ensure that decorations are closed and cannot be opened if unselected
+        val equipmentSelected = session.getEquipment(pieceIndex) != null
+        decorationHeader.isEnabled = equipmentSelected
+        if (!equipmentSelected) {
+            hideDecorations()
+        }
     }
 
     /**
