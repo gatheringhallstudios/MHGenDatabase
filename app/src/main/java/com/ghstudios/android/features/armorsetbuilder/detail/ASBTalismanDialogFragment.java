@@ -39,8 +39,13 @@ public class ASBTalismanDialogFragment extends DialogFragment implements ASBTali
 
     /**
      * Used when creating a talisman dialog for a talisman that has already been created.
+     * If talisman is null, returns the normal fragment
      */
     public static ASBTalismanDialogFragment newInstance(ASBTalisman talisman) {
+        if (talisman == null) {
+            return newInstance();
+        }
+
         ASBTalismanDialogFragment f = new ASBTalismanDialogFragment();
 
         Bundle args = new Bundle();

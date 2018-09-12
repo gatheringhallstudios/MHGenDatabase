@@ -206,7 +206,7 @@ class ASBPieceContainer
      */
     private fun onAddEquipment() {
         if (pieceIndex == ASBSession.TALISMAN) {
-            val d = ASBTalismanDialogFragment.newInstance()
+            val d = ASBTalismanDialogFragment.newInstance(session.talisman)
             d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
             d.show(parentFragment!!.fragmentManager, "TALISMAN")
         } else {
