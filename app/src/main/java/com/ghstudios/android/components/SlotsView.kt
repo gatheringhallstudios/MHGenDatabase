@@ -24,14 +24,23 @@ class SlotsView : LinearLayout {
     var hideExtras: Boolean = false
 
     constructor(context: Context): super(context) {
-        init()
+        init(0, 0)
     }
 
     constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
-        init()
+        val attributes = context.obtainStyledAttributes(attrs, R.styleable.SlotsView)
+        try {
+            hideExtras = attributes.getBoolean(R.styleable.SlotsView_hideExtras, false)
+            val maxSlots = attributes.getInt(R.styleable.SlotsView_maxSlots, 0)
+            val usedSlots = attributes.getInt(R.styleable.SlotsView_usedSlots, 0)
+
+            init(maxSlots, usedSlots)
+        } finally {
+            attributes.recycle()
+        }
     }
 
-    fun init() {
+    fun init(maxSlots: Int, usedSlots: Int) {
         layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
         val imageSize = context.resources.getDimension(R.dimen.image_size_xsmall).roundToInt()
@@ -49,7 +58,7 @@ class SlotsView : LinearLayout {
             addView(decorationImage)
         }
 
-        setSlots(0, 0)
+        setSlots(maxSlots, usedSlots)
     }
 
     /**
