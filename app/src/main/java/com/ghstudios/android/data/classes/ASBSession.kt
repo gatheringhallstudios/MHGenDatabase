@@ -46,8 +46,8 @@ class ASBSession {
     /**
      * @return The set's talisman.
      */
-    val talisman: ASBTalisman
-        get() = equipment[TALISMAN] as ASBTalisman
+    val talisman: ASBTalisman?
+        get() = equipment[TALISMAN] as ASBTalisman?
 
     init {
         skillTreesInSet = ArrayList()
@@ -222,10 +222,10 @@ class ASBSession {
             }
         } else {
             val talisman = talisman
-            talisman.firstSkill?.let {
+            talisman?.firstSkill?.let {
                 skillCache[it.skillTree.id] = it
             }
-            talisman.secondSkill?.let {
+            talisman?.secondSkill?.let {
                 skillCache[it.skillTree.id] = it
             }
         }
