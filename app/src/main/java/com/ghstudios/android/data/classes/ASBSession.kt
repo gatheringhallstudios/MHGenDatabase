@@ -83,6 +83,7 @@ class ASBSession {
         Log.v("ASB", "Adding decoration at piece index $pieceIndex")
         if (getAvailableSlots(pieceIndex) >= decoration.numSlots) {
             decorations[pieceIndex].add(decoration)
+            updateSkillTreePointsSets()
             return decorations[pieceIndex].size - 1
         } else {
             Log.e("ASB", "Cannot add that decoration!")
@@ -215,6 +216,7 @@ class ASBSession {
         // mapping of skilltree id to skilltree points. The values are returned in the end
         val skillCache = HashMap<Long, SkillTreePoints>()
 
+        // Get points from the equipment/talisman itself first
         if (pieceIndex != TALISMAN) {
             val equipmentSkills = dataManager.queryItemToSkillTreeArrayItem(equipment.id)
             for (itemToSkillTree in equipmentSkills) { // We add skills for armor
@@ -230,17 +232,16 @@ class ASBSession {
             }
         }
 
+        // Add decorations
         for (d in decorations[pieceIndex]) {
             val decorationSkills = dataManager.queryItemToSkillTreeArrayItem(d.id)
             for (itemToSkillTree in decorationSkills) {
                 val skillTree = itemToSkillTree.skillTree
                 val points = itemToSkillTree.points
 
-                if (skillTree.id in skillCache) {
-                    skillCache[skillTree.id]!!.points += points
-                } else {
-                    skillCache[skillTree.id] = SkillTreePoints(skillTree, points)
-                }
+                // SkillPoints are immmutable, so if we're adding, create a new entry
+                val totalPoints = points + (skillCache[skillTree.id]?.points ?: 0)
+                skillCache[skillTree.id] = SkillTreePoints(skillTree, totalPoints)
             }
         }
 

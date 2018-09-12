@@ -29,20 +29,20 @@ public class ItemToSkillTreeCursor extends CursorWrapper {
 			return null;
 
 		// Get the SkillTree, ItemToSkillTree requires a SkillTree to exist before construction
-		SkillTree skillTree = new SkillTree();
+
 		long skillTreeId = getLong(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID));
 		String skillTreeName = getString(getColumnIndex("s" + S.COLUMN_SKILL_TREES_NAME));
+		int skillTreePoints = getInt(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE));
+
+		SkillTree skillTree = new SkillTree();
 		skillTree.setId(skillTreeId);
 		skillTree.setName(skillTreeName);
 
 		// Create the ItemToSkillTree
-		ItemToSkillTree itemToSkillTree = new ItemToSkillTree(skillTree);
+		ItemToSkillTree itemToSkillTree = new ItemToSkillTree(skillTree, skillTreePoints);
 		
 		long id = getLong(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_ID));
-		int points = getInt(getColumnIndex(S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE));
-		
 		itemToSkillTree.setId(id);
-		itemToSkillTree.setPoints(points);
 
 		// Get the Item
 		Item item = new Item();
