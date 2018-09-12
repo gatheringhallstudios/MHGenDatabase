@@ -26,10 +26,9 @@
         <LinearLayout
             android:id="@+id/equipment_header"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+
             app:layout_constraintStart_toEndOf="@id/add_equipment_button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/decoration_header"
             android:orientation="horizontal"
             android:background="?android:attr/selectableItemBackground">
@@ -37,6 +36,7 @@
             <ImageView
                 android:id="@+id/armor_builder_item_icon"
                 style="@style/main_image"
+                android:layout_gravity="center_vertical"
                 tools:src="@drawable/armor_head"
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:layout_marginStart="@dimen/margin_medium"/>
@@ -44,10 +44,11 @@
             <TextView
                 android:id="@+id/armor_builder_item_name"
                 style="@style/text_medium"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="Diablos Vambraces X"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                tools:text="Diablos Vambraces X"
                 android:maxLines="1" />
         </LinearLayout>
 
@@ -55,9 +56,9 @@
             android:id="@+id/decoration_header"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_medium"
             android:orientation="horizontal"
             android:background="?android:attr/selectableItemBackground">
 
