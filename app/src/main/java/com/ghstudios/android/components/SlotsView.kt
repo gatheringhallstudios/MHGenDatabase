@@ -35,7 +35,7 @@ class SlotsView : LinearLayout {
         layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
         val imageSize = context.resources.getDimension(R.dimen.image_size_xsmall).roundToInt()
-        val gap = context.resources.getDimension(R.dimen.margin_small).roundToInt()
+        val gap = imageSize / 5
 
         // Create image views. They should have gaps between them
         decorationImageViews = listOf(ImageView(context), ImageView(context), ImageView(context))

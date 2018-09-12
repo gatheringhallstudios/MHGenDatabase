@@ -110,7 +110,7 @@ class ASBPieceContainer
      */
     fun updateContents() {
         updateArmorPiece()
-        updateDecorationsPreview()
+        updateSlotsHeader()
         decorationSectionView.update()
     }
 
@@ -148,14 +148,19 @@ class ASBPieceContainer
         })
     }
 
-    private fun updateDecorationsPreview() {
+    /**
+     * Update the slots header to reflect the selected equipment
+     */
+    private fun updateSlotsHeader() {
         val equipment = session.getEquipment(pieceIndex)
-
         val numSlots = equipment?.numSlots ?: 0
         val usedSlots = numSlots - session.getAvailableSlots(pieceIndex)
         equipmentSlots.setSlots(numSlots, usedSlots)
     }
 
+    /**
+     * Toggles the visibility of the decorations drawer
+     */
     fun toggleDecorations() {
         if (decorationSectionView.container.visibility == View.GONE) {
             showDecorations()
@@ -165,16 +170,14 @@ class ASBPieceContainer
     }
 
     fun showDecorations() {
-        parentFragment!!.onDecorationsMenuOpened()
+        parentFragment?.onDecorationsMenuOpened()
         decorationSectionView.container.visibility = View.VISIBLE
-        equipmentButton.visibility = View.INVISIBLE
-        dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_up_arrow))
+        dropDownArrow.setImageResource(R.drawable.ic_drop_up_arrow)
     }
 
     fun hideDecorations() {
         decorationSectionView.container.visibility = View.GONE
-        equipmentButton.visibility = View.VISIBLE
-        dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_down_arrow))
+        dropDownArrow.setImageResource(R.drawable.ic_drop_down_arrow)
     }
 
     /**
@@ -246,18 +249,15 @@ class ASBPieceContainer
      * Internal class that manages the view containing the list of decorations
      */
     private inner class DecorationSectionView {
-        internal var decorationViews: List<DecorationLineViewHolder>
-        internal var container: ViewGroup
+        internal val container = findViewById<ViewGroup>(R.id.decorations)
+        internal val blankSlate = findViewById<View>(R.id.decoration_blank_slate)
+        internal val decorationViews = listOf(
+                DecorationLineViewHolder(findViewById(R.id.decoration_1_item)),
+                DecorationLineViewHolder(findViewById(R.id.decoration_2_item)),
+                DecorationLineViewHolder(findViewById(R.id.decoration_3_item))
+        )
 
         init {
-            container = findViewById(R.id.decorations)
-
-            decorationViews = listOf(
-                    DecorationLineViewHolder(findViewById(R.id.decoration_1_item)),
-                    DecorationLineViewHolder(findViewById(R.id.decoration_2_item)),
-                    DecorationLineViewHolder(findViewById(R.id.decoration_3_item))
-            )
-
             for (i in 0..2) {
                 val vh = decorationViews[i]
                 vh.nameView.setOnClickListener {
@@ -281,14 +281,18 @@ class ASBPieceContainer
         fun update() {
             val equipment = session.getEquipment(pieceIndex)
 
-            // If null, set all to blank
-            if (equipment == null) {
+            // If null or no slots, set all to blank and enable the blank slate
+            if (equipment == null || equipment.numSlots == 0) {
                 decorationViews.forEach { it.clear() }
+                blankSlate.visibility = View.VISIBLE
                 return
             }
 
+            // Slots are possible, so hide the "No Slots" message
+            blankSlate.visibility = View.GONE
+
             // Store a queue of all decoration lines.
-            // We iterate over decorations, and pop a view to apply it on.
+            // We iterate over decorations, and for each one we pop a view to apply it on.
             // This will give better live performance over inflating.
             val decorationViewQueue = ArrayDeque(decorationViews)
 
