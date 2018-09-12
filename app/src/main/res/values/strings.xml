@@ -259,25 +259,16 @@
     <string name="asb_action_add">Add</string>
     <string name="asb_action_remove">Remove</string>
     <string name="asb_action_edit">Edit</string>
-    <string name="asb_action_edit_piece_decorations">Decorations</string>
-    <string name="asb_action_armor_piece">Info</string>
-
-    <string name="asb_action_add_decoration">Add</string>
-    <string name="asb_action_remove_decoration">Remove</string>
-    <string name="asb_action_get_decoration_info">Info</string>
 
     <string name="asb_option_set_add">New Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>
+    <string name="asb_talisman_skill">Skill %d</string>
     <string name="asb_talisman_skill_1">Skill 1</string>
     <string name="asb_talisman_skill_2">Skill 2</string>
 
-    <string name="asb_helmet">Helmet</string>
-    <string name="asb_body">Body</string>
-    <string name="asb_arms">Arms</string>
-    <string name="asb_waist">Waist</string>
-    <string name="asb_legs">Legs</string>
-    <string name="asb_skill_tree_name">Skill</string>
+    <string name="asb_none">(None)</string>
+    <string name="asb_skill_tree">Skill Tree</string>
     <string name="asb_skill_points_total">Total</string>
 
     <string name="asb_dialog_title_delete_set">Delete this set?</string>
