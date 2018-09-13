@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
 
 import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.cursors.GatheringCursor
@@ -48,6 +49,9 @@ class ItemLocationFragment : ListFragment() {
         })
     }
 
+    /**
+     * Internal adapter to render the list of item gather locations
+     */
     private class GatheringListCursorAdapter(
             context: Context,
             gatheringData: List<Gathering>
@@ -65,14 +69,13 @@ class ItemLocationFragment : ListFragment() {
         }
 
         override fun bindView(view: View, context: Context, gathering: Gathering) {
-            // Set up the text view
-            val itemLayout = view.findViewById<LinearLayout>(R.id.listitem)
+            val itemLayout = view.findViewById<View>(R.id.listitem)
 
             val mapTextView = view.findViewById<TextView>(R.id.map)
             val methodTextView = view.findViewById<TextView>(R.id.method)
             val rateTextView = view.findViewById<TextView>(R.id.rate)
 
-            val method = gathering.site
+            val method = AssetLoader.localizeGatherNodeFull(gathering)
 
             mapTextView.text = gathering.area
             methodTextView.text = method

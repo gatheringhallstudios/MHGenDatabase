@@ -1,51 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/list_item_dense"
-    android:id="@+id/listitem"
-    android:orientation="horizontal" >
+    android:id="@+id/listitem">
+
     <TextView
         android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".7"
-        android:layout_gravity="center"
-        style="@style/text_medium" />
+        style="@style/text_medium"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/method"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Area 5"/>
 
-    <RelativeLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/method"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:layout_gravity="center_vertical|right">
+        style="@style/text_small_secondary"
+        android:gravity="end"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rate"
+        tools:text="mine"/>
 
-        <TextView
-            android:id="@+id/rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="34dp"
-            android:layout_weight=".2"
-            android:layout_gravity="center"
-            style="@style/text_small"
-            android:text="0%"
-            android:layout_alignTop="@+id/method"
-            android:layout_alignParentRight="true"
-            android:paddingLeft="4dp"
-            android:layout_centerInParent="true"
-            android:gravity="right" />
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="34dp"
+        style="@style/text_small"
+        android:gravity="end"
+        android:paddingStart="@dimen/margin_small"
+        android:paddingLeft="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="0%"/>
 
-        <TextView
-            android:id="@+id/method"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2"
-            android:layout_gravity="center"
-            style="@style/text_small_secondary"
-            android:text="mine"
-            android:layout_marginRight="4dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="false"
-            android:layout_toLeftOf="@+id/rate"
-            android:layout_centerInParent="true"
-            android:gravity="right" />
-    </RelativeLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

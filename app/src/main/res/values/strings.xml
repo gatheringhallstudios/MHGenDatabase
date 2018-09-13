@@ -163,6 +163,10 @@
     <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
     <string name="item_combination_yield">Yields</string>
+    <string name="item_gather_fixed">[Fixed]</string>
+    <string name="item_gather_common">[Common]</string>
+    <string name="item_gather_rare">[Rare]</string>
+    <string name="item_gather_full">%2$s %1$s</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>

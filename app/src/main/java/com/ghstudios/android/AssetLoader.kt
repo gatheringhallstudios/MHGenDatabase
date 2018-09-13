@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
+import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.MHUtils
@@ -63,5 +64,25 @@ object AssetLoader {
         QuestHub.ARENA -> ctx.getString(R.string.type_hub_arena)
         QuestHub.PERMIT -> ctx.getString(R.string.type_hub_permit)
         null -> "NULL"
+    }
+
+    /**
+     * Returns a localized string that represents the gathering node's site modifier.
+     * For example, Fixed, Rare, Common
+     */
+    @JvmStatic fun localizeGatherModifier(gather: Gathering) = when {
+        gather.isFixed -> ctx.getString(R.string.item_gather_fixed)
+        gather.isRare -> ctx.getString(R.string.item_gather_rare)
+        else -> ctx.getString(R.string.item_gather_normal)
+    }
+
+    /**
+     * Returns a localized string that represents the gathering type.
+     * For example, Mine [Fixed] and Gather [Rare].
+     * TODO: Localize the first part...
+     */
+    @JvmStatic fun localizeGatherNodeFull(gather: Gathering): String {
+        val modifier = localizeGatherModifier(gather)
+        return ctx.getString(R.string.item_gather_full, gather.site, modifier)
     }
 }
