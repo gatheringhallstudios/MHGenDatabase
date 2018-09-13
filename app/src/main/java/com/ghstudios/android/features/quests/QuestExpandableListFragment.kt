@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ExpandableListView
 import com.ghstudios.android.data.classes.QuestHub
 
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 
 // collection of all possible stars

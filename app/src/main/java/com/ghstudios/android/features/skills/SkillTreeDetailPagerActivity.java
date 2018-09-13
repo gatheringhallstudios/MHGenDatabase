@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.skills;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;

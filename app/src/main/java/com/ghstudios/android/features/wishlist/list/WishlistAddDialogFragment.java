@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WishlistAddDialogFragment extends DialogFragment {

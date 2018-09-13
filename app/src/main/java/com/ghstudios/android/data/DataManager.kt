@@ -1,4 +1,4 @@
-package com.ghstudios.android.data.database
+package com.ghstudios.android.data
 
 import android.app.Application
 import android.content.Context
@@ -38,6 +38,7 @@ import com.ghstudios.android.data.cursors.WishlistComponentCursor
 import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
+import com.ghstudios.android.data.database.*
 import com.ghstudios.android.util.first
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList

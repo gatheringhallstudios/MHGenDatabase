@@ -13,10 +13,9 @@ import android.view.*;
 
 import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.ArmorFamily;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;

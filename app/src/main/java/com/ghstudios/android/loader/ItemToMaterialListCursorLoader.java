@@ -2,7 +2,7 @@ package com.ghstudios.android.loader;
 
 import android.content.Context;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.data.cursors.ItemToMaterialCursor;
 
 /**

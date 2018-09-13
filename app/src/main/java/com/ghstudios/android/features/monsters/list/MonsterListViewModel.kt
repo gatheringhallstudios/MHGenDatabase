@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.data.classes.MonsterClass
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 

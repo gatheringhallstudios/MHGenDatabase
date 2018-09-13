@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.components.WeaponListEntry
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 
 /**
  * An immutable class used to represent the WeaponListViewModel's state.

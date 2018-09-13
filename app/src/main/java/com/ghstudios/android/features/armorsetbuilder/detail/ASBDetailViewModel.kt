@@ -7,9 +7,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBTalisman
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
-import com.ghstudios.android.util.MHUtils
 
 /**
  * Internal class to describe a talisman.

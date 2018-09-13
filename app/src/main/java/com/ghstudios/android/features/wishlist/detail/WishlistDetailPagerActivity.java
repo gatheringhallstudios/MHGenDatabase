@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;

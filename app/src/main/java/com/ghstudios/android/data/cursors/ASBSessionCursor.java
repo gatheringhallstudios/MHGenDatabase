@@ -4,9 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.*;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.mhgendatabase.*;
 

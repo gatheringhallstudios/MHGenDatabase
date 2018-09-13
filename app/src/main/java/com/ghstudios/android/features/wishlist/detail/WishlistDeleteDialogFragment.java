@@ -3,13 +3,12 @@ package com.ghstudios.android.features.wishlist.detail;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 public class WishlistDeleteDialogFragment extends DialogFragment {
     public static final String EXTRA_DELETE =

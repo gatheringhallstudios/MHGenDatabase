@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 public class WishlistDataDeleteDialogFragment extends DialogFragment {
     public static final String EXTRA_DELETE =

@@ -1,10 +1,7 @@
 package com.ghstudios.android.features.quests;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,22 +14,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ghstudios.android.AppSettings;
 import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.TitleBarCell;
-import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Quest;
-import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.locations.LocationDetailPagerActivity;
 
-import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.ghstudios.android.mhgendatabase.R.id.location;
 
 public class QuestDetailFragment extends Fragment {
     private static final String ARG_QUEST_ID = "QUEST_ID";

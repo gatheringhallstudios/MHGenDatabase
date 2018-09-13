@@ -3,7 +3,7 @@ package com.ghstudios.android.loader;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 public class HuntingRewardListCursorLoader extends SQLiteCursorLoader {
 	public static String FROM_ITEM = "item";

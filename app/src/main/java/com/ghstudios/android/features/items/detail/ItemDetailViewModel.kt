@@ -8,7 +8,7 @@ import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.meta.ItemMetadata
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 

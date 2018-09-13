@@ -14,7 +14,7 @@ import android.view.*;
 import android.widget.*;
 import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 import com.ghstudios.android.loader.ASBSetListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;

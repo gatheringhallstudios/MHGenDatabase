@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.locations;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;

@@ -1,7 +1,7 @@
 package com.ghstudios.android.data.classes
 
 import android.util.Log
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 
 import java.util.ArrayList
 import java.util.HashMap

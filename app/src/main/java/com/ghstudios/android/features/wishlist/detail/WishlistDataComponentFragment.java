@@ -28,7 +28,7 @@ import android.widget.TextView;
 import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.ItemType;
 import com.ghstudios.android.data.classes.WishlistComponent;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.data.cursors.WishlistComponentCursor;
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity;
