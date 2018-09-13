@@ -51,9 +51,7 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         }
 
         if (meta.isGatherable()) {
-            tabs.addTab("Location", () ->
-                    ItemLocationFragment.newInstance(itemId)
-            );
+            tabs.addTab("Location", ItemLocationFragment::new);
         }
 
         //JOE: No wyporium in MHGen
