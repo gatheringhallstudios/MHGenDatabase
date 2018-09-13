@@ -11,19 +11,6 @@ import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 
 /**
- * Internal class to describe a talisman.
- * TODO: Set this up to work deeper than just this viewmodel
- */
-class Talisman(
-        val typeIndex: Int,
-        val skill1Id: Long,
-        val skill1Points: Int,
-        val skill2Id: Long,
-        val skill2Points: Int,
-        val numSlots: Int
-)
-
-/**
  * Defines a model for the ASB.
  * Sessions are synchronous, so this entire class works synchronously
  * outside of update events.
@@ -104,35 +91,41 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         triggerPieceUpdated(pieceIndex)
     }
 
-    fun setTalisman(data: Talisman) {
-        val skill1Tree = dataManager.getSkillTree(data.skill1Id)
+    fun setTalisman(
+            typeIndex: Int,
+            skill1Id: Long,
+            skill1Points: Int,
+            skill2Id: Long,
+            skill2Points: Int,
+            numSlots: Int) {
+        val skill1Tree = dataManager.getSkillTree(skill1Id)
 
         // todo: consider an alternative talisman object
         // todo: find better way of loading talismans
-        val talisman = ASBTalisman(data.typeIndex)
-        val typeName = app.resources.getStringArray(R.array.talisman_names)[data.typeIndex]
+        val talisman = ASBTalisman(typeIndex)
+        val typeName = app.resources.getStringArray(R.array.talisman_names)[typeIndex]
         talisman.name = app.getString(R.string.talisman_full_name, typeName)
-        talisman.numSlots = data.numSlots
+        talisman.numSlots = numSlots
 
         if (skill1Tree != null) {
-            talisman.setFirstSkill(skill1Tree, data.skill1Points)
+            talisman.setFirstSkill(skill1Tree, skill1Points)
         }
 
-        if (data.skill2Id >= 0) {
-            val skill2Tree = dataManager.getSkillTree(data.skill2Id)
-            talisman.setSecondSkill(skill2Tree, data.skill2Points)
+        if (skill2Id >= 0) {
+            val skill2Tree = dataManager.getSkillTree(skill2Id)
+            talisman.setSecondSkill(skill2Tree, skill2Points)
         }
+
+        session.setEquipment(ASBSession.TALISMAN, talisman)
 
         dataManager.queryCreateASBSessionTalisman(
                 session.id,
-                data.typeIndex,
-                data.numSlots,
-                data.skill1Id,
-                data.skill1Points,
-                data.skill2Id,
-                data.skill2Points)
-
-        session.setEquipment(ASBSession.TALISMAN, talisman)
+                typeIndex,
+                numSlots,
+                skill1Id,
+                skill1Points,
+                skill2Id,
+                skill2Points)
 
         triggerPieceUpdated(ASBSession.TALISMAN)
     }

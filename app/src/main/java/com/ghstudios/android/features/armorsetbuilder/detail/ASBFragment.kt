@@ -78,7 +78,7 @@ class ASBFragment : Fragment() {
                 ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN -> {
                     //if (data.hasExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2)) {
 
-                    viewModel.setTalisman(Talisman(
+                    viewModel.setTalisman(
                             typeIndex = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1),
                             numSlots = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SLOTS, 0),
                             skill1Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1),
@@ -86,7 +86,7 @@ class ASBFragment : Fragment() {
 
                             skill2Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1),
                             skill2Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, 0)
-                    ))
+                    )
                 }
             }
         }

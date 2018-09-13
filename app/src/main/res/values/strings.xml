@@ -350,8 +350,6 @@
         <item>Hero</item>
         <item>Legend</item>
         <item>Creator</item>
-        <item>Sage</item>
-        <item>Miracle</item>
     </string-array>
 
     <string-array name="slot_values">
