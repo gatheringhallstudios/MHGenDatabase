@@ -73,7 +73,7 @@ object AssetLoader {
     @JvmStatic fun localizeGatherModifier(gather: Gathering) = when {
         gather.isFixed -> ctx.getString(R.string.item_gather_fixed)
         gather.isRare -> ctx.getString(R.string.item_gather_rare)
-        else -> ctx.getString(R.string.item_gather_normal)
+        else -> ctx.getString(R.string.item_gather_common)
     }
 
     /**
