@@ -157,10 +157,18 @@ public class ASBTalismanSkillContainer extends LinearLayout {
     }
 
     public boolean skillPointsIsValid() {
-        return !getSkillPoints().equals("") &&
-                !getSkillPoints().equals("-") &&
-                Integer.parseInt(getSkillPoints()) <= TALISMAN_SKILL_POINTS_MAX &&
-                Integer.parseInt(getSkillPoints()) >= TALISMAN_SKILL_POINTS_MIN;
+        if (getSkillPoints().equals("") || getSkillPoints().equals("-")) {
+            return false;
+        }
+
+        int points = 0;
+        try {
+            points = Integer.parseInt(getSkillPoints());
+        } catch (NumberFormatException ex) { }
+
+        return points != 0 &&
+                points <= TALISMAN_SKILL_POINTS_MAX &&
+                points >= TALISMAN_SKILL_POINTS_MIN;
     }
 
     /** Called when the user clicks the button next to the skill tree. */
