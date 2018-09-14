@@ -29,6 +29,6 @@ inline fun loggedThread(name: String? = null, crossinline process: () -> Unit) {
  * Extension function that sets an ImageView to use an ITintedIcon, loaded via the AssetLoader.
  */
 @Suppress("NOTHING_TO_INLINE")
-inline fun ImageView.setImageAsset(icon: ITintedIcon) {
+inline fun ImageView.setImageAsset(icon: ITintedIcon?) {
     AssetLoader.setIcon(this, icon)
 }

@@ -49,8 +49,12 @@ object AssetLoader {
     }
 
     @JvmStatic
-    fun setIcon(iv: ImageView, item: ITintedIcon) {
-        iv.setImageDrawable(loadIconFor(item))
+    fun setIcon(iv: ImageView, item: ITintedIcon?) {
+        if (item == null) {
+            iv.setImageDrawable(null)
+        } else {
+            iv.setImageDrawable(loadIconFor(item))
+        }
     }
 
     /**
