@@ -56,7 +56,7 @@ import java.util.zip.ZipInputStream;
  */
 public class SQLiteAssetHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = SQLiteAssetHelper.class.getSimpleName();
+    private static final String TAG = "SQLiteAssetHelper";
     private static final String ASSET_DB_PATH = "databases";
 
     private final Context mContext;
@@ -385,17 +385,21 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
     private SQLiteDatabase createOrOpenDatabase(boolean force) throws SQLiteAssetException {
         File file = new File (mDatabasePath + "/" + mName);
         boolean fileExists = file.exists();
+        SQLiteDatabase db = null;
 
         // If the file exists and force is enabled, assume there is a DB
         if (fileExists && force) {
             Log.w(TAG, "forcing database upgrade!");
+            db = returnDatabase();
+            preCopyDatabase(db);
             copyDatabaseFromAssets();
-            return returnDatabase();
+            db = returnDatabase();
+            postCopyDatabase(db);
+            return db;
         }
 
         // test for the existence of the db file first and don't attempt open
         // to prevent the error trace in log on API 14+
-        SQLiteDatabase db = null;
         if (fileExists) {
             db = returnDatabase();
         }

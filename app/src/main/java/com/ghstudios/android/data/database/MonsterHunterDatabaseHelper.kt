@@ -75,7 +75,7 @@ private val DATABASE_VERSION = 8
 internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         SQLiteAssetHelper(ctx.applicationContext, DATABASE_NAME, null, DATABASE_VERSION) {
 
-    private val TAG = "MonsterHunterDatabaseHelper"
+    private val TAG = "MHGU-DB-Helper"
 
     // Use the application context, which will ensure that you
     // don't accidentally leak an Activity's context.
@@ -135,7 +135,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     }
 
     override fun preCopyDatabase(db: SQLiteDatabase) {
-        //Log.w(TAG, "Pre forcing database upgrade!");
+        Log.w(TAG, "Pre forcing database upgrade!");
         val filename = "wishlist.xml"
         val fos: FileOutputStream
 
@@ -279,7 +279,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             serializer.flush()
             fos.close()
         } catch (e: IOException) {
-            //e.printStackTrace();
+            e.printStackTrace()
         }
 
     }
@@ -289,7 +289,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     }
 
     override fun postCopyDatabase(db: SQLiteDatabase) {
-        //Log.w(TAG, "Post forcing database upgrade!");
+        Log.w(TAG, "Post forcing database upgrade!");
         val filename = "wishlist.xml"
 
         var fis: FileInputStream? = null
@@ -440,7 +440,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             }
             fis!!.close()
         } catch (e: Exception) {
-            //e.printStackTrace();
+            e.printStackTrace()
         }
 
     }
