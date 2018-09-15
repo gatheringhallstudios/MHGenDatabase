@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:clickable="false">
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/list_item"
+        android:background="@color/background_color"
+        android:clickable="false">
+
+        <ImageView
+            android:id="@+id/add_equipment_button"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
+            android:src="@drawable/ic_add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="?android:attr/selectableItemBackground"/>
+
+        <LinearLayout
+            android:id="@+id/equipment_header"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            app:layout_constraintStart_toEndOf="@id/add_equipment_button"
+            app:layout_constraintEnd_toStartOf="@id/decoration_header"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/armor_builder_item_icon"
+                style="@style/main_image"
+                android:layout_gravity="center_vertical"
+                tools:src="@drawable/armor_head"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginStart="@dimen/margin_medium"/>
+
+            <TextView
+                android:id="@+id/armor_builder_item_name"
+                style="@style/text_medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                tools:text="Diablos Vambraces X"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/decoration_header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_medium"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground">
+
+            <com.ghstudios.android.components.SlotsView
+                android:id="@+id/equipment_slots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
+
+            <ImageView
+                android:id="@+id/drop_down_arrow"
+                style="@style/small_image"
+                android:src="@drawable/ic_drop_down_arrow"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/decorations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:paddingStart="@dimen/image_size_small"
+        android:paddingLeft="@dimen/image_size_small"
+        tools:visibility="visible">
+
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_1_item"/>
+
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_2_item"/>
+
+        <include layout="@layout/view_asb_decoration_listitem"
+            android:id="@+id/decoration_3_item"/>
+
+        <LinearLayout
+            android:id="@+id/add_decoration"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <Space style="@style/main_image"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginLeft="@dimen/margin_medium"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/text_medium_alt"
+                android:layout_gravity="center_vertical"
+                android:text="@string/asb_empty_slot" />
+            <com.ghstudios.android.components.SlotsView
+                android:id="@+id/slots_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:hideExtras="true"
+                tools:maxSlots="2"/>
+            <ImageView
+                android:id="@+id/decoration_menu"
+                style="@style/small_image"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_add"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/decoration_blank_slate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:visibility="gone"
+            tools:visibility="visible">
+            <Space style="@style/main_image" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_medium_alt"
+                android:layout_gravity="center_vertical"
+                android:text="@string/asb_no_slots"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

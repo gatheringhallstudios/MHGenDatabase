@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.ghstudios.android.data.classes.Weapon;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 public class HornMelodyListCursorLoader extends SQLiteCursorLoader {
     private long weaponId;

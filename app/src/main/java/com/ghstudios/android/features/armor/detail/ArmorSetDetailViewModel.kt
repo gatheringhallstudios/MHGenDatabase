@@ -5,7 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
@@ -80,7 +80,7 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
      */
     private fun loadArmorData(){
         loggedThread("ArmorFamily Data") {
-            val family = metadata.first().family.toLong()
+            val family = metadata.first().family
 
             // load prerequisite armor/skill data
             val armorPieces = dataManager.getArmorByFamily(family)
@@ -96,12 +96,10 @@ class ArmorSetDetailViewModel(app: Application) : AndroidViewModel(app) {
 
             // Calculating skill totals to make a flat list of skill totals
             val allSkillsUnmerged = skillsByArmor.values.flatten()
-            val mergedSkills = allSkillsUnmerged.groupBy { it.skillTree?.id }.map {
+            val mergedSkills = allSkillsUnmerged.groupBy { it.skillTree.id }.map {
                 val skillsToMerge = it.value
-                SkillTreePoints().apply {
-                    points = skillsToMerge.sumBy { it.points }
-                    skillTree = skillsToMerge.first().skillTree
-                }
+                val points = skillsToMerge.sumBy { it.points }
+                SkillTreePoints(skillsToMerge.first().skillTree, points)
             }
 
             // Populate set skill total results so the fragment gets it

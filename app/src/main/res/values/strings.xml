@@ -163,6 +163,10 @@
     <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
     <string name="item_combination_yield">Yields</string>
+    <string name="item_gather_fixed">[Fixed]</string>
+    <string name="item_gather_common">[Common]</string>
+    <string name="item_gather_rare">[Rare]</string>
+    <string name="item_gather_full">%2$s %1$s</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>
@@ -243,9 +247,9 @@
     <string name="asb_dialog_name_hint">Set Name</string>
     <string name="asb_dialog_rank">Rank</string>
     <string name="asb_dialog_hunter_type">Hunter Type</string>
-    <string name="context_action_asb_delete">Delete</string>
-    <string name="context_action_asb_edit_data">Edit Data</string>
-    <string name="context_action_asb_copy">Copy</string>
+    <string name="asb_context_action_delete">Delete</string>
+    <string name="asb_context_action_edit_data">Edit Data</string>
+    <string name="asb_context_action_copy">Copy</string>
 
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
@@ -253,31 +257,22 @@
     <string name="activity_asb_armor_picker">Select Armor</string>
 
     <string name="asb_empty_slot">Empty slot</string>
-    <string name="asb_no_slot">No slot</string>
+    <string name="asb_no_slots">No slots</string>
     <string name="asb_action_select">Select</string>
 
     <string name="asb_action_add">Add</string>
     <string name="asb_action_remove">Remove</string>
     <string name="asb_action_edit">Edit</string>
-    <string name="asb_action_edit_piece_decorations">Decorations</string>
-    <string name="asb_action_armor_piece">Info</string>
-
-    <string name="asb_action_add_decoration">Add</string>
-    <string name="asb_action_remove_decoration">Remove</string>
-    <string name="asb_action_get_decoration_info">Info</string>
 
     <string name="asb_option_set_add">New Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>
+    <string name="asb_talisman_skill">Skill %d</string>
     <string name="asb_talisman_skill_1">Skill 1</string>
     <string name="asb_talisman_skill_2">Skill 2</string>
 
-    <string name="asb_helmet">Helmet</string>
-    <string name="asb_body">Body</string>
-    <string name="asb_arms">Arms</string>
-    <string name="asb_waist">Waist</string>
-    <string name="asb_legs">Legs</string>
-    <string name="asb_skill_tree_name">Skill</string>
+    <string name="asb_none">(None)</string>
+    <string name="asb_skill_tree">Skill Tree</string>
     <string name="asb_skill_points_total">Total</string>
 
     <string name="asb_dialog_title_delete_set">Delete this set?</string>
@@ -359,8 +354,6 @@
         <item>Hero</item>
         <item>Legend</item>
         <item>Creator</item>
-        <item>Sage</item>
-        <item>Miracle</item>
     </string-array>
 
     <string-array name="slot_values">

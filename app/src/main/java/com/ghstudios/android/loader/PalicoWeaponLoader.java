@@ -3,7 +3,7 @@ package com.ghstudios.android.loader;
 import android.content.Context;
 
 import com.ghstudios.android.data.classes.PalicoWeapon;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 /**
  * Created by Joseph on 7/11/2016.

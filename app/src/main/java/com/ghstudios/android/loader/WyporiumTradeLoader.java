@@ -3,7 +3,7 @@ package com.ghstudios.android.loader;
 import android.content.Context;
 
 import com.ghstudios.android.data.classes.WyporiumTrade;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 
 public class WyporiumTradeLoader extends DataLoader<WyporiumTrade> {
     private long mTradeId;

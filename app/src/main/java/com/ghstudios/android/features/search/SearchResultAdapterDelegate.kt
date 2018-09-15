@@ -110,7 +110,7 @@ class SearchResultAdapterDelegate(ctx: Context): AbsListItemAdapterDelegate<Any,
         private val typeView = itemView.findViewById<TextView>(R.id.result_type)
 
         fun bindView(result: Any) {
-            val originalClass = result!!.javaClass
+            val originalClass = result.javaClass
 
             if (!handlers.containsKey(originalClass)) {
                 // Not expected, so marked as a runtime exception

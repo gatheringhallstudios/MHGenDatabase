@@ -1,7 +1,7 @@
 package com.ghstudios.android
 
 import android.app.Application
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
 
 class MHApplication : Application() {
     override fun onCreate() {

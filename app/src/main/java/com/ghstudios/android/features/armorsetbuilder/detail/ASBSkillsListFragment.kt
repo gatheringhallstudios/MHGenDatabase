@@ -48,7 +48,9 @@ class ASBSkillsListFragment : Fragment() {
         return v
     }
 
-    private class ASBSkillsAdapter(context: Context, trees: List<ASBSession.SkillTreeInSet>, internal var session: ASBSession) : ArrayAdapter<ASBSession.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
+    private class ASBSkillsAdapter(
+            context: Context, trees: List<ASBSession.SkillTreeInSet>, internal var session: ASBSession
+    ) : ArrayAdapter<ASBSession.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
         internal var trees: List<SkillTreeInSet>
 
         internal var comparator: Comparator<ASBSession.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
@@ -73,29 +75,29 @@ class ASBSkillsListFragment : Fragment() {
             val talismanPoints = itemView.findViewById<View>(R.id.talisman) as TextView
             val totalPoints = itemView.findViewById<View>(R.id.total) as TextView
 
-            treeName.text = getItem(position)!!.skillTree.name
+            treeName.text = getItem(position)!!.skillTree?.name
 
-            if (session.isEquipmentSelected(ASBSession.HEAD) && getItem(position)!!.getPoints(ASBSession.HEAD) != 0) {
+            if (session.getEquipment(ASBSession.HEAD) != null && getItem(position)!!.getPoints(ASBSession.HEAD) != 0) {
                 headPoints.text = getItem(position)!!.getPoints(ASBSession.HEAD).toString()
             }
 
-            if (session.isEquipmentSelected(ASBSession.BODY) && getItem(position)!!.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
+            if (session.getEquipment(ASBSession.BODY) != null && getItem(position)!!.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
                 bodyPoints.text = getItem(position)!!.getPoints(ASBSession.BODY, trees).toString()
             }
 
-            if (session.isEquipmentSelected(ASBSession.ARMS) && getItem(position)!!.getPoints(ASBSession.ARMS) != 0) {
+            if (session.getEquipment(ASBSession.ARMS) != null && getItem(position)!!.getPoints(ASBSession.ARMS) != 0) {
                 armsPoints.text = getItem(position)!!.getPoints(ASBSession.ARMS).toString()
             }
 
-            if (session.isEquipmentSelected(ASBSession.WAIST) && getItem(position)!!.getPoints(ASBSession.WAIST) != 0) {
+            if (session.getEquipment(ASBSession.WAIST) != null && getItem(position)!!.getPoints(ASBSession.WAIST) != 0) {
                 waistPoints.text = getItem(position)!!.getPoints(ASBSession.WAIST).toString()
             }
 
-            if (session.isEquipmentSelected(ASBSession.LEGS) && getItem(position)!!.getPoints(ASBSession.LEGS) != 0) {
+            if (session.getEquipment(ASBSession.LEGS) != null && getItem(position)!!.getPoints(ASBSession.LEGS) != 0) {
                 legsPoints.text = getItem(position)!!.getPoints(ASBSession.LEGS).toString()
             }
 
-            if (session.isEquipmentSelected(ASBSession.TALISMAN) && getItem(position)!!.getPoints(ASBSession.TALISMAN) != 0) {
+            if (session.getEquipment(ASBSession.TALISMAN) != null && getItem(position)!!.getPoints(ASBSession.TALISMAN) != 0) {
                 talismanPoints.text = getItem(position)!!.getPoints(ASBSession.TALISMAN).toString()
             }
 
@@ -112,7 +114,7 @@ class ASBSkillsListFragment : Fragment() {
                 totalPoints.setTypeface(null, Typeface.BOLD)
             }
 
-            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree.id))
+            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree!!.id))
 
             return itemView
         }

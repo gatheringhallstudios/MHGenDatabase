@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.classes.WishlistData;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.data.cursors.WishlistDataCursor;
 import com.ghstudios.android.features.wishlist.list.WishlistListActivity;
 import com.ghstudios.android.features.wishlist.list.WishlistListFragment;

@@ -1,6 +1,0 @@
--keep class android.support.v7.widget.SearchView { *; }
--keepclassmembers class android.support.v7.widget.SearchView {
-    public *;
-}
-
-

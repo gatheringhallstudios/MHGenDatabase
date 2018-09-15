@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:id="@+id/decoration_header"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/decoration_slots"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:id="@+id/decoration_icon"
+            style="@style/main_image"
+            tools:src="@drawable/drawer_decorations"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
+
+        <TextView
+            android:id="@+id/decoration_name"
+            style="@style/text_medium"
+            android:maxLines="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Attack Jewel 2" />
+    </LinearLayout>
+
+    <com.ghstudios.android.components.SlotsView
+        android:id="@+id/decoration_slots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:hideExtras="true"
+        app:layout_constraintEnd_toStartOf="@id/decoration_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        tools:maxSlots="2"
+        tools:usedSlots="2"/>
+
+    <ImageView
+        android:id="@+id/decoration_menu"
+        style="@style/small_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_remove"/>
+
+</android.support.constraint.ConstraintLayout>

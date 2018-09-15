@@ -6,7 +6,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ghstudios.android.data.classes.PalicoWeapon;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.components.ComponentListFragment;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;

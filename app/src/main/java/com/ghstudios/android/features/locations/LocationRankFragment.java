@@ -126,7 +126,7 @@ public class LocationRankFragment extends ListFragment implements
 					+(g.isFixed()?"Fixed ":"Random ")
 					+g.getSite() + " "
 					+g.getGroup()
-					+(g.isFixed()?"":(g.isRare()?" [Rare]":" [Normal]"));
+					+(g.isFixed() ? "": " " + AssetLoader.localizeGatherModifier(g));
 		}
 
 		@Override

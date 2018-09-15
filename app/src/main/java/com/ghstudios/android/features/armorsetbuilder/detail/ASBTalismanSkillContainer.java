@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.ghstudios.android.data.classes.SkillTree;
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.skills.SkillTreeListActivity;
 
@@ -43,7 +43,7 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TalismanSkill, 0, 0);
 
         skillIndex = a.getInteger(R.styleable.TalismanSkill_skillNumber, 0);
-        String labelText = "Skill " + skillIndex;
+        String labelText = context.getString(R.string.asb_talisman_skill, skillIndex);
 
         a.recycle();
 
@@ -51,7 +51,7 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         setOrientation(HORIZONTAL);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.view_armor_set_builder_talisman_skill, this, true);
+        inflater.inflate(R.layout.view_asb_talisman_skill, this, true);
 
         TextView label = (TextView) findViewById(R.id.label_skill);
         label.setText(labelText);
@@ -157,10 +157,18 @@ public class ASBTalismanSkillContainer extends LinearLayout {
     }
 
     public boolean skillPointsIsValid() {
-        return !getSkillPoints().equals("") &&
-                !getSkillPoints().equals("-") &&
-                Integer.parseInt(getSkillPoints()) <= TALISMAN_SKILL_POINTS_MAX &&
-                Integer.parseInt(getSkillPoints()) >= TALISMAN_SKILL_POINTS_MIN;
+        if (getSkillPoints().equals("") || getSkillPoints().equals("-")) {
+            return false;
+        }
+
+        int points = 0;
+        try {
+            points = Integer.parseInt(getSkillPoints());
+        } catch (NumberFormatException ex) { }
+
+        return points != 0 &&
+                points <= TALISMAN_SKILL_POINTS_MAX &&
+                points >= TALISMAN_SKILL_POINTS_MIN;
     }
 
     /** Called when the user clicks the button next to the skill tree. */

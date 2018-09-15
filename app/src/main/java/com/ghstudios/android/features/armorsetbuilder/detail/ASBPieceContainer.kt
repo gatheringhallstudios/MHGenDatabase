@@ -3,13 +3,8 @@ package com.ghstudios.android.features.armorsetbuilder.detail
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.AssetManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.PorterDuff
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,18 +12,24 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
-import com.ghstudios.android.AssetLoader
+import com.ghstudios.android.ClickListeners.ArmorClickListener
+import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
+import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
-import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
 import com.ghstudios.android.util.setImageAsset
+import java.util.*
 
-import java.io.IOException
-import java.io.InputStream
+// TODO: While refactoring has started, many more refactoring efforts are required to make this "good"
+// Overall, this entire container relies on having an entire session with a "piece index". Instead,
+// it should have an encapsulated object representing a piece.
+//
+// Also, it uses activity results to modify the session object. Instead it should contain a callback
+// that it executes, which the parent fragment listens too. The callback should probably be a special interface
+// that is an ASBPieceResponder or something like that.
 
 /**
  * Image alpha value for unselected items
@@ -46,33 +47,33 @@ class ASBPieceContainer
 (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
 
+    private val equipmentHeader: View
     private val icon: ImageView
-    private val text: TextView
-    private val decorationStates: List<ImageView>
+    private val equipmentNameView: TextView
+
+    private val equipmentSlots: SlotsView
     private val equipmentButton: ImageView
 
+    private val decorationHeader: View
     private val dropDownArrow: ImageView
-    private val decorationView: DecorationView
+    private val decorationSectionView: DecorationSectionView
 
     private lateinit var session: ASBSession
     private var pieceIndex: Int = 0
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.view_armor_set_builder_piece_container, this)
+        inflater.inflate(R.layout.view_asb_piece_container, this)
 
+        equipmentHeader = findViewById(R.id.equipment_header)
         icon = findViewById(R.id.armor_builder_item_icon)
-        text = findViewById(R.id.armor_builder_item_name)
+        equipmentNameView = findViewById(R.id.armor_builder_item_name)
+        equipmentSlots = findViewById(R.id.equipment_slots)
         equipmentButton = findViewById(R.id.add_equipment_button)
+        decorationHeader = findViewById(R.id.decoration_header)
         dropDownArrow = findViewById(R.id.drop_down_arrow)
 
-        decorationStates = listOf(
-                findViewById(R.id.decoration_1_state),
-                findViewById(R.id.decoration_2_state),
-                findViewById(R.id.decoration_3_state)
-        )
-
-        decorationView = DecorationView()
+        decorationSectionView = DecorationSectionView()
     }
 
     /**
@@ -84,26 +85,28 @@ class ASBPieceContainer
         this.pieceIndex = pieceIndex
         this.parentFragment = parentFragment
 
-        text.setOnClickListener {
-            if (session.isEquipmentSelected(pieceIndex)) {
-                requestPieceInfo()
+        equipmentHeader.setOnClickListener {
+            // If empty or is talisman, trigger the normal add routine
+            val equipment = session.getEquipment(pieceIndex)
+            if (pieceIndex == ASBSession.TALISMAN || equipment == null) {
+                onAddEquipment()
+                return@setOnClickListener
             }
+
+            // navigate to armor page
+            ArmorClickListener(context, equipment.id, false).onClick(it)
         }
 
-        equipmentButton.setOnClickListener { v ->
-            if (!session.isEquipmentSelected(pieceIndex)) {
+        equipmentButton.setOnClickListener {
+            if (session.getEquipment(pieceIndex) == null) {
                 onAddEquipment()
             } else {
                 onRemoveEquipment()
             }
         }
 
-        dropDownArrow.setOnClickListener { v ->
-            if (decorationView.container.visibility == View.GONE) {
-                showDecorations()
-            } else {
-                hideDecorations()
-            }
+        decorationHeader.setOnClickListener {
+            toggleDecorations()
         }
 
         // Reflect current state
@@ -115,8 +118,15 @@ class ASBPieceContainer
      */
     fun updateContents() {
         updateArmorPiece()
-        updateDecorationsPreview()
-        decorationView.update()
+        updateSlotsHeader()
+        decorationSectionView.update()
+
+        // Ensure that decorations are closed and cannot be opened if unselected
+        val equipmentSelected = session.getEquipment(pieceIndex) != null
+        decorationHeader.isEnabled = equipmentSelected
+        if (!equipmentSelected) {
+            hideDecorations()
+        }
     }
 
     /**
@@ -124,7 +134,7 @@ class ASBPieceContainer
      */
     private fun updateArmorPiece() {
         val selectedEquipment = session.getEquipment(pieceIndex)
-        text.text = selectedEquipment?.name
+        equipmentNameView.text = selectedEquipment?.name
 
         // Set image based on equipment
         if (selectedEquipment != null) {
@@ -153,38 +163,50 @@ class ASBPieceContainer
         })
     }
 
-    private fun updateDecorationsPreview() {
-        for (i in 0..2) {
-            if (!session.isEquipmentSelected(pieceIndex)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
-            } else if (session.decorationIsReal(pieceIndex, i)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
-            } else if (session.decorationIsDummy(pieceIndex, i)) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_real))
-            } else if (session.getEquipment(pieceIndex).numSlots > i) {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_empty))
-            } else {
-                decorationStates[i].setImageDrawable(resources.getDrawable(R.drawable.decoration_none))
-            }
+    /**
+     * Update the slots header to reflect the selected equipment
+     */
+    private fun updateSlotsHeader() {
+        val equipment = session.getEquipment(pieceIndex)
+        val numSlots = equipment?.numSlots ?: 0
+        val usedSlots = numSlots - session.getAvailableSlots(pieceIndex)
+        equipmentSlots.setSlots(numSlots, usedSlots)
+    }
+
+    /**
+     * Toggles the visibility of the decorations drawer
+     */
+    fun toggleDecorations() {
+        if (decorationSectionView.container.visibility == View.GONE) {
+            showDecorations()
+        } else {
+            hideDecorations()
         }
     }
 
+    /**
+     * Opens the decoration drawer
+     */
     fun showDecorations() {
-        parentFragment!!.onDecorationsMenuOpened()
-        decorationView.container.visibility = View.VISIBLE
-        equipmentButton.visibility = View.INVISIBLE
-        dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_up_arrow))
+        parentFragment?.onDecorationsMenuOpened()
+        decorationSectionView.container.visibility = View.VISIBLE
+        dropDownArrow.setImageResource(R.drawable.ic_drop_up_arrow)
     }
 
+    /**
+     * Closes the decoration drawer
+     */
     fun hideDecorations() {
-        decorationView.container.visibility = View.GONE
-        equipmentButton.visibility = View.VISIBLE
-        dropDownArrow.setImageDrawable(parentFragment!!.activity!!.resources.getDrawable(R.drawable.ic_drop_down_arrow))
+        decorationSectionView.container.visibility = View.GONE
+        dropDownArrow.setImageResource(R.drawable.ic_drop_down_arrow)
     }
 
+    /**
+     * Function that handles a user's attempt to add new equipment
+     */
     private fun onAddEquipment() {
         if (pieceIndex == ASBSession.TALISMAN) {
-            val d = ASBTalismanDialogFragment.newInstance()
+            val d = ASBTalismanDialogFragment.newInstance(session.talisman)
             d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
             d.show(parentFragment!!.fragmentManager, "TALISMAN")
         } else {
@@ -198,117 +220,126 @@ class ASBPieceContainer
         }
     }
 
+    /**
+     * Function that handles a user's attempt to remove equipment
+     */
     private fun onRemoveEquipment() {
         val data = Intent()
         data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
         parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
     }
 
-    private fun requestPieceInfo() {
-        if (pieceIndex == ASBSession.TALISMAN) {
-            onAddEquipment()
-        } else {
-            val i = Intent(context, ArmorSetDetailPagerActivity::class.java)
-            i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, session.getEquipment(pieceIndex).id)
-            context.startActivity(i)
+    /**
+     * Internal class that contains view elements for a single row of the DecorationSectionView
+     */
+    private inner class DecorationLineViewHolder(val container: View) {
+        val decorationHeader = container.findViewById<View>(R.id.decoration_header)
+        val iconView = container.findViewById<ImageView>(R.id.decoration_icon)
+        val nameView = container.findViewById<TextView>(R.id.decoration_name)
+        val slotsView = container.findViewById<SlotsView>(R.id.decoration_slots)
+        val buttonView = container.findViewById<ImageView>(R.id.decoration_menu)
+
+        var onRemove: ((Decoration) -> Unit)? = null
+        var onSelect: ((Decoration) -> Unit)? = null
+
+        /**
+         * Sets the view to a certain decoration, and makes the view visible
+         */
+        fun setDecoration(decoration: Decoration) {
+            iconView.setImageAsset(decoration)
+            nameView.text = decoration.name
+            slotsView.setSlots(decoration.numSlots, decoration.numSlots)
+            container.visibility = View.VISIBLE
+
+            decorationHeader.setOnClickListener { onSelect?.invoke(decoration) }
+            buttonView.setOnClickListener { onRemove?.invoke(decoration) }
+        }
+
+        /**
+         * Clears the line and hides it from view
+         */
+        fun clear() {
+            nameView.text = null
+            iconView.setImageDrawable(null)
+            container.visibility = View.GONE
         }
     }
 
-    private inner class DecorationView {
-        internal var decorationNames: List<TextView>
-        internal var decorationIcons: List<ImageView>
-        internal var decorationMenuButtons: List<ImageView>
-        internal var container: ViewGroup
+    /**
+     * Internal class that manages the view containing the list of decorations
+     */
+    private inner class DecorationSectionView {
+        internal val container = findViewById<ViewGroup>(R.id.decorations)
+        internal val blankSlate = findViewById<View>(R.id.decoration_blank_slate)
+        internal val decorationViews = listOf(
+                DecorationLineViewHolder(findViewById(R.id.decoration_1_item)),
+                DecorationLineViewHolder(findViewById(R.id.decoration_2_item)),
+                DecorationLineViewHolder(findViewById(R.id.decoration_3_item))
+        )
+        internal val decorationAdd = findViewById<View>(R.id.add_decoration)
+        internal val availableSlotsView = findViewById<SlotsView>(R.id.slots_available)
 
         init {
-            container = findViewById(R.id.decorations)
-
-            decorationNames = listOf(
-                    findViewById(R.id.decoration_1_name),
-                    findViewById(R.id.decoration_2_name),
-                    findViewById(R.id.decoration_3_name)
-            )
-
-            decorationIcons = listOf(
-                    findViewById(R.id.decoration_1_icon),
-                    findViewById(R.id.decoration_2_icon),
-                    findViewById(R.id.decoration_3_icon)
-            )
-
-            decorationMenuButtons = listOf(
-                    findViewById(R.id.decoration_1_menu),
-                    findViewById(R.id.decoration_2_menu),
-                    findViewById(R.id.decoration_3_menu)
-            )
+            decorationAdd.setOnClickListener {
+                requestAddDecoration()
+            }
 
             for (i in 0..2) {
-                decorationNames[i].setOnClickListener { v ->
-                    if (session.decorationIsReal(pieceIndex, i)) {
-                        requestDecorationInfo(i)
-                    }
-                }
-
-                decorationMenuButtons[i].setOnClickListener { v ->
-                    if (session.decorationIsReal(pieceIndex, i)) {
-                        requestRemoveDecoration(i)
-                    } else {
-                        requestAddDecoration()
-                    }
-                }
+                val vh = decorationViews[i]
+                vh.onSelect = { decoration -> requestDecorationInfo(decoration) }
+                vh.onRemove = { requestRemoveDecoration(i) }
             }
         }
 
         fun update() {
-            if (session.getEquipment(pieceIndex) != null) {
-                var addButtonExists = false
-                for (i in decorationNames.indices) {
-                    fetchDecorationIcon(decorationIcons[i], pieceIndex, i)
+            val equipment = session.getEquipment(pieceIndex)
 
-                    if (session.decorationIsReal(pieceIndex, i)) {
-                        decorationNames[i].text = session.getDecoration(pieceIndex, i).name
-                        decorationNames[i].setTextColor(resources.getColor(R.color.text_color))
+            // If null or no slots, set all to blank and enable the blank slate
+            if (equipment == null || equipment.numSlots == 0) {
+                decorationViews.forEach { it.clear() }
+                blankSlate.visibility = View.VISIBLE
+                updateAvailableSlots(0)
+                return
+            }
 
-                        decorationMenuButtons[i].setImageDrawable(resources.getDrawable(R.drawable.ic_remove))
-                    } else {
-                        if (session.decorationIsDummy(pieceIndex, i)) {
-                            decorationNames[i].text = session.findRealDecorationOfDummy(pieceIndex, i).name
+            // Slots are possible, so hide the "No Slots" message
+            blankSlate.visibility = View.GONE
 
-                            decorationMenuButtons[i].setImageDrawable(null)
-                        } else if (session.getEquipment(pieceIndex).numSlots > i) {
-                            decorationNames[i].setText(R.string.asb_empty_slot)
+            // Store a queue of all decoration lines.
+            // We iterate over decorations, and for each one we pop a view to apply it on.
+            // This will give better live performance over inflating.
+            val decorationViewQueue = ArrayDeque(decorationViews)
 
-                            if (!addButtonExists) {
-                                decorationMenuButtons[i].setImageDrawable(resources.getDrawable(R.drawable.ic_add))
-                                addButtonExists = true
-                            } else {
-                                decorationMenuButtons[i].setImageDrawable(null)
-                            }
-                        } else {
-                            decorationNames[i].setText(R.string.asb_no_slot)
+            // Bind all decorations
+            for (decoration in session.getDecorations(pieceIndex)) {
+                val view = decorationViewQueue.pop()
+                view.setDecoration(decoration)
+            }
 
-                            decorationMenuButtons[i].setImageDrawable(null)
-                        }
+            // If slots are available, show an "add slot" line
+            val availableSlots = session.getAvailableSlots(pieceIndex)
+            updateAvailableSlots(availableSlots)
 
-                        decorationNames[i].setTextColor(resources.getColor(R.color.text_color_secondary))
-                    }
-                }
+            // Clear any remaining views
+            decorationViewQueue.forEach { it.clear() }
+        }
+
+        /**
+         * Updates the view to show the add decoration view (if non-zero), holding a number of available slots.
+         * Hides the view if there aren't any
+         */
+        private fun updateAvailableSlots(available: Int) {
+            if (available > 0) {
+                decorationAdd.visibility = View.VISIBLE
+                availableSlotsView.setSlots(available, 0)
             } else {
-                for (i in decorationNames.indices) {
-                    decorationNames[i].text = null
-                    decorationIcons[i].setImageDrawable(null)
-                }
+                decorationAdd.visibility = View.GONE
             }
         }
 
-        private fun fetchDecorationIcon(iv: ImageView, pieceIndex: Int, decorationIndex: Int) {
-            if (session.decorationIsReal(pieceIndex, decorationIndex)) {
-                AssetLoader.setIcon(iv, session.getDecoration(pieceIndex, decorationIndex))
-            } else if (session.decorationIsDummy(pieceIndex, decorationIndex)) {
-                iv.setImageResource(R.drawable.icon_jewel)
-                iv.setColorFilter(0xFFFFFF, PorterDuff.Mode.MULTIPLY)
-            }
-        }
-
+        /**
+         * Sends a request to add a decoration at a given index, which is sent back to the parent fragment.
+         */
         private fun requestAddDecoration() {
             val i = Intent(parentFragment!!.activity, DecorationListActivity::class.java)
             i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
@@ -318,6 +349,9 @@ class ASBPieceContainer
             parentFragment!!.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_DECORATION)
         }
 
+        /**
+         * Lets the parent fragment know to remove the decoration at a given index
+         */
         private fun requestRemoveDecoration(decorationIndex: Int) {
             val data = Intent()
             data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
@@ -326,12 +360,13 @@ class ASBPieceContainer
             parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data)
         }
 
-        private fun requestDecorationInfo(decorationIndex: Int) {
+        /**
+         * Navigate to decoration page.
+         * TODO: Replace reference with navigator of some sort
+         */
+        private fun requestDecorationInfo(decoration: Decoration) {
             val i = Intent(parentFragment!!.activity, DecorationDetailActivity::class.java)
-
-            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID,
-                    session.getDecoration(pieceIndex, decorationIndex).id)
-
+            i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, decoration.id)
             parentFragment!!.startActivity(i)
         }
     }

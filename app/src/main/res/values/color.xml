@@ -139,8 +139,6 @@
         <item>@color/item_blue</item>
         <item>@color/item_orange</item>
         <item>@color/rare_10</item> <!-- magenta -->
-        <item>@color/rare_10</item> <!-- magenta -->
-        <item>@color/rare_10</item> <!-- magenta -->
     </array>
 
 </resources>

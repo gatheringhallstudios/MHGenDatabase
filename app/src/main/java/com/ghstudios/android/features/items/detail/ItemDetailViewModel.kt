@@ -8,7 +8,8 @@ import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.meta.ItemMetadata
-import com.ghstudios.android.data.database.DataManager
+import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
@@ -24,16 +25,18 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
     val craftData = MutableLiveData<List<Combining>>()
     val usageData = MutableLiveData<ItemUsage>()
 
-    // live data used to create cursors
-    // this will most likely go away and is here because of incremental refactor
+    // live data used to create cursors. Every call returns a new cursor. Temporary and here to support incremental refactor
     val monsterRewardsData
         get() = MHUtils.createLiveData { dataManager.queryHuntingRewardItem(itemId) }
 
+    // live data used to create cursors. Every call returns a new cursor. Temporary and here to support incremental refactor
     val questRewardsData
         get() = MHUtils.createLiveData { dataManager.queryQuestRewardItem(itemId) }
 
-    val gatherData
-        get() = MHUtils.createLiveData { dataManager.queryGatheringItem(itemId) }
+    /**
+     * Returns a livedata containing a list of item gather data.
+     */
+    val gatherData = MutableLiveData<List<Gathering>>()
 
     var itemId = -1L
         private set
@@ -72,6 +75,10 @@ class ItemDetailViewModel(app: Application): AndroidViewModel(app) {
                     combinations = combiningResults.filter { it.createdItem.id != itemId },
                     crafting = craftUsage
             ))
+
+            // query and post gathering data
+            val gatherDataItems = dataManager.queryGatheringItem(itemId).toList { it.gathering }
+            gatherData.postValue(gatherDataItems)
         }
 
         return metadata!!

@@ -3,7 +3,7 @@ package com.ghstudios.android.features.items.detail;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.ghstudios.android.data.database.DataManager;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.MenuSection;
 
