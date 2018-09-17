@@ -238,7 +238,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
                 LEFT JOIN skill_trees st on st._id = its.skill_tree_id
             WHERE (a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2')
               AND (a.slot = @slot OR @slot IS NULL)
-            ORDER BY a._id ASC
+            ORDER BY i.rarity, i.$column_name ASC
         """, arrayOf(hunterType.toString(), armorSlot)))
 
         // stores armor and skills as its processed
