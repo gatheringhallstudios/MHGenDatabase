@@ -6,6 +6,13 @@ fun Cursor.hasColumn(columnName: String): Boolean {
     return getColumnIndex(columnName) != -1
 }
 
+/**
+ * Returns true if the value in the column is null, using the column name.
+ */
+fun Cursor.isNull(columnName: String): Boolean {
+    return this.isNull(getColumnIndex(columnName))
+}
+
 fun Cursor.getLong(columnName: String): Long {
     return this.getLong(getColumnIndex(columnName))
 }
