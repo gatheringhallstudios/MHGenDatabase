@@ -16,7 +16,7 @@ import android.widget.TextView
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
-import com.ghstudios.android.data.classes.ASBCalculator
+import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
 
 import java.util.Comparator
 
@@ -37,7 +37,7 @@ class ASBSkillsListFragment : Fragment() {
         val listView = v.findViewById<View>(R.id.list) as ListView
 
         val session = viewModel.session
-        val calculator = ASBCalculator(session)
+        val calculator = ArmorSetCalculator(session)
         calculator.updateSkillTreePointsSets()
         val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.skillTreesInSet, session)
         listView.adapter = adapter
@@ -52,11 +52,11 @@ class ASBSkillsListFragment : Fragment() {
     }
 
     private class ASBSkillsAdapter(
-            context: Context, trees: List<ASBCalculator.SkillTreeInSet>, internal var session: ASBSession
-    ) : ArrayAdapter<ASBCalculator.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
-        internal var trees: List<ASBCalculator.SkillTreeInSet>
+            context: Context, trees: List<ArmorSetCalculator.SkillTreeInSet>, internal var session: ASBSession
+    ) : ArrayAdapter<ArmorSetCalculator.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
+        internal var trees: List<ArmorSetCalculator.SkillTreeInSet>
 
-        internal var comparator: Comparator<ASBCalculator.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
+        internal var comparator: Comparator<ArmorSetCalculator.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
 
         init {
             this.trees = trees
