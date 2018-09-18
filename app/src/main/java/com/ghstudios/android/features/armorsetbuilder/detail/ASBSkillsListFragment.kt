@@ -18,9 +18,6 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
 
-import java.util.Comparator
-
-
 private const val MINIMUM_SKILL_ACTIVATION_POINTS = 10
 
 /**
@@ -38,13 +35,12 @@ class ASBSkillsListFragment : Fragment() {
 
         val session = viewModel.session
         val calculator = ArmorSetCalculator(session)
-        calculator.updateSkillTreePointsSets()
-        val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.skillTreesInSet, session)
+        val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.results, session)
         listView.adapter = adapter
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it == null) return@Observer
-            calculator.updateSkillTreePointsSets()
+            calculator.recalculate()
             adapter.notifyDataSetChanged()
         })
 
@@ -52,15 +48,10 @@ class ASBSkillsListFragment : Fragment() {
     }
 
     private class ASBSkillsAdapter(
-            context: Context, trees: List<ArmorSetCalculator.SkillTreeInSet>, internal var session: ASBSession
+            context: Context,
+            trees: List<ArmorSetCalculator.SkillTreeInSet>,
+            internal var session: ASBSession
     ) : ArrayAdapter<ArmorSetCalculator.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
-        internal var trees: List<ArmorSetCalculator.SkillTreeInSet>
-
-        internal var comparator: Comparator<ArmorSetCalculator.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
-
-        init {
-            this.trees = trees
-        }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val inflater = LayoutInflater.from(context)
@@ -86,8 +77,8 @@ class ASBSkillsListFragment : Fragment() {
                 headPoints.text = data.getPoints(ASBSession.HEAD).toString()
             }
 
-            if (session.getEquipment(ASBSession.BODY) != null && data.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
-                bodyPoints.text = data.getPoints(ASBSession.BODY, trees).toString()
+            if (session.getEquipment(ASBSession.BODY) != null && data.getPoints(ASBSession.BODY) != 0) {
+                bodyPoints.text = data.getPoints(ASBSession.BODY).toString()
             }
 
             if (session.getEquipment(ASBSession.ARMS) != null && data.getPoints(ASBSession.ARMS) != 0) {
@@ -106,9 +97,9 @@ class ASBSkillsListFragment : Fragment() {
                 talismanPoints.text = data.getPoints(ASBSession.TALISMAN).toString()
             }
 
-            totalPoints.text = data.getTotal(trees).toString()
+            totalPoints.text = data.getTotal().toString()
 
-            if (data.getTotal(trees) >= MINIMUM_SKILL_ACTIVATION_POINTS) {
+            if (data.getTotal() >= MINIMUM_SKILL_ACTIVATION_POINTS) {
                 treeName.setTypeface(null, Typeface.BOLD)
                 headPoints.setTypeface(null, Typeface.BOLD)
                 bodyPoints.setTypeface(null, Typeface.BOLD)
@@ -122,13 +113,6 @@ class ASBSkillsListFragment : Fragment() {
             itemView.setOnClickListener(SkillClickListener(parent.context, data.skillTree!!.id))
 
             return itemView
-        }
-
-        override fun notifyDataSetChanged() {
-            setNotifyOnChange(false)
-            sort(comparator)
-
-            super.notifyDataSetChanged() // super#notifyDataSetChanged automatically sets notifyOnChange back to true.
         }
     }
 }

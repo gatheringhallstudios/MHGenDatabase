@@ -75,7 +75,6 @@ class ASBSession: ArmorSet {
      * Attempts to add a decoration to the specified armor piece.
      * @param pieceIndex   The index of a piece in the set to fetch, according to [ASBSession].
      * @param decoration   The decoration to add.
-     * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      * @return The 0-based index of the slot that the decoration was added to.
      */
     fun addDecoration(pieceIndex: Int, decoration: Decoration): Int {
@@ -92,7 +91,6 @@ class ASBSession: ArmorSet {
     /**
      * Removes the decoration at the specified location from the specified armor piece.
      * Will fail if the decoration in question is non-existent or a dummy.
-     * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
     fun removeDecoration(pieceIndex: Int, decorationIndex: Int) {
         val list = decorations[pieceIndex]
@@ -113,7 +111,6 @@ class ASBSession: ArmorSet {
 
     /**
      * Changes the equipment at the specified location.
-     * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
     fun setEquipment(pieceIndex: Int, equip: Equipment) {
         equipment[pieceIndex] = equip
@@ -121,7 +118,6 @@ class ASBSession: ArmorSet {
 
     /**
      * Removes the equipment at the specified location.
-     * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
     fun removeEquipment(pieceIndex: Int) {
         if (pieceIndex == TALISMAN) {

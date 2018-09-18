@@ -3,30 +3,47 @@ package com.ghstudios.android.features.armorsetbuilder
 import android.util.Log
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.*
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 // todo: move this to some sort of data constants location
 private const val TORSO_UP_ID = 203 // Skilltree ID for the TorsoUp skill
-private const val SECRET_ARTS_ID = 204 // Skiltree ID. Needs 10 points in the skill for +2 to all other skills
+private const val SECRET_ARTS_ID = 204 // Skilltree ID. Needs 10 points in the skill for +2 to all other skills
 private const val TALISMAN_BOOST_ID = 205 // Skilltree Id. Needs 10 points in the skill for x2 talisman skills
 
-
+/**
+ * Calculates the skill totals of a given armor set, storing the results
+ * in the "results" variable. After updating the armor set, call "recalculate()"
+ * to update the results.
+ */
 class ArmorSetCalculator(val set: ArmorSet) {
-    val skillTreesInSet: MutableList<SkillTreeInSet> = ArrayList()
+    /**
+     * Internal backing data for the list of results. This allows results
+     * to be exposed as immutable
+     */
+    private val data = mutableListOf<SkillTreeInSet>()
 
     private var torsoUpCount: Int = 0
+
+    /**
+     * Contains the list of results. The contents are calculated
+     * on construction, and updated everytime "recalculate()" is called.
+     */
+    val results: List<SkillTreeInSet> = Collections.unmodifiableList(data)
+
+    init {
+        recalculate()
+    }
 
     /**
      * Adds any skills to the armor set's skill trees that were not there before, and removes those no longer there.
      * Adding decorations and armor does not update skilltrees unless this method is called
      */
-    fun updateSkillTreePointsSets() {
-        skillTreesInSet.clear()
+    fun recalculate() {
+        data.clear()
 
         val skillTreeToSkillTreeInSet = HashMap<Long, SkillTreeInSet>() // A map of the skill trees in the set and their associated SkillTreePointsSets
 
-        for (pointsSet in skillTreesInSet) {
+        for (pointsSet in results) {
             skillTreeToSkillTreeInSet[pointsSet.skillTree!!.id] = pointsSet
         }
 
@@ -55,7 +72,7 @@ class ArmorSetCalculator(val set: ArmorSet) {
 
                     s = SkillTreeInSet() // We add it...
                     s.skillTree = skillTree
-                    skillTreesInSet.add(s)
+                    data.add(s)
 
                     skillTreeToSkillTreeInSet[skillTree.id] = s
 
@@ -66,16 +83,17 @@ class ArmorSetCalculator(val set: ArmorSet) {
 
                 s.setPoints(idx, points)
             }
+
+            // sort the results, from largest to smallest
+            data.sortByDescending { it.getTotal() }
         }
     }
 
     /**
      * A helper method that converts an armor piece present in the current set into a map of the skills it provides and the respective points in each.
-     * @param pieceIndex The piece of armor to get the skills from.
      * @return A map of all the skills the armor piece provides along with the number of points in each.
      */
     private fun getSkillsFromArmorPiece(armorSetPiece: ArmorSetPiece): List<SkillTreePoints> {
-        // todo: Don't query here you FOOL this is a data object
         val dataManager = DataManager.get()
 
         val equipment = armorSetPiece.equipment
@@ -117,24 +135,14 @@ class ArmorSetCalculator(val set: ArmorSet) {
 
     /**
      * A container class that represents a skill tree as well as a specific number of points provided by each armor piece in a set.
+     * TODO: More descriptive name
      */
     inner class SkillTreeInSet {
 
         var skillTree: SkillTree? = null
-        private val points: IntArray
-
-        init {
-            points = IntArray(6)
-        }
+        private val points = IntArray(6)
 
         fun getPoints(pieceIndex: Int): Int {
-            if (pieceIndex == ASBSession.BODY) {
-                throw IllegalArgumentException("Use the getPoints(int, List<SkillTreeInSet>) when dealing with the chest piece!")
-            }
-            return getPoints(pieceIndex, null)
-        }
-
-        fun getPoints(pieceIndex: Int, trees: List<SkillTreeInSet>?): Int {
             return if (pieceIndex == ASBSession.BODY) {
                 // TorsoUp stacks, so you multiply the skill * number of occurrences
                 points[pieceIndex] * (torsoUpCount + 1)
@@ -146,10 +154,10 @@ class ArmorSetCalculator(val set: ArmorSet) {
         /**
          * @return The total number of skill points provided to the skill by all pieces in the set.
          */
-        fun getTotal(trees: List<SkillTreeInSet>): Int {
+        fun getTotal(): Int {
             var total = 0
             for (i in points.indices) {
-                total += getPoints(i, trees)
+                total += getPoints(i)
             }
             return total
         }
