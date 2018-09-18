@@ -12,6 +12,10 @@ private const val TORSO_UP_ID = 203 // Skilltree ID for the TorsoUp skill
 private const val SECRET_ARTS_ID = 204 // Skiltree ID. Needs 10 points in the skill for +2 to all other skills
 private const val TALISMAN_BOOST_ID = 205 // Skilltree Id. Needs 10 points in the skill for x2 talisman skills
 
+class ASBPiece(val idx: Int, val equipment: Equipment) {
+    val decorations = mutableListOf<Decoration>()
+}
+
 /**
  * Contains all of the juicy stuff regarding ASB sets, like the armor inside and the skills it provides.
  */
@@ -30,10 +34,6 @@ class ASBSession {
     private val equipment: Array<Equipment?> = arrayOfNulls(6)
     private val decorations: Array<MutableList<Decoration>> = Array(6) { mutableListOf<Decoration>() }
 
-    val skillTreesInSet: MutableList<SkillTreeInSet>
-
-    private var torsoUpCount: Int = 0
-
     val id: Long
         get() = asbSet!!.id
 
@@ -43,15 +43,25 @@ class ASBSession {
     val hunterType: Int
         get() = asbSet!!.hunterType
 
+    val pieces: List<ASBPiece> get() {
+        // todo: swap the ASB internal implementation with ASBPiece instead of reconstructing
+        val results = mutableListOf<ASBPiece>()
+        for (i in equipment.indices) {
+            val equipment = getEquipment(i)
+            if (equipment != null) {
+                val piece = ASBPiece(i, equipment)
+                piece.decorations.addAll(getDecorations(i))
+                results.add(piece)
+            }
+        }
+        return results
+    }
+
     /**
      * @return The set's talisman.
      */
     val talisman: ASBTalisman?
         get() = equipment[TALISMAN] as ASBTalisman?
-
-    init {
-        skillTreesInSet = ArrayList()
-    }
 
     fun setASBSet(set: ASBSet) {
         asbSet = set
@@ -78,12 +88,10 @@ class ASBSession {
      * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      * @return The 0-based index of the slot that the decoration was added to.
      */
-    @JvmOverloads
-    fun addDecoration(pieceIndex: Int, decoration: Decoration, updateSkills: Boolean = true): Int {
+    fun addDecoration(pieceIndex: Int, decoration: Decoration): Int {
         Log.v("ASB", "Adding decoration at piece index $pieceIndex")
         if (getAvailableSlots(pieceIndex) >= decoration.numSlots) {
             decorations[pieceIndex].add(decoration)
-            updateSkillTreePointsSets()
             return decorations[pieceIndex].size - 1
         } else {
             Log.e("ASB", "Cannot add that decoration!")
@@ -96,18 +104,13 @@ class ASBSession {
      * Will fail if the decoration in question is non-existent or a dummy.
      * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
-    @JvmOverloads
-    fun removeDecoration(pieceIndex: Int, decorationIndex: Int, updateSkills: Boolean = true) {
+    fun removeDecoration(pieceIndex: Int, decorationIndex: Int) {
         val list = decorations[pieceIndex]
         if (list.getOrNull(decorationIndex) == null) {
             return
         }
 
         list.removeAt(decorationIndex)
-
-        if (updateSkills) {
-            updateSkillTreePointsSets()
-        }
     }
 
     /**
@@ -122,21 +125,15 @@ class ASBSession {
      * Changes the equipment at the specified location.
      * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
-    @JvmOverloads
-    fun setEquipment(pieceIndex: Int, equip: Equipment, updateSkills: Boolean = true) {
+    fun setEquipment(pieceIndex: Int, equip: Equipment) {
         equipment[pieceIndex] = equip
-
-        if (updateSkills) {
-            updateSkillTreePointsSets()
-        }
     }
 
     /**
      * Removes the equipment at the specified location.
      * @param updateSkills Whether or not to call [.updateSkillTreePointsSets] upon completion.
      */
-    @JvmOverloads
-    fun removeEquipment(pieceIndex: Int, updateSkills: Boolean = true) {
+    fun removeEquipment(pieceIndex: Int) {
         if (pieceIndex == TALISMAN) {
             equipment[pieceIndex] = null
         } else {
@@ -144,11 +141,13 @@ class ASBSession {
         }
 
         decorations[pieceIndex].clear()
-
-        if (updateSkills) {
-            updateSkillTreePointsSets()
-        }
     }
+}
+
+class ASBCalculator(val session: ASBSession) {
+    val skillTreesInSet: MutableList<SkillTreeInSet> = ArrayList()
+
+    private var torsoUpCount: Int = 0
 
     /**
      * Adds any skills to the armor set's skill trees that were not there before, and removes those no longer there.
@@ -165,11 +164,11 @@ class ASBSession {
 
         torsoUpCount = 0 // We're going to recount this every time.
 
-        for (i in equipment.indices) {
+        for (piece in session.pieces) {
+            val idx = piece.idx
+            Log.v("ASB", "Reading skills from armor piece $idx")
 
-            Log.v("ASB", "Reading skills from armor piece $i")
-
-            val armorSkillTreePoints = getSkillsFromArmorPiece(i) // A map of the current piece of armor's skills, localized so we don't have to keep calling it
+            val armorSkillTreePoints = getSkillsFromArmorPiece(piece) // A map of the current piece of armor's skills, localized so we don't have to keep calling it
 
             for (skillTreePoints in armorSkillTreePoints) {
                 val skillTree = skillTreePoints.skillTree
@@ -197,7 +196,7 @@ class ASBSession {
                     s = skillTreeToSkillTreeInSet[skillTree.id]!! // Otherwise, we just find the skill tree set that's already there
                 }
 
-                s.setPoints(i, points)
+                s.setPoints(idx, points)
             }
         }
     }
@@ -207,33 +206,33 @@ class ASBSession {
      * @param pieceIndex The piece of armor to get the skills from.
      * @return A map of all the skills the armor piece provides along with the number of points in each.
      */
-    private fun getSkillsFromArmorPiece(pieceIndex: Int): List<SkillTreePoints> {
+    private fun getSkillsFromArmorPiece(asbPiece: ASBPiece): List<SkillTreePoints> {
         // todo: Don't query here you FOOL this is a data object
         val dataManager = DataManager.get()
 
-        val equipment = equipment[pieceIndex] ?: return emptyList()
+        val equipment = asbPiece.equipment
+        val decorations = asbPiece.decorations
 
         // mapping of skilltree id to skilltree points. The values are returned in the end
         val skillCache = HashMap<Long, SkillTreePoints>()
 
         // Get points from the equipment/talisman itself first
-        if (pieceIndex != TALISMAN) {
+        if (equipment is ASBTalisman) {
+            equipment.firstSkill?.let {
+                skillCache[it.skillTree.id] = it
+            }
+            equipment.secondSkill?.let {
+                skillCache[it.skillTree.id] = it
+            }
+        } else {
             val equipmentSkills = dataManager.queryItemToSkillTreeArrayItem(equipment.id)
             for (itemToSkillTree in equipmentSkills) { // We add skills for armor
                 skillCache[itemToSkillTree.skillTree.id] = itemToSkillTree
             }
-        } else {
-            val talisman = talisman
-            talisman?.firstSkill?.let {
-                skillCache[it.skillTree.id] = it
-            }
-            talisman?.secondSkill?.let {
-                skillCache[it.skillTree.id] = it
-            }
         }
 
         // Add decorations
-        for (d in decorations[pieceIndex]) {
+        for (d in decorations) {
             val decorationSkills = dataManager.queryItemToSkillTreeArrayItem(d.id)
             for (itemToSkillTree in decorationSkills) {
                 val skillTree = itemToSkillTree.skillTree
@@ -261,14 +260,14 @@ class ASBSession {
         }
 
         fun getPoints(pieceIndex: Int): Int {
-            if (pieceIndex == BODY) {
+            if (pieceIndex == ASBSession.BODY) {
                 throw IllegalArgumentException("Use the getPoints(int, List<SkillTreeInSet>) when dealing with the chest piece!")
             }
             return getPoints(pieceIndex, null)
         }
 
         fun getPoints(pieceIndex: Int, trees: List<SkillTreeInSet>?): Int {
-            return if (pieceIndex == BODY) {
+            return if (pieceIndex == ASBSession.BODY) {
                 // TorsoUp stacks, so you multiply the skill * number of occurrences
                 points[pieceIndex] * (torsoUpCount + 1)
             } else {

@@ -85,68 +85,68 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
         val talismanDecoration3 = getDecorationById(context, talismanDecoration3Id)
 
         if (headArmor != null) {
-            session.setEquipment(ASBSession.HEAD, headArmor, false)
+            session.setEquipment(ASBSession.HEAD, headArmor)
         }
         if (headDecoration1 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration1, false)
+            session.addDecoration(ASBSession.HEAD, headDecoration1)
         }
         if (headDecoration2 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration2, false)
+            session.addDecoration(ASBSession.HEAD, headDecoration2)
         }
         if (headDecoration3 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration3, false)
+            session.addDecoration(ASBSession.HEAD, headDecoration3)
         }
 
         if (bodyArmor != null) {
-            session.setEquipment(ASBSession.BODY, bodyArmor, false)
+            session.setEquipment(ASBSession.BODY, bodyArmor)
         }
         if (bodyDecoration1 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration1, false)
+            session.addDecoration(ASBSession.BODY, bodyDecoration1)
         }
         if (bodyDecoration2 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration2, false)
+            session.addDecoration(ASBSession.BODY, bodyDecoration2)
         }
         if (bodyDecoration3 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration3, false)
+            session.addDecoration(ASBSession.BODY, bodyDecoration3)
         }
 
         if (armsArmor != null) {
-            session.setEquipment(ASBSession.ARMS, armsArmor, false)
+            session.setEquipment(ASBSession.ARMS, armsArmor)
         }
         if (armsDecoration1 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration1, false)
+            session.addDecoration(ASBSession.ARMS, armsDecoration1)
         }
         if (armsDecoration2 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration2, false)
+            session.addDecoration(ASBSession.ARMS, armsDecoration2)
         }
         if (armsDecoration3 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration3, false)
+            session.addDecoration(ASBSession.ARMS, armsDecoration3)
         }
 
         if (waistArmor != null) {
-            session.setEquipment(ASBSession.WAIST, waistArmor, false)
+            session.setEquipment(ASBSession.WAIST, waistArmor)
         }
         if (waistDecoration1 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration1, false)
+            session.addDecoration(ASBSession.WAIST, waistDecoration1)
         }
         if (waistDecoration2 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration2, false)
+            session.addDecoration(ASBSession.WAIST, waistDecoration2)
         }
         if (waistDecoration3 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration3, false)
+            session.addDecoration(ASBSession.WAIST, waistDecoration3)
         }
 
         if (legsArmor != null) {
-            session.setEquipment(ASBSession.LEGS, legsArmor, false)
+            session.setEquipment(ASBSession.LEGS, legsArmor)
         }
         if (legsDecoration1 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration1, false)
+            session.addDecoration(ASBSession.LEGS, legsDecoration1)
         }
         if (legsDecoration2 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration2, false)
+            session.addDecoration(ASBSession.LEGS, legsDecoration2)
         }
         if (legsDecoration3 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration3, false)
+            session.addDecoration(ASBSession.LEGS, legsDecoration3)
         }
 
         if (talismanExists == 1) {
@@ -164,20 +164,18 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
                 talisman.setSecondSkill(getSkillTreeById(context, talismanSkill2Id), talismanSkill2Points)
             }
 
-            session.setEquipment(ASBSession.TALISMAN, talisman, false)
+            session.setEquipment(ASBSession.TALISMAN, talisman)
 
             if (talismanDecoration1 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration1, false)
+                session.addDecoration(ASBSession.TALISMAN, talismanDecoration1)
             }
             if (talismanDecoration2 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration2, false)
+                session.addDecoration(ASBSession.TALISMAN, talismanDecoration2)
             }
             if (talismanDecoration3 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration3, false)
+                session.addDecoration(ASBSession.TALISMAN, talismanDecoration3)
             }
         }
-
-        session.updateSkillTreePointsSets()
 
         return session
     }

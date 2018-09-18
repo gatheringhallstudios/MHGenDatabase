@@ -14,9 +14,9 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ASBSession.*
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
+import com.ghstudios.android.data.classes.ASBCalculator
 
 import java.util.Comparator
 
@@ -37,11 +37,14 @@ class ASBSkillsListFragment : Fragment() {
         val listView = v.findViewById<View>(R.id.list) as ListView
 
         val session = viewModel.session
-        val adapter = ASBSkillsAdapter(activity!!.applicationContext, session.skillTreesInSet, session)
+        val calculator = ASBCalculator(session)
+        calculator.updateSkillTreePointsSets()
+        val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.skillTreesInSet, session)
         listView.adapter = adapter
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it == null) return@Observer
+            calculator.updateSkillTreePointsSets()
             adapter.notifyDataSetChanged()
         })
 
@@ -49,11 +52,11 @@ class ASBSkillsListFragment : Fragment() {
     }
 
     private class ASBSkillsAdapter(
-            context: Context, trees: List<ASBSession.SkillTreeInSet>, internal var session: ASBSession
-    ) : ArrayAdapter<ASBSession.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
-        internal var trees: List<SkillTreeInSet>
+            context: Context, trees: List<ASBCalculator.SkillTreeInSet>, internal var session: ASBSession
+    ) : ArrayAdapter<ASBCalculator.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
+        internal var trees: List<ASBCalculator.SkillTreeInSet>
 
-        internal var comparator: Comparator<ASBSession.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
+        internal var comparator: Comparator<ASBCalculator.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
 
         init {
             this.trees = trees
@@ -75,35 +78,37 @@ class ASBSkillsListFragment : Fragment() {
             val talismanPoints = itemView.findViewById<View>(R.id.talisman) as TextView
             val totalPoints = itemView.findViewById<View>(R.id.total) as TextView
 
-            treeName.text = getItem(position)!!.skillTree?.name
+            val data = getItem(position)
+            
+            treeName.text = data.skillTree?.name
 
-            if (session.getEquipment(ASBSession.HEAD) != null && getItem(position)!!.getPoints(ASBSession.HEAD) != 0) {
-                headPoints.text = getItem(position)!!.getPoints(ASBSession.HEAD).toString()
+            if (session.getEquipment(ASBSession.HEAD) != null && data.getPoints(ASBSession.HEAD) != 0) {
+                headPoints.text = data.getPoints(ASBSession.HEAD).toString()
             }
 
-            if (session.getEquipment(ASBSession.BODY) != null && getItem(position)!!.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
-                bodyPoints.text = getItem(position)!!.getPoints(ASBSession.BODY, trees).toString()
+            if (session.getEquipment(ASBSession.BODY) != null && data.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
+                bodyPoints.text = data.getPoints(ASBSession.BODY, trees).toString()
             }
 
-            if (session.getEquipment(ASBSession.ARMS) != null && getItem(position)!!.getPoints(ASBSession.ARMS) != 0) {
-                armsPoints.text = getItem(position)!!.getPoints(ASBSession.ARMS).toString()
+            if (session.getEquipment(ASBSession.ARMS) != null && data.getPoints(ASBSession.ARMS) != 0) {
+                armsPoints.text = data.getPoints(ASBSession.ARMS).toString()
             }
 
-            if (session.getEquipment(ASBSession.WAIST) != null && getItem(position)!!.getPoints(ASBSession.WAIST) != 0) {
-                waistPoints.text = getItem(position)!!.getPoints(ASBSession.WAIST).toString()
+            if (session.getEquipment(ASBSession.WAIST) != null && data.getPoints(ASBSession.WAIST) != 0) {
+                waistPoints.text = data.getPoints(ASBSession.WAIST).toString()
             }
 
-            if (session.getEquipment(ASBSession.LEGS) != null && getItem(position)!!.getPoints(ASBSession.LEGS) != 0) {
-                legsPoints.text = getItem(position)!!.getPoints(ASBSession.LEGS).toString()
+            if (session.getEquipment(ASBSession.LEGS) != null && data.getPoints(ASBSession.LEGS) != 0) {
+                legsPoints.text = data.getPoints(ASBSession.LEGS).toString()
             }
 
-            if (session.getEquipment(ASBSession.TALISMAN) != null && getItem(position)!!.getPoints(ASBSession.TALISMAN) != 0) {
-                talismanPoints.text = getItem(position)!!.getPoints(ASBSession.TALISMAN).toString()
+            if (session.getEquipment(ASBSession.TALISMAN) != null && data.getPoints(ASBSession.TALISMAN) != 0) {
+                talismanPoints.text = data.getPoints(ASBSession.TALISMAN).toString()
             }
 
-            totalPoints.text = getItem(position)!!.getTotal(trees).toString()
+            totalPoints.text = data.getTotal(trees).toString()
 
-            if (getItem(position)!!.getTotal(trees) >= MINIMUM_SKILL_ACTIVATION_POINTS) {
+            if (data.getTotal(trees) >= MINIMUM_SKILL_ACTIVATION_POINTS) {
                 treeName.setTypeface(null, Typeface.BOLD)
                 headPoints.setTypeface(null, Typeface.BOLD)
                 bodyPoints.setTypeface(null, Typeface.BOLD)
@@ -114,7 +119,7 @@ class ASBSkillsListFragment : Fragment() {
                 totalPoints.setTypeface(null, Typeface.BOLD)
             }
 
-            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree!!.id))
+            itemView.setOnClickListener(SkillClickListener(parent.context, data.skillTree!!.id))
 
             return itemView
         }
