@@ -110,7 +110,7 @@ class ASBSkillsListFragment : Fragment() {
                 totalPoints.setTypeface(null, Typeface.BOLD)
             }
 
-            itemView.setOnClickListener(SkillClickListener(parent.context, data.skillTree!!.id))
+            itemView.setOnClickListener(SkillClickListener(parent.context, data.skillTree.id))
 
             return itemView
         }

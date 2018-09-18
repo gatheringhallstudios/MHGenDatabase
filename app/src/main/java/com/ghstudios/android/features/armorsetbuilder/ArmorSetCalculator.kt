@@ -39,15 +39,12 @@ class ArmorSetCalculator(val set: ArmorSet) {
      * Adding decorations and armor does not update skilltrees unless this method is called
      */
     fun recalculate() {
+        // Reset data
         data.clear()
+        torsoUpCount = 0
 
-        val skillTreeToSkillTreeInSet = HashMap<Long, SkillTreeInSet>() // A map of the skill trees in the set and their associated SkillTreePointsSets
-
-        for (pointsSet in results) {
-            skillTreeToSkillTreeInSet[pointsSet.skillTree!!.id] = pointsSet
-        }
-
-        torsoUpCount = 0 // We're going to recount this every time.
+        // A map of the skill trees in the set and their associated SkillTreePointsSets
+        val skillTreeToResult = mutableMapOf<Long, SkillTreeInSet>()
 
         for (piece in set.pieces) {
             val idx = piece.idx
@@ -64,29 +61,20 @@ class ArmorSetCalculator(val set: ArmorSet) {
                     torsoUpCount++
                 }
 
-                val s: SkillTreeInSet // The actual points set that we are working with that will be shown to the user
-
-                if (!skillTreeToSkillTreeInSet.containsKey(skillTree.id)) { // If the armor set does not yet have this skill tree registered...
-                    Log.v("ASB",
-                            "Adding skill tree " + skillTree.name + " to the list of Skill Trees in the armor set.")
-
-                    s = SkillTreeInSet() // We add it...
-                    s.skillTree = skillTree
-                    data.add(s)
-
-                    skillTreeToSkillTreeInSet[skillTree.id] = s
-
-                } else {
-                    Log.v("ASB", "Skill tree " + skillTree.name + " already registered!")
-                    s = skillTreeToSkillTreeInSet[skillTree.id]!! // Otherwise, we just find the skill tree set that's already there
+                // Retrieve the existing result row...or create if it doesn't exist
+                val skillRow = skillTreeToResult.getOrPut(skillTree.id) {
+                    Log.v("ASB", "Adding skill tree ${skillTree.name} to the list of Skill Trees in the armor set.")
+                    SkillTreeInSet(skillTree)
                 }
 
-                s.setPoints(idx, points)
+                // Set the points for the given "set slot"
+                skillRow.setPoints(idx, points)
             }
-
-            // sort the results, from largest to smallest
-            data.sortByDescending { it.getTotal() }
         }
+
+        // Add the results, and sort from largest to smallest
+        data.addAll(skillTreeToResult.values)
+        data.sortByDescending { it.getTotal() }
     }
 
     /**
@@ -100,7 +88,7 @@ class ArmorSetCalculator(val set: ArmorSet) {
         val decorations = armorSetPiece.decorations
 
         // mapping of skilltree id to skilltree points. The values are returned in the end
-        val skillCache = HashMap<Long, SkillTreePoints>()
+        val skillCache = mutableMapOf<Long, SkillTreePoints>()
 
         // Get points from the equipment/talisman itself first
         if (equipment is ASBTalisman) {
@@ -137,9 +125,7 @@ class ArmorSetCalculator(val set: ArmorSet) {
      * A container class that represents a skill tree as well as a specific number of points provided by each armor piece in a set.
      * TODO: More descriptive name
      */
-    inner class SkillTreeInSet {
-
-        var skillTree: SkillTree? = null
+    inner class SkillTreeInSet(val skillTree: SkillTree) {
         private val points = IntArray(6)
 
         fun getPoints(pieceIndex: Int): Int {
