@@ -18,8 +18,6 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
 
-private const val MINIMUM_SKILL_ACTIVATION_POINTS = 10
-
 /**
  * Fragment to display the list of skills granted from an armor set.
  */
@@ -99,7 +97,7 @@ class ASBSkillsListFragment : Fragment() {
 
             totalPoints.text = data.getTotal().toString()
 
-            if (data.getTotal() >= MINIMUM_SKILL_ACTIVATION_POINTS) {
+            if (data.active) {
                 treeName.setTypeface(null, Typeface.BOLD)
                 headPoints.setTypeface(null, Typeface.BOLD)
                 bodyPoints.setTypeface(null, Typeface.BOLD)

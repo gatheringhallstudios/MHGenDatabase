@@ -5,10 +5,13 @@ import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.*
 import java.util.*
 
+private const val MINIMUM_SKILL_ACTIVATION_POINTS = 10
+private const val SECRET_ARTS_BOOST = 2
+
 // todo: move this to some sort of data constants location
-private const val TORSO_UP_ID = 203 // Skilltree ID for the TorsoUp skill
-private const val SECRET_ARTS_ID = 204 // Skilltree ID. Needs 10 points in the skill for +2 to all other skills
-private const val TALISMAN_BOOST_ID = 205 // Skilltree Id. Needs 10 points in the skill for x2 talisman skills
+private const val TORSO_UP_ID = 203L // Skilltree ID for the TorsoUp skill
+private const val SECRET_ARTS_ID = 204L // Skilltree ID. Needs 10 points in the skill for +2 to all other skills
+private const val TALISMAN_BOOST_ID = 205L // Skilltree Id. Needs 10 points in the skill for x2 talisman skills
 
 /**
  * Calculates the skill totals of a given armor set, storing the results
@@ -23,6 +26,8 @@ class ArmorSetCalculator(val set: ArmorSet) {
     private val data = mutableListOf<SkillTreeInSet>()
 
     private var torsoUpCount: Int = 0
+    private var secretArtsActivated: Boolean = false
+    private var talismanBoostActivated: Boolean = false
 
     /**
      * Contains the list of results. The contents are calculated
@@ -41,11 +46,11 @@ class ArmorSetCalculator(val set: ArmorSet) {
     fun recalculate() {
         // Reset data
         data.clear()
-        torsoUpCount = 0
 
         // A map of the skill trees in the set and their associated SkillTreePointsSets
         val skillTreeToResult = mutableMapOf<Long, SkillTreeInSet>()
 
+        // Iterate over set pieces, accumulating results into the above result map
         for (piece in set.pieces) {
             val idx = piece.idx
             Log.v("ASB", "Reading skills from armor piece $idx")
@@ -55,11 +60,6 @@ class ArmorSetCalculator(val set: ArmorSet) {
             for (skillTreePoints in armorSkillTreePoints) {
                 val skillTree = skillTreePoints.skillTree
                 val points = skillTreePoints.points
-
-                // Count TorsoUp occurrences
-                if (skillTree.id == TORSO_UP_ID.toLong()) {
-                    torsoUpCount++
-                }
 
                 // Retrieve the existing result row...or create if it doesn't exist
                 val skillRow = skillTreeToResult.getOrPut(skillTree.id) {
@@ -71,6 +71,11 @@ class ArmorSetCalculator(val set: ArmorSet) {
                 skillRow.setPoints(idx, points)
             }
         }
+
+        // do some final checks (torso up, secret arts, talisman boost)
+        torsoUpCount = skillTreeToResult[TORSO_UP_ID]?.getTotal() ?: 0
+        secretArtsActivated = skillTreeToResult[SECRET_ARTS_ID]?.active ?: false
+        talismanBoostActivated = skillTreeToResult[TALISMAN_BOOST_ID]?.active ?: false
 
         // Add the results, and sort from largest to smallest
         data.addAll(skillTreeToResult.values)
@@ -126,12 +131,18 @@ class ArmorSetCalculator(val set: ArmorSet) {
      * TODO: More descriptive name
      */
     inner class SkillTreeInSet(val skillTree: SkillTree) {
+        // note: points will likely change to a different object once weapon decos are live
         private val points = IntArray(6)
+
+        val active get() = getTotal() >= MINIMUM_SKILL_ACTIVATION_POINTS
 
         fun getPoints(pieceIndex: Int): Int {
             return if (pieceIndex == ASBSession.BODY) {
                 // TorsoUp stacks, so you multiply the skill * number of occurrences
                 points[pieceIndex] * (torsoUpCount + 1)
+            } else if (pieceIndex == ASBSession.TALISMAN && talismanBoostActivated) {
+                // if talisman boost is activated, talisman skills are doubled
+                points[pieceIndex] * 2
             } else {
                 points[pieceIndex]
             }
@@ -145,6 +156,13 @@ class ArmorSetCalculator(val set: ArmorSet) {
             for (i in points.indices) {
                 total += getPoints(i)
             }
+
+            // If Secret Arts is active, proc it
+            // note that secret arts also adds to itself
+            if (secretArtsActivated && skillTree.id != TORSO_UP_ID) {
+                total += SECRET_ARTS_BOOST
+            }
+
             return total
         }
 
