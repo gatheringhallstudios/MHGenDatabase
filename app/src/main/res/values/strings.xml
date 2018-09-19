@@ -150,7 +150,8 @@
     <string name="item_rarity">Rare</string>
     <string name="item_carry_max">Carry Max:</string>
     <string name="item_buy">Buy Price</string>
-    <string name="item_sell">Sell Price:</string>
+    <string name="item_sell">Sell Price</string>
+    <string name="item_sell_label">Sell Price:</string> <!-- variation with : after -->
     <string name="item_description">Description</string>
     <string name="item_combinations">Combinations</string>
     <string name="item_skills">Skills</string>
@@ -174,9 +175,10 @@
     <string name="armor_part">Part</string>
     <string name="armor_defense">Defense</string>
     <string name="armor_type_both">Any</string>
-    <string name="armor_type_blade_short">Blade</string>
     <string name="armor_type_blade">Blademaster</string>
     <string name="armor_type_gunner">Gunner</string>
+    <string name="armor_type_blade_short">Blade</string>
+    <string name="armor_type_gunner_short">Gunner</string>
     <string name="armor_title_set">Set</string>
     <string name="armor_res_fire">Fire Res:</string>
     <string name="armor_res_water">Water Res:</string>
