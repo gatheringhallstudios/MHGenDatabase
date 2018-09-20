@@ -12,6 +12,7 @@ import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.mhgendatabase.R
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
@@ -76,6 +77,12 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         SQLiteAssetHelper(ctx.applicationContext, DATABASE_NAME, null, DATABASE_VERSION) {
 
     private val TAG = "MHGU-DB-Helper"
+
+    private val column_name
+        get() = localizeColumn("name")
+
+    private val column_description
+        get() = localizeColumn("description")
 
     // Use the application context, which will ensure that you
     // don't accidentally leak an Activity's context.
@@ -643,14 +650,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_COMPONENTS_QUANTITY] = c + "." + S.COLUMN_COMPONENTS_QUANTITY
         projectionMap[S.COLUMN_COMPONENTS_TYPE] = c + "." + S.COLUMN_COMPONENTS_TYPE
 
-        projectionMap[cr + S.COLUMN_ITEMS_NAME] = cr + "." + S.COLUMN_ITEMS_NAME + " AS " + cr + S.COLUMN_ITEMS_NAME
+        projectionMap[cr + S.COLUMN_ITEMS_NAME] = "$cr.$column_name AS " + cr + S.COLUMN_ITEMS_NAME
         projectionMap[cr + S.COLUMN_ITEMS_TYPE] = cr + "." + S.COLUMN_ITEMS_TYPE + " AS " + cr + S.COLUMN_ITEMS_TYPE
         projectionMap[cr + S.COLUMN_ITEMS_SUB_TYPE] = cr + "." + S.COLUMN_ITEMS_SUB_TYPE + " AS " + cr + S.COLUMN_ITEMS_SUB_TYPE
         projectionMap[cr + S.COLUMN_ITEMS_RARITY] = cr + "." + S.COLUMN_ITEMS_RARITY + " AS " + cr + S.COLUMN_ITEMS_RARITY
         projectionMap[cr + S.COLUMN_ITEMS_ICON_NAME] = cr + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + cr + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[cr + S.COLUMN_ITEMS_ICON_COLOR] = cr + "." + S.COLUMN_ITEMS_ICON_COLOR + " AS " + cr + S.COLUMN_ITEMS_ICON_COLOR
 
-        projectionMap[co + S.COLUMN_ITEMS_NAME] = co + "." + S.COLUMN_ITEMS_NAME + " AS " + co + S.COLUMN_ITEMS_NAME
+        projectionMap[co + S.COLUMN_ITEMS_NAME] = "$co.$column_name AS " + co + S.COLUMN_ITEMS_NAME
         projectionMap[co + S.COLUMN_ITEMS_TYPE] = co + "." + S.COLUMN_ITEMS_TYPE + " AS " + co + S.COLUMN_ITEMS_TYPE
         projectionMap[co + S.COLUMN_ITEMS_ICON_NAME] = co + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + co + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[co + S.COLUMN_ITEMS_ICON_COLOR] = co + "." + S.COLUMN_ITEMS_ICON_COLOR + " AS " + co + S.COLUMN_ITEMS_ICON_COLOR
@@ -744,7 +751,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         val projectionMap = HashMap<String, String>()
         projectionMap["_id"] = "i." + S.COLUMN_ITEMS_ID + " AS " + "_id"
-        projectionMap["item_name"] = "i." + S.COLUMN_ITEMS_NAME + " AS " + "item_name"
+        projectionMap["item_name"] = "i.$column_name AS item_name"
         projectionMap[S.COLUMN_ITEMS_JPN_NAME] = "i." + S.COLUMN_ITEMS_JPN_NAME
         projectionMap[S.COLUMN_ITEMS_TYPE] = "i." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = "i." + S.COLUMN_ITEMS_SUB_TYPE
@@ -757,10 +764,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = "i." + S.COLUMN_ITEMS_ICON_COLOR
         projectionMap[S.COLUMN_DECORATIONS_NUM_SLOTS] = "d." + S.COLUMN_DECORATIONS_NUM_SLOTS
         projectionMap["skill_1_id"] = "s1." + S.COLUMN_SKILL_TREES_ID + " AS " + "skill_1_id"
-        projectionMap["skill_1_name"] = "s1." + S.COLUMN_SKILL_TREES_NAME + " AS " + "skill_1_name"
+        projectionMap["skill_1_name"] = "s1.$column_name AS skill_1_name"
         projectionMap["skill_1_point_value"] = "its1." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE + " AS " + "skill_1_point_value"
         projectionMap["skill_2_id"] = "s2." + S.COLUMN_SKILL_TREES_ID + " AS " + "skill_2_id"
-        projectionMap["skill_2_name"] = "s2." + S.COLUMN_SKILL_TREES_NAME + " AS " + "skill_2_name"
+        projectionMap["skill_2_name"] = "s2.$column_name AS skill_2_name"
         projectionMap["skill_2_point_value"] = "its2." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE + " AS " + "skill_2_point_value"
 
         //Create new querybuilder
@@ -1178,12 +1185,12 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap["rest_area"] = h + "." + S.COLUMN_HABITAT_REST + " AS " + "rest_area"
 
         projectionMap[l + S.COLUMN_LOCATIONS_ID] = l + "." + S.COLUMN_LOCATIONS_ID + " AS " + l + S.COLUMN_LOCATIONS_ID
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[l + S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP + " AS " + l + S.COLUMN_LOCATIONS_MAP
 
         projectionMap[m + S.COLUMN_MONSTERS_ID] = m + "." + S.COLUMN_MONSTERS_ID + " AS " + m + S.COLUMN_MONSTERS_ID
         projectionMap[m + S.COLUMN_MONSTERS_SORT_NAME] = m + "." + S.COLUMN_MONSTERS_SORT_NAME + " AS " + m + S.COLUMN_MONSTERS_SORT_NAME
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[m + S.COLUMN_MONSTERS_CLASS] = m + "." + S.COLUMN_MONSTERS_CLASS + " AS " + m + S.COLUMN_MONSTERS_CLASS
         projectionMap[m + S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION + " AS " + m + S.COLUMN_MONSTERS_FILE_LOCATION
 
@@ -1903,7 +1910,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_WEAPONS_PARENT_ID] = w + "." + S.COLUMN_WEAPONS_PARENT_ID
         projectionMap[S.COLUMN_WEAPONS_SPECIAL_AMMO] = w + "." + S.COLUMN_WEAPONS_SPECIAL_AMMO
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_JPN_NAME] = i + "." + S.COLUMN_ITEMS_JPN_NAME
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
@@ -1911,7 +1918,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_CARRY_CAPACITY] = i + "." + S.COLUMN_ITEMS_CARRY_CAPACITY
         projectionMap[S.COLUMN_ITEMS_BUY] = i + "." + S.COLUMN_ITEMS_BUY
         projectionMap[S.COLUMN_ITEMS_SELL] = i + "." + S.COLUMN_ITEMS_SELL
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
 
         //Create new querybuilder
@@ -2090,9 +2097,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE] = w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE
         projectionMap[S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED] = w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
 
@@ -2153,9 +2160,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_PALICO_ARMOR_THUNDER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_THUNDER_RES
         projectionMap[S.COLUMN_PALICO_ARMOR_WATER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_WATER_RES
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
 
