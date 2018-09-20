@@ -237,4 +237,10 @@
     <string name="filter_final_option">Final Only</string>
     <string name="monster_image">monster_image</string>
     <string name="monster_damage">monster_damage</string>
+    <string name="monster_detail_tab_summary">Details</string>
+    <string name="monster_detail_tab_damage">Schaden</string>
+    <string name="monster_detail_tab_lr">Niedrigrangig</string>
+    <string name="monster_detail_tab_hr">Hochrangig</string>
+    <string name="monster_detail_tab_g">G Rang</string>
+    <string name="monster_detail_tab_quest">Quest</string>
 </resources>
