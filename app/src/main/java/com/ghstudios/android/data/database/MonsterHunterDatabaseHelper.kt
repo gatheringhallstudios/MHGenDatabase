@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Log
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.Location
 import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.classes.SkillTree
 import com.ghstudios.android.data.cursors.*
@@ -885,10 +886,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_GATHERING_RARE] = g + "." + S.COLUMN_GATHERING_RARE
         projectionMap[S.COLUMN_GATHERING_QUANTITY] = g + "." + S.COLUMN_GATHERING_QUANTITY
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[l + S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP + " AS " + l + S.COLUMN_LOCATIONS_MAP
 
         //Create new querybuilder
@@ -1051,41 +1052,23 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 * Get all locations
 	 */
     fun queryLocations(): LocationCursor {
-        // "SELECT DISTINCT * FROM locations GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_LOCATIONS
-        qh.Columns = null
-        qh.Selection = "_id<100"
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        //Night versions have an _id + 100, so to keep them together we need to modify the sort.
-        qh.OrderBy = null//"CASE WHEN _id>100 THEN _id-100 ELSE _id END";
-        qh.Limit = null
-
-        return LocationCursor(wrapHelper(qh))
+        // note 100 is the cutoff for night versions.
+        return LocationCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, map
+            FROM ${S.TABLE_LOCATIONS}
+            WHERE _id < 100
+        """, emptyArray()))
     }
 
     /*
      * Get a specific location
      */
-    fun queryLocation(id: Long): LocationCursor {
-        // "SELECT DISTINCT * FROM locations WHERE _id = id LIMIT 1"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_LOCATIONS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_LOCATIONS_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return LocationCursor(wrapHelper(qh))
+    fun queryLocation(id: Long): Location? {
+        return LocationCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, map
+            FROM ${S.TABLE_LOCATIONS}
+            WHERE _id = ?
+        """, arrayOf(id.toString()))).firstOrNull { it.location }
     }
 
     /**

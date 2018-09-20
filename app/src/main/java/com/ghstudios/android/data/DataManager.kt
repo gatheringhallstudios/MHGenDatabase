@@ -362,14 +362,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get a specific Location */
     fun getLocation(id: Long): Location? {
-        var location: Location? = null
-        val cursor = mHelper.queryLocation(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            location = cursor.location
-        cursor.close()
-        return location
+        return mHelper.queryLocation(id)
     }
 
     /********************************* MELODY QUERIES  */
