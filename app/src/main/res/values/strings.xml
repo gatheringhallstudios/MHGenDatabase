@@ -355,6 +355,13 @@
     <string name="hyper">Hyper</string>
     <string name="armor_pieces">Armor Pieces</string>
 
+    <!-- Locations -->
+    <string name="location_detail_tab_map">Map</string>
+    <string name="location_detail_tab_monsters">Monsters</string>
+    <string name="location_detail_tab_lr">Low Rank</string>
+    <string name="location_detail_tab_hr">High Rank</string>
+    <string name="location_detail_tab_g">G Rank</string>
+
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
         <item>Pawn</item>
