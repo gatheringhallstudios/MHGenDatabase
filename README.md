@@ -3,7 +3,12 @@ MHGU Database for Android (formally MHGen Database)
 
 Source code for the Android app _MHGU Database_.
 
-[![Download from Google Play](http://www.android.com/images/brand/android_app_on_play_large.png "Download from Google Play")](https://play.google.com/store/apps/details?id=com.ghstudios.android.mhgendatabase&hl=en)
+[<img src="https://f-droid.org/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.ghstudios.android.mhgendatabase/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt="Get it on Google Play"
+     height="80">](https://play.google.com/store/apps/details?id=com.ghstudios.android.mhgendatabase)
 
 List of To-Dos can be found on our [Trello Board](https://trello.com/b/tI4PYsgH/mhgen-database)
 
