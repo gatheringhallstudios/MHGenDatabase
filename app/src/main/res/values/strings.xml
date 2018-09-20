@@ -338,6 +338,9 @@
     <string name="weapon_deviation">Deviation</string>
 
     <!-- Quest Detail -->
+    <string name="quest_detail_tab_detail">Detail</string>
+    <string name="quest_detail_tab_items_gather">Items</string>
+    <string name="quest_detail_tab_rewards">Rewards</string>
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
