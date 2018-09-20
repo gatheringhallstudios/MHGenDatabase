@@ -18,7 +18,7 @@ public class ArmorListPagerActivity extends BasePagerActivity {
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_BLADEMASTER)
         );
 
-        tabs.addTab(getString(R.string.armor_type_gunner), () ->
+        tabs.addTab(getString(R.string.armor_type_gunner_short), () ->
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_GUNNER)
         );
 

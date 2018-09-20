@@ -24,6 +24,8 @@ val supportedLanguages = mapOf(
         "en" to "English",
         "es" to "Español",
         "fr" to "Français",
+        "de" to "Deutsch",
+        "it" to "Italiano",
         "ja" to "日本語"
 )
 
