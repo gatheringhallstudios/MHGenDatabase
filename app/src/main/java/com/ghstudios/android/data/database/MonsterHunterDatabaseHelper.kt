@@ -1457,7 +1457,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.OrderBy = null
         qh.Limit = null
 
-        modifyQueryForSearch(qh, "q." + S.COLUMN_QUESTS_NAME, searchTerm)
+        modifyQueryForSearch(qh, "q.$column_name", searchTerm)
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
     }
