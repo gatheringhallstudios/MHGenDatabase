@@ -8,6 +8,7 @@ import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
@@ -25,7 +26,7 @@ data class WeaponFamilyWrapper(
 /**
  * ViewModel that manages data for the weapon detail
  */
-class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
+class WeaponDetailViewModel(private val app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
     val weaponData = MutableLiveData<Weapon>()
@@ -82,12 +83,25 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
 
         loggedThread("Weapon Family Loading"){
             val famData = ArrayList<WeaponFamilyWrapper>()
+
+            val originTitle = app.getString(R.string.weapon_tree_origin)
             val origins = dataManager.queryWeaponOrigins(weaponId).reversed()
-            for (w in origins) famData.add(WeaponFamilyWrapper("Origin",w,false))
+            for (w in origins) {
+                famData.add(WeaponFamilyWrapper(originTitle, w, false))
+            }
+
+            val familyTitle = app.getString(R.string.weapon_tree_family)
             val family = dataManager.queryWeaponTree(weaponId).toList { it.weapon }
-            for (w in family) famData.add(WeaponFamilyWrapper("Family",w,false))
+            for (w in family) {
+                famData.add(WeaponFamilyWrapper(familyTitle, w, false))
+            }
+
+            val branchesTitle = app.getString(R.string.weapon_tree_side_branches)
             val branches = dataManager.queryWeaponBranches(weaponId)
-            for (w in branches) famData.add(WeaponFamilyWrapper("Branches",w,true))
+            for (w in branches) {
+                famData.add(WeaponFamilyWrapper(branchesTitle, w, true))
+            }
+
             familyTreeData.postValue(famData)
         }
 
