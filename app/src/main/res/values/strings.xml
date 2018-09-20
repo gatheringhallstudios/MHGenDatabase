@@ -134,6 +134,12 @@
     <string name="monster_tab_small">Small</string>
     <string name="monster_tab_large">Large</string>
     <string name="monster_tab_deviant">Deviant</string>
+    <string name="monster_detail_tab_summary">Summary</string>
+    <string name="monster_detail_tab_damage">Damage</string>
+    <string name="monster_detail_tab_lr">Low Rank</string>
+    <string name="monster_detail_tab_hr">High Rank</string>
+    <string name="monster_detail_tab_g">G Rank</string>
+    <string name="monster_detail_tab_quest">Quest</string>
     <string name="monster_summary_weaknesses">Weaknesses</string>
     <string name="monster_summary_items">Items</string>
     <string name="monster_ailments">Ailments</string>

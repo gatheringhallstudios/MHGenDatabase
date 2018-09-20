@@ -6,6 +6,7 @@ import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
+import com.ghstudios.android.mhgendatabase.R;
 
 public class MonsterDetailPagerActivity extends BasePagerActivity {
     /**
@@ -23,36 +24,36 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
 
         setTitle(meta.getName());
 
-        tabs.addTab("Summary", () ->
+        tabs.addTab(getString(R.string.monster_detail_tab_summary), () ->
                 MonsterSummaryFragment.newInstance(monsterId)
         );
 
         if (meta.getHasDamageData() || meta.getHasStatusData()) {
             // only include Damage tab if there is data
-            tabs.addTab("Damage", () ->
+            tabs.addTab(getString(R.string.monster_detail_tab_damage), () ->
                     MonsterDamageFragment.newInstance(monsterId)
             );
         }
 
         if(meta.getHasLowRank()) {
-            tabs.addTab("Low Rank", () ->
-                    MonsterRewardFragment.Companion.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_LR)
+            tabs.addTab(getString(R.string.monster_detail_tab_lr), () ->
+                    MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_LR)
             );
         }
 
         if(meta.getHasHighRank()) {
-            tabs.addTab("High Rank", () ->
-                    MonsterRewardFragment.Companion.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_HR)
+            tabs.addTab(getString(R.string.monster_detail_tab_hr), () ->
+                    MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_HR)
             );
         }
 
         if(meta.getHasGRank()) {
-            tabs.addTab("G Rank", () ->
+            tabs.addTab(getString(R.string.monster_detail_tab_g), () ->
                     MonsterRewardFragment.Companion.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_G)
             );
         }
 
-        tabs.addTab("Quest", () ->
+        tabs.addTab(getString(R.string.monster_detail_tab_quest), () ->
                 MonsterQuestFragment.newInstance(monsterId)
         );
     }

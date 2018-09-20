@@ -84,7 +84,7 @@ class MonsterRewardFragment : ListFragment() {
         private val ARG_MONSTER_ID = "MONSTER_ID"
         private val ARG_RANK = "RANK"
 
-        fun newInstance(monsterId: Long, rank: String): MonsterRewardFragment {
+        @JvmStatic fun newInstance(monsterId: Long, rank: String): MonsterRewardFragment {
             val args = Bundle()
             args.putLong(ARG_MONSTER_ID, monsterId)
             args.putString(ARG_RANK, rank)
