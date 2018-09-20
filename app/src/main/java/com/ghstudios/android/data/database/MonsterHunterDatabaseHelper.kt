@@ -10,10 +10,13 @@ import android.util.Log
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.QuestHub
+import com.ghstudios.android.data.classes.SkillTree
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.firstOrNull
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
@@ -88,6 +91,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     // don't accidentally leak an Activity's context.
     // See this article for more information: http://bit.ly/6LRzfx
     private val myContext = ctx.applicationContext
+
+    /**
+     * Alias for writeableDatabase
+     */
+    private inline val db get() = this.writableDatabase
 
     init {
         setForcedUpgrade()
@@ -1662,21 +1670,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /*
 	 * Get all skills for a skill tree
 	 */
-    fun querySkillFromTree(id: Long): SkillCursor {
-        // "SELECT * FROM skills WHERE skill_tree_id = id"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_SKILLS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_SKILLS_SKILL_TREE_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return SkillCursor(wrapHelper(qh))
+    fun querySkillsFromTree(treeId: Long): SkillCursor {
+        return SkillCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, $column_description description,
+                skill_tree_id, required_skill_tree_points
+            FROM ${S.TABLE_SKILLS}
+            WHERE skill_tree_id = ?
+            ORDER BY required_skill_tree_points DESC
+        """, arrayOf(treeId.toString())))
     }
 
     /**
@@ -1687,65 +1688,41 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 * Get all skill tress
 	 */
     fun querySkillTrees(): SkillTreeCursor {
-        // "SELECT DISTINCT * FROM skill_trees GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            ORDER BY $column_name ASC
+        """, emptyArray()))
     }
 
     /*
      * Get Skill trees filtered by name
      */
-    fun querySkillTreesSearch(searchTerm: String): SkillTreeCursor {
-        // "SELECT DISTINCT * FROM skill_trees
-        //  WHERE (name LIKE '% word%' OR name LIKE 'word%')
-        //    AND (name LIKE '% word2%' OR name LIKE 'word2%')
-        //  GROUP BY name"
+    fun querySkillTreesSearch(searchTerm: String?): SkillTreeCursor {
+        if (searchTerm == null || searchTerm.isBlank()) {
+            return querySkillTrees()
+        }
 
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
+        val filter = SqlFilter(column_name, searchTerm)
 
-        modifyQueryForSearch(qh, S.COLUMN_SKILL_TREES_NAME, searchTerm)
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            WHERE ${filter.predicate}
+            ORDER BY $column_name ASC
+        """, filter.parameters))
     }
 
     /*
      * Get a specific skill tree
      */
-    fun querySkillTree(id: Long): SkillTreeCursor {
+    fun querySkillTree(id: Long): SkillTree? {
         // "SELECT DISTINCT * FROM skill_trees WHERE _id = id LIMIT 1"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = S.COLUMN_SKILL_TREES_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            WHERE _id = ?
+        """, arrayOf(id.toString()))).firstOrNull { it.skillTree }
     }
 
     /**

@@ -65,7 +65,7 @@ fun <T, J : Cursor> J.first(process: (J) -> T): T {
  * The cursor is closed at the completion of this method.
  */
 fun <T, J : Cursor> J.firstOrNull(process: (J) -> T) : T? {
-    // todo: implement asSequence() extension, use that one
+    // todo: optimize. Use cursor.moveToFirst() and check cursor.isAfterLast
     return this.toList(process).firstOrNull()
 }
 
