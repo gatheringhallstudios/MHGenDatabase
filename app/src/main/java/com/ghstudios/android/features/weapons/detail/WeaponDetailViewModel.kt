@@ -22,6 +22,9 @@ data class WeaponFamilyWrapper(
     val showLevel:Boolean
 )
 
+/**
+ * ViewModel that manages data for the weapon detail
+ */
 class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
@@ -59,15 +62,17 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     var weaponId = -1L
         private set
 
-    fun loadWeapon(weaponId: Long) {
+    fun loadWeapon(weaponId: Long): Weapon? {
         if (this.weaponId == weaponId) {
-            return
+            return weaponData.value
         }
 
         this.weaponId = weaponId
 
+        val weapon = dataManager.getWeapon(weaponId)
+        weaponData.postValue(weapon)
+
         loggedThread("Weapon Detail Loading") {
-            weaponData.postValue(dataManager.getWeapon(weaponId))
             val components = dataManager.queryComponentCreated(weaponId).toList {
                 it.component
             }
@@ -85,5 +90,7 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
             for (w in branches) famData.add(WeaponFamilyWrapper("Branches",w,true))
             familyTreeData.postValue(famData)
         }
+
+        return weapon
     }
 }

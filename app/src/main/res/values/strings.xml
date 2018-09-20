@@ -55,6 +55,20 @@
     <string name="type_hub_event">Event</string>
     <string name="type_hub_arena">Arena</string>
     <string name="type_hub_permit">Permit</string>
+    <string name="type_weapon_greatsword">Great Sword</string>
+    <string name="type_weapon_longsword">Long Sword</string>
+    <string name="type_weapon_swordandshield">Sword and Shield</string>
+    <string name="type_weapon_dualblades">Dual Blades</string>
+    <string name="type_weapon_hammer">Hammer</string>
+    <string name="type_weapon_huntinghorn">Hunting Horn</string>
+    <string name="type_weapon_lance">Lance</string>
+    <string name="type_weapon_gunlance">Gunlance</string>
+    <string name="type_weapon_switchaxe">Switch Axe</string>
+    <string name="type_weapon_chargeblade">Charge Blade</string>
+    <string name="type_weapon_insectglaive">Insect Glaive</string>
+    <string name="type_weapon_lightbowgun">Light Bowgun</string>
+    <string name="type_weapon_heavybowgun">Heavy Bowgun</string>
+    <string name="type_weapon_bow">Bow</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
@@ -204,6 +218,13 @@
         <item>Rare 10</item>
         <item>Rare X</item>
     </string-array>
+
+    <!-- Weapons -->
+    <string name="weapon_detail_tab_detail">"Detail"</string>
+    <string name="weapon_detail_tab_melodies">Melodies</string>
+    <string name="weapon_detail_tab_ammo">Ammo</string>
+    <string name="weapon_detail_tab_coatings">Coatings</string>
+    <string name="weapon_detail_tab_family">Family</string>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_name_hint">Wishlist Name</string>

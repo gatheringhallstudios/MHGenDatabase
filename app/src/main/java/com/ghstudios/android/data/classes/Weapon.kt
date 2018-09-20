@@ -20,7 +20,7 @@ class Weapon : Item() {
         const val HAMMER = "Hammer"
         const val HUNTING_HORN = "Hunting Horn"
         const val LANCE = "Lance"
-        const val GUN_LANCE = "Gunlance"
+        const val GUNLANCE = "Gunlance"
         const val SWITCH_AXE = "Switch Axe"
         const val CHARGE_BLADE = "Charge Blade"
         const val INSECT_GLAIVE = "Insect Glaive"
