@@ -1330,9 +1330,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
@@ -1374,9 +1374,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
@@ -1531,10 +1531,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         val projectionMap = LinkedHashMap<String, String>()
 
+        val column_goal = localizeColumn(S.COLUMN_QUESTS_GOAL)
+        val column_sub_goal = localizeColumn(S.COLUMN_QUESTS_SUB_GOAL)
+        val column_flavor = localizeColumn(S.COLUMN_QUESTS_FLAVOR)
+
         projectionMap["_id"] = q + "." + S.COLUMN_QUESTS_ID + " AS " + "_id"
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[q + S.COLUMN_QUESTS_JPN_NAME] = q + "." + S.COLUMN_QUESTS_JPN_NAME + " AS " + q + S.COLUMN_QUESTS_JPN_NAME
-        projectionMap[S.COLUMN_QUESTS_GOAL] = q + "." + S.COLUMN_QUESTS_GOAL
+        projectionMap[S.COLUMN_QUESTS_GOAL] = "$q.$column_goal AS ${S.COLUMN_QUESTS_GOAL}"
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_RANK] = q + "." + S.COLUMN_QUESTS_RANK
         projectionMap[S.COLUMN_QUESTS_TYPE] = q + "." + S.COLUMN_QUESTS_TYPE
@@ -1544,14 +1548,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_QUESTS_FEE] = q + "." + S.COLUMN_QUESTS_FEE
         projectionMap[S.COLUMN_QUESTS_REWARD] = q + "." + S.COLUMN_QUESTS_REWARD
         projectionMap[S.COLUMN_QUESTS_HRP] = q + "." + S.COLUMN_QUESTS_HRP
-        projectionMap[S.COLUMN_QUESTS_SUB_GOAL] = q + "." + S.COLUMN_QUESTS_SUB_GOAL
+        projectionMap[S.COLUMN_QUESTS_SUB_GOAL] =  "$q.$column_sub_goal AS ${S.COLUMN_QUESTS_SUB_GOAL}"
         projectionMap[S.COLUMN_QUESTS_SUB_REWARD] = q + "." + S.COLUMN_QUESTS_SUB_REWARD
         projectionMap[S.COLUMN_QUESTS_SUB_HRP] = q + "." + S.COLUMN_QUESTS_SUB_HRP
         projectionMap[S.COLUMN_QUESTS_GOAL_TYPE] = q + "." + S.COLUMN_QUESTS_GOAL_TYPE
         projectionMap[S.COLUMN_QUESTS_HUNTER_TYPE] = q + "." + S.COLUMN_QUESTS_HUNTER_TYPE
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP
-        projectionMap[S.COLUMN_QUESTS_FLAVOR] = q + "." + S.COLUMN_QUESTS_FLAVOR
+        projectionMap[S.COLUMN_QUESTS_FLAVOR] = "$q.$column_flavor AS ${S.COLUMN_QUESTS_FLAVOR}"
         projectionMap[S.COLUMN_QUESTS_METADATA] = q + "." + S.COLUMN_QUESTS_METADATA
         projectionMap[S.COLUMN_QUESTS_PERMIT_MONSTER_ID] = q + "." + S.COLUMN_QUESTS_PERMIT_MONSTER_ID
 
@@ -1629,10 +1633,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_QUEST_REWARDS_PERCENTAGE] = qr + "." + S.COLUMN_QUEST_REWARDS_PERCENTAGE
         projectionMap[S.COLUMN_QUEST_REWARDS_STACK_SIZE] = qr + "." + S.COLUMN_QUEST_REWARDS_STACK_SIZE
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
