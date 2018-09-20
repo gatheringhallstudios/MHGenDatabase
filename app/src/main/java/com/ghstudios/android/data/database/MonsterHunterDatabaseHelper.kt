@@ -973,13 +973,13 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID] = itst + "." + S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID
         projectionMap[S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE] = itst + "." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[s + S.COLUMN_SKILL_TREES_NAME] = s + "." + S.COLUMN_SKILL_TREES_NAME + " AS " + s + S.COLUMN_SKILL_TREES_NAME
+        projectionMap[s + S.COLUMN_SKILL_TREES_NAME] = "$s.$column_name AS " + s + S.COLUMN_SKILL_TREES_NAME
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
