@@ -52,8 +52,8 @@ public class ASBPagerActivity extends BasePagerActivity {
             ASBDetailViewModel viewModel = ViewModelProviders.of(this).get(ASBDetailViewModel.class);
             viewModel.loadSession(asbId);
 
-            tabs.addTab(getString(R.string.asb_tab_equipment), ASBFragment::new);
-            tabs.addTab(getString(R.string.asb_tab_skills), ASBSkillsListFragment::new);
+            tabs.addTab(R.string.asb_tab_equipment, ASBFragment::new);
+            tabs.addTab(R.string.asb_tab_skills, ASBSkillsListFragment::new);
 
         } catch (Exception ex) {
             showFatalError();

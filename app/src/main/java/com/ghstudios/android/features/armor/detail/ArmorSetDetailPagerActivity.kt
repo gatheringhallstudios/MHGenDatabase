@@ -34,7 +34,7 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
         val hasSummaryTab = metadata.size > 1
 
         if (hasSummaryTab) {
-            tabs.addTab(getString(R.string.armor_title_set)) { ArmorSetSummaryFragment() }
+            tabs.addTab(R.string.armor_title_set) { ArmorSetSummaryFragment() }
         }
 
         for ((idx, armorData) in metadata.withIndex()) {

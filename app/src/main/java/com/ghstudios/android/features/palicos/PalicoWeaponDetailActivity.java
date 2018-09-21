@@ -31,11 +31,11 @@ public class PalicoWeaponDetailActivity extends BasePagerActivity {
         name = wep.getItem().getName();
         setTitle(R.string.palicos);
 
-        tabs.addTab("Details", () ->
+        tabs.addTab(R.string.palico_equipment_tab_detail, () ->
                 PalicoWeaponDetailFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0))
         );
 
-        tabs.addTab("Components", () ->
+        tabs.addTab(R.string.palico_equipment_tab_components, () ->
                 ComponentListFragment.newInstance(getIntent().getLongExtra(EXTRA_WEAPON_ID,0))
         );
     }

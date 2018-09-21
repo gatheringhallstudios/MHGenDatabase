@@ -167,6 +167,11 @@
     <string name="monster_status_damage">Damage</string>
 
     <!-- Items -->
+    <string name="item_detail_tab_detail">Detail</string>
+    <string name="item_detail_tab_usage">Usage</string>
+    <string name="item_detail_tab_monster">Monster</string>
+    <string name="item_detail_tab_quest">Quest</string>
+    <string name="item_detail_tab_location">Location</string>
     <string name="item_rarity">Rare</string>
     <string name="item_carry_max">Carry Max:</string>
     <string name="item_buy">Buy Price</string>
@@ -220,7 +225,7 @@
     </string-array>
 
     <!-- Weapons -->
-    <string name="weapon_detail_tab_detail">"Detail"</string>
+    <string name="weapon_detail_tab_detail">Detail</string>
     <string name="weapon_detail_tab_melodies">Melodies</string>
     <string name="weapon_detail_tab_ammo">Ammo</string>
     <string name="weapon_detail_tab_coatings">Coatings</string>
@@ -229,6 +234,12 @@
     <string name="weapon_tree_family">Family</string>
     <string name="weapon_tree_side_branches">Branches</string>
     <string name="weapon_tree_final">Final (All Branches)</string>
+
+    <!-- Palicos -->
+    <string name="palico_tab_weapons">Weapons</string>
+    <string name="palico_tab_armor">Armor</string>
+    <string name="palico_equipment_tab_detail">Detail</string>
+    <string name="palico_equipment_tab_components">Components</string>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_name_hint">Wishlist Name</string>

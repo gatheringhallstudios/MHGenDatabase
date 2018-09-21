@@ -24,36 +24,36 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
 
         setTitle(meta.getName());
 
-        tabs.addTab(getString(R.string.monster_detail_tab_summary), () ->
+        tabs.addTab(R.string.monster_detail_tab_summary, () ->
                 MonsterSummaryFragment.newInstance(monsterId)
         );
 
         if (meta.getHasDamageData() || meta.getHasStatusData()) {
             // only include Damage tab if there is data
-            tabs.addTab(getString(R.string.monster_detail_tab_damage), () ->
+            tabs.addTab(R.string.monster_detail_tab_damage, () ->
                     MonsterDamageFragment.newInstance(monsterId)
             );
         }
 
         if(meta.getHasLowRank()) {
-            tabs.addTab(getString(R.string.monster_detail_tab_lr), () ->
+            tabs.addTab(R.string.monster_detail_tab_lr, () ->
                     MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_LR)
             );
         }
 
         if(meta.getHasHighRank()) {
-            tabs.addTab(getString(R.string.monster_detail_tab_hr), () ->
+            tabs.addTab(R.string.monster_detail_tab_hr, () ->
                     MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_HR)
             );
         }
 
         if(meta.getHasGRank()) {
-            tabs.addTab(getString(R.string.monster_detail_tab_g), () ->
+            tabs.addTab(R.string.monster_detail_tab_g, () ->
                     MonsterRewardFragment.Companion.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_G)
             );
         }
 
-        tabs.addTab(getString(R.string.monster_detail_tab_quest), () ->
+        tabs.addTab(R.string.monster_detail_tab_quest, () ->
                 MonsterQuestFragment.newInstance(monsterId)
         );
     }
