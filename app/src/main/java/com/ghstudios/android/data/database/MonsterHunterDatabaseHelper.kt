@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Log
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
@@ -2939,11 +2940,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val values = ContentValues()
 
         when (pieceIndex) {
-            ASBSession.HEAD -> putASBSessionItemOrNull(values, S.COLUMN_HEAD_ARMOR_ID, pieceId)
-            ASBSession.BODY -> putASBSessionItemOrNull(values, S.COLUMN_BODY_ARMOR_ID, pieceId)
-            ASBSession.ARMS -> putASBSessionItemOrNull(values, S.COLUMN_ARMS_ARMOR_ID, pieceId)
-            ASBSession.WAIST -> putASBSessionItemOrNull(values, S.COLUMN_WAIST_ARMOR_ID, pieceId)
-            ASBSession.LEGS -> putASBSessionItemOrNull(values, S.COLUMN_LEGS_ARMOR_ID, pieceId)
+            ArmorSet.HEAD -> putASBSessionItemOrNull(values, S.COLUMN_HEAD_ARMOR_ID, pieceId)
+            ArmorSet.BODY -> putASBSessionItemOrNull(values, S.COLUMN_BODY_ARMOR_ID, pieceId)
+            ArmorSet.ARMS -> putASBSessionItemOrNull(values, S.COLUMN_ARMS_ARMOR_ID, pieceId)
+            ArmorSet.WAIST -> putASBSessionItemOrNull(values, S.COLUMN_WAIST_ARMOR_ID, pieceId)
+            ArmorSet.LEGS -> putASBSessionItemOrNull(values, S.COLUMN_LEGS_ARMOR_ID, pieceId)
         }
 
         return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
@@ -2955,42 +2956,42 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val values = ContentValues()
 
         when (pieceIndex) {
-            ASBSession.HEAD -> if (decorationIndex == 0) {
+            ArmorSet.HEAD -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_2_ID, decorationId)
             } else if (decorationIndex == 2) {
                 putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_3_ID, decorationId)
             }
-            ASBSession.BODY -> if (decorationIndex == 0) {
+            ArmorSet.BODY -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_2_ID, decorationId)
             } else if (decorationIndex == 2) {
                 putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_3_ID, decorationId)
             }
-            ASBSession.ARMS -> if (decorationIndex == 0) {
+            ArmorSet.ARMS -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_2_ID, decorationId)
             } else if (decorationIndex == 2) {
                 putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_3_ID, decorationId)
             }
-            ASBSession.WAIST -> if (decorationIndex == 0) {
+            ArmorSet.WAIST -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_2_ID, decorationId)
             } else if (decorationIndex == 2) {
                 putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_3_ID, decorationId)
             }
-            ASBSession.LEGS -> if (decorationIndex == 0) {
+            ArmorSet.LEGS -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_2_ID, decorationId)
             } else if (decorationIndex == 2) {
                 putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_3_ID, decorationId)
             }
-            ASBSession.TALISMAN -> if (decorationIndex == 0) {
+            ArmorSet.TALISMAN -> if (decorationIndex == 0) {
                 putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_1_ID, decorationId)
             } else if (decorationIndex == 1) {
                 putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_2_ID, decorationId)

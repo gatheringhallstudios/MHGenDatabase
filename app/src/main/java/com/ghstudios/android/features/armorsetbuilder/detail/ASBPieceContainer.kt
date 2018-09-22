@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
@@ -88,7 +89,7 @@ class ASBPieceContainer
         equipmentHeader.setOnClickListener {
             // If empty or is talisman, trigger the normal add routine
             val equipment = session.getEquipment(pieceIndex)
-            if (pieceIndex == ASBSession.TALISMAN || equipment == null) {
+            if (pieceIndex == ArmorSet.TALISMAN || equipment == null) {
                 onAddEquipment()
                 return@setOnClickListener
             }
@@ -142,12 +143,12 @@ class ASBPieceContainer
         } else {
             // Since no equipment is selected, load the "empty image"
             val resId = when(pieceIndex) {
-                ASBSession.HEAD -> R.drawable.armor_head
-                ASBSession.BODY -> R.drawable.armor_body
-                ASBSession.ARMS -> R.drawable.armor_arms
-                ASBSession.WAIST -> R.drawable.armor_waist
-                ASBSession.LEGS -> R.drawable.armor_legs
-                ASBSession.TALISMAN -> R.drawable.talisman
+                ArmorSet.HEAD -> R.drawable.armor_head
+                ArmorSet.BODY -> R.drawable.armor_body
+                ArmorSet.ARMS -> R.drawable.armor_arms
+                ArmorSet.WAIST -> R.drawable.armor_waist
+                ArmorSet.LEGS -> R.drawable.armor_legs
+                ArmorSet.TALISMAN -> R.drawable.talisman
                 else -> 0
             }
 
@@ -205,7 +206,7 @@ class ASBPieceContainer
      * Function that handles a user's attempt to add new equipment
      */
     private fun onAddEquipment() {
-        if (pieceIndex == ASBSession.TALISMAN) {
+        if (pieceIndex == ArmorSet.TALISMAN) {
             val d = ASBTalismanDialogFragment.newInstance(session.talisman)
             d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
             d.show(parentFragment!!.fragmentManager, "TALISMAN")

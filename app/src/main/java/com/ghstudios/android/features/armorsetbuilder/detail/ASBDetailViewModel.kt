@@ -8,6 +8,8 @@ import android.util.Log
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -40,11 +42,11 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         val armor = dataManager.getArmor(armorId)
 
         val armorEnum = when (armor?.slot) {
-            "Head" -> ASBSession.HEAD
-            "Body" -> ASBSession.BODY
-            "Arms" -> ASBSession.ARMS
-            "Waist" -> ASBSession.WAIST
-            "Legs" -> ASBSession.LEGS
+            Armor.ARMOR_SLOT_HEAD -> ArmorSet.HEAD
+            Armor.ARMOR_SLOT_BODY -> ArmorSet.BODY
+            Armor.ARMOR_SLOT_ARMS -> ArmorSet.ARMS
+            Armor.ARMOR_SLOT_WAIST -> ArmorSet.WAIST
+            Armor.ARMOR_SLOT_LEGS -> ArmorSet.LEGS
             else -> null
         }
 
@@ -59,7 +61,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     fun removeArmorPiece(pieceIndex: Int) {
         session.removeEquipment(pieceIndex)
 
-        if (pieceIndex == ASBSession.TALISMAN) {
+        if (pieceIndex == ArmorSet.TALISMAN) {
             dataManager.queryRemoveASBSessionTalisman(session.id)
         } else {
             dataManager.queryRemoveASBSessionArmor(session.id, pieceIndex)
@@ -116,7 +118,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
             talisman.setSecondSkill(skill2Tree, skill2Points)
         }
 
-        session.setEquipment(ASBSession.TALISMAN, talisman)
+        session.setEquipment(ArmorSet.TALISMAN, talisman)
 
         dataManager.queryCreateASBSessionTalisman(
                 session.id,
@@ -127,7 +129,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
                 skill2Id,
                 skill2Points)
 
-        triggerPieceUpdated(ASBSession.TALISMAN)
+        triggerPieceUpdated(ArmorSet.TALISMAN)
     }
 
     /**

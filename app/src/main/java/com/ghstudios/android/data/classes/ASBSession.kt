@@ -10,15 +10,6 @@ import java.util.HashMap
  * Contains all of the juicy stuff regarding ASB sets, like the armor inside and the skills it provides.
  */
 class ASBSession: ArmorSet {
-    companion object {
-        const val HEAD = 0
-        const val BODY = 1
-        const val ARMS = 2
-        const val WAIST = 3
-        const val LEGS = 4
-        const val TALISMAN = 5
-    }
-
     private var asbSet: ASBSet? = null
 
     private val equipment: Array<Equipment?> = arrayOfNulls(6)
@@ -51,7 +42,7 @@ class ASBSession: ArmorSet {
      * @return The set's talisman.
      */
     val talisman: ASBTalisman?
-        get() = equipment[TALISMAN] as ASBTalisman?
+        get() = equipment[ArmorSet.TALISMAN] as ASBTalisman?
 
     fun setASBSet(set: ASBSet) {
         asbSet = set
@@ -120,12 +111,7 @@ class ASBSession: ArmorSet {
      * Removes the equipment at the specified location.
      */
     fun removeEquipment(pieceIndex: Int) {
-        if (pieceIndex == TALISMAN) {
-            equipment[pieceIndex] = null
-        } else {
-            equipment[pieceIndex] = null
-        }
-
+        equipment[pieceIndex] = null
         decorations[pieceIndex].clear()
     }
 }

@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
 
 /**
@@ -69,30 +70,30 @@ class ASBSkillsListFragment : Fragment() {
 
             val data = getItem(position)
             
-            treeName.text = data.skillTree?.name
+            treeName.text = data.skillTree.name
 
-            if (session.getEquipment(ASBSession.HEAD) != null && data.getPoints(ASBSession.HEAD) != 0) {
-                headPoints.text = data.getPoints(ASBSession.HEAD).toString()
+            if (session.getEquipment(ArmorSet.HEAD) != null && data.getPoints(ArmorSet.HEAD) != 0) {
+                headPoints.text = data.getPoints(ArmorSet.HEAD).toString()
             }
 
-            if (session.getEquipment(ASBSession.BODY) != null && data.getPoints(ASBSession.BODY) != 0) {
-                bodyPoints.text = data.getPoints(ASBSession.BODY).toString()
+            if (session.getEquipment(ArmorSet.BODY) != null && data.getPoints(ArmorSet.BODY) != 0) {
+                bodyPoints.text = data.getPoints(ArmorSet.BODY).toString()
             }
 
-            if (session.getEquipment(ASBSession.ARMS) != null && data.getPoints(ASBSession.ARMS) != 0) {
-                armsPoints.text = data.getPoints(ASBSession.ARMS).toString()
+            if (session.getEquipment(ArmorSet.ARMS) != null && data.getPoints(ArmorSet.ARMS) != 0) {
+                armsPoints.text = data.getPoints(ArmorSet.ARMS).toString()
             }
 
-            if (session.getEquipment(ASBSession.WAIST) != null && data.getPoints(ASBSession.WAIST) != 0) {
-                waistPoints.text = data.getPoints(ASBSession.WAIST).toString()
+            if (session.getEquipment(ArmorSet.WAIST) != null && data.getPoints(ArmorSet.WAIST) != 0) {
+                waistPoints.text = data.getPoints(ArmorSet.WAIST).toString()
             }
 
-            if (session.getEquipment(ASBSession.LEGS) != null && data.getPoints(ASBSession.LEGS) != 0) {
-                legsPoints.text = data.getPoints(ASBSession.LEGS).toString()
+            if (session.getEquipment(ArmorSet.LEGS) != null && data.getPoints(ArmorSet.LEGS) != 0) {
+                legsPoints.text = data.getPoints(ArmorSet.LEGS).toString()
             }
 
-            if (session.getEquipment(ASBSession.TALISMAN) != null && data.getPoints(ASBSession.TALISMAN) != 0) {
-                talismanPoints.text = data.getPoints(ASBSession.TALISMAN).toString()
+            if (session.getEquipment(ArmorSet.TALISMAN) != null && data.getPoints(ArmorSet.TALISMAN) != 0) {
+                talismanPoints.text = data.getPoints(ArmorSet.TALISMAN).toString()
             }
 
             totalPoints.text = data.getTotal().toString()

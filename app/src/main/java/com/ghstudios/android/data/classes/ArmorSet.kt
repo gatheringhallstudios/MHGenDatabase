@@ -13,5 +13,14 @@ class ArmorSetPiece(val idx: Int, val equipment: Equipment) {
  * of a piece of equipment and attached decorations
  */
 interface ArmorSet {
+    companion object {
+        const val HEAD = 0
+        const val BODY = 1
+        const val ARMS = 2
+        const val WAIST = 3
+        const val LEGS = 4
+        const val TALISMAN = 5
+    }
+
     val pieces: List<ArmorSetPiece>
 }
