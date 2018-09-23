@@ -83,6 +83,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     private val gatheringDao = GatheringDao(mHelper)
     private val skillDao = SkillDao(mHelper)
 
+    val asbManager = ASBManager(mAppContext, mHelper)
+
 
     /********************************* ARMOR QUERIES  */
 
@@ -1062,85 +1064,6 @@ class DataManager private constructor(private val mAppContext: Context) {
             // Update the WishlistData entry
             mHelper.queryUpdateWishlistDataSatisfied(wd.id, satisfied)
         }
-    }
-
-    /********************************* ARMOR SET BUILDER QUERIES  */
-
-    fun queryASBSets(): ASBSetCursor {
-        return mHelper.queryASBSets()
-    }
-
-    fun getASBSet(id: Long): ASBSet? {
-        var set: ASBSet? = null
-        val cursor = mHelper.queryASBSet(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            set = cursor.asbSet
-
-        cursor.close()
-        return set
-    }
-
-    /** Get a cursor with a list of all armor sets.  */
-    fun queryASBSessions(): ASBSessionCursor {
-        return mHelper.queryASBSessions()
-    }
-
-    /** Get a specific armor set.  */
-    fun getASBSession(id: Long): ASBSession? {
-        var session: ASBSession? = null
-        val cursor = mHelper.queryASBSession(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            session = cursor.getASBSession(mAppContext)
-
-        cursor.close()
-        return session
-    }
-
-    /** Adds a new ASB set to the list.  */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int) {
-        mHelper.queryAddASBSet(name, rank, hunterType)
-    }
-
-    /** Adds a new set that is a copy of the designated set to the list.  */
-    fun queryAddASBSet(setId: Long) {
-        val set = getASBSet(setId)
-        mHelper.queryAddASBSet(set!!.name!!, set.rank, set.hunterType)
-    }
-
-    fun queryDeleteASBSet(setId: Long) {
-        mHelper.queryDeleteASBSet(setId)
-    }
-
-    fun queryUpdateASBSet(setId: Long, name: String, rank: Int, hunterType: Int) {
-        mHelper.queryUpdateASBSet(setId, name, rank, hunterType)
-    }
-
-    fun queryPutASBSessionArmor(asbSetId: Long, armorId: Long, pieceIndex: Int) {
-        mHelper.queryAddASBSessionArmor(asbSetId, armorId, pieceIndex)
-    }
-
-    fun queryRemoveASBSessionArmor(asbSetId: Long, pieceIndex: Int) {
-        mHelper.queryAddASBSessionArmor(asbSetId, -1, pieceIndex)
-    }
-
-    fun queryPutASBSessionDecoration(asbSetId: Long, decorationId: Long, pieceIndex: Int, decorationIndex: Int) {
-        mHelper.queryPutASBSessionDecoration(asbSetId, decorationId, pieceIndex, decorationIndex)
-    }
-
-    fun queryRemoveASBSessionDecoration(asbSetId: Long, pieceIndex: Int, decorationIndex: Int) {
-        mHelper.queryPutASBSessionDecoration(asbSetId, -1, pieceIndex, decorationIndex)
-    }
-
-    fun queryCreateASBSessionTalisman(asbSetId: Long, type: Int, slots: Int, skill1Id: Long, skill1Points: Int, skill2Id: Long, skill2Points: Int) {
-        mHelper.queryCreateASBSessionTalisman(asbSetId, type, slots, skill1Id, skill1Points, skill2Id, skill2Points)
-    }
-
-    fun queryRemoveASBSessionTalisman(asbSetId: Long) {
-        mHelper.queryRemoveASBSessionTalisman(asbSetId)
     }
 
     /**************************** WYPORIUM TRADE DATA QUERIES  */

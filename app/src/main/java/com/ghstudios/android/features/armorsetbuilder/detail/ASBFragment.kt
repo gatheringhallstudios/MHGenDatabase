@@ -20,25 +20,27 @@ class ASBFragment : Fragment() {
         ViewModelProviders.of(activity!!).get(ASBDetailViewModel::class.java)
     }
 
-    private val equipmentViews = arrayOfNulls<ASBPieceContainer>(6)
+    private lateinit var equipmentViews: List<ASBPieceContainer>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_asb, container, false)
 
-        equipmentViews[0] = view.findViewById(R.id.armor_builder_head)
-        equipmentViews[1] = view.findViewById(R.id.armor_builder_body)
-        equipmentViews[2] = view.findViewById(R.id.armor_builder_arms)
-        equipmentViews[3] = view.findViewById(R.id.armor_builder_waist)
-        equipmentViews[4] = view.findViewById(R.id.armor_builder_legs)
-        equipmentViews[5] = view.findViewById(R.id.armor_builder_talisman)
+        equipmentViews = listOf(
+                view.findViewById(R.id.armor_builder_weapon),
+                view.findViewById(R.id.armor_builder_head),
+                view.findViewById(R.id.armor_builder_body),
+                view.findViewById(R.id.armor_builder_arms),
+                view.findViewById(R.id.armor_builder_waist),
+                view.findViewById(R.id.armor_builder_legs),
+                view.findViewById(R.id.armor_builder_talisman))
 
         for ((idx, equipView) in equipmentViews.withIndex()) {
-            equipView?.initialize(viewModel.session, idx, this)
+            equipView.initialize(viewModel.session, idx, this)
         }
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it != null) {
-                equipmentViews[it]?.updateContents()
+                equipmentViews.getOrNull(it)?.updateContents()
             }
         })
 
@@ -114,8 +116,6 @@ class ASBFragment : Fragment() {
 
     /** Called when the user clicks the drop-down arrow on an equipment view.  */
     fun onDecorationsMenuOpened() {
-        for (c in equipmentViews) {
-            c?.hideDecorations()
-        }
+        equipmentViews.forEach { it.hideDecorations() }
     }
 }

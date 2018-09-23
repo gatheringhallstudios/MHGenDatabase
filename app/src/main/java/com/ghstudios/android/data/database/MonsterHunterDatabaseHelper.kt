@@ -2952,6 +2952,13 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return deleteRecord(S.TABLE_ASB_SETS, filter, emptyArray())
     }
 
+    fun queryASBSetWeaponSlots(asbSetId: Long, numSlots: Int): Long {
+        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
+        val values = ContentValues()
+        values.put(S.COLUMN_ASB_WEAPON_SLOTS, numSlots)
+        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
+    }
+
     fun queryAddASBSessionArmor(asbSetId: Long, pieceId: Long, pieceIndex: Int): Long {
         val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
 
@@ -2963,61 +2970,77 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             ArmorSet.ARMS -> putASBSessionItemOrNull(values, S.COLUMN_ARMS_ARMOR_ID, pieceId)
             ArmorSet.WAIST -> putASBSessionItemOrNull(values, S.COLUMN_WAIST_ARMOR_ID, pieceId)
             ArmorSet.LEGS -> putASBSessionItemOrNull(values, S.COLUMN_LEGS_ARMOR_ID, pieceId)
+            else -> {
+                Log.e(TAG, "Tried to update an invalid piece: Not an armor slot")
+                return 0
+            }
         }
 
         return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
     }
 
     fun queryPutASBSessionDecoration(asbSetId: Long, decorationId: Long, pieceIndex: Int, decorationIndex: Int): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
+        // Determine the column we need to update
+        val column = when (pieceIndex) {
+            ArmorSet.WEAPON -> when (decorationIndex) {
+                0 -> S.COLUMN_ASB_WEAPON_DECORATION_1_ID
+                1 -> S.COLUMN_ASB_WEAPON_DECORATION_2_ID
+                2 -> S.COLUMN_ASB_WEAPON_DECORATION_3_ID
+                else -> null
+            }
+            
+            ArmorSet.HEAD -> when (decorationIndex) {
+                0 -> S.COLUMN_HEAD_DECORATION_1_ID
+                1 -> S.COLUMN_HEAD_DECORATION_2_ID
+                2 -> S.COLUMN_HEAD_DECORATION_3_ID
+                else -> null
+            }
+            
+            ArmorSet.BODY -> when (decorationIndex) {
+                0 -> S.COLUMN_BODY_DECORATION_1_ID
+                1 -> S.COLUMN_BODY_DECORATION_2_ID
+                2 -> S.COLUMN_BODY_DECORATION_3_ID
+                else -> null
+            }
+            
+            ArmorSet.ARMS -> when (decorationIndex) {
+                0 -> S.COLUMN_ARMS_DECORATION_1_ID
+                1 -> S.COLUMN_ARMS_DECORATION_2_ID
+                2 -> S.COLUMN_ARMS_DECORATION_3_ID
+                else -> null
+            }
+            
+            ArmorSet.WAIST -> when (decorationIndex) {
+                0 -> S.COLUMN_WAIST_DECORATION_1_ID
+                1 -> S.COLUMN_WAIST_DECORATION_2_ID
+                2 -> S.COLUMN_WAIST_DECORATION_3_ID
+                else -> null
+            }
+            ArmorSet.LEGS -> when (decorationIndex) {
+                0 -> S.COLUMN_LEGS_DECORATION_1_ID
+                1 -> S.COLUMN_LEGS_DECORATION_2_ID
+                2 -> S.COLUMN_LEGS_DECORATION_3_ID
+                else -> null
+            }
 
-        val values = ContentValues()
+            ArmorSet.TALISMAN -> when (decorationIndex) {
+                0 -> S.COLUMN_TALISMAN_DECORATION_1_ID
+                1 -> S.COLUMN_TALISMAN_DECORATION_2_ID
+                2 -> S.COLUMN_TALISMAN_DECORATION_3_ID
+                else -> null
+            }
 
-        when (pieceIndex) {
-            ArmorSet.HEAD -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_3_ID, decorationId)
-            }
-            ArmorSet.BODY -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_3_ID, decorationId)
-            }
-            ArmorSet.ARMS -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_3_ID, decorationId)
-            }
-            ArmorSet.WAIST -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_3_ID, decorationId)
-            }
-            ArmorSet.LEGS -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_3_ID, decorationId)
-            }
-            ArmorSet.TALISMAN -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_3_ID, decorationId)
-            }
+            else -> null
         }
 
+        if (column == null) {
+            Log.e(TAG, "Failed to determine column for piece $pieceIndex and slot $decorationIndex")
+            return 0
+        }
+
+        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
+        val values = ContentValues()
+        putASBSessionItemOrNull(values, column, decorationId)
         return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
     }
 
@@ -3084,6 +3107,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val set = "ar"
 
         projectionMap["_id"] = set + "." + S.COLUMN_ASB_SET_ID + " AS " + "_id"
+
+        projectionMap[S.COLUMN_ASB_WEAPON_SLOTS] = set + "." + S.COLUMN_ASB_WEAPON_SLOTS
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_1_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_1_ID
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_2_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_2_ID
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_3_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_3_ID
 
         projectionMap[S.COLUMN_HEAD_ARMOR_ID] = set + "." + S.COLUMN_HEAD_ARMOR_ID
         projectionMap[S.COLUMN_HEAD_DECORATION_1_ID] = set + "." + S.COLUMN_HEAD_DECORATION_1_ID

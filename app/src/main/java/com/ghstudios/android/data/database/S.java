@@ -352,7 +352,12 @@ public class S {
 	public static final String COLUMN_ASB_SET_NAME = "name";
 	public static final String COLUMN_ASB_SET_RANK = "rank";
 	public static final String COLUMN_ASB_SET_HUNTER_TYPE = "hunter_type";
-	
+
+	public static final String COLUMN_ASB_WEAPON_SLOTS = "weapon_slots";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_1_ID = "weapon_decoration_1";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_2_ID = "weapon_decoration_2";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_3_ID = "weapon_decoration_3";
+
 	public static final String COLUMN_HEAD_ARMOR_ID = "head_armor";
 	public static final String COLUMN_HEAD_DECORATION_1_ID = "head_decoration_1";
 	public static final String COLUMN_HEAD_DECORATION_2_ID = "head_decoration_2";

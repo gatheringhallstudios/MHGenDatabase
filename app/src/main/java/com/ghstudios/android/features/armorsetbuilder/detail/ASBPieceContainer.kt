@@ -152,9 +152,14 @@ class ASBPieceContainer
                 else -> 0
             }
 
-            val image = ContextCompat.getDrawable(context, resId)?.mutate()
-            image?.alpha = unselectedAlpha
-            icon.setImageDrawable(image)
+            if (resId == 0) {
+                icon.setImageDrawable(null)
+            } else {
+                val image = ContextCompat.getDrawable(context, resId)?.mutate()
+                image?.alpha = unselectedAlpha
+                icon.setImageDrawable(image)
+            }
+
         }
 
         // set the add/remove button based on equipment

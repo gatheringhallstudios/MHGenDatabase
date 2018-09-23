@@ -21,6 +21,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     private val TAG = javaClass.simpleName
 
     private val dataManager = DataManager.get()
+    private val asbManager = dataManager.asbManager
 
     private var sessionId = -1L
     lateinit var session: ASBSession
@@ -35,7 +36,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
 
         this.sessionId = sessionId
-        session = dataManager.getASBSession(sessionId)!! // note: error should never happen
+        session = asbManager.getASBSession(sessionId)!! // note: error should never happen
     }
 
     fun addArmor(armorId: Long) {
@@ -52,7 +53,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
         if (armor != null && armorEnum != null) {
             session.setEquipment(armorEnum, armor)
-            dataManager.queryPutASBSessionArmor(session.id, armorId, armorEnum)
+            asbManager.queryPutASBSessionArmor(session.id, armorId, armorEnum)
 
             triggerPieceUpdated(armorEnum)
         }
@@ -62,9 +63,12 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         session.removeEquipment(pieceIndex)
 
         if (pieceIndex == ArmorSet.TALISMAN) {
-            dataManager.queryRemoveASBSessionTalisman(session.id)
+            asbManager.queryRemoveASBSessionTalisman(session.id)
+        } else if (pieceIndex == ArmorSet.WEAPON) {
+            // the decorations were cleared by the remove call. Do that instead
+            // todo: send query to remove the weapon decos
         } else {
-            dataManager.queryRemoveASBSessionArmor(session.id, pieceIndex)
+            asbManager.queryRemoveASBSessionArmor(session.id, pieceIndex)
         }
 
         triggerPieceUpdated(pieceIndex)
@@ -80,7 +84,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         val decorationIndex = session.addDecoration(pieceIndex, decoration)
 
         if (decorationIndex != -1 && pieceIndex != -1) {
-            dataManager.queryPutASBSessionDecoration(session.id, decorationId, pieceIndex, decorationIndex)
+            asbManager.queryPutASBSessionDecoration(session.id, decorationId, pieceIndex, decorationIndex)
         }
 
         triggerPieceUpdated(pieceIndex)
@@ -88,7 +92,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun unbindDecoration(pieceIndex: Int, decorationIndex: Int) {
         session.removeDecoration(pieceIndex, decorationIndex)
-        dataManager.queryRemoveASBSessionDecoration(session.id, pieceIndex, decorationIndex)
+        asbManager.queryRemoveASBSessionDecoration(session.id, pieceIndex, decorationIndex)
 
         triggerPieceUpdated(pieceIndex)
     }
@@ -120,7 +124,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
         session.setEquipment(ArmorSet.TALISMAN, talisman)
 
-        dataManager.queryCreateASBSessionTalisman(
+        asbManager.queryCreateASBSessionTalisman(
                 session.id,
                 typeIndex,
                 numSlots,
