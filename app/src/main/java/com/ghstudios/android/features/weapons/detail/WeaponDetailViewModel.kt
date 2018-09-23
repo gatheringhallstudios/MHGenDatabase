@@ -83,6 +83,14 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
             for (w in family) famData.add(WeaponFamilyWrapper("Family",w,false))
             val branches = dataManager.queryWeaponBranches(weaponId)
             for (w in branches) famData.add(WeaponFamilyWrapper("Branches",w,true))
+
+            // todo: the translations branch will introduce translations strings for the above
+            // change the below to also use a string resource when its merged
+            val finalWeapons = dataManager.queryWeaponFinal(weaponId)
+            for (w in finalWeapons) {
+                famData.add(WeaponFamilyWrapper("Final Upgrades", w, false))
+            }
+
             familyTreeData.postValue(famData)
         }
     }

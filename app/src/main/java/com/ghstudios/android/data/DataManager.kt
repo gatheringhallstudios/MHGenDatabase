@@ -633,26 +633,39 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.queryWeaponFamily(id)
     }
 
-    fun queryWeaponOrigins(id: Long):ArrayList<Weapon>{
+    /**
+     * Returns the first weapon of each family tree that led up to the family tree of id.
+     */
+    fun queryWeaponOrigins(id: Long): List<Weapon>{
         val weapons = ArrayList<Weapon>()
-        var currentId = (id and 0xFFFF00)+1
-        while(true) {
-            val cursor = mHelper.queryWeaponTreeParent(currentId)
-            cursor.moveToFirst()
-            val weapon = cursor.weapon ?: break
-            cursor.close()
 
-            val wCur = mHelper.queryWeapon(weapon.id)
-            wCur.moveToFirst()
-            val w = wCur.weapon
-            weapons.add(w)
-            currentId = (w.id and 0xFFFF00) + 1
-            wCur.close()
+        // Iteratively does the following:
+        // - get the first weapon of the tree: (id && S.WEAPON_FAMILY_MASK) + 1
+        // - get the parent of that weapon
+        // - get the first weapon of that tree and cycle again
+
+        // note: (id && S.WEAPON_FAMILY_MASK) + 1 is the FIRST weapon of the tree.
+        var currentId = (id and S.WEAPON_FAMILY_MASK) + 1
+
+        while(true) {
+            // This particular weapon cursor returns incomplete info
+            // todo: consider making either a WeaponBase superclass, a WeaponBasic class, or return full info from queryWeaponTreeParent
+            val weaponBase = mHelper.queryWeaponTreeParent(currentId)
+                    .firstOrNull { it.weapon }
+                    ?: break
+
+            // Query the full weapon data for the weapon cursor
+            val weapon = mHelper.queryWeapon(weaponBase.id).first { it.weapon }
+
+            // add to results, and then get the id of the first weapon of that tree and iterate again
+            weapons.add(weapon)
+            currentId = (weapon.id and S.WEAPON_FAMILY_MASK) + 1
         }
+
         return weapons
     }
 
-    fun queryWeaponBranches(id:Long):ArrayList<Weapon>{
+    fun queryWeaponBranches(id:Long): List<Weapon> {
         val wt = mHelper.queryWeaponFamilyBranches(id).toList { it.weapon }
         val weapons = ArrayList<Weapon>()
         for(w in wt){
@@ -660,6 +673,26 @@ class DataManager private constructor(private val mAppContext: Context) {
             if(wCur!=null) weapons.add(wCur)
         }
         return weapons
+    }
+
+    /**
+     * Queries all final weapons that can be derived from this one
+     */
+    fun queryWeaponFinal(id: Long): List<Weapon> {
+        val results = mutableListOf<Weapon>()
+
+        // Get the final of this tree
+        val final = mHelper.queryWeaponTreeFinal(id)
+        if (final != null) {
+            results.add(final)
+        }
+
+        // Get the branch weapons, and recursively get their final weapons
+        val otherBranches = this.queryWeaponBranches(id)
+        val branchFinals = otherBranches.map { queryWeaponFinal(it.id) }.flatten()
+        results.addAll(branchFinals)
+
+        return results
     }
 
     fun queryPalicoWeapons(): PalicoWeaponCursor {

@@ -6,7 +6,9 @@ package com.ghstudios.android.data.database;
  * Note: Do not need to instantiate to use
  */
 public class S {
-	
+	// weapon ids are 3 bytes. Most significant is weapon type, 2nd is family, and the least is level
+	public static final long WEAPON_FAMILY_MASK = 0xFFFF00;
+
 	// Armor
 	public static final String TABLE_ARMOR = "armor";
 	public static final String COLUMN_ARMOR_ID = "_id";

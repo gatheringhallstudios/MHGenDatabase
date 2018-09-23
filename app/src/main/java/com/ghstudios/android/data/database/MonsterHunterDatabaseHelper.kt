@@ -11,9 +11,12 @@ import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.QuestHub
+import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.getLong
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.firstOrNull
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
@@ -1939,17 +1942,32 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             INNER JOIN weapons w on w._id = c.component_item_id
             JOIN items i ON i._id = w._id
             WHERE c.created_item_id=?
-        """,arrayOf(id.toString())))
+            """,arrayOf(id.toString())))
     }
 
-        fun queryWeaponFamilyBranches(id: Long):WeaponTreeCursor{
+    fun queryWeaponFamilyBranches(id: Long): WeaponTreeCursor {
+        // roughly equivalent to c.component family = family AND c.component family != c.created family
         return WeaponTreeCursor(writableDatabase.rawQuery("""
             SELECT i._id AS _id,i.name AS name FROM components c
             JOIN weapons w on w._id = c.created_item_id
             JOIN items i ON i._id = w._id
-            WHERE (c.component_item_id & 16776960)= (? & 16776960) AND
-                  (c.component_item_id & 16776960) != (c.created_item_id & 16776960)
-        """,arrayOf(id.toString())))
+            WHERE (c.component_item_id & ${S.WEAPON_FAMILY_MASK})= (? & ${S.WEAPON_FAMILY_MASK}) AND
+                  (c.component_item_id & ${S.WEAPON_FAMILY_MASK}) != (c.created_item_id & ${S.WEAPON_FAMILY_MASK})
+            """,arrayOf(id.toString())))
+    }
+
+    fun queryWeaponTreeFinal(id: Long): Weapon? {
+        val finalId = writableDatabase.rawQuery("""
+            SELECT _id
+            FROM weapons w
+            WHERE w.final = 1
+              AND w.family = (
+                SELECT family
+                FROM weapons
+                WHERE _id = ?)
+            """, arrayOf(id.toString())).firstOrNull { it.getLong("_id") } ?: return null
+
+        return queryWeapon(finalId).firstOrNull { it.weapon }
     }
 
     /*
