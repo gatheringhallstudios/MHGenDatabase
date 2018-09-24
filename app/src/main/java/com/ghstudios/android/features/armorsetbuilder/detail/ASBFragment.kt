@@ -11,11 +11,39 @@ import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 
 /**
  * This is where the magic happens baby. Users can define a custom armor set in this fragment.
  */
-class ASBFragment : Fragment() {
+class ASBFragment : Fragment(), ASBPieceContainerListener {
+    // called by piece container when it requests a change to weapon slot count
+    override fun onChangeWeaponSlots() {
+        val dialog = ASBWeaponSlotsDialogFragment.newInstance(viewModel.session.numWeaponSlots)
+        dialog.setTargetFragment(this, ASBPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS)
+        dialog.show(this.fragmentManager, "ASB_WEAPON_SLOTS")
+    }
+
+    // called by piece container when it requests a new talisman
+    override fun onChangeTalisman() {
+        val d = ASBTalismanDialogFragment.newInstance(viewModel.session.talisman)
+        d.setTargetFragment(this, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
+        d.show(this.fragmentManager, "TALISMAN")
+    }
+
+    // called by piece container when it requests an armor change
+    override fun onChangeArmor(pieceIndex: Int) {
+        val session = viewModel.session
+
+        val i = Intent(context, ArmorSelectActivity::class.java)
+        i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
+        i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
+        i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, session.rank)
+        i.putExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, session.hunterType)
+
+        startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_PIECE)
+    }
+
     private val viewModel by lazy {
         ViewModelProviders.of(activity!!).get(ASBDetailViewModel::class.java)
     }
@@ -35,7 +63,7 @@ class ASBFragment : Fragment() {
                 view.findViewById(R.id.armor_builder_talisman))
 
         for ((idx, equipView) in equipmentViews.withIndex()) {
-            equipView.initialize(viewModel.session, idx, this)
+            equipView.initialize(viewModel.session, idx, this, this)
         }
 
         viewModel.updatePieceEvent.observe(this, Observer {
@@ -55,6 +83,11 @@ class ASBFragment : Fragment() {
 
         if (resultCode == Activity.RESULT_OK) { // If the user canceled the request, we don't want to do anything.
             when (requestCode) {
+                ASBPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS -> {
+                    val slots = data.getIntExtra(ASBWeaponSlotsDialogFragment.EXTRA_WEAPON_SLOTS, 3)
+                    viewModel.setWeaponSlots(slots)
+                }
+
                 ASBPagerActivity.REQUEST_CODE_ADD_PIECE -> {
                     val armorId = data.getLongExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, -1)
                     viewModel.addArmor(armorId)
@@ -78,8 +111,6 @@ class ASBFragment : Fragment() {
                 }
 
                 ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN -> {
-                    //if (data.hasExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2)) {
-
                     viewModel.setTalisman(
                             typeIndex = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1),
                             numSlots = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SLOTS, 0),

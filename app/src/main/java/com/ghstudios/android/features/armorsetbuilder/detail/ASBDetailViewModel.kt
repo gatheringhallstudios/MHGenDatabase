@@ -39,6 +39,19 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         session = asbManager.getASBSession(sessionId)!! // note: error should never happen
     }
 
+    /**
+     * Updates the internal session weapon slot count,
+     * then persists that change to the DB.
+     */
+    fun setWeaponSlots(slots: Int) {
+        session.numWeaponSlots = slots
+        triggerPieceUpdated(ArmorSet.WEAPON)
+    }
+
+    /**
+     * Adds the armor to the internal session,
+     * then persists that change to the DB.
+     */
     fun addArmor(armorId: Long) {
         val armor = dataManager.getArmor(armorId)
 
@@ -57,11 +70,18 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
     }
 
+    /**
+     * Removes the armor from the specified piece index,
+     * then persists that change to the DB.
+     */
     fun removeArmorPiece(pieceIndex: Int) {
         session.removeEquipment(pieceIndex)
         triggerPieceUpdated(pieceIndex)
     }
 
+    /**
+     * Adds a decoration to the given slot, then updates the DB.
+     */
     fun bindDecoration(pieceIndex: Int, decorationId: Long) {
         val decoration = dataManager.getDecoration(decorationId)
         if (decoration == null) {
@@ -75,11 +95,17 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
     }
 
+    /**
+     * Removes a decoration from the specified slot, then updates the DB.
+     */
     fun unbindDecoration(pieceIndex: Int, decorationIndex: Int) {
         session.removeDecoration(pieceIndex, decorationIndex)
         triggerPieceUpdated(pieceIndex)
     }
 
+    /**
+     * Sets the equipped talisman, then updates the DB.
+     */
     fun setTalisman(
             typeIndex: Int,
             skill1Id: Long,

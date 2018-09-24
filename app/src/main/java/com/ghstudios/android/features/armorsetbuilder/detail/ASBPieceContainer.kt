@@ -39,6 +39,16 @@ import java.util.*
 private const val unselectedAlpha = 160
 
 /**
+ * Handles communicates between the ASBPieceContainer and its user.
+ * Implement this to receive communications that should be handled by the parent fragment
+ */
+interface ASBPieceContainerListener {
+    fun onChangeWeaponSlots()
+    fun onChangeArmor(pieceIndex: Int)
+    fun onChangeTalisman()
+}
+
+/**
  * Custom view used to display a single armor piece for the ASB.
  * Displays the armor piece and all associated slots.
  */
@@ -48,6 +58,7 @@ class ASBPieceContainer
  */
 (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
+    private lateinit var listener: ASBPieceContainerListener
 
     private val equipmentHeader: View
     private val icon: ImageView
@@ -82,15 +93,16 @@ class ASBPieceContainer
      * Provides necessary external initialization logic.
      * Should always be called after the container's constructor.
      */
-    fun initialize(session: ASBSession, pieceIndex: Int, parentFragment: ASBFragment) {
+    fun initialize(session: ASBSession, pieceIndex: Int, parentFragment: ASBFragment, listener: ASBPieceContainerListener) {
         this.session = session
         this.pieceIndex = pieceIndex
         this.parentFragment = parentFragment
+        this.listener = listener
 
         equipmentHeader.setOnClickListener {
-            // If empty or is talisman, trigger the normal add routine
+            // If empty or is weapon/talisman, trigger the normal add routine
             val equipment = session.getEquipment(pieceIndex)
-            if (pieceIndex == ArmorSet.TALISMAN || equipment == null) {
+            if (pieceIndex == ArmorSet.WEAPON || pieceIndex == ArmorSet.TALISMAN || equipment == null) {
                 onAddEquipment()
                 return@setOnClickListener
             }
@@ -229,18 +241,12 @@ class ASBPieceContainer
      * Function that handles a user's attempt to add new equipment
      */
     private fun onAddEquipment() {
-        if (pieceIndex == ArmorSet.TALISMAN) {
-            val d = ASBTalismanDialogFragment.newInstance(session.talisman)
-            d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
-            d.show(parentFragment!!.fragmentManager, "TALISMAN")
+        if (pieceIndex == ArmorSet.WEAPON) {
+            listener.onChangeWeaponSlots()
+        } else if (pieceIndex == ArmorSet.TALISMAN) {
+            listener.onChangeTalisman()
         } else {
-            val i = Intent(context, ArmorSelectActivity::class.java)
-            i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-            i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-            i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, session.rank)
-            i.putExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, session.hunterType)
-
-            parentFragment!!.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_PIECE)
+            listener.onChangeArmor(pieceIndex)
         }
     }
 

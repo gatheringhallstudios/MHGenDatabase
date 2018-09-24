@@ -37,7 +37,12 @@ class ASBSession: ArmorSet {
 
 
     var numWeaponSlots: Int
+        /** Retrieves the number of weapon slots */
         get() = getEquipment(ArmorSet.WEAPON)?.numSlots ?: 0
+
+        /**
+         * Sets the number of weapon slots. This also clears all decorations.
+         */
         set(value) {
             setEquipment(ArmorSet.WEAPON, DummyWeapon(value))
         }
