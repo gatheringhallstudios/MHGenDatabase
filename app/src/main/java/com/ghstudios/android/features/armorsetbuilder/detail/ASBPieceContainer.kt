@@ -21,6 +21,7 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
+import com.ghstudios.android.util.getColorCompat
 import com.ghstudios.android.util.setImageAsset
 import java.util.*
 
@@ -135,7 +136,24 @@ class ASBPieceContainer
      */
     private fun updateArmorPiece() {
         val selectedEquipment = session.getEquipment(pieceIndex)
-        equipmentNameView.text = selectedEquipment?.name
+
+        // set text color to default
+        equipmentNameView.setTextColor(context.getColorCompat(R.color.text_color))
+
+        // set text (and maybe text color) based on equipment
+        if (pieceIndex == ArmorSet.WEAPON) {
+            equipmentNameView.text = context.getString(when(session.numWeaponSlots) {
+                1 -> R.string.asb_weapon_slots_one
+                2 -> R.string.asb_weapon_slots_two
+                3 -> R.string.asb_weapon_slots_three
+                else -> R.string.asb_weapon_slots_none
+            })
+        } else if (selectedEquipment == null) {
+            equipmentNameView.text = context.getString(R.string.asb_none)
+            equipmentNameView.setTextColor(context.getColorCompat(R.color.text_color_secondary))
+        } else {
+            equipmentNameView.text = selectedEquipment.name
+        }
 
         // Set image based on equipment
         if (selectedEquipment != null) {
