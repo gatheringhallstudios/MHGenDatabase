@@ -26,6 +26,9 @@ class ASBSession: ArmorSet {
     val id: Long
         get() = asbSet!!.id
 
+    val name: String
+        get() = asbSet?.name ?: ""
+
     val rank: Int
         get() = asbSet!!.rank
 

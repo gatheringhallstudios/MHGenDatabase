@@ -20,9 +20,13 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
 
         val session = ASBSession()
 
-        // defer to ASBSetCursor to load set info
-        val set = ASBSetCursor(this).asbSet
-        session.setASBSet(set!!)
+        // load the ASBSet specific stuff....todo: make ASBSet a superclass of ASBSession instead
+        val asbSet = ASBSet()
+        asbSet.id = getLong(getColumnIndex(S.COLUMN_ASB_SET_ID))
+        asbSet.name = getString(getColumnIndex(S.COLUMN_ASB_SET_NAME))
+        asbSet.rank = getInt(getColumnIndexOrThrow(S.COLUMN_ASB_SET_RANK))
+        asbSet.hunterType = getInt(getColumnIndex(S.COLUMN_ASB_SET_HUNTER_TYPE))
+        session.setASBSet(asbSet)
 
         val weaponSlots = getInt(S.COLUMN_ASB_WEAPON_SLOTS)
         val weaponDecoration1 = getDecorationById(getLong(S.COLUMN_ASB_WEAPON_DECORATION_1_ID))

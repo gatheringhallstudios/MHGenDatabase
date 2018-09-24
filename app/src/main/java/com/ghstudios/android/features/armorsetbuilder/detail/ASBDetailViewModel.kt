@@ -53,24 +53,12 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
         if (armor != null && armorEnum != null) {
             session.setEquipment(armorEnum, armor)
-            asbManager.queryPutASBSessionArmor(session.id, armorId, armorEnum)
-
             triggerPieceUpdated(armorEnum)
         }
     }
 
     fun removeArmorPiece(pieceIndex: Int) {
         session.removeEquipment(pieceIndex)
-
-        if (pieceIndex == ArmorSet.TALISMAN) {
-            asbManager.queryRemoveASBSessionTalisman(session.id)
-        } else if (pieceIndex == ArmorSet.WEAPON) {
-            // the decorations were cleared by the remove call. Do that instead
-            // todo: send query to remove the weapon decos
-        } else {
-            asbManager.queryRemoveASBSessionArmor(session.id, pieceIndex)
-        }
-
         triggerPieceUpdated(pieceIndex)
     }
 
@@ -82,18 +70,13 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
 
         val decorationIndex = session.addDecoration(pieceIndex, decoration)
-
-        if (decorationIndex != -1 && pieceIndex != -1) {
-            asbManager.queryPutASBSessionDecoration(session.id, decorationId, pieceIndex, decorationIndex)
+        if (decorationIndex != -1) {
+            triggerPieceUpdated(pieceIndex)
         }
-
-        triggerPieceUpdated(pieceIndex)
     }
 
     fun unbindDecoration(pieceIndex: Int, decorationIndex: Int) {
         session.removeDecoration(pieceIndex, decorationIndex)
-        asbManager.queryRemoveASBSessionDecoration(session.id, pieceIndex, decorationIndex)
-
         triggerPieceUpdated(pieceIndex)
     }
 
@@ -123,25 +106,16 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
 
         session.setEquipment(ArmorSet.TALISMAN, talisman)
-
-        asbManager.queryCreateASBSessionTalisman(
-                session.id,
-                typeIndex,
-                numSlots,
-                skill1Id,
-                skill1Points,
-                skill2Id,
-                skill2Points)
-
         triggerPieceUpdated(ArmorSet.TALISMAN)
     }
 
     /**
      * Triggers an update event related to a piece.
+     * This updates the ASBSession in the database as well.
      * Note: ASB constants are equal to the piece index, can use either
      */
     private fun triggerPieceUpdated(pieceIndex: Int) {
-        // if this ever gets called from another thread, do a check and call postValue
+        asbManager.updateASB(session)
         updatePieceEventInner.postValue(pieceIndex)
     }
 }
