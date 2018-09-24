@@ -132,19 +132,21 @@ class ArmorSetCalculator(val set: ArmorSet) {
      */
     inner class SkillTreeInSet(val skillTree: SkillTree) {
         // note: points will likely change to a different object once weapon decos are live
-        private val points = IntArray(6)
+        private val points = sortedMapOf<Int, Int>()
 
         val active get() = getTotal() >= MINIMUM_SKILL_ACTIVATION_POINTS
 
         fun getPoints(pieceIndex: Int): Int {
+            val basePoints = points.getOrDefault(pieceIndex, 0)
+
             return if (pieceIndex == ArmorSet.BODY) {
                 // TorsoUp stacks, so you multiply the skill * number of occurrences
-                points[pieceIndex] * (torsoUpCount + 1)
+                basePoints * (torsoUpCount + 1)
             } else if (pieceIndex == ArmorSet.TALISMAN && talismanBoostActivated) {
                 // if talisman boost is activated, talisman skills are doubled
-                points[pieceIndex] * 2
+                basePoints * 2
             } else {
-                points[pieceIndex]
+                basePoints
             }
         }
 
@@ -153,8 +155,8 @@ class ArmorSetCalculator(val set: ArmorSet) {
          */
         fun getTotal(): Int {
             var total = 0
-            for (i in points.indices) {
-                total += getPoints(i)
+            for (pieceIndex in points.keys) {
+                total += getPoints(pieceIndex)
             }
 
             // If Secret Arts is active, proc it

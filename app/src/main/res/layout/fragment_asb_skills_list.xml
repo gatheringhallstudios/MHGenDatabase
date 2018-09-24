@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,6 +20,14 @@
             android:layout_weight="0.3"
             android:gravity="center_vertical"
             android:text="@string/asb_skill_tree"/>
+
+        <ImageView
+            android:id="@+id/weapon"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/asb_skills_table_header_icon_height"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:src="@drawable/icon_great_sword" />
 
         <ImageView
             android:id="@+id/helmet"
@@ -67,14 +76,17 @@
             android:layout_weight="0.1"
             android:src="@drawable/talisman" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/total"
             style="@style/text_small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:gravity="center"
-            android:text="@string/asb_skill_points_total"/>
+            android:text="@string/asb_skill_points_total"
+            android:maxLines="1"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="7sp"/>
 
     </LinearLayout>
 
