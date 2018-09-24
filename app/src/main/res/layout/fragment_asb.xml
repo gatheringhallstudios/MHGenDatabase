@@ -6,6 +6,13 @@
     android:animateLayoutChanges="true">
 
     <view
+        android:id="@+id/armor_builder_weapon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="com.ghstudios.android.features.armorsetbuilder.detail.ASBPieceContainer" />
+
+
+    <view
         android:id="@+id/armor_builder_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

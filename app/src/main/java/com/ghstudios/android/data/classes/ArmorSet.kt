@@ -14,13 +14,24 @@ class ArmorSetPiece(val idx: Int, val equipment: Equipment) {
  */
 interface ArmorSet {
     companion object {
-        const val HEAD = 0
-        const val BODY = 1
-        const val ARMS = 2
-        const val WAIST = 3
-        const val LEGS = 4
-        const val TALISMAN = 5
+        const val WEAPON = 0
+        const val HEAD = 1
+        const val BODY = 2
+        const val ARMS = 3
+        const val WAIST = 4
+        const val LEGS = 5
+        const val TALISMAN = 6
     }
 
+    /**
+     * Returns a list of all armor set pieces, in piece index order.
+     * Weapon -> Head -> Body -> Arms -> Waist -> Legs -> Talisman
+     */
     val pieces: List<ArmorSetPiece>
+
+    /**
+     * Returns the armor set piece in the given location, or
+     * null if there is no value.
+     */
+    fun getPiece(pieceIndex: Int): ArmorSetPiece?
 }

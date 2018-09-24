@@ -59,40 +59,45 @@ class ASBSkillsListFragment : Fragment() {
             val itemView = inflater.inflate(R.layout.fragment_asb_skills_listitem, parent, false)
             // Conditional inflation really isn't necessary simply because of how many skills you'd have to have.
 
-            val treeName = itemView.findViewById<View>(R.id.skill_tree_name) as TextView
-            val headPoints = itemView.findViewById<View>(R.id.helmet) as TextView
-            val bodyPoints = itemView.findViewById<View>(R.id.body) as TextView
-            val armsPoints = itemView.findViewById<View>(R.id.arms) as TextView
-            val waistPoints = itemView.findViewById<View>(R.id.waist) as TextView
-            val legsPoints = itemView.findViewById<View>(R.id.legs) as TextView
-            val talismanPoints = itemView.findViewById<View>(R.id.talisman) as TextView
-            val totalPoints = itemView.findViewById<View>(R.id.total) as TextView
+            val treeName = itemView.findViewById<TextView>(R.id.skill_tree_name)
+            val weaponPoints = itemView.findViewById<TextView>(R.id.weapon)
+            val headPoints = itemView.findViewById<TextView>(R.id.helmet)
+            val bodyPoints = itemView.findViewById<TextView>(R.id.body)
+            val armsPoints = itemView.findViewById<TextView>(R.id.arms)
+            val waistPoints = itemView.findViewById<TextView>(R.id.waist)
+            val legsPoints = itemView.findViewById<TextView>(R.id.legs)
+            val talismanPoints = itemView.findViewById<TextView>(R.id.talisman)
+            val totalPoints = itemView.findViewById<TextView>(R.id.total)
 
             val data = getItem(position)
             
             treeName.text = data.skillTree.name
 
-            if (session.getEquipment(ArmorSet.HEAD) != null && data.getPoints(ArmorSet.HEAD) != 0) {
+            if (data.getPoints(ArmorSet.WEAPON) != 0) {
+                weaponPoints.text = data.getPoints(ArmorSet.WEAPON).toString()
+            }
+
+            if (data.getPoints(ArmorSet.HEAD) != 0) {
                 headPoints.text = data.getPoints(ArmorSet.HEAD).toString()
             }
 
-            if (session.getEquipment(ArmorSet.BODY) != null && data.getPoints(ArmorSet.BODY) != 0) {
+            if (data.getPoints(ArmorSet.BODY) != 0) {
                 bodyPoints.text = data.getPoints(ArmorSet.BODY).toString()
             }
 
-            if (session.getEquipment(ArmorSet.ARMS) != null && data.getPoints(ArmorSet.ARMS) != 0) {
+            if (data.getPoints(ArmorSet.ARMS) != 0) {
                 armsPoints.text = data.getPoints(ArmorSet.ARMS).toString()
             }
 
-            if (session.getEquipment(ArmorSet.WAIST) != null && data.getPoints(ArmorSet.WAIST) != 0) {
+            if (data.getPoints(ArmorSet.WAIST) != 0) {
                 waistPoints.text = data.getPoints(ArmorSet.WAIST).toString()
             }
 
-            if (session.getEquipment(ArmorSet.LEGS) != null && data.getPoints(ArmorSet.LEGS) != 0) {
+            if (data.getPoints(ArmorSet.LEGS) != 0) {
                 legsPoints.text = data.getPoints(ArmorSet.LEGS).toString()
             }
 
-            if (session.getEquipment(ArmorSet.TALISMAN) != null && data.getPoints(ArmorSet.TALISMAN) != 0) {
+            if (data.getPoints(ArmorSet.TALISMAN) != 0) {
                 talismanPoints.text = data.getPoints(ArmorSet.TALISMAN).toString()
             }
 

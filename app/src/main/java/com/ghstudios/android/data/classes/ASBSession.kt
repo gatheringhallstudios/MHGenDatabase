@@ -1,10 +1,19 @@
 package com.ghstudios.android.data.classes
 
 import android.util.Log
-import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.ITintedIcon
+import com.ghstudios.android.mhgendatabase.R
 
 import java.util.ArrayList
 import java.util.HashMap
+
+private class DummyWeapon(val slots: Int): Equipment(), ITintedIcon {
+    override fun getNumSlots() = slots
+
+    override fun getIconResourceString() = "icon_great_sword"
+    override fun getColorArrayId() = R.array.rare_colors
+    override fun getIconColorIndex() = 0
+}
 
 /**
  * Contains all of the juicy stuff regarding ASB sets, like the armor inside and the skills it provides.
@@ -12,11 +21,13 @@ import java.util.HashMap
 class ASBSession: ArmorSet {
     private var asbSet: ASBSet? = null
 
-    private val equipment: Array<Equipment?> = arrayOfNulls(6)
-    private val decorations: Array<MutableList<Decoration>> = Array(6) { mutableListOf<Decoration>() }
+    private val pieceData = sortedMapOf<Int, ArmorSetPiece>()
 
     val id: Long
         get() = asbSet!!.id
+
+    val name: String
+        get() = asbSet?.name ?: ""
 
     val rank: Int
         get() = asbSet!!.rank
@@ -24,36 +35,38 @@ class ASBSession: ArmorSet {
     val hunterType: Int
         get() = asbSet!!.hunterType
 
-    override val pieces: List<ArmorSetPiece> get() {
-        // todo: swap the ASB internal implementation with ArmorSetPiece instead of reconstructing
-        val results = mutableListOf<ArmorSetPiece>()
-        for (i in equipment.indices) {
-            val equipment = getEquipment(i)
-            if (equipment != null) {
-                val piece = ArmorSetPiece(i, equipment)
-                piece.decorations.addAll(getDecorations(i))
-                results.add(piece)
-            }
+
+    var numWeaponSlots: Int
+        /** Retrieves the number of weapon slots */
+        get() = getEquipment(ArmorSet.WEAPON)?.numSlots ?: 0
+
+        /**
+         * Sets the number of weapon slots. This also clears all decorations.
+         */
+        set(value) {
+            setEquipment(ArmorSet.WEAPON, DummyWeapon(value))
         }
-        return results
+
+    init {
+        setEquipment(ArmorSet.WEAPON, DummyWeapon(3))
     }
+
+    override val pieces: List<ArmorSetPiece> get() = pieceData.values.toList()
+
+    override fun getPiece(pieceIndex: Int) = pieceData[pieceIndex]
 
     /**
      * @return The set's talisman.
      */
     val talisman: ASBTalisman?
-        get() = equipment[ArmorSet.TALISMAN] as ASBTalisman?
+        get() = pieceData[ArmorSet.TALISMAN]?.equipment as ASBTalisman?
 
     fun setASBSet(set: ASBSet) {
         asbSet = set
     }
 
-    fun getDecoration(pieceIndex: Int, decorationIndex: Int): Decoration? {
-        return decorations[pieceIndex].getOrNull(decorationIndex)
-    }
-
     fun getDecorations(pieceIndex: Int): List<Decoration> {
-        return decorations[pieceIndex]
+        return getPiece(pieceIndex)?.decorations ?: emptyList()
     }
 
     fun getAvailableSlots(pieceIndex: Int): Int {
@@ -66,13 +79,15 @@ class ASBSession: ArmorSet {
      * Attempts to add a decoration to the specified armor piece.
      * @param pieceIndex   The index of a piece in the set to fetch, according to [ASBSession].
      * @param decoration   The decoration to add.
-     * @return The 0-based index of the slot that the decoration was added to.
+     * @return The 0-based index of the slot that the decoration was added to, or -1 if it failed
      */
     fun addDecoration(pieceIndex: Int, decoration: Decoration): Int {
+        val piece = getPiece(pieceIndex) ?: return -1
+
         Log.v("ASB", "Adding decoration at piece index $pieceIndex")
         if (getAvailableSlots(pieceIndex) >= decoration.numSlots) {
-            decorations[pieceIndex].add(decoration)
-            return decorations[pieceIndex].size - 1
+            piece.decorations.add(decoration)
+            return piece.decorations.size - 1
         } else {
             Log.e("ASB", "Cannot add that decoration!")
             return -1
@@ -84,7 +99,7 @@ class ASBSession: ArmorSet {
      * Will fail if the decoration in question is non-existent or a dummy.
      */
     fun removeDecoration(pieceIndex: Int, decorationIndex: Int) {
-        val list = decorations[pieceIndex]
+        val list = getPiece(pieceIndex)?.decorations ?: return
         if (list.getOrNull(decorationIndex) == null) {
             return
         }
@@ -97,21 +112,25 @@ class ASBSession: ArmorSet {
      * Returns null if there is no equipment in that slot.
      */
     fun getEquipment(pieceIndex: Int): Equipment? {
-        return equipment[pieceIndex]
+        return getPiece(pieceIndex)?.equipment
     }
 
     /**
      * Changes the equipment at the specified location.
      */
     fun setEquipment(pieceIndex: Int, equip: Equipment) {
-        equipment[pieceIndex] = equip
+        pieceData[pieceIndex] = ArmorSetPiece(pieceIndex, equip)
     }
 
     /**
      * Removes the equipment at the specified location.
+     * If a weapon, clears the decorations.
      */
     fun removeEquipment(pieceIndex: Int) {
-        equipment[pieceIndex] = null
-        decorations[pieceIndex].clear()
+        if (pieceIndex == ArmorSet.WEAPON) {
+            getPiece(pieceIndex)?.decorations?.clear()
+        } else {
+            pieceData.remove(pieceIndex)
+        }
     }
 }

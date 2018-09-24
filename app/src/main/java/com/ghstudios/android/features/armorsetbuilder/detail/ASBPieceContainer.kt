@@ -21,6 +21,7 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
+import com.ghstudios.android.util.getColorCompat
 import com.ghstudios.android.util.setImageAsset
 import java.util.*
 
@@ -38,6 +39,16 @@ import java.util.*
 private const val unselectedAlpha = 160
 
 /**
+ * Handles communicates between the ASBPieceContainer and its user.
+ * Implement this to receive communications that should be handled by the parent fragment
+ */
+interface ASBPieceContainerListener {
+    fun onChangeWeaponSlots()
+    fun onChangeArmor(pieceIndex: Int)
+    fun onChangeTalisman()
+}
+
+/**
  * Custom view used to display a single armor piece for the ASB.
  * Displays the armor piece and all associated slots.
  */
@@ -47,6 +58,7 @@ class ASBPieceContainer
  */
 (context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
+    private lateinit var listener: ASBPieceContainerListener
 
     private val equipmentHeader: View
     private val icon: ImageView
@@ -81,15 +93,16 @@ class ASBPieceContainer
      * Provides necessary external initialization logic.
      * Should always be called after the container's constructor.
      */
-    fun initialize(session: ASBSession, pieceIndex: Int, parentFragment: ASBFragment) {
+    fun initialize(session: ASBSession, pieceIndex: Int, parentFragment: ASBFragment, listener: ASBPieceContainerListener) {
         this.session = session
         this.pieceIndex = pieceIndex
         this.parentFragment = parentFragment
+        this.listener = listener
 
         equipmentHeader.setOnClickListener {
-            // If empty or is talisman, trigger the normal add routine
+            // If empty or is weapon/talisman, trigger the normal add routine
             val equipment = session.getEquipment(pieceIndex)
-            if (pieceIndex == ArmorSet.TALISMAN || equipment == null) {
+            if (pieceIndex == ArmorSet.WEAPON || pieceIndex == ArmorSet.TALISMAN || equipment == null) {
                 onAddEquipment()
                 return@setOnClickListener
             }
@@ -135,7 +148,24 @@ class ASBPieceContainer
      */
     private fun updateArmorPiece() {
         val selectedEquipment = session.getEquipment(pieceIndex)
-        equipmentNameView.text = selectedEquipment?.name
+
+        // set text color to default
+        equipmentNameView.setTextColor(context.getColorCompat(R.color.text_color))
+
+        // set text (and maybe text color) based on equipment
+        if (pieceIndex == ArmorSet.WEAPON) {
+            equipmentNameView.text = context.getString(when(session.numWeaponSlots) {
+                1 -> R.string.asb_weapon_slots_one
+                2 -> R.string.asb_weapon_slots_two
+                3 -> R.string.asb_weapon_slots_three
+                else -> R.string.asb_weapon_slots_none
+            })
+        } else if (selectedEquipment == null) {
+            equipmentNameView.text = context.getString(R.string.asb_none)
+            equipmentNameView.setTextColor(context.getColorCompat(R.color.text_color_secondary))
+        } else {
+            equipmentNameView.text = selectedEquipment.name
+        }
 
         // Set image based on equipment
         if (selectedEquipment != null) {
@@ -152,9 +182,14 @@ class ASBPieceContainer
                 else -> 0
             }
 
-            val image = ContextCompat.getDrawable(context, resId)?.mutate()
-            image?.alpha = unselectedAlpha
-            icon.setImageDrawable(image)
+            if (resId == 0) {
+                icon.setImageDrawable(null)
+            } else {
+                val image = ContextCompat.getDrawable(context, resId)?.mutate()
+                image?.alpha = unselectedAlpha
+                icon.setImageDrawable(image)
+            }
+
         }
 
         // set the add/remove button based on equipment
@@ -206,18 +241,12 @@ class ASBPieceContainer
      * Function that handles a user's attempt to add new equipment
      */
     private fun onAddEquipment() {
-        if (pieceIndex == ArmorSet.TALISMAN) {
-            val d = ASBTalismanDialogFragment.newInstance(session.talisman)
-            d.setTargetFragment(parentFragment, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
-            d.show(parentFragment!!.fragmentManager, "TALISMAN")
+        if (pieceIndex == ArmorSet.WEAPON) {
+            listener.onChangeWeaponSlots()
+        } else if (pieceIndex == ArmorSet.TALISMAN) {
+            listener.onChangeTalisman()
         } else {
-            val i = Intent(context, ArmorSelectActivity::class.java)
-            i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-            i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-            i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, session.rank)
-            i.putExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, session.hunterType)
-
-            parentFragment!!.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_PIECE)
+            listener.onChangeArmor(pieceIndex)
         }
     }
 

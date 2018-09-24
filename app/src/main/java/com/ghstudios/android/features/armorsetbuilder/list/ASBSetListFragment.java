@@ -12,6 +12,8 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.content.Loader;
 import android.view.*;
 import android.widget.*;
+
+import com.ghstudios.android.data.ASBManager;
 import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.DataManager;
@@ -32,6 +34,8 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
     public static final int REQUEST_EDIT_ASB_SET = 1;
 
     FloatingActionButton fab;
+
+    private ASBManager asbManager = DataManager.get().getAsbManager();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,7 +93,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                     int rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1);
                     int hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1);
 
-                    DataManager.get().queryAddASBSet(
+                    asbManager.queryAddASBSet(
                             name,
                             rank,
                             hunterType
@@ -105,7 +109,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                     int rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1);
                     int hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1);
 
-                    DataManager.get().queryUpdateASBSet(id, name, rank, hunterType);
+                    asbManager.queryUpdateASBSet(id, name, rank, hunterType);
 
                     updateUI();
                     break;
@@ -163,7 +167,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_edit_data:
-                        ASBSet set = DataManager.get().getASBSet(l.getCheckedItemIds()[0]);
+                        ASBSet set = asbManager.getASBSet(l.getCheckedItemIds()[0]);
 
                         FragmentManager fm = getActivity().getSupportFragmentManager();
                         ASBSetAddDialogFragment dialog = ASBSetAddDialogFragment.newInstance(
@@ -191,20 +195,18 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             public void onDestroyActionMode(ActionMode mode) { }
 
             private AlertDialog.Builder createConfirmDeleteDialog() {
+
                 AlertDialog.Builder b = new AlertDialog.Builder(getActivity())
-                        .setPositiveButton(R.string.delete, new OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                for (long id : l.getCheckedItemIds()) {
-                                    DataManager.get().queryDeleteASBSet(id);
-                                }
-                                updateUI();
+                        .setPositiveButton(R.string.delete, (DialogInterface dialog, int which) -> {
+                            for (long id : l.getCheckedItemIds()) {
+                                asbManager.queryDeleteASBSet(id);
                             }
+                            updateUI();
                         })
                         .setNegativeButton(android.R.string.cancel, null);
 
                 if (l.getCheckedItemCount() == 1) {
-                    b.setMessage(getResources().getString(R.string.dialog_message_delete, DataManager.get().getASBSet(l.getCheckedItemIds()[0]).getName()))
+                    b.setMessage(getResources().getString(R.string.dialog_message_delete, asbManager.getASBSet(l.getCheckedItemIds()[0]).getName()))
                             .setTitle(R.string.asb_dialog_title_delete_set);
                 }
                 else {
@@ -217,19 +219,17 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
             private AlertDialog.Builder createConfirmCopyDialog() {
                 AlertDialog.Builder b = new AlertDialog.Builder(getActivity())
-                        .setPositiveButton(R.string.copy, new OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                for (long id : l.getCheckedItemIds()) {
-                                    DataManager.get().queryAddASBSet(id);
-                                }
-                                updateUI();
+                        .setPositiveButton(R.string.copy, (DialogInterface dialog, int which) -> {
+                            for (long id : l.getCheckedItemIds()) {
+                                asbManager.queryAddASBSet(id);
                             }
+                            updateUI();
                         })
                         .setNegativeButton(android.R.string.cancel, null);
 
                 if (l.getCheckedItemCount() == 1) {
-                    b.setMessage(getResources().getString(R.string.dialog_message_copy, DataManager.get().getASBSet(l.getCheckedItemIds()[0]).getName()))
+                    String firstName = asbManager.getASBSet(l.getCheckedItemIds()[0]).getName();
+                    b.setMessage(getResources().getString(R.string.dialog_message_copy, firstName))
                             .setTitle(R.string.asb_dialog_title_copy_set);
                 }
                 else {

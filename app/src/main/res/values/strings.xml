@@ -282,6 +282,11 @@
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
 
+    <string name="asb_weapon_slots_none">Weapon (No Slots)</string>
+    <string name="asb_weapon_slots_one">Weapon (One Slots)</string>
+    <string name="asb_weapon_slots_two">Weapon (Two Slots)</string>
+    <string name="asb_weapon_slots_three">Weapon (Three Slots)</string>
+
     <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
     <string name="ammo_divider">" • "</string>
