@@ -3,6 +3,7 @@ package com.ghstudios.android.features.skills;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.GenericActivity;
 import com.ghstudios.android.MenuSection;
@@ -14,8 +15,11 @@ public class SkillTreeListActivity extends GenericActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.skill_trees);
 
-        // Tag as top level activity
-        super.setAsTopLevel();
+        // Tag as top level activity (if not coming from asb)
+        boolean fromAsb = getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false);
+        if (!fromAsb) {
+            super.setAsTopLevel();
+        }
     }
 
     @Override

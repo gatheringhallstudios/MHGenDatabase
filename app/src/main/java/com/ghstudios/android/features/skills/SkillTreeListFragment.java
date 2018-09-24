@@ -97,16 +97,12 @@ public class SkillTreeListFragment extends ListFragment implements
 			skilltreeNameTextView.setText(cellText);
 
             if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false)) {
-                itemLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                itemLayout.setOnClickListener(v -> {
+                    Intent i = getActivity().getIntent();
+                    i.putExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, skilltree.getId());
 
-                        Intent i = getActivity().getIntent();
-                        i.putExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, skilltree.getId());
-
-                        getActivity().setResult(Activity.RESULT_OK, i);
-                        getActivity().finish();
-                    }
+                    getActivity().setResult(Activity.RESULT_OK, i);
+                    getActivity().finish();
                 });
             }
             else {
