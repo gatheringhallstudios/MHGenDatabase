@@ -347,6 +347,9 @@
     <string name="summary">summary</string>
 
     <string name="talisman_full_name">%s Talisman</string>
+    <string name="key">Key</string>
+    <string name="urgent">Urgent</string>
+    <string name="hyper">Hyper</string>
     <string-array name="talisman_names">
         <item>Pawn</item>
         <item>Bishop</item>

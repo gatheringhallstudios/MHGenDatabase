@@ -19,6 +19,7 @@ public class Component {
 	private Item component;		// Component Item
 	private int quantity;		// Amount needed for the component Item
 	private String type;		// Creation method
+	private int key;			// Is key for creation
 	
 	/* Default Constructor */
 	public Component() {
@@ -27,6 +28,7 @@ public class Component {
 		this.component = null;
 		this.quantity = -1;
 		this.type = "";
+		this.key = 0;
 	}
 
 	/* Getters and Setters */
@@ -69,5 +71,10 @@ public class Component {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
+	public void setKey(int k){this.key = k;}
+
+	public int getKey(){return this.key;}
+
+	public boolean isKey(){return this.key == 1;}
 }

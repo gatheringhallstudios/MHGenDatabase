@@ -287,7 +287,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
     fun queryComponentsByArmorFamily(family: Long): ComponentCursor {
         return ComponentCursor(db.rawQuery("""
-            SELECT c._id,SUM(c.quantity) AS quantity,c.type,
+            SELECT c._id,SUM(c.quantity) AS quantity,c.type,MAX(c.key) AS key,
                    c.created_item_id,cr.name AS crname,cr.type AS crtype,
                         cr.rarity AS crrarity,cr.icon_name AS cricon_name,cr.sub_type AS crsub_type,
                         cr.icon_color AS cricon_color,

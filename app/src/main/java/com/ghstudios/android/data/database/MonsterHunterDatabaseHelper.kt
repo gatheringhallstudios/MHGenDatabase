@@ -656,6 +656,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_COMPONENTS_COMPONENT_ITEM_ID] = c + "." + S.COLUMN_COMPONENTS_COMPONENT_ITEM_ID
         projectionMap[S.COLUMN_COMPONENTS_QUANTITY] = c + "." + S.COLUMN_COMPONENTS_QUANTITY
         projectionMap[S.COLUMN_COMPONENTS_TYPE] = c + "." + S.COLUMN_COMPONENTS_TYPE
+        projectionMap[S.COLUMN_COMPONENTS_KEY] = c + "." + S.COLUMN_COMPONENTS_KEY
 
         projectionMap[cr + S.COLUMN_ITEMS_NAME] = cr + "." + S.COLUMN_ITEMS_NAME + " AS " + cr + S.COLUMN_ITEMS_NAME
         projectionMap[cr + S.COLUMN_ITEMS_TYPE] = cr + "." + S.COLUMN_ITEMS_TYPE + " AS " + cr + S.COLUMN_ITEMS_TYPE

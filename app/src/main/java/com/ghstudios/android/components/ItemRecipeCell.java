@@ -74,11 +74,12 @@ public class ItemRecipeCell extends LinearLayout {
         }
     }
 
-    public View addItem(ITintedIcon icon, String itemName, int qty) {
+    public View addItem(ITintedIcon icon, String itemName, int qty, boolean key) {
         IconLabelTextCell cell = new IconLabelTextCell(getContext());
         cell.setLeftIcon(icon);
         cell.setLabelText(itemName);
         cell.setValueText(String.valueOf(qty));
+        cell.setKeyVisibility(key);
 
         itemsView.addView(cell);
 

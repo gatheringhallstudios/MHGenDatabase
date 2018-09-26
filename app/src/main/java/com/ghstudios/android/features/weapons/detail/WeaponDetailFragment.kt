@@ -142,7 +142,7 @@ open class WeaponDetailFragment : Fragment() {
         val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.create_recipe)
         for (component in components) {
             val item = component.component
-            val itemCell = recipeView.addItem(item, item?.name, component.quantity)
+            val itemCell = recipeView.addItem(item, item?.name, component.quantity,component.isKey)
             itemCell.setOnClickListener(ItemClickListener(context!!, item!!))
         }
     }
@@ -160,7 +160,7 @@ open class WeaponDetailFragment : Fragment() {
         val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
         for (component in components) {
             val item = component.component
-            val itemCell = recipeView.addItem(item, item?.name, component.quantity)
+            val itemCell = recipeView.addItem(item, item?.name, component.quantity, false)
             itemCell.setOnClickListener(ItemClickListener(context!!, item!!))
         }
     }

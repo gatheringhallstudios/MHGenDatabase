@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class IconLabelTextCell extends FrameLayout {
     @BindView(R.id.label_text) TextView labelView;
     @BindView(R.id.label_alt_text) TextView labelAltView;
     @BindView(R.id.value_text) TextView valueView;
+    @BindView(R.id.key) TextView keyView;
 
     boolean altEnabled = false;
 
@@ -122,6 +124,13 @@ public class IconLabelTextCell extends FrameLayout {
 
     public void setValueText(String valueText) {
         valueView.setText(valueText);
+    }
+
+    public void setKeyVisibility(boolean show){
+        if(show)
+            keyView.setVisibility(View.VISIBLE);
+        else
+            keyView.setVisibility(View.GONE);
     }
 
     /**

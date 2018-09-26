@@ -41,6 +41,7 @@ public class S {
 	public static final String COLUMN_COMPONENTS_COMPONENT_ITEM_ID = "component_item_id";
 	public static final String COLUMN_COMPONENTS_QUANTITY = "quantity";
 	public static final String COLUMN_COMPONENTS_TYPE = "type";
+	public static final String COLUMN_COMPONENTS_KEY = "key";
 	
 	// Decorations
 	public static final String TABLE_DECORATIONS = "decorations";

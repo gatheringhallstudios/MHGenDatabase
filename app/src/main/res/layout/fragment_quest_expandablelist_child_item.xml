@@ -65,13 +65,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/key_badge"
-            android:text="Key"/>
+            android:text="@string/key"/>
         <TextView
             android:id="@+id/urgent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/urgent_badge"
-            android:text="Urgent"/>
+            android:text="@string/urgent"/>
     </LinearLayout>
     
 
