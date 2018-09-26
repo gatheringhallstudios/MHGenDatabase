@@ -67,9 +67,11 @@ For queries with JOINs:
 //Version 6 - v1.1.2 - Sept/Oct DLC
 //Version 7 - v2.0.0 - MHGU Release
 //Version 8 - v2.0.2 - MHGU Data Fixes
+//Version 9 - v2.1.0 - MHGU Data Fixes
+//Version 10 - v2.1.1 - MHGU Data Fixes + Key items
 
 private val DATABASE_NAME = "mhgu.db"
-private val DATABASE_VERSION = 8
+private val DATABASE_VERSION = 10
 
 /**
  * Initialize the helper object
