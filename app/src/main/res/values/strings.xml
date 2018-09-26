@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
@@ -343,13 +343,12 @@
     <string name="quest_detail_description">Description</string>
     <string name="unstable">Unstable</string>
     <string name="hyper">Hyper</string>
+    <string name="key">Key</string>
+    <string name="urgent">Urgent</string>
     <string name="armor_pieces">Armor Pieces</string>
     <string name="summary">summary</string>
 
     <string name="talisman_full_name">%s Talisman</string>
-    <string name="key">Key</string>
-    <string name="urgent">Urgent</string>
-    <string name="hyper">Hyper</string>
     <string-array name="talisman_names">
         <item>Pawn</item>
         <item>Bishop</item>
