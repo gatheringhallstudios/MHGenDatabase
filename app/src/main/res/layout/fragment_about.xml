@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <LinearLayout
@@ -12,10 +13,12 @@
         android:orientation="vertical">
 
         <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iconSrc="@drawable/ic_mascot"
-            app:titleText="MHGU Database"/>
+            app:titleText="MHGU Database"
+            tools:titleAltText="Version 2.11"/>
 
         <FrameLayout style="@style/SectionDivider"/>
 

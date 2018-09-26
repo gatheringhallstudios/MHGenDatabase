@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.components.IconLabelTextCell
+import com.ghstudios.android.components.TitleBarCell
+import com.ghstudios.android.mhgendatabase.BuildConfig
 import com.ghstudios.android.mhgendatabase.R
 import kotlinx.android.synthetic.main.fragment_about.*
 
@@ -27,6 +29,12 @@ class AboutFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Set version string
+        val versionName = BuildConfig.VERSION_NAME
+        val titlebar = view.findViewById<TitleBarCell>(R.id.title)
+        titlebar.setAltTitleText(getString(R.string.about_version, versionName))
+
+        // Make the links clickable
         activateLinks(this.about_layout)
     }
 

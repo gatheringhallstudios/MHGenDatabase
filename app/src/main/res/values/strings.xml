@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
@@ -14,6 +14,7 @@
     <string name="submit">Submit</string>
 
     <string name="about">About</string>
+    <string name="about_version">Version %s</string>
     <string name="about_message">
         Gathering Hall Studios is an open source team of designers and developers
         dedicated to building high-quality apps for the Monster Hunter series.
