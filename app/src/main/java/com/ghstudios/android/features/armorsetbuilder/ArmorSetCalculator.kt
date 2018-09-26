@@ -137,7 +137,7 @@ class ArmorSetCalculator(val set: ArmorSet) {
         val active get() = getTotal() >= MINIMUM_SKILL_ACTIVATION_POINTS
 
         fun getPoints(pieceIndex: Int): Int {
-            val basePoints = points.getOrDefault(pieceIndex, 0)
+            val basePoints = points[pieceIndex] ?: 0
 
             return if (pieceIndex == ArmorSet.BODY) {
                 // TorsoUp stacks, so you multiply the skill * number of occurrences
