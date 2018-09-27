@@ -26,30 +26,16 @@ public class WishlistDetailPagerAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int index) {
 
 		switch (index) {
-		case 0:
-			// WishlistData
-			mWishlistDataDetailFragment = WishlistDataDetailFragment.newInstance(wishlistId);
-			
-			// For refreshing each other
-			if (mWishlistDataComponentFragment != null) {
-				mWishlistDataDetailFragment.setTargetFragment(mWishlistDataComponentFragment, REQUEST_REFRESH);
-				mWishlistDataComponentFragment.setTargetFragment(mWishlistDataDetailFragment, REQUEST_REFRESH);
-			}
-			
-			return mWishlistDataDetailFragment;
-		case 1:
-			// WistlistComponent
-			mWishlistDataComponentFragment = WishlistDataComponentFragment.newInstance(wishlistId);
-			
-			// For refreshing each other
-			if (mWishlistDataDetailFragment != null) {
-				mWishlistDataDetailFragment.setTargetFragment(mWishlistDataComponentFragment, REQUEST_REFRESH);
-				mWishlistDataComponentFragment.setTargetFragment(mWishlistDataDetailFragment, REQUEST_REFRESH);
-			}
-			
-			return mWishlistDataComponentFragment;
-		default:
-			return null;
+			case 0:
+				// WishlistData
+				mWishlistDataDetailFragment = WishlistDataDetailFragment.newInstance(wishlistId);
+				return mWishlistDataDetailFragment;
+			case 1:
+				// WistlistComponent
+				mWishlistDataComponentFragment = WishlistDataComponentFragment.newInstance(wishlistId);
+				return mWishlistDataComponentFragment;
+			default:
+				return null;
 		}
 	}
 
