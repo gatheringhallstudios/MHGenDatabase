@@ -5,17 +5,18 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 
 
 // todo: move somewhere else, have the ASB handle the mapping instead
 fun getSlotForPieceIndex(pieceIndex: Int) = when(pieceIndex) {
-    0 -> Armor.ARMOR_SLOT_HEAD
-    1 -> Armor.ARMOR_SLOT_BODY
-    2 -> Armor.ARMOR_SLOT_ARMS
-    3 -> Armor.ARMOR_SLOT_WAIST
-    4 -> Armor.ARMOR_SLOT_LEGS
+    ArmorSet.HEAD -> Armor.ARMOR_SLOT_HEAD
+    ArmorSet.BODY -> Armor.ARMOR_SLOT_BODY
+    ArmorSet.ARMS -> Armor.ARMOR_SLOT_ARMS
+    ArmorSet.WAIST -> Armor.ARMOR_SLOT_WAIST
+    ArmorSet.LEGS -> Armor.ARMOR_SLOT_LEGS
     else -> ""
 }
 

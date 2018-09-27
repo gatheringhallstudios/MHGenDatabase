@@ -20,55 +20,63 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
 
         val session = ASBSession()
 
-        val id = getLong(S.COLUMN_ASB_SET_ID)
+        // load the ASBSet specific stuff....todo: make ASBSet a superclass of ASBSession instead
+        val asbSet = ASBSet()
+        asbSet.id = getLong(getColumnIndex(S.COLUMN_ASB_SET_ID))
+        asbSet.name = getString(getColumnIndex(S.COLUMN_ASB_SET_NAME))
+        asbSet.rank = getInt(getColumnIndexOrThrow(S.COLUMN_ASB_SET_RANK))
+        asbSet.hunterType = getInt(getColumnIndex(S.COLUMN_ASB_SET_HUNTER_TYPE))
+        session.setASBSet(asbSet)
 
-        val set = DataManager.get().getASBSet(id)
-        session.setASBSet(set!!)
+        val weaponSlots = getInt(S.COLUMN_ASB_WEAPON_SLOTS)
+        val weaponDecoration1 = getDecorationById(getLong(S.COLUMN_ASB_WEAPON_DECORATION_1_ID))
+        val weaponDecoration2 = getDecorationById(getLong(S.COLUMN_ASB_WEAPON_DECORATION_2_ID))
+        val weaponDecoration3 = getDecorationById(getLong(S.COLUMN_ASB_WEAPON_DECORATION_3_ID))
 
         val headId = getLong(S.COLUMN_HEAD_ARMOR_ID)
+        val headArmor = getArmorById(headId)
         val headDecoration1Id = getLong(S.COLUMN_HEAD_DECORATION_1_ID)
         val headDecoration2Id = getLong(S.COLUMN_HEAD_DECORATION_2_ID)
         val headDecoration3Id = getLong(S.COLUMN_HEAD_DECORATION_3_ID)
-        val headArmor = getArmorById(context, headId)
-        val headDecoration1 = getDecorationById(context, headDecoration1Id)
-        val headDecoration2 = getDecorationById(context, headDecoration2Id)
-        val headDecoration3 = getDecorationById(context, headDecoration3Id)
+        val headDecoration1 = getDecorationById(headDecoration1Id)
+        val headDecoration2 = getDecorationById(headDecoration2Id)
+        val headDecoration3 = getDecorationById(headDecoration3Id)
 
         val bodyId = getLong(S.COLUMN_BODY_ARMOR_ID)
+        val bodyArmor = getArmorById(bodyId)
         val bodyDecoration1Id = getLong(S.COLUMN_BODY_DECORATION_1_ID)
         val bodyDecoration2Id = getLong(S.COLUMN_BODY_DECORATION_2_ID)
         val bodyDecoration3Id = getLong(S.COLUMN_BODY_DECORATION_3_ID)
-        val bodyArmor = getArmorById(context, bodyId)
-        val bodyDecoration1 = getDecorationById(context, bodyDecoration1Id)
-        val bodyDecoration2 = getDecorationById(context, bodyDecoration2Id)
-        val bodyDecoration3 = getDecorationById(context, bodyDecoration3Id)
+        val bodyDecoration1 = getDecorationById(bodyDecoration1Id)
+        val bodyDecoration2 = getDecorationById(bodyDecoration2Id)
+        val bodyDecoration3 = getDecorationById(bodyDecoration3Id)
 
         val armsId = getLong(S.COLUMN_ARMS_ARMOR_ID)
+        val armsArmor = getArmorById(armsId)
         val armsDecoration1Id = getLong(S.COLUMN_ARMS_DECORATION_1_ID)
         val armsDecoration2Id = getLong(S.COLUMN_ARMS_DECORATION_2_ID)
         val armsDecoration3Id = getLong(S.COLUMN_ARMS_DECORATION_3_ID)
-        val armsArmor = getArmorById(context, armsId)
-        val armsDecoration1 = getDecorationById(context, armsDecoration1Id)
-        val armsDecoration2 = getDecorationById(context, armsDecoration2Id)
-        val armsDecoration3 = getDecorationById(context, armsDecoration3Id)
+        val armsDecoration1 = getDecorationById(armsDecoration1Id)
+        val armsDecoration2 = getDecorationById(armsDecoration2Id)
+        val armsDecoration3 = getDecorationById(armsDecoration3Id)
 
         val waistId = getLong(S.COLUMN_WAIST_ARMOR_ID)
+        val waistArmor = getArmorById(waistId)
         val waistDecoration1Id = getLong(S.COLUMN_WAIST_DECORATION_1_ID)
         val waistDecoration2Id = getLong(S.COLUMN_WAIST_DECORATION_2_ID)
         val waistDecoration3Id = getLong(S.COLUMN_WAIST_DECORATION_3_ID)
-        val waistArmor = getArmorById(context, waistId)
-        val waistDecoration1 = getDecorationById(context, waistDecoration1Id)
-        val waistDecoration2 = getDecorationById(context, waistDecoration2Id)
-        val waistDecoration3 = getDecorationById(context, waistDecoration3Id)
+        val waistDecoration1 = getDecorationById(waistDecoration1Id)
+        val waistDecoration2 = getDecorationById(waistDecoration2Id)
+        val waistDecoration3 = getDecorationById(waistDecoration3Id)
 
         val legsId = getLong(S.COLUMN_LEGS_ARMOR_ID)
+        val legsArmor = getArmorById(legsId)
         val legsDecoration1Id = getLong(S.COLUMN_LEGS_DECORATION_1_ID)
         val legsDecoration2Id = getLong(S.COLUMN_LEGS_DECORATION_2_ID)
         val legsDecoration3Id = getLong(S.COLUMN_LEGS_DECORATION_3_ID)
-        val legsArmor = getArmorById(context, legsId)
-        val legsDecoration1 = getDecorationById(context, legsDecoration1Id)
-        val legsDecoration2 = getDecorationById(context, legsDecoration2Id)
-        val legsDecoration3 = getDecorationById(context, legsDecoration3Id)
+        val legsDecoration1 = getDecorationById(legsDecoration1Id)
+        val legsDecoration2 = getDecorationById(legsDecoration2Id)
+        val legsDecoration3 = getDecorationById(legsDecoration3Id)
 
         val talismanExists = getInt(S.COLUMN_TALISMAN_EXISTS)
         val talismanSkill1Id = getLong(S.COLUMN_TALISMAN_SKILL_1_ID)
@@ -80,73 +88,71 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
         val talismanDecoration1Id = getLong(S.COLUMN_TALISMAN_DECORATION_1_ID)
         val talismanDecoration2Id = getLong(S.COLUMN_TALISMAN_DECORATION_2_ID)
         val talismanDecoration3Id = getLong(S.COLUMN_TALISMAN_DECORATION_3_ID)
-        val talismanDecoration1 = getDecorationById(context, talismanDecoration1Id)
-        val talismanDecoration2 = getDecorationById(context, talismanDecoration2Id)
-        val talismanDecoration3 = getDecorationById(context, talismanDecoration3Id)
+        val talismanDecoration1 = getDecorationById(talismanDecoration1Id)
+        val talismanDecoration2 = getDecorationById(talismanDecoration2Id)
+        val talismanDecoration3 = getDecorationById(talismanDecoration3Id)
 
-        if (headArmor != null) {
-            session.setEquipment(ASBSession.HEAD, headArmor, false)
-        }
+        // Set armor pieces
+        session.numWeaponSlots = weaponSlots
+        headArmor?.let { session.setEquipment(ArmorSet.HEAD, it) }
+        bodyArmor?.let { session.setEquipment(ArmorSet.BODY, it) }
+        armsArmor?.let { session.setEquipment(ArmorSet.ARMS, it) }
+        waistArmor?.let { session.setEquipment(ArmorSet.WAIST, it) }
+        legsArmor?.let { session.setEquipment(ArmorSet.LEGS, it) }
+
+        // Set Weapon decorations
+        weaponDecoration1?.let { session.addDecoration(ArmorSet.WEAPON, it) }
+        weaponDecoration2?.let { session.addDecoration(ArmorSet.WEAPON, it) }
+        weaponDecoration3?.let { session.addDecoration(ArmorSet.WEAPON, it) }
+
         if (headDecoration1 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration1, false)
+            session.addDecoration(ArmorSet.HEAD, headDecoration1)
         }
         if (headDecoration2 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration2, false)
+            session.addDecoration(ArmorSet.HEAD, headDecoration2)
         }
         if (headDecoration3 != null) {
-            session.addDecoration(ASBSession.HEAD, headDecoration3, false)
+            session.addDecoration(ArmorSet.HEAD, headDecoration3)
         }
 
-        if (bodyArmor != null) {
-            session.setEquipment(ASBSession.BODY, bodyArmor, false)
-        }
         if (bodyDecoration1 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration1, false)
+            session.addDecoration(ArmorSet.BODY, bodyDecoration1)
         }
         if (bodyDecoration2 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration2, false)
+            session.addDecoration(ArmorSet.BODY, bodyDecoration2)
         }
         if (bodyDecoration3 != null) {
-            session.addDecoration(ASBSession.BODY, bodyDecoration3, false)
+            session.addDecoration(ArmorSet.BODY, bodyDecoration3)
         }
 
-        if (armsArmor != null) {
-            session.setEquipment(ASBSession.ARMS, armsArmor, false)
-        }
         if (armsDecoration1 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration1, false)
+            session.addDecoration(ArmorSet.ARMS, armsDecoration1)
         }
         if (armsDecoration2 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration2, false)
+            session.addDecoration(ArmorSet.ARMS, armsDecoration2)
         }
         if (armsDecoration3 != null) {
-            session.addDecoration(ASBSession.ARMS, armsDecoration3, false)
+            session.addDecoration(ArmorSet.ARMS, armsDecoration3)
         }
 
-        if (waistArmor != null) {
-            session.setEquipment(ASBSession.WAIST, waistArmor, false)
-        }
         if (waistDecoration1 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration1, false)
+            session.addDecoration(ArmorSet.WAIST, waistDecoration1)
         }
         if (waistDecoration2 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration2, false)
+            session.addDecoration(ArmorSet.WAIST, waistDecoration2)
         }
         if (waistDecoration3 != null) {
-            session.addDecoration(ASBSession.WAIST, waistDecoration3, false)
+            session.addDecoration(ArmorSet.WAIST, waistDecoration3)
         }
 
-        if (legsArmor != null) {
-            session.setEquipment(ASBSession.LEGS, legsArmor, false)
-        }
         if (legsDecoration1 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration1, false)
+            session.addDecoration(ArmorSet.LEGS, legsDecoration1)
         }
         if (legsDecoration2 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration2, false)
+            session.addDecoration(ArmorSet.LEGS, legsDecoration2)
         }
         if (legsDecoration3 != null) {
-            session.addDecoration(ASBSession.LEGS, legsDecoration3, false)
+            session.addDecoration(ArmorSet.LEGS, legsDecoration3)
         }
 
         if (talismanExists == 1) {
@@ -158,45 +164,43 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
             val typeName = talismanNames[talismanType]
             talisman.name = context.getString(R.string.talisman_full_name, typeName)
             talisman.numSlots = talismanSlots
-            talisman.setFirstSkill(getSkillTreeById(context, talismanSkill1Id)!!, talismanSkill1Points)
+            talisman.setFirstSkill(getSkillTreeById(talismanSkill1Id)!!, talismanSkill1Points)
 
             if (talismanSkill2Id != -1L) {
-                talisman.setSecondSkill(getSkillTreeById(context, talismanSkill2Id), talismanSkill2Points)
+                talisman.setSecondSkill(getSkillTreeById(talismanSkill2Id), talismanSkill2Points)
             }
 
-            session.setEquipment(ASBSession.TALISMAN, talisman, false)
+            session.setEquipment(ArmorSet.TALISMAN, talisman)
 
             if (talismanDecoration1 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration1, false)
+                session.addDecoration(ArmorSet.TALISMAN, talismanDecoration1)
             }
             if (talismanDecoration2 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration2, false)
+                session.addDecoration(ArmorSet.TALISMAN, talismanDecoration2)
             }
             if (talismanDecoration3 != null) {
-                session.addDecoration(ASBSession.TALISMAN, talismanDecoration3, false)
+                session.addDecoration(ArmorSet.TALISMAN, talismanDecoration3)
             }
         }
-
-        session.updateSkillTreePointsSets()
 
         return session
     }
 
-    private fun getArmorById(context: Context, id: Long): Armor? {
+    private fun getArmorById(id: Long): Armor? {
         return if (id != 0L && id != -1L) {
             DataManager.get().getArmor(id)
         } else
             null
     }
 
-    private fun getDecorationById(context: Context, id: Long): Decoration? {
+    private fun getDecorationById(id: Long): Decoration? {
         return if (id != 0L && id != -1L) {
             DataManager.get().getDecoration(id)
         } else
             null
     }
 
-    private fun getSkillTreeById(context: Context, id: Long): SkillTree? {
+    private fun getSkillTreeById(id: Long): SkillTree? {
         return if (id != 0L && id != -1L) {
             DataManager.get().getSkillTree(id)
         } else

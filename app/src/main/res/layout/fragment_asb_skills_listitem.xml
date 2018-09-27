@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="36dp"
     style="@style/list_item"
@@ -7,13 +8,26 @@
     android:background="@drawable/clicked_states_white"
     android:orientation="horizontal">
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/skill_tree_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
         android:textColor="@color/list_text"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="8sp"
+        android:maxLines="1"
         tools:text="Wide-Range"/>
+
+    <TextView
+        android:id="@+id/weapon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:gravity="right"
+        android:paddingRight="8dp"
+        android:textColor="@color/list_text"
+        tools:text="9"/>
 
     <TextView
         android:id="@+id/helmet"

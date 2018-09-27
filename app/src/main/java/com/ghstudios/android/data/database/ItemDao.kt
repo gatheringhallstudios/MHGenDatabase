@@ -233,12 +233,12 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         val cursor = ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}, st._id as st_id, st.$column_name AS st_name, st.name_ja as st_name_ja, its.point_value
             FROM armor a
-                LEFT OUTER JOIN items i USING (_id)
-                JOIN item_to_skill_tree its on its.item_id = a._id
-                JOIN skill_trees st on st._id = its.skill_tree_id
+                JOIN items i USING (_id)
+                LEFT JOIN item_to_skill_tree its on its.item_id = a._id
+                LEFT JOIN skill_trees st on st._id = its.skill_tree_id
             WHERE (a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2')
               AND (a.slot = @slot OR @slot IS NULL)
-            ORDER BY a._id ASC
+            ORDER BY i.rarity, i.$column_name ASC
         """, arrayOf(hunterType.toString(), armorSlot)))
 
         // stores armor and skills as its processed
@@ -251,13 +251,19 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
                 val id = cursor.getLong("_id")
                 armorMap.getOrPut(id) { cursor.armor }
 
-                val skillPoints = SkillTreePoints(SkillTree(
-                        cursor.getLong("st_id"),
-                        cursor.getString("st_name"),
-                        cursor.getString("st_name_ja")
-                ), cursor.getInt("point_value"))
+                // Ensure there is a skills entry for this armor piece
+                val skills = armorToSkills.getOrPut(id) { mutableListOf() }
 
-                armorToSkills.getOrPut(id) { mutableListOf() }.add(skillPoints)
+                // Add skill (if non-null)
+                if (!cursor.isNull("st_id")) {
+                    val skillPoints = SkillTreePoints(SkillTree(
+                            cursor.getLong("st_id"),
+                            cursor.getString("st_name"),
+                            cursor.getString("st_name_ja")
+                    ), cursor.getInt("point_value"))
+
+                    skills.add(skillPoints)
+                }
             }
         }
 
@@ -281,7 +287,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
     fun queryComponentsByArmorFamily(family: Long): ComponentCursor {
         return ComponentCursor(db.rawQuery("""
-            SELECT c._id,SUM(c.quantity) AS quantity,c.type,
+            SELECT c._id,SUM(c.quantity) AS quantity,c.type,MAX(c.key) AS key,
                    c.created_item_id,cr.name AS crname,cr.type AS crtype,
                         cr.rarity AS crrarity,cr.icon_name AS cricon_name,cr.sub_type AS crsub_type,
                         cr.icon_color AS cricon_color,

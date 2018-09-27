@@ -6,7 +6,9 @@ package com.ghstudios.android.data.database;
  * Note: Do not need to instantiate to use
  */
 public class S {
-	
+	// weapon ids are 3 bytes. Most significant is weapon type, 2nd is family, and the least is level
+	public static final long WEAPON_FAMILY_MASK = 0xFFFF00;
+
 	// Armor
 	public static final String TABLE_ARMOR = "armor";
 	public static final String COLUMN_ARMOR_ID = "_id";
@@ -39,6 +41,7 @@ public class S {
 	public static final String COLUMN_COMPONENTS_COMPONENT_ITEM_ID = "component_item_id";
 	public static final String COLUMN_COMPONENTS_QUANTITY = "quantity";
 	public static final String COLUMN_COMPONENTS_TYPE = "type";
+	public static final String COLUMN_COMPONENTS_KEY = "key";
 	
 	// Decorations
 	public static final String TABLE_DECORATIONS = "decorations";
@@ -350,7 +353,12 @@ public class S {
 	public static final String COLUMN_ASB_SET_NAME = "name";
 	public static final String COLUMN_ASB_SET_RANK = "rank";
 	public static final String COLUMN_ASB_SET_HUNTER_TYPE = "hunter_type";
-	
+
+	public static final String COLUMN_ASB_WEAPON_SLOTS = "weapon_slots";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_1_ID = "weapon_decoration_1";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_2_ID = "weapon_decoration_2";
+	public static final String COLUMN_ASB_WEAPON_DECORATION_3_ID = "weapon_decoration_3";
+
 	public static final String COLUMN_HEAD_ARMOR_ID = "head_armor";
 	public static final String COLUMN_HEAD_DECORATION_1_ID = "head_decoration_1";
 	public static final String COLUMN_HEAD_DECORATION_2_ID = "head_decoration_2";

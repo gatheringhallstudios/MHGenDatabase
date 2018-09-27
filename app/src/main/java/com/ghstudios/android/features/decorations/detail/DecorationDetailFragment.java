@@ -154,7 +154,7 @@ public class DecorationDetailFragment extends Fragment {
 
             for (Component component : recipe) {
                 Item item = component.getComponent();
-                View itemCell = cell.addItem(item, item.getName(), component.getQuantity());
+                View itemCell = cell.addItem(item, item.getName(), component.getQuantity(), component.isKey());
                 itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
             }
 

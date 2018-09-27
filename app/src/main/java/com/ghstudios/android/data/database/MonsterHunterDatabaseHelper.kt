@@ -9,10 +9,14 @@ import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Log
 import android.util.Xml
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.QuestHub
+import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.getLong
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.firstOrNull
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
@@ -63,9 +67,11 @@ For queries with JOINs:
 //Version 6 - v1.1.2 - Sept/Oct DLC
 //Version 7 - v2.0.0 - MHGU Release
 //Version 8 - v2.0.2 - MHGU Data Fixes
+//Version 9 - v2.1.0 - MHGU Data Fixes
+//Version 10 - v2.1.1 - MHGU Data Fixes + Key items
 
 private val DATABASE_NAME = "mhgu.db"
-private val DATABASE_VERSION = 8
+private val DATABASE_VERSION = 10
 
 /**
  * Initialize the helper object
@@ -140,7 +146,17 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val fos: FileOutputStream
 
         try {
-            val asb_set_columns = arrayOf(S.COLUMN_ASB_SET_NAME, S.COLUMN_ASB_SET_RANK, S.COLUMN_ASB_SET_HUNTER_TYPE, S.COLUMN_HEAD_ARMOR_ID, S.COLUMN_HEAD_DECORATION_1_ID, S.COLUMN_HEAD_DECORATION_2_ID, S.COLUMN_HEAD_DECORATION_3_ID, S.COLUMN_BODY_ARMOR_ID, S.COLUMN_BODY_DECORATION_1_ID, S.COLUMN_BODY_DECORATION_2_ID, S.COLUMN_BODY_DECORATION_3_ID, S.COLUMN_ARMS_ARMOR_ID, S.COLUMN_ARMS_DECORATION_1_ID, S.COLUMN_ARMS_DECORATION_2_ID, S.COLUMN_ARMS_DECORATION_3_ID, S.COLUMN_WAIST_ARMOR_ID, S.COLUMN_WAIST_DECORATION_1_ID, S.COLUMN_WAIST_DECORATION_2_ID, S.COLUMN_WAIST_DECORATION_3_ID, S.COLUMN_LEGS_ARMOR_ID, S.COLUMN_LEGS_DECORATION_1_ID, S.COLUMN_LEGS_DECORATION_2_ID, S.COLUMN_LEGS_DECORATION_3_ID, S.COLUMN_TALISMAN_EXISTS, S.COLUMN_TALISMAN_TYPE, S.COLUMN_TALISMAN_SLOTS, S.COLUMN_TALISMAN_DECORATION_1_ID, S.COLUMN_TALISMAN_DECORATION_2_ID, S.COLUMN_TALISMAN_DECORATION_3_ID, S.COLUMN_TALISMAN_SKILL_1_ID, S.COLUMN_TALISMAN_SKILL_1_POINTS, S.COLUMN_TALISMAN_SKILL_2_ID, S.COLUMN_TALISMAN_SKILL_2_POINTS)
+            val asb_set_columns = arrayOf(
+                    S.COLUMN_ASB_SET_NAME, S.COLUMN_ASB_SET_RANK, S.COLUMN_ASB_SET_HUNTER_TYPE,
+                    S.COLUMN_ASB_WEAPON_SLOTS, S.COLUMN_ASB_WEAPON_DECORATION_1_ID, S.COLUMN_ASB_WEAPON_DECORATION_2_ID, S.COLUMN_ASB_WEAPON_DECORATION_3_ID,
+                    S.COLUMN_HEAD_ARMOR_ID, S.COLUMN_HEAD_DECORATION_1_ID, S.COLUMN_HEAD_DECORATION_2_ID, S.COLUMN_HEAD_DECORATION_3_ID,
+                    S.COLUMN_BODY_ARMOR_ID, S.COLUMN_BODY_DECORATION_1_ID, S.COLUMN_BODY_DECORATION_2_ID, S.COLUMN_BODY_DECORATION_3_ID,
+                    S.COLUMN_ARMS_ARMOR_ID, S.COLUMN_ARMS_DECORATION_1_ID, S.COLUMN_ARMS_DECORATION_2_ID, S.COLUMN_ARMS_DECORATION_3_ID,
+                    S.COLUMN_WAIST_ARMOR_ID, S.COLUMN_WAIST_DECORATION_1_ID, S.COLUMN_WAIST_DECORATION_2_ID, S.COLUMN_WAIST_DECORATION_3_ID,
+                    S.COLUMN_LEGS_ARMOR_ID, S.COLUMN_LEGS_DECORATION_1_ID, S.COLUMN_LEGS_DECORATION_2_ID, S.COLUMN_LEGS_DECORATION_3_ID,
+                    S.COLUMN_TALISMAN_EXISTS, S.COLUMN_TALISMAN_TYPE, S.COLUMN_TALISMAN_SLOTS,
+                    S.COLUMN_TALISMAN_DECORATION_1_ID, S.COLUMN_TALISMAN_DECORATION_2_ID, S.COLUMN_TALISMAN_DECORATION_3_ID,
+                    S.COLUMN_TALISMAN_SKILL_1_ID, S.COLUMN_TALISMAN_SKILL_1_POINTS, S.COLUMN_TALISMAN_SKILL_2_ID, S.COLUMN_TALISMAN_SKILL_2_POINTS)
             val asb_set_columns_list = Arrays.asList(*asb_set_columns)
 
             val wishlist_columns = arrayOf(S.COLUMN_WISHLIST_ID, S.COLUMN_WISHLIST_NAME)
@@ -642,6 +658,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_COMPONENTS_COMPONENT_ITEM_ID] = c + "." + S.COLUMN_COMPONENTS_COMPONENT_ITEM_ID
         projectionMap[S.COLUMN_COMPONENTS_QUANTITY] = c + "." + S.COLUMN_COMPONENTS_QUANTITY
         projectionMap[S.COLUMN_COMPONENTS_TYPE] = c + "." + S.COLUMN_COMPONENTS_TYPE
+        projectionMap[S.COLUMN_COMPONENTS_KEY] = c + "." + S.COLUMN_COMPONENTS_KEY
 
         projectionMap[cr + S.COLUMN_ITEMS_NAME] = cr + "." + S.COLUMN_ITEMS_NAME + " AS " + cr + S.COLUMN_ITEMS_NAME
         projectionMap[cr + S.COLUMN_ITEMS_TYPE] = cr + "." + S.COLUMN_ITEMS_TYPE + " AS " + cr + S.COLUMN_ITEMS_TYPE
@@ -1938,17 +1955,32 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
             INNER JOIN weapons w on w._id = c.component_item_id
             JOIN items i ON i._id = w._id
             WHERE c.created_item_id=?
-        """,arrayOf(id.toString())))
+            """,arrayOf(id.toString())))
     }
 
-        fun queryWeaponFamilyBranches(id: Long):WeaponTreeCursor{
+    fun queryWeaponFamilyBranches(id: Long): WeaponTreeCursor {
+        // roughly equivalent to c.component family = family AND c.component family != c.created family
         return WeaponTreeCursor(writableDatabase.rawQuery("""
             SELECT i._id AS _id,i.name AS name FROM components c
             JOIN weapons w on w._id = c.created_item_id
             JOIN items i ON i._id = w._id
-            WHERE (c.component_item_id & 16776960)= (? & 16776960) AND
-                  (c.component_item_id & 16776960) != (c.created_item_id & 16776960)
-        """,arrayOf(id.toString())))
+            WHERE (c.component_item_id & ${S.WEAPON_FAMILY_MASK})= (? & ${S.WEAPON_FAMILY_MASK}) AND
+                  (c.component_item_id & ${S.WEAPON_FAMILY_MASK}) != (c.created_item_id & ${S.WEAPON_FAMILY_MASK})
+            """,arrayOf(id.toString())))
+    }
+
+    fun queryWeaponTreeFinal(id: Long): Weapon? {
+        val finalId = writableDatabase.rawQuery("""
+            SELECT _id
+            FROM weapons w
+            WHERE w.final = 1
+              AND w.family = (
+                SELECT family
+                FROM weapons
+                WHERE _id = ?)
+            """, arrayOf(id.toString())).firstOrNull { it.getLong("_id") } ?: return null
+
+        return queryWeapon(finalId).firstOrNull { it.weapon }
     }
 
     /*
@@ -2910,6 +2942,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         values.put(S.COLUMN_ASB_SET_RANK, rank)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
         values.put(S.COLUMN_TALISMAN_EXISTS, 0)
+        values.put(S.COLUMN_ASB_WEAPON_SLOTS, 3)
 
         return insertRecord(S.TABLE_ASB_SETS, values)
     }
@@ -2931,108 +2964,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val filter = S.COLUMN_ASB_SET_ID + " = " + setId
 
         return deleteRecord(S.TABLE_ASB_SETS, filter, emptyArray())
-    }
-
-    fun queryAddASBSessionArmor(asbSetId: Long, pieceId: Long, pieceIndex: Int): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
-
-        val values = ContentValues()
-
-        when (pieceIndex) {
-            ASBSession.HEAD -> putASBSessionItemOrNull(values, S.COLUMN_HEAD_ARMOR_ID, pieceId)
-            ASBSession.BODY -> putASBSessionItemOrNull(values, S.COLUMN_BODY_ARMOR_ID, pieceId)
-            ASBSession.ARMS -> putASBSessionItemOrNull(values, S.COLUMN_ARMS_ARMOR_ID, pieceId)
-            ASBSession.WAIST -> putASBSessionItemOrNull(values, S.COLUMN_WAIST_ARMOR_ID, pieceId)
-            ASBSession.LEGS -> putASBSessionItemOrNull(values, S.COLUMN_LEGS_ARMOR_ID, pieceId)
-        }
-
-        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
-    }
-
-    fun queryPutASBSessionDecoration(asbSetId: Long, decorationId: Long, pieceIndex: Int, decorationIndex: Int): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
-
-        val values = ContentValues()
-
-        when (pieceIndex) {
-            ASBSession.HEAD -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_HEAD_DECORATION_3_ID, decorationId)
-            }
-            ASBSession.BODY -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_BODY_DECORATION_3_ID, decorationId)
-            }
-            ASBSession.ARMS -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_ARMS_DECORATION_3_ID, decorationId)
-            }
-            ASBSession.WAIST -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_WAIST_DECORATION_3_ID, decorationId)
-            }
-            ASBSession.LEGS -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_LEGS_DECORATION_3_ID, decorationId)
-            }
-            ASBSession.TALISMAN -> if (decorationIndex == 0) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_1_ID, decorationId)
-            } else if (decorationIndex == 1) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_2_ID, decorationId)
-            } else if (decorationIndex == 2) {
-                putASBSessionItemOrNull(values, S.COLUMN_TALISMAN_DECORATION_3_ID, decorationId)
-            }
-        }
-
-        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
-    }
-
-    fun queryCreateASBSessionTalisman(asbSetId: Long, type: Int, slots: Int, skill1Id: Long, skill1Points: Int, skill2Id: Long, skill2Points: Int): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
-
-        val values = ContentValues()
-
-        values.put(S.COLUMN_TALISMAN_EXISTS, 1)
-
-        values.put(S.COLUMN_TALISMAN_TYPE, type)
-        values.put(S.COLUMN_TALISMAN_SLOTS, slots)
-        values.put(S.COLUMN_TALISMAN_SKILL_1_ID, skill1Id)
-        values.put(S.COLUMN_TALISMAN_SKILL_1_POINTS, skill1Points)
-
-        if (skill2Id != -1L) {
-            values.put(S.COLUMN_TALISMAN_SKILL_2_ID, skill2Id)
-            values.put(S.COLUMN_TALISMAN_SKILL_2_POINTS, skill2Points)
-        } else {
-            values.putNull(S.COLUMN_TALISMAN_SKILL_2_ID)
-            values.putNull(S.COLUMN_TALISMAN_SKILL_2_POINTS)
-        }
-
-        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
-    }
-
-    fun queryRemoveASBSessionTalisman(asbSetId: Long): Long {
-        val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
-
-        val values = ContentValues()
-
-        values.put(S.COLUMN_TALISMAN_EXISTS, 0)
-
-        return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
     }
 
     /**
@@ -3065,6 +2996,15 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         val set = "ar"
 
         projectionMap["_id"] = set + "." + S.COLUMN_ASB_SET_ID + " AS " + "_id"
+
+        projectionMap[S.COLUMN_ASB_SET_NAME] = set + "." + S.COLUMN_ASB_SET_NAME
+        projectionMap[S.COLUMN_ASB_SET_RANK] = set + "." + S.COLUMN_ASB_SET_RANK
+        projectionMap[S.COLUMN_ASB_SET_HUNTER_TYPE] = set + "." + S.COLUMN_ASB_SET_HUNTER_TYPE
+
+        projectionMap[S.COLUMN_ASB_WEAPON_SLOTS] = set + "." + S.COLUMN_ASB_WEAPON_SLOTS
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_1_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_1_ID
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_2_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_2_ID
+        projectionMap[S.COLUMN_ASB_WEAPON_DECORATION_3_ID] = set + "." + S.COLUMN_ASB_WEAPON_DECORATION_3_ID
 
         projectionMap[S.COLUMN_HEAD_ARMOR_ID] = set + "." + S.COLUMN_HEAD_ARMOR_ID
         projectionMap[S.COLUMN_HEAD_DECORATION_1_ID] = set + "." + S.COLUMN_HEAD_DECORATION_1_ID
@@ -3107,16 +3047,5 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qb.setProjectionMap(projectionMap)
 
         return qb
-    }
-
-    /**
-     * A helper method that determines whether to put `null` or the actual armor id into the table.
-     */
-    private fun putASBSessionItemOrNull(cv: ContentValues, column: String, pieceId: Long) {
-        if (pieceId != -1L) {
-            cv.put(column, pieceId)
-        } else {
-            cv.putNull(column)
-        }
     }
 }

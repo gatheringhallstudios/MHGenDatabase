@@ -14,14 +14,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ASBSession.*
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
-
-import java.util.Comparator
-
-
-private const val MINIMUM_SKILL_ACTIVATION_POINTS = 10
+import com.ghstudios.android.data.classes.ArmorSet
+import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
 
 /**
  * Fragment to display the list of skills granted from an armor set.
@@ -37,11 +33,13 @@ class ASBSkillsListFragment : Fragment() {
         val listView = v.findViewById<View>(R.id.list) as ListView
 
         val session = viewModel.session
-        val adapter = ASBSkillsAdapter(activity!!.applicationContext, session.skillTreesInSet, session)
+        val calculator = ArmorSetCalculator(session)
+        val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.results, session)
         listView.adapter = adapter
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it == null) return@Observer
+            calculator.recalculate()
             adapter.notifyDataSetChanged()
         })
 
@@ -49,15 +47,10 @@ class ASBSkillsListFragment : Fragment() {
     }
 
     private class ASBSkillsAdapter(
-            context: Context, trees: List<ASBSession.SkillTreeInSet>, internal var session: ASBSession
-    ) : ArrayAdapter<ASBSession.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
-        internal var trees: List<SkillTreeInSet>
-
-        internal var comparator: Comparator<ASBSession.SkillTreeInSet> = Comparator { lhs, rhs -> rhs.getTotal(trees) - lhs.getTotal(trees) }
-
-        init {
-            this.trees = trees
-        }
+            context: Context,
+            trees: List<ArmorSetCalculator.SkillTreeInSet>,
+            internal var session: ASBSession
+    ) : ArrayAdapter<ArmorSetCalculator.SkillTreeInSet>(context, R.layout.fragment_asb_skills_listitem, trees) {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val inflater = LayoutInflater.from(context)
@@ -66,44 +59,51 @@ class ASBSkillsListFragment : Fragment() {
             val itemView = inflater.inflate(R.layout.fragment_asb_skills_listitem, parent, false)
             // Conditional inflation really isn't necessary simply because of how many skills you'd have to have.
 
-            val treeName = itemView.findViewById<View>(R.id.skill_tree_name) as TextView
-            val headPoints = itemView.findViewById<View>(R.id.helmet) as TextView
-            val bodyPoints = itemView.findViewById<View>(R.id.body) as TextView
-            val armsPoints = itemView.findViewById<View>(R.id.arms) as TextView
-            val waistPoints = itemView.findViewById<View>(R.id.waist) as TextView
-            val legsPoints = itemView.findViewById<View>(R.id.legs) as TextView
-            val talismanPoints = itemView.findViewById<View>(R.id.talisman) as TextView
-            val totalPoints = itemView.findViewById<View>(R.id.total) as TextView
+            val treeName = itemView.findViewById<TextView>(R.id.skill_tree_name)
+            val weaponPoints = itemView.findViewById<TextView>(R.id.weapon)
+            val headPoints = itemView.findViewById<TextView>(R.id.helmet)
+            val bodyPoints = itemView.findViewById<TextView>(R.id.body)
+            val armsPoints = itemView.findViewById<TextView>(R.id.arms)
+            val waistPoints = itemView.findViewById<TextView>(R.id.waist)
+            val legsPoints = itemView.findViewById<TextView>(R.id.legs)
+            val talismanPoints = itemView.findViewById<TextView>(R.id.talisman)
+            val totalPoints = itemView.findViewById<TextView>(R.id.total)
 
-            treeName.text = getItem(position)!!.skillTree?.name
+            val data = getItem(position)
+            
+            treeName.text = data.skillTree.name
 
-            if (session.getEquipment(ASBSession.HEAD) != null && getItem(position)!!.getPoints(ASBSession.HEAD) != 0) {
-                headPoints.text = getItem(position)!!.getPoints(ASBSession.HEAD).toString()
+            if (data.getPoints(ArmorSet.WEAPON) != 0) {
+                weaponPoints.text = data.getPoints(ArmorSet.WEAPON).toString()
             }
 
-            if (session.getEquipment(ASBSession.BODY) != null && getItem(position)!!.getPoints(ASBSession.BODY, trees) != 0) { // NOTICE: We have to call the alternate getPoints method due to the possibility of Torso Up pieces.
-                bodyPoints.text = getItem(position)!!.getPoints(ASBSession.BODY, trees).toString()
+            if (data.getPoints(ArmorSet.HEAD) != 0) {
+                headPoints.text = data.getPoints(ArmorSet.HEAD).toString()
             }
 
-            if (session.getEquipment(ASBSession.ARMS) != null && getItem(position)!!.getPoints(ASBSession.ARMS) != 0) {
-                armsPoints.text = getItem(position)!!.getPoints(ASBSession.ARMS).toString()
+            if (data.getPoints(ArmorSet.BODY) != 0) {
+                bodyPoints.text = data.getPoints(ArmorSet.BODY).toString()
             }
 
-            if (session.getEquipment(ASBSession.WAIST) != null && getItem(position)!!.getPoints(ASBSession.WAIST) != 0) {
-                waistPoints.text = getItem(position)!!.getPoints(ASBSession.WAIST).toString()
+            if (data.getPoints(ArmorSet.ARMS) != 0) {
+                armsPoints.text = data.getPoints(ArmorSet.ARMS).toString()
             }
 
-            if (session.getEquipment(ASBSession.LEGS) != null && getItem(position)!!.getPoints(ASBSession.LEGS) != 0) {
-                legsPoints.text = getItem(position)!!.getPoints(ASBSession.LEGS).toString()
+            if (data.getPoints(ArmorSet.WAIST) != 0) {
+                waistPoints.text = data.getPoints(ArmorSet.WAIST).toString()
             }
 
-            if (session.getEquipment(ASBSession.TALISMAN) != null && getItem(position)!!.getPoints(ASBSession.TALISMAN) != 0) {
-                talismanPoints.text = getItem(position)!!.getPoints(ASBSession.TALISMAN).toString()
+            if (data.getPoints(ArmorSet.LEGS) != 0) {
+                legsPoints.text = data.getPoints(ArmorSet.LEGS).toString()
             }
 
-            totalPoints.text = getItem(position)!!.getTotal(trees).toString()
+            if (data.getPoints(ArmorSet.TALISMAN) != 0) {
+                talismanPoints.text = data.getPoints(ArmorSet.TALISMAN).toString()
+            }
 
-            if (getItem(position)!!.getTotal(trees) >= MINIMUM_SKILL_ACTIVATION_POINTS) {
+            totalPoints.text = data.getTotal().toString()
+
+            if (data.active) {
                 treeName.setTypeface(null, Typeface.BOLD)
                 headPoints.setTypeface(null, Typeface.BOLD)
                 bodyPoints.setTypeface(null, Typeface.BOLD)
@@ -114,16 +114,9 @@ class ASBSkillsListFragment : Fragment() {
                 totalPoints.setTypeface(null, Typeface.BOLD)
             }
 
-            itemView.setOnClickListener(SkillClickListener(parent.context, getItem(position)!!.skillTree!!.id))
+            itemView.setOnClickListener(SkillClickListener(parent.context, data.skillTree.id))
 
             return itemView
-        }
-
-        override fun notifyDataSetChanged() {
-            setNotifyOnChange(false)
-            sort(comparator)
-
-            super.notifyDataSetChanged() // super#notifyDataSetChanged automatically sets notifyOnChange back to true.
         }
     }
 }

@@ -168,7 +168,7 @@ public class ArmorDetailFragment extends Fragment {
 
         for (Component component : recipe) {
             Item item = component.getComponent();
-            View itemCell = recipeView.addItem(item, item.getName(), component.getQuantity());
+            View itemCell = recipeView.addItem(item, item.getName(), component.getQuantity(),component.isKey());
             itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
         }
     }

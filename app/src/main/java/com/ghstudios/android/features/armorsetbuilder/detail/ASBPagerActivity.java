@@ -41,6 +41,7 @@ public class ASBPagerActivity extends BasePagerActivity {
     public static final int REQUEST_CODE_CREATE_TALISMAN = 539;
     public static final int REQUEST_CODE_REMOVE_PIECE = 540;
     public static final int REQUEST_CODE_REMOVE_DECORATION = 541;
+    public static final int REQUEST_CODE_SET_WEAPON_SLOTS = 542;
 
 
     @Override

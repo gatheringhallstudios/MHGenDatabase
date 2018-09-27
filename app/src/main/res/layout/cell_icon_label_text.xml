@@ -30,6 +30,19 @@
         tools:text="Some Label" />
 
     <TextView
+        android:id="@+id/key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/key_badge"
+        android:text="@string/key"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/label_text"
+        app:layout_constraintTop_toTopOf="@id/label_text"
+        app:layout_constraintBottom_toBottomOf="@id/label_text"/>
+
+    <TextView
         android:id="@+id/label_alt_text"
         style="@style/cell_listitem_alt_label"
         app:layout_constraintBottom_toBottomOf="parent"

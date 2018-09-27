@@ -53,7 +53,7 @@
             android:layout_gravity="center_vertical|right"
             style="@style/hyper_badge"
             android:gravity="right"
-            tools:text="Hyper"/>
+            tools:text="@string/hyper"/>
 
         <TextView
         android:id="@+id/quest_unstable"

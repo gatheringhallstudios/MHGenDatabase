@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/hyper_badge"
-            tools:text="Hyper"/>
+            tools:text="@string/hyper"/>
         <TextView
             android:id="@+id/detail_monster_unstable"
             android:layout_width="wrap_content"

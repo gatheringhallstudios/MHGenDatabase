@@ -4,6 +4,7 @@
     <string name="app_name_launcher">MHGUDB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
+    <string name="filter_hint">Filter…</string>
     <string name="action_settings">Settings</string>
     <string name="alert_button">Close</string>
     <string name="alert_rate">Rate!</string>
@@ -13,6 +14,7 @@
     <string name="submit">Submit</string>
 
     <string name="about">About</string>
+    <string name="about_version">Version %s</string>
     <string name="about_message">
         Gathering Hall Studios is an open source team of designers and developers
         dedicated to building high-quality apps for the Monster Hunter series.
@@ -254,7 +256,12 @@
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
     <string name="asb_tab_skills">Skills</string>
-    <string name="activity_asb_armor_picker">Select Armor</string>
+    <string name="asb_title_select_armor">Select Armor</string>
+    <string name="asb_title_select_head">Select Head</string>
+    <string name="asb_title_select_body">Select Body</string>
+    <string name="asb_title_select_arms">Select Arms</string>
+    <string name="asb_title_select_waist">Select Waist</string>
+    <string name="asb_title_select_legs">Select Legs</string>
 
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slots">No slots</string>
@@ -280,6 +287,11 @@
     <string name="asb_dialog_title_copy_set">Copy this set?</string>
     <string name="asb_dialog_title_copy_set_multi">Copy sets?</string>
     <string name="monster_normal_state">Normal State</string>
+
+    <string name="asb_weapon_slots_none">Weapon (No Slots)</string>
+    <string name="asb_weapon_slots_one">Weapon (One Slots)</string>
+    <string name="asb_weapon_slots_two">Weapon (Two Slots)</string>
+    <string name="asb_weapon_slots_three">Weapon (Three Slots)</string>
 
     <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
@@ -337,6 +349,8 @@
     <string name="quest_detail_description">Description</string>
     <string name="unstable">Unstable</string>
     <string name="hyper">Hyper</string>
+    <string name="key">Key</string>
+    <string name="urgent">Urgent</string>
     <string name="armor_pieces">Armor Pieces</string>
     <string name="summary">summary</string>
 

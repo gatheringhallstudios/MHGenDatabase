@@ -83,6 +83,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     private val gatheringDao = GatheringDao(mHelper)
     private val skillDao = SkillDao(mHelper)
 
+    val asbManager = ASBManager(mAppContext, mHelper)
+
 
     /********************************* ARMOR QUERIES  */
 
@@ -633,26 +635,39 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.queryWeaponFamily(id)
     }
 
-    fun queryWeaponOrigins(id: Long):ArrayList<Weapon>{
+    /**
+     * Returns the first weapon of each family tree that led up to the family tree of id.
+     */
+    fun queryWeaponOrigins(id: Long): List<Weapon>{
         val weapons = ArrayList<Weapon>()
-        var currentId = (id and 0xFFFF00)+1
-        while(true) {
-            val cursor = mHelper.queryWeaponTreeParent(currentId)
-            cursor.moveToFirst()
-            val weapon = cursor.weapon ?: break
-            cursor.close()
 
-            val wCur = mHelper.queryWeapon(weapon.id)
-            wCur.moveToFirst()
-            val w = wCur.weapon
-            weapons.add(w)
-            currentId = (w.id and 0xFFFF00) + 1
-            wCur.close()
+        // Iteratively does the following:
+        // - get the first weapon of the tree: (id && S.WEAPON_FAMILY_MASK) + 1
+        // - get the parent of that weapon
+        // - get the first weapon of that tree and cycle again
+
+        // note: (id && S.WEAPON_FAMILY_MASK) + 1 is the FIRST weapon of the tree.
+        var currentId = (id and S.WEAPON_FAMILY_MASK) + 1
+
+        while(true) {
+            // This particular weapon cursor returns incomplete info
+            // todo: consider making either a WeaponBase superclass, a WeaponBasic class, or return full info from queryWeaponTreeParent
+            val weaponBase = mHelper.queryWeaponTreeParent(currentId)
+                    .firstOrNull { it.weapon }
+                    ?: break
+
+            // Query the full weapon data for the weapon cursor
+            val weapon = mHelper.queryWeapon(weaponBase.id).first { it.weapon }
+
+            // add to results, and then get the id of the first weapon of that tree and iterate again
+            weapons.add(weapon)
+            currentId = (weapon.id and S.WEAPON_FAMILY_MASK) + 1
         }
+
         return weapons
     }
 
-    fun queryWeaponBranches(id:Long):ArrayList<Weapon>{
+    fun queryWeaponBranches(id:Long): List<Weapon> {
         val wt = mHelper.queryWeaponFamilyBranches(id).toList { it.weapon }
         val weapons = ArrayList<Weapon>()
         for(w in wt){
@@ -660,6 +675,26 @@ class DataManager private constructor(private val mAppContext: Context) {
             if(wCur!=null) weapons.add(wCur)
         }
         return weapons
+    }
+
+    /**
+     * Queries all final weapons that can be derived from this one
+     */
+    fun queryWeaponFinal(id: Long): List<Weapon> {
+        val results = mutableListOf<Weapon>()
+
+        // Get the final of this tree
+        val final = mHelper.queryWeaponTreeFinal(id)
+        if (final != null) {
+            results.add(final)
+        }
+
+        // Get the branch weapons, and recursively get their final weapons
+        val otherBranches = this.queryWeaponBranches(id)
+        val branchFinals = otherBranches.map { queryWeaponFinal(it.id) }.flatten()
+        results.addAll(branchFinals)
+
+        return results
     }
 
     fun queryPalicoWeapons(): PalicoWeaponCursor {
@@ -1029,85 +1064,6 @@ class DataManager private constructor(private val mAppContext: Context) {
             // Update the WishlistData entry
             mHelper.queryUpdateWishlistDataSatisfied(wd.id, satisfied)
         }
-    }
-
-    /********************************* ARMOR SET BUILDER QUERIES  */
-
-    fun queryASBSets(): ASBSetCursor {
-        return mHelper.queryASBSets()
-    }
-
-    fun getASBSet(id: Long): ASBSet? {
-        var set: ASBSet? = null
-        val cursor = mHelper.queryASBSet(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            set = cursor.asbSet
-
-        cursor.close()
-        return set
-    }
-
-    /** Get a cursor with a list of all armor sets.  */
-    fun queryASBSessions(): ASBSessionCursor {
-        return mHelper.queryASBSessions()
-    }
-
-    /** Get a specific armor set.  */
-    fun getASBSession(id: Long): ASBSession? {
-        var session: ASBSession? = null
-        val cursor = mHelper.queryASBSession(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            session = cursor.getASBSession(mAppContext)
-
-        cursor.close()
-        return session
-    }
-
-    /** Adds a new ASB set to the list.  */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int) {
-        mHelper.queryAddASBSet(name, rank, hunterType)
-    }
-
-    /** Adds a new set that is a copy of the designated set to the list.  */
-    fun queryAddASBSet(setId: Long) {
-        val set = getASBSet(setId)
-        mHelper.queryAddASBSet(set!!.name!!, set.rank, set.hunterType)
-    }
-
-    fun queryDeleteASBSet(setId: Long) {
-        mHelper.queryDeleteASBSet(setId)
-    }
-
-    fun queryUpdateASBSet(setId: Long, name: String, rank: Int, hunterType: Int) {
-        mHelper.queryUpdateASBSet(setId, name, rank, hunterType)
-    }
-
-    fun queryPutASBSessionArmor(asbSetId: Long, armorId: Long, pieceIndex: Int) {
-        mHelper.queryAddASBSessionArmor(asbSetId, armorId, pieceIndex)
-    }
-
-    fun queryRemoveASBSessionArmor(asbSetId: Long, pieceIndex: Int) {
-        mHelper.queryAddASBSessionArmor(asbSetId, -1, pieceIndex)
-    }
-
-    fun queryPutASBSessionDecoration(asbSetId: Long, decorationId: Long, pieceIndex: Int, decorationIndex: Int) {
-        mHelper.queryPutASBSessionDecoration(asbSetId, decorationId, pieceIndex, decorationIndex)
-    }
-
-    fun queryRemoveASBSessionDecoration(asbSetId: Long, pieceIndex: Int, decorationIndex: Int) {
-        mHelper.queryPutASBSessionDecoration(asbSetId, -1, pieceIndex, decorationIndex)
-    }
-
-    fun queryCreateASBSessionTalisman(asbSetId: Long, type: Int, slots: Int, skill1Id: Long, skill1Points: Int, skill2Id: Long, skill2Points: Int) {
-        mHelper.queryCreateASBSessionTalisman(asbSetId, type, slots, skill1Id, skill1Points, skill2Id, skill2Points)
-    }
-
-    fun queryRemoveASBSessionTalisman(asbSetId: Long) {
-        mHelper.queryRemoveASBSessionTalisman(asbSetId)
     }
 
     /**************************** WYPORIUM TRADE DATA QUERIES  */

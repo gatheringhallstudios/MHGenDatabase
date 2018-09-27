@@ -15,6 +15,6 @@ public class ASBSessionLoader extends DataLoader<ASBSession> {
 
     @Override
     public ASBSession loadInBackground() {
-        return DataManager.get().getASBSession(id);
+        return DataManager.get().getAsbManager().getASBSession(id);
     }
 }

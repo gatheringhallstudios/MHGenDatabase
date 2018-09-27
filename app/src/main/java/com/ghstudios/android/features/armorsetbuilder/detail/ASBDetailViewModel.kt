@@ -8,6 +8,8 @@ import android.util.Log
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.Armor
+import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -19,6 +21,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     private val TAG = javaClass.simpleName
 
     private val dataManager = DataManager.get()
+    private val asbManager = dataManager.asbManager
 
     private var sessionId = -1L
     lateinit var session: ASBSession
@@ -33,41 +36,52 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
 
         this.sessionId = sessionId
-        session = dataManager.getASBSession(sessionId)!! // note: error should never happen
+        session = asbManager.getASBSession(sessionId)!! // note: error should never happen
     }
 
+    /**
+     * Updates the internal session weapon slot count,
+     * then persists that change to the DB.
+     */
+    fun setWeaponSlots(slots: Int) {
+        session.numWeaponSlots = slots
+        triggerPieceUpdated(ArmorSet.WEAPON)
+    }
+
+    /**
+     * Adds the armor to the internal session,
+     * then persists that change to the DB.
+     */
     fun addArmor(armorId: Long) {
         val armor = dataManager.getArmor(armorId)
 
         val armorEnum = when (armor?.slot) {
-            "Head" -> ASBSession.HEAD
-            "Body" -> ASBSession.BODY
-            "Arms" -> ASBSession.ARMS
-            "Waist" -> ASBSession.WAIST
-            "Legs" -> ASBSession.LEGS
+            Armor.ARMOR_SLOT_HEAD -> ArmorSet.HEAD
+            Armor.ARMOR_SLOT_BODY -> ArmorSet.BODY
+            Armor.ARMOR_SLOT_ARMS -> ArmorSet.ARMS
+            Armor.ARMOR_SLOT_WAIST -> ArmorSet.WAIST
+            Armor.ARMOR_SLOT_LEGS -> ArmorSet.LEGS
             else -> null
         }
 
         if (armor != null && armorEnum != null) {
             session.setEquipment(armorEnum, armor)
-            dataManager.queryPutASBSessionArmor(session.id, armorId, armorEnum)
-
             triggerPieceUpdated(armorEnum)
         }
     }
 
+    /**
+     * Removes the armor from the specified piece index,
+     * then persists that change to the DB.
+     */
     fun removeArmorPiece(pieceIndex: Int) {
         session.removeEquipment(pieceIndex)
-
-        if (pieceIndex == ASBSession.TALISMAN) {
-            dataManager.queryRemoveASBSessionTalisman(session.id)
-        } else {
-            dataManager.queryRemoveASBSessionArmor(session.id, pieceIndex)
-        }
-
         triggerPieceUpdated(pieceIndex)
     }
 
+    /**
+     * Adds a decoration to the given slot, then updates the DB.
+     */
     fun bindDecoration(pieceIndex: Int, decorationId: Long) {
         val decoration = dataManager.getDecoration(decorationId)
         if (decoration == null) {
@@ -76,21 +90,22 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
         }
 
         val decorationIndex = session.addDecoration(pieceIndex, decoration)
-
-        if (decorationIndex != -1 && pieceIndex != -1) {
-            dataManager.queryPutASBSessionDecoration(session.id, decorationId, pieceIndex, decorationIndex)
+        if (decorationIndex != -1) {
+            triggerPieceUpdated(pieceIndex)
         }
-
-        triggerPieceUpdated(pieceIndex)
     }
 
+    /**
+     * Removes a decoration from the specified slot, then updates the DB.
+     */
     fun unbindDecoration(pieceIndex: Int, decorationIndex: Int) {
         session.removeDecoration(pieceIndex, decorationIndex)
-        dataManager.queryRemoveASBSessionDecoration(session.id, pieceIndex, decorationIndex)
-
         triggerPieceUpdated(pieceIndex)
     }
 
+    /**
+     * Sets the equipped talisman, then updates the DB.
+     */
     fun setTalisman(
             typeIndex: Int,
             skill1Id: Long,
@@ -116,26 +131,17 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
             talisman.setSecondSkill(skill2Tree, skill2Points)
         }
 
-        session.setEquipment(ASBSession.TALISMAN, talisman)
-
-        dataManager.queryCreateASBSessionTalisman(
-                session.id,
-                typeIndex,
-                numSlots,
-                skill1Id,
-                skill1Points,
-                skill2Id,
-                skill2Points)
-
-        triggerPieceUpdated(ASBSession.TALISMAN)
+        session.setEquipment(ArmorSet.TALISMAN, talisman)
+        triggerPieceUpdated(ArmorSet.TALISMAN)
     }
 
     /**
      * Triggers an update event related to a piece.
+     * This updates the ASBSession in the database as well.
      * Note: ASB constants are equal to the piece index, can use either
      */
     private fun triggerPieceUpdated(pieceIndex: Int) {
-        // if this ever gets called from another thread, do a check and call postValue
+        asbManager.updateASB(session)
         updatePieceEventInner.postValue(pieceIndex)
     }
 }

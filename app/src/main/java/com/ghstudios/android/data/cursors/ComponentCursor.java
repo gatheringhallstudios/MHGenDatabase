@@ -33,6 +33,10 @@ public class ComponentCursor extends CursorWrapper {
 		long id = getLong(getColumnIndex(S.COLUMN_COMPONENTS_ID));
 		int quantity = getInt(getColumnIndex(S.COLUMN_COMPONENTS_QUANTITY));
 		String ctype = getString(getColumnIndex(S.COLUMN_COMPONENTS_TYPE));
+
+		int keyI = getColumnIndex(S.COLUMN_COMPONENTS_KEY);
+		if(keyI != -1)
+			component.setKey(getInt(keyI));
 		
 		component.setId(id);
 		component.setQuantity(quantity);
