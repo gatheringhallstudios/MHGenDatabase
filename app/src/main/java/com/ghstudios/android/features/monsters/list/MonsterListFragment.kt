@@ -7,6 +7,7 @@ import android.view.View
 
 import com.ghstudios.android.data.classes.MonsterClass
 import com.ghstudios.android.RecyclerViewFragment
+import com.ghstudios.android.util.applyArguments
 
 
 /**
@@ -17,15 +18,11 @@ class MonsterListFragment : RecyclerViewFragment() {
         private val ARG_TAB = "MONSTER_TAB"
 
         @JvmStatic fun newInstance(tab: MonsterClass?): MonsterListFragment {
-            val args = Bundle()
-            args.putSerializable(ARG_TAB, tab)
-            val f = MonsterListFragment()
-            f.arguments = args
-            return f
+            return MonsterListFragment().applyArguments {
+                putSerializable(ARG_TAB, tab)
+            }
         }
     }
-
-    private val adapter = MonsterListAdapter()
 
     private val viewModel by lazy {
         ViewModelProviders.of(this).get(MonsterListViewModel::class.java)
@@ -39,6 +36,8 @@ class MonsterListFragment : RecyclerViewFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val adapter = MonsterListAdapter()
+
         setAdapter(adapter)
         enableDivider()
 
