@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-        applicationId "com.ghstudios.android.mhgendatabase"
+        applicationId "com.ghstudios.android.mhgendatabaseold"
         minSdkVersion 14
         targetSdkVersion 24
 
@@ -15,6 +15,7 @@ android {
         //1.1.0  Version Code: 4   Released 7-31-2016
         //1.1.1  Version Code: 5   Released 8-05-2016
         //1.1.2  Version Code: 6   Released 10-17-2016
+        //1.1.3  Version Code: 7   Released ???
         versionCode 7
         versionName "1.1.3"
 
