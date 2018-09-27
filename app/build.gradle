@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 27
 
     defaultConfig {
         applicationId "com.ghstudios.android.mhgendatabaseold"
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 27
 
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
@@ -34,12 +33,18 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.0.0'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.android.support:gridlayout-v7:25.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+    /*
+     * Google Support Libraries
+     */
+    def google_version = "27.1.1"
+    implementation "com.android.support:appcompat-v7:${google_version}"
+    implementation "com.android.support:design:${google_version}"
+    implementation "com.android.support:cardview-v7:${google_version}"
+    implementation "com.android.support:gridlayout-v7:${google_version}"
+    implementation "com.android.support:recyclerview-v7:${google_version}"
+    implementation "com.android.support:preference-v7:${google_version}"
+    implementation "com.android.support:preference-v14:${google_version}"
+
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1' // Support library for tab navigation with new Toolbar object
     // integration instructions here https://github.com/astuetz/PagerSlidingTabStrip
     compile 'org.apmem.tools:layouts:1.8@aar' // Library for flow layout
