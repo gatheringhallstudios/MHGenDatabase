@@ -21,14 +21,8 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.database.ItemCursor;
 import com.ghstudios.android.loader.ItemListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
-import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 import java.io.IOException;
 

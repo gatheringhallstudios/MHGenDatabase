@@ -6,9 +6,8 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.general.GenericActivity;
-import com.ghstudios.android.ui.list.adapter.MenuSection;
 
 /**
  * Created by Carlos on 8/3/2015.

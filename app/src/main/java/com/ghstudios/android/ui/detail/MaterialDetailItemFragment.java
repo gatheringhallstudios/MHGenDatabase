@@ -19,12 +19,8 @@ import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToMaterial;
 import com.ghstudios.android.data.database.ItemToMaterialCursor;
 import com.ghstudios.android.loader.ItemToMaterialListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 import java.io.IOException;
 

@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.loader.LocationLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class LocationDetailFragment extends Fragment {
 	private static final String ARG_LOCATION_ID = "LOCATION_ID";

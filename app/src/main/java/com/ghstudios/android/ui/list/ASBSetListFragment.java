@@ -16,7 +16,7 @@ import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.database.ASBSetCursor;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.ASBSetListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.detail.*;
 import com.ghstudios.android.ui.dialog.ASBSetAddDialogFragment;
 

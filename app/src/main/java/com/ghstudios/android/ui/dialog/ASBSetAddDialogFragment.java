@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.list.ASBSetListFragment;
 
 public class ASBSetAddDialogFragment extends DialogFragment {

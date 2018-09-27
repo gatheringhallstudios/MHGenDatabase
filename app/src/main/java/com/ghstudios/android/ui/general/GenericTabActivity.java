@@ -5,7 +5,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 /*
  * Any subclass needs to:

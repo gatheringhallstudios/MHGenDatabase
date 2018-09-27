@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.adapter.WeaponExpandableListGeneralAdapter;
 import com.ghstudios.android.ui.general.WeaponListEntry;
 

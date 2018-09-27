@@ -22,11 +22,11 @@ import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.QuestLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 import java.io.IOException;
 
-import static com.ghstudios.android.mhgendatabase.R.id.location;
+import static com.ghstudios.android.mhgendatabaseold.R.id.location;
 
 public class QuestDetailFragment extends Fragment {
 	private static final String ARG_QUEST_ID = "QUEST_ID";

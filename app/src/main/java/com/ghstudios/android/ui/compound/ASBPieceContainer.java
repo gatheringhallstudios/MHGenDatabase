@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.ghstudios.android.data.classes.ASBSession;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.detail.ASBActivity;
 import com.ghstudios.android.ui.detail.ASBFragment;
 import com.ghstudios.android.ui.detail.ArmorDetailActivity;

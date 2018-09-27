@@ -28,7 +28,7 @@ import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.classes.MonsterDamage;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.loader.MonsterLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class MonsterDamageFragment extends Fragment {
 	private static final String ARG_MONSTER_ID = "MONSTER_ID";

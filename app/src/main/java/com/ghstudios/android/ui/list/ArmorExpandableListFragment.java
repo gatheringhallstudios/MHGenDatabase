@@ -17,7 +17,7 @@ import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
 import com.ghstudios.android.ui.detail.ASBActivity;
 import com.ghstudios.android.ui.dialog.ArmorFilterDialogFragment;

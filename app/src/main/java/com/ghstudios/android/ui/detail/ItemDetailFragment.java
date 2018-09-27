@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.loader.ItemLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class ItemDetailFragment extends Fragment {
 	private static final String ARG_ITEM_ID = "ITEM_ID";

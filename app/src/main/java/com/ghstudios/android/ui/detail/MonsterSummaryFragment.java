@@ -26,7 +26,7 @@ import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.MonsterAilmentCursor;
 import com.ghstudios.android.loader.MonsterAilmentCursorLoader;
 import com.ghstudios.android.loader.MonsterLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 import org.apmem.tools.layouts.FlowLayout;
 

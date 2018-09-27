@@ -23,7 +23,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.MonsterToArena;
 import com.ghstudios.android.data.database.MonsterToArenaCursor;
 import com.ghstudios.android.loader.MonsterToArenaListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class ArenaQuestMonsterFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

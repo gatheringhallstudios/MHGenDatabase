@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.adapter.MonsterGridPagerAdapter;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;

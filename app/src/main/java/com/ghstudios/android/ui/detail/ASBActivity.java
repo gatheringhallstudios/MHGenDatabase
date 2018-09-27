@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 
 import com.ghstudios.android.data.classes.ASBSession;
 import com.ghstudios.android.loader.ASBSessionLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.adapter.ASBPagerAdapter;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.ASBSetListFragment;

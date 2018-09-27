@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Skill;
 import com.ghstudios.android.data.database.SkillCursor;
 import com.ghstudios.android.loader.SkillListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class SkillTreeDetailFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

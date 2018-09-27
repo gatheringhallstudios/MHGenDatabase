@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.WyporiumTrade;
 import com.ghstudios.android.loader.WyporiumTradeLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class ItemTradeFragment extends Fragment {
     private static final String ARG_ITEM_IN_ID = "ITEM_IN_ID";

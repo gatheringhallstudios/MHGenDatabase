@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
-import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.adapter.MonsterGridPagerAdapter;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 

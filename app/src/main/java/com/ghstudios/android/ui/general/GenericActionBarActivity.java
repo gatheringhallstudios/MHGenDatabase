@@ -33,7 +33,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.dialog.AboutDialogFragment;
 import com.ghstudios.android.ui.list.ASBSetListActivity;
 import com.ghstudios.android.ui.list.ArmorListActivity;

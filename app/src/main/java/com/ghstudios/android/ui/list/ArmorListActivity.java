@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.adapter.ArmorExpandableListPagerAdapter;
 import com.ghstudios.android.ui.detail.ASBActivity;
 import com.ghstudios.android.ui.general.GenericTabActivity;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.ArenaQuest;
 import com.ghstudios.android.loader.ArenaQuestLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class ArenaQuestDetailFragment extends Fragment {
 	private static final String ARG_ARENA_QUEST_ID = "ARENA_QUEST_ID";

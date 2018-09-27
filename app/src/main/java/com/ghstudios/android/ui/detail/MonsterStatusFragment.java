@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.MonsterStatus;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

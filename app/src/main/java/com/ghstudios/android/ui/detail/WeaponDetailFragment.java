@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.loader.WeaponLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class WeaponDetailFragment extends Fragment {
 	protected static final String ARG_WEAPON_ID = "WEAPON_ID";

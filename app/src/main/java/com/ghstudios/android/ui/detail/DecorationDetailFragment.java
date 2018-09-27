@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.loader.DecorationLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class DecorationDetailFragment extends Fragment {
 	private static final String ARG_DECORATION_ID = "DECORATION_ID";

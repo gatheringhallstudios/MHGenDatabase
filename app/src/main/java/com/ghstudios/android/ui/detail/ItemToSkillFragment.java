@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.data.database.ItemToSkillTreeCursor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.SkillClickListener;
 
 public class ItemToSkillFragment extends ListFragment implements

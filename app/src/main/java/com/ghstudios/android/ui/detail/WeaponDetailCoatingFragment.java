@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.loader.WeaponLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 /**
  * Created by Joseph on 7/1/2016.

@@ -3,7 +3,7 @@ package com.ghstudios.android.ui.list;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.general.GenericActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;
 

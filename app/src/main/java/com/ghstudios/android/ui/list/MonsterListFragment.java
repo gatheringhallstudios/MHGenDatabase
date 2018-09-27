@@ -14,14 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Monster;
 import com.ghstudios.android.data.database.MonsterCursor;
 import com.ghstudios.android.loader.MonsterListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
 
 import java.io.IOException;

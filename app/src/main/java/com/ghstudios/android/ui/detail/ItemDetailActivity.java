@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.adapter.ItemDetailPagerAdapter;
 import com.ghstudios.android.ui.general.GenericTabActivity;
 import com.ghstudios.android.ui.list.adapter.MenuSection;

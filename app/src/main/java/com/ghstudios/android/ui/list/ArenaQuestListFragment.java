@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.ArenaQuest;
 import com.ghstudios.android.data.database.ArenaQuestCursor;
 import com.ghstudios.android.loader.ArenaQuestListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.detail.ArenaQuestDetailActivity;
 
 public class ArenaQuestListFragment extends ListFragment implements

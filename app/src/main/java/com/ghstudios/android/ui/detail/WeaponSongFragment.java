@@ -7,26 +7,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.Melody;
-import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.data.database.HornMelodiesCursor;
-import com.ghstudios.android.data.database.WeaponCursor;
 import com.ghstudios.android.loader.HornMelodyListCursorLoader;
-import com.ghstudios.android.loader.WeaponTreeListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 import java.io.IOException;
 import java.io.InputStream;

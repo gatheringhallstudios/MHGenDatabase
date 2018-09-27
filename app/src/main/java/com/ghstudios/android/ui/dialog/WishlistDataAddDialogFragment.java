@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.ghstudios.android.data.classes.Wishlist;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistCursor;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class WishlistDataAddDialogFragment extends DialogFragment {
 	public static final String EXTRA_ADD =

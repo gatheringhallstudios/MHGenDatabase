@@ -24,7 +24,7 @@ import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.database.QuestRewardCursor;
 import com.ghstudios.android.data.database.S;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 
 public class QuestRewardFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {

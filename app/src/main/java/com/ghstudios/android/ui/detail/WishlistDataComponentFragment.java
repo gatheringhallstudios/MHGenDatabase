@@ -30,14 +30,8 @@ import com.ghstudios.android.data.classes.WishlistComponent;
 import com.ghstudios.android.data.database.DataManager;
 import com.ghstudios.android.data.database.WishlistComponentCursor;
 import com.ghstudios.android.loader.WishlistComponentListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ui.ClickListeners.ArmorClickListener;
-import com.ghstudios.android.ui.ClickListeners.BasicItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.DecorationClickListener;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.ItemClickListener;
-import com.ghstudios.android.ui.ClickListeners.MaterialClickListener;
-import com.ghstudios.android.ui.ClickListeners.PalicoWeaponClickListener;
-import com.ghstudios.android.ui.ClickListeners.WeaponClickListener;
 
 import java.io.IOException;
 import java.util.ArrayList;

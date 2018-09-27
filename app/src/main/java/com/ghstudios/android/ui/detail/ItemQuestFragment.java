@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.QuestReward;
 import com.ghstudios.android.data.database.QuestRewardCursor;
 import com.ghstudios.android.loader.QuestRewardListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.QuestClickListener;
 import com.github.monxalo.android.widget.SectionCursorAdapter;
 

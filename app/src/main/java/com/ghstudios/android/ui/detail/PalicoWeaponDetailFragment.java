@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.PalicoWeapon;
 import com.ghstudios.android.loader.PalicoWeaponLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.general.DrawSharpness;
 
 /**

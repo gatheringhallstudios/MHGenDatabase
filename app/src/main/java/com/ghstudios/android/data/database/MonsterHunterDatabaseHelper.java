@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Xml;
 
 import com.ghstudios.android.data.classes.ASBSession;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import org.xmlpull.v1.XmlPullParser;

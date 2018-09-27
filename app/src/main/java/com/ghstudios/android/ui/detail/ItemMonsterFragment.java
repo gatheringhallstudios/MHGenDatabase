@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.HuntingReward;
 import com.ghstudios.android.data.database.HuntingRewardCursor;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.MonsterClickListener;
 
 import java.io.IOException;

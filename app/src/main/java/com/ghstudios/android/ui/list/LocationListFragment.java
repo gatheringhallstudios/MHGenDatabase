@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.ghstudios.android.data.classes.Location;
 import com.ghstudios.android.data.database.LocationCursor;
 import com.ghstudios.android.loader.LocationListCursorLoader;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.ClickListeners.LocationClickListener;
 
 import java.io.IOException;

@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.compound.ASBTalismanSkillContainer;
 import com.ghstudios.android.ui.detail.ASBActivity;
 import com.ghstudios.android.ui.detail.SkillTreeDetailActivity;

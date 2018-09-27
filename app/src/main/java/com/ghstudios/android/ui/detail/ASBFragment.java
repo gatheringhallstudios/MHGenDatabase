@@ -12,7 +12,7 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.database.DataManager;
-import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabaseold.R;
 import com.ghstudios.android.ui.compound.ASBPieceContainer;
 import com.ghstudios.android.ui.general.ResourceUtils;
 import com.ghstudios.android.ui.list.ArmorListActivity;
