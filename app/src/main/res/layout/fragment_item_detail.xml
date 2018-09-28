@@ -50,7 +50,7 @@
                 android:id="@+id/sell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:labelText="@string/item_sell"
+                app:labelText="@string/item_sell_label"
                 tools:valueText="80z" />
         </com.google.android.flexbox.FlexboxLayout>
 

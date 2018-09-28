@@ -8,6 +8,7 @@ import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
@@ -22,7 +23,10 @@ data class WeaponFamilyWrapper(
     val showLevel:Boolean
 )
 
-class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
+/**
+ * ViewModel that manages data for the weapon detail
+ */
+class WeaponDetailViewModel(private val app: Application) : AndroidViewModel(app) {
     val dataManager = DataManager.get()
 
     val weaponData = MutableLiveData<Weapon>()
@@ -59,15 +63,17 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
     var weaponId = -1L
         private set
 
-    fun loadWeapon(weaponId: Long) {
+    fun loadWeapon(weaponId: Long): Weapon? {
         if (this.weaponId == weaponId) {
-            return
+            return weaponData.value
         }
 
         this.weaponId = weaponId
 
+        val weapon = dataManager.getWeapon(weaponId)
+        weaponData.postValue(weapon)
+
         loggedThread("Weapon Detail Loading") {
-            weaponData.postValue(dataManager.getWeapon(weaponId))
             val components = dataManager.queryComponentCreated(weaponId).toList {
                 it.component
             }
@@ -77,21 +83,38 @@ class WeaponDetailViewModel(app: Application) : AndroidViewModel(app) {
 
         loggedThread("Weapon Family Loading"){
             val famData = ArrayList<WeaponFamilyWrapper>()
-            val origins = dataManager.queryWeaponOrigins(weaponId).reversed()
-            for (w in origins) famData.add(WeaponFamilyWrapper("Origin",w,false))
-            val family = dataManager.queryWeaponTree(weaponId).toList { it.weapon }
-            for (w in family) famData.add(WeaponFamilyWrapper("Family",w,false))
-            val branches = dataManager.queryWeaponBranches(weaponId)
-            for (w in branches) famData.add(WeaponFamilyWrapper("Branches",w,true))
 
-            // todo: the translations branch will introduce translations strings for the above
-            // change the below to also use a string resource when its merged
+            // origin trees
+            val originTitle = app.getString(R.string.weapon_tree_origin)
+            val origins = dataManager.queryWeaponOrigins(weaponId).reversed()
+            for (w in origins) {
+                famData.add(WeaponFamilyWrapper(originTitle, w, false))
+            }
+
+            // current family tree
+            val familyTitle = app.getString(R.string.weapon_tree_family)
+            val family = dataManager.queryWeaponTree(weaponId).toList { it.weapon }
+            for (w in family) {
+                famData.add(WeaponFamilyWrapper(familyTitle, w, false))
+            }
+
+            // alt branches
+            val branchesTitle = app.getString(R.string.weapon_tree_side_branches)
+            val branches = dataManager.queryWeaponBranches(weaponId)
+            for (w in branches) {
+                famData.add(WeaponFamilyWrapper(branchesTitle, w, true))
+            }
+
+            // final upgrades
+            val finalTitle = app.getString(R.string.weapon_tree_final)
             val finalWeapons = dataManager.queryWeaponFinal(weaponId)
             for (w in finalWeapons) {
-                famData.add(WeaponFamilyWrapper("Final Upgrades", w, false))
+                famData.add(WeaponFamilyWrapper(finalTitle, w, false))
             }
 
             familyTreeData.postValue(famData)
         }
+
+        return weapon
     }
 }

@@ -364,14 +364,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get a specific Location */
     fun getLocation(id: Long): Location? {
-        var location: Location? = null
-        val cursor = mHelper.queryLocation(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            location = cursor.location
-        cursor.close()
-        return location
+        return mHelper.queryLocation(id)
     }
 
     /********************************* MELODY QUERIES  */
@@ -487,8 +480,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get an array of Quest based on hub */
     fun queryQuestArrayHub(hub: QuestHub): List<Quest> {
-        val cursor = mHelper.queryQuestHub(hub)
-        return cursor.toList { it.quest }
+        return this.queryQuestHub(hub).toList { it.quest }
     }
 
     /* Get a Cursor that has a list of Quest based on hub */
@@ -519,8 +511,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     //    }
 
     /* Get a Cursor that has a list of all Skills from a specific SkillTree */
-    fun querySkillFromTree(id: Long): SkillCursor {
-        return mHelper.querySkillFromTree(id)
+    fun querySkillsFromTree(id: Long): SkillCursor {
+        return mHelper.querySkillsFromTree(id)
     }
 
     /********************************* SKILL TREE QUERIES  */
@@ -533,16 +525,9 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.querySkillTreesSearch(searchTerm)
     }
 
-    /* Get a specific SkillTree */
+    /** Get a specific SkillTree */
     fun getSkillTree(id: Long): SkillTree? {
-        var skillTree: SkillTree? = null
-        val cursor = mHelper.querySkillTree(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            skillTree = cursor.skillTree
-        cursor.close()
-        return skillTree
+        return mHelper.querySkillTree(id)
     }
 
     /********************************* WEAPON QUERIES  */

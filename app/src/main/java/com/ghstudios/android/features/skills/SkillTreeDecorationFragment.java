@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -50,16 +52,13 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_generic_list, null);
-		return v;
+		return inflater.inflate(R.layout.fragment_generic_list, container, false);
 	}
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		// The id argument will be the Item ID; CursorAdapter gives us this
-		// for free
+		// The id argument will be the Item ID; CursorAdapter gives us this for free
 
-        //TODO reenable when decorations are complete.
 		Intent i = new Intent(getActivity(), DecorationDetailActivity.class);
 		i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, (long) v.getTag());
 		startActivity(i);
@@ -67,7 +66,7 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 
 
 	@Override
-	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+	public @NonNull Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 		// You only ever load the runs, so assume this is the case
 		long mSkill = -1;
 		String mType = null;
@@ -80,7 +79,7 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 	}
 
 	@Override
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+	public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
 		// Create an adapter to point at this cursor
 		ItemToSkillTreeListCursorAdapter adapter = new ItemToSkillTreeListCursorAdapter(
 				getActivity(), (ItemToSkillTreeCursor) cursor);
@@ -89,7 +88,7 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 	}
 
 	@Override
-	public void onLoaderReset(Loader<Cursor> loader) {
+	public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 		// Stop using the cursor (via the adapter)
 		setListAdapter(null);
 	}

@@ -91,11 +91,11 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      * Get items based on search text. Gets all items, including armor and equipment.
      */
     fun queryItemSearch(searchTerm: String?): ItemCursor {
-        if (searchTerm?.trim().isNullOrBlank()) {
+        if (searchTerm == null || searchTerm.isBlank()) {
             return queryItems()
         }
 
-        val filter = SqlFilter(column_name, searchTerm!!)
+        val filter = SqlFilter(column_name, searchTerm)
 
         return ItemCursor(db.rawQuery("""
             SELECT $item_columns

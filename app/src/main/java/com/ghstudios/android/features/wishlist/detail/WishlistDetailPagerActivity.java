@@ -27,8 +27,8 @@ public class WishlistDetailPagerActivity extends BasePagerActivity implements Wi
         Fragment detailFragment = WishlistDataDetailFragment.newInstance(id);
         Fragment componentFragment = WishlistDataComponentFragment.newInstance(id);
 
-        tabs.addTab(getString(R.string.wishlist_tab_wishlist), () -> detailFragment);
-        tabs.addTab(getString(R.string.wishlist_tab_materials), () -> componentFragment);
+        tabs.addTab(R.string.wishlist_tab_wishlist, () -> detailFragment);
+        tabs.addTab(R.string.wishlist_tab_materials, () -> componentFragment);
     }
 
     @Override

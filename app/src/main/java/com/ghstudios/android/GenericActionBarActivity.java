@@ -175,10 +175,10 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
 
         // Handle "Other" menu first.
         switch (itemId) {
-//            case R.id.settings:
-//                Intent preferences = new Intent(ctx, PreferencesActivity.class);
-//                startActivity(preferences);
-//                return true;
+            case R.id.settings:
+                Intent preferences = new Intent(ctx, PreferencesActivity.class);
+                startActivity(preferences);
+                return true;
 //
 //            case R.id.change_log:
 //                ChangeLog cl = new ChangeLog(this);
@@ -190,13 +190,6 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
                 startActivity(about);
                 return true;
 
-//            case R.id.send_feedback:
-//                Intent email = new Intent(Intent.ACTION_SEND);
-//                email.setType("text/email");
-//                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"monster-hunter-database-feedback@googlegroups.com"});
-//                email.putExtra(Intent.EXTRA_SUBJECT, "MHGen Database Feedback");
-//                startActivity(Intent.createChooser(email, "Send Feedback:"));
-//                return true;
         }
 
         // Set navigation actions

@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.widget.ImageView
 import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.classes.QuestHub
+import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.MHUtils
 
@@ -56,6 +57,27 @@ object AssetLoader {
             iv.setImageDrawable(loadIconFor(item))
         }
     }
+
+    /**
+     * Returns a localized human readable weapon name for a weapon type
+     */
+    @JvmStatic fun localizeWeaponType(type: String) = ctx.getString(when (type) {
+        Weapon.GREAT_SWORD -> R.string.type_weapon_greatsword
+        Weapon.LONG_SWORD -> R.string.type_weapon_longsword
+        Weapon.SWORD_AND_SHIELD -> R.string.type_weapon_swordandshield
+        Weapon.DUAL_BLADES -> R.string.type_weapon_dualblades
+        Weapon.HAMMER -> R.string.type_weapon_hammer
+        Weapon.HUNTING_HORN -> R.string.type_weapon_huntinghorn
+        Weapon.LANCE -> R.string.type_weapon_lance
+        Weapon.GUNLANCE -> R.string.type_weapon_gunlance
+        Weapon.SWITCH_AXE -> R.string.type_weapon_switchaxe
+        Weapon.CHARGE_BLADE -> R.string.type_weapon_chargeblade
+        Weapon.INSECT_GLAIVE -> R.string.type_weapon_insectglaive
+        Weapon.LIGHT_BOWGUN -> R.string.type_weapon_lightbowgun
+        Weapon.HEAVY_BOWGUN -> R.string.type_weapon_heavybowgun
+        Weapon.BOW -> R.string.type_weapon_bow
+        else -> R.string.type_weapon
+    })
 
     /**
      * Returns a localized string that represents the hub type,

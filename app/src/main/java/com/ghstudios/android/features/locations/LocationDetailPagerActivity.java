@@ -4,6 +4,7 @@ import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.loader.GatheringListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
+import com.ghstudios.android.mhgendatabase.R;
 
 public class LocationDetailPagerActivity extends BasePagerActivity {
     /**
@@ -16,23 +17,23 @@ public class LocationDetailPagerActivity extends BasePagerActivity {
         long locationId = getIntent().getLongExtra(EXTRA_LOCATION_ID, -1);
         setTitle(DataManager.get().getLocation(locationId).getName());
 
-        tabs.addTab("Map", () ->
+        tabs.addTab(R.string.location_detail_tab_map, () ->
                 LocationDetailFragment.newInstance(locationId)
         );
 
-        tabs.addTab("Monsters", () ->
+        tabs.addTab(R.string.location_detail_tab_monsters, () ->
                 LocationHabitatFragment.newInstance(locationId)
         );
 
-        tabs.addTab("Low Rank", () ->
+        tabs.addTab(R.string.location_detail_tab_lr, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_LR)
         );
 
-        tabs.addTab("High Rank", () ->
+        tabs.addTab(R.string.location_detail_tab_hr, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_HR)
         );
 
-        tabs.addTab("G Rank", () ->
+        tabs.addTab(R.string.location_detail_tab_g, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_G)
         );
     }

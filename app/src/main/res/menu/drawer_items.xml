@@ -65,13 +65,9 @@
         android:id="@+id/nav_group_other"
         android:title="@string/drawer_group_other">
 
-        <!--<item-->
-            <!--android:id="@+id/settings"-->
-            <!--android:title="@string/drawer_preferences"/>-->
-
-        <!--<item-->
-            <!--android:id="@+id/send_feedback"-->
-            <!--android:title="@string/drawer_feedback"/>-->
+        <item
+            android:id="@+id/settings"
+            android:title="@string/drawer_preferences"/>
 
         <!--<item-->
             <!--android:id="@+id/change_log"-->

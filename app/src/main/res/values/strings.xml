@@ -1,13 +1,10 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
     <string name="filter_hint">Filter…</string>
-    <string name="action_settings">Settings</string>
-    <string name="alert_button">Close</string>
-    <string name="alert_rate">Rate!</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="copy">Copy</string>
@@ -59,6 +56,20 @@
     <string name="type_hub_event">Event</string>
     <string name="type_hub_arena">Arena</string>
     <string name="type_hub_permit">Permit</string>
+    <string name="type_weapon_greatsword">Great Sword</string>
+    <string name="type_weapon_longsword">Long Sword</string>
+    <string name="type_weapon_swordandshield">Sword and Shield</string>
+    <string name="type_weapon_dualblades">Dual Blades</string>
+    <string name="type_weapon_hammer">Hammer</string>
+    <string name="type_weapon_huntinghorn">Hunting Horn</string>
+    <string name="type_weapon_lance">Lance</string>
+    <string name="type_weapon_gunlance">Gunlance</string>
+    <string name="type_weapon_switchaxe">Switch Axe</string>
+    <string name="type_weapon_chargeblade">Charge Blade</string>
+    <string name="type_weapon_insectglaive">Insect Glaive</string>
+    <string name="type_weapon_lightbowgun">Light Bowgun</string>
+    <string name="type_weapon_heavybowgun">Heavy Bowgun</string>
+    <string name="type_weapon_bow">Bow</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
@@ -86,8 +97,6 @@
     <string name="logo_description">Logo</string>
 
     <!-- Standard Menu Options -->
-    <string name="option_list">List</string>
-    <string name="option_grid">Grid</string>
     <string name="option_wishlist_add">Create Wishlist</string>
     <string name="option_wishlist_delete">Delete wishlist</string>
     <string name="option_wishlist_copy">Copy wishlist</string>
@@ -106,7 +115,6 @@
     <string name="locations">Locations</string>
     <string name="combining">Combining</string>
     <string name="quests">Quests</string>
-    <string name="hunting_fleet">Hunting Fleet</string>
     <string name="skill_trees">Skills</string>
     <string name="decoration_title">Decorations</string>
     <string name="decoration_detail_title">Decoration</string>
@@ -116,8 +124,6 @@
     <string name="weapons">Weapons</string>
     <string name="arena_quests">Arena Quests</string>
     <string name="wishlist">Wishlists</string>
-    <string name="wyporiumtrade">Wyporium Trade</string>
-    <string name="icon_name">MH4U DB</string>
 
     <string name="dialog_armor_filter_title">Filter</string>
     <string name="armor_filter_label_rank">Rank</string>
@@ -143,6 +149,12 @@
     <string name="monster_tab_small">Small</string>
     <string name="monster_tab_large">Large</string>
     <string name="monster_tab_deviant">Deviant</string>
+    <string name="monster_detail_tab_summary">Summary</string>
+    <string name="monster_detail_tab_damage">Damage</string>
+    <string name="monster_detail_tab_lr">Low Rank</string>
+    <string name="monster_detail_tab_hr">High Rank</string>
+    <string name="monster_detail_tab_g">G Rank</string>
+    <string name="monster_detail_tab_quest">Quest</string>
     <string name="monster_summary_weaknesses">Weaknesses</string>
     <string name="monster_summary_items">Items</string>
     <string name="monster_ailments">Ailments</string>
@@ -156,10 +168,16 @@
     <string name="monster_status_damage">Damage</string>
 
     <!-- Items -->
+    <string name="item_detail_tab_detail">Detail</string>
+    <string name="item_detail_tab_usage">Usage</string>
+    <string name="item_detail_tab_monster">Monster</string>
+    <string name="item_detail_tab_quest">Quest</string>
+    <string name="item_detail_tab_location">Location</string>
     <string name="item_rarity">Rare</string>
     <string name="item_carry_max">Carry Max:</string>
     <string name="item_buy">Buy Price</string>
-    <string name="item_sell">Sell Price:</string>
+    <string name="item_sell">Sell Price</string>
+    <string name="item_sell_label">Sell Price:</string> <!-- variation with : after -->
     <string name="item_description">Description</string>
     <string name="item_combinations">Combinations</string>
     <string name="item_skills">Skills</string>
@@ -183,9 +201,10 @@
     <string name="armor_part">Part</string>
     <string name="armor_defense">Defense</string>
     <string name="armor_type_both">Any</string>
-    <string name="armor_type_blade_short">Blade</string>
     <string name="armor_type_blade">Blademaster</string>
     <string name="armor_type_gunner">Gunner</string>
+    <string name="armor_type_blade_short">Blade</string>
+    <string name="armor_type_gunner_short">Gunner</string>
     <string name="armor_title_set">Set</string>
     <string name="armor_res_fire">Fire Res:</string>
     <string name="armor_res_water">Water Res:</string>
@@ -206,6 +225,23 @@
         <item>Rare X</item>
     </string-array>
 
+    <!-- Weapons -->
+    <string name="weapon_detail_tab_detail">Detail</string>
+    <string name="weapon_detail_tab_melodies">Melodies</string>
+    <string name="weapon_detail_tab_ammo">Ammo</string>
+    <string name="weapon_detail_tab_coatings">Coatings</string>
+    <string name="weapon_detail_tab_family">Family</string>
+    <string name="weapon_tree_origin">Origin</string>
+    <string name="weapon_tree_family">Family</string>
+    <string name="weapon_tree_side_branches">Branches</string>
+    <string name="weapon_tree_final">Final (All Branches)</string>
+
+    <!-- Palicos -->
+    <string name="palico_tab_weapons">Weapons</string>
+    <string name="palico_tab_armor">Armor</string>
+    <string name="palico_equipment_tab_detail">Detail</string>
+    <string name="palico_equipment_tab_components">Components</string>
+
     <!-- Wishlist stuff -->
     <string name="wishlist_name_hint">Wishlist Name</string>
     <string name="wishlist_quantity_label">Quantity:</string>
@@ -220,25 +256,15 @@
     <string name="wishlist_error_unknown">Unexpected error</string>
     <string name="wishlist_tab_wishlist">Wishlist</string>
     <string name="wishlist_tab_materials">Materials</string>
-    <string-array name="test_array">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-    </string-array>
 
-    <string name="no_slots">―――</string>
-    <string name="one_slot">○――</string>
-    <string name="two_slots">○○―</string>
-    <string name="three_slots">○○○</string>
+    <string name="no_slots" translatable="false">―――</string>
+    <string name="one_slot" translatable="false">○――</string>
+    <string name="two_slots" translatable="false">○○―</string>
+    <string name="three_slots" translatable="false">○○○</string>
 
-    <string name="one_slot_jewel">●</string>
-    <string name="two_slot_jewel">●●</string>
-    <string name="three_slot_jewel">●●●</string>
+    <string name="one_slot_jewel" translatable="false">●</string>
+    <string name="two_slot_jewel" translatable="false">●●</string>
+    <string name="three_slot_jewel" translatable="false">●●●</string>
 
 
     <!-- Armor Set Builder Stuff !-->
@@ -320,8 +346,6 @@
     <string name="shot_thunder">Thunder</string>
     <string name="shot_ice">Ice</string>
     <string name="shot_dragon">Dragon</string>
-    <string name="default_wishlist_name">My Wishlist</string>
-    <string name="default_armor_set_name">My Armor Set</string>
     <string name="weapon_attack">Attack</string>
     <string name="weapon_slots">Slots</string>
     <string name="weapon_sharpness">Sharpness</string>
@@ -336,11 +360,13 @@
     <string name="weapon_deviation">Deviation</string>
 
     <!-- Quest Detail -->
+    <string name="quest_detail_tab_detail">Detail</string>
+    <string name="quest_detail_tab_items_gather">Items</string>
+    <string name="quest_detail_tab_rewards">Rewards</string>
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
     <string name="quest_detail_monsters">Monsters</string>
-    <string name="quest_detail_level">Level</string>
     <string name="quest_detail_location">Location</string>
     <string name="quest_detail_goal">Goal</string>
     <string name="quest_detail_subquest">Subquest</string>
@@ -352,7 +378,13 @@
     <string name="key">Key</string>
     <string name="urgent">Urgent</string>
     <string name="armor_pieces">Armor Pieces</string>
-    <string name="summary">summary</string>
+
+    <!-- Locations -->
+    <string name="location_detail_tab_map">Map</string>
+    <string name="location_detail_tab_monsters">Monsters</string>
+    <string name="location_detail_tab_lr">Low Rank</string>
+    <string name="location_detail_tab_hr">High Rank</string>
+    <string name="location_detail_tab_g">G Rank</string>
 
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
