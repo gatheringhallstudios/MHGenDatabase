@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">MHGen Database</string>
-    <string name="app_name_launcher">MHGen DB</string>
+    <string name="app_name_launcher">MHGenDB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
     <string name="about">About</string>
