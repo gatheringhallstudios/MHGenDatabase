@@ -86,6 +86,19 @@ class DataManager private constructor(private val mAppContext: Context) {
     val asbManager = ASBManager(mAppContext, mHelper)
 
 
+    /**
+     * Returns a map of supported languages, mapping language code (like es) to a visible display language.
+     */
+    fun getLanguages(): Map<String, String> = mapOf(
+        "" to "Default",
+        "en" to "English",
+        "es" to "Español",
+        "fr" to "Français",
+        "de" to "Deutsch",
+        "it" to "Italiano",
+        "ja" to "日本語"
+    )
+
     /********************************* ARMOR QUERIES  */
 
     fun getArmorSetMetadataByFamily(familyId: Long): List<ArmorMetadata> {

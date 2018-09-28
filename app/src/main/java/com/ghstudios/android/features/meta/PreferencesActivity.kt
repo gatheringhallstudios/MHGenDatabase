@@ -7,6 +7,7 @@ import android.support.v7.preference.PreferenceFragmentCompat
 import com.ghstudios.android.AppSettings
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 
 class PreferencesActivity : GenericActivity() {
@@ -17,25 +18,18 @@ class PreferencesActivity : GenericActivity() {
     }
 }
 
-// temporary list of supported languages.
-// this should probably be moved somewhere more relevant
-// (probably to the data access layer somewhere...)
-val supportedLanguages = mapOf(
-        "en" to "English",
-        "es" to "Español",
-        "fr" to "Français",
-        "de" to "Deutsch",
-        "it" to "Italiano",
-        "ja" to "日本語"
-)
-
 class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = AppSettings.SETTINGS_FILE_NAME
 
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        val localePref = findPreference("DATA_LOCALE") as ListPreference
+        val localePref = findPreference(AppSettings.PROP_DATA_LOCALE) as ListPreference
+
+        // Create language map. Default language + DB languages
+        val supportedLanguages = mapOf(
+                "" to getString(R.string.preference_language_default)
+        ) + DataManager.get().getLanguages()
 
         localePref.entries = supportedLanguages.values.toTypedArray()
         localePref.entryValues = supportedLanguages.keys.toTypedArray()
