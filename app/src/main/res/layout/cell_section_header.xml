@@ -13,8 +13,7 @@
         android:id="@+id/label_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/list_item"
-        android:background="@color/subheading_color"
+        style="@style/section_header"
         tools:text="Sample Text"/>
 
 </merge>

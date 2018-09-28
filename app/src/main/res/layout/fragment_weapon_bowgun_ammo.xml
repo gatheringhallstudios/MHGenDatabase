@@ -6,7 +6,7 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/section_header"
+        style="@style/section_header_mini"
         android:text="Ammo" />
 
     <TableLayout

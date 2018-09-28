@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        style="@style/section_header"
+        style="@style/section_header_mini"
         android:text="Coatings"/>
     <RelativeLayout
         android:layout_width="match_parent"
