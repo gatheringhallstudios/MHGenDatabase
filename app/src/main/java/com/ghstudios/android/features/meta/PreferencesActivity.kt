@@ -10,8 +10,18 @@ import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 
+/**
+ * The activity hosting the PreferencesFragment, which does the real work.
+ * This activity is top level so that you cannot go back to a previous fragment,
+ * this allow language settings to be changed without restart.
+ */
 class PreferencesActivity : GenericActivity() {
     override fun getSelectedSection() = MenuSection.NONE
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        super.setAsTopLevel()
+    }
 
     override fun createFragment(): Fragment {
         return PreferencesFragment()
@@ -33,6 +43,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
         localePref.entries = supportedLanguages.values.toTypedArray()
         localePref.entryValues = supportedLanguages.keys.toTypedArray()
-        localePref.value = AppSettings.dataLocale // ensure a value is set
+        localePref.value = AppSettings.trueDataLocale // ensure a value is set
     }
 }
