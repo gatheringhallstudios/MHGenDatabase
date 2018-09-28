@@ -213,19 +213,10 @@
     <string name="armor_res_thunder">Thunder Res:</string>
     <string name="armor_res_ice">Ice Res:</string>
     <string name="armor_res_dragon">Dragon Res:</string>
-    <string-array name="armor_rarity_levels">
-        <item>Rare 1</item>
-        <item>Rare 2</item>
-        <item>Rare 3</item>
-        <item>Rare 4</item>
-        <item>Rare 5</item>
-        <item>Rare 6</item>
-        <item>Rare 7</item>
-        <item>Rare 8</item>
-        <item>Rare 9</item>
-        <item>Rare 10</item>
-        <item>Rare X</item>
-    </string-array>
+    <string name="armor_list_header_sub_lr">Low Rank</string>
+    <string name="armor_list_header_sub_hr">High Rank</string>
+    <string name="armor_list_header_sub_g">G Rank</string>
+    <string name="armor_list_header_sub_deviant">Deviant</string>
 
     <!-- Weapons -->
     <string name="weapon_detail_tab_detail">Detail</string>

@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSkillPoints
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.setImageAsset
-import kotlinx.android.synthetic.main.fragment_armor_expandablelist_group_item.view.*
-import kotlinx.android.synthetic.main.fragment_armor_set_piece_listitem.view.*
+import kotlinx.android.synthetic.main.listitem_armor_header.view.*
+import kotlinx.android.synthetic.main.listitem_armor_piece.view.*
 
 class ArmorGroup(
-        val name: String,
+        val rarity: Int,
         val armor: List<ArmorSkillPoints>
 )
 
@@ -30,7 +31,7 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
     override fun hasStableIds() = true
     override fun isChildSelectable(groupPosition: Int, childPosition: Int) = true
 
-    override fun getGroup(groupPosition: Int) = armorGroups[groupPosition].name
+    override fun getGroup(groupPosition: Int) = armorGroups[groupPosition]
     override fun getGroupCount() = armorGroups.size
 
     override fun getChild(groupPosition: Int, childPosition: Int) = armorGroups[groupPosition].armor[childPosition]
@@ -40,9 +41,19 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
     override fun getGroupId(groupPosition: Int) = groupPosition.toLong()
 
     override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View {
+        val group = getGroup(groupPosition)
+
         val inflater = LayoutInflater.from(parent?.context)
-        val view = inflater.inflate(R.layout.fragment_armor_expandablelist_group_item, parent, false)
-        view.name_text.text = getGroup(groupPosition)
+        val view = inflater.inflate(R.layout.listitem_armor_header, parent, false)
+
+        view.name_text.text = AssetLoader.localizeRarityLabel(group.rarity)
+        view.rank_text.text = when (group.rarity) {
+            in 0..3 -> view.resources.getString(R.string.armor_list_header_sub_lr)
+            in 3..7 -> view.resources.getString(R.string.armor_list_header_sub_hr)
+            in 7..10 -> view.resources.getString(R.string.armor_list_header_sub_g)
+            11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
+            else -> ""
+        }
 
         return view
     }
@@ -50,7 +61,7 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
 
     override fun getChildView(groupPosition: Int, childPosition: Int, isLastChild: Boolean, convertView: View?, parent: ViewGroup?): View {
         val inflater = LayoutInflater.from(parent?.context)
-        val view = convertView ?: inflater.inflate(R.layout.fragment_armor_set_piece_listitem, parent, false)
+        val view = convertView ?: inflater.inflate(R.layout.listitem_armor_piece, parent, false)
 
         val armorWithSkill = getChild(groupPosition, childPosition)
         val armor = armorWithSkill.armor

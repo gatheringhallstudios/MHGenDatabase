@@ -59,6 +59,22 @@ object AssetLoader {
     }
 
     /**
+     * Returns the rarity as a display string.
+     * Rarity of value 11 is turned into "X", everything else is just the string version
+     */
+    @JvmStatic fun localizeRarity(rarity: Int) = when (rarity) {
+        11 -> "X"
+        else -> rarity.toString()
+    }
+
+    /**
+     * Returns the rarity label name, in the form of "Rare X".
+     * If rarity is 11, it is rendered as "Rare X"
+     */
+    @JvmStatic fun localizeRarityLabel(rarity: Int)
+            = application.getString(R.string.value_rare, localizeRarity(rarity))
+
+    /**
      * Returns a localized human readable weapon name for a weapon type
      */
     @JvmStatic fun localizeWeaponType(type: String) = ctx.getString(when (type) {

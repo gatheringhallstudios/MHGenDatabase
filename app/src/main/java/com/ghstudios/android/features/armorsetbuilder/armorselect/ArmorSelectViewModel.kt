@@ -27,8 +27,6 @@ class ArmorSelectViewModel(private val app: Application): AndroidViewModel(app) 
 
     fun initialize(asbIndex: Int, hunterType: Int) {
         val armorSlot = getSlotForPieceIndex(asbIndex)
-        val rarityLevels = app.resources.getStringArray(R.array.armor_rarity_levels)
-
         loggedThread("Armor Select armor loading") {
             // Head pieces should see all head pieces, passthrough if not a head piece
             val type = when (armorSlot) {
@@ -40,9 +38,7 @@ class ArmorSelectViewModel(private val app: Application): AndroidViewModel(app) 
             val allArmorItems = armorSkillPoints.groupBy { it.armor.rarity }.toSortedMap().map {
                 val rarity = it.key
                 val armorPieces = it.value
-
-                val labelName = rarityLevels[rarity-1]
-                ArmorGroup(labelName, armorPieces)
+                ArmorGroup(rarity, armorPieces)
             }
             allArmorData.postValue(allArmorItems)
         }

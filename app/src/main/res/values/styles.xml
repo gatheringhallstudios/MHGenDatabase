@@ -187,9 +187,9 @@
     <style name="list_item">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/list_item_height</item>
         <item name="android:minHeight">@dimen/list_item_height</item>
-        <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>

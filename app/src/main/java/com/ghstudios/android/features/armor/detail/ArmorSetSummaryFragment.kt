@@ -109,7 +109,7 @@ class ArmorSetSummaryFragment : Fragment() {
             val armor = armorPointsEntry.armor
             val skills = armorPointsEntry.skills
 
-            val armorView = inflater.inflate(R.layout.fragment_armor_set_piece_listitem, armorListView,false)
+            val armorView = inflater.inflate(R.layout.listitem_armor_piece, armorListView,false)
             val icon: ImageView? = armorView.findViewById(R.id.icon)
             val name:TextView? = armorView.findViewById(R.id.name)
             val slots:TextView? = armorView.findViewById(R.id.slots)
