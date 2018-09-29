@@ -159,9 +159,6 @@
     <string name="monster_tab_deviant">Deviant</string>
     <string name="monster_detail_tab_summary">Summary</string>
     <string name="monster_detail_tab_damage">Damage</string>
-    <string name="monster_detail_tab_lr">Low Rank</string>
-    <string name="monster_detail_tab_hr">High Rank</string>
-    <string name="monster_detail_tab_g">G Rank</string>
     <string name="monster_detail_tab_quest">Quest</string>
     <string name="monster_summary_weaknesses">Weaknesses</string>
     <string name="monster_summary_items">Items</string>
@@ -219,9 +216,6 @@
     <string name="armor_res_thunder">Thunder Res:</string>
     <string name="armor_res_ice">Ice Res:</string>
     <string name="armor_res_dragon">Dragon Res:</string>
-    <string name="armor_list_header_sub_lr">Low Rank</string>
-    <string name="armor_list_header_sub_hr">High Rank</string>
-    <string name="armor_list_header_sub_g">G Rank</string>
     <string name="armor_list_header_sub_deviant">Deviant</string>
 
     <!-- Weapons -->
@@ -381,9 +375,6 @@
     <!-- Locations -->
     <string name="location_detail_tab_map">Map</string>
     <string name="location_detail_tab_monsters">Monsters</string>
-    <string name="location_detail_tab_lr">Low Rank</string>
-    <string name="location_detail_tab_hr">High Rank</string>
-    <string name="location_detail_tab_g">G Rank</string>
 
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">

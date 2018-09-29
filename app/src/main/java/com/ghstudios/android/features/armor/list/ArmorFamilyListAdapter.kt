@@ -60,9 +60,9 @@ class ArmorFamilyListAdapter(private val groups: List<ArmorFamilyGroup>) : BaseE
         view.icon.setImageAsset(family)
         view.family_name.text = family.name
         view.rank_text.text = when (family.rarity) {
-            in 0..3 -> view.resources.getString(R.string.armor_list_header_sub_lr)
-            in 3..7 -> view.resources.getString(R.string.armor_list_header_sub_hr)
-            in 7..10 -> view.resources.getString(R.string.armor_list_header_sub_g)
+            in 0..3 -> view.resources.getString(R.string.rank_lr)
+            in 3..7 -> view.resources.getString(R.string.rank_hr)
+            in 7..10 -> view.resources.getString(R.string.rank_g)
             11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
             else -> ""
         }

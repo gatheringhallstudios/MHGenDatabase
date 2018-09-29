@@ -36,19 +36,19 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
         }
 
         if(meta.getHasLowRank()) {
-            tabs.addTab(R.string.monster_detail_tab_lr, () ->
+            tabs.addTab(R.string.rank_lr, () ->
                     MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_LR)
             );
         }
 
         if(meta.getHasHighRank()) {
-            tabs.addTab(R.string.monster_detail_tab_hr, () ->
+            tabs.addTab(R.string.rank_hr, () ->
                     MonsterRewardFragment.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_HR)
             );
         }
 
         if(meta.getHasGRank()) {
-            tabs.addTab(R.string.monster_detail_tab_g, () ->
+            tabs.addTab(R.string.rank_g, () ->
                     MonsterRewardFragment.Companion.newInstance(monsterId, HuntingRewardListCursorLoader.RANK_G)
             );
         }

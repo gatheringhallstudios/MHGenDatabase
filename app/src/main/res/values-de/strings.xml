@@ -162,7 +162,6 @@
     <string name="activity_asb">Rüstungsset Builder</string>
     <string name="asb_tab_equipment">Ausrüstung</string>
     <string name="asb_tab_skills">Fähigkeiten</string>
-    <string name="activity_asb_armor_picker">Rüstung auswählen</string>
     <string name="asb_empty_slot">Leerer Slot</string>
     <string name="asb_no_slots">Keine Slots</string>
     <string name="asb_action_select">Ausgewählt</string>
@@ -239,8 +238,8 @@
     <string name="monster_damage">monster_damage</string>
     <string name="monster_detail_tab_summary">Details</string>
     <string name="monster_detail_tab_damage">Schaden</string>
-    <string name="monster_detail_tab_lr">Niedrigrangig</string>
-    <string name="monster_detail_tab_hr">Hochrangig</string>
-    <string name="monster_detail_tab_g">G Rang</string>
     <string name="monster_detail_tab_quest">Quest</string>
+    <string name="rank_lr">Niedrigrangig</string>
+    <string name="rank_hr">Hochrangig</string>
+    <string name="rank_g">G Rang</string>
 </resources>

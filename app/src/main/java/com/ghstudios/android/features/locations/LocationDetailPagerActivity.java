@@ -25,15 +25,15 @@ public class LocationDetailPagerActivity extends BasePagerActivity {
                 LocationHabitatFragment.newInstance(locationId)
         );
 
-        tabs.addTab(R.string.location_detail_tab_lr, () ->
+        tabs.addTab(R.string.rank_lr, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_LR)
         );
 
-        tabs.addTab(R.string.location_detail_tab_hr, () ->
+        tabs.addTab(R.string.rank_hr, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_HR)
         );
 
-        tabs.addTab(R.string.location_detail_tab_g, () ->
+        tabs.addTab(R.string.rank_g, () ->
                 LocationRankFragment.newInstance(locationId, GatheringListCursorLoader.RANK_G)
         );
     }

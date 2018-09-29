@@ -48,9 +48,9 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
 
         view.name_text.text = AssetLoader.localizeRarityLabel(group.rarity)
         view.rank_text.text = when (group.rarity) {
-            in 0..3 -> view.resources.getString(R.string.armor_list_header_sub_lr)
-            in 3..7 -> view.resources.getString(R.string.armor_list_header_sub_hr)
-            in 7..10 -> view.resources.getString(R.string.armor_list_header_sub_g)
+            in 0..3 -> view.resources.getString(R.string.rank_lr)
+            in 3..7 -> view.resources.getString(R.string.rank_hr)
+            in 7..10 -> view.resources.getString(R.string.rank_g)
             11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
             else -> ""
         }
