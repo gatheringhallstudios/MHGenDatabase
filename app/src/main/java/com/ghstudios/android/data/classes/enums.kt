@@ -32,3 +32,28 @@ enum class ItemType {
     ARMOR,
     MATERIAL
 }
+
+/**
+ * Defines a rank of an arbitrary object. Includes an ANY rank as a default option for cases
+ * where there is no rank specification or filter.
+ */
+enum class Rank(val value: Int) {
+    ANY(-1),
+    LOW(0),
+    HIGH (1),
+    G (2);
+
+    companion object {
+        @JvmStatic val all = listOf(ANY, G, HIGH, LOW)
+
+        private val reverseMap = Rank.values().map {
+            it.value to it
+        }.toMap()
+
+        /**
+         * Creates a rank object from an integer
+         */
+        @JvmStatic @JvmOverloads
+        fun from(value: Int, default: Rank = Rank.ANY) = reverseMap[value] ?: default
+    }
+}

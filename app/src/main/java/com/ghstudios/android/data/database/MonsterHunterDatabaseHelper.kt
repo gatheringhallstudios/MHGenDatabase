@@ -8,16 +8,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Log
 import android.util.Xml
-import com.ghstudios.android.data.classes.Location
-import com.ghstudios.android.data.classes.QuestHub
-import com.ghstudios.android.data.classes.SkillTree
-import com.ghstudios.android.data.classes.Weapon
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
 import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.getLong
 import com.ghstudios.android.data.util.localizeColumn
-import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.firstOrNull
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
@@ -2903,11 +2899,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /**
      * Creates a new Armor Set Builder set in the entries of the database.
      */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int): Long {
+    fun queryAddASBSet(name: String, rank: Rank, hunterType: Int): Long {
         val values = ContentValues()
 
         values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank)
+        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
         values.put(S.COLUMN_TALISMAN_EXISTS, 0)
         values.put(S.COLUMN_ASB_WEAPON_SLOTS, 3)
@@ -2915,13 +2911,13 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return insertRecord(S.TABLE_ASB_SETS, values)
     }
 
-    fun queryUpdateASBSet(asbSetId: Long, name: String, rank: Int, hunterType: Int): Long {
+    fun queryUpdateASBSet(asbSetId: Long, name: String, rank: Rank, hunterType: Int): Long {
         val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
 
         val values = ContentValues()
 
         values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank)
+        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
         values.put(S.COLUMN_TALISMAN_EXISTS, 0)
 

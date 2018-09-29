@@ -5,6 +5,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
+import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.data.classes.Gathering
 import com.ghstudios.android.data.classes.QuestHub
 import com.ghstudios.android.data.classes.Weapon
@@ -126,5 +127,12 @@ object AssetLoader {
     @JvmStatic fun localizeGatherNodeFull(gather: Gathering): String {
         val modifier = localizeGatherModifier(gather)
         return ctx.getString(R.string.item_gather_full, gather.site, modifier)
+    }
+
+    @JvmStatic fun localizeRank(rank: Rank) = when (rank) {
+        Rank.LOW -> ctx.getString(R.string.rank_lr)
+        Rank.HIGH -> ctx.getString(R.string.rank_hr)
+        Rank.G -> ctx.getString(R.string.rank_g)
+        Rank.ANY -> ctx.getString(R.string.rank_any)
     }
 }

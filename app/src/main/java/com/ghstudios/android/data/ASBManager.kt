@@ -52,7 +52,7 @@ class ASBManager internal constructor(
     }
 
     /** Adds a new ASB set to the list.  */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int) {
+    fun queryAddASBSet(name: String, rank: Rank, hunterType: Int) {
         mHelper.queryAddASBSet(name, rank, hunterType)
     }
 
@@ -60,14 +60,14 @@ class ASBManager internal constructor(
     /** Adds a new set that is a copy of the designated set to the list.  */
     fun queryAddASBSet(setId: Long) {
         val set = getASBSet(setId)
-        mHelper.queryAddASBSet(set!!.name!!, set.rank, set.hunterType)
+        mHelper.queryAddASBSet(set!!.name, set.rank, set.hunterType)
     }
 
     fun queryDeleteASBSet(setId: Long) {
         mHelper.queryDeleteASBSet(setId)
     }
 
-    fun queryUpdateASBSet(setId: Long, name: String, rank: Int, hunterType: Int) {
+    fun queryUpdateASBSet(setId: Long, name: String, rank: Rank, hunterType: Int) {
         mHelper.queryUpdateASBSet(setId, name, rank, hunterType)
     }
 

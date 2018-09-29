@@ -74,6 +74,12 @@
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
 
+    <!-- Generic strings -->
+    <string name="rank_lr">Low Rank</string>
+    <string name="rank_hr">High Rank</string>
+    <string name="rank_g">G Rank</string>
+    <string name="rank_any">Any</string>
+
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
@@ -406,11 +412,6 @@
         <item>Minimum</item>
         <item>Exactly</item>
         <item>Maximum</item>
-    </string-array>
-
-    <string-array name="rank">
-        <item>Low</item>
-        <item>High</item>
     </string-array>
 
     <string-array name="hunter_type">
