@@ -55,6 +55,7 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
         }
 
         return mutableListOf<Any>().apply {
+            addAll(db.queryLocationsSearch(searchTerm))
             addAll(db.queryMonstersSearch(searchTerm).toList { it.monster })
             addAll(db.queryQuestsSearch(searchTerm).toList { it.quest })
             addAll(db.querySkillTreesSearch(searchTerm).toList { it.skillTree })

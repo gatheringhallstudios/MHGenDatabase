@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.ghstudios.android.*
-import com.ghstudios.android.ClickListeners.ItemClickListener
-import com.ghstudios.android.ClickListeners.MonsterClickListener
-import com.ghstudios.android.ClickListeners.QuestClickListener
-import com.ghstudios.android.ClickListeners.SkillClickListener
+import com.ghstudios.android.ClickListeners.*
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.mhgendatabase.R
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
@@ -48,6 +45,12 @@ abstract class ResultHandler<in T> {
  * Creates a mapping of data type -> handler. Context is used to retrieve the localized type names
  */
 private fun createHandlers(ctx: Context) = mapOf(
+        Location::class.java to object : ResultHandler<Location>() {
+            override fun getName(obj: Location) = obj.name ?: ""
+            override fun getType(obj : Location) = ctx.getString(R.string.type_location)
+            override fun createListener(ctx: Context, obj: Location) = LocationClickListener(ctx, obj.id)
+        },
+
         Monster::class.java to object : ResultHandler<Monster>() {
             override fun getName(obj: Monster) = obj.name
             override fun getType(obj: Monster) = ctx.getString(R.string.type_monster)

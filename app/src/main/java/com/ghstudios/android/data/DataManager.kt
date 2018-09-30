@@ -380,6 +380,24 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.queryLocation(id)
     }
 
+    fun queryLocationsSearch(searchTerm: String): List<Location> {
+        val locations = queryLocations().toList { it.location }
+        if (searchTerm.isBlank()) {
+            return locations
+        }
+
+        // todo: create an implementation for in-memory searching, put in data/util, if we need it
+        // we could also create a cursor wrapper implementation that filters in memory...without first converting to objects
+
+        fun normalize(name: String) = name.trim().toLowerCase()
+
+        val searchWords = normalize(searchTerm).split(' ')
+        return locations.filter { location ->
+            val nameNormalized = normalize(location.name ?: "")
+            searchWords.all { nameNormalized.contains(it) }
+        }
+    }
+
     /********************************* MELODY QUERIES  */
 
     /* Get a Cursor that has a list of all Melodies from a specific set of notes */
