@@ -29,7 +29,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     private fun armor_columns(a : String, i: String) =
             "$a._id, $i.$column_name name, $i.name_ja, $column_description description, " +
-            "rarity, slot, gender, hunter_type, num_slots, " +
+            "$a.family, rarity, slot, gender, hunter_type, num_slots, " +
             "defense, max_defense, fire_res, thunder_res, dragon_res, water_res, ice_res, " +
             "type, sub_type, carry_capacity, buy, sell, icon_name, icon_color "
 
