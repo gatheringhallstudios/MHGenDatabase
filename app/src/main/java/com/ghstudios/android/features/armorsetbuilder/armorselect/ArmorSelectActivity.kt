@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.classes.ArmorSet
+import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 
@@ -18,7 +19,7 @@ class ArmorSelectActivity : GenericActivity() {
         super.onCreate(savedInstanceState)
 
         val asbPieceIndex = intent.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1)
-        val rank = intent.getIntExtra(ASBPagerActivity.EXTRA_SET_RANK, -1)
+        val rankValue = intent.getSerializableExtra(ASBPagerActivity.EXTRA_SET_RANK) as Rank?
         val hunterType = intent.getIntExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, -1)
 
         setTitle(when (asbPieceIndex) {
@@ -30,7 +31,7 @@ class ArmorSelectActivity : GenericActivity() {
             else -> R.string.asb_title_select_armor
         })
 
-        viewModel.initialize(asbPieceIndex, hunterType)
+        viewModel.initialize(asbPieceIndex, rankValue ?: Rank.ANY, hunterType)
     }
 
     override fun createFragment(): Fragment {
