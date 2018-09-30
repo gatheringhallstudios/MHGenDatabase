@@ -7,6 +7,7 @@ import android.widget.BaseExpandableListAdapter
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSkillPoints
+import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.setImageAsset
 import kotlinx.android.synthetic.main.listitem_armor_header.view.*
@@ -48,11 +49,8 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
 
         view.name_text.text = AssetLoader.localizeRarityLabel(group.rarity)
         view.rank_text.text = when (group.rarity) {
-            in 0..3 -> view.resources.getString(R.string.rank_lr)
-            in 3..7 -> view.resources.getString(R.string.rank_hr)
-            in 7..10 -> view.resources.getString(R.string.rank_g)
             11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
-            else -> ""
+            else -> AssetLoader.localizeRank(Rank.fromArmorRarity(group.rarity))
         }
 
         return view

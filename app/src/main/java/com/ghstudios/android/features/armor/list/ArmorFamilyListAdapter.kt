@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
+import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.data.classes.ArmorFamily
+import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.setImageAsset
 import kotlinx.android.synthetic.main.listitem_armor_family.view.*
@@ -30,20 +32,19 @@ class ArmorFamilyListAdapter(private val groups: List<ArmorFamilyGroup>) : BaseE
     override fun getChildId(groupPosition: Int, childPosition: Int) = groupPosition * 100L + childPosition
     override fun getGroupId(groupPosition: Int) = groupPosition.toLong()
 
-    override fun getGroupView(i: Int, b: Boolean, view: View,
-                              viewGroup: ViewGroup): View {
-        var v: View? = view
-        val context = viewGroup.context
+    override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View {
+        val group = getGroup(groupPosition)
 
-        if (v == null) {
-            v = LayoutInflater.from(context).inflate(R.layout.listitem_armor_header, viewGroup, false)
+        val inflater = LayoutInflater.from(parent?.context)
+        val view = inflater.inflate(R.layout.listitem_armor_header, parent, false)
+
+        view.name_text.text = AssetLoader.localizeRarityLabel(group.rarity)
+        view.rank_text.text = when (group.rarity) {
+            11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
+            else -> AssetLoader.localizeRank(Rank.fromArmorRarity(group.rarity))
         }
 
-        val armorGroupTextView = v!!.findViewById<TextView>(R.id.name_text)
-
-        armorGroupTextView.text = getGroup(i).toString()
-
-        return v
+        return view
     }
 
     override fun getChildView(groupPosition: Int, childPosition: Int,
@@ -59,13 +60,6 @@ class ArmorFamilyListAdapter(private val groups: List<ArmorFamilyGroup>) : BaseE
 
         view.icon.setImageAsset(family)
         view.family_name.text = family.name
-        view.rank_text.text = when (family.rarity) {
-            in 0..3 -> view.resources.getString(R.string.rank_lr)
-            in 3..7 -> view.resources.getString(R.string.rank_hr)
-            in 7..10 -> view.resources.getString(R.string.rank_g)
-            11 -> view.resources.getString(R.string.armor_list_header_sub_deviant)
-            else -> ""
-        }
 
         val minDef = view.findViewById<TextView>(R.id.min_defense)
         val maxDef = view.findViewById<TextView>(R.id.max_defense)

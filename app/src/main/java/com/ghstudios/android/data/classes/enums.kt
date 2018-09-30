@@ -55,5 +55,15 @@ enum class Rank(val value: Int) {
          */
         @JvmStatic @JvmOverloads
         fun from(value: Int, default: Rank = Rank.ANY) = reverseMap[value] ?: default
+
+        /**
+         * Returns a Rank enumeration value depending on an armor rarity value.
+         */
+        @JvmStatic fun fromArmorRarity(rarity: Int) = when(rarity) {
+            in 1..3 -> Rank.LOW
+            in 3..7 -> Rank.HIGH
+            in 8..10 -> Rank.G
+            else -> Rank.ANY
+        }
     }
 }
