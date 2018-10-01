@@ -90,17 +90,24 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     /**
      * Get items based on search text. Gets all items, including armor and equipment.
      */
-    fun queryItemSearch(searchTerm: String?): ItemCursor {
+    fun queryItemSearch(searchTerm: String?, omitTypes: List<ItemType> = emptyList()): ItemCursor {
         if (searchTerm == null || searchTerm.isBlank()) {
             return queryItems()
         }
 
         val filter = SqlFilter(column_name, searchTerm)
 
+        val typePredicate = when {
+            omitTypes.isEmpty() -> "TRUE"
+            else -> omitTypes.joinToString(" AND ") {
+                "type != '${ItemTypeConverter.serialize(it)}'"
+            }
+        }
+
         return ItemCursor(db.rawQuery("""
             SELECT $item_columns
             FROM items
-            WHERE ${filter.predicate}
+            WHERE ${filter.predicate} AND $typePredicate
             ORDER BY _id
         """, arrayOf(*filter.parameters)))
     }
@@ -189,6 +196,15 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """, emptyArray()))
     }
 
+    fun queryArmorSearch(searchTerm: String): ArmorCursor {
+        val filter = SqlFilter(column_name, searchTerm)
+        return ArmorCursor(db.rawQuery("""
+            SELECT ${armor_columns("a", "i")}
+            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            WHERE ${filter.predicate}
+        """, filter.parameters))
+    }
+
     /**
      * Get a specific armor
      */
@@ -273,7 +289,29 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         }
     }
 
+    /**
+     * Returns an armor families cursor
+     */
+    fun queryArmorFamilyBaseSearch(searchFilter: String): List<ArmorFamilyBase> {
+        val sqlFilter = SqlFilter("name", searchFilter)
+
+        // todo: localize
+        return db.rawQuery("""
+            SELECT af._id, af.name, af.rarity
+            FROM armor_families af
+            WHERE ${sqlFilter.predicate}
+            ORDER BY af._id
+        """, sqlFilter.parameters).toList {
+            ArmorFamilyBase().apply {
+                id = it.getLong("_id")
+                name = it.getString("name")
+                rarity = it.getInt("rarity")
+            }
+        }
+    }
+
     fun queryArmorFamilies(type: Int): ArmorFamilyCursor{
+        // todo: localize
         return ArmorFamilyCursor(db.rawQuery("""
             SELECT af._id,af.name,af.rarity,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af

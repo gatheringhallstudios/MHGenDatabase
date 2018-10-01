@@ -70,6 +70,24 @@ private fun createHandlers(ctx: Context) = mapOf(
             override fun createListener(ctx: Context, obj: SkillTree) = SkillClickListener(ctx, obj.id)
         },
 
+        Decoration::class.java to  object : ResultHandler<Decoration>() {
+            override fun getName(obj: Decoration) = obj.name ?: ""
+            override fun getType(obj: Decoration) = ctx.getString(R.string.type_decoration)
+            override fun createListener(ctx: Context, obj: Decoration) = ItemClickListener(ctx, obj)
+        },
+        
+        ArmorFamilyBase::class.java to object : ResultHandler<ArmorFamilyBase>() {
+            override fun getName(obj: ArmorFamilyBase) = obj.name ?: ""
+            override fun getType(obj: ArmorFamilyBase) = ctx.getString(R.string.type_armor_set)
+            override fun createListener(ctx: Context, obj: ArmorFamilyBase) = ArmorClickListener(ctx, obj.id, true)
+        },
+        
+        Armor::class.java to object : ResultHandler<Armor>() {
+            override fun getName(obj: Armor) = obj.name ?: ""
+            override fun getType(obj: Armor) = ctx.getString(R.string.type_armor)
+            override fun createListener(ctx: Context, obj: Armor) = ArmorClickListener(ctx, obj.id, true)
+        },
+
         Item::class.java to  object : ResultHandler<Item>() {
             override fun getName(obj: Item) = obj.name ?: ""
             override fun getType(obj: Item) = when (obj.type) {

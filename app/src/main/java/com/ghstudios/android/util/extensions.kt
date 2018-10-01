@@ -42,6 +42,18 @@ inline fun <J : Cursor, R> J.useCursor(process: (J) -> R): R {
 }
 
 /**
+ * Extension function that iterates over a cursor, doing an operation for each step
+ * The cursor is closed at the completion of this method.
+ */
+inline fun <T, J : Cursor> J.forEach(process: (J) -> T) {
+    this.useCursor {
+        while (moveToNext()) {
+            process.invoke(this)
+        }
+    }
+}
+
+/**
  * Extension function that converts a cursor to a list of objects using a transformation function.
  * The cursor is closed at the completion of this method.
  */

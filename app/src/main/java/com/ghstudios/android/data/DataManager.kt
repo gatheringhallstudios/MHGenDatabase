@@ -39,6 +39,7 @@ import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
 import com.ghstudios.android.data.database.*
+import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.first
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
@@ -115,6 +116,10 @@ class DataManager private constructor(private val mAppContext: Context) {
         return itemDao.queryArmor()
     }
 
+    fun queryArmorSearch(searchTerm: String): ArmorCursor {
+        return itemDao.queryArmorSearch(searchTerm)
+    }
+
     /* Get a specific Armor */
     fun getArmor(id: Long): Armor? {
         return itemDao.queryArmor(id)
@@ -156,6 +161,10 @@ class DataManager private constructor(private val mAppContext: Context) {
             }
         }
         return results
+    }
+
+    fun queryArmorFamilyBaseSearch(filter: String): List<ArmorFamilyBase> {
+        return itemDao.queryArmorFamilyBaseSearch(filter)
     }
 
     /********************************* COMBINING QUERIES  */
@@ -218,9 +227,7 @@ class DataManager private constructor(private val mAppContext: Context) {
      * Having a null or empty filter is the same as calling without a filter
      */
     fun queryDecorationsSearch(filter: String?): DecorationCursor {
-        var filter = filter
-        filter = filter?.trim { it <= ' ' } ?: ""
-        return if (filter == "") queryDecorations() else mHelper.queryDecorationsSearch(filter)
+        return mHelper.queryDecorationsSearch(filter ?: "")
     }
 
     /* Get a specific Decoration */
@@ -318,8 +325,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get a Cursor that has a list of filtered Items through search */
-    fun queryItemSearch(search: String): ItemCursor {
-        return itemDao.queryItemSearch(search)
+    @JvmOverloads fun queryItemSearch(search: String, omitTypes: List<ItemType> = emptyList()): ItemCursor {
+        return itemDao.queryItemSearch(search, omitTypes)
     }
 
     /********************************* ITEM TO SKILL TREE QUERIES  */
@@ -381,21 +388,14 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     fun queryLocationsSearch(searchTerm: String): List<Location> {
+        // todo: we could also create a cursor wrapper implementation that filters in memory...without first converting to objects
         val locations = queryLocations().toList { it.location }
         if (searchTerm.isBlank()) {
             return locations
         }
 
-        // todo: create an implementation for in-memory searching, put in data/util, if we need it
-        // we could also create a cursor wrapper implementation that filters in memory...without first converting to objects
-
-        fun normalize(name: String) = name.trim().toLowerCase()
-
-        val searchWords = normalize(searchTerm).split(' ')
-        return locations.filter { location ->
-            val nameNormalized = normalize(location.name ?: "")
-            searchWords.all { nameNormalized.contains(it) }
-        }
+        val filter = SearchFilter(searchTerm)
+        return locations.filter { filter.matches(it.name ?: "") }
     }
 
     /********************************* MELODY QUERIES  */
