@@ -2,6 +2,7 @@ package com.ghstudios.android.features.monsters.detail
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.v4.app.Fragment
@@ -29,6 +30,50 @@ private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weakn
     WeaknessRating.WEAK -> R.drawable.effectiveness_2
     WeaknessRating.VERY_WEAK -> R.drawable.effectiveness_3
     else -> null
+}
+
+private fun localizeAilment(ctx: Context, ailmentStr: String): String {
+    val resId = when (ailmentStr) {
+        "Small Roar" -> R.string.ailment_roar_small
+        "Large Roar" -> R.string.ailment_roar_large
+        "Small Special Roar" -> R.string.ailment_roar_small_special
+        "Special Roar" -> R.string.ailment_roar_special
+        "Small Wind Pressure" -> R.string.ailment_wind_small
+        "Large Wind Pressure" -> R.string.ailment_wind_large
+        "Dragon Wind Pressure" -> R.string.ailment_wind_dragon
+        "Tremor" -> R.string.ailment_tremor
+        "Fireblight" -> R.string.ailment_fire
+        "Waterblight" -> R.string.ailment_water
+        "Thunderblight" -> R.string.ailment_thunder
+        "Iceblight" -> R.string.ailment_ice
+        "Dragonblight" -> R.string.ailment_dragon
+        "Blastblight" -> R.string.ailment_blast
+        "Bleeding" -> R.string.ailment_bleed
+        "Poison" -> R.string.ailment_poison
+        "Noxious Poison" -> R.string.ailment_poison_noxious
+        "Deadly Poison" -> R.string.ailment_poison_deadly
+        "Sleep" -> R.string.ailment_sleep
+        "Paralysis" -> R.string.ailment_paralysis
+        "Stun" -> R.string.ailment_stun
+        "Snowman" -> R.string.ailment_snowman
+        "Muddy" -> R.string.ailment_muddy
+        "Bubbles" -> R.string.ailment_bubbles
+        "Boned" -> R.string.ailment_boned
+        "Mucus" -> R.string.ailment_mucus
+        "Soiled" -> R.string.ailment_soiled
+        "Environmental" -> R.string.ailment_environmental
+        "Defense Down" -> R.string.ailment_defensedown
+        "Frenzy Virus" -> R.string.ailment_frenzy
+        "Confusion" -> R.string.ailment_confusion
+        else -> 0
+    }
+
+    if (resId == 0) {
+        Log.e("MonsterSummary", "Ailment localization failed for $ailmentStr")
+        return ailmentStr
+    }
+
+    return ctx.getString(resId)
 }
 
 /**
@@ -154,7 +199,9 @@ class MonsterSummaryFragment : Fragment() {
         // hide blank slate, and make the ailment list visible
         ailmentsEmpty.visibility = View.GONE
         ailmentTextView.visibility = View.VISIBLE
-        ailmentTextView.text = ailments.joinToString("\n") { it.ailment }
+        ailmentTextView.text = ailments.joinToString("\n") {
+            localizeAilment(context!!, it.ailment)
+        }
     }
 
     /**

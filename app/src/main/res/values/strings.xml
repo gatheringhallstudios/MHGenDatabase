@@ -81,6 +81,39 @@
     <string name="rank_hr">High Rank</string>
     <string name="rank_g">G Rank</string>
     <string name="rank_any">Any</string>
+    
+    <!-- Ailments -->
+    <string name="ailment_roar_small">Small Roar</string>
+    <string name="ailment_roar_large">Large Roar</string>
+    <string name="ailment_roar_small_special">Small Special Roar</string>
+    <string name="ailment_roar_special">Special Roar</string>
+    <string name="ailment_wind_small">Small Wind Pressure</string>
+    <string name="ailment_wind_large">Large Wind Pressure</string>
+    <string name="ailment_wind_dragon">Dragon Wind Pressure</string>
+    <string name="ailment_tremor">Tremor</string>
+    <string name="ailment_fire">Fireblight</string>
+    <string name="ailment_water">Waterblight</string>
+    <string name="ailment_thunder">Thunderblight</string>
+    <string name="ailment_ice">Iceblight</string>
+    <string name="ailment_dragon">Dragonblight</string>
+    <string name="ailment_blast">Blastblight</string>
+    <string name="ailment_bleed">Bleeding</string>
+    <string name="ailment_poison">Poison</string>
+    <string name="ailment_poison_noxious">Noxious Poison</string>
+    <string name="ailment_poison_deadly">Deadly Poison</string>
+    <string name="ailment_sleep">Sleep</string>
+    <string name="ailment_paralysis">Paralysis</string>
+    <string name="ailment_stun">Stun</string>
+    <string name="ailment_snowman">Snowman</string>
+    <string name="ailment_muddy">Muddy</string>
+    <string name="ailment_bubbles">Bubbles</string>
+    <string name="ailment_boned">Boned</string>
+    <string name="ailment_mucus">Mucus</string>
+    <string name="ailment_soiled">Soiled</string>
+    <string name="ailment_environmental">Environmental</string>
+    <string name="ailment_defensedown">Defense Down</string>
+    <string name="ailment_frenzy">Frenzy Virus</string>
+    <string name="ailment_confusion">Confusion</string>
 
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
