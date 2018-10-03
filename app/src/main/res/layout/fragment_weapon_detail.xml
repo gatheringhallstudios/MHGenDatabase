@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="14dp"
+        android:orientation="vertical">
+
+        <com.ghstudios.android.components.TitleBarCell
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:iconSrc="@drawable/drawer_weapons"
+            tools:titleText="Master Sword"/>
+
+        <FrameLayout style="@style/SectionDivider"/>
+
+        <TextView
+            android:id="@+id/weapon_description"
+            style="@style/Description"
+            tools:text="Description should go here" />
+
+        <FrameLayout style="@style/SectionDivider"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weapon_detail_view"/>
+
+        <include layout="@layout/fragment_weapon_detail_recipe"/>
+    </LinearLayout>
+</ScrollView>

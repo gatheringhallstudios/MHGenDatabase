@@ -254,6 +254,13 @@
         <item name="android:typeface">sans</item>
     </style>
 
+    <!-- If a value label is paired next to text_medium -->
+    <style name="text_medium_value">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
     <style name="hyper_badge">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">14sp</item>
@@ -317,8 +324,8 @@
     </style>
 
     <style name="tiny_image">
-        <item name="android:layout_height">16dp</item>
-        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">@dimen/image_size_xsmall</item>
+        <item name="android:layout_width">@dimen/image_size_xsmall</item>
     </style>
 
 

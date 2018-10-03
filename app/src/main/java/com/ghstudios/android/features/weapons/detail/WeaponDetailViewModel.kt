@@ -12,10 +12,7 @@ import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 import com.ghstudios.android.util.toList
 
-data class WeaponElementData(
-        val element: String?,
-        val value: Long
-)
+
 
 data class WeaponFamilyWrapper(
     val group:String?,
@@ -34,31 +31,6 @@ class WeaponDetailViewModel(private val app: Application) : AndroidViewModel(app
     val createComponentData = MutableLiveData<List<Component>>()
     val improveComponentData = MutableLiveData<List<Component>>()
     val familyTreeData = MutableLiveData<List<WeaponFamilyWrapper>>()
-
-    /**
-     * Live data that returns weapon element or status data once a weapon is loaded.
-     * Null is returned if its not a weapon that can have element data.
-     */
-    val weaponElementData: LiveData<List<WeaponElementData>> = Transformations.map(weaponData) {
-        when (it.wtype) {
-            Weapon.HEAVY_BOWGUN, Weapon.LIGHT_BOWGUN -> null
-
-            else -> {
-                if (it.element == "") {
-                    return@map arrayListOf(WeaponElementData("None", 0))
-                }
-
-                val elements = ArrayList<WeaponElementData>()
-                elements.add(WeaponElementData(it.element, it.elementAttack))
-
-                if (it.element2 != "") {
-                    elements.add(WeaponElementData(it.element2, it.element2Attack))
-                }
-
-                return@map elements
-            }
-        }
-    }
 
     var weaponId = -1L
         private set

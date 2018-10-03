@@ -256,13 +256,46 @@
     <!-- Weapons -->
     <string name="weapon_detail_tab_detail">Detail</string>
     <string name="weapon_detail_tab_melodies">Melodies</string>
-    <string name="weapon_detail_tab_ammo">Ammo</string>
-    <string name="weapon_detail_tab_coatings">Coatings</string>
     <string name="weapon_detail_tab_family">Family</string>
     <string name="weapon_tree_origin">Origin</string>
     <string name="weapon_tree_family">Family</string>
     <string name="weapon_tree_side_branches">Branches</string>
     <string name="weapon_tree_final">Final (All Branches)</string>
+
+    <string name="shot_normal">Normal</string>
+    <string name="shot_pierce">Pierce</string>
+    <string name="shot_pellet">Pellet</string>
+    <string name="shot_crag">Crag</string>
+    <string name="shot_clust">Clust</string>
+    <string name="shot_poison">Poison</string>
+    <string name="shot_paralysis">Paralysis</string>
+    <string name="shot_sleep">Sleep</string>
+    <string name="shot_exhaust">Exhaust</string>
+    <string name="shot_recovery">Recovery</string>
+    <string name="shot_fire">Fire</string>
+    <string name="shot_water">Water</string>
+    <string name="shot_thunder">Thunder</string>
+    <string name="shot_ice">Ice</string>
+    <string name="shot_dragon">Dragon</string>
+    <string name="weapon_attack">Attack</string>
+    <string name="weapon_slots">Slots</string>
+    <string name="weapon_sharpness">Sharpness</string>
+    <string name="weapon_notes">Notes</string>
+    <string name="weapon_phial_type">Phial</string>
+    <string name="weapon_shelling">Shelling</string>
+    <string name="weapon_upgrade">Upgrade</string>
+    <string name="weapon_create">Create</string>
+    <string name="weapon_charges">Charges</string>
+    <string name="weapon_arc">Arc</string>
+    <string name="weapon_recoil">Recoil</string>
+    <string name="weapon_reload">Reload</string>
+    <string name="weapon_deviation">Deviation</string>
+    <string name="weapon_coatings">Coatings</string>
+    <string name="weapon_ammo">Ammo</string>
+    <string name="weapon_internal_row" translatable="false">%s • %s • %s</string>
+    <string name="weapon_rapid_row" translatable="false">%s • %s • %s • %s</string>
+    <string name="weapon_siege_row" translatable="false">%s • %s</string>
+
 
     <!-- Palicos -->
     <string name="palico_tab_weapons">Weapons</string>
@@ -357,35 +390,6 @@
     <string name="ammo_none">(None)</string>
     <string name="internal_ammo">Internal Ammo</string>
     <string name="rapid_fire">Rapid Fire</string>
-
-    <!--Shot names that show in ammo page-->
-    <string name="shot_normal">Normal</string>
-    <string name="shot_pierce">Pierce</string>
-    <string name="shot_pellet">Pellet</string>
-    <string name="shot_crag">Crag</string>
-    <string name="shot_clust">Clust</string>
-    <string name="shot_poison">Poison</string>
-    <string name="shot_paralysis">Paralysis</string>
-    <string name="shot_sleep">Sleep</string>
-    <string name="shot_exhaust">Exhaust</string>
-    <string name="shot_recovery">Recovery</string>
-    <string name="shot_fire">Fire</string>
-    <string name="shot_water">Water</string>
-    <string name="shot_thunder">Thunder</string>
-    <string name="shot_ice">Ice</string>
-    <string name="shot_dragon">Dragon</string>
-    <string name="weapon_attack">Attack</string>
-    <string name="weapon_slots">Slots</string>
-    <string name="weapon_sharpness">Sharpness</string>
-    <string name="weapon_notes">Notes</string>
-    <string name="weapon_phial_type">Phial Type</string>
-    <string name="weapon_upgrade">Upgrade</string>
-    <string name="weapon_create">Create</string>
-    <string name="weapon_charges">Charges</string>
-    <string name="weapon_arc">Arc</string>
-    <string name="weapon_recoil">Recoil</string>
-    <string name="weapon_reload">Reload</string>
-    <string name="weapon_deviation">Deviation</string>
 
     <!-- Quest Detail -->
     <string name="quest_detail_tab_detail">Detail</string>

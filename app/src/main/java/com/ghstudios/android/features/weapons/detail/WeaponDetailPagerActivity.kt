@@ -2,14 +2,11 @@ package com.ghstudios.android.features.weapons.detail
 
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import com.ghstudios.android.AssetLoader
 
 import com.ghstudios.android.data.classes.Weapon
-import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment
 import com.ghstudios.android.BasePagerActivity
@@ -39,48 +36,26 @@ class WeaponDetailPagerActivity : BasePagerActivity() {
         val w = viewModel.loadWeapon(weaponId)!!
         name = w.name
 
-        val wtype = w.wtype!!
+        val weaponType = w.wtype!!
 
         // Set activity title to display weapon type
-        title = AssetLoader.localizeWeaponType(wtype)
+        title = AssetLoader.localizeWeaponType(weaponType)
 
         // All weapons have a detail tab
         tabs.addTab(R.string.weapon_detail_tab_detail) {
-            getDetailForWeaponType(wtype, weaponId)
+            WeaponDetailFragment.newInstance(weaponId)
         }
 
         // Certain weapon types may have a different second tab
-        if (wtype == Weapon.HUNTING_HORN) {
+        if (weaponType == Weapon.HUNTING_HORN) {
             tabs.addTab(R.string.weapon_detail_tab_melodies) {
                 WeaponSongFragment.newInstance(weaponId)
-            }
-        } else if (wtype == Weapon.LIGHT_BOWGUN || wtype == Weapon.HEAVY_BOWGUN) {
-            tabs.addTab(R.string.weapon_detail_tab_ammo) {
-                WeaponDetailAmmoFragment.newInstance(weaponId)
-            }
-        } else if (wtype == Weapon.BOW) {
-            tabs.addTab(R.string.weapon_detail_tab_coatings) {
-                WeaponDetailCoatingFragment.newInstance(weaponId)
             }
         }
 
         // All weapons have a family tab
         tabs.addTab(R.string.weapon_detail_tab_family) {
             WeaponTreeFragment.newInstance(weaponId)
-        }
-    }
-
-    /**
-     * Helper that gets the "Detail tab contents" for the weapon type
-     * @param wtype
-     * @return
-     */
-    private fun getDetailForWeaponType(wtype: String, weaponId: Long): Fragment {
-        when (wtype) {
-            Weapon.LIGHT_BOWGUN, Weapon.HEAVY_BOWGUN ->
-                return WeaponBowgunDetailFragment.newInstance(weaponId)
-            Weapon.BOW -> return WeaponBowDetailFragment.newInstance(weaponId)
-            else -> return WeaponBladeDetailFragment.newInstance(weaponId)
         }
     }
 

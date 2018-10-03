@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/margin_large">
+
+    <TextView
+        android:id="@+id/attack_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_alt"
+        android:text="@string/weapon_attack"/>
+
+    <TextView
+        android:id="@+id/affinity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_alt"
+        android:text="@string/weapon_affinity"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/attack_label"/>
+
+    <TextView
+        android:id="@+id/defense_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_alt"
+        android:text="@string/weapon_defense"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/affinity_label"/>
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="attack_label,affinity_label,defense_label"/>
+
+    <TextView
+        android:id="@+id/attack_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_value"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        tools:text="210"
+        app:layout_constraintStart_toEndOf="@id/barrier_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/attack_label"/>
+
+    <TextView
+        android:id="@+id/affinity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_value"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        tools:text="10%"
+        app:layout_constraintStart_toEndOf="@id/barrier_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/affinity_label"/>
+
+    <TextView
+        android:id="@+id/defense_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_value"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        tools:text="10"
+        app:layout_constraintStart_toEndOf="@id/barrier_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/defense_label"/>
+
+    <android.support.constraint.Group
+        android:id="@+id/element1_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="element1_icon, element1_value"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/element1_icon"
+        style="@style/tiny_image"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="@id/slots"
+        app:layout_constraintBottom_toBottomOf="@id/slots"
+        app:layout_constraintEnd_toStartOf="@id/element1_value"
+        tools:src="@drawable/element_fire" />
+
+    <TextView
+        android:id="@+id/element1_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium"
+        app:layout_constraintEnd_toStartOf="@id/slots"
+        app:layout_constraintBaseline_toBaselineOf="@id/attack_label"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        tools:text="13"/>
+
+    <com.ghstudios.android.components.SlotsView
+        android:id="@+id/slots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/attack_value"
+        app:layout_constraintBottom_toBottomOf="@id/attack_value"
+        tools:maxSlots="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_alt"
+        android:text="@string/weapon_arc"
+        app:layout_constraintBaseline_toBaselineOf="@id/weapon_bow_arc"
+        app:layout_constraintEnd_toStartOf="@id/weapon_bow_arc"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"/>
+
+    <TextView
+        android:id="@+id/weapon_bow_arc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium"
+        tools:text="Wide"
+        app:layout_constraintBaseline_toBaselineOf="@id/defense_label"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/detail_weapon_note_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@id/defense_value"
+        app:layout_constraintBottom_toBottomOf="@id/defense_value"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/detail_weapon_blade_note1"
+            style="@style/small_image" />
+
+        <ImageView
+            android:id="@+id/detail_weapon_blade_note2"
+            style="@style/small_image" />
+
+        <ImageView
+            android:id="@+id/detail_weapon_blade_note3"
+            style="@style/small_image" />
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_3column_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_3column_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66" />
+    
+    <TextView
+        android:id="@+id/charges_label"
+        style="@style/text_medium_alt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        app:layout_constraintTop_toBottomOf="@id/defense_label"
+        android:text="@string/weapon_charges" />
+    
+    <LinearLayout
+        android:id="@+id/charges_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/charges_label">
+
+        <TextView
+            android:id="@+id/detail_weapon_bow_charge1"
+            style="@style/detail_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            tools:text="Spread 2" />
+
+        <TextView
+            android:id="@+id/detail_weapon_bow_charge2"
+            style="@style/detail_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            tools:text="Spread 2" />
+
+        <TextView
+            android:id="@+id/detail_weapon_bow_charge3"
+            style="@style/detail_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            tools:text="Spread 3" />
+
+        <TextView
+            android:id="@+id/detail_weapon_bow_charge4"
+            style="@style/detail_value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Rapid 1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/coatings_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_medium_alt"
+        app:layout_constraintBaseline_toBaselineOf="@+id/charges_label"
+        app:layout_constraintStart_toEndOf="@id/guideline_3column_1"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:text="@string/weapon_coatings"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/charges_list"
+        app:layout_constraintStart_toEndOf="@id/guideline_3column_1"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/power_1_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Power Lv1"/>
+
+        <TextView
+            android:id="@+id/power_2_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Power Lv2"/>
+        <TextView
+            android:id="@+id/element_1_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Elemental Lv1"/>
+        <TextView
+            android:id="@+id/element_2_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Elemental Lv2"/>
+        <TextView
+            android:id="@+id/crange_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="C. Range"/>
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/charges_list"
+        app:layout_constraintStart_toEndOf="@id/guideline_3column_2"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/poison_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Poison"/>
+        <TextView
+            android:id="@+id/para_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Paralysis"/>
+        <TextView
+            android:id="@+id/sleep_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Sleep"/>
+        <TextView
+            android:id="@+id/exhaust_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Exhaust"/>
+        <TextView
+            android:id="@+id/blast_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            style="@style/text_small_secondary"
+            android:textColor="@color/text_color_unavailable"
+            android:text="Blast"/>
+        <TextView
+            android:id="@+id/paint_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_toRightOf="@id/crange_text"
+            android:layout_below="@id/blast_text"
+            style="@style/text_small_secondary"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_focused"
+            android:text="Paint"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
