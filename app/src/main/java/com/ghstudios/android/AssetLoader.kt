@@ -5,12 +5,10 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.widget.ImageView
-import com.ghstudios.android.data.classes.Rank
-import com.ghstudios.android.data.classes.Gathering
-import com.ghstudios.android.data.classes.QuestHub
-import com.ghstudios.android.data.classes.Weapon
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.MHUtils
+import com.ghstudios.android.util.getDrawableCompat
 
 /**
  * A static class used to load icons for various database objects.
@@ -48,6 +46,16 @@ object AssetLoader {
         return image?.mutate()?.apply {
             setColorFilter(color, PorterDuff.Mode.MULTIPLY)
         }
+    }
+
+    /**
+     * Loads an icon for the given ElementStatus.
+     * todo: is it nonsensical to make an enum into an ITintedIcon?
+     */
+    @JvmStatic
+    fun loadIconFor(element: ElementStatus): Drawable? {
+        val resId = ElementRegistry.get(element, default=R.color.transparent)
+        return ctx.getDrawableCompat(resId)
     }
 
     @JvmStatic

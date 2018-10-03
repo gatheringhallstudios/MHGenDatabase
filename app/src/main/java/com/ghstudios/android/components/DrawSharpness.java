@@ -52,6 +52,13 @@ public class DrawSharpness extends View {
 
     public DrawSharpness(Context context, AttributeSet attrs){
         super(context, attrs);
+
+        // If previewing, set some fake display
+        if (isInEditMode()) {
+            init(new int[] {6,5,11,9,4,0,0},
+                    new int[] {6,5,11,9,6,0,0},
+                    new int[]{ 6,5,11,9,6,3,0});
+        }
     }
 
 	public void init(int[] sharpness1, int[] sharpness2, int[]sharpness3) {
