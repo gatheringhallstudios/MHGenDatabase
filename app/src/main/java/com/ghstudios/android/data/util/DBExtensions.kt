@@ -41,6 +41,18 @@ fun Cursor.getInt(columnName: String) : Int {
 }
 
 /**
+ * Retrieves the value of the requested column as a string, using the column name,
+ * or null if it doesn't exist.
+ */
+fun Cursor.getIntOrNull(columnName: String) : Int? {
+    return if (this.isNull(columnName)) {
+        null
+    } else {
+        this.getInt(columnName)
+    }
+}
+
+/**
  * Retrieves the value of the requested column as an integer evaluated as a boolean.
  * All non-zero values evaluate to true. Zero is false
  */

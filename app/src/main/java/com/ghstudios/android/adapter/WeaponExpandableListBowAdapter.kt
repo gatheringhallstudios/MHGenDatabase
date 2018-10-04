@@ -100,42 +100,39 @@ class WeaponExpandableListBowAdapter(context: Context, listener: View.OnLongClic
             paintv.visibility = View.GONE
 
             //TODO:make the actual field in the db an int.
-            val coatings = Integer.parseInt(weapon.coatings)
+            val coatings = weapon.coatings!!
 
-            //Power 1 and 2 are bits 11,10
-            val power = coatings and 0x0400 > 0 || coatings and 0x0200 > 0
-
-            if (power) {
+            if (coatings.hasPower) {
                 powerv.setImageResource(R.drawable.icon_bottle)
                 powerv.setColorFilter(ContextCompat.getColor(context, R.color.item_red), PorterDuff.Mode.MULTIPLY)
                 powerv.visibility = View.VISIBLE
             }
-            if (coatings and 0x20 > 0) {
+            if (coatings.poison) {
                 poisonv.setImageResource(R.drawable.icon_bottle)
                 poisonv.setColorFilter(ContextCompat.getColor(context, R.color.item_purple), PorterDuff.Mode.MULTIPLY)
                 poisonv.visibility = View.VISIBLE
             }
-            if (coatings and 0x10 > 0) {
+            if (coatings.para) {
                 parav.setImageResource(R.drawable.icon_bottle)
                 parav.setColorFilter(ContextCompat.getColor(context, R.color.item_yellow), PorterDuff.Mode.MULTIPLY)
                 parav.visibility = View.VISIBLE
             }
-            if (coatings and 0x08 > 0) {
+            if (coatings.sleep) {
                 sleepv.setImageResource(R.drawable.icon_bottle)
                 sleepv.setColorFilter(ContextCompat.getColor(context, R.color.item_cyan), PorterDuff.Mode.MULTIPLY)
                 sleepv.visibility = View.VISIBLE
             }
-            if (coatings and 0x40 > 0) {
+            if (coatings.crange) {
                 crangev.setImageResource(R.drawable.icon_bottle)
                 crangev.setColorFilter(ContextCompat.getColor(context, R.color.item_white), PorterDuff.Mode.MULTIPLY)
                 crangev.visibility = View.VISIBLE
             }
-            if (coatings and 0x04 > 0) {
+            if (coatings.exhaust) {
                 exhaustv.setImageResource(R.drawable.icon_bottle)
                 exhaustv.setColorFilter(ContextCompat.getColor(context, R.color.item_blue), PorterDuff.Mode.MULTIPLY)
                 exhaustv.visibility = View.VISIBLE
             }
-            if (coatings and 0x02 > 0) {
+            if (coatings.blast) {
                 slimev.setImageResource(R.drawable.icon_bottle)
                 slimev.setColorFilter(ContextCompat.getColor(context, R.color.item_orange), PorterDuff.Mode.MULTIPLY)
                 slimev.visibility = View.VISIBLE

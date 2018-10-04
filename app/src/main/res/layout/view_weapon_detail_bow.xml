@@ -96,8 +96,8 @@
         style="@style/text_medium"
         app:layout_constraintEnd_toStartOf="@id/slots"
         app:layout_constraintBaseline_toBaselineOf="@id/attack_label"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="@dimen/margin_xlarge"
+        android:layout_marginRight="@dimen/margin_xlarge"
         tools:text="13"/>
 
     <com.ghstudios.android.components.SlotsView

@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.view_weapon_detail_bow.view.*
 class WeaponBowDetailViewHolder(parent: ViewGroup) : WeaponDetailViewHolder {
     private val view: View
     private val chargeCells: List<TextView>
-    private val coatingCells: List<TextView>
 
     init {
         val inflater = LayoutInflater.from(parent.context)
@@ -32,20 +31,6 @@ class WeaponBowDetailViewHolder(parent: ViewGroup) : WeaponDetailViewHolder {
                 view.weapon_bow_charge2,
                 view.weapon_bow_charge3,
                 view.weapon_bow_charge4
-        )
-        
-        coatingCells = listOf(
-                view.power_1_text,
-                view.power_2_text,
-                view.element_1_text,
-                view.element_2_text,
-                view.crange_text,
-                view.poison_text,
-                view.para_text,
-                view.sleep_text,
-                view.exhaust_text,
-                view.blast_text,
-                view.paint_text
         )
     }
 
@@ -78,15 +63,27 @@ class WeaponBowDetailViewHolder(parent: ViewGroup) : WeaponDetailViewHolder {
             }
         }
 
-        // Coatings (note: this is carry over logic from gen. I have no idea what it does...)
-        val coatings = Integer.parseInt(weapon.coatings)
-        for (i in 10 downTo 0) {
-            val show = coatings and (1 shl i) > 0
-            if (show) {
-                val color = ContextCompat.getColor(context, R.color.text_color_focused)
-                coatingCells[10 - i].setTextColor(color)
-                coatingCells[10 - i].setTypeface(null, Typeface.BOLD)
+        // Internal function to "enable" a weapon coating view
+        fun setCoating(enabled: Boolean, view: TextView) {
+            if (enabled) {
+                val color = context.getColorCompat(R.color.text_color_focused)
+                view.setTextColor(color)
+                view.setTypeface(null, Typeface.BOLD)
             }
+        }
+
+        weapon.coatings?.let { coatings ->
+            setCoating(coatings.power1, view.power_1_text)
+            setCoating(coatings.power2, view.power_2_text)
+            setCoating(coatings.elem1, view.element_1_text)
+            setCoating(coatings.elem2, view.element_2_text)
+            setCoating(coatings.crange, view.crange_text)
+            setCoating(coatings.poison, view.poison_text)
+            setCoating(coatings.para, view.para_text)
+            setCoating(coatings.sleep, view.sleep_text)
+            setCoating(coatings.exhaust, view.exhaust_text)
+            setCoating(coatings.blast, view.blast_text)
+            setCoating(coatings.paint, view.paint_text)
         }
     }
 }

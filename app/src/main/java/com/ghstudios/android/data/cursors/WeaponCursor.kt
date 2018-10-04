@@ -5,9 +5,11 @@ import android.database.CursorWrapper
 
 import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.data.classes.Weapon
+import com.ghstudios.android.data.classes.WeaponBowCoatings
 import com.ghstudios.android.data.classes.WeaponChargeLevel
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
+import com.ghstudios.android.data.util.getIntOrNull
 import com.ghstudios.android.data.util.getLong
 import com.ghstudios.android.data.util.getString
 
@@ -45,7 +47,7 @@ class WeaponCursor(c: Cursor) : CursorWrapper(c) {
             val shelling_type = getString(S.COLUMN_WEAPONS_SHELLING_TYPE)
             val phial = getString(S.COLUMN_WEAPONS_PHIAL)
             val charges = getString(S.COLUMN_WEAPONS_CHARGES)
-            val coatings = getString(S.COLUMN_WEAPONS_COATINGS)
+            val coatings = getIntOrNull(S.COLUMN_WEAPONS_COATINGS) ?: 0
             val recoil = getString(S.COLUMN_WEAPONS_RECOIL)
             val reload_speed = getString(S.COLUMN_WEAPONS_RELOAD_SPEED)
             val rapid_fire = getString(S.COLUMN_WEAPONS_RAPID_FIRE)
@@ -76,7 +78,7 @@ class WeaponCursor(c: Cursor) : CursorWrapper(c) {
             weapon.phial = phial
             if (weapon.wtype == Weapon.BOW) {
                 weapon.charges = parseBowCharges(charges ?: "")
-                weapon.coatings = coatings
+                weapon.coatings = WeaponBowCoatings(coatings)
             }
             weapon.recoil = recoil
             weapon.reloadSpeed = reload_speed
