@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.view_weapon_detail_blade.view.*
  * Handles binding to the view for blademaster weapons
  * Used by the WeaponDetailFragment
  */
-class WeaponBladeViewHolder(parent: ViewGroup): WeaponViewHolder {
+class WeaponBladeDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
     private val view: View
     init {
         val inflater = LayoutInflater.from(parent.context)

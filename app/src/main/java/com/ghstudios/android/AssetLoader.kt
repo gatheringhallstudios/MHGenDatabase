@@ -143,4 +143,24 @@ object AssetLoader {
         Rank.G -> ctx.getString(R.string.rank_g)
         Rank.ANY -> ctx.getString(R.string.rank_any)
     }
+
+    /**
+     * Localizes a bow's weapon charge level, returning a string in the form Rapid 2, with
+     * the name localized to the specific language.
+     */
+    @JvmStatic fun localizeChargeLevel(level: WeaponChargeLevel): String {
+        val name = when (level.name) {
+            "Rapid" -> ctx.getString(R.string.bow_charge_rapid)
+            "Pierce" -> ctx.getString(R.string.bow_charge_pierce)
+            "Spread" -> ctx.getString(R.string.bow_charge_spread)
+            "Heavy" -> ctx.getString(R.string.bow_charge_heavy)
+            else -> level.name
+        }
+
+        return if (level.locked) {
+            ctx.getString(R.string.bow_charge_format_locked, name, level.level)
+        } else {
+            ctx.getString(R.string.bow_charge_format, name, level.level)
+        }
+    }
 }

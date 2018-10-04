@@ -26,7 +26,7 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
         super(context, listener);
     }
 
-    protected static class WeaponElementViewHolder extends WeaponViewHolder {
+    public static class WeaponElementViewHolder extends WeaponViewHolder {
 
         // Element
         public TextView elementView;

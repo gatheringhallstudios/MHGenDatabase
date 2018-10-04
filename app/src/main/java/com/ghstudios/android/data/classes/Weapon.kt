@@ -5,7 +5,13 @@ import android.util.Log
 import java.util.ArrayList
 import java.util.Arrays
 
+data class WeaponChargeLevel(
+        val name: String,
+        val level: Int,
 
+        /** True if LoadUp is required to access */
+        val locked: Boolean
+)
 
 /*
  * Class for Weapon
@@ -73,25 +79,7 @@ class Weapon : Item() {
     var phial: String? = ""
 
     // Charges for bows
-    var charges = ""
-        set(charges) {
-            field = charges
-            var charge = ""
-            val level = ""
-
-            val new_charges = charges.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            for (c in new_charges) {
-
-                if (c.endsWith("*")) {
-                    charge = "(" + c.substring(0, c.length - 3) + c[c.length - 2] + ")"
-                } else {
-                    charge = c.substring(0, c.length - 2) + c[c.length - 1]
-                }
-
-                this.chargeString = this.chargeString + charge + " / "
-            }
-            chargeString = chargeString.substring(0, this.chargeString.length - 3)
-        }
+    var charges: List<WeaponChargeLevel> = emptyList()
 
     // Coatings for bows
     var coatings: String? = ""
@@ -136,8 +124,6 @@ class Weapon : Item() {
     var sharpness3: IntArray? = null
         private set
     var coatingsArray: Array<String>? = null
-        private set
-    var chargeString = ""
         private set
 
     val attackString: String

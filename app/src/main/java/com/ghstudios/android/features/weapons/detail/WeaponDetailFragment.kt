@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_weapon_detail_recipe.*
 
 /**
  * Fragment that displays data information for a weapon.
- * Defers the internal data inflation and population to a subclass of WeaponViewHolder.
+ * Defers the internal data inflation and population to a subclass of WeaponDetailViewHolder.
  */
 class WeaponDetailFragment : Fragment() {
     companion object {
@@ -72,9 +72,9 @@ class WeaponDetailFragment : Fragment() {
         val weaponDataContainer = view!!.findViewById<ViewGroup>(R.id.weapon_detail_view)
         weaponDataContainer.removeAllViews()
         val weaponDataView = when (weapon.wtype) {
-            Weapon.BOW -> WeaponBowViewHolder(weaponDataContainer)
-            Weapon.LIGHT_BOWGUN, Weapon.HEAVY_BOWGUN -> WeaponBowgunViewHolder(weaponDataContainer)
-            else -> WeaponBladeViewHolder(weaponDataContainer)
+            Weapon.BOW -> WeaponBowDetailViewHolder(weaponDataContainer)
+            Weapon.LIGHT_BOWGUN, Weapon.HEAVY_BOWGUN -> WeaponBowgunDetailViewHolder(weaponDataContainer)
+            else -> WeaponBladeDetailViewHolder(weaponDataContainer)
         }
         weaponDataView.bindWeapon(weapon)
     }

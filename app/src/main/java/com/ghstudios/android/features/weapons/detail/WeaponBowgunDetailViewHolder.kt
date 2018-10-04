@@ -19,7 +19,7 @@ private fun getWaitString(context: Context, wait: Int) = when (wait) {
     else -> ""
 }
 
-class WeaponBowgunViewHolder(parent: ViewGroup): WeaponViewHolder {
+class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
     private val view: View
     private val ammoCells: List<TextView>
     private val internalAmmoCells: List<TextView>

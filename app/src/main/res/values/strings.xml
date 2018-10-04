@@ -277,6 +277,24 @@
     <string name="shot_thunder">Thunder</string>
     <string name="shot_ice">Ice</string>
     <string name="shot_dragon">Dragon</string>
+    <string name="coating_power_1">Power Lv1</string>
+    <string name="coating_power_2">Power Lv2</string>
+    <string name="coating_elemental_1">Elemental Lv1</string>
+    <string name="coating_elemental_2">Elemental Lv2</string>
+    <string name="coating_closerange">C. Range</string>
+    <string name="coating_poison">Poison</string>
+    <string name="coating_paralysis">Paralysis</string>
+    <string name="coating_sleep">Sleep</string>
+    <string name="coating_exhaust">Exhaust</string>
+    <string name="coating_blast">Blast</string>
+    <string name="coating_paint">Paint</string>
+    <string name="bow_charge_rapid">Rapid</string>
+    <string name="bow_charge_pierce">Pierce</string>
+    <string name="bow_charge_spread">Spread</string>
+    <string name="bow_charge_heavy">Heavy</string>
+    <string name="bow_charge_format">%s %d</string>
+    <string name="bow_charge_format_locked">(%s %d)</string>
+
     <string name="weapon_attack">Attack</string>
     <string name="weapon_slots">Slots</string>
     <string name="weapon_sharpness">Sharpness</string>
