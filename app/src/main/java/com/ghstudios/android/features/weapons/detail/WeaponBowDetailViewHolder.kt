@@ -83,7 +83,9 @@ class WeaponBowDetailViewHolder(parent: ViewGroup) : WeaponDetailViewHolder {
             setCoating(coatings.sleep, view.sleep_text)
             setCoating(coatings.exhaust, view.exhaust_text)
             setCoating(coatings.blast, view.blast_text)
-            setCoating(coatings.paint, view.paint_text)
+
+            setCoating(coatings.hasPower, view.power_label)
+            setCoating(coatings.hasElem, view.element_label)
         }
     }
 }

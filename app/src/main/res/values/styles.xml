@@ -1,9 +1,8 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources>
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
 
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"> <!-- change to .NoActionBar when integrating Toolbar-->

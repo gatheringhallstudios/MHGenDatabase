@@ -277,10 +277,10 @@
     <string name="shot_thunder">Thunder</string>
     <string name="shot_ice">Ice</string>
     <string name="shot_dragon">Dragon</string>
-    <string name="coating_power_1">Power Lv1</string>
-    <string name="coating_power_2">Power Lv2</string>
-    <string name="coating_elemental_1">Elemental Lv1</string>
-    <string name="coating_elemental_2">Elemental Lv2</string>
+    <string name="coating_power">Power</string>
+    <string name="coating_elemental">Elem Up</string>
+    <string name="coating_lv1">Lv1</string>
+    <string name="coating_lv2">Lv2</string>
     <string name="coating_closerange">C. Range</string>
     <string name="coating_poison">Poison</string>
     <string name="coating_paralysis">Paralysis</string>

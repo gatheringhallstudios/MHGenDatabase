@@ -6,6 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/margin_large">
 
+    <!-- Defense toggle, hide if there is no defense value -->
+    <android.support.constraint.Group
+        android:id="@+id/defense_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="defense_label,defense_value"/>
+
     <TextView
         android:id="@+id/attack_label"
         android:layout_width="wrap_content"
@@ -198,47 +205,100 @@
         app:layout_constraintStart_toStartOf="@id/weapon_coating_column1"
         android:text="@string/weapon_coatings"/>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/weapon_coating_column1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/charges_list"
-        app:layout_constraintStart_toEndOf="@id/guideline_3column_1"
-        app:layout_constraintEnd_toStartOf="@id/guideline_3column_2"
-        android:orientation="vertical">
+        app:layout_constraintStart_toEndOf="@id/charges_list"
+        android:layout_marginStart="@dimen/margin_xlarge"
+        android:layout_marginLeft="@dimen/margin_xlarge">
+
+        <TextView
+            android:id="@+id/power_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/text_small_secondary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/coating_power"/>
+
+        <TextView
+            android:id="@+id/element_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/text_small_secondary"
+            app:layout_constraintTop_toBottomOf="@id/power_label"
+            android:text="@string/coating_elemental"/>
+
+        <TextView
+            android:id="@+id/crange_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/text_small_secondary"
+            android:text="@string/coating_closerange"
+            app:layout_constraintTop_toBottomOf="@id/element_label"/>
+
+        <TextView
+            android:id="@+id/exhaust_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/text_small_secondary"
+            android:text="@string/coating_exhaust"
+            app:layout_constraintTop_toBottomOf="@id/crange_text"/>
+
+        <android.support.constraint.Barrier
+            android:id="@+id/power_element_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="power_label,element_label"
+            app:barrierDirection="end"/>
 
         <TextView
             android:id="@+id/power_1_text"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="@style/text_small_secondary"
-            android:text="@string/coating_power_1"/>
+            android:text="@string/coating_lv1"
+            app:layout_constraintBaseline_toBaselineOf="@id/power_label"
+            app:layout_constraintStart_toEndOf="@id/power_element_barrier"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
+
+        <TextView
+            android:id="@+id/element_1_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/text_small_secondary"
+            android:text="@string/coating_lv1"
+            app:layout_constraintBaseline_toBaselineOf="@id/element_label"
+            app:layout_constraintStart_toEndOf="@id/power_element_barrier"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
 
         <TextView
             android:id="@+id/power_2_text"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="@style/text_small_secondary"
-            android:text="@string/coating_power_2"/>
-        <TextView
-            android:id="@+id/element_1_text"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="@style/text_small_secondary"
-            android:text="@string/coating_elemental_1"/>
+            android:text="@string/coating_lv2"
+            app:layout_constraintBaseline_toBaselineOf="@id/power_label"
+            app:layout_constraintStart_toEndOf="@id/power_1_text"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
+
         <TextView
             android:id="@+id/element_2_text"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="@style/text_small_secondary"
-            android:text="@string/coating_elemental_2"/>
-        <TextView
-            android:id="@+id/crange_text"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="@style/text_small_secondary"
-            android:text="@string/coating_closerange"/>
-    </LinearLayout>
+            android:text="@string/coating_lv2"
+            app:layout_constraintBaseline_toBaselineOf="@id/element_label"
+            app:layout_constraintStart_toEndOf="@id/power_1_text"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"/>
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -267,25 +327,11 @@
             style="@style/text_small_secondary"
             android:text="@string/coating_sleep"/>
         <TextView
-            android:id="@+id/exhaust_text"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="@style/text_small_secondary"
-            android:text="@string/coating_exhaust"/>
-        <TextView
             android:id="@+id/blast_text"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="@style/text_small_secondary"
             android:text="@string/coating_blast"/>
-        <TextView
-            android:id="@+id/paint_text"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="@style/text_small_secondary"
-            android:textStyle="bold"
-            android:textColor="@color/text_color_focused"
-            android:text="@string/coating_paint"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
