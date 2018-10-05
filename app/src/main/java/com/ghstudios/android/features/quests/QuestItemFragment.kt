@@ -55,10 +55,12 @@ class QuestItemFragment : ListFragment() {
             val mapTextView = view.findViewById<TextView>(R.id.map)
             val methodTextView = view.findViewById<TextView>(R.id.method)
             val rateTextView = view.findViewById<TextView>(R.id.rate)
+            val amountTextView = view.findViewById<TextView>(R.id.amount)
             val rate = gathering.rate.toLong()
 
             mapTextView.text = gathering.area
-            methodTextView.text = "x" + gathering.quantity.toString()
+            methodTextView.text = gathering.site
+            amountTextView.text = "x" + gathering.quantity.toString()
             rateTextView.text = java.lang.Long.toString(rate) + "%"
         }
     }

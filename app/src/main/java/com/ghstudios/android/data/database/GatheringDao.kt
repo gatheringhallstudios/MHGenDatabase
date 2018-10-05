@@ -15,7 +15,7 @@ class GatheringDao(val dbMainHelper: SQLiteOpenHelper) {
         get() = localizeColumn("i.name")
 
     private val gathering_columns
-        get() = "$column_name iname, i.name_ja, g.area, g.quantity, g.percentage, g.rare, g.fixed "
+        get() = "$column_name iname, i.name_ja, g.area, g.quantity, g.percentage, g.rare, g.fixed, g.site "
 
     //Query that returns all gathering locations for a quest
     fun queryGatheringsForQuest(questId:Long, locationId:Long, rank:String):GatheringCursor{

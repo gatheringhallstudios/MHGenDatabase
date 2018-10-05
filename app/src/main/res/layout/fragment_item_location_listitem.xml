@@ -7,15 +7,28 @@
 
     <TextView
         android:id="@+id/map"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
+        android:minWidth="125dp"
         android:layout_height="wrap_content"
         style="@style/text_medium"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/method"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Area 5"/>
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_small_secondary"
+        android:gravity="end"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/map"
+        tools:text="x2"/>
 
     <TextView
         android:id="@+id/method"
