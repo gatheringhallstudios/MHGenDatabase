@@ -10,18 +10,18 @@ fun Cursor.hasColumn(columnName: String): Boolean {
  * Returns true if the value in the column is null, using the column name.
  */
 fun Cursor.isNull(columnName: String): Boolean {
-    return this.isNull(getColumnIndex(columnName))
+    return this.isNull(getColumnIndexOrThrow(columnName))
 }
 
 fun Cursor.getLong(columnName: String): Long {
-    return this.getLong(getColumnIndex(columnName))
+    return this.getLong(getColumnIndexOrThrow(columnName))
 }
 
 /**
  * Retrieves the value of the requested column as a string, using the column name.
  */
 fun Cursor.getString(columnName: String) : String? {
-    return this.getString(getColumnIndex(columnName))
+    return this.getString(getColumnIndexOrThrow(columnName))
 }
 
 
@@ -37,7 +37,7 @@ fun Cursor.getString(columnName: String, default: String = "") : String {
  * Retrieves the value of the requested column as a string, using the column name.
  */
 fun Cursor.getInt(columnName: String) : Int {
-    return this.getInt(getColumnIndex(columnName))
+    return this.getInt(getColumnIndexOrThrow(columnName))
 }
 
 /**
