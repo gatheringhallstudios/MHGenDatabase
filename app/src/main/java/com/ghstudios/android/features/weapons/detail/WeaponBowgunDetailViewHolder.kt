@@ -87,9 +87,9 @@ class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
         view.slots.setSlots(weapon.numSlots, 0)
 
         // Bowgun basic data
-        view.weapon_bowgun_reload_value.text = weapon.reloadSpeed
-        view.weapon_bowgun_recoil_value.text = weapon.recoil
-        view.weapon_bowgun_steadiness_value.text = weapon.deviation
+        view.reload_value.text = weapon.reloadSpeed
+        view.recoil_value.text = weapon.recoil
+        view.deviation_value.text = weapon.deviation
 
         // weapon ammo (todo: move this parsing to the weapon model)
         val ammos = weapon.ammo?.split("\\|".toRegex()) ?: emptyList()
