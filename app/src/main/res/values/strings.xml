@@ -49,6 +49,8 @@
     <string name="type_weapon">Weapon</string>
     <string name="type_armor">Armor</string>
     <string name="type_armor_set">Armor Set</string>
+    <string name="type_armor_set_gunner">Armor Set (Gunner)</string>
+    <string name="type_armor_set_blade">Armor Set (Blade)</string>
     <string name="type_decoration">Decoration</string>
     <string name="type_palico_weapon">Palico Weapon</string>
     <string name="type_palico_armor">Palico Armor</string>

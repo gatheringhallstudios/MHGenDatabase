@@ -13,6 +13,12 @@ open class ArmorFamilyBase: ITintedIcon {
     var name:String? = ""
     var rarity = 1
 
+    /**
+     * This armor family's general hunter type.
+     * Uses the ARMOR_TYPE_X consts in Armor.
+     */
+    var hunterType: Int = -1
+
     override fun getIconResourceString() = "armor_body"
     override fun getColorArrayId() = R.array.rare_colors
     override fun getIconColorIndex() = rarity - 1

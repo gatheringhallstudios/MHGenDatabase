@@ -163,8 +163,13 @@ class DataManager private constructor(private val mAppContext: Context) {
         return results
     }
 
-    fun queryArmorFamilyBaseSearch(filter: String): List<ArmorFamilyBase> {
-        return itemDao.queryArmorFamilyBaseSearch(filter)
+    /**
+     * Returns an armor families cursor
+     * @param searchFilter the search predicate to filter on
+     * @param skipSolos true to skip armor families with a single child, otherwise returns all.
+     */
+    @JvmOverloads fun queryArmorFamilyBaseSearch(filter: String, skipSolos: Boolean=false): List<ArmorFamilyBase> {
+        return itemDao.queryArmorFamilyBaseSearch(filter, skipSolos)
     }
 
     /********************************* COMBINING QUERIES  */

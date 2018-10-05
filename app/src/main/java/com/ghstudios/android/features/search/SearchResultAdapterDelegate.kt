@@ -78,7 +78,11 @@ private fun createHandlers(ctx: Context) = mapOf(
         
         ArmorFamilyBase::class.java to object : ResultHandler<ArmorFamilyBase>() {
             override fun getName(obj: ArmorFamilyBase) = obj.name ?: ""
-            override fun getType(obj: ArmorFamilyBase) = ctx.getString(R.string.type_armor_set)
+            override fun getType(obj: ArmorFamilyBase) = when (obj.hunterType) {
+                Armor.ARMOR_TYPE_BLADEMASTER -> ctx.getString(R.string.type_armor_set_blade)
+                Armor.ARMOR_TYPE_GUNNER -> ctx.getString(R.string.type_armor_set_gunner)
+                else -> ctx.getString(R.string.type_armor_set)
+            }
             override fun createListener(ctx: Context, obj: ArmorFamilyBase) = ArmorClickListener(ctx, obj.id, true)
         },
         

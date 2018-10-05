@@ -80,7 +80,7 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
             logTime("decorations")
 
             // retrieve all armor families
-            val armorFamilies = db.queryArmorFamilyBaseSearch(searchTerm)
+            val armorFamilies = db.queryArmorFamilyBaseSearch(searchTerm, skipSolos = true)
             addAll(armorFamilies)
             logTime("armorsets")
 

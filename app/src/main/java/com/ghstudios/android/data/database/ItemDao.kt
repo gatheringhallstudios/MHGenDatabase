@@ -291,29 +291,38 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
     /**
      * Returns an armor families cursor
+     * @param searchFilter the search predicate to filter on
+     * @param skipSolos true to skip armor families with a single child, otherwise returns all.
      */
-    fun queryArmorFamilyBaseSearch(searchFilter: String): List<ArmorFamilyBase> {
+    @JvmOverloads fun queryArmorFamilyBaseSearch(searchFilter: String, skipSolos: Boolean = false): List<ArmorFamilyBase> {
         val sqlFilter = SqlFilter("name", searchFilter)
+
+        val soloPredicate = when (skipSolos) {
+            false -> "TRUE"
+            true -> "(SELECT count(*) FROM armor a WHERE a.family = af._id) > 1"
+        }
 
         // todo: localize
         return db.rawQuery("""
-            SELECT af._id, af.name, af.rarity
+            SELECT af._id, af.name, af.rarity, af.hunter_type
             FROM armor_families af
             WHERE ${sqlFilter.predicate}
-            ORDER BY af._id
+              AND $soloPredicate
+            ORDER BY af.rarity, af._id
         """, sqlFilter.parameters).toList {
             ArmorFamilyBase().apply {
                 id = it.getLong("_id")
                 name = it.getString("name")
                 rarity = it.getInt("rarity")
+                hunterType = it.getInt("hunter_type")
             }
         }
     }
 
-    fun queryArmorFamilies(type: Int): ArmorFamilyCursor{
+    fun queryArmorFamilies(type: Int): ArmorFamilyCursor {
         // todo: localize
         return ArmorFamilyCursor(db.rawQuery("""
-            SELECT af._id,af.name,af.rarity,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
+            SELECT af._id,af.name,af.rarity,af.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
                 JOIN armor a on a.family=af._id
                 JOIN item_to_skill_tree its on a._id=its.item_id
