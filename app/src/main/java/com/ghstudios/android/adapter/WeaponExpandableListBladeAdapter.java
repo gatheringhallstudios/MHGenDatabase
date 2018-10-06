@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.util.MHUtils;
 import com.ghstudios.android.data.classes.Weapon;
 import com.ghstudios.android.mhgendatabase.R;
@@ -70,7 +71,7 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
             Weapon weapon = entry.weapon;
 
             String type = weapon.getWtype();
-            if (type.equals("Hunting Horn")) {
+            if (type.equals(Weapon.HUNTING_HORN)) {
                 String special = weapon.getHornNotes();
 
                 note1v.setTag(weapon.getId());
@@ -80,8 +81,6 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
                 note1v.setVisibility(View.VISIBLE);
                 note2v.setVisibility(View.VISIBLE);
                 note3v.setVisibility(View.VISIBLE);
-                specialView.setVisibility(View.VISIBLE);
-                specialView.setText("NOTES: ");
 
                 note1v.setImageResource(R.drawable.icon_music_note);
                 note1v.setColorFilter(ContextCompat.getColor(context, MHUtils.getNoteColor(special.charAt(0))), PorterDuff.Mode.MULTIPLY);
@@ -92,14 +91,14 @@ public class WeaponExpandableListBladeAdapter extends WeaponExpandableListElemen
                 note3v.setImageResource(R.drawable.icon_music_note);
                 note3v.setColorFilter(ContextCompat.getColor(context, MHUtils.getNoteColor(special.charAt(2))), PorterDuff.Mode.MULTIPLY);
             }
-            else if (type.equals("Gunlance")) {
+            else if (type.equals(Weapon.GUNLANCE)) {
                 specialView.setVisibility(View.VISIBLE);
-                String special = weapon.getShellingType();
+                String special = AssetLoader.localizeWeaponShelling(weapon.getShellingType());
                 specialView.setText(special);
             }
-            else if (type.equals("Switch Axe") || type.equals("Charge Blade")) {
+            else if (type.equals(Weapon.SWITCH_AXE) || type.equals(Weapon.CHARGE_BLADE)) {
                 specialView.setVisibility(View.VISIBLE);
-                String special = weapon.getPhial();
+                String special = AssetLoader.localizeWeaponPhialType(weapon.getPhial());
                 specialView.setText(special);
             }
 

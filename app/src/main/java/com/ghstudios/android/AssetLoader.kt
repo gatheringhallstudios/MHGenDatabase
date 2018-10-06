@@ -145,6 +145,37 @@ object AssetLoader {
     }
 
     /**
+     * Localizes a gunlance's shelling type string
+     */
+    @JvmStatic fun localizeWeaponShelling(type: String?): String {
+        if (type == null) return ""
+
+        val parts = type.split(' ')
+        val name = when(parts.firstOrNull()) {
+            "Wide" -> ctx.getString(R.string.shelling_wide)
+            "Normal" -> ctx.getString(R.string.shelling_normal)
+            "Long" -> ctx.getString(R.string.shelling_long)
+            else -> parts.firstOrNull() ?: ""
+        }
+
+        return name + " " + parts.subList(1, parts.size).joinToString(" ")
+    }
+
+    /**
+     * Localizes a weapon's phial type
+     */
+    @JvmStatic fun localizeWeaponPhialType(type: String?) = when (type) {
+        "Power" -> ctx.getString(R.string.phial_power)
+        "Poison" -> ctx.getString(R.string.phial_poison)
+        "Paralysis" -> ctx.getString(R.string.phial_paralysis)
+        "Exhaust" -> ctx.getString(R.string.phial_exhaust)
+        "Dragon" -> ctx.getString(R.string.phial_dragon)
+        "Impact" -> ctx.getString(R.string.phial_impact)
+        "Element" -> ctx.getString(R.string.phial_element)
+        else -> type ?: ""
+    }
+
+    /**
      * Localizes a bow's weapon charge level, returning a string in the form Rapid 2, with
      * the name localized to the specific language.
      */

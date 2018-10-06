@@ -1,4 +1,4 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
@@ -264,6 +264,16 @@
     <string name="weapon_tree_side_branches">Branches</string>
     <string name="weapon_tree_final">Final (All Branches)</string>
 
+    <string name="phial_power">Power</string>
+    <string name="phial_poison">Poison</string>
+    <string name="phial_paralysis">Paralysis</string>
+    <string name="phial_exhaust">Exhaust</string>
+    <string name="phial_dragon">Dragon</string>
+    <string name="phial_impact">Impact</string>
+    <string name="phial_element">Element</string>
+    <string name="shelling_wide">Wide</string>
+    <string name="shelling_long">Long</string>
+    <string name="shelling_normal">Normal</string>
     <string name="shot_normal">Normal</string>
     <string name="shot_pierce">Pierce</string>
     <string name="shot_pellet">Pellet</string>

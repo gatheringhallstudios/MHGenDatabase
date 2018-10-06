@@ -52,11 +52,11 @@ class WeaponBladeDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
         when (weapon.wtype) {
             Weapon.GUNLANCE -> {
                 view.blade_extra_label.text = context.getString(R.string.weapon_shelling)
-                view.blade_extra.text = weapon.shellingType
+                view.blade_extra.text = AssetLoader.localizeWeaponShelling(weapon.shellingType)
             }
             Weapon.SWITCH_AXE, Weapon.CHARGE_BLADE -> {
                 view.blade_extra_label.text = context.getString(R.string.weapon_phial_type)
-                view.blade_extra.text = weapon.phial
+                view.blade_extra.text = AssetLoader.localizeWeaponPhialType(weapon.phial)
             }
             Weapon.HUNTING_HORN -> {
                 view.weapon_note_container.visibility = View.VISIBLE
