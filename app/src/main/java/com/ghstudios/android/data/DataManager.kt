@@ -96,8 +96,8 @@ class DataManager private constructor(private val mAppContext: Context) {
         "es" to "Español",
         "fr" to "Français",
         "de" to "Deutsch",
-        "it" to "Italiano",
-        "ja" to "日本語"
+        "it" to "Italiano"
+        //"ja" to "日本語"  // japanese data is incomplete
     )
 
     /********************************* ARMOR QUERIES  */
