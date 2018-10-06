@@ -140,13 +140,9 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
                 mode.setTitle(l.getCheckedItemCount() + " selected");
 
-                if (l.getCheckedItemCount() > 1) {
-                    // We hide the edit button since you can only edit one set at a time
-                    mode.getMenu().findItem(R.id.action_edit_data).setVisible(false);
-                }
-                else {
-                    mode.getMenu().findItem(R.id.action_edit_data).setVisible(true);
-                }
+                // We can only edit one set at a time
+                boolean showEdit = l.getCheckedItemCount() <= 1;
+                mode.getMenu().findItem(R.id.action_edit_data).setVisible(showEdit);
             }
 
             @Override
@@ -262,7 +258,6 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
         public ASBSetListCursorAdapter(Context context, ASBSetCursor cursor) {
             super(context, cursor, 0);
-
             this.cursor = cursor;
         }
 

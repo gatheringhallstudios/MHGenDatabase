@@ -44,6 +44,7 @@
     <color name="text_color">#333333</color>
     <color name="background_color">#f5f5f5</color>
     <color name="background_title_color">#2D463C</color>
+    <color name="background_color_selected">#e2e2f0</color>
 
     <!-- used for making anything clickable have a clicked state -->
     <color name="transparent">#00FFFFFF</color>
