@@ -124,10 +124,11 @@ class WeaponCursor(c: Cursor) : CursorWrapper(c) {
 
     fun parseBowCharges(chargeString: String): List<WeaponChargeLevel> {
         return chargeString.split('|').map {
-            var levelStr = it
-            val locked = chargeString.endsWith("*")
-            if (locked) {
-                levelStr = levelStr.substring(0, levelStr.length - 1)
+            val locked = it.endsWith("*")
+
+            val levelStr = when {
+                locked -> it.substring(0, it.length - 1)
+                else -> it
             }
 
             val parts = levelStr.split(' ')
