@@ -2920,7 +2920,6 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         values.put(S.COLUMN_ASB_SET_NAME, name)
         values.put(S.COLUMN_ASB_SET_RANK, rank.value)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
-        values.put(S.COLUMN_TALISMAN_EXISTS, 0)
 
         return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
     }

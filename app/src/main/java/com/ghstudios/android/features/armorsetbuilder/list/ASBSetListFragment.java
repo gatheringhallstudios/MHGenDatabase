@@ -216,15 +216,17 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             }
 
             private AlertDialog.Builder createConfirmCopyDialog() {
+                // Create dialog
                 AlertDialog.Builder b = new AlertDialog.Builder(getActivity())
                         .setPositiveButton(R.string.copy, (DialogInterface dialog, int which) -> {
                             for (long id : l.getCheckedItemIds()) {
-                                asbManager.queryAddASBSet(id);
+                                asbManager.copyASB(id);
                             }
                             updateUI();
                         })
                         .setNegativeButton(android.R.string.cancel, null);
 
+                // Set dialog message depending on the number of selected items
                 if (l.getCheckedItemCount() == 1) {
                     String firstName = asbManager.getASBSet(l.getCheckedItemIds()[0]).getName();
                     b.setMessage(getResources().getString(R.string.dialog_message_copy, firstName))
