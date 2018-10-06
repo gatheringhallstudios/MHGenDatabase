@@ -83,13 +83,13 @@ private fun createHandlers(ctx: Context) = mapOf(
                 Armor.ARMOR_TYPE_GUNNER -> ctx.getString(R.string.type_armor_set_gunner)
                 else -> ctx.getString(R.string.type_armor_set)
             }
-            override fun createListener(ctx: Context, obj: ArmorFamilyBase) = ArmorClickListener(ctx, obj.id, true)
+            override fun createListener(ctx: Context, obj: ArmorFamilyBase) = ArmorClickListener(ctx, obj)
         },
         
         Armor::class.java to object : ResultHandler<Armor>() {
             override fun getName(obj: Armor) = obj.name ?: ""
             override fun getType(obj: Armor) = ctx.getString(R.string.type_armor)
-            override fun createListener(ctx: Context, obj: Armor) = ArmorClickListener(ctx, obj.id, true)
+            override fun createListener(ctx: Context, obj: Armor) = ArmorClickListener(ctx, obj)
         },
 
         Item::class.java to  object : ResultHandler<Item>() {
