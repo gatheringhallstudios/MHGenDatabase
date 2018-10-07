@@ -133,8 +133,8 @@ class ArmorSetSummaryFragment : Fragment() {
 
             // clicking on the armor piece should change to the tab to that armor
             armorView.setOnClickListener {
-                val activity = this.activity as BasePagerActivity
-                activity.setSelectedTab(idx + 1)
+                val activity = this.activity as? BasePagerActivity
+                activity?.setSelectedTab(idx + 1)
             }
 
             armorListView.addView(armorView)

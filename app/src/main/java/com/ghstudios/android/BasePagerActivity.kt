@@ -83,8 +83,8 @@ abstract class BasePagerActivity : GenericActivity() {
      * Sets the currently selected tab to the tab index
      */
     fun setSelectedTab(tabIndex: Int) {
-        val fragment = this.detail as InnerPagerFragment
-        fragment.setSelectedTab(tabIndex)
+        val fragment = this.detail as? InnerPagerFragment
+        fragment?.setSelectedTab(tabIndex)
     }
 
     /**
