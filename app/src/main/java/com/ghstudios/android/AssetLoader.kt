@@ -4,6 +4,7 @@ import android.app.Application
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.widget.ImageView
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.mhgendatabase.R
@@ -18,6 +19,8 @@ object AssetLoader {
     private lateinit var application: Application
 
     private val ctx get() = application.applicationContext
+
+    private const val TAG = "MHAssetLoader"
 
     fun bindApplication(app: Application) {
         application = app
@@ -118,6 +121,30 @@ object AssetLoader {
     }
 
     /**
+     * Returns a localized string of the gathering site for the given Gathering object.
+     */
+    @JvmStatic fun localizeGatherSite(gather: Gathering): String {
+        val resId = when (gather.site) {
+            "Bug" -> R.string.gather_site_bug
+            "Fishing (Burst Bait)" -> R.string.gather_site_fishing_burst
+            "Fishing (Goldenfish Bait)" -> R.string.gather_site_fishing_goldenfish
+            "Fishing (Mega Fishing Fly)" -> R.string.gather_site_fishing_megafly
+            "Fishing (No Bait)" -> R.string.gather_site_fishing_none
+            "Fishing (Sushifish Bait)" -> R.string.gather_site_fishing_sushi
+            "Gather" -> R.string.gather_site_gather
+            "Mine" -> R.string.gather_site_mine
+            else -> 0
+        }
+
+        if (resId == 0) {
+            Log.e(TAG, "Unknown gathering site ${gather.site}, not localized")
+            return gather.site ?: ""
+        }
+
+        return ctx.getString(resId)
+    }
+
+    /**
      * Returns a localized string that represents the gathering node's site modifier.
      * For example, Fixed, Rare, Common
      */
@@ -129,12 +156,16 @@ object AssetLoader {
 
     /**
      * Returns a localized string that represents the gathering type.
-     * For example, Mine [Fixed] and Gather [Rare].
-     * TODO: Localize the first part...
+     * For example, [Fixed] Mine and [Rare] Gather.
      */
     @JvmStatic fun localizeGatherNodeFull(gather: Gathering): String {
-        val modifier = localizeGatherModifier(gather)
-        return ctx.getString(R.string.item_gather_full, gather.site, modifier)
+        if ("Fishing" in (gather.site ?: "")) {
+            return localizeGatherSite(gather)
+        } else {
+            val site = AssetLoader.localizeGatherSite(gather)
+            val modifier = localizeGatherModifier(gather)
+            return ctx.getString(R.string.item_gather_full, site, modifier)
+        }
     }
 
     @JvmStatic fun localizeRank(rank: Rank) = when (rank) {

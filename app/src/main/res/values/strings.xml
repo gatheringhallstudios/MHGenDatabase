@@ -229,6 +229,14 @@
     <string name="item_gather_common">[Common]</string>
     <string name="item_gather_rare">[Rare]</string>
     <string name="item_gather_full">%2$s %1$s</string>
+    <string name="gather_site_bug">Bug</string>
+    <string name="gather_site_gather">Gather</string>
+    <string name="gather_site_mine">Mine</string>
+    <string name="gather_site_fishing_none">Fishing (No Bait)</string>
+    <string name="gather_site_fishing_burst">Fishing (Burst Bait)</string>
+    <string name="gather_site_fishing_goldenfish">Fishing (Goldenfish Bait)</string>
+    <string name="gather_site_fishing_megafly">Fishing (Mega Fishing Fly)</string>
+    <string name="gather_site_fishing_sushi">Fishing (Sushifish Bait)</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>
