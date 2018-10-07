@@ -179,7 +179,7 @@
     -->
 
     <!-- Setting names -->
-    <string name="preference_data_language">Data Language</string>
+    <string name="preference_data_language">Data Language (BETA)</string>
     <string name="preference_data_language_description">
         The language used for data (not the app). Current: %s.\n
         Default tries to match your language setting (if available).

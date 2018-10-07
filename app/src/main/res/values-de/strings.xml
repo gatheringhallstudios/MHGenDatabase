@@ -89,7 +89,7 @@
     <string name="preference_data_language_description">Die Sprache für die Daten (nicht die App). Momentan: %s</string>
     <string name="preference_japanese">Japanisch anzeigen</string>
     <string name="preference_japanese_description">Japanische Namen neben den Deutschen Namen anzeigen.</string>
-    <string name="preference_data_language">Sprache der Daten</string>
+    <string name="preference_data_language">Sprache der Daten (BETA)</string>
     <string name="monster_tab_small">Klein</string>
     <string name="monster_tab_large">Groß</string>
     <string name="monster_tab_deviant">Devianz</string>

@@ -6,6 +6,17 @@ import android.content.SharedPreferences
 import com.ghstudios.android.data.DataManager
 import java.util.*
 
+/**
+ * A list of languages that are automatically supported by mode default.
+ * Only languages where the app is translated are supported as a "default" language.
+ * Must be a subset of DataManager.get().getLanguages()
+ */
+private val defaultLanguages = listOf("en", "de")
+
+/**
+ * A static class used to manage shared preferences and application settings.
+ * Must be initialized via the AppSettings.bindApplication() function.
+ */
 class AppSettings {
     companion object {
         @JvmStatic
@@ -13,13 +24,12 @@ class AppSettings {
 
         private var application: Application? = null
 
+        /**
+         * Initializes AppSettings. Use in the onCreate event of the application object.
+         */
         @JvmStatic
         fun bindApplication(app: Application) {
             application = app
-        }
-
-        private val supportedLanguages by lazy {
-            DataManager.get().getLanguages()
         }
 
         private val sharedPreferences: SharedPreferences
@@ -55,7 +65,7 @@ class AppSettings {
 
                 val locale = Locale.getDefault().language
                 return when (locale) {
-                    in supportedLanguages -> locale
+                    in defaultLanguages -> locale
                     else -> "en"
                 }
             }
