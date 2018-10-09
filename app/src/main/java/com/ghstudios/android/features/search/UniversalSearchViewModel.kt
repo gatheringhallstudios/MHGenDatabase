@@ -5,10 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.data.classes.ItemType
-import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.util.ThrottledExecutor
 import com.ghstudios.android.util.toList
 import kotlin.system.measureTimeMillis
@@ -25,8 +22,11 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
      */
     val searchResults = MutableLiveData<List<Any>>()
 
-    // prevent double searching by storing the last search attempt
-    private var lastSearchFilter = ""
+    /**
+     * Contains the current search filter.
+     */
+    var searchFilter = ""
+        private set
 
     /**
      * Updates the search filter and begins searching.
@@ -34,11 +34,11 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
      */
     fun updateSearchFilter(searchFilter: String) {
         val updatedFilter = searchFilter.trim()
-        if (updatedFilter == lastSearchFilter) {
+        if (updatedFilter == this.searchFilter) {
             return
         }
 
-        lastSearchFilter = updatedFilter
+        this.searchFilter = updatedFilter
 
         executor.execute {
             try {
