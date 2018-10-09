@@ -9,7 +9,7 @@
         android:id="@+id/create_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="create_header,detail_weapon_creation,create_recipe"
+        app:constraint_referenced_ids="create_header,weapon_cost_create,create_recipe"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/upgrade_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="upgrade_header,detail_weapon_upgrade,upgrade_recipe"
+        app:constraint_referenced_ids="upgrade_header,weapon_cost_upgrade,upgrade_recipe"
         android:visibility="gone"
         tools:visibility="visible" />
 
