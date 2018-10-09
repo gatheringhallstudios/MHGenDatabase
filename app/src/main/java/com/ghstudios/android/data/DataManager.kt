@@ -330,8 +330,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get a Cursor that has a list of filtered Items through search */
-    @JvmOverloads fun queryItemSearch(search: String, omitTypes: List<ItemType> = emptyList()): ItemCursor {
-        return itemDao.queryItemSearch(search, omitTypes)
+    @JvmOverloads fun queryItemSearch(search: String, includeTypes: List<ItemType> = emptyList()): ItemCursor {
+        return itemDao.queryItemSearch(search, includeTypes)
     }
 
     /********************************* ITEM TO SKILL TREE QUERIES  */

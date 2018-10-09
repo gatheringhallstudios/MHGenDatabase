@@ -55,25 +55,15 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryBasicItems(searchTerm: String = ""): ItemCursor {
         val typeItem = ItemTypeConverter.serialize(ItemType.ITEM)
 
-        if (searchTerm.isEmpty()) {
-            // return all basic items
-            return ItemCursor(db.rawQuery("""
-                SELECT $item_columns
-                FROM items
-                WHERE type IN (?)
-                ORDER BY _id
-            """, arrayOf(typeItem)))
-        } else {
-            // return all basic items, filtered
-            val filter = SqlFilter(column_name, searchTerm)
-            return ItemCursor(db.rawQuery("""
-                SELECT $item_columns
-                FROM items
-                WHERE type in (?)
-                  AND ${filter.predicate}
-                ORDER BY _id
-            """, arrayOf(typeItem, *filter.parameters)))
-        }
+        // return all basic items, filtered
+        val filter = SqlFilter(column_name, searchTerm)
+        return ItemCursor(db.rawQuery("""
+            SELECT $item_columns
+            FROM items
+            WHERE type in (?)
+              AND ${filter.predicate}
+            ORDER BY _id
+        """, arrayOf(typeItem, *filter.parameters)))
     }
 
     /**
@@ -90,7 +80,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     /**
      * Get items based on search text. Gets all items, including armor and equipment.
      */
-    fun queryItemSearch(searchTerm: String?, omitTypes: List<ItemType> = emptyList()): ItemCursor {
+    fun queryItemSearch(searchTerm: String?, includeTypes: List<ItemType> = emptyList()): ItemCursor {
         if (searchTerm == null || searchTerm.isBlank()) {
             return queryItems()
         }
@@ -98,10 +88,10 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         val filter = SqlFilter(column_name, searchTerm)
 
         val typePredicate = when {
-            omitTypes.isEmpty() -> "TRUE"
-            else -> omitTypes.joinToString(" AND ") {
-                "type != '${ItemTypeConverter.serialize(it)}'"
-            }
+            includeTypes.isEmpty() -> "TRUE"
+            else -> "(" + includeTypes.joinToString(" OR ") {
+                "type = '${ItemTypeConverter.serialize(it)}'"
+            } + ")"
         }
 
         return ItemCursor(db.rawQuery("""
@@ -192,7 +182,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmor(): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
         """, emptyArray()))
     }
 
@@ -200,7 +190,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         val filter = SqlFilter(column_name, searchTerm)
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE ${filter.predicate}
         """, filter.parameters))
     }
@@ -211,7 +201,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmor(id: Long): Armor? {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a._id = ?
         """, arrayOf(id.toString()))).firstOrNull { it.armor }
     }
@@ -222,7 +212,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmorByFamily(id: Long): List<Armor> {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a.family = ?
         """, arrayOf(id.toString()))).toList { it.armor }
     }
@@ -234,7 +224,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmorType(type: Int): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2'
         """, arrayOf(type.toString())))
     }

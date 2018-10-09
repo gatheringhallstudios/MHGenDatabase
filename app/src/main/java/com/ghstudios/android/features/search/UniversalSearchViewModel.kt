@@ -58,9 +58,10 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
             return emptyList()
         }
 
-        val start = System.currentTimeMillis()
+        var start = System.currentTimeMillis()
         fun logTime(label: String) {
             Log.d("SearchQuery", "$label took ${System.currentTimeMillis() - start} milliseconds")
+            start = System.currentTimeMillis()
         }
 
         return mutableListOf<Any>().apply {
@@ -76,15 +77,25 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
             addAll(db.querySkillTreesSearch(searchTerm).toList { it.skillTree })
             logTime("skills")
 
-            addAll(db.queryDecorationsSearch(searchTerm).toList { it.decoration })
-            logTime("decorations")
+            // prefetch items. We do this because we want to insert armor in the middle
+            // To improve this, add db index to item type, but might not be necessary.
+            val types = listOf(ItemType.DECORATION, ItemType.WEAPON,
+                    ItemType.PALICO_WEAPON, ItemType.PALICO_ARMOR,
+                    ItemType.ITEM, ItemType.MATERIAL)
+            val items = db.queryItemSearch(searchTerm, includeTypes=types).toList { it.item }
+            logTime("items pre-fetch")
+
+            // Add decorations before the rest of the items
+            // if we need more info, queryDecorationsSearch() directly, and add indices to item_to_skill_tree
+            addAll(items.filter { it.type == ItemType.DECORATION })
+            logTime("decorations from items")
 
             // retrieve all armor families
             val armorFamilies = db.queryArmorFamilyBaseSearch(searchTerm, skipSolos = true)
             addAll(armorFamilies)
             logTime("armorsets")
 
-            // retrieve armor not in the family results
+            // retrieve armor not included in above families
             val familyIds = armorFamilies.mapTo(mutableSetOf()) { it.id }
             val armor = db.queryArmorSearch(searchTerm)
                     .toList { it.armor }
@@ -93,11 +104,8 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
             logTime("armor")
 
             // add the rest of the items
-            // todo: query the rest of the item types separately, so that we don't have to remove the already added
-            val processedTypes = listOf(ItemType.DECORATION, ItemType.ARMOR)
-            addAll(db.queryItemSearch(searchTerm, omitTypes = processedTypes)
-                    .toList { it.item })
-            logTime("items")
+            addAll(items.filter { it.type != ItemType.DECORATION })
+            logTime("rest of items")
         }
     }
 }
