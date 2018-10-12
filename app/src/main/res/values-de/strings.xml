@@ -294,8 +294,6 @@
     <string name="armor_list_header_sub_deviant">Devianz</string>
     <string name="weapon_detail_tab_detail">Details</string>
     <string name="weapon_detail_tab_melodies">Noten</string>
-    <string name="weapon_detail_tab_ammo">Munition</string>
-    <string name="weapon_detail_tab_coatings">Beschichtungen</string>
     <string name="weapon_detail_tab_family">Stammbaum</string>
     <string name="weapon_tree_origin">Ursprung</string>
     <string name="weapon_tree_family">Familie</string>

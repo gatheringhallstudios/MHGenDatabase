@@ -25,8 +25,9 @@ android {
         //2.0.2  Version Code:10   Released 9-??-2018
         //2.1.0  Version Code:11   Released 9-??-2018
         //2.1.1  Version Code:12   Released 9-??-2018
-        versionCode 12
-        versionName "2.1.1"
+        //2.2.0  Version Code:13   Released 10-08-2018
+        versionCode 13
+        versionName "2.2.0"
 
         compileOptions {
             // we'll still be able to target lower java versions because of desugar
@@ -40,6 +41,10 @@ android {
             //Small hack to separate icons into a different resource folder
             main.res.srcDirs += 'src/main/icon-res/'
         }
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
     }
 
     buildTypes {
