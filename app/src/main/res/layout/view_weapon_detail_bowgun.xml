@@ -645,13 +645,13 @@
     <LinearLayout
         android:id="@+id/internal_ammo_layout"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/margin_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_large"
         app:layout_constraintTop_toBottomOf="@id/weapon_ammo_section"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline_halfway"
-        >
+        app:layout_constraintStart_toStartOf="parent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -689,7 +689,7 @@
             style="@style/text_small"
             tools:visibility="visible"
             android:visibility="gone"
-            tools:text="Flaming S Lv1 - 5 - 2"/>
+            tools:text="Flaming S Lv2 - 5 - 2"/>
         <TextView
             android:id="@+id/internal_ammo_5"
             android:layout_width="wrap_content"
@@ -697,7 +697,7 @@
             style="@style/text_small"
             tools:visibility="visible"
             android:visibility="gone"
-            tools:text="Flaming S Lv1 \u2022 5 \u2022 2"/>
+            tools:text="Flaming S Lv2 \u2022 5 \u2022 2"/>
     </LinearLayout>
 
     <LinearLayout
@@ -705,11 +705,10 @@
         android:layout_marginTop="@dimen/margin_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_xlarge"
+        android:layout_marginLeft="@dimen/margin_xlarge"
         app:layout_constraintTop_toBottomOf="@id/weapon_ammo_section"
-        app:layout_constraintStart_toEndOf="@id/guideline_halfway"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_marginLeft="@dimen/margin_large">
+        app:layout_constraintStart_toEndOf="@id/internal_ammo_layout">
         <TextView
             android:id="@+id/weapon_extra_title"
             android:layout_width="wrap_content"
@@ -724,7 +723,7 @@
             style="@style/text_small"
             tools:visibility="visible"
             android:visibility="gone"
-            tools:text="Stone S - 4 - 50 - Short"/>
+            tools:text="Pierce S Lv1 - 3 - 70 - Short"/>
         <TextView
             android:id="@+id/rapid_ammo_2"
             android:layout_width="wrap_content"
