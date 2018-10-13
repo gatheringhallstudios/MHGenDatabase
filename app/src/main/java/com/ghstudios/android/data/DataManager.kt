@@ -400,7 +400,7 @@ class DataManager private constructor(private val mAppContext: Context) {
         }
 
         val filter = SearchFilter(searchTerm)
-        return locations.filter { filter.matches(it.name ?: "") }
+        return locations.filter { filter.matches(it.name) }
     }
 
     /********************************* MELODY QUERIES  */

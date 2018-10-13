@@ -9,10 +9,15 @@ private fun normalize(name: String) = name.trim().toLowerCase()
 class SearchFilter(searchTerm: String) {
     val searchWords = normalize(searchTerm).split(' ')
 
+    /**
+     * Tests if other is a match for this search filter.
+     * If other is null, returns false, otherwise checks if all words in this filter
+     * is contained a substring in other.
+     */
     fun matches(other: String?): Boolean {
-        other ?: return true
+        other ?: return false
 
-        val nameNormalized = normalize(other)
-        return searchWords.all { nameNormalized.contains(it) }
+        val otherNormalized = normalize(other)
+        return searchWords.all { otherNormalized.contains(it) }
     }
 }
