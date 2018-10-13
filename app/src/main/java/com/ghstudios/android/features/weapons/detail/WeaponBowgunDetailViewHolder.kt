@@ -144,8 +144,13 @@ class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
 
         for ((ammoView, rapidValue) in extraAmmoCells.zip(rapid)) {
             val s = rapidValue.split(":")
+            val name = s[0]
+            val count = s[1]
+            val rfModifier = s[2] // % damage for extra shots
             val waitString = getWaitString(context, s[3].toInt())
-            ammoView.text = context.getString(R.string.weapon_rapid_row, s[0], s[1], s[2], waitString)
+
+            ammoView.text = context.getString(R.string.weapon_rapid_row,
+                    name, count, rfModifier, waitString)
             ammoView.visibility = View.VISIBLE
         }
     }
