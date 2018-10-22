@@ -22,6 +22,7 @@ class SlotsView : LinearLayout {
      * If true, their visibility is set to GONE
      */
     var hideExtras: Boolean = false
+    var imageSize: Int = -1
 
     constructor(context: Context): super(context) {
         init(0, 0)
@@ -33,6 +34,10 @@ class SlotsView : LinearLayout {
             hideExtras = attributes.getBoolean(R.styleable.SlotsView_hideExtras, false)
             val maxSlots = attributes.getInt(R.styleable.SlotsView_maxSlots, 0)
             val usedSlots = attributes.getInt(R.styleable.SlotsView_usedSlots, 0)
+            imageSize = attributes.getDimensionPixelSize(R.styleable.SlotsView_imageSize, -1)
+            if (imageSize < 0) {
+                imageSize = context.resources.getDimension(R.dimen.image_size_xsmall).roundToInt()
+            }
 
             init(maxSlots, usedSlots)
         } finally {
@@ -40,10 +45,9 @@ class SlotsView : LinearLayout {
         }
     }
 
-    fun init(maxSlots: Int, usedSlots: Int) {
+    private fun init(maxSlots: Int, usedSlots: Int) {
         layoutParams = ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
-        val imageSize = context.resources.getDimension(R.dimen.image_size_xsmall).roundToInt()
         val gap = imageSize / 5
 
         // Create image views. They should have gaps between them
