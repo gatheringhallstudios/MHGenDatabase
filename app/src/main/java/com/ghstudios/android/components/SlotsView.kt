@@ -53,10 +53,10 @@ class SlotsView : LinearLayout {
         // Create image views. They should have gaps between them
         decorationImageViews = listOf(ImageView(context), ImageView(context), ImageView(context))
         for ((idx, decorationImage) in decorationImageViews.withIndex()) {
-            val isLast = decorationImageViews.size - 1 == idx
             decorationImage.layoutParams = LayoutParams(imageSize, imageSize).apply {
-                if (!isLast) {
-                    setMargins(0, 0, gap, 0)
+                // add a left margin to each image unless its the first one
+                if (idx != 0) {
+                    setMargins(gap, 0, 0, 0)
                 }
             }
             addView(decorationImage)
