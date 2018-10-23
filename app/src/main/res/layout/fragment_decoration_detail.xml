@@ -35,12 +35,7 @@
                 app:labelText="@string/item_rarity"
                 tools:valueText="6" />
 
-            <com.ghstudios.android.components.ColumnLabelTextCell
-                android:id="@+id/slots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:labelText="Slots"
-                tools:valueText="●●●" />
+            <include layout="@layout/view_column_slots"/>
 
             <com.ghstudios.android.components.ColumnLabelTextCell
                 android:id="@+id/buy"

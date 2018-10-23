@@ -384,7 +384,10 @@
 
     <style name="cell_column_value">
         <item name="android:textSize">24sp</item>
+        <item name="android:layout_height">32sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="cell_column_label">

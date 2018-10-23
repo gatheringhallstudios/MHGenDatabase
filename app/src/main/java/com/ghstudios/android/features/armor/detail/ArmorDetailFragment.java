@@ -20,6 +20,7 @@ import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextRowCell;
+import com.ghstudios.android.components.SlotsView;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.data.classes.Component;
@@ -44,7 +45,7 @@ public class ArmorDetailFragment extends Fragment {
     @BindView(R.id.titlebar)
     TitleBarCell titleBar;
 
-    @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
+    @BindView(R.id.slots) SlotsView slotsReqView;
     @BindView(R.id.defense) ColumnLabelTextCell defenseView;
     @BindView(R.id.part) ColumnLabelTextCell partView;
 
@@ -122,9 +123,8 @@ public class ArmorDetailFragment extends Fragment {
 
         String cellPart = "" + armor.getSlot();
         String cellDefense = "" + armor.getDefense() + "~" + armor.getMaxDefense();
-        String cellSlot = armor.getSlotString();
 
-        slotsReqView.setValueText(cellSlot);
+        slotsReqView.setSlots(armor.getNumSlots(), 0);
         partView.setValueText(cellPart);
         defenseView.setValueText(cellDefense);
 

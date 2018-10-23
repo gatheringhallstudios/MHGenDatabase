@@ -67,7 +67,7 @@ class ArmorExpandableListAdapter(val armorGroups: List<ArmorGroup>) : BaseExpand
 
         view.icon.setImageAsset(armor)
         view.name.text = armor.name
-        view.slots.text = armor.slotString
+        view.slots.setSlots(armor.numSlots, 0)
 
         val skillsTvs = arrayOf(view.skill_1, view.skill_2, view.skill_3, view.skill_4)
 

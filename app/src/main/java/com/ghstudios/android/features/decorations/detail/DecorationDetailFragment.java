@@ -19,6 +19,7 @@ import com.ghstudios.android.ClickListeners.SkillClickListener;
 import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextRowCell;
+import com.ghstudios.android.components.SlotsView;
 import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
@@ -41,7 +42,7 @@ public class DecorationDetailFragment extends Fragment {
     @BindView(R.id.rare) ColumnLabelTextCell rareView;
     @BindView(R.id.buy) ColumnLabelTextCell buyView;
     @BindView(R.id.sell) ColumnLabelTextCell sellView;
-    @BindView(R.id.slots) ColumnLabelTextCell slotsReqView;
+    @BindView(R.id.slots) SlotsView slotsReqView;
     @BindView(R.id.skill_list) LinearLayout skillListView;
     @BindView(R.id.recipe_list) LinearLayout recipeListView;
 
@@ -125,7 +126,8 @@ public class DecorationDetailFragment extends Fragment {
         rareView.setValueText(cellRare);
         buyView.setValueText(cellBuy);
         sellView.setValueText(cellSell);
-        slotsReqView.setValueText(decoration.getSlotsString());
+        slotsReqView.setHideExtras(true);
+        slotsReqView.setSlots(decoration.getNumSlots(), decoration.getNumSlots());
     }
 
     private void populateSkills(List<SkillPoints> skills) {

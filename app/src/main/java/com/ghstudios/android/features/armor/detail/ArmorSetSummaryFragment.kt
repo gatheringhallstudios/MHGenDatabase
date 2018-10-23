@@ -17,6 +17,7 @@ import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.components.ColumnLabelTextCell
 import com.ghstudios.android.components.ItemRecipeCell
 import com.ghstudios.android.components.LabelTextRowCell
+import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSkillPoints
 import com.ghstudios.android.data.classes.Component
@@ -111,12 +112,12 @@ class ArmorSetSummaryFragment : Fragment() {
 
             val armorView = inflater.inflate(R.layout.listitem_armor_piece, armorListView,false)
             val icon: ImageView? = armorView.findViewById(R.id.icon)
-            val name:TextView? = armorView.findViewById(R.id.name)
-            val slots:TextView? = armorView.findViewById(R.id.slots)
+            val name: TextView? = armorView.findViewById(R.id.name)
+            val slots: SlotsView? = armorView.findViewById(R.id.slots)
 
             AssetLoader.setIcon(icon!!,armor)
             name?.text = armor.name
-            slots?.text = armor.slotString
+            slots?.setSlots(armor.numSlots, 0)
 
             val skillsTvs : Array<TextView?> = arrayOf(armorView.findViewById(R.id.skill_1),
                     armorView.findViewById(R.id.skill_2),
