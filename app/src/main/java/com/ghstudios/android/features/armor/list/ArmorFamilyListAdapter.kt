@@ -7,6 +7,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ArmorClickListener
+import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.ArmorFamily
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.mhgendatabase.R
@@ -19,6 +20,9 @@ class ArmorFamilyGroup(
         val families: List<ArmorFamily>
 )
 
+/**
+ * Expandable list adapter used to render a collection of armor families grouped by rarity.
+ */
 class ArmorFamilyListAdapter(private val groups: List<ArmorFamilyGroup>) : BaseExpandableListAdapter() {
     override fun hasStableIds() = true
     override fun isChildSelectable(groupPosition: Int, childPosition: Int) = true
@@ -66,20 +70,30 @@ class ArmorFamilyListAdapter(private val groups: List<ArmorFamilyGroup>) : BaseE
         minDef.text = Integer.toString(family.minDef)
         maxDef.text = Integer.toString(family.maxDef)
 
-        //Set Skills
-        val skills = arrayOf(view.findViewById(R.id.skill_1), view.findViewById(R.id.skill_2), view.findViewById(R.id.skill_3), view.findViewById(R.id.skill_4), view.findViewById<TextView>(R.id.skill_5))
+        // Get views for slots and skills
+        val slotViews = arrayOf(R.id.slots_1, R.id.slots_2, R.id.slots_3, R.id.slots_4, R.id.slots_5).map { view.findViewById<SlotsView>(it) }
+        val skillViews = arrayOf(view.findViewById(R.id.skill_1), view.findViewById(R.id.skill_2), view.findViewById(R.id.skill_3), view.findViewById(R.id.skill_4), view.findViewById<TextView>(R.id.skill_5))
 
-        for (i in skills.indices) {
-            if (i < family.skills.size) {
-                skills[i].visibility = View.VISIBLE
-                skills[i].text = family.skills[i]
-            } else {
-                skills[i].visibility = View.GONE
-            }
+        // Initialize, hide all slotsViews and skills
+        slotViews.forEach { it.visibility = View.GONE }
+        skillViews.forEach { it.visibility = View.GONE }
+
+        // Populate slots
+        for ((i, numSlots) in family.slots.withIndex()) {
+            val slotsView = slotViews[i]
+            slotsView.visibility = View.VISIBLE
+            slotsView.setSlots(numSlots, 0)
+        }
+
+        // Populate skills
+        for ((i, skillString) in family.skills.withIndex()) {
+            val skillView = skillViews[i]
+            skillView.visibility = View.VISIBLE
+            skillView.text = skillString
         }
 
         view.tag = family.id
-        view.setOnClickListener(ArmorClickListener(context, family.id, true))
+        view.setOnClickListener(ArmorClickListener(context, family))
 
         return view
     }

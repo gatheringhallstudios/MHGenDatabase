@@ -27,8 +27,16 @@ open class ArmorFamilyBase: ITintedIcon {
 /**
  * An armor family, which is the result of equipping an entire set of armor.
  */
-class ArmorFamily: ArmorFamilyBase() {
+class ArmorFamily(): ArmorFamilyBase() {
+    constructor(base: ArmorFamilyBase): this() {
+        this.id = base.id
+        this.name = base.name
+        this.rarity = base.rarity
+        this.hunterType = base.hunterType
+    }
+
     var minDef = 0
     var maxDef = 0
+    val slots : MutableList<Int> = mutableListOf()
     val skills : MutableList<String> = mutableListOf()
 }

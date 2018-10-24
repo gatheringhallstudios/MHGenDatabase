@@ -144,23 +144,7 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     fun queryArmorFamilies(type: Int): List<ArmorFamily> {
-        val cursor = itemDao.queryArmorFamilies(type)
-
-        val results = mutableListOf<ArmorFamily>()
-
-        cursor.moveToFirst()
-        var family = cursor.armor
-        results.add(family)
-        while (cursor.moveToNext()) {
-            val newFamily = cursor.armor
-            if (family.id == newFamily.id) {
-                family.skills.add(newFamily.skills[0])
-            } else {
-                family = newFamily
-                results.add(family)
-            }
-        }
-        return results
+        return itemDao.queryArmorFamilies(type)
     }
 
     /**

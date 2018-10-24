@@ -6,6 +6,7 @@ import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.*
 import com.ghstudios.android.util.firstOrNull
+import com.ghstudios.android.util.forEach
 import com.ghstudios.android.util.toList
 import com.ghstudios.android.util.useCursor
 
@@ -309,9 +310,25 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         }
     }
 
-    fun queryArmorFamilies(type: Int): ArmorFamilyCursor {
+    fun queryArmorFamilies(type: Int): List<ArmorFamily> {
         // todo: localize
-        return ArmorFamilyCursor(db.rawQuery("""
+        // todo: clean up. Should be 3 queries, not 2. This mechanism is harder to understand
+
+        val slotsByFamilyId = linkedMapOf<Long, MutableList<Int>>()
+
+        db.rawQuery("""
+            SELECT af._id, a.num_slots
+            FROM armor a
+                JOIN armor_families af ON af._id = a.family
+            WHERE a.hunter_type=@type OR a.hunter_type=2
+            ORDER BY a._id ASC""", arrayOf(type.toString())
+        ).forEach {
+            val id = it.getLong("_id")
+            val slots = it.getInt("num_slots")
+            slotsByFamilyId.getOrPut(id) { mutableListOf() }.add(slots)
+        }
+
+        val cursor = ArmorFamilyCursor(db.rawQuery("""
             SELECT af._id,af.name,af.rarity,af.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
                 JOIN armor a on a.family=af._id
@@ -320,6 +337,20 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE a.hunter_type=@type OR a.hunter_type=2
             GROUP BY af._id,its.skill_tree_id;
         """, arrayOf(type.toString())))
+
+        val results = linkedMapOf<Long, ArmorFamily>()
+
+        cursor.forEach {
+            val newFamily = cursor.armor
+            if (newFamily.id in results) {
+                results[newFamily.id]?.skills?.add(newFamily.skills[0])
+            } else {
+                newFamily.slots.addAll(slotsByFamilyId[newFamily.id] ?: emptyList())
+                results[newFamily.id] = newFamily
+            }
+        }
+
+        return results.values.toList()
     }
 
     fun queryComponentsByArmorFamily(family: Long): ComponentCursor {

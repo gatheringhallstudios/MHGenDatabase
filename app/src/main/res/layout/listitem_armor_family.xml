@@ -11,44 +11,43 @@
     android:paddingRight="@dimen/margin_large"
     android:layout_marginTop="@dimen/margin_medium"
     android:layout_marginBottom="@dimen/margin_medium"
+    android:minHeight="@dimen/list_item_height"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/family_name_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-
-        android:orientation="horizontal"
-        android:minHeight="48dp"
+    <ImageView
+        android:id="@+id/icon"
+        style="@style/small_image"
+        android:layout_gravity="center_vertical"
+        tools:src="@drawable/armor_body"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <ImageView
-            android:id="@+id/icon"
-            style="@style/small_image"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/margin_small"
-            tools:src="@drawable/armor_body" />
+    <TextView
+        android:id="@+id/family_name"
+        style="@style/text_medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_small"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/defense_section"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintEnd_toStartOf="@id/slots_section"
+        tools:text="Rathalos S" />
 
-        <TextView
-            android:id="@+id/family_name"
-            style="@style/text_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            tools:text="Rathalos S" />
-    </LinearLayout>
     <LinearLayout
+        android:id="@+id/defense_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="@id/family_name_layout"
-        app:layout_constraintTop_toTopOf="@id/family_name_layout"
-        app:layout_constraintLeft_toRightOf="@id/family_name_layout"
-        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/family_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/family_name"
         >
         <TextView
             android:id="@+id/min_defense"
@@ -68,16 +67,72 @@
             style="@style/text_small_secondary"
             tools:text="100"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/slots_section"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_vertical|right"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/skills_section">
+        <com.ghstudios.android.components.SlotsView
+            android:id="@+id/slots_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:imageSize="@dimen/image_size_xxsmall"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <com.ghstudios.android.components.SlotsView
+            android:id="@+id/slots_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            app:imageSize="@dimen/image_size_xxsmall"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <com.ghstudios.android.components.SlotsView
+            android:id="@+id/slots_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            app:imageSize="@dimen/image_size_xxsmall"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <com.ghstudios.android.components.SlotsView
+            android:id="@+id/slots_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            app:imageSize="@dimen/image_size_xxsmall"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <com.ghstudios.android.components.SlotsView
+            android:id="@+id/slots_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            app:imageSize="@dimen/image_size_xxsmall"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/skills_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="110dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical|end"
         android:layout_marginTop="@dimen/margin_small"
         android:layout_marginBottom="@dimen/margin_small"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
         <TextView
             android:id="@+id/skill_1"
             android:layout_width="wrap_content"
