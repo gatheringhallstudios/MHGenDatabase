@@ -65,7 +65,7 @@ private fun createHandlers(ctx: Context) = mapOf(
 
         SkillTree::class.java to object : ResultHandler<SkillTree>() {
             override fun getImageResource(obj: SkillTree) = R.drawable.icon_bomb
-            override fun getName(obj: SkillTree) = obj.name
+            override fun getName(obj: SkillTree) = obj.name ?: ""
             override fun getType(obj: SkillTree) = ctx.getString(R.string.type_skill_tree)
             override fun createListener(ctx: Context, obj: SkillTree) = SkillClickListener(ctx, obj.id)
         },

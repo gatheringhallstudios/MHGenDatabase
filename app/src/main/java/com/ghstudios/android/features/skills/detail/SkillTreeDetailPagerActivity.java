@@ -1,6 +1,9 @@
-package com.ghstudios.android.features.skills;
+package com.ghstudios.android.features.skills.detail;
+
+import android.arch.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.data.DataManager;
+import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
@@ -16,7 +19,14 @@ public class SkillTreeDetailPagerActivity extends BasePagerActivity {
     @Override
     public void onAddTabs(TabAdder tabs) {
         long skillTreeId = getIntent().getLongExtra(EXTRA_SKILLTREE_ID, -1);
-        setTitle(DataManager.get().getSkillTree(skillTreeId).getName());
+
+        SkillDetailViewModel viewModel = ViewModelProviders.of(this).get(SkillDetailViewModel.class);
+        viewModel.setSkillTreeId(skillTreeId);
+
+        viewModel.getSkillTreeData().observe(this, (data) -> {
+            if (data == null) return;
+            setTitle(data.getName());
+        });
 
         tabs.addTab(R.string.skill_tab_detail, () ->
                 SkillTreeDetailFragment.newInstance(skillTreeId)
@@ -28,28 +38,23 @@ public class SkillTreeDetailPagerActivity extends BasePagerActivity {
         );
 
         tabs.addTab(R.string.skill_tab_head, () ->
-                SkillTreeArmorFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_HEAD)
+                SkillTreeArmorFragment.newInstance(skillTreeId, Armor.ARMOR_SLOT_HEAD)
         );
 
         tabs.addTab(R.string.skill_tab_body, () ->
-                SkillTreeArmorFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_BODY)
+                SkillTreeArmorFragment.newInstance(skillTreeId, Armor.ARMOR_SLOT_BODY)
         );
 
         tabs.addTab(R.string.skill_tab_arms, () ->
-                SkillTreeArmorFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_ARMS)
+                SkillTreeArmorFragment.newInstance(skillTreeId, Armor.ARMOR_SLOT_ARMS)
         );
 
         tabs.addTab(R.string.skill_tab_waist, () ->
-                SkillTreeArmorFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_WAIST)
+                SkillTreeArmorFragment.newInstance(skillTreeId, Armor.ARMOR_SLOT_WAIST)
         );
 
         tabs.addTab(R.string.skill_tab_legs, () ->
-                SkillTreeArmorFragment.newInstance(skillTreeId,
-                        ItemToSkillTreeListCursorLoader.TYPE_LEGS)
+                SkillTreeArmorFragment.newInstance(skillTreeId, Armor.ARMOR_SLOT_LEGS)
         );
     }
 

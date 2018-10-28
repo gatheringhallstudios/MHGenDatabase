@@ -10,11 +10,6 @@ public class ItemToSkillTreeListCursorLoader extends SQLiteCursorLoader {
 	public static String FROM_SKILL_TREE = "skillTree";
 
 	public static String TYPE_DECORATION = "Decoration";
-	public static String TYPE_HEAD = "Head";
-	public static String TYPE_BODY = "Body";
-	public static String TYPE_ARMS = "Arms";
-	public static String TYPE_WAIST = "Waist";
-	public static String TYPE_LEGS = "Legs";
 	
 	private String from;	// "item" or "skillTree"
 	private long id; 		// Item or Quest id

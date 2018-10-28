@@ -8,8 +8,6 @@ import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
-import com.ghstudios.android.data.cursors.ASBSessionCursor
-import com.ghstudios.android.data.cursors.ASBSetCursor
 import com.ghstudios.android.data.cursors.ArmorCursor
 import com.ghstudios.android.data.cursors.CombiningCursor
 import com.ghstudios.android.data.cursors.ComponentCursor
@@ -357,6 +355,13 @@ class DataManager private constructor(private val mAppContext: Context) {
             }
         }
         return results
+    }
+
+    /**
+     * Return a list of ItemToSkillTree, where the Item is an Armor object.
+     */
+    fun queryArmorSkillTreePointsBySkillTree(skillTreeId: Long): List<ItemToSkillTree> {
+        return itemDao.queryArmorSkillTreePointsBySkillTree(skillTreeId)
     }
 
     /********************************* ITEM TO MATERIAL QUERIES  */

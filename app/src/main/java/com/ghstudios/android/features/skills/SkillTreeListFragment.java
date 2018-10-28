@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.ghstudios.android.data.classes.SkillTree;
 import com.ghstudios.android.data.cursors.SkillTreeCursor;
+import com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity;
 import com.ghstudios.android.loader.SkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.SkillClickListener;

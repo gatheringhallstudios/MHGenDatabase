@@ -1,4 +1,4 @@
-package com.ghstudios.android.features.skills;
+package com.ghstudios.android.features.skills.detail;
 
 import android.content.Context;
 import android.database.Cursor;

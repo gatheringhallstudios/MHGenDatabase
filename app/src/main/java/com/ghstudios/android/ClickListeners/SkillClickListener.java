@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity;
+import com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity;
 
 /**
  * Created by Mark on 2/24/2015.

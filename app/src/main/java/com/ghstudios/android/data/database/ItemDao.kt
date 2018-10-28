@@ -372,4 +372,33 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """,arrayOf(family.toString())))
     }
 
+    /**
+     * Returns a list of ItemToSkillTree, where each item is of type
+     */
+    fun queryArmorSkillTreePointsBySkillTree(skillTreeId: Long): List<ItemToSkillTree> {
+        val cursor = db.rawQuery("""
+            SELECT ${armor_columns("a", "i")},
+            st._id as st_id, st.$column_name AS st_name, st.name_ja as st_name_ja, its.point_value
+            FROM armor a
+                JOIN items i USING (_id)
+                LEFT JOIN item_to_skill_tree its on its.item_id = a._id
+                LEFT JOIN skill_trees st on st._id = its.skill_tree_id
+            WHERE st._id = ?
+            ORDER BY i.rarity DESC, its.point_value DESC
+        """, arrayOf(skillTreeId.toString()))
+
+        return ArmorCursor(cursor).toList {
+            val armor = it.armor
+
+            val skillTree = SkillTree(
+                    id=it.getLong("st_id"),
+                    name=it.getString("st_name"),
+                    jpnName= it.getString("st_name_ja"))
+            val points = it.getInt("point_value")
+
+            ItemToSkillTree(skillTree, points).apply {
+                this.item = armor
+            }
+        }
+    }
 }
