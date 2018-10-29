@@ -2297,34 +2297,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     }
 
     /*
-     * Get all wishlist data using specific db instance
-     */
-    fun queryWishlistsData(db: SQLiteDatabase): WishlistDataCursor {
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_WISHLIST_DATA
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        // Multithread issues workaround
-        val qb = builderWishlistData()
-        val cursor = qb.query(
-                db, qh.Columns, qh.Selection, qh.SelectionArgs, qh.GroupBy, qh.Having, qh.OrderBy, qh.Limit)
-
-        return WishlistDataCursor(cursor)
-    }
-
-    /*
      * Get all wishlist data for a specific wishlist
      */
     fun queryWishlistData(id: Long): WishlistDataCursor {
-
         val wdColumns: Array<String>? = null
         val wdSelection = "wd." + S.COLUMN_WISHLIST_DATA_WISHLIST_ID + " = ?"
         val wdSelectionArgs = arrayOf(id.toString())
@@ -2484,7 +2459,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_WISHLIST_DATA_SATISFIED] = wd + "." + S.COLUMN_WISHLIST_DATA_SATISFIED
         projectionMap[S.COLUMN_WISHLIST_DATA_PATH] = wd + "." + S.COLUMN_WISHLIST_DATA_PATH
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name as name"
         //projectionMap.put(S.COLUMN_ITEMS_JPN_NAME, i + "." + S.COLUMN_ITEMS_JPN_NAME);
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
