@@ -107,7 +107,7 @@ public class SkillTreeDecorationFragment extends ListFragment implements
 			// Use a layout inflater to get a row view
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			return inflater.inflate(R.layout.fragment_skill_item_listitem,
+			return inflater.inflate(R.layout.listitem_skill_item,
 					parent, false);
 		}
 

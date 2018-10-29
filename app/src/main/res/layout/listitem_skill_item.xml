@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listitem"
     style="@style/list_item"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/item_layout"
@@ -15,6 +16,7 @@
         <ImageView
             android:id="@+id/item_image"
             style="@style/main_image"
+            tools:src="@drawable/armor_arms"
             android:layout_gravity="center" />
 
         <TextView
@@ -23,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            style="@style/text_medium"/>
+            style="@style/text_medium"
+            tools:text="Awesome Arms"/>
     </LinearLayout>
 
     <TextView
@@ -33,7 +36,6 @@
         android:layout_weight=".3"
         android:gravity="center_vertical|right"
         android:layout_gravity="center"
-        style="@style/text_small"
- />
+        style="@style/text_small" />
 
 </LinearLayout>

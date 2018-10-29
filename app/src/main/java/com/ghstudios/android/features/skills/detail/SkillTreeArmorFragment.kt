@@ -12,6 +12,7 @@ import android.widget.*
 
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.ArmorClickListener
+import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.util.applyArguments
@@ -65,7 +66,7 @@ class SkillTreeArmorFragment : ListFragment() {
      * Internal cursor adapter to display armors that provide the specified skill
      */
     private class ArmorToSkillTreeListAdapter(context: Context)
-        : ArrayAdapter<ItemToSkillTree>(context, R.layout.fragment_skill_item_listitem) {
+        : ArrayAdapter<ItemToSkillTree>(context, R.layout.listitem_skill_armor) {
 
         fun updateItems(newItems: List<ItemToSkillTree>) {
             clear()
@@ -77,7 +78,7 @@ class SkillTreeArmorFragment : ListFragment() {
             val view = when (convertView) {
                 null -> {
                     val inflater = LayoutInflater.from(context)
-                    inflater.inflate(R.layout.fragment_skill_item_listitem, parent, false)
+                    inflater.inflate(R.layout.listitem_skill_armor, parent, false)
                 }
                 else -> convertView
             }
@@ -90,10 +91,16 @@ class SkillTreeArmorFragment : ListFragment() {
             val skillItemImageView = view.findViewById<ImageView>(R.id.item_image)
             val skillItemTextView = view.findViewById<TextView>(R.id.item)
             val skillAmtTextView = view.findViewById<TextView>(R.id.amt)
+            val minDefView = view.findViewById<TextView>(R.id.min_defense)
+            val maxDefView = view.findViewById<TextView>(R.id.max_defense)
+            val slotsView = view.findViewById<SlotsView>(R.id.slots)
 
             skillItemImageView.setImageAsset(armor)
             skillItemTextView.text = armor.name
             skillAmtTextView.text = skill.points.toString()
+            minDefView.text = armor.defense.toString()
+            maxDefView.text = armor.maxDefense.toString()
+            slotsView.setSlots(armor.numSlots, 0)
 
             view.tag = armor.id
             view.setOnClickListener(ArmorClickListener(context, armor))
