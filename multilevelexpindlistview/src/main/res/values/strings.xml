@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">MultiLevelExpIndListView</string>
-    <string name="weapon_affinity">Affinity</string>
-    <string name="weapon_defense">Defense</string>
 </resources>

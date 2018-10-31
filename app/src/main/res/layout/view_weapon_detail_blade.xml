@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/text_medium_alt"
-        android:text="@string/weapon_defense"
+        android:text="@string/equipment_defense"
         android:layout_marginTop="@dimen/margin_medium"
         app:layout_constraintTop_toBottomOf="@id/affinity_label"/>
 

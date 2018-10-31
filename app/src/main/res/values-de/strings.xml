@@ -126,7 +126,7 @@
     <string name="skill_tab_waist">Hüfte</string>
     <string name="skill_tab_legs">Beine</string>
     <string name="armor_part">Teil</string>
-    <string name="armor_defense">Verteidigung</string>
+    <string name="equipment_defense">Verteidig.</string>
     <string name="armor_type_both">Egal</string>
     <string name="armor_type_blade">Klingenmeister</string>
     <string name="armor_type_gunner">Schütze</string>

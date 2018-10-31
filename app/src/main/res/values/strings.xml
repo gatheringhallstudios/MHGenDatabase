@@ -247,9 +247,11 @@
     <string name="skill_tab_waist">Waist</string>
     <string name="skill_tab_legs">Legs</string>
 
+    <!-- Equipment -->
+    <string name="equipment_defense">Defense</string>
+
     <!-- Armor -->
     <string name="armor_part">Part</string>
-    <string name="armor_defense">Defense</string>
     <string name="armor_type_both">Any</string>
     <string name="armor_type_blade">Blademaster</string>
     <string name="armor_type_gunner">Gunner</string>
@@ -316,6 +318,7 @@
     <string name="bow_charge_format_locked">(%s %d)</string>
 
     <string name="weapon_attack">Attack</string>
+    <string name="weapon_affinity">Affinity</string>
     <string name="weapon_slots">Slots</string>
     <string name="weapon_sharpness">Sharpness</string>
     <string name="weapon_notes">Notes</string>
