@@ -3,15 +3,24 @@ package com.ghstudios.android
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.ghstudios.android.data.DataManager
 import java.util.*
 
 /**
- * A list of languages that are automatically supported by mode default.
- * Only languages where the app is translated are supported as a "default" language.
- * Must be a subset of DataManager.get().getLanguages()
+ * A list of language codes available for existing app translations
  */
-private val defaultLanguages = listOf("en", "de")
+val appLanguages = listOf("en", "de")
+
+/** A list of all possible supported languages (across all sources)
+ * mapping code to name.
+ */
+val allLanguages = mapOf(
+        "en" to "English",
+        "es" to "Español",
+        "fr" to "Français",
+        "de" to "Deutsch",
+        "it" to "Italiano"
+        //"ja" to "日本語"  // japanese data is incomplete
+)
 
 /**
  * A static class used to manage shared preferences and application settings.
@@ -65,13 +74,14 @@ class AppSettings {
 
                 val locale = Locale.getDefault().language
                 return when (locale) {
-                    in defaultLanguages -> locale
+                    in appLanguages -> locale
                     else -> "en"
                 }
             }
 
         // keys
         private const val PROP_JAPANESE_ENABLED = "JAPANESE_ENABLED"
+        const val PROP_APP_LOCALE = "APP_LOCALE"
         const val PROP_DATA_LOCALE = "DATA_LOCALE"
     }
 }

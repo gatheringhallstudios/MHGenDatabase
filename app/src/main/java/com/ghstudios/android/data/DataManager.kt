@@ -86,16 +86,10 @@ class DataManager private constructor(private val mAppContext: Context) {
 
 
     /**
-     * Returns a map of supported languages, mapping language code (like es) to a visible display language.
+     * Returns a map of supported language codes.
      */
-    fun getLanguages(): Map<String, String> = mapOf(
-        "" to "Default",
-        "en" to "English",
-        "es" to "Español",
-        "fr" to "Français",
-        "de" to "Deutsch",
-        "it" to "Italiano"
-        //"ja" to "日本語"  // japanese data is incomplete
+    fun getLanguages() = listOf(
+        "en", "es", "fr", "de", "it"
     )
 
     /********************************* ARMOR QUERIES  */

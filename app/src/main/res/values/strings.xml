@@ -179,10 +179,19 @@
     -->
 
     <!-- Setting names -->
+    <string name="preference_app_language">App Language</string>
+    <string name="preference_app_language_description">
+        Use %s as the app language.
+        \nDefault will use your system setting if a translation exists, or english if not available.
+        Requires a restart.
+    </string>
+    <string name="preference_app_language_description_disabled">
+        App language cannot be overwritten in your android version.
+    </string>
     <string name="preference_data_language">Data Language (BETA)</string>
     <string name="preference_data_language_description">
-        The language used for data (not the app). Current: %s.\n
-        Default tries to match your language setting (if available).
+        Show in-game data using %s.
+        \nDefault tries to use the app language if available.
     </string>
     <string name="preference_language_default">Default</string>
     <string name="preference_japanese">Show Japanese</string>
