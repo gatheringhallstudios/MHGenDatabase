@@ -89,11 +89,22 @@ class SkillTreeArmorFragment : ListFragment() {
 
             // Set up the text view
             val skillItemImageView = view.findViewById<ImageView>(R.id.item_image)
+            val hunterTypeImageView = view.findViewById<ImageView>(R.id.hunter_type_image)
             val skillItemTextView = view.findViewById<TextView>(R.id.item)
             val skillAmtTextView = view.findViewById<TextView>(R.id.amt)
             val minDefView = view.findViewById<TextView>(R.id.min_defense)
             val maxDefView = view.findViewById<TextView>(R.id.max_defense)
             val slotsView = view.findViewById<SlotsView>(R.id.slots)
+
+            val hunterTypeResId = when (armor.hunterType) {
+                Armor.ARMOR_TYPE_BLADEMASTER -> R.drawable.icon_great_sword
+                Armor.ARMOR_TYPE_GUNNER -> R.drawable.icon_heavy_bowgun
+                else -> 0
+            }
+
+            if (hunterTypeResId != 0) {
+                hunterTypeImageView.setImageResource(hunterTypeResId)
+            }
 
             skillItemImageView.setImageAsset(armor)
             skillItemTextView.text = armor.name
