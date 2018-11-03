@@ -3,6 +3,7 @@ package com.ghstudios.android
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.ghstudios.android.util.edit
 import java.util.*
 
 /**
@@ -52,6 +53,19 @@ class AppSettings {
         @JvmStatic
         val isJapaneseEnabled
             get() = sharedPreferences.getBoolean(PROP_JAPANESE_ENABLED, false)
+
+        /**
+         * Setting to decide whether negative skill items should be shown or not.
+         * Changes are commited asynchronously, and may take a bit
+         */
+        @JvmStatic
+        var showSkillPenalties
+            get() = sharedPreferences.getBoolean("SHOW_NEGATIVE_SKILL_ITEMS", false)
+            set(value) {
+                sharedPreferences.edit {
+                    putBoolean("SHOW_NEGATIVE_SKILL_ITEMS", value)
+                }
+            }
 
         /**
          * Returns the "true" data locale setting.

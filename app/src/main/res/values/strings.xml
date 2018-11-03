@@ -255,6 +255,7 @@
     <string name="skill_tab_arms">Arms</string>
     <string name="skill_tab_waist">Waist</string>
     <string name="skill_tab_legs">Legs</string>
+    <string name="skill_show_penalties">Show Penalties</string>
 
     <!-- Equipment -->
     <string name="equipment_defense">Defense</string>

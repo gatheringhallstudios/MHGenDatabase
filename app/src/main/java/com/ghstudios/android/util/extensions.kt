@@ -1,6 +1,7 @@
 package com.ghstudios.android.util
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.Cursor
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -98,4 +99,14 @@ inline fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
 @Suppress("NOTHING_TO_INLINE")
 inline fun Context.getColorCompat(@ColorRes id: Int): Int {
     return ContextCompat.getColor(this, id)
+}
+
+/**
+ * Creates a block where "this" is the editor of the shared preferences.
+ * The changes are commited asynchronously.
+ */
+inline fun SharedPreferences.edit(block: SharedPreferences.Editor.() -> Unit) {
+    val editor = this.edit()
+    block(editor)
+    editor.apply()
 }
