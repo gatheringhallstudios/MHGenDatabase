@@ -1,12 +1,15 @@
 package com.ghstudios.android.features.skills.detail
 
 import android.arch.lifecycle.*
+import android.arch.lifecycle.Observer
 import android.util.Log
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ItemToSkillTree
+import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.data.classes.SkillTree
 import com.ghstudios.android.util.loggedThread
+import com.ghstudios.android.util.toList
 
 private fun filterArmorSkillPoints(data: LiveData<List<ItemToSkillTree>>, slot: String): LiveData<List<ItemToSkillTree>> {
     return Transformations.map(data) { entries ->
@@ -26,8 +29,10 @@ class SkillDetailViewModel: ViewModel() {
      * Copied into the armorSkillPoints based on existing filters.
      */
     private val armorSkillPointsBase = mutableListOf<ItemToSkillTree>()
+    private val decorationSkillPointsBase = mutableListOf<ItemToSkillTree>()
 
     val skillTreeData = MutableLiveData<SkillTree>()
+    val decorationSkillPoints = MutableLiveData<List<ItemToSkillTree>>()
     val armorSkillPoints = MutableLiveData<List<ItemToSkillTree>>()
 
     private val armorSkillPointsByPart = mapOf(
@@ -47,8 +52,16 @@ class SkillDetailViewModel: ViewModel() {
 
         loggedThread("Skill Detail Loading") {
             skillTreeData.postValue(dataManager.getSkillTree(skillTreeId))
+
+            // load decorations. Positive entries before negative ones
+            val loadedDecorations = dataManager.queryItemToSkillTreeSkillTree(skillTreeId, ItemType.DECORATION).toList { it.itemToSkillTree }
+            decorationSkillPointsBase.addAll(loadedDecorations.filter { it.points >= 0 })
+            decorationSkillPointsBase.addAll(loadedDecorations.filter { it.points < 0 })
+
+            // load armors
             armorSkillPointsBase.addAll(dataManager.queryArmorSkillTreePointsBySkillTree(skillTreeId))
 
+            // Note: Calling this method populates the live data
             setShowPenalties(showPenalties)
         }
     }
@@ -57,11 +70,15 @@ class SkillDetailViewModel: ViewModel() {
      * Sets whether items with penalties should be listed, and updates the mutable live data with correct values
      */
     fun setShowPenalties(showPenalties: Boolean) {
-        val items = when (showPenalties) {
+        decorationSkillPoints.postValue(when (showPenalties) {
+            true -> decorationSkillPointsBase
+            false -> decorationSkillPointsBase.filter { it.points > 0 }
+        })
+
+        armorSkillPoints.postValue(when (showPenalties) {
             true -> armorSkillPointsBase
             false -> armorSkillPointsBase.filter { it.points > 0 }
-        }
-        armorSkillPoints.postValue(items)
+        })
     }
 
     fun observeArmorsWithSkill(owner: LifecycleOwner, armorSlot: String, observer: Observer<List<ItemToSkillTree>>) {

@@ -317,8 +317,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get a Cursor that has a list of ItemToSkillTree based on SkillTree */
-    fun queryItemToSkillTreeSkillTree(id: Long, type: String): ItemToSkillTreeCursor {
-        return mHelper.queryItemToSkillTreeSkillTree(id, type)
+    fun queryItemToSkillTreeSkillTree(id: Long, type: ItemType): ItemToSkillTreeCursor {
+        return mHelper.queryItemToSkillTreeSkillTree(id, ItemTypeConverter.serialize(type))
     }
 
     /** Get an array of ItemToSkillTree based on Item  */

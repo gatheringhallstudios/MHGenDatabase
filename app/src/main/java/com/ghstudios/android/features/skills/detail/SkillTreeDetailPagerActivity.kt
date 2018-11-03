@@ -6,9 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ghstudios.android.AppSettings
 
-import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.loader.ItemToSkillTreeListCursorLoader
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.mhgendatabase.R
@@ -45,8 +43,7 @@ class SkillTreeDetailPagerActivity : BasePagerActivity() {
         }
 
         tabs.addTab(R.string.skill_tab_decorations) {
-            SkillTreeDecorationFragment.newInstance(skillTreeId,
-                    ItemToSkillTreeListCursorLoader.TYPE_DECORATION)
+            SkillTreeDecorationFragment.newInstance(skillTreeId)
         }
 
         tabs.addTab(R.string.skill_tab_head) {
