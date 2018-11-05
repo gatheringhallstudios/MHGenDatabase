@@ -46,7 +46,7 @@
             style="@style/text_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/armor_filter_label_slots"
+            android:text="@string/equipment_slots"
             android:textStyle="bold" />
 
         <Spinner

@@ -39,20 +39,20 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
         }
 
         if (meta.isMonsterReward()) {
-            tabs.addTab(R.string.item_detail_tab_monster, () ->
+            tabs.addTab(R.string.type_monster, () ->
                     // Monster drops
                     ItemMonsterFragment.newInstance(itemId)
             );
         }
 
         if (meta.isQuestReward()) {
-            tabs.addTab(R.string.item_detail_tab_quest, () ->
+            tabs.addTab(R.string.type_quest, () ->
                     ItemQuestFragment.newInstance(itemId)
             );
         }
 
         if (meta.isGatherable()) {
-            tabs.addTab(R.string.item_detail_tab_location, ItemLocationFragment::new);
+            tabs.addTab(R.string.type_location, ItemLocationFragment::new);
         }
 
         //JOE: No wyporium in MHGen

@@ -16,12 +16,10 @@ public class DecorationDetailActivity extends GenericActivity {
 
     private static final int REQUEST_ADD = 0;
 
-    private long decorationId;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.decoration_detail_title);
+        setTitle(R.string.type_decoration);
     }
 
     @Override
@@ -31,7 +29,7 @@ public class DecorationDetailActivity extends GenericActivity {
 
     @Override
     protected Fragment createFragment() {
-        decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
+        long decorationId = getIntent().getLongExtra(EXTRA_DECORATION_ID, -1);
         return DecorationDetailFragment.newInstance(decorationId);
     }
 }

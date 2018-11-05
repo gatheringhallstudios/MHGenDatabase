@@ -21,7 +21,7 @@ public class LocationDetailPagerActivity extends BasePagerActivity {
                 LocationDetailFragment.newInstance(locationId)
         );
 
-        tabs.addTab(R.string.location_detail_tab_monsters, () ->
+        tabs.addTab(R.string.monsters, () ->
                 LocationHabitatFragment.newInstance(locationId)
         );
 

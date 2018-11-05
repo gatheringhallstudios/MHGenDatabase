@@ -15,5 +15,5 @@
     <TextView
         android:id="@+id/hub"
         style="@style/cell_column_label"
-        android:text="@string/armor_filter_label_slots"/>
+        android:text="@string/equipment_slots"/>
 </com.google.android.flexbox.FlexboxLayout>

@@ -61,7 +61,7 @@
             <com.ghstudios.android.components.SectionHeaderCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/item_skills" />
+                app:labelText="@string/skills" />
 
             <LinearLayout
                 android:id="@+id/skill_list"

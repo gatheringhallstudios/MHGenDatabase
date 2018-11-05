@@ -42,7 +42,7 @@ class SkillTreeDetailPagerActivity : BasePagerActivity() {
             SkillTreeDetailFragment.newInstance(skillTreeId)
         }
 
-        tabs.addTab(R.string.skill_tab_decorations) {
+        tabs.addTab(R.string.type_decoration) {
             SkillTreeDecorationFragment.newInstance(skillTreeId)
         }
 

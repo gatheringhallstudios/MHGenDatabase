@@ -53,7 +53,7 @@ public class MonsterDetailPagerActivity extends BasePagerActivity {
             );
         }
 
-        tabs.addTab(R.string.monster_detail_tab_quest, () ->
+        tabs.addTab(R.string.type_quest, () ->
                 MonsterQuestFragment.newInstance(monsterId)
         );
     }

@@ -90,7 +90,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="16dp"
-            android:text="@string/quest_detail_monsters" />
+            android:text="@string/monsters" />
 
         <LinearLayout
             android:id="@+id/monster_habitat_fragment"
@@ -112,7 +112,7 @@
                 style="@style/text_small_secondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quest_detail_location" />
+                android:text="@string/type_location" />
 
             <LinearLayout
                 android:id="@+id/location_layout"

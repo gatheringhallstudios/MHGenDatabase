@@ -75,6 +75,17 @@
     <string name="type_weapon_heavybowgun">Heavy Bowgun</string>
     <string name="type_weapon_bow">Bow</string>
 
+    <string name="monsters">Monsters</string>
+    <string name="palicos">Palicos</string>
+    <string name="items">Items</string>
+    <string name="locations">Locations</string>
+    <string name="combining">Combining</string>
+    <string name="quests">Quests</string>
+    <string name="skills">Skills</string>
+    <string name="decoration_title">Decorations</string>
+    <string name="armor">Armor</string>
+    <string name="weapons">Weapons</string>
+
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
 
@@ -152,25 +163,13 @@
     <!-- Page titles -->
     <string name="title_search">Search item</string>
     <string name="title_preferences">Settings</string>
-    <string name="monsters">Monsters</string>
-    <string name="palicos">Palicos</string>
-    <string name="items">Items</string>
-    <string name="locations">Locations</string>
-    <string name="combining">Combining</string>
-    <string name="quests">Quests</string>
-    <string name="skill_trees">Skills</string>
-    <string name="decoration_title">Decorations</string>
-    <string name="decoration_detail_title">Decoration</string>
-    <string name="armor">Armor</string>
     <string name="monster_image">monster_image</string>
     <string name="monster_damage">monster_damage</string>
-    <string name="weapons">Weapons</string>
     <string name="arena_quests">Arena Quests</string>
     <string name="wishlist">Wishlists</string>
 
     <string name="dialog_armor_filter_title">Filter</string>
     <string name="armor_filter_label_rank">Rank</string>
-    <string name="armor_filter_label_slots">Slots</string> <!-- TODO: Rename -->
 
     <!--
     Unicode Black Circle \u25CF
@@ -200,14 +199,13 @@
     </string>
 
     <!-- Monsters -->
-    <string name="monster_tab_small">Small</string>
-    <string name="monster_tab_large">Large</string>
-    <string name="monster_tab_deviant">Deviant</string>
+    <string name="monster_class_small">Small</string>
+    <string name="monster_class_large">Large</string>
+    <string name="monster_class_deviant">Deviant</string>
+
     <string name="monster_detail_tab_summary">Summary</string>
     <string name="monster_detail_tab_damage">Damage</string>
-    <string name="monster_detail_tab_quest">Quest</string>
     <string name="monster_summary_weaknesses">Weaknesses</string>
-    <string name="monster_summary_items">Items</string>
     <string name="monster_ailments">Ailments</string>
     <string name="monster_habitats">Habitats</string>
     <string name="monster_damage_area">Area</string>
@@ -221,9 +219,6 @@
     <!-- Items -->
     <string name="item_detail_tab_detail">Detail</string>
     <string name="item_detail_tab_usage">Usage</string>
-    <string name="item_detail_tab_monster">Monster</string>
-    <string name="item_detail_tab_quest">Quest</string>
-    <string name="item_detail_tab_location">Location</string>
     <string name="item_rarity">Rare</string>
     <string name="item_carry_max">Carry Max:</string>
     <string name="item_buy">Buy Price</string>
@@ -231,7 +226,6 @@
     <string name="item_sell_label">Sell Price:</string> <!-- variation with : after -->
     <string name="item_description">Description</string>
     <string name="item_combinations">Combinations</string>
-    <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
     <string name="item_combination_yield">Yields</string>
     <string name="item_gather_fixed">[Fixed]</string>
@@ -249,7 +243,6 @@
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>
-    <string name="skill_tab_decorations">Decorations</string>
     <string name="skill_tab_head">Head</string>
     <string name="skill_tab_body">Body</string>
     <string name="skill_tab_arms">Arms</string>
@@ -259,6 +252,7 @@
 
     <!-- Equipment -->
     <string name="equipment_defense">Defense</string>
+    <string name="equipment_slots">Slots</string>
 
     <!-- Armor -->
     <string name="armor_part">Part</string>
@@ -273,7 +267,6 @@
     <string name="armor_res_thunder">Thunder Res:</string>
     <string name="armor_res_ice">Ice Res:</string>
     <string name="armor_res_dragon">Dragon Res:</string>
-    <string name="armor_list_header_sub_deviant">Deviant</string>
 
     <!-- Weapons -->
     <string name="weapon_detail_tab_detail">Detail</string>
@@ -329,7 +322,6 @@
 
     <string name="weapon_attack">Attack</string>
     <string name="weapon_affinity">Affinity</string>
-    <string name="weapon_slots">Slots</string>
     <string name="weapon_sharpness">Sharpness</string>
     <string name="weapon_notes">Notes</string>
     <string name="weapon_phial_type">Phial</string>
@@ -349,8 +341,6 @@
 
 
     <!-- Palicos -->
-    <string name="palico_tab_weapons">Weapons</string>
-    <string name="palico_tab_armor">Armor</string>
     <string name="palico_equipment_tab_detail">Detail</string>
     <string name="palico_equipment_tab_components">Components</string>
 
@@ -393,7 +383,6 @@
 
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
-    <string name="asb_tab_skills">Skills</string>
     <string name="asb_title_select_armor">Select Armor</string>
     <string name="asb_title_select_head">Select Head</string>
     <string name="asb_title_select_body">Select Body</string>
@@ -444,13 +433,10 @@
 
     <!-- Quest Detail -->
     <string name="quest_detail_tab_detail">Detail</string>
-    <string name="quest_detail_tab_items_gather">Items</string>
     <string name="quest_detail_tab_rewards">Rewards</string>
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
-    <string name="quest_detail_monsters">Monsters</string>
-    <string name="quest_detail_location">Location</string>
     <string name="quest_detail_goal">Goal</string>
     <string name="quest_detail_subquest">Subquest</string>
     <string name="quest_detail_subquest_reward">Subquest Reward</string>
@@ -464,7 +450,6 @@
 
     <!-- Locations -->
     <string name="location_detail_tab_map">Map</string>
-    <string name="location_detail_tab_monsters">Monsters</string>
 
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
