@@ -1090,20 +1090,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
      * Get all melodies available from a given set of notes
      */
     fun queryMelodiesFromNotes(notes: String): HornMelodiesCursor {
-        // "SELECT * FROM horn_melodies WHERE notes = notes"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_HORN_MELODIES
-        qh.Columns = null
-        qh.Selection = S.COLUMN_HORN_MELODIES_NOTES + " = ?"
-        qh.SelectionArgs = arrayOf(notes)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return HornMelodiesCursor(wrapHelper(qh))
+        val effect1_column = localizeColumn("effect1")
+        val effect2_column = localizeColumn("effect2")
+        return HornMelodiesCursor(db.rawQuery("""
+            SELECT _id, notes, song, duration, extension,
+                $column_name as name, $effect1_column as effect1, $effect2_column as effect2
+            FROM horn_melodies
+            WHERE notes = ?
+        """, arrayOf(notes)))
     }
 
     /******************************** MONSTER AILMENT QUERIES  */

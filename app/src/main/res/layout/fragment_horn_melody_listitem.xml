@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/melody_listitem"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:paddingLeft="14dp"
-    android:paddingRight="14dp"
-    style="@style/list_item"
-    android:paddingTop="0dp">
-
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_medium"
+    android:paddingBottom="@dimen/margin_medium"
+    android:paddingLeft="@dimen/margin_large"
+    android:paddingRight="@dimen/margin_large">
 
     <ImageView
         android:id="@+id/horn_note1"
@@ -72,6 +71,19 @@
         android:layout_marginLeft="8dp" />
 
     <TextView
+        android:id="@+id/name"
+        style="@style/text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="false"
+        tools:text="Self Improvement"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="false"
+        android:textSize="12sp"
+        android:layout_below="@+id/horn_note1"
+        android:layout_marginTop="4dp" />
+
+    <TextView
         android:id="@+id/effect1"
         style="@style/text_small"
         android:layout_width="wrap_content"
@@ -81,8 +93,7 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_alignParentTop="false"
         android:textSize="12sp"
-        android:layout_below="@+id/horn_note1"
-        android:layout_marginTop="4dp" />
+        android:layout_below="@+id/name" />
 
     <TextView
         android:id="@+id/effect2"

@@ -28,6 +28,7 @@ public class HornMelodiesCursor extends CursorWrapper {
         Melody melody = new Melody();
 
         long id = getLong(getColumnIndex(S.COLUMN_HORN_MELODIES_ID));
+        String name = getString(getColumnIndex("name"));
         String notes = getString(getColumnIndex(S.COLUMN_HORN_MELODIES_NOTES));
         String song = getString(getColumnIndex(S.COLUMN_HORN_MELODIES_SONG));
         String effect1 = getString(getColumnIndex(S.COLUMN_HORN_MELODIES_EFFECT_1));
@@ -36,6 +37,7 @@ public class HornMelodiesCursor extends CursorWrapper {
         String extension = getString(getColumnIndex(S.COLUMN_HORN_MELODIES_EXTENSION));
 
         melody.setId(id);
+        melody.setName(name);
         melody.setNotes(notes);
         melody.setSong(song);
         melody.setEffect1(effect1);
