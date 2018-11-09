@@ -22,6 +22,7 @@ import com.ghstudios.android.loader.HornMelodyListCursorLoader
 import com.ghstudios.android.mhgendatabase.R
 
 /**
+ * Fragment used to display the list of songs supported by a hunting horn.
  * Created by Joseph on 7/1/2016.
  */
 class WeaponSongFragment : ListFragment(), LoaderCallbacks<Cursor> {
@@ -97,36 +98,13 @@ class WeaponSongFragment : ListFragment(), LoaderCallbacks<Cursor> {
             // Assign name
             nameTextView.text = melody?.name
 
-            // Assign Effect 1
-            var cellText = melody.effect1
-            effect1TextView.text = cellText
+            // Assign Effects
+            effect1TextView.text = melody.effect1
+            effect2TextView.text = melody.effect2
 
-            // Assign Effect 2
-            cellText = melody.effect2
-            if (cellText != "N/A") {
-                effect2TextView.text = cellText
-                effect2TextView.visibility = View.VISIBLE
-            } else {
-                effect2TextView.visibility = View.GONE
-            }
-
-            // Assign Duration
-            cellText = "DUR: " + melody.duration
-            if (cellText != "DUR: N/A") {
-                durationTextView.text = cellText
-                durationTextView.visibility = View.VISIBLE
-            } else {
-                durationTextView.visibility = View.GONE
-            }
-
-            // Assign Extension
-            cellText = "EXT: " + melody.extension
-            if (cellText != "EXT: N/A") {
-                extensionTextView.text = cellText
-                extensionTextView.visibility = View.VISIBLE
-            } else {
-                extensionTextView.visibility = View.GONE
-            }
+            // Assign Duration and extension
+            durationTextView.text = context.getString(R.string.weapon_melody_duration, melody.duration)
+            extensionTextView.text = context.getString(R.string.weapon_melody_extension, melody.extension)
 
             // Assign Song
             val notes = melody.song.toCharArray().toList()

@@ -338,6 +338,8 @@
     <string name="weapon_internal_row" translatable="false">%s • %s • %s</string>
     <string name="weapon_rapid_row" translatable="false">%s • %s • %s%% • %s</string>
     <string name="weapon_siege_row" translatable="false">%s • %s</string>
+    <string name="weapon_melody_duration">DUR: %s</string>
+    <string name="weapon_melody_extension">EXT: %s</string>
 
 
     <!-- Palicos -->
