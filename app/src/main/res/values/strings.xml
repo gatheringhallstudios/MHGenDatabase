@@ -1,13 +1,10 @@
-﻿<resources>
+<resources>
 
     <string name="app_name">MHGU Database</string>
     <string name="app_name_launcher">MHGUDB</string>
     <string name="search">Search</string>
     <string name="search_hint">Search Database</string>
     <string name="filter_hint">Filter…</string>
-    <string name="action_settings">Settings</string>
-    <string name="alert_button">Close</string>
-    <string name="alert_rate">Rate!</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="copy">Copy</string>
@@ -44,12 +41,16 @@
     <string name="changelog_show_full">More…</string>
 
     <!-- Various data types (for search results and things like that) -->
+    <string name="type_location">Location</string>
     <string name="type_monster">Monster</string>
     <string name="type_quest">Quest</string>
     <string name="type_skill_tree">Skill Tree</string>
     <string name="type_item">Item</string>
     <string name="type_weapon">Weapon</string>
     <string name="type_armor">Armor</string>
+    <string name="type_armor_set">Armor Set</string>
+    <string name="type_armor_set_gunner">Armor Set (Gunner)</string>
+    <string name="type_armor_set_blade">Armor Set (Blade)</string>
     <string name="type_decoration">Decoration</string>
     <string name="type_palico_weapon">Palico Weapon</string>
     <string name="type_palico_armor">Palico Armor</string>
@@ -59,9 +60,73 @@
     <string name="type_hub_event">Event</string>
     <string name="type_hub_arena">Arena</string>
     <string name="type_hub_permit">Permit</string>
+    <string name="type_weapon_greatsword">Great Sword</string>
+    <string name="type_weapon_longsword">Long Sword</string>
+    <string name="type_weapon_swordandshield">Sword and Shield</string>
+    <string name="type_weapon_dualblades">Dual Blades</string>
+    <string name="type_weapon_hammer">Hammer</string>
+    <string name="type_weapon_huntinghorn">Hunting Horn</string>
+    <string name="type_weapon_lance">Lance</string>
+    <string name="type_weapon_gunlance">Gunlance</string>
+    <string name="type_weapon_switchaxe">Switch Axe</string>
+    <string name="type_weapon_chargeblade">Charge Blade</string>
+    <string name="type_weapon_insectglaive">Insect Glaive</string>
+    <string name="type_weapon_lightbowgun">Light Bowgun</string>
+    <string name="type_weapon_heavybowgun">Heavy Bowgun</string>
+    <string name="type_weapon_bow">Bow</string>
+
+    <string name="monsters">Monsters</string>
+    <string name="palicos">Palicos</string>
+    <string name="items">Items</string>
+    <string name="locations">Locations</string>
+    <string name="combining">Combining</string>
+    <string name="quests">Quests</string>
+    <string name="skills">Skills</string>
+    <string name="decoration_title">Decorations</string>
+    <string name="armor">Armor</string>
+    <string name="weapons">Weapons</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
+
+    <!-- Generic strings -->
+    <string name="rank_lr">Low Rank</string>
+    <string name="rank_hr">High Rank</string>
+    <string name="rank_g">G Rank</string>
+    <string name="rank_any">Any</string>
+    
+    <!-- Ailments -->
+    <string name="ailment_roar_small">Small Roar</string>
+    <string name="ailment_roar_large">Large Roar</string>
+    <string name="ailment_roar_small_special">Small Special Roar</string>
+    <string name="ailment_roar_special">Special Roar</string>
+    <string name="ailment_wind_small">Small Wind Pressure</string>
+    <string name="ailment_wind_large">Large Wind Pressure</string>
+    <string name="ailment_wind_dragon">Dragon Wind Pressure</string>
+    <string name="ailment_tremor">Tremor</string>
+    <string name="ailment_fire">Fireblight</string>
+    <string name="ailment_water">Waterblight</string>
+    <string name="ailment_thunder">Thunderblight</string>
+    <string name="ailment_ice">Iceblight</string>
+    <string name="ailment_dragon">Dragonblight</string>
+    <string name="ailment_blast">Blastblight</string>
+    <string name="ailment_bleed">Bleeding</string>
+    <string name="ailment_poison">Poison</string>
+    <string name="ailment_poison_noxious">Noxious Poison</string>
+    <string name="ailment_poison_deadly">Deadly Poison</string>
+    <string name="ailment_sleep">Sleep</string>
+    <string name="ailment_paralysis">Paralysis</string>
+    <string name="ailment_stun">Stun</string>
+    <string name="ailment_snowman">Snowman</string>
+    <string name="ailment_muddy">Muddy</string>
+    <string name="ailment_bubbles">Bubbles</string>
+    <string name="ailment_boned">Boned</string>
+    <string name="ailment_mucus">Mucus</string>
+    <string name="ailment_soiled">Soiled</string>
+    <string name="ailment_environmental">Environmental</string>
+    <string name="ailment_defensedown">Defense Down</string>
+    <string name="ailment_frenzy">Frenzy Virus</string>
+    <string name="ailment_confusion">Confusion</string>
 
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
@@ -86,8 +151,6 @@
     <string name="logo_description">Logo</string>
 
     <!-- Standard Menu Options -->
-    <string name="option_list">List</string>
-    <string name="option_grid">Grid</string>
     <string name="option_wishlist_add">Create Wishlist</string>
     <string name="option_wishlist_delete">Delete wishlist</string>
     <string name="option_wishlist_copy">Copy wishlist</string>
@@ -100,28 +163,13 @@
     <!-- Page titles -->
     <string name="title_search">Search item</string>
     <string name="title_preferences">Settings</string>
-    <string name="monsters">Monsters</string>
-    <string name="palicos">Palicos</string>
-    <string name="items">Items</string>
-    <string name="locations">Locations</string>
-    <string name="combining">Combining</string>
-    <string name="quests">Quests</string>
-    <string name="hunting_fleet">Hunting Fleet</string>
-    <string name="skill_trees">Skills</string>
-    <string name="decoration_title">Decorations</string>
-    <string name="decoration_detail_title">Decoration</string>
-    <string name="armor">Armor</string>
     <string name="monster_image">monster_image</string>
     <string name="monster_damage">monster_damage</string>
-    <string name="weapons">Weapons</string>
     <string name="arena_quests">Arena Quests</string>
     <string name="wishlist">Wishlists</string>
-    <string name="wyporiumtrade">Wyporium Trade</string>
-    <string name="icon_name">MH4U DB</string>
 
     <string name="dialog_armor_filter_title">Filter</string>
     <string name="armor_filter_label_rank">Rank</string>
-    <string name="armor_filter_label_slots">Slots</string>
 
     <!--
     Unicode Black Circle \u25CF
@@ -130,21 +178,34 @@
     -->
 
     <!-- Setting names -->
-    <string name="preference_data_language">Data Language</string>
-    <string name="preference_data_language_description">
-        The language used for data (not the app). Current: %s
+    <string name="preference_app_language">App Language</string>
+    <string name="preference_app_language_description">
+        Use %s as the app language.
+        \nDefault will use your system setting if a translation exists, or english if not available.
+        Requires a restart.
     </string>
+    <string name="preference_app_language_description_disabled">
+        App language cannot be overwritten in your android version.
+    </string>
+    <string name="preference_data_language">Data Language (BETA)</string>
+    <string name="preference_data_language_description">
+        Show in-game data using %s.
+        \nDefault tries to use the app language if available.
+    </string>
+    <string name="preference_language_default">Default</string>
     <string name="preference_japanese">Show Japanese</string>
     <string name="preference_japanese_description">
         Show Japanese names alongside english ones.
     </string>
 
     <!-- Monsters -->
-    <string name="monster_tab_small">Small</string>
-    <string name="monster_tab_large">Large</string>
-    <string name="monster_tab_deviant">Deviant</string>
+    <string name="monster_class_small">Small</string>
+    <string name="monster_class_large">Large</string>
+    <string name="monster_class_deviant">Deviant</string>
+
+    <string name="monster_detail_tab_summary">Summary</string>
+    <string name="monster_detail_tab_damage">Damage</string>
     <string name="monster_summary_weaknesses">Weaknesses</string>
-    <string name="monster_summary_items">Items</string>
     <string name="monster_ailments">Ailments</string>
     <string name="monster_habitats">Habitats</string>
     <string name="monster_damage_area">Area</string>
@@ -156,55 +217,134 @@
     <string name="monster_status_damage">Damage</string>
 
     <!-- Items -->
+    <string name="item_detail_tab_detail">Detail</string>
+    <string name="item_detail_tab_usage">Usage</string>
     <string name="item_rarity">Rare</string>
     <string name="item_carry_max">Carry Max:</string>
     <string name="item_buy">Buy Price</string>
-    <string name="item_sell">Sell Price:</string>
+    <string name="item_sell">Sell Price</string>
+    <string name="item_sell_label">Sell Price:</string> <!-- variation with : after -->
     <string name="item_description">Description</string>
     <string name="item_combinations">Combinations</string>
-    <string name="item_skills">Skills</string>
     <string name="item_crafting">Crafting</string>
     <string name="item_combination_yield">Yields</string>
     <string name="item_gather_fixed">[Fixed]</string>
     <string name="item_gather_common">[Common]</string>
     <string name="item_gather_rare">[Rare]</string>
     <string name="item_gather_full">%2$s %1$s</string>
+    <string name="gather_site_bug">Bug</string>
+    <string name="gather_site_gather">Gather</string>
+    <string name="gather_site_mine">Mine</string>
+    <string name="gather_site_fishing_none">Fishing (No Bait)</string>
+    <string name="gather_site_fishing_burst">Fishing (Burst Bait)</string>
+    <string name="gather_site_fishing_goldenfish">Fishing (Goldenfish Bait)</string>
+    <string name="gather_site_fishing_megafly">Fishing (Mega Fishing Fly)</string>
+    <string name="gather_site_fishing_sushi">Fishing (Sushifish Bait)</string>
 
     <!-- Skill detail -->
     <string name="skill_tab_detail">Detail</string>
-    <string name="skill_tab_decorations">Decorations</string>
     <string name="skill_tab_head">Head</string>
     <string name="skill_tab_body">Body</string>
     <string name="skill_tab_arms">Arms</string>
     <string name="skill_tab_waist">Waist</string>
     <string name="skill_tab_legs">Legs</string>
+    <string name="skill_show_penalties">Show Penalties</string>
+
+    <!-- Equipment -->
+    <string name="equipment_defense">Defense</string>
+    <string name="equipment_slots">Slots</string>
 
     <!-- Armor -->
     <string name="armor_part">Part</string>
-    <string name="armor_defense">Defense</string>
     <string name="armor_type_both">Any</string>
-    <string name="armor_type_blade_short">Blade</string>
     <string name="armor_type_blade">Blademaster</string>
     <string name="armor_type_gunner">Gunner</string>
+    <string name="armor_type_blade_short">Blade</string>
+    <string name="armor_type_gunner_short">Gunner</string>
     <string name="armor_title_set">Set</string>
     <string name="armor_res_fire">Fire Res:</string>
     <string name="armor_res_water">Water Res:</string>
     <string name="armor_res_thunder">Thunder Res:</string>
     <string name="armor_res_ice">Ice Res:</string>
     <string name="armor_res_dragon">Dragon Res:</string>
-    <string-array name="armor_rarity_levels">
-        <item>Rare 1</item>
-        <item>Rare 2</item>
-        <item>Rare 3</item>
-        <item>Rare 4</item>
-        <item>Rare 5</item>
-        <item>Rare 6</item>
-        <item>Rare 7</item>
-        <item>Rare 8</item>
-        <item>Rare 9</item>
-        <item>Rare 10</item>
-        <item>Rare X</item>
-    </string-array>
+
+    <!-- Weapons -->
+    <string name="weapon_detail_tab_detail">Detail</string>
+    <string name="weapon_detail_tab_melodies">Melodies</string>
+    <string name="weapon_detail_tab_family">Family</string>
+    <string name="weapon_tree_origin">Origin</string>
+    <string name="weapon_tree_family">Family</string>
+    <string name="weapon_tree_side_branches">Branches</string>
+    <string name="weapon_tree_final">Final (All Branches)</string>
+
+    <string name="phial_power">Power</string>
+    <string name="phial_poison">Poison</string>
+    <string name="phial_paralysis">Paralysis</string>
+    <string name="phial_exhaust">Exhaust</string>
+    <string name="phial_dragon">Dragon</string>
+    <string name="phial_impact">Impact</string>
+    <string name="phial_element">Element</string>
+    <string name="shelling_wide">Wide</string>
+    <string name="shelling_long">Long</string>
+    <string name="shelling_normal">Normal</string>
+    <string name="shot_normal">Normal</string>
+    <string name="shot_pierce">Pierce</string>
+    <string name="shot_pellet">Pellet</string>
+    <string name="shot_crag">Crag</string>
+    <string name="shot_clust">Clust</string>
+    <string name="shot_poison">Poison</string>
+    <string name="shot_paralysis">Paralysis</string>
+    <string name="shot_sleep">Sleep</string>
+    <string name="shot_exhaust">Exhaust</string>
+    <string name="shot_recovery">Recovery</string>
+    <string name="shot_fire">Fire</string>
+    <string name="shot_water">Water</string>
+    <string name="shot_thunder">Thunder</string>
+    <string name="shot_ice">Ice</string>
+    <string name="shot_dragon">Dragon</string>
+    <string name="coating_power">Power</string>
+    <string name="coating_elemental">Elem Up</string>
+    <string name="coating_lv1">Lv1</string>
+    <string name="coating_lv2">Lv2</string>
+    <string name="coating_closerange">C. Range</string>
+    <string name="coating_poison">Poison</string>
+    <string name="coating_paralysis">Paralysis</string>
+    <string name="coating_sleep">Sleep</string>
+    <string name="coating_exhaust">Exhaust</string>
+    <string name="coating_blast">Blast</string>
+    <string name="coating_paint">Paint</string>
+    <string name="bow_charge_rapid">Rapid</string>
+    <string name="bow_charge_pierce">Pierce</string>
+    <string name="bow_charge_spread">Spread</string>
+    <string name="bow_charge_heavy">Heavy</string>
+    <string name="bow_charge_format">%s %d</string>
+    <string name="bow_charge_format_locked">(%s %d)</string>
+
+    <string name="weapon_attack">Attack</string>
+    <string name="weapon_affinity">Affinity</string>
+    <string name="weapon_sharpness">Sharpness</string>
+    <string name="weapon_notes">Notes</string>
+    <string name="weapon_phial_type">Phial</string>
+    <string name="weapon_shelling">Shelling</string>
+    <string name="weapon_upgrade">Upgrade</string>
+    <string name="weapon_create">Create</string>
+    <string name="weapon_charges">Charges</string>
+    <string name="weapon_arc">Arc</string>
+    <string name="weapon_recoil">Recoil</string>
+    <string name="weapon_reload">Reload</string>
+    <string name="weapon_deviation">Deviation</string>
+    <string name="weapon_coatings">Coatings</string>
+    <string name="weapon_ammo">Ammo</string>
+    <string name="weapon_internal_row" translatable="false">%s • %s • %s</string>
+    <string name="weapon_rapid_row" translatable="false">%s • %s • %s%% • %s</string>
+    <string name="weapon_siege_row" translatable="false">%s • %s</string>
+    <string name="weapon_melody_duration">DUR: %s</string>
+    <string name="weapon_melody_extension">EXT: %s</string>
+
+
+    <!-- Palicos -->
+    <string name="palico_equipment_tab_detail">Detail</string>
+    <string name="palico_equipment_tab_components">Components</string>
 
     <!-- Wishlist stuff -->
     <string name="wishlist_name_hint">Wishlist Name</string>
@@ -220,25 +360,15 @@
     <string name="wishlist_error_unknown">Unexpected error</string>
     <string name="wishlist_tab_wishlist">Wishlist</string>
     <string name="wishlist_tab_materials">Materials</string>
-    <string-array name="test_array">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-    </string-array>
 
-    <string name="no_slots">―――</string>
-    <string name="one_slot">○――</string>
-    <string name="two_slots">○○―</string>
-    <string name="three_slots">○○○</string>
+    <string name="no_slots" translatable="false">―――</string>
+    <string name="one_slot" translatable="false">○――</string>
+    <string name="two_slots" translatable="false">○○―</string>
+    <string name="three_slots" translatable="false">○○○</string>
 
-    <string name="one_slot_jewel">●</string>
-    <string name="two_slot_jewel">●●</string>
-    <string name="three_slot_jewel">●●●</string>
+    <string name="one_slot_jewel" translatable="false">●</string>
+    <string name="two_slot_jewel" translatable="false">●●</string>
+    <string name="three_slot_jewel" translatable="false">●●●</string>
 
 
     <!-- Armor Set Builder Stuff !-->
@@ -255,7 +385,6 @@
 
     <string name="activity_asb">Armor Set Builder</string>
     <string name="asb_tab_equipment">Equipment</string>
-    <string name="asb_tab_skills">Skills</string>
     <string name="asb_title_select_armor">Select Armor</string>
     <string name="asb_title_select_head">Select Head</string>
     <string name="asb_title_select_body">Select Body</string>
@@ -304,44 +433,12 @@
     <string name="internal_ammo">Internal Ammo</string>
     <string name="rapid_fire">Rapid Fire</string>
 
-    <!--Shot names that show in ammo page-->
-    <string name="shot_normal">Normal</string>
-    <string name="shot_pierce">Pierce</string>
-    <string name="shot_pellet">Pellet</string>
-    <string name="shot_crag">Crag</string>
-    <string name="shot_clust">Clust</string>
-    <string name="shot_poison">Poison</string>
-    <string name="shot_paralysis">Paralysis</string>
-    <string name="shot_sleep">Sleep</string>
-    <string name="shot_exhaust">Exhaust</string>
-    <string name="shot_recovery">Recovery</string>
-    <string name="shot_fire">Fire</string>
-    <string name="shot_water">Water</string>
-    <string name="shot_thunder">Thunder</string>
-    <string name="shot_ice">Ice</string>
-    <string name="shot_dragon">Dragon</string>
-    <string name="default_wishlist_name">My Wishlist</string>
-    <string name="default_armor_set_name">My Armor Set</string>
-    <string name="weapon_attack">Attack</string>
-    <string name="weapon_slots">Slots</string>
-    <string name="weapon_sharpness">Sharpness</string>
-    <string name="weapon_notes">Notes</string>
-    <string name="weapon_phial_type">Phial Type</string>
-    <string name="weapon_upgrade">Upgrade</string>
-    <string name="weapon_create">Create</string>
-    <string name="weapon_charges">Charges</string>
-    <string name="weapon_arc">Arc</string>
-    <string name="weapon_recoil">Recoil</string>
-    <string name="weapon_reload">Reload</string>
-    <string name="weapon_deviation">Deviation</string>
-
     <!-- Quest Detail -->
+    <string name="quest_detail_tab_detail">Detail</string>
+    <string name="quest_detail_tab_rewards">Rewards</string>
     <string name="quest_detail_reward">Reward</string>
     <string name="quest_detail_hrp">HRP</string>
     <string name="quest_detail_fee">Fee</string>
-    <string name="quest_detail_monsters">Monsters</string>
-    <string name="quest_detail_level">Level</string>
-    <string name="quest_detail_location">Location</string>
     <string name="quest_detail_goal">Goal</string>
     <string name="quest_detail_subquest">Subquest</string>
     <string name="quest_detail_subquest_reward">Subquest Reward</string>
@@ -352,7 +449,9 @@
     <string name="key">Key</string>
     <string name="urgent">Urgent</string>
     <string name="armor_pieces">Armor Pieces</string>
-    <string name="summary">summary</string>
+
+    <!-- Locations -->
+    <string name="location_detail_tab_map">Map</string>
 
     <string name="talisman_full_name">%s Talisman</string>
     <string-array name="talisman_names">
@@ -381,11 +480,6 @@
         <item>Minimum</item>
         <item>Exactly</item>
         <item>Maximum</item>
-    </string-array>
-
-    <string-array name="rank">
-        <item>Low</item>
-        <item>High</item>
     </string-array>
 
     <string-array name="hunter_type">

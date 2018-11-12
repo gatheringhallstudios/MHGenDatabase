@@ -1,42 +1,74 @@
 package com.ghstudios.android.features.meta
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.preference.ListPreference
 import android.support.v7.preference.PreferenceFragmentCompat
-import com.ghstudios.android.AppSettings
-import com.ghstudios.android.GenericActivity
-import com.ghstudios.android.MenuSection
+import com.ghstudios.android.*
+import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 
+/**
+ * The activity hosting the PreferencesFragment, which does the real work.
+ * This activity is top level so that you cannot go back to a previous fragment,
+ * this allow language settings to be changed without restart.
+ */
 class PreferencesActivity : GenericActivity() {
     override fun getSelectedSection() = MenuSection.NONE
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        super.setAsTopLevel()
+    }
 
     override fun createFragment(): Fragment {
         return PreferencesFragment()
     }
 }
 
-// temporary list of supported languages.
-// this should probably be moved somewhere more relevant
-// (probably to the data access layer somewhere...)
-val supportedLanguages = mapOf(
-        "en" to "English",
-        "es" to "Español",
-        "fr" to "Français",
-        "ja" to "日本語"
-)
-
 class PreferencesFragment : PreferenceFragmentCompat() {
+    private val defaultLabel get() = getString(R.string.preference_language_default)
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = AppSettings.SETTINGS_FILE_NAME
 
         setPreferencesFromResource(R.xml.preferences, rootKey)
+        //initAppLanguages()
+        initDataLanguages()
+    }
 
-        val localePref = findPreference("DATA_LOCALE") as ListPreference
 
-        localePref.entries = supportedLanguages.values.toTypedArray()
-        localePref.entryValues = supportedLanguages.keys.toTypedArray()
-        localePref.value = AppSettings.dataLocale // ensure a value is set
+    /**
+     * Initialize app languages preference.
+     * Currently unused, as its difficult to do and keeps changing every android version,
+     * with potential bugs such as activity titles not changing.
+     */
+    private fun initAppLanguages() {
+        val localePref = findPreference(AppSettings.PROP_APP_LOCALE) as ListPreference
+
+        // not supported on older android versions
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            localePref.isEnabled = false
+            localePref.summary = getString(R.string.preference_app_language_description_disabled)
+        } else {
+            val languageCodes = listOf("") + appLanguages
+            val languageNames = languageCodes.map { allLanguages.getOrElse(it) { defaultLabel } }
+
+            localePref.entryValues = languageCodes.toTypedArray()
+            localePref.entries = languageNames.toTypedArray()
+            localePref.value = AppSettings.trueDataLocale // ensure a value is set
+        }
+    }
+
+    private fun initDataLanguages() {
+        val localePref = findPreference(AppSettings.PROP_DATA_LOCALE) as ListPreference
+
+        val languageCodes = listOf("") + DataManager.get().getLanguages()
+        val languageNames = languageCodes.map { allLanguages.getOrElse(it) { defaultLabel } }
+
+        localePref.entryValues = languageCodes.toTypedArray()
+        localePref.entries = languageNames.toTypedArray()
+        localePref.value = AppSettings.trueDataLocale // ensure a value is set
     }
 }

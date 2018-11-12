@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout style="@style/cell_column"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ghstudios.android.components.SlotsView
+        android:id="@+id/slots"
+        android:layout_width="wrap_content"
+        style="@style/cell_column_value"
+        android:paddingTop="@dimen/margin_small"
+        app:imageSize="@dimen/image_size_xsmall"
+        tools:maxSlots="2"/>
+
+    <TextView
+        android:id="@+id/hub"
+        style="@style/cell_column_label"
+        android:text="@string/equipment_slots"/>
+</com.google.android.flexbox.FlexboxLayout>

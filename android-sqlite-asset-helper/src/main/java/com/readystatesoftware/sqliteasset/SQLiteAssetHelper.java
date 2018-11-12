@@ -391,7 +391,11 @@ public class SQLiteAssetHelper extends SQLiteOpenHelper {
         if (fileExists && force) {
             Log.w(TAG, "forcing database upgrade!");
             db = returnDatabase();
-            preCopyDatabase(db);
+            if (db != null) {
+                preCopyDatabase(db);
+                db.close();
+            }
+
             copyDatabaseFromAssets();
             db = returnDatabase();
             postCopyDatabase(db);

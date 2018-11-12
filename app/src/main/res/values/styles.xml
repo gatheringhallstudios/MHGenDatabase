@@ -1,9 +1,8 @@
-<resources xmlns:android="http://schemas.android.com/tools">
+<resources>
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
 
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"> <!-- change to .NoActionBar when integrating Toolbar-->
@@ -165,13 +164,18 @@
         <item name="android:layout_height">32dp</item>
     </style>
 
-    <style name="expandable_group">
-        <item name="android:layout_height">48dp</item>
+    <!-- Used for high contrast header styles. Applied to TextViews -->
+    <style name="section_header">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:minHeight">@dimen/list_item_height</item>
         <item name="android:background">@color/subheading_color</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
+
+    <style name="expandable_group" parent="section_header"/>
 
     <style name="list_item_basic">
         <item name="android:layout_width">match_parent</item>
@@ -182,9 +186,9 @@
     <style name="list_item">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/list_item_height</item>
         <item name="android:minHeight">@dimen/list_item_height</item>
-        <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>
@@ -246,6 +250,13 @@
     <style name="text_small_secondary">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- If a value label is paired next to text_medium -->
+    <style name="text_medium_value">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
@@ -312,8 +323,8 @@
     </style>
 
     <style name="tiny_image">
-        <item name="android:layout_height">16dp</item>
-        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">@dimen/image_size_xsmall</item>
+        <item name="android:layout_width">@dimen/image_size_xsmall</item>
     </style>
 
 
@@ -373,7 +384,10 @@
 
     <style name="cell_column_value">
         <item name="android:textSize">24sp</item>
+        <item name="android:layout_height">32sp</item>
         <item name="android:textColor">@color/weapon_header_property_color</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="cell_column_label">
@@ -426,7 +440,7 @@
     </style>
 
     <!-- Style for list section header -->
-    <style name="section_header" parent="text_small">
+    <style name="section_header_mini" parent="text_small">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>

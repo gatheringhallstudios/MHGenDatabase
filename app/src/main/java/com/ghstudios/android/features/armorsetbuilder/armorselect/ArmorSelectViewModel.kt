@@ -6,12 +6,12 @@ import android.arch.lifecycle.MutableLiveData
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.ArmorSet
-import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.util.loggedThread
 
 
 // todo: move somewhere else, have the ASB handle the mapping instead
-fun getSlotForPieceIndex(pieceIndex: Int) = when(pieceIndex) {
+fun getSlotForPieceIndex(pieceIndex: Int) = when (pieceIndex) {
     ArmorSet.HEAD -> Armor.ARMOR_SLOT_HEAD
     ArmorSet.BODY -> Armor.ARMOR_SLOT_BODY
     ArmorSet.ARMS -> Armor.ARMOR_SLOT_ARMS
@@ -20,15 +20,13 @@ fun getSlotForPieceIndex(pieceIndex: Int) = when(pieceIndex) {
     else -> ""
 }
 
-class ArmorSelectViewModel(private val app: Application): AndroidViewModel(app) {
+class ArmorSelectViewModel(private val app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get()
 
     val allArmorData = MutableLiveData<List<ArmorGroup>>()
 
-    fun initialize(asbIndex: Int, hunterType: Int) {
+    fun initialize(asbIndex: Int, rankFilter: Rank, hunterType: Int) {
         val armorSlot = getSlotForPieceIndex(asbIndex)
-        val rarityLevels = app.resources.getStringArray(R.array.armor_rarity_levels)
-
         loggedThread("Armor Select armor loading") {
             // Head pieces should see all head pieces, passthrough if not a head piece
             val type = when (armorSlot) {
@@ -37,13 +35,22 @@ class ArmorSelectViewModel(private val app: Application): AndroidViewModel(app) 
             }
 
             val armorSkillPoints = dataManager.queryArmorSkillPointsByType(armorSlot, type)
-            val allArmorItems = armorSkillPoints.groupBy { it.armor.rarity }.toSortedMap().map {
-                val rarity = it.key
-                val armorPieces = it.value
+            val allArmorItems = armorSkillPoints
+                    .groupBy { it.armor.rarity }.toSortedMap().map {
+                        val rarity = it.key
+                        val armorPieces = it.value
+                        ArmorGroup(rarity, armorPieces)
+                    }.filter {
+                        // filter results based on rankFilter input
+                        // deviants armor is always returned.
+                        if (rankFilter == Rank.ANY || it.rarity == 11) {
+                            return@filter true
+                        }
 
-                val labelName = rarityLevels[rarity-1]
-                ArmorGroup(labelName, armorPieces)
-            }
+                        val armorRank = Rank.fromArmorRarity(it.rarity)
+                        armorRank == rankFilter
+                    }
+
             allArmorData.postValue(allArmorItems)
         }
     }

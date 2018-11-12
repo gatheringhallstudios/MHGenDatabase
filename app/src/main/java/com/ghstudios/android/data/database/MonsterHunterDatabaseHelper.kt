@@ -8,14 +8,12 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.util.Log
 import android.util.Xml
-import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ArmorSet
-import com.ghstudios.android.data.classes.QuestHub
-import com.ghstudios.android.data.classes.Weapon
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.QueryHelper
+import com.ghstudios.android.data.util.SqlFilter
 import com.ghstudios.android.data.util.getLong
-import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.data.util.localizeColumn
 import com.ghstudios.android.util.firstOrNull
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 import org.xmlpull.v1.XmlPullParser
@@ -69,9 +67,10 @@ For queries with JOINs:
 //Version 8 - v2.0.2 - MHGU Data Fixes
 //Version 9 - v2.1.0 - MHGU Data Fixes
 //Version 10 - v2.1.1 - MHGU Data Fixes + Key items
+//Version 11 - v2.2.0 - Fish data + ArmorSet Hunter Type
 
-private val DATABASE_NAME = "mhgu.db"
-private val DATABASE_VERSION = 10
+private const val DATABASE_NAME = "mhgu.db"
+private const val DATABASE_VERSION = 11
 
 /**
  * Initialize the helper object
@@ -83,10 +82,21 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
     private val TAG = "MHGU-DB-Helper"
 
+    private val column_name
+        get() = localizeColumn("name")
+
+    private val column_description
+        get() = localizeColumn("description")
+
     // Use the application context, which will ensure that you
     // don't accidentally leak an Activity's context.
     // See this article for more information: http://bit.ly/6LRzfx
     private val myContext = ctx.applicationContext
+
+    /**
+     * Alias for writeableDatabase
+     */
+    private inline val db get() = this.writableDatabase
 
     init {
         setForcedUpgrade()
@@ -660,14 +670,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_COMPONENTS_TYPE] = c + "." + S.COLUMN_COMPONENTS_TYPE
         projectionMap[S.COLUMN_COMPONENTS_KEY] = c + "." + S.COLUMN_COMPONENTS_KEY
 
-        projectionMap[cr + S.COLUMN_ITEMS_NAME] = cr + "." + S.COLUMN_ITEMS_NAME + " AS " + cr + S.COLUMN_ITEMS_NAME
+        projectionMap[cr + S.COLUMN_ITEMS_NAME] = "$cr.$column_name AS " + cr + S.COLUMN_ITEMS_NAME
         projectionMap[cr + S.COLUMN_ITEMS_TYPE] = cr + "." + S.COLUMN_ITEMS_TYPE + " AS " + cr + S.COLUMN_ITEMS_TYPE
         projectionMap[cr + S.COLUMN_ITEMS_SUB_TYPE] = cr + "." + S.COLUMN_ITEMS_SUB_TYPE + " AS " + cr + S.COLUMN_ITEMS_SUB_TYPE
         projectionMap[cr + S.COLUMN_ITEMS_RARITY] = cr + "." + S.COLUMN_ITEMS_RARITY + " AS " + cr + S.COLUMN_ITEMS_RARITY
         projectionMap[cr + S.COLUMN_ITEMS_ICON_NAME] = cr + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + cr + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[cr + S.COLUMN_ITEMS_ICON_COLOR] = cr + "." + S.COLUMN_ITEMS_ICON_COLOR + " AS " + cr + S.COLUMN_ITEMS_ICON_COLOR
 
-        projectionMap[co + S.COLUMN_ITEMS_NAME] = co + "." + S.COLUMN_ITEMS_NAME + " AS " + co + S.COLUMN_ITEMS_NAME
+        projectionMap[co + S.COLUMN_ITEMS_NAME] = "$co.$column_name AS " + co + S.COLUMN_ITEMS_NAME
         projectionMap[co + S.COLUMN_ITEMS_TYPE] = co + "." + S.COLUMN_ITEMS_TYPE + " AS " + co + S.COLUMN_ITEMS_TYPE
         projectionMap[co + S.COLUMN_ITEMS_ICON_NAME] = co + "." + S.COLUMN_ITEMS_ICON_NAME + " AS " + co + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[co + S.COLUMN_ITEMS_ICON_COLOR] = co + "." + S.COLUMN_ITEMS_ICON_COLOR + " AS " + co + S.COLUMN_ITEMS_ICON_COLOR
@@ -708,18 +718,18 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return DecorationCursor(wrapJoinHelper(builderDecoration(), qh))
     }
 
-    /*
-     * Get decorations filtered by a search term
+    /**
+     * Get decorations filtered by a search term.
+     * This query filters by name, and not by skill
      */
     fun queryDecorationsSearch(searchTerm: String): DecorationCursor {
-        var searchTerm = searchTerm
-        searchTerm = '%'.toString() + searchTerm + '%'.toString()
+        val searchFilter = SqlFilter("i.$column_name", searchTerm)
 
         val qh = QueryHelper()
         qh.Columns = null
         qh.Table = S.TABLE_DECORATIONS
-        qh.Selection = "i.name LIKE ? OR skill_1_name LIKE ? OR skill_2_name LIKE ?"
-        qh.SelectionArgs = arrayOf(searchTerm, searchTerm, searchTerm)
+        qh.Selection = searchFilter.predicate
+        qh.SelectionArgs = searchFilter.parameters
         qh.GroupBy = null
         qh.Having = null
         qh.OrderBy = "skill_1_name ASC"
@@ -761,7 +771,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         val projectionMap = HashMap<String, String>()
         projectionMap["_id"] = "i." + S.COLUMN_ITEMS_ID + " AS " + "_id"
-        projectionMap["item_name"] = "i." + S.COLUMN_ITEMS_NAME + " AS " + "item_name"
+        projectionMap["item_name"] = "i.$column_name AS item_name"
         projectionMap[S.COLUMN_ITEMS_JPN_NAME] = "i." + S.COLUMN_ITEMS_JPN_NAME
         projectionMap[S.COLUMN_ITEMS_TYPE] = "i." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = "i." + S.COLUMN_ITEMS_SUB_TYPE
@@ -774,10 +784,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = "i." + S.COLUMN_ITEMS_ICON_COLOR
         projectionMap[S.COLUMN_DECORATIONS_NUM_SLOTS] = "d." + S.COLUMN_DECORATIONS_NUM_SLOTS
         projectionMap["skill_1_id"] = "s1." + S.COLUMN_SKILL_TREES_ID + " AS " + "skill_1_id"
-        projectionMap["skill_1_name"] = "s1." + S.COLUMN_SKILL_TREES_NAME + " AS " + "skill_1_name"
+        projectionMap["skill_1_name"] = "s1.$column_name AS skill_1_name"
         projectionMap["skill_1_point_value"] = "its1." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE + " AS " + "skill_1_point_value"
         projectionMap["skill_2_id"] = "s2." + S.COLUMN_SKILL_TREES_ID + " AS " + "skill_2_id"
-        projectionMap["skill_2_name"] = "s2." + S.COLUMN_SKILL_TREES_NAME + " AS " + "skill_2_name"
+        projectionMap["skill_2_name"] = "s2.$column_name AS skill_2_name"
         projectionMap["skill_2_point_value"] = "its2." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE + " AS " + "skill_2_point_value"
 
         //Create new querybuilder
@@ -887,10 +897,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_GATHERING_RARE] = g + "." + S.COLUMN_GATHERING_RARE
         projectionMap[S.COLUMN_GATHERING_QUANTITY] = g + "." + S.COLUMN_GATHERING_QUANTITY
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[l + S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP + " AS " + l + S.COLUMN_LOCATIONS_MAP
 
         //Create new querybuilder
@@ -975,13 +985,13 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID] = itst + "." + S.COLUMN_ITEM_TO_SKILL_TREE_SKILL_TREE_ID
         projectionMap[S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE] = itst + "." + S.COLUMN_ITEM_TO_SKILL_TREE_POINT_VALUE
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[s + S.COLUMN_SKILL_TREES_NAME] = s + "." + S.COLUMN_SKILL_TREES_NAME + " AS " + s + S.COLUMN_SKILL_TREES_NAME
+        projectionMap[s + S.COLUMN_SKILL_TREES_NAME] = "$s.$column_name AS " + s + S.COLUMN_SKILL_TREES_NAME
 
         //Create new querybuilder
         val QB = SQLiteQueryBuilder()
@@ -1053,41 +1063,23 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 * Get all locations
 	 */
     fun queryLocations(): LocationCursor {
-        // "SELECT DISTINCT * FROM locations GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_LOCATIONS
-        qh.Columns = null
-        qh.Selection = "_id<100"
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        //Night versions have an _id + 100, so to keep them together we need to modify the sort.
-        qh.OrderBy = null//"CASE WHEN _id>100 THEN _id-100 ELSE _id END";
-        qh.Limit = null
-
-        return LocationCursor(wrapHelper(qh))
+        // note 100 is the cutoff for night versions.
+        return LocationCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, map
+            FROM ${S.TABLE_LOCATIONS}
+            WHERE _id < 100
+        """, emptyArray()))
     }
 
     /*
      * Get a specific location
      */
-    fun queryLocation(id: Long): LocationCursor {
-        // "SELECT DISTINCT * FROM locations WHERE _id = id LIMIT 1"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_LOCATIONS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_LOCATIONS_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return LocationCursor(wrapHelper(qh))
+    fun queryLocation(id: Long): Location? {
+        return LocationCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, map
+            FROM ${S.TABLE_LOCATIONS}
+            WHERE _id = ?
+        """, arrayOf(id.toString()))).firstOrNull { it.location }
     }
 
     /**
@@ -1098,20 +1090,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
      * Get all melodies available from a given set of notes
      */
     fun queryMelodiesFromNotes(notes: String): HornMelodiesCursor {
-        // "SELECT * FROM horn_melodies WHERE notes = notes"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_HORN_MELODIES
-        qh.Columns = null
-        qh.Selection = S.COLUMN_HORN_MELODIES_NOTES + " = ?"
-        qh.SelectionArgs = arrayOf(notes)
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return HornMelodiesCursor(wrapHelper(qh))
+        val effect1_column = localizeColumn("effect1")
+        val effect2_column = localizeColumn("effect2")
+        return HornMelodiesCursor(db.rawQuery("""
+            SELECT _id, notes, song, duration, extension,
+                $column_name as name, $effect1_column as effect1, $effect2_column as effect2
+            FROM horn_melodies
+            WHERE notes = ?
+        """, arrayOf(notes)))
     }
 
     /******************************** MONSTER AILMENT QUERIES  */
@@ -1195,12 +1181,12 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap["rest_area"] = h + "." + S.COLUMN_HABITAT_REST + " AS " + "rest_area"
 
         projectionMap[l + S.COLUMN_LOCATIONS_ID] = l + "." + S.COLUMN_LOCATIONS_ID + " AS " + l + S.COLUMN_LOCATIONS_ID
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[l + S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP + " AS " + l + S.COLUMN_LOCATIONS_MAP
 
         projectionMap[m + S.COLUMN_MONSTERS_ID] = m + "." + S.COLUMN_MONSTERS_ID + " AS " + m + S.COLUMN_MONSTERS_ID
         projectionMap[m + S.COLUMN_MONSTERS_SORT_NAME] = m + "." + S.COLUMN_MONSTERS_SORT_NAME + " AS " + m + S.COLUMN_MONSTERS_SORT_NAME
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[m + S.COLUMN_MONSTERS_CLASS] = m + "." + S.COLUMN_MONSTERS_CLASS + " AS " + m + S.COLUMN_MONSTERS_CLASS
         projectionMap[m + S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION + " AS " + m + S.COLUMN_MONSTERS_FILE_LOCATION
 
@@ -1332,9 +1318,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
@@ -1376,9 +1362,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_UNSTABLE] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_UNSTABLE
         projectionMap[S.COLUMN_MONSTER_TO_QUEST_HYPER] = mtq + "." + S.COLUMN_MONSTER_TO_QUEST_HYPER
 
-        projectionMap[m + S.COLUMN_MONSTERS_NAME] = m + "." + S.COLUMN_MONSTERS_NAME + " AS " + m + S.COLUMN_MONSTERS_NAME
+        projectionMap[m + S.COLUMN_MONSTERS_NAME] = "$m.$column_name AS " + m + S.COLUMN_MONSTERS_NAME
         projectionMap[S.COLUMN_MONSTERS_FILE_LOCATION] = m + "." + S.COLUMN_MONSTERS_FILE_LOCATION
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
@@ -1459,7 +1445,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         qh.OrderBy = null
         qh.Limit = null
 
-        modifyQueryForSearch(qh, "q." + S.COLUMN_QUESTS_NAME, searchTerm)
+        modifyQueryForSearch(qh, "q.$column_name", searchTerm)
 
         return QuestCursor(wrapJoinHelper(builderQuest(), qh))
     }
@@ -1533,10 +1519,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 
         val projectionMap = LinkedHashMap<String, String>()
 
+        val column_goal = localizeColumn(S.COLUMN_QUESTS_GOAL)
+        val column_sub_goal = localizeColumn(S.COLUMN_QUESTS_SUB_GOAL)
+        val column_flavor = localizeColumn(S.COLUMN_QUESTS_FLAVOR)
+
         projectionMap["_id"] = q + "." + S.COLUMN_QUESTS_ID + " AS " + "_id"
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[q + S.COLUMN_QUESTS_JPN_NAME] = q + "." + S.COLUMN_QUESTS_JPN_NAME + " AS " + q + S.COLUMN_QUESTS_JPN_NAME
-        projectionMap[S.COLUMN_QUESTS_GOAL] = q + "." + S.COLUMN_QUESTS_GOAL
+        projectionMap[S.COLUMN_QUESTS_GOAL] = "$q.$column_goal AS ${S.COLUMN_QUESTS_GOAL}"
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_RANK] = q + "." + S.COLUMN_QUESTS_RANK
         projectionMap[S.COLUMN_QUESTS_TYPE] = q + "." + S.COLUMN_QUESTS_TYPE
@@ -1546,14 +1536,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_QUESTS_FEE] = q + "." + S.COLUMN_QUESTS_FEE
         projectionMap[S.COLUMN_QUESTS_REWARD] = q + "." + S.COLUMN_QUESTS_REWARD
         projectionMap[S.COLUMN_QUESTS_HRP] = q + "." + S.COLUMN_QUESTS_HRP
-        projectionMap[S.COLUMN_QUESTS_SUB_GOAL] = q + "." + S.COLUMN_QUESTS_SUB_GOAL
+        projectionMap[S.COLUMN_QUESTS_SUB_GOAL] =  "$q.$column_sub_goal AS ${S.COLUMN_QUESTS_SUB_GOAL}"
         projectionMap[S.COLUMN_QUESTS_SUB_REWARD] = q + "." + S.COLUMN_QUESTS_SUB_REWARD
         projectionMap[S.COLUMN_QUESTS_SUB_HRP] = q + "." + S.COLUMN_QUESTS_SUB_HRP
         projectionMap[S.COLUMN_QUESTS_GOAL_TYPE] = q + "." + S.COLUMN_QUESTS_GOAL_TYPE
         projectionMap[S.COLUMN_QUESTS_HUNTER_TYPE] = q + "." + S.COLUMN_QUESTS_HUNTER_TYPE
-        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = l + "." + S.COLUMN_LOCATIONS_NAME + " AS " + l + S.COLUMN_LOCATIONS_NAME
+        projectionMap[l + S.COLUMN_LOCATIONS_NAME] = "$l.$column_name AS " + l + S.COLUMN_LOCATIONS_NAME
         projectionMap[S.COLUMN_LOCATIONS_MAP] = l + "." + S.COLUMN_LOCATIONS_MAP
-        projectionMap[S.COLUMN_QUESTS_FLAVOR] = q + "." + S.COLUMN_QUESTS_FLAVOR
+        projectionMap[S.COLUMN_QUESTS_FLAVOR] = "$q.$column_flavor AS ${S.COLUMN_QUESTS_FLAVOR}"
         projectionMap[S.COLUMN_QUESTS_METADATA] = q + "." + S.COLUMN_QUESTS_METADATA
         projectionMap[S.COLUMN_QUESTS_PERMIT_MONSTER_ID] = q + "." + S.COLUMN_QUESTS_PERMIT_MONSTER_ID
 
@@ -1631,10 +1621,10 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_QUEST_REWARDS_PERCENTAGE] = qr + "." + S.COLUMN_QUEST_REWARDS_PERCENTAGE
         projectionMap[S.COLUMN_QUEST_REWARDS_STACK_SIZE] = qr + "." + S.COLUMN_QUEST_REWARDS_STACK_SIZE
 
-        projectionMap[i + S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME + " AS " + i + S.COLUMN_ITEMS_NAME
+        projectionMap[i + S.COLUMN_ITEMS_NAME] = "$i.$column_name AS " + i + S.COLUMN_ITEMS_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
-        projectionMap[q + S.COLUMN_QUESTS_NAME] = q + "." + S.COLUMN_QUESTS_NAME + " AS " + q + S.COLUMN_QUESTS_NAME
+        projectionMap[q + S.COLUMN_QUESTS_NAME] = "$q.$column_name AS " + q + S.COLUMN_QUESTS_NAME
         projectionMap[S.COLUMN_QUESTS_HUB] = q + "." + S.COLUMN_QUESTS_HUB
         projectionMap[S.COLUMN_QUESTS_STARS] = q + "." + S.COLUMN_QUESTS_STARS
 
@@ -1672,21 +1662,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /*
 	 * Get all skills for a skill tree
 	 */
-    fun querySkillFromTree(id: Long): SkillCursor {
-        // "SELECT * FROM skills WHERE skill_tree_id = id"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_SKILLS
-        qh.Columns = null
-        qh.Selection = S.COLUMN_SKILLS_SKILL_TREE_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return SkillCursor(wrapHelper(qh))
+    fun querySkillsFromTree(treeId: Long): SkillCursor {
+        return SkillCursor(db.rawQuery("""
+            SELECT _id, $column_name name, name_ja, $column_description description,
+                skill_tree_id, required_skill_tree_points
+            FROM ${S.TABLE_SKILLS}
+            WHERE skill_tree_id = ?
+            ORDER BY required_skill_tree_points DESC
+        """, arrayOf(treeId.toString())))
     }
 
     /**
@@ -1697,65 +1680,41 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
 	 * Get all skill tress
 	 */
     fun querySkillTrees(): SkillTreeCursor {
-        // "SELECT DISTINCT * FROM skill_trees GROUP BY name"
-
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            ORDER BY $column_name ASC
+        """, emptyArray()))
     }
 
     /*
      * Get Skill trees filtered by name
      */
-    fun querySkillTreesSearch(searchTerm: String): SkillTreeCursor {
-        // "SELECT DISTINCT * FROM skill_trees
-        //  WHERE (name LIKE '% word%' OR name LIKE 'word%')
-        //    AND (name LIKE '% word2%' OR name LIKE 'word2%')
-        //  GROUP BY name"
+    fun querySkillTreesSearch(searchTerm: String?): SkillTreeCursor {
+        if (searchTerm == null || searchTerm.isBlank()) {
+            return querySkillTrees()
+        }
 
-        val qh = QueryHelper()
-        qh.Distinct = true
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = S.COLUMN_SKILL_TREES_NAME
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
+        val filter = SqlFilter(column_name, searchTerm)
 
-        modifyQueryForSearch(qh, S.COLUMN_SKILL_TREES_NAME, searchTerm)
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            WHERE ${filter.predicate}
+            ORDER BY $column_name ASC
+        """, filter.parameters))
     }
 
     /*
      * Get a specific skill tree
      */
-    fun querySkillTree(id: Long): SkillTreeCursor {
+    fun querySkillTree(id: Long): SkillTree? {
         // "SELECT DISTINCT * FROM skill_trees WHERE _id = id LIMIT 1"
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_SKILL_TREES
-        qh.Columns = null
-        qh.Selection = S.COLUMN_SKILL_TREES_ID + " = ?"
-        qh.SelectionArgs = arrayOf(id.toString())
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = "1"
-
-        return SkillTreeCursor(wrapHelper(qh))
+        return SkillTreeCursor(db.rawQuery("""
+            SELECT _id, $column_name as name, name_ja
+            FROM ${S.TABLE_SKILL_TREES}
+            WHERE _id = ?
+        """, arrayOf(id.toString()))).firstOrNull { it.skillTree }
     }
 
     /**
@@ -1920,7 +1879,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_WEAPONS_PARENT_ID] = w + "." + S.COLUMN_WEAPONS_PARENT_ID
         projectionMap[S.COLUMN_WEAPONS_SPECIAL_AMMO] = w + "." + S.COLUMN_WEAPONS_SPECIAL_AMMO
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_JPN_NAME] = i + "." + S.COLUMN_ITEMS_JPN_NAME
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
@@ -1928,7 +1887,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_ITEMS_CARRY_CAPACITY] = i + "." + S.COLUMN_ITEMS_CARRY_CAPACITY
         projectionMap[S.COLUMN_ITEMS_BUY] = i + "." + S.COLUMN_ITEMS_BUY
         projectionMap[S.COLUMN_ITEMS_SELL] = i + "." + S.COLUMN_ITEMS_SELL
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
 
         //Create new querybuilder
@@ -2122,9 +2081,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE] = w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_MELEE
         projectionMap[S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED] = w + "." + S.COLUMN_PALICO_WEAPONS_AFFINITY_RANGED
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
 
@@ -2185,9 +2144,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_PALICO_ARMOR_THUNDER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_THUNDER_RES
         projectionMap[S.COLUMN_PALICO_ARMOR_WATER_RES] = w + "." + S.COLUMN_PALICO_ARMOR_WATER_RES
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name AS ${S.COLUMN_ITEMS_NAME}"
         projectionMap[S.COLUMN_ITEMS_RARITY] = i + "." + S.COLUMN_ITEMS_RARITY
-        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = i + "." + S.COLUMN_ITEMS_DESCRIPTION
+        projectionMap[S.COLUMN_ITEMS_DESCRIPTION] = "$i.$column_description AS ${S.COLUMN_ITEMS_DESCRIPTION}"
         projectionMap[S.COLUMN_ITEMS_ICON_NAME] = i + "." + S.COLUMN_ITEMS_ICON_NAME
         projectionMap[S.COLUMN_ITEMS_ICON_COLOR] = i + "." + S.COLUMN_ITEMS_ICON_COLOR
 
@@ -2332,34 +2291,9 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     }
 
     /*
-     * Get all wishlist data using specific db instance
-     */
-    fun queryWishlistsData(db: SQLiteDatabase): WishlistDataCursor {
-
-        val qh = QueryHelper()
-        qh.Distinct = false
-        qh.Table = S.TABLE_WISHLIST_DATA
-        qh.Columns = null
-        qh.Selection = null
-        qh.SelectionArgs = null
-        qh.GroupBy = null
-        qh.Having = null
-        qh.OrderBy = null
-        qh.Limit = null
-
-        // Multithread issues workaround
-        val qb = builderWishlistData()
-        val cursor = qb.query(
-                db, qh.Columns, qh.Selection, qh.SelectionArgs, qh.GroupBy, qh.Having, qh.OrderBy, qh.Limit)
-
-        return WishlistDataCursor(cursor)
-    }
-
-    /*
      * Get all wishlist data for a specific wishlist
      */
     fun queryWishlistData(id: Long): WishlistDataCursor {
-
         val wdColumns: Array<String>? = null
         val wdSelection = "wd." + S.COLUMN_WISHLIST_DATA_WISHLIST_ID + " = ?"
         val wdSelectionArgs = arrayOf(id.toString())
@@ -2519,7 +2453,7 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         projectionMap[S.COLUMN_WISHLIST_DATA_SATISFIED] = wd + "." + S.COLUMN_WISHLIST_DATA_SATISFIED
         projectionMap[S.COLUMN_WISHLIST_DATA_PATH] = wd + "." + S.COLUMN_WISHLIST_DATA_PATH
 
-        projectionMap[S.COLUMN_ITEMS_NAME] = i + "." + S.COLUMN_ITEMS_NAME
+        projectionMap[S.COLUMN_ITEMS_NAME] = "$i.$column_name as name"
         //projectionMap.put(S.COLUMN_ITEMS_JPN_NAME, i + "." + S.COLUMN_ITEMS_JPN_NAME);
         projectionMap[S.COLUMN_ITEMS_TYPE] = i + "." + S.COLUMN_ITEMS_TYPE
         projectionMap[S.COLUMN_ITEMS_SUB_TYPE] = i + "." + S.COLUMN_ITEMS_SUB_TYPE
@@ -2935,11 +2869,11 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
     /**
      * Creates a new Armor Set Builder set in the entries of the database.
      */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int): Long {
+    fun queryAddASBSet(name: String, rank: Rank, hunterType: Int): Long {
         val values = ContentValues()
 
         values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank)
+        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
         values.put(S.COLUMN_TALISMAN_EXISTS, 0)
         values.put(S.COLUMN_ASB_WEAPON_SLOTS, 3)
@@ -2947,15 +2881,14 @@ internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
         return insertRecord(S.TABLE_ASB_SETS, values)
     }
 
-    fun queryUpdateASBSet(asbSetId: Long, name: String, rank: Int, hunterType: Int): Long {
+    fun queryUpdateASBSet(asbSetId: Long, name: String, rank: Rank, hunterType: Int): Long {
         val filter = S.COLUMN_ASB_SET_ID + " = " + asbSetId
 
         val values = ContentValues()
 
         values.put(S.COLUMN_ASB_SET_NAME, name)
-        values.put(S.COLUMN_ASB_SET_RANK, rank)
+        values.put(S.COLUMN_ASB_SET_RANK, rank.value)
         values.put(S.COLUMN_ASB_SET_HUNTER_TYPE, hunterType)
-        values.put(S.COLUMN_TALISMAN_EXISTS, 0)
 
         return updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
     }

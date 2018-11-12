@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/list_item_large"
+    android:background="@drawable/background_selectable"
+    android:foreground="?attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:clickable="false"
     android:orientation="horizontal">
-
 
     <ImageView
         style="@style/main_image"

@@ -98,6 +98,25 @@
         <com.ghstudios.android.components.SectionHeaderCell
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:labelText="Credits (Translations)" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@drawable/divider_solid"
+            android:showDividers="middle">
+
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconSrc="@drawable/icon_binoculars"
+                app:labelText="MHDucky" />
+        </LinearLayout>
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:labelText="Credits (MHGen)" />
 
         <LinearLayout
@@ -111,13 +130,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:iconSrc="@drawable/ic_github"
-                app:labelText="https://github.com/jaysondc" />
+                app:labelText="https://github.com/jaysondc"
+                android:tag="https://github.com/jaysondc"/>
 
             <com.ghstudios.android.components.IconLabelTextCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:iconSrc="@drawable/ic_github"
-                app:labelText="https://github.com/kevinn" />
+                app:labelText="https://github.com/kevinn"
+                android:tag="https://github.com/kevinn"/>
         </LinearLayout>
 
         <com.ghstudios.android.components.SectionHeaderCell

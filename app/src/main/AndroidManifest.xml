@@ -117,7 +117,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity"
+            android:name="com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data

@@ -4,160 +4,114 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
+import android.view.ViewGroup
 
-import com.ghstudios.android.AppSettings
 import com.ghstudios.android.ClickListeners.ItemClickListener
-import com.ghstudios.android.components.ColumnLabelTextCell
 import com.ghstudios.android.components.ItemRecipeCell
-import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
+import kotlinx.android.synthetic.main.fragment_weapon_detail.*
+import kotlinx.android.synthetic.main.fragment_weapon_detail_recipe.*
+
 
 /**
- * The superclass of all weapon detail fragments.
- * TODO: Fragments do not lend themselves well to being inherited for unique views.
- * Find an alternative way to handle it like custom view groups, or move more functionality
- * to the superclass
+ * Fragment that displays data information for a weapon.
+ * Defers the internal data inflation and population to a subclass of WeaponDetailViewHolder.
  */
-open class WeaponDetailFragment : Fragment() {
+class WeaponDetailFragment : Fragment() {
     companion object {
-        val ARG_WEAPON_ID = "WEAPON_ID"
+        private const val ARG_WEAPON_ID = "WEAPON_ID"
 
-        @JvmStatic open fun newInstance(weaponId: Long): WeaponDetailFragment {
+        @JvmStatic fun newInstance(weaponId: Long): WeaponDetailFragment {
             return WeaponDetailFragment().applyArguments {
                 putLong(ARG_WEAPON_ID, weaponId)
             }
         }
     }
 
-//    private val viewModel by lazy {
-//        ViewModelProviders.of(this).get(WeaponDetailViewModel::class.java)
-//    }
+    /**
+     * Returns the viewmodel owned by the activity, which has already loaded weapon data
+     */
+    private val viewModel by lazy {
+        ViewModelProviders.of(activity!!).get(WeaponDetailViewModel::class.java)
+    }
 
-    // note: we can't use KTX or ButterKnife because of the awkward fragment inheritance strategy
-
-    private var titleBar: TitleBarCell? = null
-    private var rarityCell: ColumnLabelTextCell? = null
-    private var attackCell: ColumnLabelTextCell? = null
-    private var element1Cell: ColumnLabelTextCell? = null
-    private var element2Cell: ColumnLabelTextCell? = null
-    private var affinityCell: ColumnLabelTextCell? = null
-    private var slotsCell: ColumnLabelTextCell? = null
-
-    protected var mWeaponDescription: TextView? = null
-    protected var mWeaponDefenseTextView: TextView? = null
-    protected var mWeaponDefenseTextTextView: TextView? = null
-    protected var mWeaponCreationTextView: TextView? = null
-    protected var mWeaponUpgradeTextView: TextView? = null
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_weapon_detail, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Bind general view elements
-        // subclasses implement onCreateView, so we have to do it here instead
-        titleBar = view.findViewById(R.id.titlebar)
-        rarityCell = view.findViewById(R.id.rare)
-        attackCell = view.findViewById(R.id.attack)
-        element1Cell = view.findViewById(R.id.element1)
-        element2Cell = view.findViewById(R.id.element2)
-        affinityCell = view.findViewById(R.id.affinity)
-        slotsCell = view.findViewById(R.id.slots)
-
-        val viewModel = ViewModelProviders.of(activity!!).get(WeaponDetailViewModel::class.java)
-
         viewModel.weaponData.observe(this, Observer(::populateWeapon))
-        viewModel.weaponElementData.observe(this, Observer(::populateElementData))
-
         viewModel.createComponentData.observe(this, Observer(::populateCreateComponents))
         viewModel.improveComponentData.observe(this, Observer(::populateUpgradeComponents))
     }
 
-    protected open fun populateWeapon(weapon: Weapon?) {
+    /**
+     * Internal helper to populate the view with weapon data, and inflate the appropriate sub-view
+     * based on the weapon type.
+     */
+    private fun populateWeapon(weapon: Weapon?) {
         if (weapon == null) return
 
-        titleBar!!.setIcon(weapon)
-        titleBar!!.setTitleText(weapon.name)
-        titleBar?.setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
-        
-        attackCell!!.setValueText("" + weapon.attack)
-        affinityCell!!.setValueText(weapon.affinity!! + "%")
-        slotsCell!!.setValueText("" + weapon.slotString)
+        with(this.titlebar) {
+            setIcon(weapon)
+            setTitleText(weapon.name)
+            setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
+        }
+        this.weapon_description.text = weapon.description
+        this.weapon_cost_create.text = "" + weapon.creationCost + "z"
+        this.weapon_cost_upgrade.text = "" + weapon.upgradeCost + "z"
 
-        /*
-         * Items below are from old code
-         */
-
-        mWeaponDescription!!.text = weapon.description
-
-        if (weapon.defense == 0) {
-            mWeaponDefenseTextTextView!!.visibility = View.GONE
-            mWeaponDefenseTextView!!.visibility = View.GONE
-        } else
-            mWeaponDefenseTextView!!.text = "" + weapon.defense
-
-
-        val createCost = "" + weapon.creationCost + "z"
-        val upgradeCost = "" + weapon.upgradeCost + "z"
-        mWeaponCreationTextView!!.text = createCost
-        mWeaponUpgradeTextView!!.text = upgradeCost
+        // inflate the subview, depending on weapon type
+        val weaponDataContainer = view!!.findViewById<ViewGroup>(R.id.weapon_detail_view)
+        weaponDataContainer.removeAllViews()
+        val weaponDataView = when (weapon.wtype) {
+            Weapon.BOW -> WeaponBowDetailViewHolder(weaponDataContainer)
+            Weapon.LIGHT_BOWGUN, Weapon.HEAVY_BOWGUN -> WeaponBowgunDetailViewHolder(weaponDataContainer)
+            else -> WeaponBladeDetailViewHolder(weaponDataContainer)
+        }
+        weaponDataView.bindWeapon(weapon)
     }
 
-    private fun populateElementData(items: List<WeaponElementData>?) {
-        element1Cell!!.visibility = View.GONE
-        element2Cell!!.visibility = View.GONE
-
-        if (items == null) {
-            return
-        }
-
-        if (items.isNotEmpty()) {
-            val (element, value) = items[0]
-            element1Cell!!.setLabelText(element)
-            element1Cell!!.setValueText(value.toString())
-            element1Cell!!.visibility = View.VISIBLE
-        }
-
-        if (items.size >= 2) {
-            val (element, value) = items[1]
-            element2Cell!!.setLabelText(element)
-            element2Cell!!.setValueText(value.toString())
-            element2Cell!!.visibility = View.VISIBLE
-        }
-    }
-
+    /**
+     * Internal helper to populate the craft section with the correct components.
+     * Use as a callback.
+     */
     private fun populateCreateComponents(components: List<Component>?) {
         val section = view!!.findViewById<View>(R.id.create_section)
-
-        if (components == null || components.isEmpty()) {
-            section.visibility = View.GONE
-            return
-        }
-
-        section.visibility = View.VISIBLE
-
         val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.create_recipe)
-        for (component in components) {
-            val item = component.component
-            val itemCell = recipeView.addItem(item, item?.name, component.quantity,component.isKey)
-            itemCell.setOnClickListener(ItemClickListener(context!!, item!!))
-        }
+        populateRecipe(section, recipeView, components)
     }
 
+    /**
+     * Internal helper to populate the upgrade section with the correct components.
+     * Use as a callback.
+     */
     private fun populateUpgradeComponents(components: List<Component>?) {
         val section = view!!.findViewById<View>(R.id.upgrade_section)
+        val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
+        populateRecipe(section, recipeView, components)
+    }
 
+    /**
+     * Internal function to populate an arbitrary recipe
+     * @param section Section to show or hide based on whether components is empty or not
+     * @param recipeView The object to populate with recipe components
+     * @param components The actual recipe items
+     */
+    private fun populateRecipe(section: View, recipeView: ItemRecipeCell, components: List<Component>?) {
         if (components == null || components.isEmpty()) {
             section.visibility = View.GONE
             return
         }
 
         section.visibility = View.VISIBLE
-
-        val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
         for (component in components) {
             val item = component.component
             val itemCell = recipeView.addItem(item, item?.name, component.quantity, false)

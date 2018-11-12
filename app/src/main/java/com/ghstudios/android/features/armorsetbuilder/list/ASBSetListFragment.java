@@ -13,8 +13,10 @@ import android.support.v4.content.Loader;
 import android.view.*;
 import android.widget.*;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.data.ASBManager;
 import com.ghstudios.android.data.classes.ASBSet;
+import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
@@ -33,8 +35,6 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
     public static final int REQUEST_ADD_ASB_SET = 0;
     public static final int REQUEST_EDIT_ASB_SET = 1;
 
-    FloatingActionButton fab;
-
     private ASBManager asbManager = DataManager.get().getAsbManager();
 
     @Override
@@ -47,16 +47,10 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_list_generic_context, container, false);
-       fab = (FloatingActionButton) view.findViewById(R.id.fab);
-       fab.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               showAddDialog();
-           }
-       });
+        View view = inflater.inflate(R.layout.fragment_list_generic_context, container, false);
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener((l) -> showAddDialog());
         return view;
-
     }
 
     @Override
@@ -95,7 +89,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
                     asbManager.queryAddASBSet(
                             name,
-                            rank,
+                            Rank.from(rank),
                             hunterType
                     );
 
@@ -109,7 +103,11 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
                     int rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1);
                     int hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1);
 
-                    asbManager.queryUpdateASBSet(id, name, rank, hunterType);
+                    asbManager.queryUpdateASBSet(
+                            id,
+                            name,
+                            Rank.from(rank),
+                            hunterType);
 
                     updateUI();
                     break;
@@ -142,13 +140,9 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
                 mode.setTitle(l.getCheckedItemCount() + " selected");
 
-                if (l.getCheckedItemCount() > 1) {
-                    // We hide the edit button since you can only edit one set at a time
-                    mode.getMenu().findItem(R.id.action_edit_data).setVisible(false);
-                }
-                else {
-                    mode.getMenu().findItem(R.id.action_edit_data).setVisible(true);
-                }
+                // We can only edit one set at a time
+                boolean showEdit = l.getCheckedItemCount() <= 1;
+                mode.getMenu().findItem(R.id.action_edit_data).setVisible(showEdit);
             }
 
             @Override
@@ -218,15 +212,17 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
             }
 
             private AlertDialog.Builder createConfirmCopyDialog() {
+                // Create dialog
                 AlertDialog.Builder b = new AlertDialog.Builder(getActivity())
                         .setPositiveButton(R.string.copy, (DialogInterface dialog, int which) -> {
                             for (long id : l.getCheckedItemIds()) {
-                                asbManager.queryAddASBSet(id);
+                                asbManager.copyASB(id);
                             }
                             updateUI();
                         })
                         .setNegativeButton(android.R.string.cancel, null);
 
+                // Set dialog message depending on the number of selected items
                 if (l.getCheckedItemCount() == 1) {
                     String firstName = asbManager.getASBSet(l.getCheckedItemIds()[0]).getName();
                     b.setMessage(getResources().getString(R.string.dialog_message_copy, firstName))
@@ -262,7 +258,6 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
         public ASBSetListCursorAdapter(Context context, ASBSetCursor cursor) {
             super(context, cursor, 0);
-
             this.cursor = cursor;
         }
 
@@ -275,18 +270,14 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
-            final ASBSet set = this.cursor.getASBSet();
+            final ASBSet set = this.cursor.getAsbSet();
 
             TextView textView = (TextView) view.findViewById(R.id.name_text);
             textView.setText(set.getName());
 
             TextView propertiesText = (TextView) view.findViewById(R.id.properties_text);
 
-            int rank = set.getRank();
-            String[] arr = context.getResources().getStringArray(R.array.rank);
-            if(rank>= arr.length) rank = arr.length-1;
-
-            String rankString = arr[rank] + " Rank";
+            String rankString = AssetLoader.localizeRank(set.getRank());
             String hunterType = context.getResources().getStringArray(R.array.hunter_type)[set.getHunterType()];
 
             propertiesText.setText(rankString + ", " + hunterType);

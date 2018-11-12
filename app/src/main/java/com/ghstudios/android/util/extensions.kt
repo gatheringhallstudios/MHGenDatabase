@@ -1,6 +1,7 @@
 package com.ghstudios.android.util
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.database.Cursor
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -42,6 +43,18 @@ inline fun <J : Cursor, R> J.useCursor(process: (J) -> R): R {
 }
 
 /**
+ * Extension function that iterates over a cursor, doing an operation for each step
+ * The cursor is closed at the completion of this method.
+ */
+inline fun <T, J : Cursor> J.forEach(process: (J) -> T) {
+    this.useCursor {
+        while (moveToNext()) {
+            process.invoke(this)
+        }
+    }
+}
+
+/**
  * Extension function that converts a cursor to a list of objects using a transformation function.
  * The cursor is closed at the completion of this method.
  */
@@ -66,7 +79,7 @@ fun <T, J : Cursor> J.first(process: (J) -> T): T {
  * The cursor is closed at the completion of this method.
  */
 fun <T, J : Cursor> J.firstOrNull(process: (J) -> T) : T? {
-    // todo: implement asSequence() extension, use that one
+    // todo: optimize. Use cursor.moveToFirst() and check cursor.isAfterLast
     return this.toList(process).firstOrNull()
 }
 
@@ -86,4 +99,14 @@ inline fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
 @Suppress("NOTHING_TO_INLINE")
 inline fun Context.getColorCompat(@ColorRes id: Int): Int {
     return ContextCompat.getColor(this, id)
+}
+
+/**
+ * Creates a block where "this" is the editor of the shared preferences.
+ * The changes are commited asynchronously.
+ */
+inline fun SharedPreferences.edit(block: SharedPreferences.Editor.() -> Unit) {
+    val editor = this.edit()
+    block(editor)
+    editor.apply()
 }

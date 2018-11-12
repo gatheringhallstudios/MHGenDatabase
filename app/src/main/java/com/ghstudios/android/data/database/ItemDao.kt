@@ -6,6 +6,7 @@ import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.*
 import com.ghstudios.android.data.util.*
 import com.ghstudios.android.util.firstOrNull
+import com.ghstudios.android.util.forEach
 import com.ghstudios.android.util.toList
 import com.ghstudios.android.util.useCursor
 
@@ -29,7 +30,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      */
     private fun armor_columns(a : String, i: String) =
             "$a._id, $i.$column_name name, $i.name_ja, $column_description description, " +
-            "rarity, slot, gender, hunter_type, num_slots, " +
+            "$a.family, rarity, slot, gender, hunter_type, num_slots, " +
             "defense, max_defense, fire_res, thunder_res, dragon_res, water_res, ice_res, " +
             "type, sub_type, carry_capacity, buy, sell, icon_name, icon_color "
 
@@ -55,25 +56,15 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryBasicItems(searchTerm: String = ""): ItemCursor {
         val typeItem = ItemTypeConverter.serialize(ItemType.ITEM)
 
-        if (searchTerm.isEmpty()) {
-            // return all basic items
-            return ItemCursor(db.rawQuery("""
-                SELECT $item_columns
-                FROM items
-                WHERE type IN (?)
-                ORDER BY _id
-            """, arrayOf(typeItem)))
-        } else {
-            // return all basic items, filtered
-            val filter = SqlFilter(column_name, searchTerm)
-            return ItemCursor(db.rawQuery("""
-                SELECT $item_columns
-                FROM items
-                WHERE type in (?)
-                  AND ${filter.predicate}
-                ORDER BY _id
-            """, arrayOf(typeItem, *filter.parameters)))
-        }
+        // return all basic items, filtered
+        val filter = SqlFilter(column_name, searchTerm)
+        return ItemCursor(db.rawQuery("""
+            SELECT $item_columns
+            FROM items
+            WHERE type in (?)
+              AND ${filter.predicate}
+            ORDER BY _id
+        """, arrayOf(typeItem, *filter.parameters)))
     }
 
     /**
@@ -90,17 +81,24 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     /**
      * Get items based on search text. Gets all items, including armor and equipment.
      */
-    fun queryItemSearch(searchTerm: String?): ItemCursor {
-        if (searchTerm?.trim().isNullOrBlank()) {
+    fun queryItemSearch(searchTerm: String?, includeTypes: List<ItemType> = emptyList()): ItemCursor {
+        if (searchTerm == null || searchTerm.isBlank()) {
             return queryItems()
         }
 
-        val filter = SqlFilter(column_name, searchTerm!!)
+        val filter = SqlFilter(column_name, searchTerm)
+
+        val typePredicate = when {
+            includeTypes.isEmpty() -> "TRUE"
+            else -> "(" + includeTypes.joinToString(" OR ") {
+                "type = '${ItemTypeConverter.serialize(it)}'"
+            } + ")"
+        }
 
         return ItemCursor(db.rawQuery("""
             SELECT $item_columns
             FROM items
-            WHERE ${filter.predicate}
+            WHERE ${filter.predicate} AND $typePredicate
             ORDER BY _id
         """, arrayOf(*filter.parameters)))
     }
@@ -185,8 +183,17 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmor(): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
         """, emptyArray()))
+    }
+
+    fun queryArmorSearch(searchTerm: String): ArmorCursor {
+        val filter = SqlFilter(column_name, searchTerm)
+        return ArmorCursor(db.rawQuery("""
+            SELECT ${armor_columns("a", "i")}
+            FROM armor a JOIN items i USING (_id)
+            WHERE ${filter.predicate}
+        """, filter.parameters))
     }
 
     /**
@@ -195,7 +202,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmor(id: Long): Armor? {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a._id = ?
         """, arrayOf(id.toString()))).firstOrNull { it.armor }
     }
@@ -206,7 +213,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmorByFamily(id: Long): List<Armor> {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a.family = ?
         """, arrayOf(id.toString()))).toList { it.armor }
     }
@@ -218,7 +225,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryArmorType(type: Int): ArmorCursor {
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
-            FROM armor a LEFT OUTER JOIN items i USING (_id)
+            FROM armor a JOIN items i USING (_id)
             WHERE a.hunter_type = @type OR a.hunter_type = 2 OR @type = '2'
         """, arrayOf(type.toString())))
     }
@@ -273,9 +280,56 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         }
     }
 
-    fun queryArmorFamilies(type: Int): ArmorFamilyCursor{
-        return ArmorFamilyCursor(db.rawQuery("""
-            SELECT af._id,af.name,af.rarity,a.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
+    /**
+     * Returns an armor families cursor
+     * @param searchFilter the search predicate to filter on
+     * @param skipSolos true to skip armor families with a single child, otherwise returns all.
+     */
+    @JvmOverloads fun queryArmorFamilyBaseSearch(searchFilter: String, skipSolos: Boolean = false): List<ArmorFamilyBase> {
+        val sqlFilter = SqlFilter("name", searchFilter)
+
+        val soloPredicate = when (skipSolos) {
+            false -> "TRUE"
+            true -> "(SELECT count(*) FROM armor a WHERE a.family = af._id) > 1"
+        }
+
+        // todo: localize
+        return db.rawQuery("""
+            SELECT af._id, af.name, af.rarity, af.hunter_type
+            FROM armor_families af
+            WHERE ${sqlFilter.predicate}
+              AND $soloPredicate
+            ORDER BY af.rarity, af._id
+        """, sqlFilter.parameters).toList {
+            ArmorFamilyBase().apply {
+                id = it.getLong("_id")
+                name = it.getString("name")
+                rarity = it.getInt("rarity")
+                hunterType = it.getInt("hunter_type")
+            }
+        }
+    }
+
+    fun queryArmorFamilies(type: Int): List<ArmorFamily> {
+        // todo: localize
+        // todo: clean up. Should be 3 queries, not 2. This mechanism is harder to understand
+
+        val slotsByFamilyId = linkedMapOf<Long, MutableList<Int>>()
+
+        db.rawQuery("""
+            SELECT af._id, a.num_slots
+            FROM armor a
+                JOIN armor_families af ON af._id = a.family
+            WHERE a.hunter_type=@type OR a.hunter_type=2
+            ORDER BY a._id ASC""", arrayOf(type.toString())
+        ).forEach {
+            val id = it.getLong("_id")
+            val slots = it.getInt("num_slots")
+            slotsByFamilyId.getOrPut(id) { mutableListOf() }.add(slots)
+        }
+
+        val cursor = ArmorFamilyCursor(db.rawQuery("""
+            SELECT af._id,af.name,af.rarity,af.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
                 JOIN armor a on a.family=af._id
                 JOIN item_to_skill_tree its on a._id=its.item_id
@@ -283,6 +337,20 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
             WHERE a.hunter_type=@type OR a.hunter_type=2
             GROUP BY af._id,its.skill_tree_id;
         """, arrayOf(type.toString())))
+
+        val results = linkedMapOf<Long, ArmorFamily>()
+
+        cursor.forEach {
+            val newFamily = cursor.armor
+            if (newFamily.id in results) {
+                results[newFamily.id]?.skills?.add(newFamily.skills[0])
+            } else {
+                newFamily.slots.addAll(slotsByFamilyId[newFamily.id] ?: emptyList())
+                results[newFamily.id] = newFamily
+            }
+        }
+
+        return results.values.toList()
     }
 
     fun queryComponentsByArmorFamily(family: Long): ComponentCursor {
@@ -304,4 +372,33 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         """,arrayOf(family.toString())))
     }
 
+    /**
+     * Returns a list of ItemToSkillTree, where each item is of type
+     */
+    fun queryArmorSkillTreePointsBySkillTree(skillTreeId: Long): List<ItemToSkillTree> {
+        val cursor = db.rawQuery("""
+            SELECT ${armor_columns("a", "i")},
+            st._id as st_id, st.$column_name AS st_name, st.name_ja as st_name_ja, its.point_value
+            FROM armor a
+                JOIN items i USING (_id)
+                LEFT JOIN item_to_skill_tree its on its.item_id = a._id
+                LEFT JOIN skill_trees st on st._id = its.skill_tree_id
+            WHERE st._id = ?
+            ORDER BY i.rarity DESC, its.point_value DESC
+        """, arrayOf(skillTreeId.toString()))
+
+        return ArmorCursor(cursor).toList {
+            val armor = it.armor
+
+            val skillTree = SkillTree(
+                    id=it.getLong("st_id"),
+                    name=it.getString("st_name"),
+                    jpnName= it.getString("st_name_ja"))
+            val points = it.getInt("point_value")
+
+            ItemToSkillTree(skillTree, points).apply {
+                this.item = armor
+            }
+        }
+    }
 }

@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/melody_listitem"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:paddingLeft="14dp"
-    android:paddingRight="14dp"
-    style="@style/list_item"
-    android:paddingTop="0dp">
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_medium"
+    android:paddingBottom="@dimen/margin_medium"
+    android:paddingLeft="@dimen/margin_large"
+    android:paddingRight="@dimen/margin_large">
 
+    <TextView
+        android:id="@+id/name"
+        style="@style/text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Self Improvement" />
 
-    <ImageView
-        android:id="@+id/horn_note1"
-        android:layout_gravity="center_vertical"
-        tools:src="@drawable/icon_music_note"
-        style="@style/small_image"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="4dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp" />
+    <LinearLayout
+        android:id="@+id/note_images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_small">
+        <ImageView
+            android:id="@+id/horn_note1"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/icon_music_note"
+            style="@style/small_image" />
 
-    <ImageView
-        android:id="@+id/horn_note2"
-        android:layout_gravity="center_vertical"
-        tools:src="@drawable/icon_music_note"
-        style="@style/small_image"
-        android:layout_toRightOf="@+id/horn_note1"
-        android:layout_marginRight="4dp"
-        android:layout_alignParentTop="true" />
+        <ImageView
+            android:id="@+id/horn_note2"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/icon_music_note"
+            style="@style/small_image" />
 
-    <ImageView
-        android:id="@+id/horn_note3"
-        android:layout_gravity="center_vertical"
-        tools:src="@drawable/icon_music_note"
-        style="@style/small_image"
-        android:layout_toRightOf="@+id/horn_note2"
-        android:layout_marginRight="4dp"
-        android:layout_alignParentTop="true" />
+        <ImageView
+            android:id="@+id/horn_note3"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/icon_music_note"
+            style="@style/small_image" />
 
-    <ImageView
-        android:id="@+id/horn_note4"
-        android:layout_gravity="center_vertical"
-        tools:src="@drawable/icon_music_note"
-        style="@style/small_image"
-        android:layout_toRightOf="@+id/horn_note3"
-        android:layout_marginRight="4dp"
-        android:layout_alignParentTop="true" />
+        <ImageView
+            android:id="@+id/horn_note4"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/icon_music_note"
+            style="@style/small_image" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/duration"
@@ -55,9 +58,11 @@
         tools:text="DUR: 180(240)"
         android:textIsSelectable="false"
         android:textSize="12sp"
-        android:layout_toLeftOf="@+id/extension"
-        android:layout_alignWithParentIfMissing="true"
-        android:gravity="right" />
+        android:gravity="end"
+        app:layout_constraintEnd_toStartOf="@id/extension"
+        app:layout_constraintBaseline_toBaselineOf="@id/extension"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"/>
 
     <TextView
         android:id="@+id/extension"
@@ -66,31 +71,30 @@
         tools:text="EXT: +120(+180)"
         android:textIsSelectable="false"
         android:textSize="12sp"
-        android:gravity="right"
-        android:layout_alignParentRight="true"
+        android:gravity="end"
         android:layout_alignTop="@+id/duration"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintBaseline_toBaselineOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/effect1"
-        style="@style/text_small"
+        style="@style/text_small_secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="false"
         tools:text="Movement Speed Up"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_alignParentTop="false"
         android:textSize="12sp"
-        android:layout_below="@+id/horn_note1"
-        android:layout_marginTop="4dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension"/>
 
     <TextView
         android:id="@+id/effect2"
-        style="@style/text_small"
+        style="@style/text_small_secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Attack Deflection"
-        android:layout_below="@+id/effect1"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/effect1" />
 
-</RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

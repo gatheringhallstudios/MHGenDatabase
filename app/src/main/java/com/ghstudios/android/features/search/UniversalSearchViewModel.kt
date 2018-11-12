@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.util.ThrottledExecutor
 import com.ghstudios.android.util.toList
 import kotlin.system.measureTimeMillis
@@ -21,8 +22,11 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
      */
     val searchResults = MutableLiveData<List<Any>>()
 
-    // prevent double searching by storing the last search attempt
-    private var lastSearchFilter = ""
+    /**
+     * Contains the current search filter.
+     */
+    var searchFilter = ""
+        private set
 
     /**
      * Updates the search filter and begins searching.
@@ -30,11 +34,11 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
      */
     fun updateSearchFilter(searchFilter: String) {
         val updatedFilter = searchFilter.trim()
-        if (updatedFilter == lastSearchFilter) {
+        if (updatedFilter == this.searchFilter) {
             return
         }
 
-        lastSearchFilter = updatedFilter
+        this.searchFilter = updatedFilter
 
         executor.execute {
             try {
@@ -54,11 +58,54 @@ class UniversalSearchViewModel(app: Application): AndroidViewModel(app) {
             return emptyList()
         }
 
+        var start = System.currentTimeMillis()
+        fun logTime(label: String) {
+            Log.d("SearchQuery", "$label took ${System.currentTimeMillis() - start} milliseconds")
+            start = System.currentTimeMillis()
+        }
+
         return mutableListOf<Any>().apply {
+            addAll(db.queryLocationsSearch(searchTerm))
+            logTime("locations")
+
             addAll(db.queryMonstersSearch(searchTerm).toList { it.monster })
+            logTime("monsters")
+
             addAll(db.queryQuestsSearch(searchTerm).toList { it.quest })
+            logTime("quests")
+
             addAll(db.querySkillTreesSearch(searchTerm).toList { it.skillTree })
-            addAll(db.queryItemSearch(searchTerm).toList { it.item })
+            logTime("skills")
+
+            // prefetch items. We do this because we want to insert armor in the middle
+            // To improve this, add db index to item type, but might not be necessary.
+            val types = listOf(ItemType.DECORATION, ItemType.WEAPON,
+                    ItemType.PALICO_WEAPON, ItemType.PALICO_ARMOR,
+                    ItemType.ITEM, ItemType.MATERIAL)
+            val items = db.queryItemSearch(searchTerm, includeTypes=types).toList { it.item }
+            logTime("items pre-fetch")
+
+            // Add decorations before the rest of the items
+            // if we need more info, queryDecorationsSearch() directly, and add indices to item_to_skill_tree
+            addAll(items.filter { it.type == ItemType.DECORATION })
+            logTime("decorations from items")
+
+            // retrieve all armor families
+            val armorFamilies = db.queryArmorFamilyBaseSearch(searchTerm, skipSolos = true)
+            addAll(armorFamilies)
+            logTime("armorsets")
+
+            // retrieve armor not included in above families
+            val familyIds = armorFamilies.mapTo(mutableSetOf()) { it.id }
+            val armor = db.queryArmorSearch(searchTerm)
+                    .toList { it.armor }
+                    .filter { it.family !in familyIds }
+            addAll(armor)
+            logTime("armor")
+
+            // add the rest of the items
+            addAll(items.filter { it.type != ItemType.DECORATION })
+            logTime("rest of items")
         }
     }
 }

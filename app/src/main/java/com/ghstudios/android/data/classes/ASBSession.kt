@@ -4,10 +4,7 @@ import android.util.Log
 import com.ghstudios.android.ITintedIcon
 import com.ghstudios.android.mhgendatabase.R
 
-import java.util.ArrayList
-import java.util.HashMap
-
-private class DummyWeapon(val slots: Int): Equipment(), ITintedIcon {
+private class DummyWeapon(val slots: Int) : Equipment(), ITintedIcon {
     override fun getNumSlots() = slots
 
     override fun getIconResourceString() = "icon_great_sword"
@@ -18,28 +15,13 @@ private class DummyWeapon(val slots: Int): Equipment(), ITintedIcon {
 /**
  * Contains all of the juicy stuff regarding ASB sets, like the armor inside and the skills it provides.
  */
-class ASBSession: ArmorSet {
-    private var asbSet: ASBSet? = null
-
+class ASBSession(id: Long, name: String, rank: Rank, hunterType: Int) :
+        ASBSet(id, name, rank, hunterType), ArmorSet {
     private val pieceData = sortedMapOf<Int, ArmorSetPiece>()
-
-    val id: Long
-        get() = asbSet!!.id
-
-    val name: String
-        get() = asbSet?.name ?: ""
-
-    val rank: Int
-        get() = asbSet!!.rank
-
-    val hunterType: Int
-        get() = asbSet!!.hunterType
-
 
     var numWeaponSlots: Int
         /** Retrieves the number of weapon slots */
         get() = getEquipment(ArmorSet.WEAPON)?.numSlots ?: 0
-
         /**
          * Sets the number of weapon slots. This also clears all decorations.
          */
@@ -60,10 +42,6 @@ class ASBSession: ArmorSet {
      */
     val talisman: ASBTalisman?
         get() = pieceData[ArmorSet.TALISMAN]?.equipment as ASBTalisman?
-
-    fun setASBSet(set: ASBSet) {
-        asbSet = set
-    }
 
     fun getDecorations(pieceIndex: Int): List<Decoration> {
         return getPiece(pieceIndex)?.decorations ?: emptyList()

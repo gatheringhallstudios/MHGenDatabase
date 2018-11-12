@@ -8,8 +8,6 @@ import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.classes.meta.ArmorMetadata
 import com.ghstudios.android.data.classes.meta.ItemMetadata
 import com.ghstudios.android.data.classes.meta.MonsterMetadata
-import com.ghstudios.android.data.cursors.ASBSessionCursor
-import com.ghstudios.android.data.cursors.ASBSetCursor
 import com.ghstudios.android.data.cursors.ArmorCursor
 import com.ghstudios.android.data.cursors.CombiningCursor
 import com.ghstudios.android.data.cursors.ComponentCursor
@@ -39,6 +37,7 @@ import com.ghstudios.android.data.cursors.WishlistCursor
 import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.cursors.WyporiumTradeCursor
 import com.ghstudios.android.data.database.*
+import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.first
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
@@ -86,6 +85,13 @@ class DataManager private constructor(private val mAppContext: Context) {
     val asbManager = ASBManager(mAppContext, mHelper)
 
 
+    /**
+     * Returns a map of supported language codes.
+     */
+    fun getLanguages() = listOf(
+        "en", "es", "fr", "de", "it"
+    )
+
     /********************************* ARMOR QUERIES  */
 
     fun getArmorSetMetadataByFamily(familyId: Long): List<ArmorMetadata> {
@@ -100,6 +106,10 @@ class DataManager private constructor(private val mAppContext: Context) {
     /* Get a Cursor that has a list of all Armors */
     fun queryArmor(): ArmorCursor {
         return itemDao.queryArmor()
+    }
+
+    fun queryArmorSearch(searchTerm: String): ArmorCursor {
+        return itemDao.queryArmorSearch(searchTerm)
     }
 
     /* Get a specific Armor */
@@ -126,23 +136,16 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     fun queryArmorFamilies(type: Int): List<ArmorFamily> {
-        val cursor = itemDao.queryArmorFamilies(type)
+        return itemDao.queryArmorFamilies(type)
+    }
 
-        val results = mutableListOf<ArmorFamily>()
-
-        cursor.moveToFirst()
-        var family = cursor.armor
-        results.add(family)
-        while (cursor.moveToNext()) {
-            val newFamily = cursor.armor
-            if (family.id == newFamily.id) {
-                family.skills.add(newFamily.skills[0])
-            } else {
-                family = newFamily
-                results.add(family)
-            }
-        }
-        return results
+    /**
+     * Returns an armor families cursor
+     * @param searchFilter the search predicate to filter on
+     * @param skipSolos true to skip armor families with a single child, otherwise returns all.
+     */
+    @JvmOverloads fun queryArmorFamilyBaseSearch(filter: String, skipSolos: Boolean=false): List<ArmorFamilyBase> {
+        return itemDao.queryArmorFamilyBaseSearch(filter, skipSolos)
     }
 
     /********************************* COMBINING QUERIES  */
@@ -205,9 +208,7 @@ class DataManager private constructor(private val mAppContext: Context) {
      * Having a null or empty filter is the same as calling without a filter
      */
     fun queryDecorationsSearch(filter: String?): DecorationCursor {
-        var filter = filter
-        filter = filter?.trim { it <= ' ' } ?: ""
-        return if (filter == "") queryDecorations() else mHelper.queryDecorationsSearch(filter)
+        return mHelper.queryDecorationsSearch(filter ?: "")
     }
 
     /* Get a specific Decoration */
@@ -305,8 +306,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get a Cursor that has a list of filtered Items through search */
-    fun queryItemSearch(search: String): ItemCursor {
-        return itemDao.queryItemSearch(search)
+    @JvmOverloads fun queryItemSearch(search: String, includeTypes: List<ItemType> = emptyList()): ItemCursor {
+        return itemDao.queryItemSearch(search, includeTypes)
     }
 
     /********************************* ITEM TO SKILL TREE QUERIES  */
@@ -316,8 +317,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     }
 
     /* Get a Cursor that has a list of ItemToSkillTree based on SkillTree */
-    fun queryItemToSkillTreeSkillTree(id: Long, type: String): ItemToSkillTreeCursor {
-        return mHelper.queryItemToSkillTreeSkillTree(id, type)
+    fun queryItemToSkillTreeSkillTree(id: Long, type: ItemType): ItemToSkillTreeCursor {
+        return mHelper.queryItemToSkillTreeSkillTree(id, ItemTypeConverter.serialize(type))
     }
 
     /** Get an array of ItemToSkillTree based on Item  */
@@ -350,6 +351,13 @@ class DataManager private constructor(private val mAppContext: Context) {
         return results
     }
 
+    /**
+     * Return a list of ItemToSkillTree, where the Item is an Armor object.
+     */
+    fun queryArmorSkillTreePointsBySkillTree(skillTreeId: Long): List<ItemToSkillTree> {
+        return itemDao.queryArmorSkillTreePointsBySkillTree(skillTreeId)
+    }
+
     /********************************* ITEM TO MATERIAL QUERIES  */
 
     fun queryItemsForMaterial(mat_item_id: Long): ItemToMaterialCursor {
@@ -364,14 +372,18 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get a specific Location */
     fun getLocation(id: Long): Location? {
-        var location: Location? = null
-        val cursor = mHelper.queryLocation(id)
-        cursor.moveToFirst()
+        return mHelper.queryLocation(id)
+    }
 
-        if (!cursor.isAfterLast)
-            location = cursor.location
-        cursor.close()
-        return location
+    fun queryLocationsSearch(searchTerm: String): List<Location> {
+        // todo: we could also create a cursor wrapper implementation that filters in memory...without first converting to objects
+        val locations = queryLocations().toList { it.location }
+        if (searchTerm.isBlank()) {
+            return locations
+        }
+
+        val filter = SearchFilter(searchTerm)
+        return locations.filter { filter.matches(it.name) }
     }
 
     /********************************* MELODY QUERIES  */
@@ -487,8 +499,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get an array of Quest based on hub */
     fun queryQuestArrayHub(hub: QuestHub): List<Quest> {
-        val cursor = mHelper.queryQuestHub(hub)
-        return cursor.toList { it.quest }
+        return this.queryQuestHub(hub).toList { it.quest }
     }
 
     /* Get a Cursor that has a list of Quest based on hub */
@@ -519,8 +530,8 @@ class DataManager private constructor(private val mAppContext: Context) {
     //    }
 
     /* Get a Cursor that has a list of all Skills from a specific SkillTree */
-    fun querySkillFromTree(id: Long): SkillCursor {
-        return mHelper.querySkillFromTree(id)
+    fun querySkillsFromTree(id: Long): SkillCursor {
+        return mHelper.querySkillsFromTree(id)
     }
 
     /********************************* SKILL TREE QUERIES  */
@@ -533,16 +544,9 @@ class DataManager private constructor(private val mAppContext: Context) {
         return mHelper.querySkillTreesSearch(searchTerm)
     }
 
-    /* Get a specific SkillTree */
+    /** Get a specific SkillTree */
     fun getSkillTree(id: Long): SkillTree? {
-        var skillTree: SkillTree? = null
-        val cursor = mHelper.querySkillTree(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            skillTree = cursor.skillTree
-        cursor.close()
-        return skillTree
+        return mHelper.querySkillTree(id)
     }
 
     /********************************* WEAPON QUERIES  */

@@ -47,9 +47,11 @@ class AboutFragment : Fragment() {
             val child = viewGroup.getChildAt(i)
             if (child is IconLabelTextCell) {
                 child.setOnClickListener {
-                    val href = child.tag as? String ?: child.labelText.toString()
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(href))
-                    startActivity(intent)
+                    val href = child.tag as? String
+                    if (!href.isNullOrBlank()) {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(href))
+                        startActivity(intent)
+                    }
                 }
             } else if (child is ViewGroup) {
                 activateLinks(child) // recursive call

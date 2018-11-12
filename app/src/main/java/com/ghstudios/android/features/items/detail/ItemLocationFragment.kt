@@ -74,12 +74,12 @@ class ItemLocationFragment : ListFragment() {
             val mapTextView = view.findViewById<TextView>(R.id.map)
             val methodTextView = view.findViewById<TextView>(R.id.method)
             val rateTextView = view.findViewById<TextView>(R.id.rate)
-
-            val method = AssetLoader.localizeGatherNodeFull(gathering)
+            val amountTextView = view.findViewById<TextView>(R.id.amount)
 
             mapTextView.text = gathering.area
-            methodTextView.text = method
+            methodTextView.text = AssetLoader.localizeGatherNodeFull(gathering)
             rateTextView.text = gathering.rate.toInt().toString() + "%"
+            amountTextView.text = "x" + gathering.quantity
 
             itemLayout.tag = gathering.location!!.id
             itemLayout.setOnClickListener(LocationClickListener(context,

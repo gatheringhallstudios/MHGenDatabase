@@ -32,7 +32,7 @@
                 android:id="@+id/defense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:labelText="@string/armor_defense"
+                app:labelText="@string/equipment_defense"
                 tools:valueText="5~50" />
 
         </com.google.android.flexbox.FlexboxLayout>
@@ -56,7 +56,7 @@
             <com.ghstudios.android.components.SectionHeaderCell
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="@string/item_skills" />
+                app:labelText="@string/skills" />
 
             <LinearLayout
                 android:id="@+id/skill_list"

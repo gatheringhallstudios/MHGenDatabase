@@ -60,5 +60,6 @@
         <attr name="hideExtras" format="boolean"/>
         <attr name="maxSlots" format="integer"/>
         <attr name="usedSlots" format="integer"/>
+        <attr name="imageSize" format="dimension"/>
     </declare-styleable>
 </resources>

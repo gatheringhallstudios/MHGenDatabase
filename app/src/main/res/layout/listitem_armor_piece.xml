@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listitem"
+    style="@style/list_item_large"
+    android:layout_height="wrap_content"
+    android:minHeight="0dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/icon"
+        style="@style/small_image"
+        android:src="@drawable/armor_body"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"/>
+
+
+    <RelativeLayout
+        android:id="@+id/name_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_toRightOf="@+id/icon"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:layout_gravity="center"
+            style="@style/text_medium"
+            tools:text="Shinobi Heaven Masks"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="false" />
+
+        <TextView
+            android:id="@+id/name_jpn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/text_small"
+            android:layout_alignParentRight="false"
+            android:gravity="center_vertical|right"
+            tools:text="MHXX Name"
+            android:visibility="gone"
+            android:layout_below="@+id/name"
+            android:layout_alignLeft="@+id/name" />
+    </RelativeLayout>
+
+    <com.ghstudios.android.components.SlotsView
+        android:id="@+id/slots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:imageSize="@dimen/image_size_xxsmall"
+        android:layout_toLeftOf="@+id/skill_piece_layout"
+        android:layout_alignTop="@+id/name_layout"
+        android:layout_alignBottom="@+id/name_layout"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|right"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:id="@+id/skill_piece_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:minWidth="100dp"
+        android:gravity="center_vertical|end"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/skill_1"
+            style="@style/text_small_secondary"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Defense + 5"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/skill_2"
+            android:textSize="12sp"
+            style="@style/text_small_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Eating + 5"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/skill_3"
+            style="@style/text_small_secondary"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Hot Blooded + 5"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/skill_4"
+            style="@style/text_small_secondary"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Attack + 5"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</RelativeLayout>

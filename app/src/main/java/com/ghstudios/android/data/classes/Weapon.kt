@@ -5,9 +5,47 @@ import android.util.Log
 import java.util.ArrayList
 import java.util.Arrays
 
+data class WeaponChargeLevel(
+        val name: String,
+        val level: Int,
 
+        /** True if LoadUp is required to access */
+        val locked: Boolean
+)
 
-/*
+/**
+ * Contains all available coating types for a Bow.
+ * Initialized using the coatingCode field that comes from the database.
+ */
+class WeaponBowCoatings(val coatingCode: Int) {
+    val power1 = hasCoating(1 shl 10)
+    val power2 = hasCoating(1 shl 9)
+    val elem1 = hasCoating(1 shl 8)
+    val elem2 = hasCoating(1 shl 7)
+    val crange = hasCoating(1 shl 6)
+    val poison = hasCoating(1 shl 5)
+    val para = hasCoating(1 shl 4)
+    val sleep = hasCoating(1 shl 3)
+    val exhaust = hasCoating(1 shl 2)
+    val blast = hasCoating(1 shl 1)
+    val paint = hasCoating(1 shl 0)
+
+    private fun hasCoating(code: Int): Boolean {
+        return (coatingCode and code) > 0
+    }
+
+    /**
+     * If this weapon supports either power1 or power2
+     */
+    val hasPower = power1 || power2
+
+    /**
+     * If this weapon supports either elem up 1 or elem up 2.
+     */
+    val hasElem = elem1 || elem2
+}
+
+/**
  * Class for Weapon
  */
 class Weapon : Item() {
@@ -20,7 +58,7 @@ class Weapon : Item() {
         const val HAMMER = "Hammer"
         const val HUNTING_HORN = "Hunting Horn"
         const val LANCE = "Lance"
-        const val GUN_LANCE = "Gunlance"
+        const val GUNLANCE = "Gunlance"
         const val SWITCH_AXE = "Switch Axe"
         const val CHARGE_BLADE = "Charge Blade"
         const val INSECT_GLAIVE = "Insect Glaive"
@@ -73,33 +111,12 @@ class Weapon : Item() {
     var phial: String? = ""
 
     // Charges for bows
-    var charges = ""
-        set(charges) {
-            field = charges
-            var charge = ""
-            val level = ""
+    var charges: List<WeaponChargeLevel> = emptyList()
 
-            val new_charges = charges.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            for (c in new_charges) {
-
-                if (c.endsWith("*")) {
-                    charge = "(" + c.substring(0, c.length - 3) + c[c.length - 2] + ")"
-                } else {
-                    charge = c.substring(0, c.length - 2) + c[c.length - 1]
-                }
-
-                this.chargeString = this.chargeString + charge + " / "
-            }
-            chargeString = chargeString.substring(0, this.chargeString.length - 3)
-        }
-
-    // Coatings for bows
-    var coatings: String? = ""
-        set(coatings) {
-            field = coatings
-
-            this.coatingsArray = coatings?.split("\\|".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
-        }
+    /**
+     * Supported bow coatings. Null for non-bow weapons.
+     */
+    var coatings: WeaponBowCoatings? = null
 
     var recoil: String? = ""                    // Recoils for bowguns; arc for bows
     var reloadSpeed: String? = ""               // Reload speed for bowguns
@@ -134,10 +151,6 @@ class Weapon : Item() {
     var sharpness2: IntArray? = null
         private set
     var sharpness3: IntArray? = null
-        private set
-    var coatingsArray: Array<String>? = null
-        private set
-    var chargeString = ""
         private set
 
     val attackString: String

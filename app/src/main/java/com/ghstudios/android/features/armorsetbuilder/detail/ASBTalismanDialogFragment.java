@@ -16,7 +16,7 @@ import com.ghstudios.android.data.classes.ASBTalisman;
 import com.ghstudios.android.data.classes.SkillTreePoints;
 import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.skills.SkillTreeDetailPagerActivity;
+import com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;

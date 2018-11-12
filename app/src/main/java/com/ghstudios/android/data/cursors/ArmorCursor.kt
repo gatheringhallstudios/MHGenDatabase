@@ -37,6 +37,7 @@ class ArmorCursor(c: Cursor) : CursorWrapper(c) {
                 iceRes = getInt(S.COLUMN_ARMOR_ICE_RES)
                 gender = getInt(S.COLUMN_ARMOR_GENDER)
                 hunterType = getInt(S.COLUMN_ARMOR_HUNTER_TYPE)
+                family = getLong("family")
                 numSlots = getInt(S.COLUMN_ARMOR_NUM_SLOTS)
 
                 type = ItemTypeConverter.deserialize(getString(S.COLUMN_ITEMS_TYPE) ?: "")

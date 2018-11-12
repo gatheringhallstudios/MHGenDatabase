@@ -10,19 +10,23 @@ import com.ghstudios.android.data.database.MonsterHunterDatabaseHelper
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.util.firstOrNull
 
+/**
+ * Creates a ContentValues object from a map of arbitrary value types.
+ */
 private fun contentValuesFromMap(map: Map<String, Any>): ContentValues {
     val result = ContentValues()
     for ((key, value) in map.entries) {
         when (value) {
             is Boolean -> result.put(key, value)
             is String -> result.put(key, value)
-            is Int -> result.put(key, value)
             is Long -> result.put(key, value)
+            is Int -> result.put(key, value)
+            is Byte -> result.put(key, value)
             is Double -> result.put(key, value)
             is Float -> result.put(key, value)
             is ByteArray -> result.put(key, value)
             else -> {
-                Log.e("ASBManager", "UNSUPPORTED TYPE for ${value}")
+                Log.e("ASBManager", "UNSUPPORTED TYPE for $value")
             }
         }
     }
@@ -33,6 +37,8 @@ class ASBManager internal constructor(
         private val mAppContext: Context,
         private val mHelper: MonsterHunterDatabaseHelper
 ) {
+    val TAG = "ASBManager"
+
     fun queryASBSets(): ASBSetCursor {
         return mHelper.queryASBSets()
     }
@@ -52,26 +58,52 @@ class ASBManager internal constructor(
     }
 
     /** Adds a new ASB set to the list.  */
-    fun queryAddASBSet(name: String, rank: Int, hunterType: Int) {
+    fun queryAddASBSet(name: String, rank: Rank, hunterType: Int) {
         mHelper.queryAddASBSet(name, rank, hunterType)
-    }
-
-    // todo: rename, or replace for something else
-    /** Adds a new set that is a copy of the designated set to the list.  */
-    fun queryAddASBSet(setId: Long) {
-        val set = getASBSet(setId)
-        mHelper.queryAddASBSet(set!!.name!!, set.rank, set.hunterType)
     }
 
     fun queryDeleteASBSet(setId: Long) {
         mHelper.queryDeleteASBSet(setId)
     }
 
-    fun queryUpdateASBSet(setId: Long, name: String, rank: Int, hunterType: Int) {
+    fun queryUpdateASBSet(setId: Long, name: String, rank: Rank, hunterType: Int) {
         mHelper.queryUpdateASBSet(setId, name, rank, hunterType)
     }
 
+
+    /**
+     * Updates an existing ASB in place
+     */
     fun updateASB(set: ASBSession): Long {
+        val values = columnsForASBSession(set)
+        val filter = S.COLUMN_ASB_SET_ID + " = " + set.id
+        return mHelper.updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
+    }
+
+    /**
+     * Copies an existing ASB. Returns the newly generated id.
+     */
+    fun copyASB(set: ASBSession): Long {
+        val values = columnsForASBSession(set)
+        return mHelper.insertRecord(S.TABLE_ASB_SETS, values)
+    }
+
+    /**
+     * Copies an existing ASB using the set ID. Returns the newly generated id.
+     */
+    fun copyASB(setId: Long): Long {
+        val session = getASBSession(setId)
+        if (session == null) {
+            Log.w(TAG, "Session to copy $setId does not exists")
+            return -1
+        }
+        return copyASB(session)
+    }
+
+    /**
+     * Internal helper that returns the set of columns used to persist an ASBSession, except for ID.
+     */
+    private fun columnsForASBSession(set: ASBSession): ContentValues {
         val weaponPiece = set.getPiece(ArmorSet.WEAPON)
         val headPiece = set.getPiece(ArmorSet.HEAD)
         val bodyPiece = set.getPiece(ArmorSet.BODY)
@@ -91,7 +123,7 @@ class ASBManager internal constructor(
         val updatedColumns = mapOf<String, Any>(
                 S.COLUMN_ASB_SET_NAME to set.name,
                 S.COLUMN_ASB_SET_HUNTER_TYPE to set.hunterType,
-                S.COLUMN_ASB_SET_RANK to set.rank,
+                S.COLUMN_ASB_SET_RANK to set.rank.value,
 
                 S.COLUMN_ASB_WEAPON_SLOTS to set.numWeaponSlots,
                 S.COLUMN_ASB_WEAPON_DECORATION_1_ID to getDeco(weaponPiece, 0),
@@ -135,8 +167,6 @@ class ASBManager internal constructor(
                 S.COLUMN_TALISMAN_DECORATION_3_ID to getDeco(talismanPiece, 2)
         )
 
-        val filter = S.COLUMN_ASB_SET_ID + " = " + set.id
-        val values = contentValuesFromMap(updatedColumns)
-        return mHelper.updateRecord(S.TABLE_ASB_SETS, filter, values).toLong()
+        return contentValuesFromMap(updatedColumns)
     }
 }

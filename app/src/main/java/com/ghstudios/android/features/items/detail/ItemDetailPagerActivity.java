@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 import com.ghstudios.android.data.classes.meta.ItemMetadata;
+import com.ghstudios.android.mhgendatabase.R;
 
 public class ItemDetailPagerActivity extends BasePagerActivity {
     /**
@@ -26,32 +27,32 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
             setTitle(item.getName());
         });
 
-        tabs.addTab("Detail", () ->
+        tabs.addTab(R.string.item_detail_tab_detail, () ->
                 ItemDetailFragment.newInstance(itemId)
         );
 
         if (meta.getUsedInCombining() || meta.getUsedInCrafting()) {
-            tabs.addTab("Usage", () ->
-                    // List of combinations, armor, aecoration, and weapons
+            tabs.addTab(R.string.item_detail_tab_usage, () ->
+                    // List of combinations, armor, decoration, and weapons
                     ItemUsageFragment.newInstance(itemId)
             );
         }
 
         if (meta.isMonsterReward()) {
-            tabs.addTab("Monster", () ->
+            tabs.addTab(R.string.type_monster, () ->
                     // Monster drops
                     ItemMonsterFragment.newInstance(itemId)
             );
         }
 
         if (meta.isQuestReward()) {
-            tabs.addTab("Quest", () ->
+            tabs.addTab(R.string.type_quest, () ->
                     ItemQuestFragment.newInstance(itemId)
             );
         }
 
         if (meta.isGatherable()) {
-            tabs.addTab("Location", ItemLocationFragment::new);
+            tabs.addTab(R.string.type_location, ItemLocationFragment::new);
         }
 
         //JOE: No wyporium in MHGen

@@ -1,7 +1,9 @@
 package com.ghstudios.android
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
@@ -62,7 +64,7 @@ abstract class BasePagerActivity : GenericActivity() {
      * Function to reset pager tabs, using a callback with a provided tab adder
      */
     fun resetTabs(builder: (TabAdder) -> Unit) {
-        val adder = InnerTabAdder()
+        val adder = InnerTabAdder(application.applicationContext)
         builder(adder)
 
         val fragment = this.detail as InnerPagerFragment
@@ -81,8 +83,8 @@ abstract class BasePagerActivity : GenericActivity() {
      * Sets the currently selected tab to the tab index
      */
     fun setSelectedTab(tabIndex: Int) {
-        val fragment = this.detail as InnerPagerFragment
-        fragment.setSelectedTab(tabIndex)
+        val fragment = this.detail as? InnerPagerFragment
+        fragment?.setSelectedTab(tabIndex)
     }
 
     /**
@@ -104,6 +106,13 @@ abstract class BasePagerActivity : GenericActivity() {
          * @param builder A lambda that builds the tab fragment
          */
         fun addTab(title: String, icon: Drawable?, builder: () -> Fragment)
+
+        /**
+         * Adds a tab to the fragment
+         * @param titleRes The string resource to use as a title
+         * @param builder  A lambda that builds the tab fragment
+         */
+        fun addTab(@StringRes titleRes: Int, builder: () -> Fragment)
 
         /**
          * Adds a tab to the fragment.
@@ -131,13 +140,17 @@ abstract class BasePagerActivity : GenericActivity() {
     )
 
     /** Internal only implementation of the TabAdder  */
-    private class InnerTabAdder : TabAdder {
+    private class InnerTabAdder(private val ctx: Context) : TabAdder {
         var defaultIdx = -1
             private set
         private val tabs = ArrayList<PagerIconTab>()
 
         override fun addTab(title: String, icon: Drawable?, builder: () -> Fragment) {
             tabs.add(PagerIconTab(icon, PagerTab(title, builder)))
+        }
+
+        override fun addTab(titleRes: Int, builder: () -> Fragment) {
+            this.addTab(ctx.getString(titleRes), builder)
         }
 
         override fun addTab(title: String, builder: () -> Fragment) {
@@ -175,7 +188,7 @@ abstract class BasePagerActivity : GenericActivity() {
             val activity = this.activity as BasePagerActivity
 
             // Setup tabs - the user should configure via the activity's onAddTabs function
-            val adder = InnerTabAdder()
+            val adder = InnerTabAdder(context!!.applicationContext)
             activity.onAddTabs(adder)
 
             // get results from the onAddTabs call via the adder.

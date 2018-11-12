@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listitem"
+    style="@style/list_item"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/item_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".7"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/item_image"
+            style="@style/main_image"
+            tools:src="@drawable/armor_arms"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            style="@style/text_medium"
+            tools:text="Awesome Arms"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/amt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        android:gravity="center_vertical|right"
+        android:layout_gravity="center"
+        style="@style/text_small" />
+
+</LinearLayout>

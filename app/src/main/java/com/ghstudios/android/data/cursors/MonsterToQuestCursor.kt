@@ -57,9 +57,11 @@ class MonsterToQuestCursor(c: Cursor) : CursorWrapper(c) {
 
             if (hasColumn(S.COLUMN_HABITAT_AREAS)) {
                 val areas = getString(S.COLUMN_HABITAT_AREAS)
+
                 if (areas != null) {
                     val areasInt = areas
                             .split(",")
+                            .dropLastWhile { it.isEmpty() }
                             .map { it.toLong() }
                             .toLongArray()
 

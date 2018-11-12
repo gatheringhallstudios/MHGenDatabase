@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.ghstudios.android.*
-import com.ghstudios.android.ClickListeners.ItemClickListener
-import com.ghstudios.android.ClickListeners.MonsterClickListener
-import com.ghstudios.android.ClickListeners.QuestClickListener
-import com.ghstudios.android.ClickListeners.SkillClickListener
+import com.ghstudios.android.ClickListeners.*
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.mhgendatabase.R
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
@@ -48,6 +45,12 @@ abstract class ResultHandler<in T> {
  * Creates a mapping of data type -> handler. Context is used to retrieve the localized type names
  */
 private fun createHandlers(ctx: Context) = mapOf(
+        Location::class.java to object : ResultHandler<Location>() {
+            override fun getName(obj: Location) = obj.name ?: ""
+            override fun getType(obj : Location) = ctx.getString(R.string.type_location)
+            override fun createListener(ctx: Context, obj: Location) = LocationClickListener(ctx, obj.id)
+        },
+
         Monster::class.java to object : ResultHandler<Monster>() {
             override fun getName(obj: Monster) = obj.name
             override fun getType(obj: Monster) = ctx.getString(R.string.type_monster)
@@ -62,9 +65,31 @@ private fun createHandlers(ctx: Context) = mapOf(
 
         SkillTree::class.java to object : ResultHandler<SkillTree>() {
             override fun getImageResource(obj: SkillTree) = R.drawable.icon_bomb
-            override fun getName(obj: SkillTree) = obj.name
+            override fun getName(obj: SkillTree) = obj.name ?: ""
             override fun getType(obj: SkillTree) = ctx.getString(R.string.type_skill_tree)
             override fun createListener(ctx: Context, obj: SkillTree) = SkillClickListener(ctx, obj.id)
+        },
+
+        Decoration::class.java to  object : ResultHandler<Decoration>() {
+            override fun getName(obj: Decoration) = obj.name ?: ""
+            override fun getType(obj: Decoration) = ctx.getString(R.string.type_decoration)
+            override fun createListener(ctx: Context, obj: Decoration) = ItemClickListener(ctx, obj)
+        },
+        
+        ArmorFamilyBase::class.java to object : ResultHandler<ArmorFamilyBase>() {
+            override fun getName(obj: ArmorFamilyBase) = obj.name ?: ""
+            override fun getType(obj: ArmorFamilyBase) = when (obj.hunterType) {
+                Armor.ARMOR_TYPE_BLADEMASTER -> ctx.getString(R.string.type_armor_set_blade)
+                Armor.ARMOR_TYPE_GUNNER -> ctx.getString(R.string.type_armor_set_gunner)
+                else -> ctx.getString(R.string.type_armor_set)
+            }
+            override fun createListener(ctx: Context, obj: ArmorFamilyBase) = ArmorClickListener(ctx, obj)
+        },
+        
+        Armor::class.java to object : ResultHandler<Armor>() {
+            override fun getName(obj: Armor) = obj.name ?: ""
+            override fun getType(obj: Armor) = ctx.getString(R.string.type_armor)
+            override fun createListener(ctx: Context, obj: Armor) = ArmorClickListener(ctx, obj)
         },
 
         Item::class.java to  object : ResultHandler<Item>() {

@@ -54,11 +54,14 @@ public class WeaponTreeFragment extends ListFragment{
         setListAdapter(new WeaponTreeListAdapter(getContext(),items));
     }
 
+    /**
+     * Internal adapter used to display the Weapon family trees.
+     * The title of the WeaponFamilyWrapper decides the section the entry is displayed in.
+     */
     private static class WeaponTreeListAdapter extends SectionArrayAdapter<WeaponFamilyWrapper> {
 
         public WeaponTreeListAdapter(Context context, List<WeaponFamilyWrapper> items) {
-            super(context,items);
-
+            super(context, items, R.layout.listview_header_strong);
         }
 
         @Override
@@ -85,7 +88,7 @@ public class WeaponTreeFragment extends ListFragment{
         @Override
         public View newView(Context context, WeaponFamilyWrapper item, ViewGroup parent) {
             // Use a layout inflater to get a row view
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = LayoutInflater.from(context);
             View v;
 
             Weapon w = item.getWeapon();

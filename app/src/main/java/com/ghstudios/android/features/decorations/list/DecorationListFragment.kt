@@ -40,6 +40,7 @@ class DecorationListFragment : RecyclerViewFragment() {
 
         // Create and set the adapter
         val adapter = DecorationListAdapter(maxSlots) { decoration, view ->
+            // if from asb, clicking should resolve asb, otherwise go to decoration
             if (fromAsb) {
                 intent?.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, decoration.id)
                 activity?.setResult(Activity.RESULT_OK, intent)

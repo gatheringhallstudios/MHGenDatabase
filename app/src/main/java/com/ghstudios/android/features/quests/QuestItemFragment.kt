@@ -55,11 +55,13 @@ class QuestItemFragment : ListFragment() {
             val mapTextView = view.findViewById<TextView>(R.id.map)
             val methodTextView = view.findViewById<TextView>(R.id.method)
             val rateTextView = view.findViewById<TextView>(R.id.rate)
+            val amountTextView = view.findViewById<TextView>(R.id.amount)
             val rate = gathering.rate.toLong()
 
             mapTextView.text = gathering.area
-            methodTextView.text = "x" + gathering.quantity.toString()
-            rateTextView.text = java.lang.Long.toString(rate) + "%"
+            methodTextView.text = AssetLoader.localizeGatherNodeFull(gathering)
+            amountTextView.text = "x" + gathering.quantity.toString()
+            rateTextView.text = rate.toString() + "%"
         }
     }
     private class HuntingRewardAdapter(context: Context, items:List<HuntingReward>) : SectionArrayAdapter<HuntingReward>(context,items,R.layout.listview_generic_header){
@@ -86,7 +88,7 @@ class QuestItemFragment : ListFragment() {
 
             val cellAmountText = hr.stackSize
             val cellPercentageText = hr.percentage
-            hr.percentage
+
             rankTextView.text = hr.rank
             monsterTextView.text = hr.monster?.name
             methodTextView.text = hr.condition

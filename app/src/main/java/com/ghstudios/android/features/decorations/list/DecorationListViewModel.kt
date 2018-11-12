@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.toList
 
 class DecorationListViewModel(app: Application) : AndroidViewModel(app) {
@@ -16,9 +17,24 @@ class DecorationListViewModel(app: Application) : AndroidViewModel(app) {
      */
     private val filterSource = MutableLiveData<String>()
 
-    val decorationData = Transformations.map(filterSource) { filter ->
-        // Query the list of decorations. Null/empty strings are handled
-        dataManager.queryDecorationsSearch(filter).toList { it.decoration }
+    // done synchronously as you can't really map multiple transformations simultaneously...
+    private val allDecorationData = dataManager.queryDecorations().toList { it.decoration }
+
+    /**
+     * Contains the list of decorations, with a filter applied.
+     * Returns decorations with a name or at least one skill match.
+     */
+    val decorationData = Transformations.map(filterSource) { searchTerm ->
+        // note: we filter in memory because
+        // A) more performance
+        // B) dataManager.queryDecorationSearch only filters on name
+
+        val filter = SearchFilter(searchTerm ?: "")
+        allDecorationData.filter {
+            filter.matches(it.name)
+                    || filter.matches(it.skill1Name)
+                    || filter.matches(it.skill2Name)
+        }
     }
 
     init {

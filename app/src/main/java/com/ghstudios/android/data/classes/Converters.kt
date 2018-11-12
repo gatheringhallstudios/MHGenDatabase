@@ -4,8 +4,6 @@ package com.ghstudios.android.data.classes
 import android.util.Log
 import com.ghstudios.android.data.util.Converter
 
-val TAG = "MHGUDataConverter"
-
 fun getElementFromString(elementStr: String?) = when(elementStr ?: "") {
     "" -> ElementStatus.NONE
     "Fire" -> ElementStatus.FIRE

@@ -37,6 +37,9 @@ class Armor : Equipment() {
     var gender: Int = 2                   // Which gender can equip (0 = Male Only,1=Female Only,2 = Both)
     var hunterType: Int = ARMOR_TYPE_BOTH // Which hunter type can equip: Blademaster/Gunner (0 = Blademaster,1 = Gunner, 2 = Both)
 
+    /** The id of the armor family this armorpiece is a part of */
+    var family: Long = -1
+
     var slotString: String? = null
         // Unicode White Circle \u25CB
         // Unicode Dash \u2015

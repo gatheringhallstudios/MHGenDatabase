@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     style="@style/expandable_group"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/numstars"
@@ -19,7 +20,8 @@
         android:visibility="gone"
         android:src="@drawable/star"
         android:layout_gravity="center"
-        android:tint="@color/text_color" />
+        android:tint="@color/text_color"
+        tools:visibility="visible" />
     <ImageView
         android:id="@+id/star2"
         android:layout_width="wrap_content"
@@ -28,7 +30,8 @@
         android:visibility="gone"
         android:src="@drawable/star"
         android:layout_gravity="center"
-        android:tint="@color/text_color" />
+        android:tint="@color/text_color"
+        tools:visibility="visible" />
     <ImageView
         android:id="@+id/star3"
         android:layout_width="wrap_content"
@@ -37,7 +40,8 @@
         android:visibility="gone"
         android:src="@drawable/star"
         android:layout_gravity="center"
-        android:tint="@color/text_color" />
+        android:tint="@color/text_color"
+        tools:visibility="visible" />
     <ImageView
         android:id="@+id/star4"
         android:layout_width="wrap_content"

@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
+    <!-- Note: @android:id/list makes it work only for ListFragment
+        When using for a non-list fragment, use a different id -->
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

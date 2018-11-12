@@ -16,15 +16,15 @@ public class MonsterListPagerActivity extends BasePagerActivity {
         setTitle(R.string.monsters);
         super.setAsTopLevel();
 
-        tabs.addTab(getString(R.string.monster_tab_large), () ->
+        tabs.addTab(R.string.monster_class_large, () ->
                 MonsterListFragment.newInstance(MonsterClass.LARGE)
         );
 
-        tabs.addTab(getString(R.string.monster_tab_deviant), () ->
+        tabs.addTab(R.string.monster_class_deviant, () ->
                 MonsterListFragment.newInstance(MonsterClass.DEVIANT)
         );
 
-        tabs.addTab(getString(R.string.monster_tab_small), () ->
+        tabs.addTab(R.string.monster_class_small, () ->
                 MonsterListFragment.newInstance(MonsterClass.SMALL)
         );
     }

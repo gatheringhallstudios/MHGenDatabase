@@ -4,6 +4,7 @@ import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 import android.arch.lifecycle.ViewModelProviders;
 import com.ghstudios.android.data.classes.Quest;
+import com.ghstudios.android.mhgendatabase.R;
 
 public class QuestDetailPagerActivity extends BasePagerActivity {
     /**
@@ -26,15 +27,15 @@ public class QuestDetailPagerActivity extends BasePagerActivity {
 
         setTitle(q.getName());
 
-        tabs.addTab("Detail", () ->
+        tabs.addTab(R.string.quest_detail_tab_detail, () ->
                 QuestDetailFragment.newInstance(questId)
         );
 
         if (q.getHasGatheringItem() || q.getHasHuntingRewardItem()) {
-            tabs.addTab("Items", QuestItemFragment::new);
+            tabs.addTab(R.string.items, QuestItemFragment::new);
         }
 
-        tabs.addTab("Rewards", () ->
+        tabs.addTab(R.string.quest_detail_tab_rewards, () ->
                 QuestRewardFragment.newInstance(questId)
         );
     }

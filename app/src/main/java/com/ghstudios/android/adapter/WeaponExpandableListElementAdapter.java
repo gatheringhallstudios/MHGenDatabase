@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.AssetRegistry;
 import com.ghstudios.android.data.classes.ElementStatus;
 import com.ghstudios.android.data.classes.Weapon;
@@ -25,7 +26,7 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
         super(context, listener);
     }
 
-    protected static class WeaponElementViewHolder extends WeaponViewHolder {
+    public static class WeaponElementViewHolder extends WeaponViewHolder {
 
         // Element
         public TextView elementView;
@@ -81,21 +82,16 @@ public abstract class WeaponExpandableListElementAdapter extends WeaponExpandabl
                     elementView.setText(Long.toString(element_attack));
                 }
 
+                Drawable icon = AssetLoader.loadIconFor(element);
+                elementIconView.setImageDrawable(icon);
                 elementIconView.setTag(weapon.getId());
                 elementIconView.setVisibility(View.VISIBLE);
-
-                int elementIconId = AssetRegistry.getElementRegistry().get(element, R.color.transparent);
-                Drawable icon = ContextCompat.getDrawable(context, elementIconId);
-                elementIconView.setImageDrawable(icon);
             }
 
             if (element2 != ElementStatus.NONE) {
-                elementIconView2.setTag(weapon.getId());
-
-                int elementIconId = AssetRegistry.getElementRegistry().get(element2, R.color.transparent);
-                Drawable icon = ContextCompat.getDrawable(context, elementIconId);
+                Drawable icon = AssetLoader.loadIconFor(element2);
                 elementIconView2.setImageDrawable(icon);
-
+                elementIconView2.setTag(weapon.getId());
                 elementIconView2.setVisibility(View.VISIBLE);
 
                 elementView2.setText("" + element_2_attack);

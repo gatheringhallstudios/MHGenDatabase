@@ -9,6 +9,7 @@ import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.data.util.getInt
 import com.ghstudios.android.data.util.getLong
+import com.ghstudios.android.data.util.getString
 import com.ghstudios.android.mhgendatabase.*
 
 class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
@@ -18,15 +19,12 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
             return null
         }
 
-        val session = ASBSession()
-
-        // load the ASBSet specific stuff....todo: make ASBSet a superclass of ASBSession instead
-        val asbSet = ASBSet()
-        asbSet.id = getLong(getColumnIndex(S.COLUMN_ASB_SET_ID))
-        asbSet.name = getString(getColumnIndex(S.COLUMN_ASB_SET_NAME))
-        asbSet.rank = getInt(getColumnIndexOrThrow(S.COLUMN_ASB_SET_RANK))
-        asbSet.hunterType = getInt(getColumnIndex(S.COLUMN_ASB_SET_HUNTER_TYPE))
-        session.setASBSet(asbSet)
+        val session = ASBSession(
+                id = getLong(S.COLUMN_ASB_SET_ID),
+                name = getString(S.COLUMN_ASB_SET_NAME, ""),
+                rank = Rank.from(getInt(S.COLUMN_ASB_SET_RANK)),
+                hunterType = getInt(S.COLUMN_ASB_SET_HUNTER_TYPE)
+        )
 
         val weaponSlots = getInt(S.COLUMN_ASB_WEAPON_SLOTS)
         val weaponDecoration1 = getDecorationById(getLong(S.COLUMN_ASB_WEAPON_DECORATION_1_ID))

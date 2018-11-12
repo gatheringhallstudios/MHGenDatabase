@@ -47,8 +47,19 @@ public abstract class GenericActivity extends GenericActionBarActivity {
         //super.enableDrawerIndicator(); // Enable drawer toggle button
     }
 
+    /**
+     * Returns the currently registered detail fragment.
+     * This either returns the result of createFragment, or retrieves it from the fragment manager.
+     * @return
+     */
     public Fragment getDetail() {
-        return detail;
+        if (detail != null) {
+            return detail;
+        }
+
+        // If there is no detail registered, try to get the current fragment manager one.
+        // This MAY fix certain cases
+        return getSupportFragmentManager().findFragmentById(R.id.fragment_container);
     }
 
     public void showFatalError() {

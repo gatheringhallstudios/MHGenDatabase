@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.ghstudios.android.data.classes.Armor;
+import com.ghstudios.android.data.classes.ArmorFamilyBase;
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity;
 
 public class ArmorClickListener implements View.OnClickListener {
@@ -27,6 +29,14 @@ public class ArmorClickListener implements View.OnClickListener {
         this(context, id, isFamily);
         this.activity = activity;
         this.requestCode = requestCode;
+    }
+
+    public ArmorClickListener(Context context, ArmorFamilyBase family) {
+        this(context, family.getId(), true);
+    }
+
+    public ArmorClickListener(Context context, Armor armor) {
+        this(context, armor.getId(), false);
     }
 
     @Override
