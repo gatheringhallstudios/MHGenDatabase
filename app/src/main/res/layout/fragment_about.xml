@@ -111,7 +111,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:iconSrc="@drawable/icon_binoculars"
-                app:labelText="MHDucky" />
+                app:labelText="MHDucky"
+                app:valueText="German"/>
+
+            <com.ghstudios.android.components.IconLabelTextCell
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconSrc="@drawable/status_exhaust"
+                app:labelText="Luis &quot;Hlodwig&quot; Jara Rodríguez"
+                app:valueText="Spanish"/>
         </LinearLayout>
 
         <com.ghstudios.android.components.SectionHeaderCell
