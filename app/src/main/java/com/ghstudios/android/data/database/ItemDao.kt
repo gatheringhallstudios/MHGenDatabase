@@ -295,7 +295,7 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
 
         // todo: localize
         return db.rawQuery("""
-            SELECT af._id, af.name, af.rarity, af.hunter_type
+            SELECT af._id, COALESCE(af.$column_name, af.name) name, af.rarity, af.hunter_type
             FROM armor_families af
             WHERE ${sqlFilter.predicate}
               AND $soloPredicate
@@ -329,7 +329,8 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
         }
 
         val cursor = ArmorFamilyCursor(db.rawQuery("""
-            SELECT af._id,af.name,af.rarity,af.hunter_type,st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
+            SELECT af._id, COALESCE(af.$column_name, af.name) name, af.rarity, af.hunter_type,
+                st.$column_name AS st_name,SUM(its.point_value) AS point_value,SUM(a.defense) AS min,SUM(a.max_defense) AS max
             FROM armor_families af
                 JOIN armor a on a.family=af._id
                 JOIN item_to_skill_tree its on a._id=its.item_id
@@ -356,10 +357,10 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryComponentsByArmorFamily(family: Long): ComponentCursor {
         return ComponentCursor(db.rawQuery("""
             SELECT c._id,SUM(c.quantity) AS quantity,c.type,MAX(c.key) AS key,
-                   c.created_item_id,cr.name AS crname,cr.type AS crtype,
+                   c.created_item_id,cr.$column_name AS crname,cr.type AS crtype,
                         cr.rarity AS crrarity,cr.icon_name AS cricon_name,cr.sub_type AS crsub_type,
                         cr.icon_color AS cricon_color,
-                   c.component_item_id,co.name AS coname,co.type AS cotype,
+                   c.component_item_id,co.$column_name AS coname,co.type AS cotype,
                         co.rarity AS corarity,co.icon_name AS coicon_name,co.sub_type AS cosub_type,
                         co.icon_color AS coicon_color
             FROM armor a

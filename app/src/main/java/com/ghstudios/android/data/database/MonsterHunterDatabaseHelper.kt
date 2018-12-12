@@ -68,9 +68,10 @@ For queries with JOINs:
 //Version 9 - v2.1.0 - MHGU Data Fixes
 //Version 10 - v2.1.1 - MHGU Data Fixes + Key items
 //Version 11 - v2.2.0 - Fish data + ArmorSet Hunter Type
+//Version 12 - v2.3.2 - Armor Family Translations
 
 private const val DATABASE_NAME = "mhgu.db"
-private const val DATABASE_VERSION = 11
+private const val DATABASE_VERSION = 12
 
 /**
  * Initialize the helper object
