@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
-
-    <release version="1.1.3" versioncode="7">
-        <change>Redesigned quest details screen</change>
-        <change>Fixed an issue with the navigation drawer not scrolling on devices lower than android 5.0 Lollipop</change>
+    <release version="2.3.2" versioncode="17">
+        <change>Implemented changelog.</change>
+        <change>Added Spanish Translation (thanks to Luis &quot;Hlodwig&quot; Jara Rodríguez)</change>
+        <change>Armor list now localizes Armor Family names</change>
+        <change>Bugfix: Potential fix for missing recipe in weapon info</change>
+        <change>Bugfix: Added missing crafting/upgrade costs in weapons like Scylla Webdart 3.</change>
+        <change>Bugfix: Added missing monsters in quests like Fearful Symmetry.</change>
     </release>
 
-    <release version="1.1.2" versioncode="6">
-        <change>Added September DLC Quests</change>
-        <change>Added October DLC Quests</change>
-        <change>Redesign item details</change>
-        <change>Fix tab issue on Android 7</change>
+    <release version="2.3.1" versioncode="16">
+        <change>Slots visible in the armor family list when looking at potential armor sets.</change>
+        <change>Skill Info screen upgrades. Slots/Defense/Hunter Type now shown for armor.</change>
+        <change>Negative skill info items now hidden by default, use [Show Penalties] option to get them back.</change>
+        <change>Fixed bug where wishlist item names weren't being translated.</change>
     </release>
 
-    <release version="1.1.1" versioncode="5">
-        <change>Added July DLC Quests</change>
-        <change>Added August DLC Quests</change>
-        <change>Fixed issue with wishlist selection</change>
+    <release version="2.2.1" versioncode="14">
+        <change>BETA: Added data language changing support in Settings.</change>
+        <change>Added German translation (thanks to MHDucky)</change>
+        <change>Added Fish Gathering Information</change>
+        <change>Adding certain missing quest rewards (like Felyne Codex)</change>
+        <change>Fixed display of Bow bonus charge levels (Load Up)</change>
+        <change>Updated Weapon Detail design. Ammo/Coating information is now in main tab.</change>
+        <change>Locations and Armor Sets are now searchable. Armor sets in results replace armor ones.</change>
+        <change>Show Rank (LowRank/HighRank/G) next to the rarity on the armor list.</change>
+        <change>Armor Set Builder rank filter actually works now. Added G Rank and Any filters.</change>
+        <change>Fixed bug with copying Armor Sets</change>
+        <change>Fixed bug with disappearing talismans when renaming Armor Sets.</change>
+        <change>Fixed no data bug on first time run after updating for Android 9 and up.</change>
+        <change>Fixed minor data bugs and typos (+duplicate monster ailments solved for real this time).</change>
     </release>
 
-    <release version="1.1.0" versioncode="4">
-        <change>Added Wishlist functionality.</change>
-        <change>Monster summary screen now only shows the most effective weakness elements.</change>
-        <change>Bowguns now show rapid and crouching fire ammo.</change>
-        <change>Quests now show monster movement info.</change>
-        <change>Skills now appear in Universal Search.</change>
-        <change>Armor Set Builder and Wishlist now contains default lists.</change>
-        <change>Added Floating Action Buttons to wishlist and ASB.</change>
-        <change>Android Nougat dialog buttons are no longer invisible.</change>
-        <change>Cleaned up Hunting Horn Melody placeholder data.</change>
-        <change>Fixed a typo in Monster States.</change>
+    <release version="2.1.1" versioncode="12">
+        <change>Added key indicator for crafting recipes</change>
+        <change>Added Meowster Hunter monster rewards</change>
+        <change>Added support for weapon decorations in ASB</change>
+        <change>Fixed issue with certain armors not showing in ASB</change>
+        <change>Fixed incorrect max defense values on certain armors</change>
+        <change>Added craftable indicator to several weapons</change>
+        <change>Added all possible final weapons to a weapon's family tab</change>
+        <change>ASB improvements + Secret Arts/Talisman Boost support</change>
+        <change>Fixed icon colors for egg items</change>
     </release>
 
-    <release version="1.0.2" versioncode="3">
-        <change>Added missing key quests</change>
-        <change>Fixed issue with quest list</change>
+    <release version="2.0.2" versioncode="10">
+        <change>Fixed dual-element duplicated element 2 icon</change>
+        <change>Fixed Valstrax trap vulnerability</change>
+        <change>Updated most monster images. Added icon for Boltreaver Astalos and fixed Gravios icon.</change>
+        <change>Fixed usages for certain items like Azure Plume</change>
+        <change>Fixed a few data problems, like missing quest reward slots, duplicated armor.</change>
+        <change>Fixed Rustrazor Ceanataur item reward labels</change>
+        <change>Fixed Torso Up in Armor Set Builder. Adding headpieces show all kinds of headpieces too.</change>
+        <change>Minor usability tweaks for Armor Set Builder in general.</change>
     </release>
 
-    <release version="1.0.1" versioncode="2">
-        <change>Fixed subquest rewards</change>
-        <change>Fixed monster quest bug</change>
-        <change>Added alternate state damages</change>
-    </release>
-
-    <release version="1.0.0" versioncode="1">
-        <change>Initial Release</change>
+    <release version="2.0.0" versioncode="8">
+        <change>Initial release of MHGU Database</change>
+        <change>Adds support for Generations Ultimate</change>
     </release>
 
 </changelog>

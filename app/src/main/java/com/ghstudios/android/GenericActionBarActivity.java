@@ -99,10 +99,10 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         // Display changelog on first run after update
         // On the initial release, there's no need for a changelog
         // todo: replace for something more up-to-date
-//        ChangeLog cl = new ChangeLog(this);
-//        if (cl.isFirstRun()) {
-//            cl.getLogDialog().show();
-//        }
+        ChangeLog cl = new ChangeLog(this);
+        if (cl.isFirstRun()) {
+            cl.getLogDialog().show();
+        }
 
         // Handler to implement drawer delay and runnable
         mHandler = new Handler();
@@ -179,11 +179,11 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
                 Intent preferences = new Intent(ctx, PreferencesActivity.class);
                 startActivity(preferences);
                 return true;
-//
-//            case R.id.change_log:
-//                ChangeLog cl = new ChangeLog(this);
-//                cl.getFullLogDialog().show();
-//                return true;
+
+            case R.id.change_log:
+                ChangeLog cl = new ChangeLog(this);
+                cl.getFullLogDialog().show();
+                return true;
 
             case R.id.about:
                 Intent about = new Intent(ctx, AboutActivity.class);
