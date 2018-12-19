@@ -15,7 +15,6 @@ import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
 import kotlinx.android.synthetic.main.fragment_weapon_detail.*
-import kotlinx.android.synthetic.main.fragment_weapon_detail_recipe.*
 
 
 /**
@@ -84,8 +83,9 @@ class WeaponDetailFragment : Fragment() {
      * Use as a callback.
      */
     private fun populateCreateComponents(components: List<Component>?) {
-        val section = view!!.findViewById<View>(R.id.create_section)
-        val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.create_recipe)
+        val view = this.view ?: return
+        val section = view.findViewById<View>(R.id.create_section)
+        val recipeView = view.findViewById<ItemRecipeCell>(R.id.create_recipe)
         populateRecipe(section, recipeView, components)
     }
 
@@ -94,8 +94,9 @@ class WeaponDetailFragment : Fragment() {
      * Use as a callback.
      */
     private fun populateUpgradeComponents(components: List<Component>?) {
-        val section = view!!.findViewById<View>(R.id.upgrade_section)
-        val recipeView = view!!.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
+        val view = this.view ?: return
+        val section = view.findViewById<View>(R.id.upgrade_section)
+        val recipeView = view.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
         populateRecipe(section, recipeView, components)
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
-    <release version="2.3.2" versioncode="17">
+    <release version="2.3.3" versioncode="18">
         <change>Implemented changelog.</change>
         <change>Added Spanish Translation (thanks to Luis &quot;Hlodwig&quot; Jara Rodríguez)</change>
         <change>Armor list now localizes Armor Family names</change>

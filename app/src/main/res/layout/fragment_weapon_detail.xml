@@ -2,12 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="14dp"
         android:orientation="vertical">
 
         <com.ghstudios.android.components.TitleBarCell
@@ -31,6 +31,85 @@
             android:layout_height="wrap_content"
             android:id="@+id/weapon_detail_view"/>
 
-        <include layout="@layout/fragment_weapon_detail_recipe"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Group
+                android:id="@+id/create_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="create_header,weapon_cost_create,create_recipe"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <android.support.constraint.Group
+                android:id="@+id/upgrade_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="upgrade_header,weapon_cost_upgrade,upgrade_recipe"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.ghstudios.android.components.SectionHeaderCell
+                android:id="@+id/create_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/weapon_create"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/weapon_cost_create"
+                android:textColor="@color/weapon_property_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/create_header"
+                app:layout_constraintBottom_toBottomOf="@id/create_header"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                tools:text="8000z" />
+
+            <com.ghstudios.android.components.ItemRecipeCell
+                android:id="@+id/create_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/create_header"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.ghstudios.android.components.SectionHeaderCell
+                android:id="@+id/upgrade_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/weapon_upgrade"
+                app:layout_constraintTop_toBottomOf="@id/create_recipe"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/weapon_cost_upgrade"
+                android:textColor="@color/weapon_property_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/upgrade_header"
+                app:layout_constraintBottom_toBottomOf="@id/upgrade_header"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                tools:text="48000z" />
+
+            <com.ghstudios.android.components.ItemRecipeCell
+                android:id="@+id/upgrade_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/upgrade_header"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 </ScrollView>
