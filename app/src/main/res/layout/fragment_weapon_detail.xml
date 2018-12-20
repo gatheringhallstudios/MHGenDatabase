@@ -57,9 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="@string/weapon_create"
-                app:layout_constraintTop_toTopOf="parent"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/weapon_cost_create"
@@ -77,18 +75,14 @@
                 android:id="@+id/create_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/create_header"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@id/create_header" />
 
             <com.ghstudios.android.components.SectionHeaderCell
                 android:id="@+id/upgrade_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="@string/weapon_upgrade"
-                app:layout_constraintTop_toBottomOf="@id/create_recipe"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@id/create_recipe" />
 
             <TextView
                 android:id="@+id/weapon_cost_upgrade"
@@ -106,9 +100,7 @@
                 android:id="@+id/upgrade_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/upgrade_header"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@id/upgrade_header" />
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
