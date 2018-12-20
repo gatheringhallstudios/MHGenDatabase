@@ -47,8 +47,12 @@ class WeaponDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.weaponData.observe(this, Observer(::populateWeapon))
-        viewModel.createComponentData.observe(this, Observer(::populateCreateComponents))
-        viewModel.improveComponentData.observe(this, Observer(::populateUpgradeComponents))
+        viewModel.createComponentData.observe(this, Observer {
+            populateCreateComponents(view, it)
+        })
+        viewModel.improveComponentData.observe(this, Observer {
+            populateUpgradeComponents(view, it)
+        })
     }
 
     /**
@@ -82,8 +86,7 @@ class WeaponDetailFragment : Fragment() {
      * Internal helper to populate the craft section with the correct components.
      * Use as a callback.
      */
-    private fun populateCreateComponents(components: List<Component>?) {
-        val view = this.view ?: return
+    private fun populateCreateComponents(view: View, components: List<Component>?) {
         val section = view.findViewById<View>(R.id.create_section)
         val recipeView = view.findViewById<ItemRecipeCell>(R.id.create_recipe)
         populateRecipe(section, recipeView, components)
@@ -93,8 +96,7 @@ class WeaponDetailFragment : Fragment() {
      * Internal helper to populate the upgrade section with the correct components.
      * Use as a callback.
      */
-    private fun populateUpgradeComponents(components: List<Component>?) {
-        val view = this.view ?: return
+    private fun populateUpgradeComponents(view: View, components: List<Component>?) {
         val section = view.findViewById<View>(R.id.upgrade_section)
         val recipeView = view.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
         populateRecipe(section, recipeView, components)
