@@ -182,7 +182,7 @@
     <string name="preference_app_language">Idioma de la Aplicación</string>
     <string name="preference_app_language_description">
             Usar %s como el lenguaje de la aplicación.
-            \nPor defecto se usará la configuración de su sistema si es que existe una traducción o inglés si es que no hay nada disponible.
+            \nPor defecto se usará la configuración de su sistema si es que existiese una traducción, de lo contrario, se utilizará Inglés.
             Requiere reinicio de la aplicación.
         </string>
     <string name="preference_app_language_description_disabled">
@@ -190,7 +190,7 @@
         </string>
     <string name="preference_data_language">Lenguaje de los Datos (BETA)</string>
     <string name="preference_data_language_description">
-            Mostrar datos del juego usando %s.
+            Mostrar los datos del juego utilizando el idioma %s.
             \nPor defecto se intentará utilizar el lenguaje de la aplicación si es que se encuentra disponible.
         </string>
     <string name="preference_language_default">Por defecto</string>
@@ -220,9 +220,9 @@
     <string name="item_detail_tab_usage">Usos</string>
     <string name="item_rarity">Rareza</string>
     <string name="item_carry_max">Carga Máxima:</string>
-    <string name="item_buy">Precio de Compra</string>
-    <string name="item_sell">Precio de Venta</string>
-    <string name="item_sell_label">Precio de Venta:</string> <!-- variation with : after -->
+    <string name="item_buy">Precio Compra</string>
+    <string name="item_sell">Precio Venta</string>
+    <string name="item_sell_label">Precio Venta:</string> <!-- variation with : after -->
     <string name="item_description">Descripción</string>
     <string name="item_combinations">Combinaciones</string>
     <string name="item_crafting">Elaboración</string>
