@@ -1052,11 +1052,11 @@ class DataManager private constructor(private val mAppContext: Context) {
             for (c in components) {
                 val component_id = c!!.component.id
 
-                val component = mHelper.queryWishlistComponent(wishlistId, component_id).first { it.wishlistComponent }
+                val component = mHelper.queryWishlistComponent(wishlistId, component_id).firstOrNull { it.wishlistComponent }
 
                 // Get the amounts
                 val required_amt = c.quantity
-                val have_amt = component.notes
+                val have_amt = component?.notes ?: 0
 
                 // Check if user does not have enough materials
                 if (have_amt < required_amt) {

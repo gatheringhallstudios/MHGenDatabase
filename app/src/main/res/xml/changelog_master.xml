@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.3.6" versioncode="21">
+        <change>Fixed old wishlists crashing after update for some users.</change>
+    </release>
+
     <release version="2.3.5" versioncode="20">
         <change>Implemented changelog.</change>
         <change>Added Spanish Translation (thanks to Luis &quot;Hlodwig&quot; Jara Rodríguez)</change>
