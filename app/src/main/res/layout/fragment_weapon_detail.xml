@@ -33,6 +33,7 @@
 
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/recipe_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

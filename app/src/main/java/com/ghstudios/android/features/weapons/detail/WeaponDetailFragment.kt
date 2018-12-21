@@ -3,7 +3,9 @@ package com.ghstudios.android.features.weapons.detail
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.constraint.Group
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_weapon_detail.*
  * Defers the internal data inflation and population to a subclass of WeaponDetailViewHolder.
  */
 class WeaponDetailFragment : Fragment() {
+    private val TAG = javaClass.name
+
     companion object {
         private const val ARG_WEAPON_ID = "WEAPON_ID"
 
@@ -87,9 +91,9 @@ class WeaponDetailFragment : Fragment() {
      * Use as a callback.
      */
     private fun populateCreateComponents(view: View, components: List<Component>?) {
-        val section = view.findViewById<View>(R.id.create_section)
+        val section = view.findViewById<Group>(R.id.create_section)
         val recipeView = view.findViewById<ItemRecipeCell>(R.id.create_recipe)
-        populateRecipe(section, recipeView, components)
+        populateRecipe(view, section, recipeView, components)
     }
 
     /**
@@ -97,9 +101,9 @@ class WeaponDetailFragment : Fragment() {
      * Use as a callback.
      */
     private fun populateUpgradeComponents(view: View, components: List<Component>?) {
-        val section = view.findViewById<View>(R.id.upgrade_section)
+        val section = view.findViewById<Group>(R.id.upgrade_section)
         val recipeView = view.findViewById<ItemRecipeCell>(R.id.upgrade_recipe)
-        populateRecipe(section, recipeView, components)
+        populateRecipe(view, section, recipeView, components)
     }
 
     /**
@@ -108,17 +112,25 @@ class WeaponDetailFragment : Fragment() {
      * @param recipeView The object to populate with recipe components
      * @param components The actual recipe items
      */
-    private fun populateRecipe(section: View, recipeView: ItemRecipeCell, components: List<Component>?) {
+    private fun populateRecipe(view: View, section: Group, recipeView: ItemRecipeCell, components: List<Component>?) {
         if (components == null || components.isEmpty()) {
+            Log.i(TAG, "Recipe has zero components")
             section.visibility = View.GONE
             return
         }
 
+        Log.i(TAG, "Populating recipe with components")
         section.visibility = View.VISIBLE
         for (component in components) {
             val item = component.component
             val itemCell = recipeView.addItem(item, item?.name, component.quantity, false)
             itemCell.setOnClickListener(ItemClickListener(context!!, item!!))
+        }
+
+        // Workaround for an intermittant bug with ConstraintLayout's group (where it will sometimes continue being invisible)
+        // if we often need to use this workaround, it may be better to either not use group or make an extension for this
+        for (id in section.referencedIds) {
+            view.findViewById<View>(id)?.visibility = View.VISIBLE
         }
     }
 }
