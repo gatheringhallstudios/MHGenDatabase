@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
 import com.ghstudios.android.data.DataManager;
+import com.ghstudios.android.util.ExtensionsKt;
 
 public class WishlistDataDeleteDialogFragment extends DialogFragment {
     public static final String EXTRA_DELETE =
@@ -28,33 +29,24 @@ public class WishlistDataDeleteDialogFragment extends DialogFragment {
     }
     
     private void sendResult(int resultCode, boolean delete) {
-        if (getTargetFragment() == null)
-            return;
-        
         Intent i = new Intent();
         i.putExtra(EXTRA_DELETE, delete);
-        
-        getTargetFragment()
-            .onActivityResult(getTargetRequestCode(), resultCode, i);
+        ExtensionsKt.sendDialogResult(this, resultCode, i);
     }
     
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {        
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final long wishlistDataId = getArguments().getLong(ARG_WISHLIST_DATA_ID);
         final String name = getArguments().getString(ARG_WISHLIST_DATA_NAME);
         
         return new AlertDialog.Builder(getActivity())
             .setTitle("Delete '" + name + "' from wishlist?")
             .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                
-                   @Override
-                   public void onClick(DialogInterface dialog, int id) {
-                       DataManager.get().queryDeleteWishlistData(
-                               getArguments().getLong(ARG_WISHLIST_DATA_ID));
-                       
-                          Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
-                       sendResult(Activity.RESULT_OK, true);
-                   }
+            .setPositiveButton(android.R.string.ok, (DialogInterface dialog, int id) -> {
+                DataManager.get().getWishlistManager().queryDeleteWishlistData(wishlistDataId);
+
+                Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
             })
             .create();
     }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.util.ExtensionsKt;
 
 public class WishlistRenameDialogFragment extends DialogFragment {
     public static final String EXTRA_RENAME =
@@ -31,14 +32,9 @@ public class WishlistRenameDialogFragment extends DialogFragment {
     }
     
     private void sendResult(int resultCode, boolean rename) {
-        if (getTargetFragment() == null)
-            return;
-        
         Intent i = new Intent();
         i.putExtra(EXTRA_RENAME, rename);
-        
-        getTargetFragment()
-            .onActivityResult(getTargetRequestCode(), resultCode, i);
+        ExtensionsKt.sendDialogResult(this, resultCode, i);
     }
     
     @Override
@@ -47,22 +43,19 @@ public class WishlistRenameDialogFragment extends DialogFragment {
         
         View addView = inflater.inflate(R.layout.dialog_wishlist_rename, null);
         final EditText nameInput = (EditText) addView.findViewById(R.id.rename);
+
+        long wishlistId = getArguments().getLong(ARG_WISHLIST_ID);
         
         return new AlertDialog.Builder(getActivity())
             .setTitle("Rename '" + getArguments().getString(ARG_WISHLIST_NAME) + "' wishlist?")
             .setView(addView)
             .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                
-                   @Override
-                   public void onClick(DialogInterface dialog, int id) {
-                       String name = nameInput.getText().toString();
-                       DataManager.get().queryUpdateWishlist(
-                               getArguments().getLong(ARG_WISHLIST_ID), name);
+            .setPositiveButton(android.R.string.ok, (DialogInterface dialog, int id) -> {
+                String name = nameInput.getText().toString();
+                DataManager.get().getWishlistManager().updateWishlistName(wishlistId, name);
 
-                          Toast.makeText(getActivity(), "Renamed to '" + name + "'", Toast.LENGTH_SHORT).show();
-                       sendResult(Activity.RESULT_OK, true);
-                   }
+                Toast.makeText(getActivity(), "Renamed to '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
             })
             .create();
     }

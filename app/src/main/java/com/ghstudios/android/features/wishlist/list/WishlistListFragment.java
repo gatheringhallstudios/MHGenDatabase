@@ -1,17 +1,14 @@
 package com.ghstudios.android.features.wishlist.list;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,21 +16,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ghstudios.android.ClickListeners.WishlistClickListener;
+import com.ghstudios.android.data.DataManager;
 import com.ghstudios.android.data.classes.Wishlist;
-import com.ghstudios.android.data.cursors.WishlistCursor;
 import com.ghstudios.android.features.wishlist.detail.WishlistDeleteDialogFragment;
-import com.ghstudios.android.features.wishlist.detail.WishlistDetailPagerActivity;
 import com.ghstudios.android.features.wishlist.detail.WishlistRenameDialogFragment;
-import com.ghstudios.android.loader.WishlistListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
-public class WishlistListFragment extends ListFragment implements
-        LoaderCallbacks<Cursor> {
+import java.util.List;
+
+public class WishlistListFragment extends ListFragment {
 
     public static final String DIALOG_WISHLIST_ADD = "wishlist_add";
     public static final String DIALOG_WISHLIST_COPY = "wishlist_copy";
@@ -44,8 +41,6 @@ public class WishlistListFragment extends ListFragment implements
     public static final int REQUEST_COPY = 2;
     public static final int REQUEST_DELETE = 3;
 
-    private int lastSelectionIndex = 0;
-    private ActionMode mActionMode;
     private ListView mListView;
     FloatingActionButton fab;
     
@@ -53,9 +48,6 @@ public class WishlistListFragment extends ListFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        
-        // Initialize the loader to load the list of runs
-        getLoaderManager().initLoader(R.id.wishlist_list_fragment, null, this);
     }
     
     @Override
@@ -71,27 +63,12 @@ public class WishlistListFragment extends ListFragment implements
         });
         mListView = (ListView) v.findViewById(android.R.id.list);
         return v;
-
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        // You only ever load the runs, so assume this is the case
-        return new WishlistListCursorLoader(getActivity());
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        // Create an adapter to point at this cursor
-        WishlistListCursorAdapter adapter = new WishlistListCursorAdapter(
-                getActivity(), (WishlistCursor) cursor);
-        setListAdapter(adapter);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        // Stop using the cursor (via the adapter)
-        setListAdapter(null);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        updateUI();
     }
 
     @Override
@@ -147,44 +124,38 @@ public class WishlistListFragment extends ListFragment implements
 
     @Override
     public void onResume() {
-        // Check for dataset changes when the activity is resumed. Not the best practice but the list will
-        // always be small.
         super.onResume();
-        // Only do this if data has been previously loaded
-        if(getListView().getAdapter() != null){
+
+        // Check for dataset changes when the activity is resumed.
+        // Not the best practice but the list will always be small.
+        // Only do this if data has been previously loaded.
+        if(mListView.getAdapter() != null){
             updateUI();
         }
     }
 
     private void updateUI() {
-        getLoaderManager().getLoader( R.id.wishlist_list_fragment ).forceLoad();
-        WishlistListCursorAdapter adapter = (WishlistListCursorAdapter) getListAdapter();
-        adapter.notifyDataSetChanged();
+        List<Wishlist> wishlists = DataManager.get().getWishlistManager().getWishlists();
+        WishlistListArrayAdapter adapter = new WishlistListArrayAdapter(getActivity(), wishlists);
+        mListView.setAdapter(adapter);
     }
 
-    private static class WishlistListCursorAdapter extends CursorAdapter {
-
-        private WishlistCursor mWishlistCursor;
-
-        public WishlistListCursorAdapter(Context context,
-                WishlistCursor cursor) {
-            super(context, cursor, 0);
-            mWishlistCursor = cursor;
+    private static class WishlistListArrayAdapter extends ArrayAdapter<Wishlist> {
+        WishlistListArrayAdapter(Context context, List<Wishlist> items) {
+            super(context, 0, items);
         }
 
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            // Use a layout inflater to get a row view
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            return inflater.inflate(R.layout.fragment_wishlistmain_listitem,
-                    parent, false);
-        }
+        @Override @NonNull public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            Context ctx = this.getContext();
+            LayoutInflater inflater = LayoutInflater.from(ctx);
 
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            // Get the skill for the current row
-            Wishlist wishlist = mWishlistCursor.getWishlist();
+            // Inflate the view (or reuse convert view if its non-null)
+            View view = convertView;
+            if (view == null) {
+                view = inflater.inflate(R.layout.fragment_wishlistmain_listitem, parent, false);
+            }
+
+            Wishlist wishlist = this.getItem(position);
 
             // Set up the views
             LinearLayout itemLayout = (LinearLayout) view.findViewById(R.id.listitem);
@@ -198,10 +169,12 @@ public class WishlistListFragment extends ListFragment implements
 
             // Assign view tag and listeners
             itemLayout.setTag(wishlist.getId());
-            itemLayout.setOnClickListener(new WishlistClickListener(context, wishlist.getId()));
+            itemLayout.setOnClickListener(new WishlistClickListener(ctx, wishlist.getId()));
 
             // Assign menu click listener if we decide to go that route
             //Toast debugmsg = Toast.makeText(c, "Long clicked ID " + id, Toast.LENGTH_SHORT);
+
+            return view;
         }
     }
 }

@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
 import com.ghstudios.android.data.DataManager;
+import com.ghstudios.android.util.ExtensionsKt;
 
 public class WishlistDeleteDialogFragment extends DialogFragment {
     public static final String EXTRA_DELETE =
@@ -26,13 +27,9 @@ public class WishlistDeleteDialogFragment extends DialogFragment {
     }
     
     private void sendResult(int resultCode, boolean delete) {
-        if (getTargetFragment() == null)
-            return;
-        
         Intent i = new Intent();
         i.putExtra(EXTRA_DELETE, delete);
-        
-        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, i);
+        ExtensionsKt.sendDialogResult(this, resultCode, i);
     }
     
     @Override
@@ -43,7 +40,7 @@ public class WishlistDeleteDialogFragment extends DialogFragment {
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(android.R.string.ok, (dialog, id) -> {
                 long wishlistId = getArguments().getLong(ARG_WISHLIST_ID);
-                DataManager.get().queryDeleteWishlist(wishlistId);
+                DataManager.get().getWishlistManager().deleteWishlist(wishlistId);
 
                 Toast.makeText(getActivity(), "Deleted '" + name + "'", Toast.LENGTH_SHORT).show();
                 sendResult(Activity.RESULT_OK, true);

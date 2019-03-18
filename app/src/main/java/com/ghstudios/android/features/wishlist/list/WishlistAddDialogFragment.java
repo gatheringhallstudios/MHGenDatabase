@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ghstudios.android.data.DataManager;
+import com.ghstudios.android.data.WishlistManager;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WishlistAddDialogFragment extends DialogFragment {
@@ -41,16 +42,14 @@ public class WishlistAddDialogFragment extends DialogFragment {
             .setTitle(R.string.option_wishlist_add)
             .setView(addView)
             .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                
-                   @Override
-                   public void onClick(DialogInterface dialog, int id) {
-                       String name = nameInput.getText().toString();
-                       DataManager.get().queryAddWishlist(name);
+            .setPositiveButton(android.R.string.ok, (DialogInterface dialog, int id) -> {
+                WishlistManager manager = DataManager.get().getWishlistManager();
 
-                          Toast.makeText(getActivity(), "Added '" + name + "'", Toast.LENGTH_SHORT).show();
-                       sendResult(Activity.RESULT_OK, true);
-                   }
+                String name = nameInput.getText().toString();
+                manager.addWishlist(name);
+
+                Toast.makeText(getActivity(), "Added '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
             })
             .create();
     }

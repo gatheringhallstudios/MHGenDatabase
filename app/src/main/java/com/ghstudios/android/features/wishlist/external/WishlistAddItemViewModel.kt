@@ -20,6 +20,7 @@ data class WishlistErrorResult(val message: String): WishlistResult()
  */
 class WishlistAddItemViewModel(private val app: Application) : AndroidViewModel(app) {
     private val dataManager = DataManager.get()
+    private val wishlistManager = dataManager.wishlistManager
 
     val allWishlists = MutableLiveData<List<Wishlist>>()
 
@@ -32,7 +33,7 @@ class WishlistAddItemViewModel(private val app: Application) : AndroidViewModel(
     val itemPaths = MutableLiveData<List<String>>()
 
     fun loadWishlists() {
-        allWishlists.value = dataManager.queryWishlists().toList { it.wishlist }
+        allWishlists.value = wishlistManager.getWishlists()
     }
 
     fun setItem(type: WishlistItemType, itemId: Long) {
@@ -63,7 +64,7 @@ class WishlistAddItemViewModel(private val app: Application) : AndroidViewModel(
             return WishlistErrorResult(app.getString(R.string.wishlist_error_name_required))
         }
 
-        val newWishlistId = dataManager.queryAddWishlist(newWishlistName!!.trim())
+        val newWishlistId = wishlistManager.addWishlist(newWishlistName!!.trim())
         return addToWishlistRaw(newWishlistId, quantity!!, path)
     }
 
@@ -84,13 +85,13 @@ class WishlistAddItemViewModel(private val app: Application) : AndroidViewModel(
         // Add to wishlist
         when (itemType) {
             WishlistItemType.ITEM ->
-                dataManager.queryAddWishlistData(wishlistId, itemId, quantity, path)
+                wishlistManager.addWishlistItem(wishlistId, itemId, quantity, path)
             WishlistItemType.ARMORSET ->
-                dataManager.queryAddWishlistArmorFamily(wishlistId, itemId, quantity, path)
+                wishlistManager.addWishlistArmorFamily(wishlistId, itemId, quantity)
         }
 
         // load the wishlist (it may have just been created for all we know...)
-        val wishlist = dataManager.getWishlist(wishlistId)
+        val wishlist = wishlistManager.getWishlist(wishlistId)
         return WishlistSuccessResult(wishlist?.name ?: "")
     }
 

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ghstudios.android.data.DataManager;
+import com.ghstudios.android.data.WishlistManager;
 import com.ghstudios.android.mhgendatabase.R;
 
 public class WishlistCopyDialogFragment extends DialogFragment {
@@ -47,22 +48,22 @@ public class WishlistCopyDialogFragment extends DialogFragment {
         
         View addView = inflater.inflate(R.layout.dialog_wishlist_rename, null);
         final EditText nameInput = (EditText) addView.findViewById(R.id.rename);
+
+        long wishlistId = getArguments().getLong(ARG_WISHLIST_ID);
+        String wishlistName = getArguments().getString(ARG_WISHLIST_NAME);
         
         return new AlertDialog.Builder(getActivity())
-            .setTitle("Copy '" + getArguments().getString(ARG_WISHLIST_NAME) + "' wishlist?")
+            .setTitle("Copy '" + wishlistName + "' wishlist?")
             .setView(addView)
             .setNegativeButton(android.R.string.cancel, null)
-            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                
-                   @Override
-                   public void onClick(DialogInterface dialog, int id) {
-                       String name = nameInput.getText().toString();
-                       DataManager.get().queryCopyWishlist(
-                               getArguments().getLong(ARG_WISHLIST_ID), name);
-                       
-                          Toast.makeText(getActivity(), "Copied as '" + name + "'", Toast.LENGTH_SHORT).show();
-                       sendResult(Activity.RESULT_OK, true);
-                   }
+            .setPositiveButton(android.R.string.ok, (DialogInterface dialog, int id) -> {
+                WishlistManager manager = DataManager.get().getWishlistManager();
+
+                String name = nameInput.getText().toString();
+                manager.copyWishlist(wishlistId, name);
+
+                Toast.makeText(getActivity(), "Copied as '" + name + "'", Toast.LENGTH_SHORT).show();
+                sendResult(Activity.RESULT_OK, true);
             })
             .create();
     }
