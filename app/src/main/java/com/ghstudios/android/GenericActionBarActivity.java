@@ -370,4 +370,15 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+    /**
+     * Indirectly calls onActivityResult, allows a generic way for a dialog
+     * to return to both activities and fragments.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    public void sendActivityResult(int requestCode, int resultCode, Intent data) {
+        onActivityResult(requestCode, resultCode, data);
+    }
 }

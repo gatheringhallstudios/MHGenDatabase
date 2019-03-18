@@ -1,14 +1,17 @@
 package com.ghstudios.android.util
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import com.ghstudios.android.GenericActionBarActivity
 
 
 // A collection of extension functions used by the app.
@@ -109,4 +112,21 @@ inline fun SharedPreferences.edit(block: SharedPreferences.Editor.() -> Unit) {
     val editor = this.edit()
     block(editor)
     editor.apply()
+}
+
+/**
+ * Extension function that sends the activity result. If target fragment is not null,
+ * it will call onActivityResult on the fragment. Otherwise, it will call it on the activity.
+ *
+ * This was created to allow a uniform interface between fragments and activities.
+ */
+fun DialogFragment.sendDialogResult(resultCode: Int, intent: Intent) {
+    if (this.targetFragment != null) {
+        targetFragment?.onActivityResult(targetRequestCode, resultCode, intent)
+        return
+    }
+
+    val activity = activity as? GenericActionBarActivity
+    activity ?: throw TypeCastException("sendDialogResult() only works on fragments and GenericActionBarActivity")
+    activity.sendActivityResult(targetRequestCode, resultCode, intent)
 }
