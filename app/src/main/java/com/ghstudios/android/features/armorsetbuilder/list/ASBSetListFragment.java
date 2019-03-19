@@ -2,7 +2,6 @@ package com.ghstudios.android.features.armorsetbuilder.list;
 
 import android.app.*;
 import android.content.*;
-import android.content.DialogInterface.*;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +18,7 @@ import com.ghstudios.android.data.classes.ASBSet;
 import com.ghstudios.android.data.classes.Rank;
 import com.ghstudios.android.data.cursors.ASBSetCursor;
 import com.ghstudios.android.data.DataManager;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity;
 import com.ghstudios.android.loader.ASBSetListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 
@@ -118,7 +117,7 @@ public class ASBSetListFragment extends ListFragment implements LoaderCallbacks<
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent i = new Intent(getActivity(), ASBPagerActivity.class);
+        Intent i = new Intent(getActivity(), ASBDetailPagerActivity.class);
         i.putExtra(EXTRA_ASB_SET_NAME, v.getTag().toString());
         i.putExtra(EXTRA_ASB_SET_ID, id);
         startActivity(i);

@@ -176,10 +176,10 @@ public class ASBTalismanSkillContainer extends LinearLayout {
         if (skillTree == null) {
             Intent i = new Intent(getContext(), SkillTreeListActivity.class);
 
-            i.putExtra(ASBPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, true);
-            i.putExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_INDEX, skillIndex - 1);
+            i.putExtra(ASBDetailPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, true);
+            i.putExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_INDEX, skillIndex - 1);
 
-            parent.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN);
+            parent.startActivityForResult(i, ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN);
         }
         else {
             setSkillTree(null);

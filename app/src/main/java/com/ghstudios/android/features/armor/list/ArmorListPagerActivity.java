@@ -4,7 +4,7 @@ import android.content.Intent;
 
 import com.ghstudios.android.data.classes.Armor;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity;
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
 
@@ -23,9 +23,9 @@ public class ArmorListPagerActivity extends BasePagerActivity {
         );
 
         // Enable back button if we're coming from the set builder
-        if (getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
+        if (getIntent().getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {
             super.disableDrawerIndicator();
-            if (getIntent().getIntExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, -1) == 1) {
+            if (getIntent().getIntExtra(ASBDetailPagerActivity.EXTRA_SET_HUNTER_TYPE, -1) == 1) {
                 // We change to the gunner page if its a gunner set
                 tabs.setDefaultItem(1);
             }
@@ -40,7 +40,7 @@ public class ArmorListPagerActivity extends BasePagerActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ASBPagerActivity.REQUEST_CODE_ADD_PIECE && resultCode == RESULT_OK) {
+        if (requestCode == ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE && resultCode == RESULT_OK) {
             setResult(RESULT_OK, data);
             finish();
         }

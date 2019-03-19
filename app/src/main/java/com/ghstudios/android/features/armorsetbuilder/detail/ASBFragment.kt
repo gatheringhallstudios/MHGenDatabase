@@ -20,14 +20,14 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
     // called by piece container when it requests a change to weapon slot count
     override fun onChangeWeaponSlots() {
         val dialog = ASBWeaponSlotsDialogFragment.newInstance(viewModel.session.numWeaponSlots)
-        dialog.setTargetFragment(this, ASBPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS)
+        dialog.setTargetFragment(this, ASBDetailPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS)
         dialog.show(this.fragmentManager, "ASB_WEAPON_SLOTS")
     }
 
     // called by piece container when it requests a new talisman
     override fun onChangeTalisman() {
         val d = ASBTalismanDialogFragment.newInstance(viewModel.session.talisman)
-        d.setTargetFragment(this, ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
+        d.setTargetFragment(this, ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
         d.show(this.fragmentManager, "TALISMAN")
     }
 
@@ -36,12 +36,12 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
         val session = viewModel.session
 
         val i = Intent(context, ArmorSelectActivity::class.java)
-        i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-        i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-        i.putExtra(ASBPagerActivity.EXTRA_SET_RANK, session.rank)
-        i.putExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, session.hunterType)
+        i.putExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, true)
+        i.putExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
+        i.putExtra(ASBDetailPagerActivity.EXTRA_SET_RANK, session.rank)
+        i.putExtra(ASBDetailPagerActivity.EXTRA_SET_HUNTER_TYPE, session.hunterType)
 
-        startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_PIECE)
+        startActivityForResult(i, ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE)
     }
 
     private val viewModel by lazy {
@@ -83,42 +83,42 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
 
         if (resultCode == Activity.RESULT_OK) { // If the user canceled the request, we don't want to do anything.
             when (requestCode) {
-                ASBPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS -> {
+                ASBDetailPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS -> {
                     val slots = data.getIntExtra(ASBWeaponSlotsDialogFragment.EXTRA_WEAPON_SLOTS, 3)
                     viewModel.setWeaponSlots(slots)
                 }
 
-                ASBPagerActivity.REQUEST_CODE_ADD_PIECE -> {
+                ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE -> {
                     val armorId = data.getLongExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, -1)
                     viewModel.addArmor(armorId)
                 }
 
-                ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE -> {
-                    val pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1)
+                ASBDetailPagerActivity.REQUEST_CODE_REMOVE_PIECE -> {
+                    val pieceIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, -1)
                     viewModel.removeArmorPiece(pieceIndex)
                 }
 
-                ASBPagerActivity.REQUEST_CODE_ADD_DECORATION -> {
+                ASBDetailPagerActivity.REQUEST_CODE_ADD_DECORATION -> {
                     val decorationId = data.getLongExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, -1)
-                    val pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1)
+                    val pieceIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, -1)
                     viewModel.bindDecoration(pieceIndex, decorationId)
                 }
 
-                ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION -> {
-                    val pieceIndex = data.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1)
-                    val decorationIndex = data.getIntExtra(ASBPagerActivity.EXTRA_DECORATION_INDEX, -1)
+                ASBDetailPagerActivity.REQUEST_CODE_REMOVE_DECORATION -> {
+                    val pieceIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, -1)
+                    val decorationIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_DECORATION_INDEX, -1)
                     viewModel.unbindDecoration(pieceIndex, decorationIndex)
                 }
 
-                ASBPagerActivity.REQUEST_CODE_CREATE_TALISMAN -> {
+                ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN -> {
                     viewModel.setTalisman(
-                            typeIndex = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1),
-                            numSlots = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SLOTS, 0),
-                            skill1Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1),
-                            skill1Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_1, -1),
+                            typeIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1),
+                            numSlots = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SLOTS, 0),
+                            skill1Id = data.getLongExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1),
+                            skill1Points = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_1, -1),
 
-                            skill2Id = data.getLongExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1),
-                            skill2Points = data.getIntExtra(ASBPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, 0)
+                            skill2Id = data.getLongExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1),
+                            skill2Points = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, 0)
                     )
                 }
             }
@@ -136,9 +136,9 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
             // The user wants to add an armor piece
             R.id.set_builder_add_piece -> {
                 val intent = Intent(activity, ArmorListPagerActivity::class.java)
-                intent.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
+                intent.putExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, true)
 
-                startActivityForResult(intent, ASBPagerActivity.REQUEST_CODE_ADD_PIECE)
+                startActivityForResult(intent, ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

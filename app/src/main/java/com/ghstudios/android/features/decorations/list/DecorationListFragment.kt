@@ -8,7 +8,7 @@ import android.view.View
 
 import com.ghstudios.android.ClickListeners.DecorationClickListener
 import com.ghstudios.android.RecyclerViewFragment
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 
 
@@ -32,9 +32,9 @@ class DecorationListFragment : RecyclerViewFragment() {
         // Determine if we're arriving from the Armor Set Builder (ASB).
         // If so, we'll also need the number of slots
         val intent = activity!!.intent
-        val fromAsb = intent.getBooleanExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, false)
+        val fromAsb = intent.getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, false)
         val maxSlots = when {
-            fromAsb -> intent.getIntExtra(ASBPagerActivity.EXTRA_DECORATION_MAX_SLOTS, 3)
+            fromAsb -> intent.getIntExtra(ASBDetailPagerActivity.EXTRA_DECORATION_MAX_SLOTS, 3)
             else -> Int.MAX_VALUE
         }
 

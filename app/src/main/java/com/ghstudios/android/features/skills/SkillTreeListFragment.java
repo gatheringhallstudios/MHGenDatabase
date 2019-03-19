@@ -21,7 +21,7 @@ import com.ghstudios.android.features.skills.detail.SkillTreeDetailPagerActivity
 import com.ghstudios.android.loader.SkillTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity;
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity;
 
 public class SkillTreeListFragment extends ListFragment implements
 		LoaderCallbacks<Cursor> {
@@ -97,7 +97,7 @@ public class SkillTreeListFragment extends ListFragment implements
 			String cellText = skilltree.getName();
 			skilltreeNameTextView.setText(cellText);
 
-            if (getActivity().getIntent().getBooleanExtra(ASBPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false)) {
+            if (getActivity().getIntent().getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false)) {
                 itemLayout.setOnClickListener(v -> {
                     Intent i = getActivity().getIntent();
                     i.putExtra(SkillTreeDetailPagerActivity.EXTRA_SKILLTREE_ID, skilltree.getId());

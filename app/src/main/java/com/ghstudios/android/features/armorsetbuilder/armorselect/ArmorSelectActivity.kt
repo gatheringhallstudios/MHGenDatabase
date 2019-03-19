@@ -7,7 +7,7 @@ import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.Rank
-import com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 
 class ArmorSelectActivity : GenericActivity() {
@@ -18,9 +18,9 @@ class ArmorSelectActivity : GenericActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val asbPieceIndex = intent.getIntExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, -1)
-        val rankValue = intent.getSerializableExtra(ASBPagerActivity.EXTRA_SET_RANK) as Rank?
-        val hunterType = intent.getIntExtra(ASBPagerActivity.EXTRA_SET_HUNTER_TYPE, -1)
+        val asbPieceIndex = intent.getIntExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, -1)
+        val rankValue = intent.getSerializableExtra(ASBDetailPagerActivity.EXTRA_SET_RANK) as Rank?
+        val hunterType = intent.getIntExtra(ASBDetailPagerActivity.EXTRA_SET_HUNTER_TYPE, -1)
 
         setTitle(when (asbPieceIndex) {
             ArmorSet.HEAD -> R.string.asb_title_select_head

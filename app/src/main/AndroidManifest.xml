@@ -182,7 +182,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ghstudios.android.features.armorsetbuilder.detail.ASBPagerActivity"
+            android:name="com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <meta-data

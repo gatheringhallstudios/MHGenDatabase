@@ -19,7 +19,6 @@ import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
-import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
 import com.ghstudios.android.features.decorations.list.DecorationListActivity
 import com.ghstudios.android.util.getColorCompat
 import com.ghstudios.android.util.setImageAsset
@@ -255,8 +254,8 @@ class ASBPieceContainer
      */
     private fun onRemoveEquipment() {
         val data = Intent()
-        data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-        parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
+        data.putExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
+        parentFragment!!.onActivityResult(ASBDetailPagerActivity.REQUEST_CODE_REMOVE_PIECE, Activity.RESULT_OK, data)
     }
 
     /**
@@ -372,11 +371,11 @@ class ASBPieceContainer
          */
         private fun requestAddDecoration() {
             val i = Intent(parentFragment!!.activity, DecorationListActivity::class.java)
-            i.putExtra(ASBPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-            i.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-            i.putExtra(ASBPagerActivity.EXTRA_DECORATION_MAX_SLOTS, session.getAvailableSlots(pieceIndex))
+            i.putExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, true)
+            i.putExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
+            i.putExtra(ASBDetailPagerActivity.EXTRA_DECORATION_MAX_SLOTS, session.getAvailableSlots(pieceIndex))
 
-            parentFragment!!.startActivityForResult(i, ASBPagerActivity.REQUEST_CODE_ADD_DECORATION)
+            parentFragment!!.startActivityForResult(i, ASBDetailPagerActivity.REQUEST_CODE_ADD_DECORATION)
         }
 
         /**
@@ -384,10 +383,10 @@ class ASBPieceContainer
          */
         private fun requestRemoveDecoration(decorationIndex: Int) {
             val data = Intent()
-            data.putExtra(ASBPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
-            data.putExtra(ASBPagerActivity.EXTRA_DECORATION_INDEX, decorationIndex)
+            data.putExtra(ASBDetailPagerActivity.EXTRA_PIECE_INDEX, pieceIndex)
+            data.putExtra(ASBDetailPagerActivity.EXTRA_DECORATION_INDEX, decorationIndex)
 
-            parentFragment!!.onActivityResult(ASBPagerActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data)
+            parentFragment!!.onActivityResult(ASBDetailPagerActivity.REQUEST_CODE_REMOVE_DECORATION, Activity.RESULT_OK, data)
         }
 
         /**
