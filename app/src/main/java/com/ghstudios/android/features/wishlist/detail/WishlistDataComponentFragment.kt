@@ -62,7 +62,7 @@ class WishlistDataComponentFragment : ListFragment() {
         // Bind the total cost value
         val mTotalCostView = view.findViewById<TextView>(R.id.total_cost_value)
         viewModel.priceData.observe(this, Observer {
-            mTotalCostView.text = (it ?: 0).toString()
+            mTotalCostView.text = getString(R.string.value_zenny, it ?: 0)
         })
     }
 

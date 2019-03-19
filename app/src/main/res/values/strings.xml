@@ -18,6 +18,8 @@
         Contact us at contact@gatheringhallstudios.com or visit our Discord.
     </string>
 
+    <string name="value_zenny">%dz</string>
+
     <string name="placeholder_unknown">Unknown</string>
     <string name="filter_final_option">Final Only</string>
     <string name="empty_message">No Data</string>
