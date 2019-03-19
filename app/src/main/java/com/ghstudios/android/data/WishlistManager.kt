@@ -5,8 +5,6 @@ import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.data.classes.Wishlist
 import com.ghstudios.android.data.classes.WishlistComponent
 import com.ghstudios.android.data.classes.WishlistData
-import com.ghstudios.android.data.cursors.WishlistComponentCursor
-import com.ghstudios.android.data.cursors.WishlistDataCursor
 import com.ghstudios.android.data.database.MonsterHunterDatabaseHelper
 import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.toList
@@ -93,7 +91,7 @@ class WishlistManager internal constructor(
     fun addWishlistItem(wishlistId: Long, itemId: Long, quantity: Int, craftMethod: String) {
         addWishlistItemBasic(wishlistId, itemId, quantity, craftMethod)
         helperQueryAddWishlistComponents(wishlistId, itemId, quantity, craftMethod)
-        helperQueryUpdateWishlistSatisfied(wishlistId)
+        refreshWishlistItemsSatisfied(wishlistId)
     }
 
 
@@ -108,7 +106,7 @@ class WishlistManager internal constructor(
             helperQueryAddWishlistComponents(wishlistId, armor.id, quantity, CREATE)
         }
 
-        helperQueryUpdateWishlistSatisfied(wishlistId)
+        refreshWishlistItemsSatisfied(wishlistId)
     }
 
     /**
@@ -198,7 +196,7 @@ class WishlistManager internal constructor(
 //        mHelper.queryUpdateWishlistDataQuantity(id, quantity)
 //
 //        // Check for any changes if any WishlistData is satisfied (can be build)
-//        helperQueryUpdateWishlistSatisfied(wishlist_id)
+//        refreshWishlistItemsSatisfied(wishlist_id)
 //    }
 
     /**
@@ -283,9 +281,12 @@ class WishlistManager internal constructor(
     /********************************* WISHLIST COMPONENT QUERIES  */
 
 
-    /* Update the specified WishlistComponent by the given quantity */
-    fun queryUpdateWishlistComponentNotes(id: Long, notes: Int) {
-        mHelper.queryUpdateWishlistComponentNotes(id, notes)
+    /**
+     * Update the specified WishlistComponent to the given quantity.
+     * Does not update whether or not the wishlist items have been satisfied
+     * */
+    fun updateComponentQuantity(id: Long, qty: Int) {
+        mHelper.queryUpdateWishlistComponentNotes(id, qty)
     }
 
     /**
@@ -293,7 +294,7 @@ class WishlistManager internal constructor(
      * Updates the "satisfied" status of all wishlists.
      * TODO: Perhaps find a way such that "satisfied" isn't required
      */
-    fun helperQueryUpdateWishlistSatisfied(wishlistId: Long) {
+    fun refreshWishlistItemsSatisfied(wishlistId: Long) {
         val wishlistData = mHelper.queryWishlistData(wishlistId).toList {
             it.wishlistData
         }

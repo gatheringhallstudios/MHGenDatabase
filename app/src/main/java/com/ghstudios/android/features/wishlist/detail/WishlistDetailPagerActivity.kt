@@ -4,14 +4,9 @@ import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 
-import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.Wishlist
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
@@ -137,17 +132,4 @@ class WishlistDetailPagerActivity: BasePagerActivity() {
             REQUEST_WISHLIST_DATA_DELETE -> updateUI()
         }
     }
-
-
-//    private fun sendResult(resultCode: Int, refresh: Boolean) {
-//        if (targetFragment == null) {
-//            return
-//        }
-//
-//        val i = Intent()
-//        i.putExtra(EXTRA_DETAIL_REFRESH, refresh)
-//
-//        targetFragment!!
-//                .onActivityResult(targetRequestCode, resultCode, i)
-//    }
 }

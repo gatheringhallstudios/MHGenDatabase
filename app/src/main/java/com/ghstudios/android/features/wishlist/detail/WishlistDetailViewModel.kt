@@ -50,4 +50,14 @@ class WishlistDetailViewModel: ViewModel() {
             priceData.postValue(wishlistManager.calculateWishlistPrice(items))
         }
     }
+
+    fun updateComponentQuantity(componentId: Long, quantity: Int) {
+        wishlistManager.updateComponentQuantity(componentId, quantity)
+        wishlistManager.refreshWishlistItemsSatisfied(wishlistId)
+
+        loggedThread(name="Load Wishlist Detail (Partial)") {
+            val items = wishlistManager.getWishlistItems(wishlistId)
+            wishlistItems.postValue(items)
+        }
+    }
 }

@@ -3,20 +3,11 @@ package com.ghstudios.android.features.wishlist.detail
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.content.Intent
-import android.database.Cursor
 import android.os.Bundle
 import android.support.v4.app.ListFragment
-import android.support.v4.app.LoaderManager.LoaderCallbacks
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.Loader
-import android.support.v4.widget.CursorAdapter
 import android.util.Log
-import android.view.ActionMode
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -28,21 +19,13 @@ import android.widget.Spinner
 import android.widget.TextView
 
 import com.ghstudios.android.AssetLoader
-import com.ghstudios.android.data.classes.ItemType
 import com.ghstudios.android.data.classes.WishlistComponent
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.cursors.WishlistComponentCursor
-import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
-import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
-import com.ghstudios.android.features.items.detail.ItemDetailPagerActivity
-import com.ghstudios.android.features.weapons.detail.WeaponDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.ItemClickListener
 
-import java.util.ArrayList
-
 /**
- * Fragment used to display a list of components for the wishlist detail, which are used to craft the item.
+ * Fragment used to display a list of required crafting components for the wishlist detail.
  */
 class WishlistDataComponentFragment : ListFragment() {
     private var mListView: ListView? = null
@@ -83,49 +66,20 @@ class WishlistDataComponentFragment : ListFragment() {
         })
     }
 
-
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        // The id argument will be the Item ID; CursorAdapter gives us this
-        // for free
+        mListView?.setItemChecked(position, false)
 
-        mListView!!.setItemChecked(position, false)
-        var i: Intent? = null
-        val mId = v!!.tag as Long
-
-        val component: WishlistComponent?
-
-        val mycursor = l!!.getItemAtPosition(position) as WishlistComponentCursor
-        component = mycursor.wishlistComponent
-        val itemtype = component!!.item.type
-
-        // todo: Find a way to create intents using only the item. Why can't we use ItemClickListener?
-        when (itemtype) {
-            ItemType.WEAPON -> {
-                i = Intent(activity, WeaponDetailPagerActivity::class.java)
-                i.putExtra(WeaponDetailPagerActivity.EXTRA_WEAPON_ID, mId)
-            }
-            ItemType.ARMOR -> {
-                i = Intent(activity, ArmorSetDetailPagerActivity::class.java)
-                i.putExtra(ArmorSetDetailPagerActivity.EXTRA_ARMOR_ID, mId)
-            }
-            ItemType.DECORATION -> {
-                i = Intent(activity, DecorationDetailActivity::class.java)
-                i.putExtra(DecorationDetailActivity.EXTRA_DECORATION_ID, mId)
-            }
-            else -> {
-                i = Intent(activity, ItemDetailPagerActivity::class.java)
-                i.putExtra(ItemDetailPagerActivity.EXTRA_ITEM_ID, mId)
-            }
+        val component = mListView?.adapter?.getItem(position) as? WishlistComponent
+        if (component != null && v != null) {
+            val listener = ItemClickListener(context!!, component.item)
+            listener.onClick(v)
         }
-
-        startActivity(i)
-
     }
 
     /**
      * Adapter used to render the Wishlist components
      */
-    private class WishlistComponentAdapter(
+    private inner class WishlistComponentAdapter(
             context: Context?,
             items: List<WishlistComponent>
     ) : ArrayAdapter<WishlistComponent>(context, R.layout.fragment_wishlist_component_listitem, items) {
@@ -139,6 +93,7 @@ class WishlistDataComponentFragment : ListFragment() {
             }
 
             val component = getItem(position)
+            val item = component.item
 
             // Set up the text view
             val root = view.findViewById<LinearLayout>(R.id.listitem)
@@ -147,7 +102,7 @@ class WishlistDataComponentFragment : ListFragment() {
             val amtTextView = view.findViewById<TextView>(R.id.text_qty_required)
 
             val componentrowid = component!!.id
-            val componentid = component.item.id
+            val componentid = item.id
             val qtyreq = component.quantity
             val qtyhave = component.notes
 
@@ -158,37 +113,28 @@ class WishlistDataComponentFragment : ListFragment() {
                 itemTextView.setTextColor(ContextCompat.getColor(context, R.color.text_color))
             }
 
-            val nameText = component.item.name
-            val amtText = "" + qtyreq
-
             // Assign textviews
-            itemTextView.text = nameText
-            amtTextView.text = amtText
+            itemTextView.text = item.name
+            amtTextView.text = qtyreq.toString()
 
             /***************** SPINNER FOR QTY_HAVE DISPLAY  */
 
-            // Assign Spinner
+            // Create spinner and apply values
             val spinner = view.findViewById<Spinner>(R.id.spinner_component_qty)
-            // Create an ArrayAdapter containing all possible values for spinner, 0 -> quantity
-            val options = ArrayList<Int>()
-            for (i in 0..100) {
-                options.add(i)
-            }
+            val options = (0..100).toList()
             val adapter = ArrayAdapter(context, R.layout.view_spinner_item, options)
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(R.layout.view_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             spinner.adapter = adapter
 
-            val onSpinner = object : AdapterView.OnItemSelectedListener {
+            // Set spinner listener
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                         parent: AdapterView<*>,
                         view: View,
                         position: Int,
                         id: Long) {
-
                     // Edit qtyhave for the component's row
-                    DataManager.get().wishlistManager.queryUpdateWishlistComponentNotes(componentrowid, position)
+                    viewModel.updateComponentQuantity(componentrowid, position)
 
                     // Change item color if requirement is met
                     if (spinner.getItemAtPosition(position) as Int >= qtyreq) {
@@ -198,14 +144,10 @@ class WishlistDataComponentFragment : ListFragment() {
                     }
                 }
 
-                override fun onNothingSelected(
-                        parent: AdapterView<*>) {
+                override fun onNothingSelected(parent: AdapterView<*>) {
                     Log.v("ComponentFragment", "Nothing selected.")
                 }
             }
-
-            // Set spinner listener
-            spinner.onItemSelectedListener = onSpinner
 
             // Get position of notes (qty_have) and set spinner to that position
             val spinnerpos = adapter.getPosition(qtyhave)
