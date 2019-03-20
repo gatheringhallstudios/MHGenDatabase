@@ -33,6 +33,9 @@ class ASBSession(id: Long, name: String, rank: Rank, hunterType: Int) :
         setEquipment(ArmorSet.WEAPON, DummyWeapon(3))
     }
 
+    /**
+     * Returns a list of all set pieces, including weapons and talismans.
+     */
     override val pieces: List<ArmorSetPiece> get() = pieceData.values.toList()
 
     override fun getPiece(pieceIndex: Int) = pieceData[pieceIndex]

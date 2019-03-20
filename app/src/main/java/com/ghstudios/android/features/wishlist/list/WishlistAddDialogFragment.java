@@ -33,7 +33,7 @@ public class WishlistAddDialogFragment extends DialogFragment {
     
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
         
         View addView = inflater.inflate(R.layout.dialog_wishlist_add, null);
         final EditText nameInput = (EditText) addView.findViewById(R.id.name_text);
@@ -48,7 +48,8 @@ public class WishlistAddDialogFragment extends DialogFragment {
                 String name = nameInput.getText().toString();
                 manager.addWishlist(name);
 
-                Toast.makeText(getActivity(), "Added '" + name + "'", Toast.LENGTH_SHORT).show();
+                String message = getString(R.string.wishlist_add_item, name);
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                 sendResult(Activity.RESULT_OK, true);
             })
             .create();

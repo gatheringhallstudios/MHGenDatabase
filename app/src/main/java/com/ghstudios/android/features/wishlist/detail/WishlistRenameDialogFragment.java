@@ -54,7 +54,8 @@ public class WishlistRenameDialogFragment extends DialogFragment {
                 String name = nameInput.getText().toString();
                 DataManager.get().getWishlistManager().updateWishlistName(wishlistId, name);
 
-                Toast.makeText(getActivity(), "Renamed to '" + name + "'", Toast.LENGTH_SHORT).show();
+                String message = getString(R.string.wishlist_renamed, name);
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                 sendResult(Activity.RESULT_OK, true);
             })
             .create();

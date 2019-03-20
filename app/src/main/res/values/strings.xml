@@ -363,6 +363,10 @@
     <string name="wishlist_tab_wishlist">Wishlist</string>
     <string name="wishlist_tab_materials">Materials</string>
 
+    <string name="wishlist_created">Created wishlist %s</string>
+    <string name="wishlist_add_item">Added %s</string>
+    <string name="wishlist_renamed">Renamed to %s</string>
+
     <string name="no_slots" translatable="false">―――</string>
     <string name="one_slot" translatable="false">○――</string>
     <string name="two_slots" translatable="false">○○―</string>

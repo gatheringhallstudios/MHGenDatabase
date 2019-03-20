@@ -1,9 +1,12 @@
 package com.ghstudios.android.features.armorsetbuilder.detail
 
+import android.app.Activity
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.data.classes.ASBTalisman
@@ -11,6 +14,7 @@ import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.loggedThread
 
 /**
  * Defines a model for the ASB.
@@ -37,6 +41,26 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
         this.sessionId = sessionId
         session = asbManager.getASBSession(sessionId)!! // note: error should never happen
+    }
+
+    /**
+     * Creates a new wishlist and adds the armor items to that wishlist.
+     * @param callback Executed if the operation was a success
+     */
+    fun addToNewWishlist(name: String, callback: () -> Unit) {
+        loggedThread("Add to wishlist") {
+            val wishlistManager = dataManager.wishlistManager
+            val wishlistId = wishlistManager.addWishlist(name)
+            for (piece in session.pieces) {
+                if (piece.equipment is Armor) {
+                    val armorId = piece.equipment.id
+                    wishlistManager.addWishlistItem(wishlistId, armorId, quantity = 1)
+                }
+            }
+
+            // execute callback now that it finished
+            Handler(Looper.getMainLooper()).post(callback)
+        }
     }
 
     /**

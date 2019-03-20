@@ -1,5 +1,6 @@
 package com.ghstudios.android.features.armorsetbuilder.detail
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v4.content.Loader
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListFragment
@@ -43,6 +45,7 @@ class ASBDetailPagerActivity : BasePagerActivity() {
         const val REQUEST_CODE_REMOVE_PIECE = 540
         const val REQUEST_CODE_REMOVE_DECORATION = 541
         const val REQUEST_CODE_SET_WEAPON_SLOTS = 542
+        const val REQUEST_CODE_ADD_TO_WISHLIST = 543
     }
 
     val viewModel by lazy {
@@ -67,5 +70,46 @@ class ASBDetailPagerActivity : BasePagerActivity() {
 
     override fun getSelectedSection(): Int {
         return MenuSection.ARMOR_SET_BUILDER
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.add_to_wishlist -> {
+                val fm = supportFragmentManager
+                val dialog = ASBAddToWishlistDialog()
+                dialog.setTargetFragment(null, REQUEST_CODE_ADD_TO_WISHLIST)
+                dialog.show(fm, "create_wishlist")
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (data == null)
+            return
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                REQUEST_CODE_ADD_TO_WISHLIST -> {
+                    val name = data.getStringExtra(ASBAddToWishlistDialog.EXTRA_NAME)
+                    if (!name.isNullOrEmpty()) {
+                        viewModel.addToNewWishlist(name) {
+                            val message = getString(R.string.wishlist_created, name)
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 }

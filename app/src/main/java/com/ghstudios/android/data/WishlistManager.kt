@@ -88,7 +88,7 @@ class WishlistManager internal constructor(
      * Add an entry to a specific wishlist with the given item and quantity
      * Updates the existing entry if it already exists.
      */
-    fun addWishlistItem(wishlistId: Long, itemId: Long, quantity: Int, craftMethod: String) {
+    fun addWishlistItem(wishlistId: Long, itemId: Long, quantity: Int, craftMethod: String = CREATE) {
         addWishlistItemBasic(wishlistId, itemId, quantity, craftMethod)
         helperQueryAddWishlistComponents(wishlistId, itemId, quantity, craftMethod)
         refreshWishlistItemsSatisfied(wishlistId)
