@@ -397,6 +397,7 @@
     <string name="asb_title_select_arms">Select Arms</string>
     <string name="asb_title_select_waist">Select Waist</string>
     <string name="asb_title_select_legs">Select Legs</string>
+    <string name="asb_title_armor_all">All</string>
 
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slots">No slots</string>

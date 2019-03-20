@@ -3,10 +3,8 @@ package com.ghstudios.android.features.armorsetbuilder.armorselect
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
-import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.ArmorSet
-import com.ghstudios.android.data.classes.Rank
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.loggedThread
 
@@ -56,6 +54,8 @@ class ArmorSelectViewModel : ViewModel() {
         }
     }
 
+    val armorWishlistData = MutableLiveData<List<ArmorSkillPoints>>()
+
     fun initialize(asbIndex: Int, rankFilter: Rank, hunterType: Int) {
         val armorSlot = getSlotForPieceIndex(asbIndex)
         loggedThread("Armor Select armor loading") {
@@ -84,6 +84,25 @@ class ArmorSelectViewModel : ViewModel() {
 
             allArmorData.postValue(allArmorItems)
             filterValue.postValue("")
+
+            // load wishlist data
+            val wishlistArmorIds = mutableSetOf<Long>()
+            val wishlistManager = dataManager.wishlistManager
+            for (wishlist in wishlistManager.getWishlists()) {
+                for (data in wishlistManager.getWishlistItems(wishlist.id)) {
+                    if (data.item.type == ItemType.ARMOR) {
+                        wishlistArmorIds.add(data.item.id)
+                    }
+                }
+            }
+
+            // Now go over the armor pieces loaded above, only taking those existing in wishlists.
+            // This creates an interesection of filter armors and wishlist armors
+            val wishlistArmors = allArmorItems.asSequence()
+                    .flatMap { it.armor.asSequence() }
+                    .filter { it.armor.id in wishlistArmorIds }
+                    .toList()
+            armorWishlistData.postValue(wishlistArmors)
         }
     }
 
