@@ -3,6 +3,8 @@ package com.ghstudios.android.features.armorsetbuilder.armorselect
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Menu
+import android.view.MenuInflater
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.classes.ArmorSet
@@ -40,4 +42,8 @@ class ArmorSelectActivity : GenericActivity() {
 
     override fun getSelectedSection() = MenuSection.ARMOR_SET_BUILDER
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // don't inflate menu - remove search icon
+        return true
+    }
 }

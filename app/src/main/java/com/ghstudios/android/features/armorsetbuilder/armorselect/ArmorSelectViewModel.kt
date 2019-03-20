@@ -1,12 +1,13 @@
 package com.ghstudios.android.features.armorsetbuilder.armorselect
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
+import android.arch.lifecycle.ViewModel
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.Rank
+import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.loggedThread
 
 
@@ -20,10 +21,40 @@ fun getSlotForPieceIndex(pieceIndex: Int) = when (pieceIndex) {
     else -> ""
 }
 
-class ArmorSelectViewModel(private val app: Application) : AndroidViewModel(app) {
+class ArmorSelectViewModel : ViewModel() {
     private val dataManager = DataManager.get()
 
+    private val filterValue = MutableLiveData<String>()
+
+    /**
+     * LiveData containing all available armor pieces grouped by rarity
+     * for a particular rank and hunter type.
+     */
     val allArmorData = MutableLiveData<List<ArmorGroup>>()
+
+    /**
+     * LiveData containing all armor pieces that pass the filter.
+     */
+    val filteredArmor = Transformations.switchMap(filterValue) { filterStr ->
+        if (filterStr.isNullOrBlank()) {
+            return@switchMap allArmorData
+        }
+
+        val filter = SearchFilter(filterStr)
+        Transformations.map(allArmorData) { armorGroups ->
+            armorGroups.mapNotNull { group ->
+                val filteredPieces = group.armor.filter {
+                    filter.matches(it.armor.name) || it.skills.any {s -> filter.matches(s.skillTree.name)}
+                }
+
+                // Return the armor group...if there are armor pieces
+                when {
+                    filteredPieces.isEmpty() -> null
+                    else -> ArmorGroup(group.rarity, filteredPieces)
+                }
+            }
+        }
+    }
 
     fun initialize(asbIndex: Int, rankFilter: Rank, hunterType: Int) {
         val armorSlot = getSlotForPieceIndex(asbIndex)
@@ -52,6 +83,11 @@ class ArmorSelectViewModel(private val app: Application) : AndroidViewModel(app)
                     }
 
             allArmorData.postValue(allArmorItems)
+            filterValue.postValue("")
         }
+    }
+
+    fun setFilter(filterStr: String) {
+        filterValue.value = filterStr
     }
 }
