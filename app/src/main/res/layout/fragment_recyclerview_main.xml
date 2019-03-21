@@ -45,4 +45,20 @@
         layout="@layout/fragment_empty_list"
         tools:visibility="visible"
         android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_add_white"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/dark_primary_color"
+        tools:visibility="visible"
+        android:visibility="gone"/>
 </FrameLayout>

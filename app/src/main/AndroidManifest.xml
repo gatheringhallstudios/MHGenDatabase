@@ -193,6 +193,10 @@
             android:name="com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.ghstudios.android.features.armorsetbuilder.talismans.TalismanSelectActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
 
         <!-- WYPORIUM TRADE SECTION -->
         <activity

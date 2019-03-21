@@ -88,6 +88,8 @@
     <string name="armor">Armor</string>
     <string name="weapons">Weapons</string>
 
+    <string name="format_plus">%1$+d</string>
+
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
 

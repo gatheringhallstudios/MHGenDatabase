@@ -13,6 +13,7 @@ import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSet
+import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 
@@ -130,29 +131,18 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     /**
      * Sets the equipped talisman, then updates the DB.
      */
-    fun setTalisman(
-            typeIndex: Int,
-            skill1Id: Long,
-            skill1Points: Int,
-            skill2Id: Long,
-            skill2Points: Int,
-            numSlots: Int) {
-        val skill1Tree = dataManager.getSkillTree(skill1Id)
-
-        // todo: consider an alternative talisman object
-        // todo: find better way of loading talismans
-        val talisman = ASBTalisman(typeIndex)
-        val typeName = app.resources.getStringArray(R.array.talisman_names)[typeIndex]
+    fun setTalisman(data: TalismanMetadata) {
+        val talisman = ASBTalisman(data.typeIndex)
+        val typeName = app.resources.getStringArray(R.array.talisman_names)[data.typeIndex]
         talisman.name = app.getString(R.string.talisman_full_name, typeName)
-        talisman.numSlots = numSlots
+        talisman.numSlots = data.numSlots
+        for ((skillId, points) in data.skills) {
+            if (skillId < 0) continue
 
-        if (skill1Tree != null) {
-            talisman.setFirstSkill(skill1Tree, skill1Points)
-        }
-
-        if (skill2Id >= 0) {
-            val skill2Tree = dataManager.getSkillTree(skill2Id)
-            talisman.setSecondSkill(skill2Tree, skill2Points)
+            val skillTree = dataManager.getSkillTree(skillId)
+            if (skillTree != null) {
+                talisman.addSkill(skillTree, points)
+            }
         }
 
         session.setEquipment(ArmorSet.TALISMAN, talisman)
