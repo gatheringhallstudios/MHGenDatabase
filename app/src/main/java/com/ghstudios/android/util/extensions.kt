@@ -1,5 +1,7 @@
 package com.ghstudios.android.util
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -129,4 +131,16 @@ fun DialogFragment.sendDialogResult(resultCode: Int, intent: Intent) {
     val activity = activity as? GenericActionBarActivity
     activity ?: throw TypeCastException("sendDialogResult() only works on fragments and GenericActionBarActivity")
     activity.sendActivityResult(targetRequestCode, resultCode, intent)
+}
+
+/**
+ * Creates a livedata from a block of code that is run in another thread.
+ * The other thread is run in a background thread, and not on the UI thread.
+ */
+fun <T> createLiveData(block: () -> T): LiveData<T> {
+    val result = MutableLiveData<T>()
+    loggedThread("createLiveData") {
+        result.postValue(block())
+    }
+    return result
 }
