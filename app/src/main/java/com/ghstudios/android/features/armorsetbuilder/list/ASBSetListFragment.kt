@@ -73,6 +73,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        enableDivider()
         enableFab {
             showAddDialog()
         }
@@ -92,6 +93,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
 
             adapter.setItems(it)
             adapter.notifyDataSetChanged()
+            showEmptyView(show = it.isEmpty())
         })
     }
 

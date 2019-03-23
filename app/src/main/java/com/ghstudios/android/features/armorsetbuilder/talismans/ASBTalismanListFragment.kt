@@ -79,6 +79,7 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
         viewModel.talismanData.observe(this, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)
+            showEmptyView(show = it.isEmpty())
         })
     }
 
