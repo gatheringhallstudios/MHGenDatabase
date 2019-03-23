@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.listitem_talisman.*
  */
 class TalismanAdapter(
         val onSelect: (ASBTalisman) -> Unit,
-        val onLongSelect: (ASBTalisman) -> Unit
+        val onLongSelect: ((ASBTalisman) -> Unit)? = null
 ): SimpleRecyclerViewAdapter<ASBTalisman>() {
     override fun onCreateView(parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
@@ -52,9 +52,12 @@ class TalismanAdapter(
         viewHolder.itemView.setOnClickListener {
             onSelect.invoke(data)
         }
-        viewHolder.itemView.setOnLongClickListener {
-            onLongSelect.invoke(data)
-            true
+
+        if (onLongSelect != null) {
+            viewHolder.itemView.setOnLongClickListener {
+                onLongSelect.invoke(data)
+                true
+            }
         }
     }
 }

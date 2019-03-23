@@ -260,7 +260,7 @@ class ASBManager internal constructor(
      * Internal function to save talismans. Since talismans are JSON, we need to
      * overwrite all of them every time.
      */
-    private fun saveTalismans(talismans: List<ASBTalisman>) {
+    fun saveTalismans(talismans: List<ASBTalisman>) {
         val talismanListObj = JSONArray(talismans.map {
             JSONObject()
                     .put("id", it.id)

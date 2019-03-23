@@ -2,6 +2,7 @@ package com.ghstudios.android
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
@@ -43,6 +44,8 @@ class DetachingRecyclerView : RecyclerView {
 open class RecyclerViewFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
         private set
+    lateinit var fab: FloatingActionButton
+        private set
 
     private lateinit var recyclerViewContainer: View
     private lateinit var textField: EditText
@@ -63,6 +66,7 @@ open class RecyclerViewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.content_recyclerview)
         textField = view.findViewById(R.id.input_search)
         emptyView = view.findViewById(R.id.empty_view)
+        fab = view.findViewById(R.id.fab)
 
         return view
     }
@@ -75,6 +79,16 @@ open class RecyclerViewFragment : Fragment() {
         if (this.recyclerView.itemDecorationCount == 0) {
             val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             this.recyclerView.addItemDecoration(divider)
+        }
+    }
+
+    /**
+     * Makes the floating action button visible and binds it to a callback
+     */
+    fun enableFab(callback: () -> Unit) {
+        fab.visibility = View.VISIBLE
+        fab.setOnClickListener {
+            callback.invoke()
         }
     }
 

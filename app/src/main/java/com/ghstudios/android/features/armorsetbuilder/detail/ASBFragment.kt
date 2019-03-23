@@ -12,7 +12,6 @@ import com.ghstudios.android.features.decorations.detail.DecorationDetailActivit
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
-import com.ghstudios.android.features.armorsetbuilder.talismans.ASBTalismanDialogFragment
 import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
 import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanSelectActivity
 

@@ -53,11 +53,11 @@ class ASBDetailPagerActivity : BasePagerActivity() {
     }
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {
-        title = intent.getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME)
         val asbId = intent.getLongExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, -1)
 
         try {
             viewModel.loadSession(asbId)
+            title = viewModel.session.name
 
             tabs.addTab(R.string.asb_tab_equipment) { ASBFragment() }
             tabs.addTab(R.string.skills) { ASBSkillsListFragment() }

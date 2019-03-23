@@ -1,54 +1,21 @@
 package com.ghstudios.android.features.armorsetbuilder.talismans
 
 import android.app.Activity
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.View
 import com.ghstudios.android.RecyclerViewFragment
-import com.ghstudios.android.data.DataManager
+import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.util.applyArguments
 import kotlinx.android.synthetic.main.fragment_recyclerview_main.*
 
 
-
-class ASBTalismanViewModel: ViewModel() {
-    val dataManager = DataManager.get()
-    val asbManager = dataManager.asbManager
-
-    /** Returns talisman data. */
-    val talismanData = MutableLiveData<List<ASBTalisman>>()
-
-    fun reload() {
-        talismanData.value = asbManager.getTalismans()
-    }
-
-    fun saveTalisman(data: ASBTalisman) {
-        talismanData.value = asbManager.saveTalisman(data)
-    }
-
-    fun saveTalisman(data: TalismanMetadata) {
-        val talisman = ASBTalisman(data.typeIndex)
-        talisman.id = data.id
-        talisman.numSlots = data.numSlots
-        for ((skillId, points) in data.skills) {
-            if (skillId == -1L) {
-                continue
-            }
-
-            val skillTree = dataManager.getSkillTree(skillId)
-            if (skillTree != null) {
-                talisman.addSkill(skillTree, points)
-            }
-        }
-
-        saveTalisman(talisman)
-    }
-}
 
 /**
  * Fragment used to display a list of talismans
@@ -67,20 +34,23 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
     }
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(ASBTalismanViewModel::class.java)
+        ViewModelProviders.of(this).get(ASBTalismanListViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        enableDivider()
 
         val isSelecting = arguments?.getBoolean(MODE_SELECTION) == true
 
-        val fab = this.fab
-        fab.visibility = View.VISIBLE
-        fab.setOnClickListener {
+        enableDivider()
+        enableFab {
             showAddTalismanDialog()
         }
+
+        val handler = ItemTouchHelper(SwipeReorderTouchHelper(
+                onDelete = { viewModel.removeTalismanByIndex(it.adapterPosition) }
+        ))
+        handler.attachToRecyclerView(recyclerView)
 
         val adapter = TalismanAdapter(
                 onSelect = {
@@ -101,8 +71,7 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
                     } else {
                         showAddTalismanDialog(it)
                     }
-                },
-                onLongSelect = { showAddTalismanDialog(it) }
+                }
         )
         setAdapter(adapter)
 
