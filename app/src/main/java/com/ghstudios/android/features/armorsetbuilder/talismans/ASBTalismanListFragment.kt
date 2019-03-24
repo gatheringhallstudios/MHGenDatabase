@@ -72,20 +72,16 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
                 afterSwiped = {
                     val talismanId = it.itemView.tag as Long
                     val message = getString(R.string.asb_result_talisman_deleted)
-
                     val operation = viewModel.startRemoveTalisman(talismanId)
-
                     val containerView = view.findViewById<ViewGroup>(R.id.recyclerview_container_main)
-                    containerView.createSnackbarWithUndo(message,
-                            onComplete = operation::complete,
-                            onUndo = operation::undo)
+
+                    containerView.createSnackbarWithUndo(message, operation)
                 }
         ))
 
         setAdapter(adapter)
         handler.attachToRecyclerView(recyclerView)
 
-        viewModel.reload()
         viewModel.talismanData.observe(this, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)

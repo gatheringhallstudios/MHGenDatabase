@@ -19,6 +19,7 @@ import com.ghstudios.android.data.classes.ASBSet
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.createSnackbarWithUndo
 
 
 /** Adapter used to display ASB items **/
@@ -81,7 +82,12 @@ class ASBSetListFragment : RecyclerViewFragment() {
 
         val handler = ItemTouchHelper(SwipeReorderTouchHelper(
                 afterSwiped = {
-                    viewModel.deleteSet(it.itemView.tag as Long)
+                    val setId = it.itemView.tag as Long
+                    val message = getString(R.string.asb_result_set_deleted)
+                    val operation = viewModel.startDeleteSet(setId)
+                    val containerView = view.findViewById<ViewGroup>(R.id.recyclerview_container_main)
+
+                    containerView.createSnackbarWithUndo(message, operation)
                 }
         ))
         handler.attachToRecyclerView(recyclerView)
@@ -90,7 +96,6 @@ class ASBSetListFragment : RecyclerViewFragment() {
             if (it == null) return@Observer
 
             adapter.setItems(it)
-            adapter.notifyDataSetChanged()
             showEmptyView(show = it.isEmpty())
         })
     }

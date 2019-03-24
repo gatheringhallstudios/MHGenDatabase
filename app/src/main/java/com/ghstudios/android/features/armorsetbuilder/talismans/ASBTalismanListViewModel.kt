@@ -7,7 +7,10 @@ import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.util.UndoableOperation
 
-
+/**
+ * ViewModel used to contain and manage a bank of talismans.
+ * Loads all data when initialized.
+ */
 class ASBTalismanListViewModel: ViewModel() {
     val TAG = javaClass.name
 
@@ -19,15 +22,29 @@ class ASBTalismanListViewModel: ViewModel() {
     /** Returns talisman data. Updates with a new list on every change. */
     val talismanData = MutableLiveData<List<ASBTalisman>>()
 
+    init {
+        reload()
+    }
+
+    /**
+     * Completes any pending deletes and reloads the talisman list.
+     */
     fun reload() {
         previousDelete?.complete()
         talismanData.value = asbManager.getTalismans()
     }
 
+    /**
+     * Adds a talisman to the list, and updates the talisman list.
+     */
     fun saveTalisman(data: ASBTalisman) {
         talismanData.value = asbManager.saveTalisman(data)
     }
 
+    /**
+     * Adds a talisman to the list, and updates the talisman list.
+     * A talisman is constructed from the TalismanMetadata.
+     */
     fun saveTalisman(data: TalismanMetadata) {
         val talisman = ASBTalisman(data.typeIndex)
         talisman.id = data.id

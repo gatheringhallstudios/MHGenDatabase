@@ -170,3 +170,12 @@ fun View.createSnackbarWithUndo(message: String, onComplete: () -> Unit, onUndo:
     })
     snackbar.show()
 }
+
+/**
+ * Helper function used to create a snackbar with an undo action.
+ */
+fun View.createSnackbarWithUndo(message: String, operation: UndoableOperation) {
+    this.createSnackbarWithUndo(message,
+            onComplete = operation::complete,
+            onUndo = operation::undo)
+}

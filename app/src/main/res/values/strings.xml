@@ -369,6 +369,7 @@
     <string name="wishlist_created">Created wishlist %s</string>
     <string name="wishlist_add_item">Added %s</string>
     <string name="wishlist_renamed">Renamed to %s</string>
+    <string name="wishlist_deleted">Wishlist Deleted</string>
 
     <string name="no_slots" translatable="false">―――</string>
     <string name="one_slot" translatable="false">○――</string>
@@ -408,6 +409,7 @@
     <string name="asb_action_add">Add</string>
     <string name="asb_action_remove">Remove</string>
     <string name="asb_action_edit">Edit</string>
+    <string name="asb_result_set_deleted">Armor Set Deleted</string>
     <string name="asb_result_talisman_deleted">Talisman Deleted</string>
     <string name="asb_option_set_add">New Set</string>
 

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.ListFragment
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
@@ -25,11 +26,13 @@ import com.ghstudios.android.ClickListeners.WishlistClickListener
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
+import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Wishlist
 import com.ghstudios.android.features.wishlist.detail.WishlistDeleteDialogFragment
 import com.ghstudios.android.features.wishlist.detail.WishlistRenameDialogFragment
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.util.createSnackbarWithUndo
 
 /** Adapter used to render wishlists in a recyclerview */
 class WishlistAdapter: SimpleRecyclerViewAdapter<Wishlist>() {
@@ -52,6 +55,7 @@ class WishlistAdapter: SimpleRecyclerViewAdapter<Wishlist>() {
         wishlistNameTextView.text = cellText
 
         // Assign view tag and listeners
+        view.tag = wishlist.id
         itemLayout.tag = wishlist.id
         itemLayout.setOnClickListener(WishlistClickListener(viewHolder.context, wishlist.id))
     }
@@ -86,6 +90,18 @@ class WishlistListFragment : RecyclerViewFragment() {
         val adapter = WishlistAdapter()
         setAdapter(adapter)
 
+        val handler = ItemTouchHelper(SwipeReorderTouchHelper(
+                afterSwiped = {
+                    val wishlistId = it.itemView.tag as Long
+                    val message = getString(R.string.wishlist_deleted)
+                    val operation = viewModel.startDeleteWishlist(wishlistId)
+                    val containerView = view.findViewById<ViewGroup>(R.id.recyclerview_container_main)
+
+                    containerView.createSnackbarWithUndo(message, operation)
+                }
+        ))
+        handler.attachToRecyclerView(recyclerView)
+
         viewModel.wishlistData.observe(this, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)
@@ -112,10 +128,6 @@ class WishlistListFragment : RecyclerViewFragment() {
             }
         } else if (requestCode == REQUEST_COPY) { // might be used here
             if (data!!.getBooleanExtra(WishlistCopyDialogFragment.EXTRA_COPY, false)) {
-                updateUI()
-            }
-        } else if (requestCode == REQUEST_DELETE) { // not used here
-            if (data!!.getBooleanExtra(WishlistDeleteDialogFragment.EXTRA_DELETE, false)) {
                 updateUI()
             }
         }
