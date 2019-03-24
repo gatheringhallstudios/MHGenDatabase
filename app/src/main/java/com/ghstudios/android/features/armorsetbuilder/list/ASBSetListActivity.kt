@@ -11,13 +11,13 @@ import com.ghstudios.android.features.armorsetbuilder.talismans.ASBTalismanListF
 class ASBSetListActivity : BasePagerActivity() {
 
     override fun onAddTabs(tabs: TabAdder) {
-        setTitle(R.string.activity_asb_sets)
+        setTitle(R.string.title_asb)
 
         // Tag as top level activity
         super.setAsTopLevel()
 
-        tabs.addTab(R.string.activity_asb_sets) { ASBSetListFragment() }
-        tabs.addTab(R.string.asb_dialog_talisman_title) { ASBTalismanListFragment() }
+        tabs.addTab(R.string.title_armor_sets) { ASBSetListFragment() }
+        tabs.addTab(R.string.title_talismans) { ASBTalismanListFragment() }
     }
 
     override fun getSelectedSection(): Int {

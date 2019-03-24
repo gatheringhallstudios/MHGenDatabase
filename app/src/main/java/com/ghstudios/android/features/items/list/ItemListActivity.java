@@ -12,7 +12,7 @@ public class ItemListActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.items);
+        setTitle(R.string.title_items);
 
         // Tag as top level activity
         super.setAsTopLevel();

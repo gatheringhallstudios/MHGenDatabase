@@ -10,7 +10,7 @@ import com.ghstudios.android.data.classes.QuestHub
 class QuestListPagerActivity : BasePagerActivity() {
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {
-        setTitle(R.string.quests)
+        setTitle(R.string.title_quests)
 
         tabs.addTab(AssetLoader.localizeHub(QuestHub.VILLAGE)) {
             QuestExpandableListFragment.newInstance(QuestHub.VILLAGE)

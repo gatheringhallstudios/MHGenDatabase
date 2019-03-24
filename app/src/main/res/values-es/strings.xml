@@ -76,16 +76,9 @@
     <string name="type_weapon_heavybowgun">Ballesta Pesada</string>
     <string name="type_weapon_bow">Arco</string>
 
-    <string name="monsters">Monstruos</string>
     <string name="palicos">Camaradas</string>
-    <string name="items">Objetos</string>
-    <string name="locations">Ubicaciones</string>
     <string name="combining">Combinaciones</string>
-    <string name="quests">Misiones</string>
     <string name="skills">Habilidades</string>
-    <string name="decoration_title">Adornos</string>
-    <string name="armor">Armaduras</string>
-    <string name="weapons">Armas</string>
 
     <!-- value strings -->
     <string name="value_rare">Rareza %s</string>
@@ -132,18 +125,18 @@
     <!-- Drawer items -->
     <string name="drawer_open">Abrir cajón de navegación</string>
     <string name="drawer_close">Cerrar cajón de navegación</string>
-    <string name="drawer_monsters">Monstruos</string>
-    <string name="drawer_weapons">Armas</string>
-    <string name="drawer_armor">Armaduras</string>
-    <string name="drawer_quests">Misiones</string>
-    <string name="drawer_items">Objetos</string>
-    <string name="drawer_palicos">Camaradas</string>
-    <string name="drawer_combining">Combinaciones</string>
-    <string name="drawer_locations">Ubicaciones</string>
-    <string name="drawer_decorations">Adorno</string>
-    <string name="drawer_skills">Habilidades</string>
-    <string name="drawer_asb">Constructor de Sets</string>
-    <string name="drawer_wishlists">Lista de Deseos</string>
+    <string name="title_monsters">Monstruos</string>
+    <string name="title_weapons">Armas</string>
+    <string name="title_armor">Armaduras</string>
+    <string name="title_quests">Misiones</string>
+    <string name="title_items">Objetos</string>
+    <string name="title_palicos">Camaradas</string>
+    <string name="title_combining">Combinaciones</string>
+    <string name="title_locations">Ubicaciones</string>
+    <string name="title_decorations">Adorno</string>
+    <string name="title_skills">Habilidades</string>
+    <string name="title_asb">Constructor de Sets</string>
+    <string name="title_wishlists">Lista de Deseos</string>
     <string name="drawer_group_other">Otros</string>
     <string name="drawer_preferences">Opciones</string>
     <string name="drawer_feedback">Enviar Comentarios</string>
@@ -358,7 +351,7 @@
     <string name="wishlist_tab_materials">Materiales</string>
 
     <!-- Armor Set Builder Stuff !-->
-    <string name="activity_asb_sets">Sets de Armaduras</string>
+    <string name="title_armor_sets">Sets de Armaduras</string>
 
     <string name="dialog_title_add_asb_set">Nuevo Set</string>
     <string name="dialog_title_edit_asb_set">Editar Set</string>

@@ -14,7 +14,7 @@ public class LocationListActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.locations);
+        setTitle(R.string.title_locations);
 
         // Tag as top level activity
         super.setAsTopLevel();

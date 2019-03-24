@@ -12,7 +12,7 @@ public class ArmorListPagerActivity extends BasePagerActivity {
 
     @Override
     public void onAddTabs(TabAdder tabs) {
-        setTitle(R.string.armor);
+        setTitle(R.string.title_armor_sets);
 
         tabs.addTab(R.string.armor_type_blade_short, () ->
                 ArmorExpandableListFragment.newInstance(Armor.ARMOR_TYPE_BLADEMASTER)

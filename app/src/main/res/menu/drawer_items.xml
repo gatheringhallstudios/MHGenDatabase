@@ -10,55 +10,55 @@
         <item
             android:id="@+id/nav_monsters"
             android:icon="@drawable/drawer_monsters"
-            android:title="@string/drawer_monsters" />
+            android:title="@string/title_monsters" />
         <item
             android:id="@+id/nav_weapons"
             android:icon="@drawable/drawer_weapons"
-            android:title="@string/drawer_weapons" />
+            android:title="@string/title_weapons" />
         <item
             android:id="@+id/nav_armor"
             android:icon="@drawable/drawer_armor"
-            android:title="@string/drawer_armor" />
+            android:title="@string/title_armor_sets" />
         <item
             android:id="@+id/nav_quests"
             android:icon="@drawable/drawer_quests"
-            android:title="@string/drawer_quests" />
+            android:title="@string/title_quests" />
         <item
             android:id="@+id/nav_items"
             android:icon="@drawable/drawer_items"
-            android:title="@string/drawer_items" />
+            android:title="@string/title_items" />
         <item
             android:id="@+id/nav_palicos"
             android:icon="@drawable/drawer_palicos"
-            android:title="@string/drawer_palicos" />
+            android:title="@string/title_palicos" />
         <item
             android:id="@+id/nav_combining"
             android:icon="@drawable/drawer_combining"
-            android:title="@string/drawer_combining" />
+            android:title="@string/title_combining" />
         <item
             android:id="@+id/nav_locations"
             android:icon="@drawable/drawer_locations"
-            android:title="@string/drawer_locations" />
+            android:title="@string/title_locations" />
 
         <item
             android:id="@+id/nav_decorations"
             android:icon="@drawable/drawer_decorations"
-            android:title="@string/drawer_decorations" />
+            android:title="@string/title_decorations" />
 
         <item
             android:id="@+id/nav_skills"
             android:icon="@drawable/drawer_skills"
-            android:title="@string/drawer_skills" />
+            android:title="@string/title_skills" />
 
         <item
             android:id="@+id/nav_asb"
             android:icon="@drawable/drawer_asb"
-            android:title="@string/drawer_asb" />
+            android:title="@string/title_asb" />
 
         <item
             android:id="@+id/nav_wishlists"
             android:icon="@drawable/drawer_wishlists"
-            android:title="@string/drawer_wishlists" />
+            android:title="@string/title_wishlists" />
     </group>
 
     <group
