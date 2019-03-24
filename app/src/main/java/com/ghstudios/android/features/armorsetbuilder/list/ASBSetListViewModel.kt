@@ -12,7 +12,7 @@ import com.ghstudios.android.util.toList
 /** ViewModel used to display ASB list items **/
 class ASBSetListViewModel: ViewModel() {
     val asbManager = DataManager.get().asbManager
-    
+
     private var previousDelete: UndoableOperation? = null
     val asbData = MutableLiveData<List<ASBSet>>()
 

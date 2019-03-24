@@ -3,39 +3,31 @@ package com.ghstudios.android.features.wishlist.list
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.ListFragment
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.ActionMode
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.LinearLayout
-import android.widget.ListView
 import android.widget.TextView
 
 import com.ghstudios.android.ClickListeners.WishlistClickListener
 import com.ghstudios.android.RecyclerViewFragment
-import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
+import com.ghstudios.android.adapter.common.SimpleDiffRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
-import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Wishlist
-import com.ghstudios.android.features.wishlist.detail.WishlistDeleteDialogFragment
 import com.ghstudios.android.features.wishlist.detail.WishlistRenameDialogFragment
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.createSnackbarWithUndo
 
 /** Adapter used to render wishlists in a recyclerview */
-class WishlistAdapter: SimpleRecyclerViewAdapter<Wishlist>() {
+class WishlistAdapter: SimpleDiffRecyclerViewAdapter<Wishlist>() {
+    override fun areItemsTheSame(oldItem: Wishlist, newItem: Wishlist): Boolean {
+        return oldItem.id == newItem.id
+    }
+
     override fun onCreateView(parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
         return inflater.inflate(R.layout.fragment_wishlistmain_listitem, parent, false)

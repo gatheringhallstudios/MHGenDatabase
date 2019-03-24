@@ -5,6 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.extensions.LayoutContainer
 import java.util.*
+import android.support.v7.recyclerview.extensions.AsyncListDiffer
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.support.v7.util.DiffUtil
+
 
 /**
  * A simple container-only viewholder used by SimpleListDelegate and SimpleRecyclerViewAdapter.
@@ -30,7 +34,7 @@ abstract class SimpleRecyclerViewAdapter<T>: RecyclerView.Adapter<SimpleViewHold
     /**
      * A list of items contained in this adapter. Cannot be modified directly
      */
-    val items = Collections.unmodifiableList(itemSource)
+    open val items = Collections.unmodifiableList(itemSource)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
         val v = onCreateView(parent)
@@ -49,9 +53,46 @@ abstract class SimpleRecyclerViewAdapter<T>: RecyclerView.Adapter<SimpleViewHold
     /**
      * Updates the items in this adapter and calls notifyDataSetChanged
      */
-    fun setItems(items: List<T>) {
+    open fun setItems(items: List<T>) {
         itemSource.clear()
         itemSource.addAll(items)
         notifyDataSetChanged()
+    }
+}
+
+/**
+ * A subclass of the basic recyclerview adapter that performs list diffing for fast recyclerview updates.
+ */
+abstract class SimpleDiffRecyclerViewAdapter<T>: SimpleRecyclerViewAdapter<T>() {
+    // suppressed since both will be gc'd at the same time.
+    @Suppress("LeakingThis")
+    private val mDiffer = AsyncListDiffer(this, DiffCallback())
+
+    /**
+     * Returns a readonly collection of the current items in this adapter.
+     */
+    override val items: List<T> get() = mDiffer.currentList
+
+    /**
+     * Sets the list of items to be displayed.
+     * Sends notifications to update the list
+     */
+    override fun setItems(items: List<T>) {
+        mDiffer.submitList(items)
+    }
+
+    /**
+     * Override to create a comparator for whether two items are the same
+     */
+    protected abstract fun areItemsTheSame(oldItem: T, newItem: T): Boolean
+
+    // internal implementation of the diff callback. Differs to an astract method.
+    inner class DiffCallback : DiffUtil.ItemCallback<T>() {
+        override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+            return this@SimpleDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
+        }
+        override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
+            return this@SimpleDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
+        }
     }
 }

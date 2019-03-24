@@ -7,46 +7,14 @@ import android.content.*
 import android.os.Bundle
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
-import android.widget.*
 
-import com.ghstudios.android.AssetLoader
-import com.ghstudios.android.ClickListeners.ASBSetClickListener
 import com.ghstudios.android.RecyclerViewFragment
-import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
-import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
 import com.ghstudios.android.data.classes.ASBSet
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.createSnackbarWithUndo
-
-
-/** Adapter used to display ASB items **/
-private class ASBSetAdapter : SimpleRecyclerViewAdapter<ASBSet>() {
-    override fun onCreateView(parent: ViewGroup): View {
-        val inflater = LayoutInflater.from(parent.context)
-        return inflater.inflate(R.layout.fragment_asb_sets_list_item, parent, false)
-    }
-
-    override fun bindView(viewHolder: SimpleViewHolder, data: ASBSet) {
-        val view = viewHolder.itemView
-        
-        val textView = view.findViewById<View>(R.id.name_text) as TextView
-        textView.text = data.name
-
-        val propertiesText = view.findViewById<View>(R.id.properties_text) as TextView
-
-        val rankString = AssetLoader.localizeRank(data.rank)
-        val hunterType = viewHolder.context.resources.getStringArray(R.array.hunter_type)[data.hunterType]
-
-        propertiesText.text = "$rankString, $hunterType"
-
-        view.tag = data.id
-
-        view.setOnClickListener(ASBSetClickListener(view.context, data.id))
-    }
-}
 
 /**
  * Fragment used to display and manage a list of armor sets.
