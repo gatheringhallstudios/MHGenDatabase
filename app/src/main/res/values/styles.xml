@@ -20,7 +20,6 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:textColor">@color/text_color</item>
         <item name="android:windowBackground">@color/background_color</item>
 
         <!--<item name="android:colorPrimary">@color/primary_color</item>-->
@@ -219,13 +218,17 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="text_large">
+    <style name="text_base">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="text_large" parent="text_base">
         <item name="android:textColor">@color/color_states_enabled</item>
         <item name="android:textSize">25sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="text_medium">
+    <style name="text_medium" parent="text_base">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
@@ -235,26 +238,26 @@
         <item name="android:textColor">@color/color_states_enabled</item>
     </style>
 
-    <style name="text_medium_alt">
+    <style name="text_medium_alt" parent="text_base">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="text_small">
+    <style name="text_small" parent="text_base">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
-    <style name="text_small_secondary">
+    <style name="text_small_secondary" parent="text_base">
         <item name="android:textColor">@color/text_color_secondary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:typeface">sans</item>
     </style>
 
     <!-- If a value label is paired next to text_medium -->
-    <style name="text_medium_value">
+    <style name="text_medium_value" parent="text_base">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">18sp</item>
         <item name="android:typeface">sans</item>
