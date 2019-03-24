@@ -49,6 +49,7 @@ class TalismanAdapter(
             text = ctx.getString(R.string.format_plus, data.secondSkill?.points)
         }
 
+        viewHolder.itemView.tag = data.id
         viewHolder.itemView.setOnClickListener {
             onSelect.invoke(data)
         }

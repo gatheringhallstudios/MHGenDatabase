@@ -9,6 +9,7 @@
     <string name="delete">Delete</string>
     <string name="copy">Copy</string>
     <string name="submit">Submit</string>
+    <string name="undo">Undo</string>
 
     <string name="about">About</string>
     <string name="about_version">Version %s</string>
@@ -404,11 +405,10 @@
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slots">No slots</string>
     <string name="asb_action_select">Select</string>
-
     <string name="asb_action_add">Add</string>
     <string name="asb_action_remove">Remove</string>
     <string name="asb_action_edit">Edit</string>
-
+    <string name="asb_result_talisman_deleted">Talisman Deleted</string>
     <string name="asb_option_set_add">New Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>

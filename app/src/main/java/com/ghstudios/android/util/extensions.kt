@@ -10,10 +10,14 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.design.widget.Snackbar
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.ghstudios.android.GenericActionBarActivity
+import com.ghstudios.android.mhgendatabase.R
 
 
 // A collection of extension functions used by the app.
@@ -143,4 +147,26 @@ fun <T> createLiveData(block: () -> T): LiveData<T> {
         result.postValue(block())
     }
     return result
+}
+
+/**
+ * Helper function used to create a snackbar with an undo action.
+ * The onComplete function is called when completed, onUndo is called if undone.
+ */
+fun View.createSnackbarWithUndo(message: String, onComplete: () -> Unit, onUndo: () -> Unit) {
+    var wasUndone = false
+
+    val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
+    snackbar.setAction(R.string.undo) {
+        wasUndone = true
+        onUndo()
+    }
+    snackbar.addCallback(object: Snackbar.Callback() {
+        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+            if (!wasUndone) {
+                onComplete()
+            }
+        }
+    })
+    snackbar.show()
 }

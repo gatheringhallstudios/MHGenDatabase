@@ -5,16 +5,15 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
 import com.ghstudios.android.data.classes.ASBTalisman
+import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
-import kotlinx.android.synthetic.main.fragment_recyclerview_main.*
-
+import com.ghstudios.android.util.createSnackbarWithUndo
 
 
 /**
@@ -47,11 +46,6 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
             showAddTalismanDialog()
         }
 
-        val handler = ItemTouchHelper(SwipeReorderTouchHelper(
-                onDelete = { viewModel.removeTalismanByIndex(it.adapterPosition) }
-        ))
-        handler.attachToRecyclerView(recyclerView)
-
         val adapter = TalismanAdapter(
                 onSelect = {
                     if (isSelecting) {
@@ -73,7 +67,23 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
                     }
                 }
         )
+
+        val handler = ItemTouchHelper(SwipeReorderTouchHelper(
+                afterSwiped = {
+                    val talismanId = it.itemView.tag as Long
+                    val message = getString(R.string.asb_result_talisman_deleted)
+
+                    val operation = viewModel.startRemoveTalisman(talismanId)
+
+                    val containerView = view.findViewById<ViewGroup>(R.id.recyclerview_container_main)
+                    containerView.createSnackbarWithUndo(message,
+                            onComplete = operation::complete,
+                            onUndo = operation::undo)
+                }
+        ))
+
         setAdapter(adapter)
+        handler.attachToRecyclerView(recyclerView)
 
         viewModel.reload()
         viewModel.talismanData.observe(this, Observer {

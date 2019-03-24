@@ -1,9 +1,7 @@
 package com.ghstudios.android.features.armorsetbuilder.list
 
 import android.app.*
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.content.*
 import android.os.Bundle
@@ -82,7 +80,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
         setAdapter(adapter)
 
         val handler = ItemTouchHelper(SwipeReorderTouchHelper(
-                onDelete = {
+                afterSwiped = {
                     viewModel.deleteSet(it.itemView.tag as Long)
                 }
         ))

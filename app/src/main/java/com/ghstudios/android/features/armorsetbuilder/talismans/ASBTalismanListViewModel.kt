@@ -5,17 +5,22 @@ import android.arch.lifecycle.ViewModel
 import android.util.Log
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.ASBTalisman
+import com.ghstudios.android.util.UndoableOperation
+
 
 class ASBTalismanListViewModel: ViewModel() {
+    val TAG = javaClass.name
+
     val dataManager = DataManager.get()
     val asbManager = dataManager.asbManager
 
-    /** Returns talisman data. */
+    private var previousDelete: UndoableOperation? = null
+
+    /** Returns talisman data. Updates with a new list on every change. */
     val talismanData = MutableLiveData<List<ASBTalisman>>()
 
-    private var previousTalismans: List<ASBTalisman>? = null
-
     fun reload() {
+        previousDelete?.complete()
         talismanData.value = asbManager.getTalismans()
     }
 
@@ -42,20 +47,40 @@ class ASBTalismanListViewModel: ViewModel() {
     }
 
     /**
+     * Starts the process of deleting a talisman by removing the talisman locally from the viewmodel,
+     * and then returns a method to either complete the delete, or undo it.
+     * Calling this method with an ongoing operation will complete the previous one.
+     */
+    fun startRemoveTalisman(id: Long): UndoableOperation {
+        previousDelete?.complete()
+
+        val previousTalismans = talismanData.value ?: emptyList()
+        talismanData.value = previousTalismans.filter {
+            it.id != id
+        }
+
+        val operation = UndoableOperation(
+                onComplete = {
+                    removeTalisman(id)
+                },
+                onUndo = {
+                    talismanData.value = previousTalismans
+                }
+        )
+        previousDelete = operation
+        return operation
+    }
+
+    /**
      * Removes the talisman, and saves the state before to facilitate undo.
      */
     fun removeTalisman(id: Long) {
         val talismans = asbManager.getTalismans()
-        previousTalismans = talismans
-
         val newTalismans = talismans.filter { it.id != id }
         asbManager.saveTalismans(newTalismans)
         talismanData.value = newTalismans
-    }
 
-    fun removeTalismanByIndex(idx: Int) {
-        val talisman = talismanData.value?.get(idx)
-        talisman?.let { removeTalisman(talisman.id) }
+        Log.d(TAG, "Talisman deleted")
     }
 
     fun moveTalismanByIndex(idxStart: Int, idxEnd: Int) {
@@ -63,9 +88,8 @@ class ASBTalismanListViewModel: ViewModel() {
             return
         }
 
-        // Save previous talismans and get current set. toMutableList() always makes a copy.
-        previousTalismans = talismanData.value
-        val talismans = previousTalismans?.toMutableList()
+        // toMutableList() always makes a copy.
+        val talismans = talismanData.value?.toMutableList()
         if (talismans == null) {
             Log.e(javaClass.name, "Talisman data is null")
             return
@@ -81,17 +105,5 @@ class ASBTalismanListViewModel: ViewModel() {
         talismans.add(destination, talisman)
 
         asbManager.saveTalismans(talismans)
-    }
-
-    /**
-     * Restores the previous talisman state. Use after remove.
-     * Doesn't check for staleness, so its only good for snackbar undos.
-     */
-    fun restorePrevious() {
-        previousTalismans?.let { previousTalismans ->
-            asbManager.saveTalismans(previousTalismans)
-            talismanData.value = previousTalismans
-        }
-        previousTalismans = null
     }
 }

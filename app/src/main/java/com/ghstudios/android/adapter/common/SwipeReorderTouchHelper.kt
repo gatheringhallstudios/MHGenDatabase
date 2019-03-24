@@ -2,13 +2,12 @@ package com.ghstudios.android.adapter.common
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 
 /**
  * ItemTouchHelper used to add swipe and reorder functionality to recyclerviews.
  */
 class SwipeReorderTouchHelper(
-        val onDelete: (position: RecyclerView.ViewHolder) -> Unit
+        val afterSwiped: (position: RecyclerView.ViewHolder) -> Unit
 ) : ItemTouchHelper.SimpleCallback(
         0, //ItemTouchHelper.UP or ItemTouchHelper.DOWN,
         ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -28,6 +27,6 @@ class SwipeReorderTouchHelper(
      * Callback called every time an item has been swiped away
      */
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        onDelete(viewHolder)
+        afterSwiped(viewHolder)
     }
 }
