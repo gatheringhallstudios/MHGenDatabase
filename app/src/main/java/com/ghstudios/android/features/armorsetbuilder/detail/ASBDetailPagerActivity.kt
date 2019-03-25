@@ -1,6 +1,8 @@
 package com.ghstudios.android.features.armorsetbuilder.detail
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +19,9 @@ import com.ghstudios.android.loader.ASBSessionLoader
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
+import com.ghstudios.android.data.classes.Rank
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetAddDialogFragment
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity
 
 import java.util.ArrayList
 
@@ -46,6 +51,8 @@ class ASBDetailPagerActivity : BasePagerActivity() {
         const val REQUEST_CODE_REMOVE_DECORATION = 541
         const val REQUEST_CODE_SET_WEAPON_SLOTS = 542
         const val REQUEST_CODE_ADD_TO_WISHLIST = 543
+
+        const val REQUEST_CODE_SET_EDIT = 550
     }
 
     val viewModel by lazy {
@@ -57,7 +64,9 @@ class ASBDetailPagerActivity : BasePagerActivity() {
 
         try {
             viewModel.loadSession(asbId)
-            title = viewModel.session.name
+            viewModel.sessionData.observe(this, Observer {
+                title = viewModel.session.name
+            })
 
             tabs.addTab(R.string.asb_tab_equipment) { ASBFragment() }
             tabs.addTab(R.string.skills) { ASBSkillsListFragment() }
@@ -74,8 +83,7 @@ class ASBDetailPagerActivity : BasePagerActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_add_to_wishlist, menu)
+        menuInflater.inflate(R.menu.menu_asb, menu)
         return true
     }
 
@@ -86,6 +94,30 @@ class ASBDetailPagerActivity : BasePagerActivity() {
                 val dialog = ASBAddToWishlistDialog()
                 dialog.setTargetFragment(null, REQUEST_CODE_ADD_TO_WISHLIST)
                 dialog.show(fm, "create_wishlist")
+                return true
+            }
+            R.id.asb_edit -> {
+                val set = viewModel.session
+                val dialog = ASBSetAddDialogFragment.newInstance(set)
+                dialog.setTargetFragment(null, REQUEST_CODE_SET_EDIT)
+                dialog.show(supportFragmentManager, ASBSetListFragment.DIALOG_ADD_ASB_SET)
+
+                return true
+            }
+            R.id.asb_delete -> {
+                AlertDialog.Builder(this)
+                        .setTitle(R.string.asb_dialog_title_delete_set)
+                        .setMessage(getString(R.string.dialog_message_delete, viewModel.session.name))
+                        .setPositiveButton(R.string.delete) { _, _ ->
+                            viewModel.deleteSet()
+
+                            val intent = Intent(this, ASBSetListPagerActivity::class.java)
+                            startActivity(intent)
+                            this.finish()
+                        }
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .create().show()
+
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -108,6 +140,14 @@ class ASBDetailPagerActivity : BasePagerActivity() {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                         }
                     }
+                }
+
+                // Executed after the edit dialog completes
+                REQUEST_CODE_SET_EDIT -> {
+                    val name = data.getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME)
+                    val rank = data.getIntExtra(ASBSetListFragment.EXTRA_ASB_SET_RANK, -1)
+                    val hunterType = data.getIntExtra(ASBSetListFragment.EXTRA_ASB_SET_HUNTER_TYPE, -1)
+                    viewModel.updateSet(name, Rank.from(rank), hunterType)
                 }
             }
         }

@@ -406,7 +406,10 @@
     <string name="asb_action_edit">Edit</string>
     <string name="asb_result_set_deleted">Armor Set Deleted</string>
     <string name="asb_result_talisman_deleted">Talisman Deleted</string>
-    <string name="asb_option_set_add">New Set</string>
+
+    <string name="option_asb_set_add">New Set</string>
+    <string name="option_asb_edit">Edit Set</string>
+    <string name="option_asb_delete">Delete Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>
     <string name="asb_talisman_skill">Skill %d</string>

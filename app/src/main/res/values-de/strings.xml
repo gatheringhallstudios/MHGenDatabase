@@ -155,7 +155,7 @@
     <string name="asb_action_add">Hinzufügen</string>
     <string name="asb_action_remove">Entfernen</string>
     <string name="asb_action_edit">Bearbeiten</string>
-    <string name="asb_option_set_add">Neues Set</string>
+    <string name="option_asb_set_add">Neues Set</string>
     <string name="asb_dialog_talisman_title">Talisman</string>
     <string name="asb_talisman_skill">Fähigkeit %d</string>
     <string name="asb_talisman_skill_1">Fähigkeit 1</string>

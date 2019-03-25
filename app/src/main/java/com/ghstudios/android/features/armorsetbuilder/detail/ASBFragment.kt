@@ -12,6 +12,7 @@ import com.ghstudios.android.features.decorations.detail.DecorationDetailActivit
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
 import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanSelectActivity
 
@@ -118,26 +119,6 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
                     }
                 }
             }
-        }
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.menu_asb, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            // The user wants to add an armor piece
-            R.id.set_builder_add_piece -> {
-                val intent = Intent(activity, ArmorListPagerActivity::class.java)
-                intent.putExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-
-                startActivityForResult(intent, ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE)
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
         }
     }
 

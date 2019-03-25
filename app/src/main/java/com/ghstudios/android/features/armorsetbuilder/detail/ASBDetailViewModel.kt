@@ -8,11 +8,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.data.classes.ArmorSet
+import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
@@ -29,18 +26,35 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     private val asbManager = dataManager.asbManager
 
     private var sessionId = -1L
-    lateinit var session: ASBSession
 
-    private val updatePieceEventInner = MutableLiveData<Int>()
+    var session: ASBSession
+        get() = sessionData.value!!
+        set(value) { sessionData.value = value }
 
-    val updatePieceEvent: LiveData<Int> get() = updatePieceEventInner
+    val sessionData = MutableLiveData<ASBSession>()
 
+    val updatePieceEvent = MutableLiveData<Int>()
+
+    /**
+     * Sets the session id and starts the initial load.
+     */
     fun loadSession(sessionId: Long) {
         if (this.sessionId == sessionId) {
             return
         }
 
         this.sessionId = sessionId
+        reload()
+    }
+
+    /**
+     * Reloads the session in place. Use after external updates.
+     */
+    fun reload() {
+        if (sessionId < 0) {
+            return
+        }
+
         session = asbManager.getASBSession(sessionId)!! // note: error should never happen
     }
 
@@ -156,6 +170,22 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
      */
     private fun triggerPieceUpdated(pieceIndex: Int) {
         asbManager.updateASB(session)
-        updatePieceEventInner.postValue(pieceIndex)
+        updatePieceEvent.postValue(pieceIndex)
+    }
+
+    /**
+     * Updates the values of an ASBSet with a certain id, then reloads the data.
+     */
+    fun updateSet(name: String, rank: Rank, hunterType: Int) {
+        asbManager.queryUpdateASBSet(sessionId, name, rank, hunterType)
+        reload()
+    }
+
+    /**
+     * Deletes the current session, but does not update the viewmodel afterwards.
+     * After calling this, it is important to exit the activity.
+     */
+    fun deleteSet() {
+        asbManager.queryDeleteASBSet(sessionId)
     }
 }

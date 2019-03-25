@@ -379,7 +379,7 @@
     <string name="asb_action_remove">Quitar</string>
     <string name="asb_action_edit">Editar</string>
 
-    <string name="asb_option_set_add">Nuevo Set</string>
+    <string name="option_asb_set_add">Nuevo Set</string>
 
     <string name="asb_dialog_talisman_title">Amuleto</string>
     <string name="asb_talisman_skill">Habilidad %d</string>

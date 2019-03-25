@@ -8,7 +8,7 @@ import com.ghstudios.android.features.armorsetbuilder.talismans.ASBTalismanListF
 /**
  * Main activity for the Armor set list
  */
-class ASBSetListActivity : BasePagerActivity() {
+class ASBSetListPagerActivity : BasePagerActivity() {
 
     override fun onAddTabs(tabs: TabAdder) {
         setTitle(R.string.title_asb)
