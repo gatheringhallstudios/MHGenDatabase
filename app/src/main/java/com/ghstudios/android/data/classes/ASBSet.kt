@@ -10,5 +10,9 @@ open class ASBSet(
         var id: Long = -1,
         var name: String = "",
         var rank: Rank = Rank.ANY,
-        var hunterType: Int = -1 // 0 is undefined, 1 is blademaster, 2 is gunner
+
+        /**
+         * The session's hunter type. 0 is blademaster, 1 is gunner, 2 is either, -1 is undefined
+         */
+        var hunterType: Int = -1
 )

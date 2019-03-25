@@ -27,9 +27,8 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
 
     private var sessionId = -1L
 
-    var session: ASBSession
+    val session: ASBSession
         get() = sessionData.value!!
-        set(value) { sessionData.value = value }
 
     val sessionData = MutableLiveData<ASBSession>()
 
@@ -55,7 +54,7 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
             return
         }
 
-        session = asbManager.getASBSession(sessionId)!! // note: error should never happen
+        sessionData.value = asbManager.getASBSession(sessionId) // note: error should never happen
     }
 
     /**
@@ -177,7 +176,27 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
      * Updates the values of an ASBSet with a certain id, then reloads the data.
      */
     fun updateSet(name: String, rank: Rank, hunterType: Int) {
-        asbManager.queryUpdateASBSet(sessionId, name, rank, hunterType)
+        // remove invalid pieces (doesn't restrict hunter rank yet...only gunner/blademaster really matters)
+        for (piece in session.pieces.toList()) {
+            if (piece.equipment !is Armor) {
+                continue // ignore non-armor
+            }
+            if (piece.idx == ArmorSet.HEAD || piece.equipment.hunterType == Armor.ARMOR_TYPE_BOTH) {
+                continue // ignore unrestricted armor and head pieces
+            }
+
+            if (piece.equipment.hunterType != hunterType) {
+                session.removeEquipment(piece.idx)
+            }
+        }
+
+        // Perform update
+        session.name = name
+        session.rank = rank
+        session.hunterType = hunterType
+        asbManager.updateASB(session)
+
+        // Perform reload
         reload()
     }
 

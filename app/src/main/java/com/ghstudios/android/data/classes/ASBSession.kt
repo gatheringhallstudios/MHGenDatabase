@@ -4,14 +4,6 @@ import android.util.Log
 import com.ghstudios.android.ITintedIcon
 import com.ghstudios.android.mhgendatabase.R
 
-private class DummyWeapon(val slots: Int) : Equipment(), ITintedIcon {
-    override fun getNumSlots() = slots
-
-    override fun getIconResourceString() = "icon_great_sword"
-    override fun getColorArrayId() = R.array.rare_colors
-    override fun getIconColorIndex() = 0
-}
-
 /**
  * Contains all of the juicy stuff regarding ASB sets, like the armor inside and the skills it provides.
  */
@@ -22,6 +14,7 @@ class ASBSession(id: Long, name: String, rank: Rank, hunterType: Int) :
     var numWeaponSlots: Int
         /** Retrieves the number of weapon slots */
         get() = getEquipment(ArmorSet.WEAPON)?.numSlots ?: 0
+
         /**
          * Sets the number of weapon slots. This also clears all decorations.
          */
@@ -113,5 +106,20 @@ class ASBSession(id: Long, name: String, rank: Rank, hunterType: Int) :
         } else {
             pieceData.remove(pieceIndex)
         }
+    }
+
+    /**
+     * Internal fake weapon. Shows the slots and whether its a gunner or blademaster set.
+     */
+    inner class DummyWeapon(val slots: Int) : Equipment(), ITintedIcon {
+        override fun getNumSlots() = slots
+
+        override fun getIconResourceString() = when (hunterType) {
+            Armor.ARMOR_TYPE_GUNNER -> "icon_heavy_bowgun"
+            else -> "icon_great_sword"
+        }
+
+        override fun getColorArrayId() = R.array.rare_colors
+        override fun getIconColorIndex() = 0
     }
 }

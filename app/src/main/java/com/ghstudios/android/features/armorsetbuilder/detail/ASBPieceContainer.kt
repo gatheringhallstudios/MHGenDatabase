@@ -50,12 +50,9 @@ interface ASBPieceContainerListener {
 /**
  * Custom view used to display a single armor piece for the ASB.
  * Displays the armor piece and all associated slots.
- */
-class ASBPieceContainer
-/**
  * It is required to call `initialize` after instantiating this class.
  */
-(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+class ASBPieceContainer(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
     private lateinit var listener: ASBPieceContainerListener
 

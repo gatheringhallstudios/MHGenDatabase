@@ -64,9 +64,14 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
                 view.findViewById(R.id.armor_builder_legs),
                 view.findViewById(R.id.armor_builder_talisman))
 
-        for ((idx, equipView) in equipmentViews.withIndex()) {
-            equipView.initialize(viewModel.session, idx, this, this)
-        }
+        // Whenever the session changes, re-initialize the views
+        viewModel.sessionData.observe(this, Observer {
+            if (it == null) return@Observer
+
+            for ((idx, equipView) in equipmentViews.withIndex()) {
+                equipView.initialize(it, idx, this, this)
+            }
+        })
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it != null) {
