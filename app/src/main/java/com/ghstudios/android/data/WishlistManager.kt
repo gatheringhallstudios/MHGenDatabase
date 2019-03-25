@@ -203,30 +203,27 @@ class WishlistManager internal constructor(
      * Delete an entry from WishlistData
      * */
     fun queryDeleteWishlistData(id: Long) {
-
         // Get the existing entry from WishlistData
-        val wdCursor = mHelper.queryWishlistDataId(id)
-        wdCursor.moveToFirst()
-        val wd = wdCursor.wishlistData
-        wdCursor.close()
+        val wd = mHelper.queryWishlistDataId(id)
+                .firstOrNull { it.wishlistData }
+                ?: return // Exit if nothing to delete
 
-        val wishlist_id = wd!!.wishlistId
+        val wishlist_id = wd.wishlistId
         val item_id = wd.item.id
         val wd_old_quantity = wd.quantity
         val path = wd.path
 
         // Get the components for the WishlistData entry
-        val cc = mHelper.queryComponentCreatedType(item_id, path)
-        cc.moveToFirst()
+        val components = mHelper.queryComponentCreatedType(item_id, path).toList { it.component }
 
         // Update those components in WishlistComponent
-        while (!cc.isAfterLast) {
-            val component_id = cc.component!!.component.id
-            val c_amt = cc.component!!.quantity * wd_old_quantity
+        for (wishlistComponent in components) {
+            val component_id = wishlistComponent.component.id
+            val c_amt = wishlistComponent.quantity * wd_old_quantity
 
-            val component = mHelper.queryWishlistComponent(wishlist_id, component_id).firstOrNull {
-                it.wishlistComponent
-            } ?: continue
+            val component = mHelper.queryWishlistComponent(wishlist_id, component_id)
+                    .firstOrNull { it.wishlistComponent }
+                    ?: continue
 
             // Update component entry to wishlist_component
             val wc_id = component.id
@@ -241,10 +238,7 @@ class WishlistManager internal constructor(
                 // If component no longer needed, delete it from wishlist_component
                 mHelper.queryDeleteWishlistComponent(wc_id)
             }
-
-            cc.moveToNext()
         }
-        cc.close()
 
         mHelper.queryDeleteWishlistData(id)
     }
