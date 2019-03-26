@@ -83,6 +83,8 @@
     <string name="skills">Skills</string>
 
     <string name="format_plus">%1$+d</string>
+    <string name="skill_points">%s %+d</string>
+    <string name="skill_points_joined">%s / %s</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
