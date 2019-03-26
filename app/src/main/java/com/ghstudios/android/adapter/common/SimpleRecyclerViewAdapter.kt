@@ -86,13 +86,21 @@ abstract class SimpleDiffRecyclerViewAdapter<T>: SimpleRecyclerViewAdapter<T>() 
      */
     protected abstract fun areItemsTheSame(oldItem: T, newItem: T): Boolean
 
+    /**
+     * Called when an item has been confirmed to match, to determine if the view needs rerendering.
+     * Defaults to always returning true.
+     */
+    open fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
+        return true
+    }
+
     // internal implementation of the diff callback. Differs to an astract method.
     inner class DiffCallback : DiffUtil.ItemCallback<T>() {
         override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
             return this@SimpleDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
         }
         override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-            return this@SimpleDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
+            return this@SimpleDiffRecyclerViewAdapter.areContentsTheSame(oldItem, newItem)
         }
     }
 }

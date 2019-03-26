@@ -17,6 +17,12 @@ class ASBSetAdapter : SimpleDiffRecyclerViewAdapter<ASBSet>() {
         return oldItem.id == newItem.id
     }
 
+    override fun areContentsTheSame(oldItem: ASBSet, newItem: ASBSet): Boolean {
+        return oldItem.name == newItem.name &&
+                oldItem.hunterType == newItem.hunterType &&
+                oldItem.rank == newItem.rank
+    }
+
     override fun onCreateView(parent: ViewGroup): View {
         val inflater = LayoutInflater.from(parent.context)
         return inflater.inflate(R.layout.fragment_asb_sets_list_item, parent, false)
