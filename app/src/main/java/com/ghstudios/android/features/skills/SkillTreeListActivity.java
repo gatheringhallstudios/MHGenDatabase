@@ -13,7 +13,7 @@ public class SkillTreeListActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.skills);
+        setTitle(R.string.title_skills);
 
         // Tag as top level activity (if not coming from asb)
         boolean fromAsb = getIntent().getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_TALISMAN_EDITOR, false);

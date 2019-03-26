@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,7 +27,7 @@ import com.ghstudios.android.features.meta.AboutActivity;
 import com.ghstudios.android.features.monsters.list.MonsterListPagerActivity;
 import com.ghstudios.android.features.meta.PreferencesActivity;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListActivity;
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity;
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity;
 import com.ghstudios.android.features.combining.CombiningListActivity;
 import com.ghstudios.android.features.decorations.list.DecorationListActivity;
@@ -227,7 +226,7 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
                 intent = new Intent(ctx, SkillTreeListActivity.class);
                 break;
             case MenuSection.ARMOR_SET_BUILDER: // Armor Set Builder
-                intent = new Intent(ctx, ASBSetListActivity.class);
+                intent = new Intent(ctx, ASBSetListPagerActivity.class);
                 break;
             case MenuSection.WISH_LISTS: // Wishlists
                 intent = new Intent(ctx, WishlistListActivity.class);

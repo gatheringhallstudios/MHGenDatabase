@@ -13,7 +13,7 @@ public class MonsterListPagerActivity extends BasePagerActivity {
 
     @Override
     public void onAddTabs(TabAdder tabs) {
-        setTitle(R.string.monsters);
+        setTitle(R.string.title_monsters);
         super.setAsTopLevel();
 
         tabs.addTab(R.string.monster_class_large, () ->

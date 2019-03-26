@@ -24,7 +24,7 @@ import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.SkillTreePoints
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment
 import com.ghstudios.android.features.wishlist.external.WishlistItemType
-import com.ghstudios.android.features.wishlist.list.WishlistListFragment.DIALOG_WISHLIST_ADD
+import com.ghstudios.android.features.wishlist.list.WishlistListFragment
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -199,7 +199,7 @@ class ArmorSetSummaryFragment : Fragment() {
                 WishlistDataAddDialogFragment.newInstance(
                         WishlistItemType.ARMORSET,
                         viewModel.familyId,
-                        viewModel.familyName).show(fm, DIALOG_WISHLIST_ADD)
+                        viewModel.familyName).show(fm, WishlistListFragment.DIALOG_WISHLIST_ADD)
                 true
             }
             else -> super.onOptionsItemSelected(item)

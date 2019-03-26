@@ -8,11 +8,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.ghstudios.android.data.classes.ASBSession
-import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.DataManager
-import com.ghstudios.android.data.classes.Armor
-import com.ghstudios.android.data.classes.ArmorSet
+import com.ghstudios.android.data.classes.*
+import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.loggedThread
 
@@ -28,19 +26,35 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     private val asbManager = dataManager.asbManager
 
     private var sessionId = -1L
-    lateinit var session: ASBSession
 
-    private val updatePieceEventInner = MutableLiveData<Int>()
+    val session: ASBSession
+        get() = sessionData.value!!
 
-    val updatePieceEvent: LiveData<Int> get() = updatePieceEventInner
+    val sessionData = MutableLiveData<ASBSession>()
 
+    val updatePieceEvent = MutableLiveData<Int>()
+
+    /**
+     * Sets the session id and starts the initial load.
+     */
     fun loadSession(sessionId: Long) {
         if (this.sessionId == sessionId) {
             return
         }
 
         this.sessionId = sessionId
-        session = asbManager.getASBSession(sessionId)!! // note: error should never happen
+        reload()
+    }
+
+    /**
+     * Reloads the session in place. Use after external updates.
+     */
+    fun reload() {
+        if (sessionId < 0) {
+            return
+        }
+
+        sessionData.value = asbManager.getASBSession(sessionId) // note: error should never happen
     }
 
     /**
@@ -130,29 +144,18 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
     /**
      * Sets the equipped talisman, then updates the DB.
      */
-    fun setTalisman(
-            typeIndex: Int,
-            skill1Id: Long,
-            skill1Points: Int,
-            skill2Id: Long,
-            skill2Points: Int,
-            numSlots: Int) {
-        val skill1Tree = dataManager.getSkillTree(skill1Id)
-
-        // todo: consider an alternative talisman object
-        // todo: find better way of loading talismans
-        val talisman = ASBTalisman(typeIndex)
-        val typeName = app.resources.getStringArray(R.array.talisman_names)[typeIndex]
+    fun setTalisman(data: TalismanMetadata) {
+        val talisman = ASBTalisman(data.typeIndex)
+        val typeName = app.resources.getStringArray(R.array.talisman_names)[data.typeIndex]
         talisman.name = app.getString(R.string.talisman_full_name, typeName)
-        talisman.numSlots = numSlots
+        talisman.numSlots = data.numSlots
+        for ((skillId, points) in data.skills) {
+            if (skillId < 0) continue
 
-        if (skill1Tree != null) {
-            talisman.setFirstSkill(skill1Tree, skill1Points)
-        }
-
-        if (skill2Id >= 0) {
-            val skill2Tree = dataManager.getSkillTree(skill2Id)
-            talisman.setSecondSkill(skill2Tree, skill2Points)
+            val skillTree = dataManager.getSkillTree(skillId)
+            if (skillTree != null) {
+                talisman.addSkill(skillTree, points)
+            }
         }
 
         session.setEquipment(ArmorSet.TALISMAN, talisman)
@@ -166,6 +169,42 @@ class ASBDetailViewModel(val app: Application) : AndroidViewModel(app) {
      */
     private fun triggerPieceUpdated(pieceIndex: Int) {
         asbManager.updateASB(session)
-        updatePieceEventInner.postValue(pieceIndex)
+        updatePieceEvent.postValue(pieceIndex)
+    }
+
+    /**
+     * Updates the values of an ASBSet with a certain id, then reloads the data.
+     */
+    fun updateSet(name: String, rank: Rank, hunterType: Int) {
+        // remove invalid pieces (doesn't restrict hunter rank yet...only gunner/blademaster really matters)
+        for (piece in session.pieces.toList()) {
+            if (piece.equipment !is Armor) {
+                continue // ignore non-armor
+            }
+            if (piece.idx == ArmorSet.HEAD || piece.equipment.hunterType == Armor.ARMOR_TYPE_BOTH) {
+                continue // ignore unrestricted armor and head pieces
+            }
+
+            if (piece.equipment.hunterType != hunterType) {
+                session.removeEquipment(piece.idx)
+            }
+        }
+
+        // Perform update
+        session.name = name
+        session.rank = rank
+        session.hunterType = hunterType
+        asbManager.updateASB(session)
+
+        // Perform reload
+        reload()
+    }
+
+    /**
+     * Deletes the current session, but does not update the viewmodel afterwards.
+     * After calling this, it is important to exit the activity.
+     */
+    fun deleteSet() {
+        asbManager.queryDeleteASBSet(sessionId)
     }
 }

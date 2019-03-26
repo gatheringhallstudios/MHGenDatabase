@@ -14,7 +14,7 @@ public class DecorationListActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.decoration_title);
+        setTitle(R.string.title_decorations);
 
         // Enable back button if we're coming from the set builder
         if (getIntent().getBooleanExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, false)) {

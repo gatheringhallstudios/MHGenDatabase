@@ -9,6 +9,7 @@
     <string name="delete">Delete</string>
     <string name="copy">Copy</string>
     <string name="submit">Submit</string>
+    <string name="undo">Undo</string>
 
     <string name="about">About</string>
     <string name="about_version">Version %s</string>
@@ -77,16 +78,13 @@
     <string name="type_weapon_heavybowgun">Heavy Bowgun</string>
     <string name="type_weapon_bow">Bow</string>
 
-    <string name="monsters">Monsters</string>
     <string name="palicos">Palicos</string>
-    <string name="items">Items</string>
-    <string name="locations">Locations</string>
     <string name="combining">Combining</string>
-    <string name="quests">Quests</string>
     <string name="skills">Skills</string>
-    <string name="decoration_title">Decorations</string>
-    <string name="armor">Armor</string>
-    <string name="weapons">Weapons</string>
+
+    <string name="format_plus">%1$+d</string>
+    <string name="skill_points">%s %+d</string>
+    <string name="skill_points_joined">%s / %s</string>
 
     <!-- value strings -->
     <string name="value_rare">Rare %s</string>
@@ -133,18 +131,22 @@
     <!-- Drawer items -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="drawer_monsters">Monsters</string>
-    <string name="drawer_weapons">Weapons</string>
-    <string name="drawer_armor">Armor</string>
-    <string name="drawer_quests">Quests</string>
-    <string name="drawer_items">Items</string>
-    <string name="drawer_palicos">Palicos</string>
-    <string name="drawer_combining">Combining</string>
-    <string name="drawer_locations">Locations</string>
-    <string name="drawer_decorations">Decorations</string>
-    <string name="drawer_skills">Skills</string>
-    <string name="drawer_asb">Armor Set Builder</string>
-    <string name="drawer_wishlists">Wishlists</string>
+
+    <string name="title_monsters">Monsters</string>
+    <string name="title_weapons">Weapons</string>
+    <string name="title_armor">Armor</string>
+    <string name="title_armor_sets">Armor Sets</string>
+    <string name="title_quests">Quests</string>
+    <string name="title_items">Items</string>
+    <string name="title_palicos">Palicos</string>
+    <string name="title_combining">Combining</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_decorations">Decorations</string>
+    <string name="title_skills">Skills</string>
+    <string name="title_asb">Armor Set Builder</string>
+    <string name="title_wishlists">Wishlists</string>
+    <string name="title_talismans">Talismans</string>
+
     <string name="drawer_group_other">Other</string>
     <string name="drawer_preferences">Settings</string>
     <string name="drawer_feedback">Send Feedback</string>
@@ -366,6 +368,7 @@
     <string name="wishlist_created">Created wishlist %s</string>
     <string name="wishlist_add_item">Added %s</string>
     <string name="wishlist_renamed">Renamed to %s</string>
+    <string name="wishlist_deleted">Wishlist Deleted</string>
 
     <string name="no_slots" translatable="false">―――</string>
     <string name="one_slot" translatable="false">○――</string>
@@ -378,8 +381,6 @@
 
 
     <!-- Armor Set Builder Stuff !-->
-    <string name="activity_asb_sets">Armor Sets</string>
-
     <string name="dialog_title_add_asb_set">New Set</string>
     <string name="dialog_title_edit_asb_set">Edit Set</string>
     <string name="asb_dialog_name_hint">Set Name</string>
@@ -402,12 +403,15 @@
     <string name="asb_empty_slot">Empty slot</string>
     <string name="asb_no_slots">No slots</string>
     <string name="asb_action_select">Select</string>
-
     <string name="asb_action_add">Add</string>
     <string name="asb_action_remove">Remove</string>
     <string name="asb_action_edit">Edit</string>
+    <string name="asb_result_set_deleted">Armor Set Deleted</string>
+    <string name="asb_result_talisman_deleted">Talisman Deleted</string>
 
-    <string name="asb_option_set_add">New Set</string>
+    <string name="option_asb_set_add">New Set</string>
+    <string name="option_asb_edit">Edit Set</string>
+    <string name="option_asb_delete">Delete Set</string>
 
     <string name="asb_dialog_talisman_title">Talisman</string>
     <string name="asb_talisman_skill">Skill %d</string>

@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.ghstudios.android.ClickListeners.ArmorClickListener
 import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.ASBSession
+import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
@@ -50,12 +51,9 @@ interface ASBPieceContainerListener {
 /**
  * Custom view used to display a single armor piece for the ASB.
  * Displays the armor piece and all associated slots.
- */
-class ASBPieceContainer
-/**
  * It is required to call `initialize` after instantiating this class.
  */
-(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
+class ASBPieceContainer(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
     private var parentFragment: ASBFragment? = null
     private lateinit var listener: ASBPieceContainerListener
 
@@ -78,8 +76,8 @@ class ASBPieceContainer
         inflater.inflate(R.layout.view_asb_piece_container, this)
 
         equipmentHeader = findViewById(R.id.equipment_header)
-        icon = findViewById(R.id.armor_builder_item_icon)
-        equipmentNameView = findViewById(R.id.armor_builder_item_name)
+        icon = findViewById(R.id.equipment_icon)
+        equipmentNameView = findViewById(R.id.equipment_name)
         equipmentSlots = findViewById(R.id.equipment_slots)
         equipmentButton = findViewById(R.id.add_equipment_button)
         decorationHeader = findViewById(R.id.decoration_header)
@@ -130,7 +128,7 @@ class ASBPieceContainer
      * Refreshes the contents of the piece container based on the `ASBSession`.
      */
     fun updateContents() {
-        updateArmorPiece()
+        updateEquipmentView()
         updateSlotsHeader()
         decorationSectionView.update()
 
@@ -145,7 +143,7 @@ class ASBPieceContainer
     /**
      * Internal helper to update the displayed armor piece based on the session selected equipment
      */
-    private fun updateArmorPiece() {
+    private fun updateEquipmentView() {
         val selectedEquipment = session.getEquipment(pieceIndex)
 
         // set text color to default
@@ -153,6 +151,7 @@ class ASBPieceContainer
 
         // set text (and maybe text color) based on equipment
         if (pieceIndex == ArmorSet.WEAPON) {
+            // If weapon
             equipmentNameView.text = context.getString(when(session.numWeaponSlots) {
                 1 -> R.string.asb_weapon_slots_one
                 2 -> R.string.asb_weapon_slots_two
@@ -160,9 +159,26 @@ class ASBPieceContainer
                 else -> R.string.asb_weapon_slots_none
             })
         } else if (selectedEquipment == null) {
+            // If unequipped
             equipmentNameView.text = context.getString(R.string.asb_none)
             equipmentNameView.setTextColor(context.getColorCompat(R.color.text_color_secondary))
+        } else if (pieceIndex == ArmorSet.TALISMAN) {
+            // If talisman
+            val talisman = selectedEquipment as? ASBTalisman
+            if (talisman != null) {
+                val values = talisman.skills.map {
+                    context.getString(R.string.skill_points, it.skillTree.name, it.points)
+                }
+                equipmentNameView.text = when (values.size) {
+                    0 -> null
+                    1 -> values.first()
+                    else -> context.getString(R.string.skill_points_joined, values[0], values[1])
+                }
+            } else {
+                equipmentNameView.text = null
+            }
         } else {
+            // Anything else (usually armor pieces
             equipmentNameView.text = selectedEquipment.name
         }
 

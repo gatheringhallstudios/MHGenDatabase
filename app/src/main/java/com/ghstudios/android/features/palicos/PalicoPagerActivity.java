@@ -13,8 +13,8 @@ public class PalicoPagerActivity extends BasePagerActivity {
     public void onAddTabs(TabAdder tabs) {
         setTitle(R.string.palicos);
 
-        tabs.addTab(R.string.weapons, PalicoWeaponListFragment::new);
-        tabs.addTab(R.string.armor, PalicoArmorListFragment::new);
+        tabs.addTab(R.string.title_weapons, PalicoWeaponListFragment::new);
+        tabs.addTab(R.string.title_armor, PalicoArmorListFragment::new);
 
         // Tag as top level activity
         super.setAsTopLevel();

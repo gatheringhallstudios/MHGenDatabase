@@ -14,7 +14,7 @@ public class WeaponSelectionListActivity extends GenericActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.weapons);
+        setTitle(R.string.title_weapons);
 
         // Tag as top level activity
         super.setAsTopLevel();

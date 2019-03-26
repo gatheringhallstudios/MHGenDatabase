@@ -12,6 +12,9 @@ import com.ghstudios.android.features.decorations.detail.DecorationDetailActivit
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.armor.list.ArmorListPagerActivity
 import com.ghstudios.android.features.armorsetbuilder.armorselect.ArmorSelectActivity
+import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity
+import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanMetadata
+import com.ghstudios.android.features.armorsetbuilder.talismans.TalismanSelectActivity
 
 /**
  * This is where the magic happens baby. Users can define a custom armor set in this fragment.
@@ -26,9 +29,8 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
 
     // called by piece container when it requests a new talisman
     override fun onChangeTalisman() {
-        val d = ASBTalismanDialogFragment.newInstance(viewModel.session.talisman)
-        d.setTargetFragment(this, ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
-        d.show(this.fragmentManager, "TALISMAN")
+        val i = Intent(context, TalismanSelectActivity::class.java)
+        startActivityForResult(i, ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN)
     }
 
     // called by piece container when it requests an armor change
@@ -62,9 +64,14 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
                 view.findViewById(R.id.armor_builder_legs),
                 view.findViewById(R.id.armor_builder_talisman))
 
-        for ((idx, equipView) in equipmentViews.withIndex()) {
-            equipView.initialize(viewModel.session, idx, this, this)
-        }
+        // Whenever the session changes, re-initialize the views
+        viewModel.sessionData.observe(this, Observer {
+            if (it == null) return@Observer
+
+            for ((idx, equipView) in equipmentViews.withIndex()) {
+                equipView.initialize(it, idx, this, this)
+            }
+        })
 
         viewModel.updatePieceEvent.observe(this, Observer {
             if (it != null) {
@@ -111,37 +118,12 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
                 }
 
                 ASBDetailPagerActivity.REQUEST_CODE_CREATE_TALISMAN -> {
-                    viewModel.setTalisman(
-                            typeIndex = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_TYPE_INDEX, -1),
-                            numSlots = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SLOTS, 0),
-                            skill1Id = data.getLongExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_TREE_1, -1),
-                            skill1Points = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_1, -1),
-
-                            skill2Id = data.getLongExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_TREE_2, -1),
-                            skill2Points = data.getIntExtra(ASBDetailPagerActivity.EXTRA_TALISMAN_SKILL_POINTS_2, 0)
-                    )
+                    val metadata = data.getSerializableExtra(TalismanSelectActivity.EXTRA_TALISMAN) as? TalismanMetadata
+                    if (metadata != null) {
+                        viewModel.setTalisman(metadata)
+                    }
                 }
             }
-        }
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.menu_asb, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            // The user wants to add an armor piece
-            R.id.set_builder_add_piece -> {
-                val intent = Intent(activity, ArmorListPagerActivity::class.java)
-                intent.putExtra(ASBDetailPagerActivity.EXTRA_FROM_SET_BUILDER, true)
-
-                startActivityForResult(intent, ASBDetailPagerActivity.REQUEST_CODE_ADD_PIECE)
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
         }
     }
 

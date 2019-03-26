@@ -2,6 +2,7 @@ package com.ghstudios.android.data
 
 import android.content.ContentValues
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.util.Log
 import com.ghstudios.android.data.classes.*
 import com.ghstudios.android.data.cursors.ASBSessionCursor
@@ -9,6 +10,19 @@ import com.ghstudios.android.data.cursors.ASBSetCursor
 import com.ghstudios.android.data.database.MonsterHunterDatabaseHelper
 import com.ghstudios.android.data.database.S
 import com.ghstudios.android.util.firstOrNull
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.FileNotFoundException
+
+/**
+ * Extension used to build an iterator from a JSONArray. Each index is evaluated using transform.
+ */
+fun <T> JSONArray.iter(transform: JSONArray.(Int) -> T) = sequence {
+    for (i in 0..(this@iter.length() - 1)) {
+        yield(transform(i))
+    }
+}
 
 /**
  * Creates a ContentValues object from a map of arbitrary value types.
@@ -35,6 +49,7 @@ private fun contentValuesFromMap(map: Map<String, Any>): ContentValues {
 
 class ASBManager internal constructor(
         private val mAppContext: Context,
+        private val dataManager: DataManager,
         private val mHelper: MonsterHunterDatabaseHelper
 ) {
     val TAG = "ASBManager"
@@ -168,5 +183,105 @@ class ASBManager internal constructor(
         )
 
         return contentValuesFromMap(updatedColumns)
+    }
+
+    /**
+     * Returns a list of all talismans saved in the talismans.json file
+     */
+    fun getTalismans(): List<ASBTalisman> {
+        try {
+            val stream = mAppContext.openFileInput("talismans.json")
+            val contents = stream.use {
+                it.bufferedReader().use { br -> br.readText() }
+            }
+
+            // Micro optimization
+            val cachedSkills = mutableMapOf<Long, SkillTree?>()
+
+            val talismanDataObj = JSONObject(contents)
+            val talismanItems = talismanDataObj.getJSONArray("talismans")
+            val results = mutableListOf<ASBTalisman>()
+
+            for (talismanObj in talismanItems.iter { getJSONObject(it)}) {
+                val typeIdx = talismanObj.getInt("type")
+                val skills = talismanObj.getJSONArray("skills").iter {
+                    val obj = getJSONObject(it)
+                    Pair(obj.getLong("id"), obj.getInt("points"))
+                }
+
+                val talisman = ASBTalisman(typeIdx)
+                talisman.id = talismanObj.getLong("id")
+                talisman.numSlots = talismanObj.getInt("slots")
+                for ((skillId, points) in skills) {
+                    val skillTree = cachedSkills.getOrPut(skillId) { dataManager.getSkillTree(skillId) }
+                    if (skillTree != null) {
+                        talisman.addSkill(skillTree, points)
+                    }
+                }
+
+                results.add(talisman)
+            }
+
+            return results
+
+        } catch (ex: FileNotFoundException) {
+            return emptyList()
+        } catch (ex: JSONException) {
+            Log.e(javaClass.name, "JSON ERROR", ex)
+            return emptyList()
+        }
+    }
+
+    /**
+     * Adds a talisman to the talisman list, and returns the new list
+     */
+    fun saveTalisman(talisman: ASBTalisman): List<ASBTalisman> {
+        val list = getTalismans().toMutableList()
+
+        if (talisman.id == -1L) {
+            // Adding talisman
+            talisman.id = (list.maxBy { it.id }?.id ?: 0) + 1
+            list.add(talisman)
+        } else {
+            // Editing talisman
+            val existingIdx = list.indexOfFirst { it.id == talisman.id }
+            if (existingIdx < 0) {
+                list.add(talisman)
+            } else {
+                list[existingIdx] = talisman
+            }
+        }
+        saveTalismans(list)
+
+        return list
+    }
+
+    /**
+     * Internal function to save talismans. Since talismans are JSON, we need to
+     * overwrite all of them every time.
+     */
+    fun saveTalismans(talismans: List<ASBTalisman>) {
+        val talismanListObj = JSONArray(talismans.map {
+            JSONObject()
+                    .put("id", it.id)
+                    .put("type", it.typeIndex)
+                    .put("slots", it.numSlots)
+                    .put("skills", JSONArray(it.skills.map {s ->
+                        JSONObject(mapOf(
+                                "id" to s.skillTree.id,
+                                "points" to s.points
+                        ))
+                    }))
+        })
+
+        val result = JSONObject(mapOf(
+                "talismans" to talismanListObj
+        ))
+
+        val resultString = result.toString()
+        val stream = mAppContext.openFileOutput("talismans.json", MODE_PRIVATE)
+        stream.use {
+            stream.bufferedWriter().use { it.write(resultString) }
+        }
     }
 }

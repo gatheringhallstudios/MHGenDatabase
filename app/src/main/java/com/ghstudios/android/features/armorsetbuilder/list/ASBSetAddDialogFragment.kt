@@ -12,11 +12,16 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import com.ghstudios.android.AssetLoader
+import com.ghstudios.android.data.classes.ASBSet
 
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
+import com.ghstudios.android.util.sendDialogResult
 
+/**
+ * Dialog used to add or edit an ASBSet or Session.
+ */
 class ASBSetAddDialogFragment : DialogFragment() {
     companion object {
         private const val ARG_ID = "id"
@@ -29,6 +34,9 @@ class ASBSetAddDialogFragment : DialogFragment() {
             f.isEditing = false
             return f
         }
+
+        @JvmStatic fun newInstance(set: ASBSet)
+                = newInstance(set.id, set.name, set.rank, set.hunterType)
 
         @JvmStatic fun newInstance(id: Long, name: String, rank: Rank, hunterType: Int): ASBSetAddDialogFragment {
             val f = ASBSetAddDialogFragment().applyArguments {
@@ -47,9 +55,6 @@ class ASBSetAddDialogFragment : DialogFragment() {
     private var isEditing: Boolean = false
 
     private fun sendResult(resultCode: Int, name: String, rank: Rank, hunterType: Int) {
-        if (targetFragment == null)
-            return
-
         val i = Intent()
         if (isEditing) {
             i.putExtra(ASBSetListFragment.EXTRA_ASB_SET_ID, arguments!!.getLong(ARG_ID))
@@ -58,7 +63,7 @@ class ASBSetAddDialogFragment : DialogFragment() {
         i.putExtra(ASBSetListFragment.EXTRA_ASB_SET_RANK, rank.value)
         i.putExtra(ASBSetListFragment.EXTRA_ASB_SET_HUNTER_TYPE, hunterType)
 
-        targetFragment!!.onActivityResult(targetRequestCode, resultCode, i)
+        sendDialogResult(resultCode, i)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -11,6 +11,11 @@ class ASBTalisman(var typeIndex: Int = 0) : Equipment() {
     val firstSkill get() = skillPoints[0]
     val secondSkill get() = skillPoints[1]
 
+    /**
+     * Returns a list of all skill points in this talisman
+     */
+    val skills get() = skillPoints.filterNotNull()
+
     fun setFirstSkill(skillTree: SkillTree, points: Int) {
         skillPoints[0] = SkillTreePoints(skillTree, points)
     }
@@ -20,6 +25,18 @@ class ASBTalisman(var typeIndex: Int = 0) : Equipment() {
             skillPoints[1] = null
         } else {
             skillPoints[1] = SkillTreePoints(skillTree, points)
+        }
+    }
+
+    /**
+     * Adds a skill. If talisman is empty, sets to first slot,
+     * otherwise always overwrites second slot.
+     */
+    fun addSkill(skillTree: SkillTree, points: Int) {
+        if (skillPoints[0] == null) {
+            setFirstSkill(skillTree, points)
+        } else {
+            setSecondSkill(skillTree, points)
         }
     }
 

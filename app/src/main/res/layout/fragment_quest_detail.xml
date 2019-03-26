@@ -90,7 +90,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="16dp"
-            android:text="@string/monsters" />
+            android:text="@string/title_monsters" />
 
         <LinearLayout
             android:id="@+id/monster_habitat_fragment"

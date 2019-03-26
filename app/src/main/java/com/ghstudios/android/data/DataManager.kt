@@ -82,7 +82,7 @@ class DataManager private constructor(private val mAppContext: Context) {
     private val gatheringDao = GatheringDao(mHelper)
     private val skillDao = SkillDao(mHelper)
 
-    val asbManager = ASBManager(mAppContext, mHelper)
+    val asbManager = ASBManager(mAppContext, this, mHelper)
     val wishlistManager = WishlistManager(mAppContext, this, mHelper)
 
 
