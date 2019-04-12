@@ -1,0 +1,5427 @@
+Item Id,Item Name,Monster,Components
+272641,Spiral Heat 1,Agnaktor,"Agnaktor Beak [Agnaktor]
+Agnaktor Carapace [Agnaktor]
+Agnaktor Scale [Agnaktor]"
+330753,Agnaboom 1,Agnaktor,"Agnaktor Carapace [Agnaktor]
+Agnaktor Fin+ [Agnaktor]
+Firecell Stone
+Monster Hardbone"
+353793,Agna Magnum 1,Agnaktor,"Agnaktor Cortex [Agnaktor]
+Agnaktor Grandfin [Agnaktor]
+Agnaktor Talon [Agnaktor]
+Monster Slogbone"
+530433,Dancing Flames 1,Agnaktor,"Agnaktor Fin+ [Agnaktor]
+Agnaktor Claw+ [Agnaktor]
+Firecell Stone"
+599297,Fire Tempest 1,Agnaktor,"Agnaktor Beak [Agnaktor]
+Agnaktor Fin+ [Agnaktor]
+Firecell Stone"
+658433,Flamethrower 1,Agnaktor,"Agnaktor Tail [Agnaktor]
+Agnaktor Carapace [Agnaktor]
+Uroktor Scale+ [Uroktor]"
+683521,Agna Vulcan 1,Agnaktor,"Agnaktor Piel [Agnaktor]
+Agnaktor Talon [Agnaktor]
+Allfire Stone"
+792321,Flamestorm 1,Agnaktor,"Agnaktor Carapace [Agnaktor]
+Scalding Pleura+ [Agnaktor]
+Uroktor Scale+ [Uroktor]"
+816385,Ignis Noire 1,Agnaktor,"Agnaktor Grandfin [Agnaktor]
+Scorching Pleura [Agnaktor]
+Allfire Stone"
+854529,Agnakdion 1,Agnaktor,"Agnaktor Carapace [Agnaktor]
+Agnaktor Tail [Agnaktor]
+Carbalite Ore"
+923137,Flaming Halberd 1,Agnaktor,"Agnaktor Fin+ [Agnaktor]
+Agnaktor Beak [Agnaktor]
+Firecell Stone"
+93953,Gold Great Sword 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+157185,Goldsword 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+224001,Goldhammer 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Meldspar Ore"
+287745,Goldspear 1,Ahtal-Ka,"Ahtal-Ka Foreblade [Ahtal-Ka]
+Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+348417,Goldcannon 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Fine Silk [Ahtal-Ka]
+Iridescent Carapace [Ahtal-Ka]"
+480769,Goldshooter 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Fine Silk [Ahtal-Ka]
+Ahtal-Ka Foreblade [Ahtal-Ka]"
+550657,Goldscythe 1,Ahtal-Ka,"Ahtal-Ka Foreblade [Ahtal-Ka]
+Ahtal-Ka Fine Silk [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+612097,Goldaxe 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Foreblade [Ahtal-Ka]
+Ultimas Crystal"
+678657,Gold Gunlance 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Fine Silk [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+741889,Goldbow 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Fine Silk [Ahtal-Ka]
+Iridescent Carapace [Ahtal-Ka]"
+812289,Goldblades 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Ultimas Crystal"
+875009,Goldhorn 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Meldspar Ore"
+933121,Goldglaive 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+998401,Gold Edge 1,Ahtal-Ka,"Ahtal-Ka Gold Cocoon [Ahtal-Ka]
+Ahtal-Ka Purple Cocoon [Ahtal-Ka]
+Ahtal-Ka Pheromone [Ahtal-Ka]
+Purecrystal"
+83713,Akantor Broadsword 1,Akantor,"Akantor Carapace [Akantor]
+Akantor Tail [Akantor]
+Akantor Hardclaw [Akantor]"
+147201,Akantor Duo 1,Akantor,"Akantor Carapace [Akantor]
+Akantor Tallfang [Akantor]
+Akantor Spike [Akantor]"
+341761,Akantor Cannon 1,Akantor,"Akantor Carapace [Akantor]
+Akantor Tallfang [Akantor]
+Akantor Spike [Akantor]"
+541697,Akantor Katana 1,Akantor,"Akantor Spike [Akantor]
+Akantor Carapace [Akantor]
+Akantor Tail [Akantor]"
+604161,Akantor Switch Axe 1,Akantor,"Akantor Carapace [Akantor]
+Akantor Tail [Akantor]
+Akantor Spike [Akantor]"
+670721,Akantor Gunlance 1,Akantor,"Akantor Tallfang [Akantor]
+Akantor Hardclaw [Akantor]
+Akantor Carapace [Akantor]"
+735233,Akantor Bow 1,Akantor,"Akantor Tallfang [Akantor]
+Akantor Spike [Akantor]
+Akantor Scale+ [Akantor]"
+802561,Akantor Blades 1,Akantor,"Akantor Carapace [Akantor]
+Akantor Hardclaw [Akantor]
+Akantor Scale+ [Akantor]"
+867329,Akantor Horn 1,Akantor,"Akantor Tail [Akantor]
+Akantor Tallfang [Akantor]
+Akantor Scale+ [Akantor]"
+993537,Akantor C. Blade 1,Akantor,"Akantor Tallfang [Akantor]
+Akantor Carapace [Akantor]
+Akantor Spike [Akantor]"
+84225,Alatreon Great Sword 1,Alatreon,"Broken Skypiercer [Alatreon]
+Alatreon Talon [Alatreon]
+Elder Dragon Blood"
+147713,Alatreon Sword 1,Alatreon,"Alatreon Scute [Alatreon]
+Alatreon Webbing [Alatreon]
+Elder Dragon Blood"
+214017,Alatreon Hammer 1,Alatreon,"Alatreon Talon [Alatreon]
+Alatreon Scute [Alatreon]
+Elder Dragon Blood"
+279297,Alatreon Lance 1,Alatreon,"Broken Skypiercer [Alatreon]
+Alatreon Tail [Alatreon]
+Elder Dragon Blood"
+342273,Chaos Wing 1,Alatreon,"Alatreon Plate [Alatreon]
+Alatreon Webbing [Alatreon]
+Elder Dragon Blood"
+542209,Dark Claw 1,Alatreon,"Alatreon Talon [Alatreon]
+Alatreon Tail [Alatreon]
+Elder Dragon Blood"
+604673,Dark Switch Axe 1,Alatreon,"Alatreon Talon [Alatreon]
+Broken Skypiercer [Alatreon]
+Elder Dragon Blood"
+735745,Alatreon Bow 1,Alatreon,"Broken Skypiercer [Alatreon]
+Alatreon Scute [Alatreon]
+Elder Dragon Blood"
+929537,Alatreon Dragonspire 1,Alatreon,"Broken Skypiercer [Alatreon]
+Alatreon Scute [Alatreon]
+Elder Dragon Blood"
+1002497,Alatreon Edge 1,Alatreon,"Skyswayer [Alatreon]
+Alatreon Pallium [Alatreon]
+Lrg ElderDragon Bone"
+925185,Hortadent 1,Altaroth,"Shiny Beetle
+Altaroth Jaw [Altaroth]
+Altaroth Stomach [Altaroth]
+Monster Bone M"
+84481,Roilcloud Sword 1,Amatsu,"Amatsu Carapace [Amatsu]
+Amatsu Pleura [Amatsu]
+Amatsu Horn [Amatsu]"
+147969,Ominous Treasure 1,Amatsu,"Amatsu Webbing [Amatsu]
+Amatsu Horn [Amatsu]
+Storm Vesicle [Amatsu]"
+214273,Incubus Hammer 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Pleura [Amatsu]
+Amatsu Webbing [Amatsu]"
+279553,Ominous Cloud 1,Amatsu,"Amatsu Pleura [Amatsu]
+Amatsu Claw+ [Amatsu]
+Amatsu Webbing [Amatsu]"
+342529,Ill Omen 1,Amatsu,"Amatsu Carapace [Amatsu]
+Amatsu Horn [Amatsu]
+Storm Vesicle [Amatsu]"
+474625,Wicked Needle 1,Amatsu,"Amatsu Carapace [Amatsu]
+Amatsu Horn [Amatsu]
+Amatsu Webbing [Amatsu]"
+542465,Ominous Spring 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Pleura [Amatsu]
+Amatsu Claw+ [Amatsu]"
+604929,Cloudburst Axe 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Tail [Amatsu]
+Amatsu Webbing [Amatsu]"
+671233,Ominous Monsoon 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Carapace [Amatsu]
+Amatsu Webbing [Amatsu]"
+736001,Tempest Nightbow 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Webbing [Amatsu]
+Amatsu Claw+ [Amatsu]"
+803073,Stormwind Fans 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Webbing [Amatsu]
+Amatsu Claw+ [Amatsu]"
+867841,Autumn Lute 1,Amatsu,"Amatsu Pleura [Amatsu]
+Amatsu Horn [Amatsu]
+Amatsu Webbing [Amatsu]"
+937217,Stratus Arc 1,Amatsu,"Amatsu Hardhorn [Amatsu]
+Amatsu Cortex [Amatsu]
+Amatsu Hardclaw [Amatsu]"
+993793,Altostratus Blade 1,Amatsu,"Amatsu Horn [Amatsu]
+Amatsu Pleura [Amatsu]
+Amatsu Webbing [Amatsu]"
+337409,Arzuros Gun 1,Arzuros,"Arzuros Pelt+ [Arzuros]
+Arzuros Brace+ [Arzuros]
+Carbalite Ore
+LR Arzuros Materials"
+535553,Arzuros Naginata 1,Arzuros,"Arzuros Pelt [Arzuros]
+Arzuros Shell [Arzuros]
+Jumbo Bone"
+591617,Arzuros Axe 1,Arzuros,"Arzuros Brace [Arzuros]
+Arzuros Pelt [Arzuros]
+Shiny Beetle"
+795905,Cerulean Axes 1,Arzuros,"Arzuros Shell [Arzuros]
+Arzuros Brace [Arzuros]
+Monster Bone S"
+859905,Zurogong Primo 1,Arzuros,"Arzuros Pelt [Arzuros]
+Arzuros Brace [Arzuros]
+Iron Ore
+Brute Bone"
+80129,Verdant Wing 1,Astalos,"Astalos Membrane [Astalos]
+Astalos Shell [Astalos]
+Astalos Wingtalon [Astalos]
+Dragonite Ore"
+144897,Verdant Rapier 1,Astalos,"Astalos Scissortail [Astalos]
+Astalos Wingtalon [Astalos]
+Astalos Scale [Astalos]
+Dragonite Ore"
+210945,Emerald Beater 1,Astalos,"Astalos Crest [Astalos]
+Astalos Scale [Astalos]
+Astalos Shell [Astalos]
+Dragonite Ore"
+276737,Verdant Tail 1,Astalos,"Astalos Scissortail [Astalos]
+Astalos Membrane [Astalos]
+Astalos Shell [Astalos]
+Dragonite Ore"
+338433,Wyvern Blaster 1,Astalos,"Astalos Scissortail [Astalos]
+Astalos Shell [Astalos]
+Astalos Membrane [Astalos]"
+470273,Astalos Gun 1,Astalos,"Astalos Crest [Astalos]
+Astalos Membrane [Astalos]
+Astalos Scissortail [Astalos]"
+539137,"Wyvern Blade Beryl"" 1""",Astalos,"Astalos Scissortail [Astalos]
+Astalos Shell [Astalos]
+Astalos Wingtalon [Astalos]
+Dragonite Ore"
+600321,Voltaic Axe 1,Astalos,"Astalos Crest [Astalos]
+Astalos Wingtalon [Astalos]
+Astalos Scale [Astalos]
+Dragonite Ore"
+667905,Verdant Rook 1,Astalos,"Astalos Shell [Astalos]
+Astalos Crest [Astalos]
+Astalos Wingtalon [Astalos]
+Dragonite Ore"
+731649,Lightning Bow 1,Astalos,"Astalos Membrane [Astalos]
+Astalos Shell [Astalos]
+Astalos Wingtalon [Astalos]"
+799489,Twin Bolts 1,Astalos,"Astalos Wingtalon [Astalos]
+Astalos Membrane [Astalos]
+Astalos Scale [Astalos]
+Dragonite Ore"
+864513,Emerald Flap 1,Astalos,"Astalos Membrane [Astalos]
+Astalos Scale [Astalos]
+Astalos Scissortail [Astalos]
+Dragonite Ore"
+925953,Astalos Cudgel 1,Astalos,"Astalos Scissortail [Astalos]
+Astalos Wingtalon [Astalos]
+Astalos Shell [Astalos]
+Dragonite Ore"
+990977,Axela Blade 1,Astalos,"Astalos Scissortail [Astalos]
+Astalos Shell [Astalos]
+Astalos Membrane [Astalos]
+Dragonite Ore"
+97537,Icicle Fang 1,Barioth,"Barioth Carapace [Barioth]
+Amber Fang+ [Barioth]
+Barioth Spike [Barioth]"
+160769,Icicle Spike 1,Barioth,"Barioth Spike [Barioth]
+Barioth Pelt+ [Barioth]
+Barioth Claw+ [Barioth]"
+161025,Cryo Cross 1,Barioth,"Amber Hardfang [Barioth]
+Barioth Thickfur [Barioth]
+Hyper Ice Chunk"
+291841,Tusk Lance 1,Barioth,"Amber Fang+ [Barioth]
+Barioth Pelt+ [Barioth]
+Freezer Sac"
+353025,Guerrera Cannon 1,Barioth,"Barioth Carapace [Barioth]
+Amber Fang+ [Barioth]
+Large Snowclod [Gammoth]"
+484609,Blizzard Cannon 1,Barioth,"Barioth Pelt+ [Barioth]
+Amber Fang+ [Barioth]
+Zamtrios Fin+ [Zamtrios]"
+553985,Bastine Edge 1,Barioth,"Amber Fang+ [Barioth]
+Barioth Carapace [Barioth]
+Barioth Spike [Barioth]"
+615681,Amber Slash 1,Barioth,"Amber Fang+ [Barioth]
+Barioth Tail [Barioth]
+Carbalite Ore"
+615937,Galefrost 1,Barioth,"Amber Hardfang [Barioth]
+Barioth Thickfur [Barioth]
+Hyper Ice Chunk"
+745729,Ice Crest 1,Barioth,"Barioth Carapace [Barioth]
+Amber Fang+ [Barioth]
+Freezer Sac"
+816129,Blizzarioths 1,Barioth,"Barioth Carapace [Barioth]
+Amber Fang+ [Barioth]
+Barioth Pelt+ [Barioth]"
+878593,Bariguiro 1,Barioth,"Barioth Carapace [Barioth]
+Barioth Spike [Barioth]
+Amber Fang+ [Barioth]"
+97793,Carapace Sword 1,Barroth,"Barroth Claw+ [Barroth]
+Barroth Ridge+ [Barroth]
+Shiny Beetle"
+161281,Carapace Mace 1,Barroth,"Barroth Carapace [Barroth]
+Barroth Tail [Barroth]
+Carbalite Ore"
+227585,Carapace Hammer 1,Barroth,"Barroth Scalp [Barroth]
+Barroth Carapace [Barroth]
+Monster Keenbone"
+227841,Barroth Martello 1,Barroth,"Barroth Crown [Barroth]
+Barroth Cortex [Barroth]
+Uragaan Jaw+ [Uragaan]"
+292097,Rugged Lance 1,Barroth,"Barroth Ridge+ [Barroth]
+Barroth Claw+ [Barroth]
+Carbalite Ore"
+484865,Barro Barrel 1,Barroth,"Barroth Scalp [Barroth]
+Barroth Carapace [Barroth]
+Stoutbone"
+616193,Assault Axe 1,Barroth,"Barroth Carapace [Barroth]
+Barroth Scalp [Barroth]
+Monster Bone L"
+682241,Barroth Loader 1,Barroth,"Barroth Carapace [Barroth]
+Barroth Claw+ [Barroth]
+Carbalite Ore"
+682497,Roscasludge 1,Barroth,"Barroth Cortex [Barroth]
+Hyper Keenclaw
+Barroth Chine [Barroth]
+Eltalite Ore"
+878849,Sandpipe 1,Barroth,"Barroth Scalp [Barroth]
+Barroth Carapace [Barroth]
+Barroth Tail [Barroth]"
+879105,Sandsinger 1,Barroth,"Barroth Crown [Barroth]
+Barroth Cortex [Barroth]
+Uragaan Shard [Uragaan]
+Meldspar Ore"
+1001985,Barroth Anchor 1,Barroth,"Barroth Carapace [Barroth]
+Barroth Ridge+ [Barroth]
+Carbalite Ore"
+227073,Basarios Blow 1,Basarios,"Basarios Wing [Basarios]
+Basarios Carapace [Basarios]
+Monster Keenbone"
+291073,Venom Lance 1,Basarios,"Basarios Wing [Basarios]
+Basarios Carapace [Basarios]
+Toxin Sac"
+352001,Rock Eater 1,Basarios,"Basarios Carapace [Basarios]
+Basarios Wing [Basarios]
+Carbalite Ore"
+553729,Gigant Makra 1,Basarios,"Basarios Carapace [Basarios]
+Basarios Wing [Basarios]
+Inferno Sac"
+333057,Icethrower 1,Blangonga,"Blangonga Pelt [Blangonga]
+Blangonga Fang [Blangonga]
+Blangonga Whisker [Blangonga]
+Sharp Claw"
+461057,Tail String 1,Blangonga,"Blangonga Pelt [Blangonga]
+Blangonga Tail [Blangonga]
+Sharp Claw"
+461313,Tail Blizzard 1,Blangonga,"Blangonga Fang+ [Blangonga]
+Blangonga Tail [Blangonga]
+Lagombi Frozenclaw [Lagombi]
+Freezer Sac"
+535297,Blango Decimator 1,Blangonga,"Blangonga Whisker [Blangonga]
+Blangonga Fang [Blangonga]
+Ice Crystal"
+729857,Abominable Bow 1,Blangonga,"Blangonga Fang+ [Blangonga]
+Blangonga Pelt+ [Blangonga]
+Monster Keenbone
+Daora Claw [Kushala Daora]"
+924673,Rage Cudgel 1,Blangonga,"Blangonga Fang [Blangonga]
+Blangonga Whisker [Blangonga]
+Blangonga Tail [Blangonga]"
+95233,Massacre Blade 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Cortex [Diablos]
+Diablos Chine [Diablos]"
+158465,Massacre Club 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Chine [Diablos]
+Diablos Cortex [Diablos]"
+289025,Massacre Lance 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Cortex [Diablos]
+Diablos Chine [Diablos]"
+349697,Massacre Cannon 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Majestic Horn [Diablos]
+Diablos Tailcase+ [Diablos]"
+482049,Massacre Buster 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Majestic Horn [Diablos]
+Diablos Cortex [Diablos]"
+613377,Massacre Hatchet 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Cortex [Diablos]
+Diablos Tailcase+ [Diablos]"
+679937,Massacre Gunlance 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Tailcase+ [Diablos]
+Diablos Cortex [Diablos]"
+743169,Massacre Bow 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Majestic Horn [Diablos]
+Diablos Chine [Diablos]"
+813569,Massacre Spines 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Cortex [Diablos]
+Diablos Tailcase+ [Diablos]"
+934401,Massacre Rod 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Chine [Diablos]
+Diablos Tailcase+ [Diablos]"
+999681,Massacre Strongarm 1,Bloodbath Diablos,"Bloodbath Hunter I
+Bloodbath Cortex [Bloodbath Diablos]
+Diablos Tailcase+ [Diablos]
+Diablos Cortex [Diablos]"
+721921,Arko Nulo (Y) 1,Bnahabra,"Bnahabra Wing [Bnahabra]
+Bnahabra Shell [Bnahabra]
+Shiny Beetle"
+861953,Vicello Nulo 1,Bnahabra,"Shiny Beetle
+Bnahabra Shell [Bnahabra]
+Bnahabra Wing [Bnahabra]
+Yukumo Wood"
+94465,Zephra Wing 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Wingmembrane [Astalos]
+Heavy Astalos Shell [Astalos]"
+157697,Zephra Rapier 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Scissortailblade [Astalos]
+Astalos Wingripper [Astalos]"
+224513,Zephra Beater 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Crest+ [Astalos]
+Astalos Shard [Astalos]"
+288257,Zephra Tail 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Scissortailblade [Astalos]
+Astalos Wingripper [Astalos]"
+348929,Boltreaver Cannon 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Shell [Astalos]
+Astalos Wingmembrane [Astalos]"
+481281,Boltreaver Shooter 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Crest+ [Astalos]
+Astalos Wingmembrane [Astalos]"
+551169,"Wyvern Blade Corund"" 1""",Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Scissortailblade [Astalos]
+Heavy Astalos Shell [Astalos]"
+612609,Zephra Axe 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Crest+ [Astalos]
+Astalos Wingripper [Astalos]"
+679169,Zephra Rook 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Shell [Astalos]
+Astalos Wingripper [Astalos]"
+742401,Zephra Bow 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Heavy Astalos Shell [Astalos]
+Astalos Wingmembrane [Astalos]"
+812801,Twin Revolt 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Wingripper [Astalos]
+Astalos Shard [Astalos]"
+875521,Zephra Glide 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Boltscale [Astalos]
+Astalos Scissortailblade [Astalos]"
+933633,Boltreaver Glaive 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Scissortailblade [Astalos]
+Astalos Wingripper [Astalos]"
+998913,Axebolt Edge 1,Boltreaver Astalos,"Boltreaver Hunter I
+Boltreaver Shard [Boltreaver Astalos]
+Astalos Scissortailblade [Astalos]
+Heavy Astalos Shell [Astalos]"
+75521,Dios Blade 1,Brachydios,"Brach Shell [Brachydios]
+Brach Tail [Brachydios]
+Mystery Slime [Brachydios]"
+75777,Demolition Sword 1,Brachydios,"Hyper Hunter II
+Brach Ebonshell+ [Brachydios]
+Brach Pounder [Brachydios]
+Mystery Slime [Brachydios]"
+131841,Dios Edge 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Brach Tail [Brachydios]"
+132097,Demolition Cutter 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Ebonshell+ [Brachydios]
+Mystery Slime [Brachydios]"
+203777,Dios Tailhammer 1,Brachydios,"Brach Ebonshell [Brachydios]
+Brach Tail [Brachydios]
+Mystery Slime [Brachydios]"
+204033,Demolition Hammer 1,Brachydios,"Hyper Hunter II
+Brach Ebonshell+ [Brachydios]
+Brach Pounder [Brachydios]
+Mystery Slime [Brachydios]"
+275713,Dios Stinger 1,Brachydios,"Brach Scalp [Brachydios]
+Brach Shell [Brachydios]
+Mystery Slime [Brachydios]"
+275969,Demolition Lance 1,Brachydios,"Hyper Hunter II
+Brach Scalp+ [Brachydios]
+Brach Pounder [Brachydios]
+Mystery Slime [Brachydios]"
+335873,Dios Cannon 1,Brachydios,"Brach Scalp [Brachydios]
+Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Mystery Slime [Brachydios]"
+336129,Demolition Cannon 1,Brachydios,"Hyper Hunter II
+Brach Pounder [Brachydios]
+Brach Carapace [Brachydios]
+Mystery Slime [Brachydios]"
+459265,Dios Blaster 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Mystery Slime [Brachydios]"
+459521,Demolition Gun 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Pounder [Brachydios]"
+531969,Dios Katana 1,Brachydios,"Brach Ebonshell [Brachydios]
+Brach Shell [Brachydios]
+Mystery Slime [Brachydios]"
+532225,Demolition Katana 1,Brachydios,"Hyper Hunter II
+Brach Ebonshell+ [Brachydios]
+Brach Scalp+ [Brachydios]
+Mystery Slime [Brachydios]"
+591873,Dios Axe 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Brach Scalp [Brachydios]"
+592129,Demolition Axe 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Scalp+ [Brachydios]
+Mystery Slime [Brachydios]"
+661249,Dios Gunlance 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Brach Scalp [Brachydios]"
+661505,Demolition Gunlance 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Pounder [Brachydios]
+Mystery Slime [Brachydios]"
+726785,Dios Flier 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Brach Hammer [Brachydios]"
+727041,Demolition Bow 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Ebonshell+ [Brachydios]
+Mystery Slime [Brachydios]"
+789761,Dios Slicers 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Mystery Slime [Brachydios]"
+790017,Demolition Blades 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Scalp+ [Brachydios]
+Mystery Slime [Brachydios]"
+857601,Dios Bell 1,Brachydios,"Brach Shell [Brachydios]
+Brach Ebonshell [Brachydios]
+Brach Scalp [Brachydios]"
+857857,Demolition Chime 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Scalp+ [Brachydios]
+Mystery Slime [Brachydios]"
+923649,Dios Rod 1,Brachydios,"Brach Ebonshell [Brachydios]
+Brach Hammer [Brachydios]
+Brach Tail [Brachydios]"
+923905,Demolition Press 1,Brachydios,"Hyper Hunter II
+Brach Ebonshell+ [Brachydios]
+Brach Scalp+ [Brachydios]
+Mystery Slime [Brachydios]"
+984065,Dios Strongarm 1,Brachydios,"Brach Shell [Brachydios]
+Brach Hammer [Brachydios]
+Brach Scalp [Brachydios]"
+984321,Demolition Blade 1,Brachydios,"Hyper Hunter II
+Brach Carapace [Brachydios]
+Brach Ebonshell+ [Brachydios]
+Mystery Slime [Brachydios]"
+81921,Grand Shamshir 1,Chameleos,"Chameleos Horn [Chameleos]
+Chameleos Webbing [Chameleos]
+Chameleos Hide [Chameleos]
+Elder Dragon Blood"
+212481,Genie's Expanse 1,Chameleos,"Chameleos Horn [Chameleos]
+Chameleos Hide [Chameleos]
+Chameleos Tail [Chameleos]
+Elder Dragon Bone"
+340225,Kamaeleon 1,Chameleos,"Chameleos Hide+ [Chameleos]
+Chameleos Horn [Chameleos]
+Chameleos Webbing [Chameleos]
+Elder Dragon Bone"
+472065,Blessed Lamp 1,Chameleos,"Chameleos Hide [Chameleos]
+Chameleos Webbing [Chameleos]
+Chameleos Horn [Chameleos]
+Firestone"
+526337,Mirage Finsword 1,Chameleos,"Chameleos Hide [Chameleos]
+Chameleos Tail [Chameleos]
+Chameleos Webbing [Chameleos]"
+602369,Waxglare Wand 1,Chameleos,"Chameleos Horn [Chameleos]
+Chameleos Hide [Chameleos]
+Chameleos Claw [Chameleos]
+Elder Dragon Bone"
+669441,Venomous Cologne 1,Chameleos,"Chameleos Hide [Chameleos]
+Chameleos Horn [Chameleos]
+Lightcrystal
+Firestone"
+733185,Genie's Grimoire 1,Chameleos,"Chameleos Hide+ [Chameleos]
+Chameleos Horn [Chameleos]
+Chameleos Webbing [Chameleos]
+Elder Dragon Bone"
+792577,Rouge Flames 1,Chameleos,"Chameleos Claw [Chameleos]
+Chameleos Tail [Chameleos]
+Chameleos Hide [Chameleos]"
+866049,Blessed Ocarina 1,Chameleos,"Chameleos Tail [Chameleos]
+Chameleos Hide [Chameleos]
+Chameleos Webbing [Chameleos]
+Dragonite Ore"
+927745,Caster's Rod 1,Chameleos,"Chameleos Hide [Chameleos]
+Chameleos Horn [Chameleos]
+Chameleos Tail [Chameleos]
+Elder Dragon Blood"
+97025,Licht/Ombre 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+160001,Verstecken/Chercher 1,Chaotic Gore Magala,"Diametrical Horn [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Lash [Gore Magala]"
+226561,Grinsen/Froncement 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+290817,Ehrlich/Faux 1,Chaotic Gore Magala,"Diametrical Horn [Chaotic Gore Magala]
+Chaos Scale [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+351745,Verrat/Foi 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Eclipse [Gore Magala]"
+483585,Beschwörung/Oracle 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+486145,Ace Bowgun 1,Chaotic Gore Magala,"Cloudy Fragment
+Chaos Scale [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+553473,Übel/Equité 1,Chaotic Gore Magala,"Diametrical Horn [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+614913,Körper/Esprit 1,Chaotic Gore Magala,"Diametrical Horn [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+681217,Ruhe/Tyrannie 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+744961,Gewinn/Perte 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+815105,Apostel/Sorcière 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Antinomic Wing [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+817409,Ace Blades 1,Chaotic Gore Magala,"Cloudy Fragment
+Diametrical Horn [Chaotic Gore Magala]
+Chaos Scale [Chaotic Gore Magala]"
+877569,Lache/Sanglot 1,Chaotic Gore Magala,"Antinomic Wing [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+935937,List/Confiance 1,Chaotic Gore Magala,"Chaos Scale [Chaotic Gore Magala]
+Diametrical Horn [Chaotic Gore Magala]
+Gore Magala Shard [Gore Magala]"
+1001473,Elends/Essor 1,Chaotic Gore Magala,"Diametrical Horn [Chaotic Gore Magala]
+Chaos Scale [Chaotic Gore Magala]
+Gore Magala Shredder [Gore Magala]"
+352769,Power Stinger 1,Congalala,"Congalala Pelt+ [Congalala]
+Congalala Fang [Congalala]
+Stoutbone"
+484353,Assault Conga 1,Congalala,"Congalala Pelt+ [Congalala]
+Congalala Claw+ [Congalala]
+Stoutbone"
+615425,Golba Vandal 1,Congalala,"Congalala Fang [Congalala]
+Congalala Pelt+ [Congalala]
+Stoutbone"
+745473,Savage Wildbow 1,Congalala,"Congalala Pelt+ [Congalala]
+Congalala Claw+ [Congalala]
+Stoutbone"
+878337,War Bongo 1,Congalala,"Congalala Fang [Congalala]
+Congalala Pelt+ [Congalala]
+Meaty Hide+ [Zamite]"
+96257,Fatalis Fireblade 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+159233,Ruiner Sword 1,Crimson Fatalis,"Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]"
+225793,Fatalis Smasher 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+290049,Ruiner Lance 1,Crimson Fatalis,"Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+350977,Destiny's Hand 1,Crimson Fatalis,"Crimson Fatalis Scale [Crimson Fatalis]
+Crimson Fatalis Wing [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]"
+482817,Ruiner Recurve 1,Crimson Fatalis,"Crimson Fatalis Scale [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]"
+552705,Fatalis Scythe 1,Crimson Fatalis,"Crimson Fatalis Wing [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+614145,Ruiner's Bane 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+680449,Ruiner Gunlance 1,Crimson Fatalis,"Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+744193,Bow of Ire & Anguish 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+814337,Ebonblood Twindrakes 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+876801,Fatalis Firelied 1,Crimson Fatalis,"Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Wing [Crimson Fatalis]"
+935169,Ruiner Glaive 1,Crimson Fatalis,"Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+1000705,Ruiner Reaver 1,Crimson Fatalis,"Crimson Fatalis Horn [Crimson Fatalis]
+Crimson Fatalis Shell [Crimson Fatalis]
+Crimson Fatalis Scale [Crimson Fatalis]"
+91137,Grobowall 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Scute [Uragaan]"
+154625,Geode Mace 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Scute [Uragaan]"
+221953,Geode Hammer 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Jaw [Uragaan]"
+346881,Grobo Shot 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Rath Marrow"
+547585,Geode Saber 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Scute [Uragaan]"
+610049,Geode Axe 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Lava Nugget"
+676353,Geode Burst 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Scute [Uragaan]"
+740097,Grobo Arc 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Scute [Uragaan]"
+872705,Geode Horn 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Jaw [Uragaan]"
+931841,Grobo Blow 1,Crystalbeard Uragaan,"Crystalbeard Hunter I
+Crystalbeard Scale [Crystalbeard Uragaan]
+Crystalbeard Jaw [Crystalbeard Uragaan]
+Uragaan Shell [Uragaan]"
+924929,Shell Intoner 1,Daimyo Hermitaur,"Hermitaur Claw [Daimyo Hermitaur]
+Hermitaur Shell
+Decayed Crimson Horn [Daimyo Hermitaur]"
+91393,Sentoryo Calamity 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Garuga Wing [Yian Garuga]"
+154881,Hardened Edge 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Scale [Deadeye Yian Garuga]
+Deadeye Shell [Deadeye Yian Garuga]
+Garuga Ear [Yian Garuga]"
+222209,Hardened Hammer 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Scale [Deadeye Yian Garuga]
+Deadeye Shell [Deadeye Yian Garuga]
+Sharpened Beak [Yian Garuga]"
+286209,Incessant Calamity 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Scale [Deadeye Yian Garuga]
+Deadeye Shell [Deadeye Yian Garuga]
+Garuga Tail [Yian Garuga]"
+347137,Cahoe Shot 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Garuga Ear [Yian Garuga]"
+479233,Wicked Do 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Sharpened Beak [Yian Garuga]"
+547841,Daito Calamity 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Sharpened Beak [Yian Garuga]"
+676609,Hardened Gunlance 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Garuga Tail [Yian Garuga]"
+740353,Wicked Bow 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Shell [Deadeye Yian Garuga]
+Deadeye Scale [Deadeye Yian Garuga]
+Garuga Mane [Yian Garuga]"
+809985,Hardened Daggers 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Scale [Deadeye Yian Garuga]
+Deadeye Shell [Deadeye Yian Garuga]
+Garuga Mane [Yian Garuga]"
+872961,Hardened Horn 1,Deadeye Yian Garuga,"Deadeye Hunter I
+Deadeye Scale [Deadeye Yian Garuga]
+Deadeye Shell [Deadeye Yian Garuga]
+Garuga Tail [Yian Garuga]"
+82689,Berserker Sword 1,Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Tail [Deviljho]"
+212737,Devil's Due 1,Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Hide [Deviljho]"
+278273,Grief Lance 1,Deviljho,"Deviljho Tail [Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Scale [Deviljho]"
+341249,Gluttonous Cannon 1,Deviljho,"Deviljho Hide [Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]
+Deviljho Saliva"
+472833,Devil's Grin 1,Deviljho,"Deviljho Scalp [Deviljho]
+Deviljho Hide [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Saliva"
+540673,"Reaver Cruelty"" 1""",Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Scalp [Deviljho]
+Deviljho Hide [Deviljho]"
+603137,Tyrannos 1,Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Tail [Deviljho]"
+669697,Ravenous Gunlance 1,Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Scalp [Deviljho]
+Deviljho Tail [Deviljho]"
+801537,Wrath & Rancor 1,Deviljho,"Deviljho Tallfang [Deviljho]
+Deviljho Scalp [Deviljho]
+Deviljho Hide [Deviljho]"
+97281,Quarrel Hornsword 1,Diablos,"Diablos Carapace [Diablos]
+Diablos Ridge+ [Diablos]
+Diablos Tailcase [Diablos]"
+160513,Studded Club 1,Diablos,"Diablos Ridge+ [Diablos]
+Diablos Carapace [Diablos]
+Diablos Tailcase [Diablos]"
+291585,Diablos Lance 1,Diablos,"Twisted Horn [Diablos]
+Diablos Carapace [Diablos]
+Diablos Tailcase [Diablos]"
+352513,Dual Threat 1,Diablos,"Diablos Carapace [Diablos]
+Twisted Horn [Diablos]
+Diablos Ridge+ [Diablos]"
+615169,Axe Semper Tyrannis 1,Diablos,"Diablos Carapace [Diablos]
+Diablos Ridge+ [Diablos]
+Diablos Tailcase [Diablos]"
+681729,Diablos Gunlance 1,Diablos,"Diablos Tailcase [Diablos]
+Diablos Carapace [Diablos]
+Diablos Ridge+ [Diablos]"
+745217,Diablos Coilbender 1,Diablos,"Diablos Carapace [Diablos]
+Twisted Horn [Diablos]
+Diablos Ridge+ [Diablos]"
+815361,Diablos Bashers 1,Diablos,"Diablos Carapace [Diablos]
+Diablos Ridge+ [Diablos]
+Diablos Tailcase [Diablos]"
+936449,Diablos Rod 1,Diablos,"Diablos Ridge+ [Diablos]
+Diablos Tailcase [Diablos]
+Diablos Carapace [Diablos]"
+1001729,Diablos Strongarm 1,Diablos,"Diablos Tailcase [Diablos]
+Diablos Carapace [Diablos]
+Twisted Horn [Diablos]"
+91649,Flamelord Wing 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Scale [Dreadking Rathalos]
+Dreadking Shell [Dreadking Rathalos]
+Rathalos Webbing [Rathalos]"
+155137,Tomb Edge 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rathalos Webbing [Rathalos]"
+222465,Tomb Hammer 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Firestone"
+286465,Groad Tail 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Scale [Dreadking Rathalos]
+Dreadking Shell [Dreadking Rathalos]
+Rathalos Tail [Rathalos]"
+479489,Dreadking Blaster 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Scale [Dreadking Rathalos]
+Dreadking Shell [Dreadking Rathalos]
+Rath Wingtalon"
+548097,Tomb Saber 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Scale [Dreadking Rathalos]
+Dreadking Shell [Dreadking Rathalos]
+Rathalos Webbing [Rathalos]"
+610305,Tomb Axe 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rath Wingtalon"
+676865,Tomb Gunlance 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rathalos Tail [Rathalos]"
+740609,Dread Bow 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rathalos Webbing [Rathalos]"
+873217,Tomb Horn 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rathalos Webbing [Rathalos]"
+996865,Dreaded Blade 1,Dreadking Rathalos,"Dreadking Hunter I
+Dreadking Shell [Dreadking Rathalos]
+Dreadking Scale [Dreadking Rathalos]
+Rathalos Tail [Rathalos]"
+90369,Royal Blade 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Monster Bone L"
+153857,Dreadqueen Rapier 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Rathian Spike [Rathian]"
+285697,Dreadqueen Thorn 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Rathian Spike [Rathian]"
+346113,Dreadqueen Shot 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Shell [Dreadqueen Rathian]
+Dreadqueen Scale [Dreadqueen Rathian]
+Rathian Webbing"
+478721,Rathian Fire 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Machalite Ore"
+609281,Royal Axe 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Shell [Dreadqueen Rathian]
+Dreadqueen Scale [Dreadqueen Rathian]
+Monster Bone L"
+675585,Royal Burst 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Shell [Dreadqueen Rathian]
+Dreadqueen Scale [Dreadqueen Rathian]
+Rathian Spike [Rathian]"
+739329,Royal Blaster 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Shell [Dreadqueen Rathian]
+Dreadqueen Scale [Dreadqueen Rathian]
+Machalite Ore"
+809473,Royal Daggers 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Rath Wingtalon"
+871937,Royal Horn 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Scale [Dreadqueen Rathian]
+Dreadqueen Shell [Dreadqueen Rathian]
+Rathian Webbing"
+996609,Dear Regina 1,Dreadqueen Rathian,"Dreadqueen Hunter I
+Dreadqueen Shell [Dreadqueen Rathian]
+Dreadqueen Scale [Dreadqueen Rathian]
+Flame Sac"
+90625,Demon Knife 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Shell [Drilltusk Tetsucabra]
+Drilltusk Scale [Drilltusk Tetsucabra]
+Tetsucabra Claw [Tetsucabra]"
+154113,Drilltusk Truncheon 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Shell [Drilltusk Tetsucabra]
+Drilltusk Scale [Drilltusk Tetsucabra]
+Tetsucabra Tusks [Tetsucabra]"
+346369,Demonic Cannon 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Shell [Drilltusk Tetsucabra]
+Drilltusk Scale [Drilltusk Tetsucabra]
+Jumbo Bone"
+547073,Demon Swirl 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Tusk [Drilltusk Tetsucabra]
+Drilltusk Scale [Drilltusk Tetsucabra]
+Tetsucabra Claw [Tetsucabra]"
+609537,Pierce Axe 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Shell [Drilltusk Tetsucabra]
+Drilltusk Tusk [Drilltusk Tetsucabra]
+Jumbo Bone"
+675841,Pierce Cannon 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Scale [Drilltusk Tetsucabra]
+Drilltusk Shell [Drilltusk Tetsucabra]
+Dignified Skull [Tetsucabra]"
+739585,Demonic Bow 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Scale [Drilltusk Tetsucabra]
+Drilltusk Shell [Drilltusk Tetsucabra]
+Tetsucabra Tusks [Tetsucabra]"
+872193,Pierce Horn 1,Drilltusk Tetsucabra,"Drilltusk Hunter I
+Drilltusk Shell [Drilltusk Tetsucabra]
+Drilltusk Scale [Drilltusk Tetsucabra]
+Dignified Skull [Tetsucabra]"
+134913,Baumfäller 1,Duramboros,"Duramboros Horn+ [Duramboros]
+Hard Mossplate [Duramboros]
+Duramboros Hump [Duramboros]
+Carbalite Ore"
+205313,Jupiter's Sphere 1,Duramboros,"Duram Tailcase+ [Duramboros]
+Duramboros Horn+ [Duramboros]
+Hard Mossplate [Duramboros]
+Carbalite Ore"
+228865,Archambra Fellmace 1,Duramboros,"Duram Hardtail [Duramboros]
+Duramboros Hardhorn [Duramboros]
+Heavy Mossplate [Duramboros]
+Ultimas Crystal"
+264193,Boros Spear 1,Duramboros,"Duramboros Horn+ [Duramboros]
+Duram Carapace [Duramboros]
+Hard Mossplate [Duramboros]
+Carbalite Ore"
+337921,Monteverde 1,Duramboros,"Duramboros Hump [Duramboros]
+Hard Mossplate [Duramboros]
+Duram Tailcase+ [Duramboros]
+Firecell Stone"
+463105,Durambarrel 1,Duramboros,"Duramboros Horn+ [Duramboros]
+Hard Mossplate [Duramboros]
+Duramboros Hump [Duramboros]
+Dragonite Ore"
+537857,Mountain Reaper 1,Duramboros,"Duramboros Horn+ [Duramboros]
+Hard Mossplate [Duramboros]
+Fucium Ore"
+590593,Heavy Divider 1,Duramboros,"Duram Tailcase+ [Duramboros]
+Duramboros Horn+ [Duramboros]
+Hard Mossplate [Duramboros]
+Carbalite Ore"
+861441,Mountain Crusher 1,Duramboros,"Duramboros Horn+ [Duramboros]
+Duramboros Hump [Duramboros]
+Hard Mossplate [Duramboros]
+Carbalite Ore"
+94977,Elderfrost Great Sword 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Hardfang [Gammoth]
+Gammoth Cortex [Gammoth]"
+158209,Elderfrost Sword 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Hardfang [Gammoth]
+Gammoth Fur [Gammoth]"
+225025,Elderfrost Hammer 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Hardfang [Gammoth]"
+288769,Elderfrost Lance 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Hardfang [Gammoth]"
+349441,Elderfrost Boom 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Hardfang [Gammoth]"
+481793,Elderfrost Shooter 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Fur [Gammoth]
+Gammoth Hardfang [Gammoth]"
+551681,Elderfrost Long Sword 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Hardfang [Gammoth]"
+613121,Elderfrost Switch Axe 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Trunkspine+ [Gammoth]
+Gammoth Hardfang [Gammoth]"
+679681,Elderfrost Gunlance 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Trunkspine+ [Gammoth]
+Gammoth Fur [Gammoth]"
+742913,Elderfrost Bow 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Hardfang [Gammoth]"
+813313,Elderfrost Blades 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Cortex [Gammoth]
+Gammoth Fur [Gammoth]"
+876033,Elderfrost Lute 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Trunkspine+ [Gammoth]
+Gammoth Hardfang [Gammoth]"
+934145,Elderfrost Club 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Trunkspine+ [Gammoth]
+Gammoth Cortex [Gammoth]"
+999425,Elderfrost Edge 1,Elderfrost Gammoth,"Elderfrost Hunter I
+Elderfrost Pelt [Elderfrost Gammoth]
+Gammoth Hardfang [Gammoth]
+Gammoth Cortex [Gammoth]"
+350721,Vor Cannon 1,Fatalis,"Fatalis Shard [Fatalis]
+Fatalis Cortex [Fatalis]
+Fatalis Hardhorn [Fatalis]"
+482561,Fatalis Pit 1,Fatalis,"Fatalis Shard [Fatalis]
+Fatalis Fellwing [Fatalis]
+Fatalis Hardhorn [Fatalis]"
+743937,Bow of Toil & Turmoil 1,Fatalis,"Fatalis Hardhorn [Fatalis]
+Fatalis Shard [Fatalis]
+Fatalis Cortex [Fatalis]"
+934913,True Fatalis Teni 1,Fatalis,"Fatalis Hardhorn [Fatalis]
+Fatalis Cortex [Fatalis]
+Fatalis Shard [Fatalis]"
+82433,Demonlord Club 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Claw+ [Rajang]"
+140033,Demonlord Mace 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Claw+ [Rajang]
+Fucium Ore"
+201217,Demonlord Hammer 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Fang+ [Rajang]"
+274433,Demonlord Spear 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Fang+ [Rajang]"
+473601,Demonlord Blaster 1,Furious Rajang,"Rajang Ragehair [Furious Rajang]
+Ghoulish Gold Horn [Furious Rajang]
+Rajang Claw+ [Rajang]"
+536065,Demonlord Katana 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Claw+ [Rajang]
+King Scarab"
+602881,Demonlord Axe 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Fang+ [Rajang]"
+663553,Demonlord Artillery 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Fucium Ore"
+734465,Archbeast Thunderbow 1,Furious Rajang,"Rajang Ragehair [Furious Rajang]
+Ghoulish Gold Horn [Furious Rajang]
+Rajang Blackfur [Rajang]"
+928513,Demonlord Cudgel 1,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
+Rajang Ragehair [Furious Rajang]
+Rajang Claw+ [Rajang]"
+80385,Giant's Slicer 1,Gammoth,"Gammoth Fang [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Pelt [Gammoth]
+Jumbo Bone"
+145153,Giant's Tusk 1,Gammoth,"Gammoth Fang [Gammoth]
+Gammoth Pelt [Gammoth]
+Gammoth Shell [Gammoth]
+Jumbo Bone"
+211201,Giant's Hammer 1,Gammoth,"Gammoth Shell [Gammoth]
+Gammoth Fang [Gammoth]
+Gammoth Pelt [Gammoth]
+Jumbo Bone"
+276993,Giant's Jouster 1,Gammoth,"Trunkspine [Gammoth]
+Gammoth Redfur [Gammoth]
+Gammoth Shell [Gammoth]
+Monster Fluid"
+338689,Giant's Cannon 1,Gammoth,"Gammoth Fang [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Redfur [Gammoth]"
+470529,Giant's Blaster 1,Gammoth,"Gammoth Pelt [Gammoth]
+Gammoth Fang [Gammoth]
+Trunkspine [Gammoth]"
+539393,Giant's Tower 1,Gammoth,"Gammoth Shell [Gammoth]
+Gammoth Fang [Gammoth]
+Gammoth Redfur [Gammoth]
+Monster Fluid"
+600577,Giant's Axe 1,Gammoth,"Trunkspine [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Pelt [Gammoth]
+Monster Fluid"
+668161,Giant's Artillery 1,Gammoth,"Trunkspine [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Pelt [Gammoth]
+Jumbo Bone"
+731905,Giant's Bow 1,Gammoth,"Gammoth Shell [Gammoth]
+Gammoth Fang [Gammoth]
+Trunkspine [Gammoth]"
+799745,Giant's Daggers 1,Gammoth,"Trunkspine [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Pelt [Gammoth]
+Monster Fluid"
+864769,Giant's Koto 1,Gammoth,"Gammoth Fang [Gammoth]
+Trunkspine [Gammoth]
+Gammoth Redfur [Gammoth]
+Monster Fluid"
+926209,Giant's Cudgel 1,Gammoth,"Trunkspine [Gammoth]
+Gammoth Shell [Gammoth]
+Gammoth Pelt [Gammoth]
+Monster Fluid"
+991233,Giant's Edge 1,Gammoth,"Gammoth Fang [Gammoth]
+Gammoth Shell [Gammoth]
+Trunkspine [Gammoth]
+Jumbo Bone"
+465665,Shotgun (Green) 1,Gendrome,"Gendrome Hide+ [Gendrome]
+Genprey Hide+ [Genprey]
+Gendrome Fang [Gendrome]
+Paralysis Sac"
+137217,Viper Bite 1,Genprey,"Genprey Hide [Genprey]
+Genprey Fang [Genprey]
+Lightcrystal"
+78849,White Serpentblade 1,Giaprey,"Giaprey Hide [Giaprey]
+Giaprey Scale [Giaprey]
+Monster Bone S"
+137729,Snake Bite 1,Giaprey,"Giaprey Scale [Giaprey]
+Giaprey Hide [Giaprey]
+Sharp Claw"
+859137,Giaprey Balloon 1,Giaprey,"Giaprey Hide [Giaprey]
+Giaprey Scale [Giaprey]
+Brute Bone
+Anteka Antler [Anteka]"
+987905,Snowy Veil 1,Giaprey,"Giaprey Scale [Giaprey]
+Giaprey Hide [Giaprey]
+Iron Ore"
+80897,Scorching Blazer 1,Glavenus,"Glavenus Tail [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Glavenus Shell [Glavenus]
+Monster Bone+"
+145665,Burning Prominar 1,Glavenus,"Glavenus Tailpiece [Glavenus]
+Glavenus Shell [Glavenus]
+Flaming Bursa [Glavenus]
+Monster Bone+"
+211713,Scorching Isshata 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Shell [Glavenus]
+Glavenus Fang [Glavenus]
+Monster Bone+"
+277505,Svarog Blazer 1,Glavenus,"Glavenus Fang [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Glavenus Scale [Glavenus]
+Monster Bone+"
+339201,Burning Igna 1,Glavenus,"Glavenus Shell [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Glavenus Tail [Glavenus]"
+471041,Burning Answer 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Shell [Glavenus]
+Glavenus Tailpiece [Glavenus]"
+539905,Billowing Luger 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Scale [Glavenus]
+Glavenus Tailpiece [Glavenus]
+Monster Bone+"
+601089,Scorching Drafa 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Tail [Glavenus]
+Glavenus Shell [Glavenus]
+Monster Bone+"
+668673,Burning Kabeira 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Tail [Glavenus]
+Glavenus Scale [Glavenus]
+Monster Bone+"
+732417,Ashen Wrath 1,Glavenus,"Glavenus Scale [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Glavenus Fang [Glavenus]"
+800257,Smoldering Cities 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Scale [Glavenus]
+Glavenus Fang [Glavenus]
+Monster Bone+"
+865281,Hell Horn 1,Glavenus,"Glavenus Pyroshell [Glavenus]
+Glavenus Scale [Glavenus]
+Flaming Bursa [Glavenus]
+Monster Bone+"
+926721,Flaming Teuza 1,Glavenus,"Glavenus Tail [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Glavenus Shell [Glavenus]
+Monster Bone+"
+991745,Scorching Demander 1,Glavenus,"Glavenus Tailpiece [Glavenus]
+Glavenus Shell [Glavenus]
+Glavenus Pyroshell [Glavenus]
+Monster Bone+"
+136449,Lunatic Rose 1,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Rath Gleam"
+139265,Golden Falchion 1,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
+G.Rathian Carapace [Gold Rathian]
+Rath Medulla"
+474113,Gold Valkyrie 1,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
+G.Rathian Carapace [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Novacrystal"
+594689,Golden Crescent 1,Gold Rathian,"G.Rathian Carapace [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Rath Gleam"
+664321,Queen's Panoply 1,Gold Rathian,"G.Rathian Carapace [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Rath Gleam"
+734977,Selene Moonbroken 1,Gold Rathian,"G.Rathian Carapace [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Rath Gleam
+Inferno Sac"
+855041,Gold Chordmaker 1,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
+G.Rathian Carapace [Gold Rathian]
+Small Goldenfish"
+987137,Luna Eostre 1,Gold Rathian,"G.Rathian Carapace [Gold Rathian]
+G.Rathian Spike+ [Gold Rathian]
+Rath Gleam"
+81153,Schattenstolz 1,Gore Magala,"Gore Magala Ripclaw [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Gore Magala Wing [Gore Magala]
+Defiled Scale [Gore Magala]"
+145921,Sucher-Ankh 1,Gore Magala,"Gore Magala Feeler [Gore Magala]
+Gore Magala Scale [Gore Magala]
+Gore Magala Tail [Gore Magala]
+Defiled Scale [Gore Magala]"
+211969,Wuchtblick 1,Gore Magala,"Gore Magala Shell [Gore Magala]
+Gore Magala Scale [Gore Magala]
+Gore Magala Ripclaw [Gore Magala]
+Gore Magala Feeler [Gore Magala]"
+277761,Eiferschild 1,Gore Magala,"Gore Magala Feeler [Gore Magala]
+Gore Magala Wing [Gore Magala]
+Gore Magala Scale [Gore Magala]
+Gore Magala Tail [Gore Magala]"
+293889,Ace Lance 1,Gore Magala,"Damaged Amber
+Gore Magala Feeler+ [Gore Magala]
+Gore Magala Carapace [Gore Magala]
+Hyper Kecha Pelt+"
+339457,Tödlicher Abzug 1,Gore Magala,"Gore Magala Scale [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Gore Magala Ripclaw [Gore Magala]
+Gore Magala Wing [Gore Magala]"
+471297,Fäulnisschleuder 1,Gore Magala,"Gore Magala Scale [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Defiled Scale [Gore Magala]"
+540161,Stahlfakt 1,Gore Magala,"Gore Magala Scale [Gore Magala]
+Gore Magala Wing [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Defiled Scale [Gore Magala]"
+601345,Eisenleib 1,Gore Magala,"Gore Magala Feeler [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Gore Magala Tail [Gore Magala]
+Defiled Scale [Gore Magala]"
+668929,Tyrannenarm 1,Gore Magala,"Gore Magala Shell [Gore Magala]
+Gore Magala Ripclaw [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Gore Magala Tail [Gore Magala]"
+732673,Entbehrung 1,Gore Magala,"Gore Magala Shell [Gore Magala]
+Gore Magala Ripclaw [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Defiled Scale [Gore Magala]"
+800513,Fledderklauen 1,Gore Magala,"Gore Magala Ripclaw [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Defiled Scale [Gore Magala]"
+865537,Kummerklang 1,Gore Magala,"Gore Magala Ripclaw [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Defiled Scale [Gore Magala]"
+926977,Leumundslist 1,Gore Magala,"Gore Magala Shell [Gore Magala]
+Gore Magala Feeler [Gore Magala]
+Gore Magala Tail [Gore Magala]
+Defiled Scale [Gore Magala]"
+992001,Elendskraft 1,Gore Magala,"Gore Magala Feeler [Gore Magala]
+Gore Magala Shell [Gore Magala]
+Gore Magala Tail [Gore Magala]
+Defiled Scale [Gore Magala]"
+681473,White Gunlance 1,Gravios,"Gravios Scalp
+Gravios Carapace [Gravios]
+Gravios Wing [Gravios]"
+99841,Clero Blade 1,Great Maccao,"Great Maccao Scale+ [Great Maccao]
+Champion's Crest [Great Maccao]
+Avian Finebone"
+464641,Quill Burst 1,Great Maccao,"Great Maccao Scale [Great Maccao]
+Great Maccao Hide [Great Maccao]
+Iron Ore"
+554753,Roguemaster 1,Great Maccao,"Maccao Tailspear [Great Maccao]
+Glorious Crest [Great Maccao]
+Avian Stoutbone"
+723201,Plume Bow 1,Great Maccao,"Great Maccao Scale [Great Maccao]
+Great Maccao Hide [Great Maccao]
+Bird Wyvern Fang
+Iron Ore"
+918785,Fader Rod 1,Great Maccao,"Great Maccao Scale [Great Maccao]
+Maccao Tailspike [Great Maccao]
+Iron Ore"
+92161,Rudra Jawblade 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Fang [Tigrex]"
+155649,Grimclaw Barb 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+222977,Seize Hammer 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+286977,Rudra Stinger 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Tail [Tigrex]"
+347649,Rudra's Howl 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Shell [Grimclaw Tigrex]
+Grimclaw Scale [Grimclaw Tigrex]
+Tigrex Scalp [Tigrex]"
+480001,Rudra Shot 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Shell [Grimclaw Tigrex]
+Grimclaw Scale [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+548609,Seize Cutter 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Fang [Tigrex]"
+610817,Seize Axe 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Shell [Grimclaw Tigrex]
+Grimclaw Scale [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+677377,Seize Burst 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Shell [Grimclaw Tigrex]
+Grimclaw Scale [Grimclaw Tigrex]
+Tigrex Fang [Tigrex]"
+741121,Rudra Bow 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Fang [Tigrex]"
+810497,Seize Slicers 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+873729,Seize Horn 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Shell [Grimclaw Tigrex]
+Grimclaw Scale [Grimclaw Tigrex]
+Tigrex Fang [Tigrex]"
+997121,Rudra Divide 1,Grimclaw Tigrex,"Grimclaw Hunter I
+Grimclaw Scale [Grimclaw Tigrex]
+Grimclaw Shell [Grimclaw Tigrex]
+Tigrex Claw [Tigrex]"
+210689,Venom Monster 1,Gypceros,"Rubbery Hide [Gypceros]
+Poison Sac
+Gypceros Head [Gypceros]"
+853761,Poisoned Capri 1,Gypceros,"Rubbery Hide [Gypceros]
+Gypceros Head [Gypceros]
+Poison Sac"
+92417,Crisped Blazer 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tail [Glavenus]"
+155905,Fiery Prominar 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tailpiece [Glavenus]"
+223233,Magma Hammer 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Pyroshell [Glavenus]"
+287233,Svarog Boomer 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Fang [Glavenus]"
+347905,Ashen Blaster 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Pyroshell [Glavenus]"
+480257,Infernal Solution 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Pyroshell [Glavenus]"
+548865,Blazing Ognar 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Scale [Hellblade Glavenus]
+Hellblade Shell [Hellblade Glavenus]
+Glavenus Pyroshell [Glavenus]"
+611073,Magma Axe 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tail [Glavenus]"
+677633,Explosive Kabeira 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tail [Glavenus]"
+741377,Hellish Wrath 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Scale [Hellblade Glavenus]
+Hellblade Shell [Hellblade Glavenus]
+Glavenus Fang [Glavenus]"
+810753,Enflamed Slicers 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Scale [Hellblade Glavenus]
+Hellblade Shell [Hellblade Glavenus]
+Glavenus Pyroshell [Glavenus]"
+873985,Magma Horn 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Flaming Bursa [Glavenus]"
+932097,Ashen Teuza 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tail [Glavenus]"
+997377,Ashen Demander 1,Hellblade Glavenus,"Hellblade Hunter I
+Hellblade Shell [Hellblade Glavenus]
+Hellblade Scale [Hellblade Glavenus]
+Glavenus Tailpiece [Glavenus]"
+273665,Dark Lance 1,Hornetaur,"Hornetaur Shell [Hornetaur]
+Hornetaur Wing [Hornetaur]
+Paralysis Sac"
+333825,Flechette Gun 1,Hornetaur,"Vespoid Innerwing [Vespoid]
+Hornetaur Carapace [Hornetaur]
+King Scarab
+Hornetaur Head [Hornetaur]"
+534017,Black Katana Mk.I 1,Hornetaur,"Hornetaur Wing [Hornetaur]
+Hornetaur Shell [Hornetaur]
+Demondrug"
+465153,Shotgun (Blood) 1,Iodrome,"Iodrome Hide+ [Iodrome]
+Iodrome Violet Scale+ [Iodrome]
+Ioprey Scale+ [Ioprey]
+Carbalite Ore"
+78337,Fanged Serpentblade 1,Ioprey,"Ioprey Fang [Ioprey]
+Ioprey Scale [Ioprey]
+Monster Bone S"
+137473,Hydra Bite 1,Ioprey,"Ioprey Hide [Ioprey]
+Ioprey Fang [Ioprey]
+Paddock Oil"
+74241,Thrash Blade 1,Kecha Wacha,"Hyper Hunter I
+Kecha Talon [Kecha Wacha]
+Kecha Grandbone [Kecha Wacha]"
+274689,Expelger 1,Kecha Wacha,"Kecha Talon [Kecha Wacha]
+Kecha Ear+ [Kecha Wacha]
+Aqua Sac"
+274945,Expelgouger 1,Kecha Wacha,"Hyper Hunter I
+Kecha Talon [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]
+Stoutbone"
+461569,Sawgun 1,Kecha Wacha,"Kecha Talon [Kecha Wacha]
+Kecha Ear+ [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]"
+486657,Bulletfox 1,Kecha Wacha,"Famitsu Coupon
+Kecha Fur [Kecha Wacha]
+Kecha Auricle [Kecha Wacha]
+Malfestio Goldfeather+ [Malfestio]"
+534529,Curviscera 1,Kecha Wacha,"Kecha Talon [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]
+Aqua Sac"
+596737,Vavoom Axe 1,Kecha Wacha,"Kecha Grandbone [Kecha Wacha]
+Kecha Talon [Kecha Wacha]
+Dragonite Ore
+Aqua Sac"
+596993,Vavoom Vengeance 1,Kecha Wacha,"Hyper Hunter I
+Kecha Ear+ [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]"
+662529,Arya Gadda 1,Kecha Wacha,"Kecha Talon [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]
+Kecha Ear+ [Kecha Wacha]
+Carbalite Ore"
+860161,Kecha Whappa 1,Kecha Wacha,"Kecha Pelt+ [Kecha Wacha]
+Kecha Tail [Kecha Wacha]
+Jumbo Bone"
+860417,Kecha Thumpa 1,Kecha Wacha,"Hyper Hunter I
+Kecha Pelt+ [Kecha Wacha]
+Kecha Ear+ [Kecha Wacha]
+Carbalite Ore"
+922625,Mind Stick 1,Kecha Wacha,"Kecha Grandbone [Kecha Wacha]
+Kecha Pelt+ [Kecha Wacha]
+Torrent Sac"
+67329,Khezu Shock Sword 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Iron Ore
+Rubbery Hide [Gypceros]"
+136705,Khezu Razor 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Machalite Ore"
+475649,Angel Parasol 1,Khezu,"Bronze Guild Ticket
+Pearl Hide [Khezu]
+Thunder Sac [Khezu]
+Blangonga Tail [Blangonga]"
+656641,Full Voltage 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Rubbery Hide [Gypceros]"
+728065,Khezu Bow 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Iron Ore"
+792833,Khezu Daggers 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Lightcrystal
+Machalite Ore"
+859393,Khezu Horn 1,Khezu,"Flabby Hide [Khezu]
+Pale Extract
+Electro Sac [Khezu]
+Monster Bone L"
+919809,Bolt Chamber 1,Khezu,"Flabby Hide [Khezu]
+Electro Sac [Khezu]
+Pale Extract
+Machalite Ore"
+986113,Sentinel Blade 1,Khezu,"Carbalite Ore
+Ioprey Hide+ [Ioprey]
+Electro Sac [Khezu]
+Pale Bone [Khezu]"
+81665,Kirin Thundersword 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Mane [Kirin]
+Rubbery Hide [Gypceros]
+Lightcrystal"
+146433,Kirin Bolt Ultimus 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Mane [Kirin]
+Wyvern Fang
+Rubbery Hide [Gypceros]"
+269313,Thunderspear 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Hide [Kirin]
+Rubbery Hide [Gypceros]
+Lightcrystal"
+333313,Quickcaster 1,Kirin,"Kirin Hide+ [Kirin]
+Kirin Mane [Kirin]
+Novacrystal
+Carbalite Ore"
+460033,Mythical Three-Horn 1,Kirin,"Kirin Mane [Kirin]
+Kirin Hide [Kirin]
+Kirin Thunderhorn [Kirin]"
+460289,Blitz Bowgun 1,Kirin,"Hyper Hunter I
+Kirin Hide+ [Kirin]
+Kirin Thundertail [Kirin]"
+601857,Peal 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Mane [Kirin]
+Kirin Hide [Kirin]
+Kut-Ku Ear [Yian Kut-Ku]"
+665089,Thunder Yell 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Mane [Kirin]
+Rubbery Hide [Gypceros]
+Monster Fluid"
+795649,Monarch 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Mane [Kirin]
+Lightcrystal
+Thunderbug"
+928001,Indigo Flash 1,Kirin,"Kirin Thunderhorn [Kirin]
+Kirin Hide [Kirin]
+Lightcrystal
+Monster Fluid"
+85249,Icesteel Edge 1,Kushala Daora,"Daora Webbing [Kushala Daora]
+Elder Dragon Bone
+Daora Scale [Kushala Daora]"
+148737,Icesteel Dagger 1,Kushala Daora,"Daora Claw [Kushala Daora]
+Daora Shell [Kushala Daora]
+Daora Scale [Kushala Daora]"
+215809,Icesteel Hammer 1,Kushala Daora,"Daora Shell [Kushala Daora]
+Daora Tail [Kushala Daora]
+Rare Scarab"
+267777,Dragon Rider Spear 1,Kushala Daora,"Hyper Hunter I
+Daora Claw [Kushala Daora]
+Daora Shell [Kushala Daora]"
+280321,Icesteel Spear 1,Kushala Daora,"Daora Tail [Kushala Daora]
+Daora Shell [Kushala Daora]
+Daora Scale [Kushala Daora]"
+339969,Daora's Delphinidae 1,Kushala Daora,"Daora Shell [Kushala Daora]
+Daora Scale [Kushala Daora]
+Daora Horn [Kushala Daora]
+Dragonite Ore"
+471809,Icesteel Wasp 1,Kushala Daora,"Daora Carapace [Kushala Daora]
+Daora Horn [Kushala Daora]
+Daora Claw [Kushala Daora]
+Elder Dragon Bone"
+543233,Icesteel Blade 1,Kushala Daora,"Daora Claw [Kushala Daora]
+Daora Tail [Kushala Daora]
+Elder Dragon Blood"
+602113,Daora's Farasa 1,Kushala Daora,"Daora Webbing [Kushala Daora]
+Daora Scale [Kushala Daora]
+Daora Claw [Kushala Daora]
+Elder Dragon Bone"
+672001,Icesteel Gunlance 1,Kushala Daora,"Daora Shell [Kushala Daora]
+Daora Tail [Kushala Daora]
+Daora Scale [Kushala Daora]
+Elder Dragon Blood"
+731137,Icesteel Bow 1,Kushala Daora,"Daora Shell [Kushala Daora]
+Daora Scale [Kushala Daora]
+Elder Dragon Bone
+Large Snowclod [Gammoth]"
+868609,Daora's Taus 1,Kushala Daora,"Daora Shell [Kushala Daora]
+Daora Horn [Kushala Daora]
+Daora Webbing [Kushala Daora]"
+927489,Daora's Entom 1,Kushala Daora,"Daora Scale [Kushala Daora]
+Daora Horn [Kushala Daora]
+Daora Tail [Kushala Daora]
+Elder Dragon Bone"
+992513,Daora's Casca 1,Kushala Daora,"Daora Scale [Kushala Daora]
+Daora Webbing [Kushala Daora]
+Daora Horn [Kushala Daora]
+Elder Dragon Bone"
+68609,Lagiacrus Blade 1,Lagiacrus,"Lagiacrus Tail [Lagiacrus]
+Lagiacrus Claw [Lagiacrus]
+Lagiacrus Scale [Lagiacrus]
+Lightcrystal"
+68865,Lagia Lightning 1,Lagiacrus,"Hyper Hunter I
+Lagiacrus Claw+ [Lagiacrus]
+Lagiacrus Hide+ [Lagiacrus]"
+99073,Viking Hornsword 1,Lagiacrus,"Ocean Pyroxene
+Privilege G
+Lagiacrus Shard [Lagiacrus]
+Lagiacrus Piel [Lagiacrus]"
+142593,Lagia Sword 1,Lagiacrus,"Lagiacrus Claw [Lagiacrus]
+Lagiacrus Horn [Lagiacrus]
+Shell Shocker [Lagiacrus]
+Electro Sac [Khezu]"
+142849,Storm Sword 1,Lagiacrus,"Hyper Hunter I
+Lagiacrus Claw+ [Lagiacrus]
+Lagiacrus Hide+ [Lagiacrus]"
+202241,Vortex Hammer 1,Lagiacrus,"Lagiacrus Horn [Lagiacrus]
+Lagiacrus Claw [Lagiacrus]
+Lagiacrus Hide [Lagiacrus]
+Monster Bone+"
+202497,Vortical Hammer 1,Lagiacrus,"Hyper Hunter I
+Lagiacrus Horn+ [Lagiacrus]
+Lagiacrus Scale+ [Lagiacrus]"
+267009,Acrus Lance 1,Lagiacrus,"Lagiacrus Horn [Lagiacrus]
+Shell Shocker [Lagiacrus]
+Machalite Ore"
+267265,Doris Spear 1,Lagiacrus,"Hyper Hunter I
+Lagiacrus Horn+ [Lagiacrus]
+Shell Shocker+ [Lagiacrus]"
+336641,Lagia Blitz 1,Lagiacrus,"Lagiacrus Scale [Lagiacrus]
+Shell Shocker [Lagiacrus]
+R.Ludroth Claw [Royal Ludroth]
+Monster Bone M"
+468225,Thundacrus 1,Lagiacrus,"Shell Shocker+ [Lagiacrus]
+Lagiacrus Hide+ [Lagiacrus]
+Lagiacrus Claw+ [Lagiacrus]"
+527617,Thunderclap 1,Lagiacrus,"Shell Shocker [Lagiacrus]
+Lagiacrus Scale [Lagiacrus]
+Dragonite Ore
+Thunderbug"
+590849,Bolt Axe 1,Lagiacrus,"Shell Shocker [Lagiacrus]
+Lagiacrus Tail [Lagiacrus]
+Lagiacrus Hide [Lagiacrus]
+Monster Bone L"
+591105,Volt Axe 1,Lagiacrus,"Hyper Hunter I
+Lagiacrus Claw+ [Lagiacrus]
+Lagiacrus Hide+ [Lagiacrus]"
+660993,Lagia Burst 1,Lagiacrus,"Lagiacrus Tail [Lagiacrus]
+Lagiacrus Claw [Lagiacrus]
+Lagiacrus Scale [Lagiacrus]
+Flame Sac"
+730369,Voltsender 1,Lagiacrus,"Lagiacrus Scale [Lagiacrus]
+Lagiacrus Horn [Lagiacrus]
+Monster Bone L"
+747521,Ala Victoria 1,Lagiacrus,"Ocean Pyroxene
+Lagiacrus Shard [Lagiacrus]
+Lagiacrus Piel [Lagiacrus]"
+796673,Twin Acrus 1,Lagiacrus,"Lagiacrus Claw [Lagiacrus]
+Lagiacrus Scale [Lagiacrus]
+Lagiacrus Horn [Lagiacrus]
+Electro Sac [Khezu]"
+855809,Lagia Horn 1,Lagiacrus,"Lagiacrus Hide [Lagiacrus]
+Lagiacrus Scale [Lagiacrus]
+Lagiacrus Tail [Lagiacrus]
+Cephalos Fin"
+989185,Lagia Storm 1,Lagiacrus,"Shell Shocker [Lagiacrus]
+Lagiacrus Claw [Lagiacrus]
+Lagiacrus Hide [Lagiacrus]
+Monster Bone L"
+76801,Snowclad 1,Lagombi,"Lagombi Pelt [Lagombi]
+Lagombi Plastron [Lagombi]
+Jumbo Bone"
+329473,Spheniscine Slayer 1,Lagombi,"Lagombi Plastron [Lagombi]
+Lagombi Pelt [Lagombi]
+Giaprey Hide [Giaprey]"
+526081,Ivory Rabbit 1,Lagombi,"Lagombi Plastron [Lagombi]
+Lagombi Iceclaw [Lagombi]
+Blango Pelt [Blango]"
+656897,Lagomberator 1,Lagombi,"Lagombi Plastron [Lagombi]
+Lagombi Pelt [Lagombi]
+Iron Ore"
+796929,Snow Slicers 1,Lagombi,"Lagombi Pelt [Lagombi]
+Lagombi Plastron [Lagombi]
+Lagombi Iceclaw [Lagombi]"
+96001,Dragonslayer 1,Lao-Shan Lung,"Lao-Shan Shard [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Rathian Shard [Rathian]
+Pure Dragon Blood"
+225537,Dragon Destroyer 1,Lao-Shan Lung,"Lao-Shan Megaclaw [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Allfire Stone"
+289793,Vermilion Rim 1,Lao-Shan Lung,"Lao-Shan Megaclaw [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Rath Wingtalon+
+Lrg ElderDragon Bone"
+350465,Lao-Shan Lung Cannon 1,Lao-Shan Lung,"Lao-Shan Cortex [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Rathalos Fellwing
+Eltalite Ore"
+552449,Burning Dragonsword 1,Lao-Shan Lung,"Lao-Shan Hardhorn [Lao-Shan Lung]
+Lao-Shan Megaclaw [Lao-Shan Lung]
+Allfire Stone
+Lao-Shan Shard [Lao-Shan Lung]"
+613889,Dragon Ripper 1,Lao-Shan Lung,"Lao-Shan Hardhorn [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Pure Dragon Blood"
+743681,Kingdomfall 1,Lao-Shan Lung,"Lao-Shan Hardhorn [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Lrg ElderDragon Bone"
+814081,Flaming Pair 1,Lao-Shan Lung,"Lao-Shan Hardhorn [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Lao-Shan Megaclaw [Lao-Shan Lung]
+Allfire Stone"
+1000449,Vermilion Veil 1,Lao-Shan Lung,"Lao-Shan Hardhorn [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Allfire Stone
+Pure Dragon Blood"
+66817,Igneous Blade 1,Lavasioth,"Lavasioth Scale+ [Lavasioth]
+Lavasioth Fin+ [Lavasioth]
+Monster Broth"
+266497,Lava Cone 1,Lavasioth,"Lavasioth Carapace [Lavasioth]
+Lavasioth Fin+ [Lavasioth]
+Lava Nugget
+Firestone"
+466689,Lava Storm 1,Lavasioth,"Lavasioth Scale+ [Lavasioth]
+Lavasioth Fin+ [Lavasioth]
+Cephalos Fang+ [Cephadrome]
+Firecell Stone"
+529409,Liquid Fire Blade 1,Lavasioth,"Lavasioth Scale+ [Lavasioth]
+Lavasioth Carapace [Lavasioth]
+Carbalite Ore"
+657665,Volcano Gunlance 1,Lavasioth,"Lavasioth Scale+ [Lavasioth]
+Lavasioth Carapace [Lavasioth]
+Firecell Stone"
+863489,Lava Alphorn 1,Lavasioth,"Lavasioth Scale+ [Lavasioth]
+Lavasioth Fin+ [Lavasioth]
+Monster Keenbone
+Screamer Sac"
+983809,Lava's Veil 1,Lavasioth,"Lavasioth Carapace [Lavasioth]
+Lavasioth Fin+ [Lavasioth]
+Monster Keenbone
+Firestone"
+76289,Ludroth Bone Sword 1,Ludroth,"Immature Sponge [Ludroth]
+Hydro Hide [Ludroth]
+Monster Bone S"
+140801,Ludroth's Nail 1,Ludroth,"Immature Sponge [Ludroth]
+Hydro Hide [Ludroth]
+Bird Wyvern Fang"
+207105,Ludroth Bone Mace 1,Ludroth,"Immature Sponge [Ludroth]
+Hydro Hide [Ludroth]
+Carpenterbug
+Monster Bone S"
+273153,Ludroth Bone Spear 1,Ludroth,"Immature Sponge [Ludroth]
+Hydro Hide [Ludroth]
+Carpenterbug"
+79873,Nocturnal Falx 1,Malfestio,"Malfestio Wingtalon [Malfestio]
+Malfestio Webbing [Malfestio]
+Machalite Ore
+Monster Bone M"
+133633,Shura Fan 1,Malfestio,"Malfestio Webbing [Malfestio]
+Malfestio Wingtalon [Malfestio]
+Azurefeather [Malfestio]
+Machalite Ore"
+262913,Cross Coloris 1,Malfestio,"Malfestio Tailfeather [Malfestio]
+Azurefeather [Malfestio]
+Malfestio Ear [Malfestio]
+Machalite Ore"
+332545,Binary Blaster 1,Malfestio,"Malfestio Ear [Malfestio]
+Azurefeather [Malfestio]
+Lightcrystal"
+485121,Drowsy Eye 1,Malfestio,"Azurefeather+ [Malfestio]
+Malfestio Wing [Malfestio]
+Avian Finebone"
+595201,Dream Captor 1,Malfestio,"Malfestio Wingtalon [Malfestio]
+Malfestio Ear [Malfestio]
+Sleep Sac [Malfestio]
+Machalite Ore"
+683265,Sleeper Blaster 1,Malfestio,"Azurefeather+ [Malfestio]
+Malfestio Wingtalon+ [Malfestio]
+Carbalite Ore"
+863233,Fool's Harp 1,Malfestio,"Malfestio Wingtalon [Malfestio]
+Azurefeather [Malfestio]
+Machalite Ore
+Monster Bone M"
+987649,Horror Zofar 1,Malfestio,"Malfestio Webbing [Malfestio]
+Malfestio Wingtalon [Malfestio]
+Malfestio Ear [Malfestio]
+Machalite Ore"
+80641,Hanayako Yohino 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Purplefur [Mizutsune]
+Mizutsune Tail [Mizutsune]
+Dragonite Ore"
+145409,Hana no Nagoriwo 1,Mizutsune,"Mizutsune Fin [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Mizutsune Tail [Mizutsune]
+Dragonite Ore"
+211457,Purity Hammer 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Fin [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Dragonite Ore"
+277249,Hana mo Hana Nare 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Mizutsune Fin [Mizutsune]
+Dragonite Ore"
+338945,Cirrus Blaster 1,Mizutsune,"Mizutsune Scale [Mizutsune]
+Mizutsune Claw [Mizutsune]
+Mizutsune Fin [Mizutsune]"
+470785,Desolate Mist 1,Mizutsune,"Mizutsune Fin [Mizutsune]
+Mizutsune Tail [Mizutsune]
+Mizutsune Purplefur [Mizutsune]"
+539649,Kakaru Kumo Naki 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Bubblefoam [Mizutsune]
+Dragonite Ore"
+600833,Fond Farewell 1,Mizutsune,"Mizutsune Tail [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Mizutsune Claw [Mizutsune]
+Dragonite Ore"
+616961,Inceadeus 1,Mizutsune,"Ocean Pyroxene
+Privilege G
+Mizutsune Shard [Mizutsune]
+Mizutsune Purplefell [Mizutsune]"
+668417,Ukiyo no Yamiwo 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Tail [Mizutsune]
+Mizutsune Fin [Mizutsune]
+Dragonite Ore"
+732161,Blessed Rain 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Mizutsune Fin [Mizutsune]"
+800001,Morning Dawn 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Bubblefoam [Mizutsune]
+Dragonite Ore"
+865025,Poetic Bell 1,Mizutsune,"Mizutsune Scale [Mizutsune]
+Mizutsune Claw [Mizutsune]
+Bubblefoam [Mizutsune]
+Dragonite Ore"
+926465,Fox Halberd 1,Mizutsune,"Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Mizutsune Purplefur [Mizutsune]
+Dragonite Ore"
+991489,Mizuniya Drill 1,Mizutsune,"Mizutsune Fin [Mizutsune]
+Mizutsune Claw [Mizutsune]
+Mizutsune Scale [Mizutsune]
+Dragonite Ore"
+71425,Skraga 1,Najarala,"Najarala Sounder [Najarala]
+Najarala Shell [Najarala]
+Machalite Ore"
+133377,Spiked Circle 1,Najarala,"Najarala Sounder [Najarala]
+Najarala Hide [Najarala]
+Najarala Fang [Najarala]"
+263681,Twistcrawl 1,Najarala,"Najarala Shell [Najarala]
+Najarala Fang [Najarala]
+Paralysis Sac"
+263937,Twisting Crawler 1,Najarala,"Hyper Hunter I
+Najarala Hide+ [Najarala]
+Najarala Sounder+ [Najarala]
+Chilling Beak [Najarala]"
+334849,Bite Blaster 1,Najarala,"Najarala Shell [Najarala]
+Najarala Sounder [Najarala]
+Chilling Beak [Najarala]
+Monster Bone M"
+533505,Coiled Nail 1,Najarala,"Najarala Shell [Najarala]
+Najarala Fang [Najarala]
+Monster Bone L"
+533761,Coiled Saber 1,Najarala,"Hyper Hunter I
+Najarala Carapace [Najarala]
+Najarala Sounder+ [Najarala]
+Chilling Beak [Najarala]"
+599553,Flickaxe 1,Najarala,"Najarala Hide [Najarala]
+Najarala Shell [Najarala]
+Chilling Beak [Najarala]
+Paralysis Sac"
+599809,Flicker Axe 1,Najarala,"Hyper Hunter I
+Najarala Sounder+ [Najarala]
+Najarala Carapace [Najarala]
+Chilling Beak [Najarala]"
+858113,Danger Call 1,Najarala,"Najarala Shell [Najarala]
+Najarala Sounder [Najarala]
+Paralysis Sac"
+858369,Hazardous Call 1,Najarala,"Hyper Hunter I
+Najarala Hide+ [Najarala]
+Najarala Sounder+ [Najarala]
+Najarala Fang [Najarala]"
+924161,Needle Ivy 1,Najarala,"Najarala Hide [Najarala]
+Najarala Shell [Najarala]
+Paralysis Sac"
+83201,Skeletal Great Sword 1,Nakarkos,"Nakarkos Husk [Nakarkos]
+Nakarkos Shell [Nakarkos]
+Radiant Mucus [Nakarkos]"
+83457,Astral Leo 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Radiant Mucus+ [Nakarkos]
+LR Nakarkos Materials"
+146689,Skeletal Blade 1,Nakarkos,"Nakarkos Skull
+Nakarkos Husk [Nakarkos]
+Radiant Mucus [Nakarkos]"
+146945,Astral Taurus 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+213249,Skeletal Hammer 1,Nakarkos,"Nakarkos Husk [Nakarkos]
+Nakarkos Vertebra [Nakarkos]
+Radiant Mucus [Nakarkos]"
+213505,Polaris Hammer 1,Nakarkos,"Nakarkos Arm Brace [Nakarkos]
+Nakarkos Hide [Nakarkos]
+Radiant Mucus+ [Nakarkos]
+LR Nakarkos Materials"
+278529,Skeletal Lance 1,Nakarkos,"Nakarkos Vertebra [Nakarkos]
+Nakarkos Shell [Nakarkos]
+Radiant Mucus [Nakarkos]"
+278785,Astral Capricorn 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+340737,Skeletal Cannon 1,Nakarkos,"Nakarkos Husk [Nakarkos]
+Nakarkos Shell [Nakarkos]
+Nakarkos Vertebra [Nakarkos]"
+340993,Cosmic Cannon 1,Nakarkos,"Nakarkos Arm Brace [Nakarkos]
+Nakarkos Hide [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+472321,Skeletal Bowgun 1,Nakarkos,"Nakarkos Skull
+Nakarkos Husk [Nakarkos]
+Nakarkos Vertebra [Nakarkos]"
+472577,Polarstar Shooter 1,Nakarkos,"Nakarkos Fang [Nakarkos]
+Nakarkos Arm Brace [Nakarkos]
+Nakarkos Hide [Nakarkos]
+LR Nakarkos Materials"
+541185,Skeletal Sword 1,Nakarkos,"Nakarkos Vertebra [Nakarkos]
+Nakarkos Skull
+Radiant Mucus [Nakarkos]"
+541441,Astral Pisces 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+603649,Skeletal Axe 1,Nakarkos,"Nakarkos Skull
+Nakarkos Vertebra [Nakarkos]
+Radiant Mucus [Nakarkos]"
+603905,Polaris Skalvia 1,Nakarkos,"Nakarkos Arm Brace [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Hide [Nakarkos]
+LR Nakarkos Materials"
+670209,Chasm Gunlance 1,Nakarkos,"Nakarkos Vertebra [Nakarkos]
+Nakarkos Skull
+Radiant Mucus [Nakarkos]"
+670465,Astral Centaurus 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Arm Brace [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+LR Nakarkos Materials"
+733697,Skeletal Bow 1,Nakarkos,"Nakarkos Shell [Nakarkos]
+Nakarkos Vertebra [Nakarkos]
+Nakarkos Skull"
+733953,Polar Avian Bow 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+802049,Chasm Blades 1,Nakarkos,"Nakarkos Skull
+Nakarkos Shell [Nakarkos]
+Radiant Mucus [Nakarkos]"
+802305,Astral Gemini 1,Nakarkos,"Nakarkos Fang [Nakarkos]
+Nakarkos Hide [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+LR Nakarkos Materials"
+866817,Skeletal Melody 1,Nakarkos,"Nakarkos Shell [Nakarkos]
+Nakarkos Vertebra [Nakarkos]
+Radiant Mucus [Nakarkos]"
+867073,Polaris Wraith 1,Nakarkos,"Nakarkos Hide [Nakarkos]
+Nakarkos Arm Brace [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+LR Nakarkos Materials"
+928769,Skeletal Cudgel 1,Nakarkos,"Nakarkos Vertebra [Nakarkos]
+Nakarkos Shell [Nakarkos]
+Radiant Mucus [Nakarkos]"
+929025,Polaris Zimbal 1,Nakarkos,"Nakarkos Fang [Nakarkos]
+Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Hide [Nakarkos]
+LR Nakarkos Materials"
+993025,Wicked Edge 1,Nakarkos,"Nakarkos Skull
+Nakarkos Husk [Nakarkos]
+Radiant Mucus [Nakarkos]"
+993281,Gant Blade 1,Nakarkos,"Nakarkos Cuttlebone [Nakarkos]
+Nakarkos Hide [Nakarkos]
+Nakarkos Fang [Nakarkos]
+LR Nakarkos Materials"
+70401,Hidden Blade 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Nargacuga Scale [Nargacuga]
+Monster Bone L"
+132353,Hidden Edge 1,Nargacuga,"Nargacuga Scale [Nargacuga]
+Narga Tailspike [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Monster Bone L"
+209665,Hidden Breaker 1,Nargacuga,"Nargacuga Blackfur [Nargacuga]
+Nargacuga Scale [Nargacuga]
+Nargacuga Fang [Nargacuga]
+Monster Bone L"
+268289,Hidden Stinger 1,Nargacuga,"Nargacuga Tail [Nargacuga]
+Nargacuga Cutwing [Nargacuga]
+Nargacuga Fang [Nargacuga]
+Monster Bone L"
+329729,Hidden Gambit 1,Nargacuga,"Nargacuga Scale [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Nargacuga Cutwing [Nargacuga]
+Monster Bone L"
+468737,Hidden Eye 1,Nargacuga,"Nargacuga Scale [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Monster Bone M"
+526849,Hidden Saber 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Narga Tailspike [Nargacuga]
+Machalite Ore"
+597761,Hidden Axe 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Blackfur [Nargacuga]
+Nargacuga Tail [Nargacuga]
+Monster Bone L"
+666369,Hidden Gunlance 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Tail [Nargacuga]
+Nargacuga Scale [Nargacuga]
+Monster Bone L"
+723457,Hidden Bow 1,Nargacuga,"Nargacuga Blackfur [Nargacuga]
+Nargacuga Cutwing [Nargacuga]
+Monster Bone M"
+795137,Hidden Gemini 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Scale [Nargacuga]
+Nargacuga Fang [Nargacuga]
+Monster Bone L"
+856065,Hidden Harmonic 1,Nargacuga,"Nargacuga Blackfur [Nargacuga]
+Nargacuga Cutwing [Nargacuga]
+Narga Tailspike [Nargacuga]
+Screamer Sac"
+919553,Hidden Scythe 1,Nargacuga,"Nargacuga Cutwing [Nargacuga]
+Nargacuga Scale [Nargacuga]
+Narga Tailspike [Nargacuga]
+Machalite Ore"
+98049,Immane Blade 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Shear [Nerscylla]
+Spider Web"
+98305,Scylla Blade 1,Nerscylla,"Hyper Keenclaw
+Nerscylla Cortex [Nerscylla]
+Nerscylla Scishorn [Nerscylla]"
+161537,Scaly Sword 1,Nerscylla,"Nerscylla Sharpclaw [Nerscylla]
+Nerscylla Carapace [Nerscylla]
+Spider Web"
+161793,Bloodscale Sword 1,Nerscylla,"Hyper Keenclaw
+Nerscylla Cortex [Nerscylla]
+Nerscylla Scishorn [Nerscylla]"
+228097,Cluster Hammer 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Shear [Nerscylla]
+Coma Sac"
+228353,Cluster Musterer 1,Nerscylla,"Nerscylla Cortex [Nerscylla]
+Nerscylla Scishorn [Nerscylla]
+Hyper Coma Sac"
+353281,Ner Bustergun 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Shear [Nerscylla]
+Coma Sac"
+554241,Blood Cry 1,Nerscylla,"Nerscylla Sharpclaw [Nerscylla]
+Nerscylla Carapace [Nerscylla]
+Spider Web"
+554497,Noble Blood Cry 1,Nerscylla,"Hyper Keenclaw
+Nerscylla Hardclaw [Nerscylla]
+Nerscylla Scishorn [Nerscylla]"
+682753,Shell Gunbird 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Shear [Nerscylla]
+Spider Web"
+683009,Noble Gunbird 1,Nerscylla,"Hyper Keenclaw
+Nerscylla Cortex [Nerscylla]
+Nerscylla Scishorn [Nerscylla]"
+745985,Scylla Fist 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Shear [Nerscylla]
+Spider Web"
+746241,Scylla Weave 1,Nerscylla,"Nerscylla Cortex [Nerscylla]
+Nerscylla Hardclaw [Nerscylla]
+S.Queen Hardclaw [Seltas Queen]
+Spider Web"
+936961,Assault Glaive 1,Nerscylla,"Hyper Keenclaw
+Nerscylla Hardclaw [Nerscylla]
+Nerscylla Cortex [Nerscylla]"
+1002241,Arachnoscale 1,Nerscylla,"Nerscylla Carapace [Nerscylla]
+Nerscylla Sharpclaw [Nerscylla]
+Spider Web"
+67073,Type 41 Wyvernator 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Machalite Ore"
+198401,Type 42 Shellbuster 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Claw [Nibelsnarf]
+Monster Bone M
+Iron Ore"
+269569,Type 43 Dragonlance 1,Nibelsnarf,"Nibelsnarf Claw [Nibelsnarf]
+Nibelsnarf Shell [Nibelsnarf]
+Iron Ore"
+336385,Type 46 Gunflage 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Machalite Ore
+Monster Bone M"
+355329,Super Trench Snarfer 1,Nibelsnarf,"Monster Slogbone
+Nibelsnarf Crown [Nibelsnarf]
+Nibelsnarf Talon [Nibelsnarf]
+Lrg Wyvern Gem"
+662017,Type 62 Stormlance 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Monster Bone L"
+725505,Type 64 Multibow 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Nibelsnarf Claw [Nibelsnarf]"
+787969,Type 51 Macerators 1,Nibelsnarf,"Nibelsnarf Claw [Nibelsnarf]
+Nibelsnarf Shell [Nibelsnarf]
+Iron Ore
+Brute Bone"
+856577,Type 63 Warmonica 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Machalite Ore"
+984577,Type 31 Wyvernslayer 1,Nibelsnarf,"Nibelsnarf Shell [Nibelsnarf]
+Nibelsnarf Hide [Nibelsnarf]
+Machalite Ore"
+95745,Cloaked Blade 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]
+Malfestio Grandwing [Malfestio]"
+158977,Cloaked Fan 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Grandwing [Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]"
+289537,Cloaked Coloris 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]
+Malfestio Grandwing [Malfestio]"
+350209,Cloaked Horror 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Luckear [Malfestio]
+Azure Plume [Malfestio]"
+482305,Cloaked Threat 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Azure Plume [Malfestio]
+Malfestio Grandwing [Malfestio]"
+552193,Cloaked Baron 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Grandwing [Malfestio]
+Azure Plume [Malfestio]"
+613633,Cloaked Kaleidos 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]
+Malfestio Luckear [Malfestio]"
+680193,Cloaked Blaster 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Azure Plume [Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]"
+1000193,Cloaked Edge 1,Nightcloak Malfestio,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Grandwing [Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]"
+96513,Fatalis Ancestor 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+159489,O. Fatalis Sword 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]"
+226049,Old Fatalis Buster 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+290305,O. Fatalis Lance 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+351233,Fatalis Enslaver 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Fellwing [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]"
+483073,Ancient Bowgun 1,Old Fatalis,"Old Fatalis Shard [Old Fatalis]
+Old Fatalis Fellwing [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]"
+552961,Fatalis Ascencia 1,Old Fatalis,"Old Fatalis Fellwing [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+614401,Fatalis Force 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+680705,O. Fatalis Gunlance 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+744449,Glory and Grandeur 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]"
+814593,Ultimus Celestials 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+877057,Old Fatalis Lied 1,Old Fatalis,"Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Fellwing [Old Fatalis]"
+935425,Fatalis Soldier 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+1000961,Fatalis Mien 1,Old Fatalis,"Old Fatalis Hardhorn [Old Fatalis]
+Old Fatalis Cortex [Old Fatalis]
+Old Fatalis Shard [Old Fatalis]"
+69121,Plesioth Watercutter 1,Plesioth,"Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+Cephalos Scale+"
+140289,Weary Finsword 1,Plesioth,"Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+Cephalos Fin+
+Sleep Sac [Malfestio]"
+208385,Plesioth Head 1,Plesioth,"Plesioth Scale+ [Plesioth]
+Plesioth Head [Plesioth]
+Monster Keenbone"
+331265,Pressurized Plaser 1,Plesioth,"Plesioth Scale+ [Plesioth]
+Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+King Scarab"
+469505,Maelstrom 1,Plesioth,"Hyper Hunter I
+Plesioth Fin+ [Plesioth]
+Plesioth Scale+ [Plesioth]
+Carbalite Ore"
+538369,Plesioth Splasher 1,Plesioth,"Plesioth Scale+ [Plesioth]
+Plesioth Fin+ [Plesioth]
+Mega Demondrug"
+598273,Finslash 1,Plesioth,"Plesioth Scale+ [Plesioth]
+Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+Sleep Sac [Malfestio]"
+657409,Marine Fisher 1,Plesioth,"Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+Carbalite Ore
+Burst Arowana"
+816641,Verdant Slashers 1,Plesioth,"Hyper Coma Sac
+Plesioth Shard [Plesioth]
+Hrd Ples Webbing [Plesioth]"
+921601,Fin Harpoon 1,Plesioth,"Plesioth Fin+ [Plesioth]
+Plesioth Webbing [Plesioth]
+Coma Sac"
+96769,Lightbreak Blade 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Brach Cortex [Brachydios]"
+159745,Lightbreak Sword 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Brach Obliterator [Raging Brachydios]
+Brach Lash [Brachydios]"
+226305,Lightbreak Hammer 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Brach Crown [Brachydios]"
+290561,Lightbreak Lance 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Brach Obliterator [Raging Brachydios]
+Brach Cortex [Brachydios]"
+351489,Lightbreak Cannon 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Brach Cortex [Brachydios]
+Flashpoint Slime [Raging Brachydios]"
+483329,Lightbreak Gun 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Brach Cortex [Brachydios]
+Flashpoint Slime [Raging Brachydios]"
+553217,Lightbreak Edge 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Fine Brach Ebonshell [Brachydios]"
+614657,Lightbreak Axe 1,Raging Brachydios,"Brach Cortex [Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Brach Warhead [Raging Brachydios]"
+680961,Lightbreak Gunlance 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Brach Obliterator [Raging Brachydios]
+Brach Lash [Brachydios]"
+744705,Lightbreak Bow 1,Raging Brachydios,"Brach Crown [Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Fine Brach Ebonshell [Brachydios]"
+814849,Lightbreak Twins 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Brach Cortex [Brachydios]"
+877313,Lightbreak Timbre 1,Raging Brachydios,"Fine Brach Ebonshell [Brachydios]
+Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]"
+935681,Lightbreak Press 1,Raging Brachydios,"Brach Warhead [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Fine Brach Ebonshell [Brachydios]"
+1001217,Lightbreak C. Blade 1,Raging Brachydios,"Brach Obliterator [Raging Brachydios]
+Flashpoint Slime [Raging Brachydios]
+Brach Cortex [Brachydios]"
+82177,Demon Rod 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Fang+ [Rajang]
+Rajang Tail [Rajang]
+Fucium Ore"
+139777,Rajang Club 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Claw+ [Rajang]
+Rajang Blackfur [Rajang]"
+200961,Mane Malice 1,Rajang,"Rajang Blackfur [Rajang]
+Rajang Horn+ [Rajang]
+Rajang Fang+ [Rajang]"
+274177,Demon Lance 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Tail [Rajang]
+Rajang Blackfur [Rajang]"
+473345,Rajang Barrage 1,Rajang,"Gold Rajang Pelt [Rajang]
+Rajang Blackfur [Rajang]
+Rajang Horn+ [Rajang]
+Monster Hardbone"
+535809,Demon Halberd 1,Rajang,"Rajang Fang+ [Rajang]
+Rajang Blackfur [Rajang]
+Fucium Ore"
+602625,Undying Axe 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
+Rajang Fang+ [Rajang]
+Stoutbone"
+663297,Demon Gunlance 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Claw+ [Rajang]
+Monster Hardbone"
+734209,Beast Thunderbow 1,Rajang,"Rajang Blackfur [Rajang]
+Rajang Fang+ [Rajang]
+Rajang Claw+ [Rajang]
+Monster Hardbone"
+801281,Suzuka Takamaru 1,Rajang,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
+Stoutbone
+Carbalite Ore"
+866561,Denden Daiko 1,Rajang,"Rajang Blackfur [Rajang]
+Rajang Horn+ [Rajang]
+Rajang Tail [Rajang]
+Stoutbone"
+928257,Metal Mauler 1,Rajang,"Rajang Blackfur [Rajang]
+Rajang Horn+ [Rajang]
+Rajang Fang+ [Rajang]
+Stoutbone"
+992769,Demonlord Blade 1,Rajang,"Rajang Blackfur [Rajang]
+Rajang Horn+ [Rajang]
+Rajang Claw+ [Rajang]
+Stoutbone"
+72449,Red Wing 1,Rathalos,"Rathalos Scale [Rathalos]
+Rathalos Webbing [Rathalos]
+Flame Sac"
+75009,Spartacus Blade 1,Rathalos,"Rathalos Carapace [Rathalos]
+Rathalos Tail [Rathalos]
+Rathalos Plate"
+98561,Reddnaught 1,Rathalos,"Commendation XX
+Rathalos Cortex [Rathalos]
+Rathalos Lash [Rathalos]
+Rathalos Fellwing"
+138753,Djinn 1,Rathalos,"Rathalos Shell [Rathalos]
+Rathalos Webbing [Rathalos]
+Flame Sac"
+276225,Red Tail 1,Rathalos,"Rathalos Scale [Rathalos]
+Rathalos Tail [Rathalos]
+Flame Sac"
+467969,Rathling Gun 1,Rathalos,"Rathalos Scale [Rathalos]
+Rathalos Shell [Rathalos]
+Rath Wingtalon
+Machalite Ore"
+532993,"Wyvern Blade Blood"" 1""",Rathalos,"Rathalos Scale [Rathalos]
+Rathalos Shell [Rathalos]
+Firestone"
+597249,Rath Flame Splitter 1,Rathalos,"Rathalos Shell [Rathalos]
+Rath Wingtalon
+Rathalos Tail [Rathalos]"
+660481,Red Rook 1,Rathalos,"Rathalos Tail [Rathalos]
+Rathalos Scale [Rathalos]
+Rathalos Webbing [Rathalos]"
+724993,Prominence Bow 1,Rathalos,"Rathalos Shell [Rathalos]
+Rathalos Scale [Rathalos]
+Firestone"
+988673,Axelion Blade 1,Rathalos,"Rathalos Shell [Rathalos]
+Rathalos Tail [Rathalos]
+Flame Sac"
+74753,Valkyrie Blade 1,Rathian,"Rathian Scale [Rathian]
+Rathian Shell [Rathian]
+Rathian Webbing"
+136193,Princess Rapier 1,Rathian,"Rathian Spike [Rathian]
+Rathian Scale [Rathian]
+Poison Sac"
+328193,Queen's Longfire 1,Rathian,"Rathian Carapace [Rathian]
+Rathian Spike+ [Rathian]
+Rathian Webbing
+Carbalite Ore"
+460545,Valkyrie Fire 1,Rathian,"Rathian Scale [Rathian]
+Rathian Shell [Rathian]
+Gunpowder"
+594433,Dragonmaiden Axe 1,Rathian,"Rathian Shell [Rathian]
+Rathian Spike [Rathian]
+Machalite Ore"
+664065,Princess Panoply 1,Rathian,"Rathian Shell [Rathian]
+Rathian Spike [Rathian]
+Poison Sac"
+854785,Valkyrie Chordmaker 1,Rathian,"Rathian Scale [Rathian]
+Rathian Shell [Rathian]
+Dragonite Ore"
+986881,Dear Lutemis 1,Rathian,"Rathian Shell [Rathian]
+Rathian Scale [Rathian]
+Flame Sac"
+345345,Crimson Bowgun 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Pelt [Redhelm Arzuros]
+Redhelm Shell [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+546305,Crimson Maw 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Pelt [Redhelm Arzuros]
+Redhelm Shell [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+608513,Crimson Axe 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Pelt [Redhelm Arzuros]
+Redhelm Shell [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+738817,Crimson Bow 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Pelt [Redhelm Arzuros]
+Redhelm Shell [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+808705,Crimson Daggers 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Shell [Redhelm Arzuros]
+Redhelm Pelt [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+871681,Crimson Horn 1,Redhelm Arzuros,"Redhelm Hunter I
+Redhelm Pelt [Redhelm Arzuros]
+Redhelm Shell [Redhelm Arzuros]
+Arzuros Brace [Arzuros]"
+78593,Deadly Serpentblade 1,Remobra,"Remobra Hide [Remobra]
+Striped Skin [Remobra]
+Lightcrystal"
+203521,Calamitous Portent 1,Remobra,"Remobra Hide [Remobra]
+Striped Skin [Remobra]
+Machalite Ore"
+264449,Naag Serpentblade 1,Remobra,"Remobra Head [Remobra]
+Remobra Hide [Remobra]
+Iron Ore"
+465921,Shotgun (Viper) 1,Remobra,"Remobra Hide [Remobra]
+Striped Skin [Remobra]
+Ioprey Fang [Ioprey]"
+76545,Cataclysm Sword 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Claw [Royal Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+Hercudrome"
+141057,Royal Claw 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Claw [Royal Ludroth]
+R.Ludroth Tail [Royal Ludroth]
+Brute Bone"
+207361,Ludroth Splashhammer 1,Royal Ludroth,"R.Ludroth Crest [Royal Ludroth]
+Spongy Hide [Royal Ludroth]
+Hydro Hide [Ludroth]
+Monster Bone L"
+273409,Spiral Lance 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Claw [Royal Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+Monster Bone L"
+468481,Royal Launcher 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Scale [Royal Ludroth]
+Immature Sponge [Ludroth]"
+536833,Drowning Shaft 1,Royal Ludroth,"R.Ludroth Crest [Royal Ludroth]
+R.Ludroth Tail [Royal Ludroth]
+Spongy Hide [Royal Ludroth]
+Monster Bone M"
+598017,Ludroth Axe 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+R.Ludroth Tail [Royal Ludroth]
+Vivid Fluid [Nibelsnarf]"
+730113,Spongia Bow 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+R.Ludroth Scale [Royal Ludroth]
+Monster Bone M"
+796417,Ludroth Pair 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+Immature Sponge [Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+Brute Bone"
+853249,Droth Drone 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Scale [Royal Ludroth]
+R.Ludroth Claw [Royal Ludroth]
+Thunderbug"
+918529,Royal Bloom 1,Royal Ludroth,"Spongy Hide [Royal Ludroth]
+R.Ludroth Crest [Royal Ludroth]
+R.Ludroth Tail [Royal Ludroth]
+Monster Bone M"
+95489,Razor Cleaver 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Heavy Ceanataur Leg [Shogun Ceanataur]
+Ceanataur Cortex [Shogun Ceanataur]"
+225281,Razor Smasher 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Heavy Wyvern Scalp [Shogun Ceanataur]
+Ceanataur Cortex [Shogun Ceanataur]"
+289281,Razor Stinger 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Heavy Ceanataur Leg [Shogun Ceanataur]"
+349953,Razor Piercer 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Heavy Ceanataur Leg [Shogun Ceanataur]
+Ceanataur Cortex [Shogun Ceanataur]"
+551937,Razor Splitter 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Ceanataur Cortex [Shogun Ceanataur]"
+813825,Razor Dissectors 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Ceanataur Cortex [Shogun Ceanataur]"
+934657,Razor Reaper 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Heavy Ceanataur Leg [Shogun Ceanataur]"
+999937,Razor Slasher 1,Rustrazor Ceanataur,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Heavy Ceanataur Leg [Shogun Ceanataur]"
+82945,Consummate Blade 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Scalp [Deviljho]"
+212993,Consummate Hammer 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Hide [Deviljho]"
+341505,Endless Famine 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Scale [Deviljho]"
+473089,"Diregun Dementia"" 1""",Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Scale [Deviljho]
+Deviljho Tallfang [Deviljho]"
+540929,Consummate Katana 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Scalp [Deviljho]"
+603393,Saligia Vileaxe 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]"
+669953,Consummate Gunlance 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]"
+801793,Consummate Pair 1,Savage Deviljho,"Spattered Hide [Savage Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Hide [Deviljho]"
+144385,Celestial Sword 1,Seltas,"Seltas Carapace [Seltas]
+Seltas Innerwing [Seltas]
+Earth Crystal"
+199425,Accelerated Hammer 1,Seltas,"Seltas Carapace [Seltas]
+Seltas Horn+ [Seltas]
+Earth Crystal"
+328705,Griffin's Charge 1,Seltas,"Seltas Horn+ [Seltas]
+Seltas Carapace [Seltas]
+Monster Broth
+Carbalite Ore"
+467201,Shell Shooter 1,Seltas,"Seltas Horn+ [Seltas]
+Seltas Carapace [Seltas]
+Altaroth Stomach [Altaroth]"
+722689,Heat Haze 1,Seltas,"Seltas Carapace [Seltas]
+Seltas Innerwing [Seltas]
+Seltas Horn+ [Seltas]
+Monster Fluid"
+722945,Feminine Haze 1,Seltas,"Seltas Horn+ [Seltas]
+Seltas Innerwing [Seltas]
+Rare Scarab
+Aqua Sac"
+925441,Sect Happa 1,Seltas,"Seltas Innerwing [Seltas]
+Seltas Carapace [Seltas]
+Torrent Sac"
+989697,Schildsect 1,Seltas,"Seltas Carapace [Seltas]
+Seltas Innerwing [Seltas]
+Torrent Sac"
+144641,Cross Sword 1,Seltas Queen,"Hyper Hunter I
+S.Queen Sharpclaw [Seltas Queen]
+S.Queen Jaw [Seltas Queen]
+Torrent Sac"
+199681,Nitro Boost Hammer 1,Seltas Queen,"Hyper Hunter I
+S.Queen Sharpclaw [Seltas Queen]
+S.Queen Hardpectus [Seltas Queen]
+King Scarab"
+467457,Machine Strafer 1,Seltas Queen,"S.Queen Carapace [Seltas Queen]
+S.Queen Hardpectus [Seltas Queen]
+S.Queen Jaw [Seltas Queen]"
+667649,Madame Butcher 1,Seltas Queen,"Hyper Hunter I
+S.Queen Sharpclaw [Seltas Queen]
+S.Queen Jaw [Seltas Queen]
+S.Queen Carapace [Seltas Queen]"
+925697,Trim Happa 1,Seltas Queen,"Hyper Hunter I
+S.Queen Sharpclaw [Seltas Queen]
+S.Queen Crescent [Seltas Queen]
+S.Queen Hardpectus [Seltas Queen]"
+989953,Dominisect 1,Seltas Queen,"Hyper Hunter I
+S.Queen Sharpclaw [Seltas Queen]
+S.Queen Hardpectus [Seltas Queen]
+S.Queen Crescent [Seltas Queen]"
+72961,Cheda Blade 1,Seregios,"Seregios Sunderer [Seregios]
+Seregios Impaler [Seregios]
+Seregios Bladescale [Seregios]"
+137985,Naab Sword 1,Seregios,"Seregios Bladescale [Seregios]
+Seregios Wingtalon [Seregios]
+Airblade Shard [Seregios]"
+204545,Matraca Hammer 1,Seregios,"Seregios Bladescale [Seregios]
+Seregios Talon [Seregios]
+Seregios Wingtalon [Seregios]"
+270593,Harbah Lance 1,Seregios,"Seregios Impaler [Seregios]
+Seregios Wingtalon [Seregios]
+Airblade Shard [Seregios]"
+335105,Sayyad Cannon 1,Seregios,"Seregios Bladescale [Seregios]
+Airblade Shard [Seregios]
+Machalite Ore"
+335361,Seditious Cannon 1,Seregios,"Hyper Hunter II
+Seregios Airblade [Seregios]
+Seregios Scraper [Seregios]
+Fucium Ore"
+463617,Rasasa Bowgun 1,Seregios,"Seregios Bladescale [Seregios]
+Seregios Talon [Seregios]
+Seregios Sunderer [Seregios]"
+463873,Seditious Shot 1,Seregios,"Hyper Hunter II
+Seregios Slavescale [Seregios]
+Seregios Scraper [Seregios]
+Firecell Stone"
+529665,Khanga Edge 1,Seregios,"Seregios Bladescale [Seregios]
+Seregios Wingtalon [Seregios]
+Monster Bone L"
+593921,Aksa Switch 1,Seregios,"Seregios Sunderer [Seregios]
+Airblade Shard [Seregios]
+Seregios Bladescale [Seregios]"
+659457,Jaya Gunlance 1,Seregios,"Seregios Bladescale [Seregios]
+Airblade Shard [Seregios]
+Seregios Impaler [Seregios]"
+726017,Shalya Bow 1,Seregios,"Seregios Talon [Seregios]
+Airblade Shard [Seregios]
+Seregios Wingtalon [Seregios]"
+726273,Seditious Arrow 1,Seregios,"Hyper Hunter II
+Seregios Carver [Seregios]
+Seregios Scraper [Seregios]
+Seregios Impaler [Seregios]"
+790273,Zakun Twins 1,Seregios,"Seregios Talon [Seregios]
+Seregios Wingtalon [Seregios]
+Airblade Shard [Seregios]"
+852737,Vadya Muse 1,Seregios,"Seregios Talon [Seregios]
+Airblade Shard [Seregios]
+Seregios Sunderer [Seregios]"
+919041,Altair 1,Seregios,"Seregios Bladescale [Seregios]
+Seregios Impaler [Seregios]
+Seregios Sunderer [Seregios]"
+990465,Aslat Charger 1,Seregios,"Airblade Shard [Seregios]
+Seregios Bladescale [Seregios]
+Seregios Talon [Seregios]"
+81409,L'Apothéose 1,Shagaru Magala,"S.Magala Caress [Shagaru Magala]
+S.Magala Shell [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]"
+146177,Le Détecteur 1,Shagaru Magala,"S.Magala Horn [Shagaru Magala]
+S.Magala Caress [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]"
+212225,Le Jugement 1,Shagaru Magala,"S.Magala Caress [Shagaru Magala]
+S.Magala Shell [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]"
+278017,L'Égide 1,Shagaru Magala,"S.Magala Horn [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]
+S.Magala Shell [Shagaru Magala]"
+339713,Le Désastre 1,Shagaru Magala,"S.Magala Scale+ [Shagaru Magala]
+S.Magala Caress+ [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]
+LR S. Magala Materials"
+471553,La Lumière 1,Shagaru Magala,"S.Magala Scale+ [Shagaru Magala]
+S.Magala Horn+ [Shagaru Magala]
+S.Magala Caress [Shagaru Magala]
+LR S. Magala Materials"
+540417,La Justicière 1,Shagaru Magala,"S.Magala Scale [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]
+S.Magala Horn [Shagaru Magala]"
+601601,La Guillotine 1,Shagaru Magala,"S.Magala Caress [Shagaru Magala]
+S.Magala Horn [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]"
+669185,L'Onde 1,Shagaru Magala,"S.Magala Horn [Shagaru Magala]
+S.Magala Caress [Shagaru Magala]
+Pure Scale [Shagaru Magala]"
+732929,Le Ravisseur 1,Shagaru Magala,"S.Magala Carapace [Shagaru Magala]
+S.Magala Prismwing+ [Shagaru Magala]
+S.Magala Horn [Shagaru Magala]
+LR S. Magala Materials"
+800769,Les Apôtres 1,Shagaru Magala,"S.Magala Caress [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]
+S.Magala Shell [Shagaru Magala]"
+865793,La Sépulture 1,Shagaru Magala,"S.Magala Shell [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]
+Pure Scale [Shagaru Magala]"
+927233,Le Traqueur 1,Shagaru Magala,"S.Magala Caress [Shagaru Magala]
+S.Magala Shell [Shagaru Magala]
+S.Magala Horn [Shagaru Magala]"
+992257,L'Oppresseur 1,Shagaru Magala,"S.Magala Shell [Shagaru Magala]
+S.Magala Caress [Shagaru Magala]
+S.Magala Prismwing [Shagaru Magala]"
+329217,Piercing Crab 1,Shogun Ceanataur,"Ceanataur Leg+ [Shogun Ceanataur]
+Ceanataur Carapace [Shogun Ceanataur]
+Ceanataur Claw [Shogun Ceanataur]
+Monster Keenbone"
+723969,Bear Blade Bow 1,Shogun Ceanataur,"Ceanataur Carapace [Shogun Ceanataur]
+Ceanataur Claw+ [Shogun Ceanataur]
+Small Ceanataur Shell [Ceanataur]
+Monster Keenbone"
+989441,Guardian Blade 1,Shogun Ceanataur,"Ceanataur Claw [Shogun Ceanataur]
+Wyvern Scalp [Shogun Ceanataur]
+Iron Ore"
+72705,Rathalos Gleamsword 1,Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
+S.Rathalos Tail [Silver Rathalos]
+Rath Wingtalon
+Rath Gleam"
+209409,Leonid Starcrusher 1,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
+S.Rathalos Scale+ [Silver Rathalos]
+Rath Marrow
+Rath Gleam"
+276481,Silver Prominence 1,Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
+Rathalos Scale+ [Rathalos]
+S.Rathalos Tail [Silver Rathalos]
+Rath Gleam"
+473857,Silver Spartacus 1,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
+S.Rathalos Tail [Silver Rathalos]
+Rath Gleam
+Novacrystal"
+533249,"Wyvern Blade Pale"" 1""",Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
+S.Rathalos Carapace [Silver Rathalos]
+Inferno Sac
+Rath Gleam"
+597505,Rathsplicer 1,Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
+S.Rathalos Tail [Silver Rathalos]
+Rath Marrow
+Rath Gleam"
+660737,Silver Rook 1,Silver Rathalos,"S.Rathalos Tail [Silver Rathalos]
+S.Rathalos Carapace [Silver Rathalos]
+Rath Marrow
+Rath Gleam"
+734721,Hyperion 1,Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
+S.Rathalos Carapace [Silver Rathalos]
+Rath Gleam
+Firecell Stone"
+988929,Hellsire Blade 1,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
+S.Rathalos Tail [Silver Rathalos]
+Rath Marrow
+Rath Gleam"
+90881,Blazing Squall 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+154369,Nightfall Edge 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Narga Tailspike [Nargacuga]"
+221697,Nightfall Hammer 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Fang [Nargacuga]"
+285953,Gale Stinger 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Tail [Nargacuga]"
+346625,Silverwind Sniper 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+478977,Squall's Gaze 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Nargacuga Fang [Nargacuga]"
+547329,Nightfall Saber 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+609793,Nightfall Axe 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+676097,Nightfall Burst 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+739841,Silverwind Bow 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+809729,Nightfall Daggers 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+872449,Nightfall Horn 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Blackfur [Silverwind Nargacuga]
+Silverwind Scale [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+931585,Nightfall Scythe 1,Silverwind Nargacuga,"Silverwind Hunter I
+Silverwind Scale [Silverwind Nargacuga]
+Silverwind Blackfur [Silverwind Nargacuga]
+Nargacuga Cutwing [Nargacuga]"
+89857,Eostoclad 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Pelt [Snowbaron Lagombi]
+Snowbaron Plastron [Snowbaron Lagombi]
+Lagombi Iceclaw [Lagombi]"
+345601,Eeostopen Burst 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Pelt [Snowbaron Lagombi]
+Snowbaron Plastron [Snowbaron Lagombi]
+Lagombi Ear [Lagombi]"
+546561,Ebon Rabbit 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Plastron [Snowbaron Lagombi]
+Snowbaron Pelt [Snowbaron Lagombi]
+Lagombi Iceclaw [Lagombi]"
+608769,Blackhare Axe 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Plastron [Snowbaron Lagombi]
+Snowbaron Pelt [Snowbaron Lagombi]
+Lagombi Ear [Lagombi]"
+675073,Blackhare Gunlance 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Plastron [Snowbaron Lagombi]
+Snowbaron Pelt [Snowbaron Lagombi]
+Lagombi Ear [Lagombi]"
+808961,Blackhare Daggers 1,Snowbaron Lagombi,"Snowbaron Hunter I
+Snowbaron Pelt [Snowbaron Lagombi]
+Snowbaron Plastron [Snowbaron Lagombi]
+Lagombi Iceclaw [Lagombi]"
+94721,Yaezakura 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Purplefell [Mizutsune]"
+157953,Kyoka Fugetsu 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Silkfin [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+224769,Last Bastion 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+288513,Hika Rakuyo 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+349185,Bitter Breeze 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Shard [Mizutsune]
+Mizutsune Silkfin [Mizutsune]"
+481537,Dew on the Leaves 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Silkfin [Mizutsune]
+Mizutsune Purplefell [Mizutsune]"
+551425,Unsan Musho 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+612865,Deep Yearning 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Distilled Bubblefoam [Mizutsune]"
+679425,Mumyo Joya 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Silkfin [Mizutsune]"
+742657,Perennial Winter 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Silkfin [Mizutsune]"
+813057,Impermanence 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Purplefell [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+875777,Vagrant's Itinerary 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Distilled Bubblefoam [Mizutsune]"
+933889,Melancholy 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Hardclaw [Mizutsune]
+Mizutsune Shard [Mizutsune]"
+999169,Fugitive Hours 1,Soulseer Mizutsune,"Soulseer Hunter I
+Soulseer Shard [Soulseer Mizutsune]
+Mizutsune Silkfin [Mizutsune]
+Mizutsune Hardclaw [Mizutsune]"
+90113,Stonefist Pincer 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Hermitaur Claw [Daimyo Hermitaur]"
+221441,Pincher Hammer 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Shell [Stonefist Hermitaur]
+Stonefist Claw [Stonefist Hermitaur]
+Hermitaur Claw [Daimyo Hermitaur]"
+285441,Stonefist Lance 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Sm. Hermitaur Shell [Hermitaur]"
+345857,Stonefist Buster 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Decayed Crimson Horn [Daimyo Hermitaur]"
+546817,Stonefist Cutter 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Monster Bone L"
+609025,Pincher Axe 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Shell [Stonefist Hermitaur]
+Stonefist Claw [Stonefist Hermitaur]
+Hermitaur Claw [Daimyo Hermitaur]"
+675329,Pincher Cannon 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Flame Sac"
+739073,Stonefist Bow 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Shell [Stonefist Hermitaur]
+Stonefist Claw [Stonefist Hermitaur]
+Sm. Hermitaur Shell [Hermitaur]"
+809217,Pincher Daggers 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Shell [Stonefist Hermitaur]
+Stonefist Claw [Stonefist Hermitaur]
+Decayed Crimson Horn [Daimyo Hermitaur]"
+931329,Stonefist Caster 1,Stonefist Hermitaur,"Stonefist Hunter I
+Stonefist Claw [Stonefist Hermitaur]
+Stonefist Shell [Stonefist Hermitaur]
+Decayed Crimson Horn [Daimyo Hermitaur]"
+86017,Teostra Blade 1,Teostra,"Teostra Horn [Teostra]
+Teostra Shell [Teostra]
+Elder Dragon Blood"
+149505,Teostra's Spada 1,Teostra,"Teostra Shell [Teostra]
+Teostra Webbing [Teostra]
+Elder Dragon Blood"
+215041,Teostra Cratermaker 1,Teostra,"Teostra Shell [Teostra]
+Teostra Mane [Teostra]
+Fire Dragon Scale [Teostra]"
+281089,Teostra's Howl 1,Teostra,"Teostra Tail [Teostra]
+Teostra Shell [Teostra]
+Elder Dragon Blood"
+340481,Teostra's Artillery 1,Teostra,"Teostra Carapace [Teostra]
+Fire Dragon Scale [Teostra]
+Teostra Mane [Teostra]
+Firestone"
+527873,Imperial Saber 1,Teostra,"Fire Dragon Claw [Teostra]
+Teostra Tail [Teostra]
+Elder Dragon Blood"
+605697,Teostra's Arx 1,Teostra,"Fire Dragon Claw [Teostra]
+Teostra Webbing [Teostra]
+Elder Dragon Blood"
+733441,Bow of Hope & Valor 1,Teostra,"Teostra Shell [Teostra]
+Teostra Mane [Teostra]
+Fire Dragon Claw [Teostra]
+Firestone"
+811265,Exploding Blades 1,Teostra,"Pluto Stardust
+Fire Dragon Scale+ [Teostra]
+Teostra Powder [Teostra]
+Elder Dragon Blood"
+866305,Teostra's Tiple 1,Teostra,"Teostra Horn [Teostra]
+Teostra Mane [Teostra]
+Teostra Webbing [Teostra]
+Teostra Tail [Teostra]"
+994561,Teostra's Striker 1,Teostra,"Teostra Horn [Teostra]
+Fire Dragon Scale [Teostra]
+Elder Dragon Blood"
+71681,Santoku Reaver 1,Tetsucabra,"Tetsucabra Claw [Tetsucabra]
+Tetsucabra Shell [Tetsucabra]
+Machalite Ore"
+337665,Straw Drumcannon 1,Tetsucabra,"Tetsucabra Carapace [Tetsucabra]
+Tetsucabra Claw+ [Tetsucabra]
+Jumbo Bone
+LR Tetsucabra Materials"
+528641,Aikuchi 1,Tetsucabra,"Tetsucabra Tusks [Tetsucabra]
+Tetsucabra Claw [Tetsucabra]
+Machalite Ore"
+591361,Reckless Hatchet 1,Tetsucabra,"Tetsucabra Tusks [Tetsucabra]
+Tetsucabra Shell [Tetsucabra]
+Jumbo Bone
+Iron Ore"
+657921,Red Devil Gunlance 1,Tetsucabra,"Tetsucabra Scale [Tetsucabra]
+Tetsucabra Tusks [Tetsucabra]
+Paddock Oil"
+724737,Demon Helm Bow 1,Tetsucabra,"Tetsucabra Tusks+ [Tetsucabra]
+Tetsucabra Scale+ [Tetsucabra]
+Paddock Oil
+LR Tetsucabra Materials"
+861185,Demon Block 1,Tetsucabra,"Tetsucabra Tusks [Tetsucabra]
+Tetsucabra Shell [Tetsucabra]
+Tetsucabra Claw [Tetsucabra]
+Jumbo Bone"
+91905,Thunderlord Gekirai 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+155393,Thunderlord Firebolt 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+222721,Raiden Hammer 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+286721,Thunderlord Tenrai 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Tail [Zinogre]"
+347393,Lord's Shot 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+479745,Thunder Lycan 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+548353,Thunderlord Raikiri 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+610561,Raiden Axe 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Tail [Zinogre]"
+677121,Raiden Cannon 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+740865,Rumble Bow 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+810241,Raiden Daggers 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+873473,Raiden Horn 1,Thunderlord Zinogre,"Thunderlord Hunter I
+Thunderlord Shell [Thunderlord Zinogre]
+Thunderlord Shockfur [Thunderlord Zinogre]
+Zinogre Horn [Zinogre]"
+75265,Tiger Jawblade 1,Tigrex,"Tigrex Fang [Tigrex]
+Tigrex Scale [Tigrex]
+Tigrex Claw [Tigrex]"
+141313,Rex Talon 1,Tigrex,"Tigrex Claw [Tigrex]
+Tigrex Scale [Tigrex]
+Tigrex Tail [Tigrex]"
+197633,Striped Striker 1,Tigrex,"Tigrex Claw [Tigrex]
+Tigrex Scale [Tigrex]
+Tigrex Shell [Tigrex]"
+266241,Tiger Stinger 1,Tigrex,"Tigrex Tail [Tigrex]
+Tigrex Scale [Tigrex]
+Tigrex Claw [Tigrex]"
+331777,Tigrex Howl 1,Tigrex,"Tigrex Scalp [Tigrex]
+Tigrex Shell [Tigrex]
+Monster Bone L"
+467713,Tigrex Tank 1,Tigrex,"Tigrex Shell [Tigrex]
+Tigrex Fang [Tigrex]
+Monster Bone L"
+531713,Tigrine Edge 1,Tigrex,"Tigrex Fang [Tigrex]
+Tigrex Scale [Tigrex]
+Tigrex Claw [Tigrex]"
+599041,Rex Slasher 1,Tigrex,"Tigrex Claw [Tigrex]
+Tigrex Fang [Tigrex]
+Tigrex Scale [Tigrex]"
+663809,Tiger Blast 1,Tigrex,"Tigrex Fang [Tigrex]
+Tigrex Claw [Tigrex]
+Tigrex Shell [Tigrex]"
+725761,Tigrex Archer 1,Tigrex,"Tigrex Scale [Tigrex]
+Tigrex Fang [Tigrex]
+Monster Bone L"
+791297,Rex Slicers 1,Tigrex,"Tigrex Claw [Tigrex]
+Tigrex Fang [Tigrex]
+Tigrex Scale [Tigrex]"
+860673,Striped Dragonga 1,Tigrex,"Tigrex Shell [Tigrex]
+Tigrex Fang [Tigrex]
+Dragonite Ore"
+986625,Tigrex Divide 1,Tigrex,"Tigrex Scale [Tigrex]
+Tigrex Claw [Tigrex]
+Tigrex Fang [Tigrex]"
+83969,Ukanlos Destructor 1,Ukanlos,"Ukanlos Shoveljaw [Ukanlos]
+Ukanlos Underscale [Ukanlos]
+Ukanlos Carapace [Ukanlos]"
+147457,Ukanlos Soul Hatchet 1,Ukanlos,"Ukanlos Fin+ [Ukanlos]
+Ukanlos Digger [Ukanlos]
+Ukanlos Carapace [Ukanlos]"
+213761,Ukanlos Trampler 1,Ukanlos,"Ukanlos Digger [Ukanlos]
+Ukanlos Carapace [Ukanlos]
+Thunder Sac [Khezu]"
+279041,Ukanlos Calamity 1,Ukanlos,"Ukanlos Underscale [Ukanlos]
+Ukanlos Carapace [Ukanlos]
+Ukanlos Tail [Ukanlos]"
+342017,Ukanlos Cannon 1,Ukanlos,"Ukanlos Carapace [Ukanlos]
+Ukanlos Fin+ [Ukanlos]
+Ukanlos Underscale [Ukanlos]"
+474369,Ukanlos Frost Bow 1,Ukanlos,"Ukanlos Fin+ [Ukanlos]
+Ukanlos Tail [Ukanlos]
+Ukanlos Underscale [Ukanlos]"
+541953,Ukanlos Slicer 1,Ukanlos,"Ukanlos Fin+ [Ukanlos]
+Ukanlos Tail [Ukanlos]
+Ukanlos Shoveljaw [Ukanlos]"
+604417,Murkham Axe 1,Ukanlos,"Ukanlos Fin+ [Ukanlos]
+Ukanlos Shoveljaw [Ukanlos]
+Ukanlos Underscale [Ukanlos]"
+670977,Ukanlos Gunlance 1,Ukanlos,"Ukanlos Shoveljaw [Ukanlos]
+Ukanlos Fin+ [Ukanlos]
+Ukanlos Carapace [Ukanlos]"
+735489,Ukanlos Bow 1,Ukanlos,"Ukanlos Shoveljaw [Ukanlos]
+Ukanlos Fin+ [Ukanlos]
+Ukanlos Underscale [Ukanlos]"
+802817,Ukanlos Ruinblades 1,Ukanlos,"Ukanlos Fin+ [Ukanlos]
+Ukanlos Underscale [Ukanlos]
+Ukanlos Shoveljaw [Ukanlos]"
+867585,Ukanlos Horned Flute 1,Ukanlos,"Ukanlos Shoveljaw [Ukanlos]
+Ukanlos Tail [Ukanlos]
+Ukanlos Underscale [Ukanlos]"
+929281,Ukanlos Staff 1,Ukanlos,"Ukanlos Carapace [Ukanlos]
+Ukanlos Underscale [Ukanlos]
+Ukanlos Tail [Ukanlos]"
+71169,Brazenwall 1,Uragaan,"Uragaan Shell [Uragaan]
+Uragaan Scute [Uragaan]
+Monster Bone L"
+141569,Gigas Club 1,Uragaan,"Uragaan Scute [Uragaan]
+Uragaan Scale [Uragaan]
+Lava Nugget"
+198145,Brazenclout 1,Uragaan,"Uragaan Jaw [Uragaan]
+Uragaan Shell [Uragaan]
+Monster Bone L"
+525057,Diapason 1,Uragaan,"Uragaan Scute [Uragaan]
+Uragaan Shell [Uragaan]
+Mega Demondrug"
+592385,Motor Burst 1,Uragaan,"Uragaan Shell [Uragaan]
+Uragaan Scale [Uragaan]
+Lava Nugget"
+665345,Spine Blaster 1,Uragaan,"Uragaan Shell [Uragaan]
+Uragaan Scute [Uragaan]
+Firestone"
+726529,Brazencord 1,Uragaan,"Uragaan Scute [Uragaan]
+Uragaan Scale [Uragaan]
+Uragaan Jaw [Uragaan]"
+860929,Brazengaita 1,Uragaan,"Uragaan Jaw [Uragaan]
+Uragaan Scute [Uragaan]
+Dragonite Ore"
+94209,Silverwing Great Sword 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Carapace [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+157441,Silverwing Swiftblade 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Valstrax Carapace [Valstrax]
+Firecell Stone"
+224257,Silverwing Hammer 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Claw+ [Valstrax]
+Valstrax Lancewing [Valstrax]
+Firecell Stone"
+288001,Silverwing Spear 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Claw+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+348673,Silverwing Cannon 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Carapace [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+481025,Silverwing Shooter 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Carapace [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+550913,Silverwing Long Sword 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Claw+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+612353,Silverwing Switch Axe 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Lancewing [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+678913,Silverwing Gunlance 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Scale+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+742145,Silverwing Bow 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Carapace [Valstrax]
+Valstrax Claw+ [Valstrax]
+Firecell Stone"
+812545,Silverwing Blades 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Claw+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+875265,Silverwing Horn 1,Valstrax,"Valstrax Scale+ [Valstrax]
+Valstrax Claw+ [Valstrax]
+Valstrax Lancewing [Valstrax]
+Firecell Stone"
+933377,Silverwing Glaive 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Carapace [Valstrax]
+Valstrax Tail [Valstrax]
+Firecell Stone"
+998657,Silverwing Edge 1,Valstrax,"Valstrax Lancewing [Valstrax]
+Valstrax Scale+ [Valstrax]
+Valstrax Spineshell [Valstrax]
+Firecell Stone"
+132865,Velocidrome Bite 1,Velocidrome,"Velocidrome Claw [Velocidrome]
+Velocidrome Hide [Velocidrome]
+Machalite Ore"
+465409,Shotgun (Azure) 1,Velocidrome,"Velocidrome Hide+ [Velocidrome]
+Velociprey Hide+ [Velociprey]
+Velocidrome Claw [Velocidrome]
+Bird Wyvern Fang"
+797697,Vprey Claws 1,Velocidrome,"Velocidrome Claw [Velocidrome]
+Velocidrome Hide [Velocidrome]
+Machalite Ore
+Bird Wyvern Fang"
+858881,Velocidrome Balloon 1,Velocidrome,"Velocidrome Claw+ [Velocidrome]
+Velocidrome Hide+ [Velocidrome]
+Avian Finebone
+Velocidrome Head [Velocidrome]"
+199937,Binding Bludgeon 1,Volvidon,"Volvidon Shell [Volvidon]
+Volvi Rickrack [Volvidon]
+Paralysis Sac
+Machalite Ore"
+272129,Volvi Stroke 1,Volvidon,"Volvi Rickrack [Volvidon]
+Volvidon Shell [Volvidon]
+Machalite Ore
+Thunderbug"
+330497,Carom Shot 1,Volvidon,"Volvidon Shell [Volvidon]
+Volvi Rickrack [Volvidon]
+Iron Ore"
+600065,Binding Roller 1,Volvidon,"Volvidon Shell [Volvidon]
+Volvidon Claw [Volvidon]
+Paralysis Sac
+Jumbo Bone"
+656385,Shattershot 1,Volvidon,"Volvidon Shell [Volvidon]
+Volvi Rickrack [Volvidon]
+Machalite Ore
+Sharp Fang"
+79361,Sentoryu Raven 1,Yian Garuga,"Garuga Wing [Yian Garuga]
+Garuga Shell [Yian Garuga]
+Sharpened Beak [Yian Garuga]"
+79617,Sentoryu Bane 1,Yian Garuga,"Hyper Hunter I
+Garuga Scale+ [Yian Garuga]
+Garuga Auricle [Yian Garuga]
+Sharpened Beak [Yian Garuga]"
+133121,Raven Blade 1,Yian Garuga,"Garuga Ear [Yian Garuga]
+Garuga Wing [Yian Garuga]
+Garuga Scale [Yian Garuga]"
+210177,Raven Torrent 1,Yian Garuga,"Sharpened Beak [Yian Garuga]
+Garuga Ear [Yian Garuga]
+Garuga Mane [Yian Garuga]"
+210433,Vile Torrent 1,Yian Garuga,"Hyper Hunter I
+Rejuvenated Beak [Yian Garuga]
+Garuga Carapace [Yian Garuga]
+Garuga Mane [Yian Garuga]"
+263169,Incessant Raven 1,Yian Garuga,"Garuga Tail [Yian Garuga]
+Garuga Wing [Yian Garuga]
+Garuga Scale [Yian Garuga]"
+263425,Incessant Evil 1,Yian Garuga,"Hyper Hunter I
+Garuga Carapace [Yian Garuga]
+Rejuvenated Beak [Yian Garuga]
+Garuga Wing [Yian Garuga]"
+332289,Raven Heirloom 1,Yian Garuga,"Garuga Shell [Yian Garuga]
+Garuga Ear [Yian Garuga]
+Blangonga Whisker [Blangonga]
+Ceanataur Claw [Shogun Ceanataur]"
+462081,Raven Do 1,Yian Garuga,"Sharpened Beak [Yian Garuga]
+Garuga Shell [Yian Garuga]
+Monster Bone L"
+462337,Vile Do 1,Yian Garuga,"Garuga Scale+ [Yian Garuga]
+Garuga Mane [Yian Garuga]
+Bird Wyvern Gem
+LR Yian Garuga Materials"
+480513,Arm Cannon 1,Yian Garuga,"Samus Coin
+Hyper Garuga Scale
+Garuga Carapace [Yian Garuga]
+Garuga Mane [Yian Garuga]"
+536321,Daito Crow 1,Yian Garuga,"Garuga Shell [Yian Garuga]
+Sharpened Beak [Yian Garuga]
+Garuga Wing [Yian Garuga]"
+536577,Daito Bane 1,Yian Garuga,"Hyper Hunter I
+Garuga Scale+ [Yian Garuga]
+Garuga Carapace [Yian Garuga]
+Novacrystal"
+729089,Crow Bow 1,Yian Garuga,"Commendation
+Garuga Shell [Yian Garuga]
+Garuga Mane [Yian Garuga]
+Garuga Tail [Yian Garuga]"
+729345,Vile Bow 1,Yian Garuga,"Hyper Hunter I
+Garuga Carapace [Yian Garuga]
+Rubbery Hide+
+Garuga Wing [Yian Garuga]"
+798977,Raven Tessen 1,Yian Garuga,"Garuga Mane [Yian Garuga]
+Garuga Ear [Yian Garuga]
+Garuga Scale [Yian Garuga]"
+799233,Wicked Tessen 1,Yian Garuga,"Hyper Hunter I
+Garuga Auricle [Yian Garuga]
+Garuga Scale+ [Yian Garuga]
+Garuga Wing [Yian Garuga]"
+863745,Raven Shamisen 1,Yian Garuga,"Garuga Tail [Yian Garuga]
+Garuga Wing [Yian Garuga]
+Garuga Mane [Yian Garuga]"
+864001,Vile Shamisen 1,Yian Garuga,"Hyper Hunter I
+Garuga Carapace [Yian Garuga]
+Garuga Wing [Yian Garuga]
+Toxin Sac"
+79105,Chicken Decapitator 1,Yian Kut-Ku,"Kut-Ku Webbing [Yian Kut-Ku]
+Kut-Ku Shell [Yian Kut-Ku]
+Flame Sac"
+461825,Kut-Ku Anger 1,Yian Kut-Ku,"Giant Beak [Yian Kut-Ku]
+Kut-Ku Shell [Yian Kut-Ku]
+Kut-Ku Ear [Yian Kut-Ku]
+Monster Bone M"
+616449,Beak Axe 1,Yian Kut-Ku,"Kut-Ku Carapace [Yian Kut-Ku]
+Kut-Ku Auricle [Yian Kut-Ku]
+Giant Beak [Yian Kut-Ku]
+Inferno Sac"
+918273,Kut-Ku Pike 1,Yian Kut-Ku,"Kut-Ku Webbing [Yian Kut-Ku]
+Giant Beak [Yian Kut-Ku]
+Kut-Ku Shell [Yian Kut-Ku]"
+142081,Sharkutter 1,Zamtrios,"Zamtrios Fin+ [Zamtrios]
+Zamtrios Hide+ [Zamtrios]
+Meaty Hide+ [Zamite]"
+142337,Sharfin Sword 1,Zamtrios,"Hyper Hunter I
+Zamtrios Scale+ [Zamtrios]
+Zamtrios Sawtooth [Zamtrios]
+Paddock Oil+"
+206593,Meaty Smash 1,Zamtrios,"Zamtrios Fin+ [Zamtrios]
+Zamtrios Hide+ [Zamtrios]
+Zamtrios Sawtooth [Zamtrios]"
+206849,Meaty Press 1,Zamtrios,"Hyper Hunter I
+Zamtrios Scale+ [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Paddock Oil+"
+275201,Carnivicious 1,Zamtrios,"Zamtrios Tailblade [Zamtrios]
+Zamtrios Hide+ [Zamtrios]
+Meaty Hide+ [Zamite]"
+275457,Omnivicious 1,Zamtrios,"Hyper Hunter I
+Zamtrios Sawtooth [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Paddock Oil+"
+462849,Mandible Blaster 1,Zamtrios,"Zamtrios Sawtooth [Zamtrios]
+Zamtrios Scale+ [Zamtrios]
+Meaty Hide+ [Zamite]"
+593153,Notched Doom 1,Zamtrios,"Zamtrios Fin+ [Zamtrios]
+Zamtrios Sawtooth [Zamtrios]
+Zamtrios Scale+ [Zamtrios]"
+658945,Seadiver 1,Zamtrios,"Zamtrios Hide+ [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Meaty Hide+ [Zamite]"
+659201,Deepbuster 1,Zamtrios,"Hyper Hunter I
+Zamtrios Scale+ [Zamtrios]
+Zamtrios Sawtooth [Zamtrios]
+Paddock Oil+"
+727553,Blue Alighter 1,Zamtrios,"Zamtrios Sawtooth [Zamtrios]
+Zamtrios Scale+ [Zamtrios]
+Sharqskin Scale [Zamite]"
+727809,Ice Cold Alighter 1,Zamtrios,"Hyper Hunter I
+Zamtrios Hide+ [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Paddock Oil"
+856321,Poli'ahu Pipe 1,Zamtrios,"Zamtrios Fin+ [Zamtrios]
+Zamtrios Hide+ [Zamtrios]
+Zamtrios Tailblade [Zamtrios]"
+921857,Névé Rod 1,Zamtrios,"Zamtrios Hide+ [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Zamtrios Sawtooth [Zamtrios]"
+985345,Guardsqual 1,Zamtrios,"Zamtrios Sawtooth [Zamtrios]
+Zamtrios Fin+ [Zamtrios]
+Sharqskin Scale [Zamite]"
+985601,Serrated Glace 1,Zamtrios,"Hyper Hunter I
+Zamtrios Fin+ [Zamtrios]
+Zamtrios Scale+ [Zamtrios]
+Paddock Oil+"
+67841,Usurper's Storm 1,Zinogre,"Zinogre Shell [Zinogre]
+Zinogre Horn [Zinogre]
+Zinogre Shocker [Zinogre]"
+135937,Usurper's Firebolt 1,Zinogre,"Zinogre Shocker [Zinogre]
+Zinogre Horn [Zinogre]
+Zinogre Shell [Zinogre]"
+208641,Usurper's Thunder 1,Zinogre,"Zinogre Horn [Zinogre]
+Zinogre Shell [Zinogre]
+Zinogre Shockfur [Zinogre]"
+223489,Thunder Works 1,Zinogre,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Zinogre Shocker+ [Zinogre]
+Fulgurbug [Zinogre]"
+272897,Usurper's Coming 1,Zinogre,"Zinogre Shell [Zinogre]
+Zinogre Shocker [Zinogre]
+Zinogre Tail [Zinogre]"
+336897,Usurper's Tremor 1,Zinogre,"Zinogre Shell [Zinogre]
+Zinogre Shocker [Zinogre]
+Fulgurbug [Zinogre]
+Dragonite Ore"
+353537,Loyal Thunder 1,Zinogre,"Zinogre Hardhorn [Zinogre]
+Zinogre D-Shocker [Zinogre]
+Tigrex Hardfang [Tigrex]"
+463361,Usurper's Crime 1,Zinogre,"Zinogre Shell [Zinogre]
+Zinogre Horn [Zinogre]
+Zinogre Shocker [Zinogre]"
+485377,Leader's Thunder 1,Zinogre,"Zinogre Hardhorn [Zinogre]
+Zinogre D-Shocker [Zinogre]
+Tigrex Hardclaw [Tigrex]"
+531457,Usurper's Boltslicer 1,Zinogre,"Zinogre Horn [Zinogre]
+Zinogre Shell [Zinogre]
+Zinogre Claw [Zinogre]"
+555265,Despot's Boltrunner 1,Zinogre,"Rajang Hardhorn [Rajang]
+Zinogre Hardhorn [Zinogre]
+Zinogre Hardclaw [Zinogre]"
+596225,Usurper's Downpour 1,Zinogre,"Zinogre Shocker [Zinogre]
+Zinogre Tail [Zinogre]
+Zinogre Shell [Zinogre]"
+664577,Usurper's Roar 1,Zinogre,"Zinogre Shell [Zinogre]
+Zinogre Shocker [Zinogre]
+Firestone"
+721665,Usurper's Rumble 1,Zinogre,"Zinogre Shocker [Zinogre]
+Zinogre Shockfur [Zinogre]
+Fulgurbug [Zinogre]"
+746753,Despot's Shock 1,Zinogre,"Zinogre Hardhorn [Zinogre]
+Zinogre Cortex [Zinogre]
+Brach Pounder+ [Brachydios]"
+791553,Usurper's Fulgur 1,Zinogre,"Zinogre Horn [Zinogre]
+Zinogre Claw [Zinogre]
+Zinogre Shell [Zinogre]"
+862977,Usurper's Growl 1,Zinogre,"Zinogre Horn [Zinogre]
+Zinogre Shell [Zinogre]
+Zinogre Claw [Zinogre]"
+65793,Petrified Blade 1,,"Iron Ore
+Earth Crystal"
+66049,Obsidian Blade 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+66305,Halberd 1,,"Dragonite Ore
+Iron Ore
+Monster Bone M"
+66561,Decider 1,,"Hyper Hunter I
+Carbalite Ore
+Machalite Ore
+Avian Finebone"
+67585,Defender 1,,"Iron Ore
+Disc Stone
+Machalite Ore"
+68097,Barbaroi Blade 1,,"Flame Sac
+Iron Ore
+Carpenterbug
+Unknown Skull"
+68353,Iron Sword 1,,Iron Ore
+69377,Plesioth Wave Sword 1,,"Hyper Hunter I
+Cephalos Fin+
+LR Cephadrome Materials"
+69633,Ravager Blade 1,,"Dragonite Ore
+Machalite Ore
+Ice Crystal
+Wyvern Claw"
+69889,Lacerator Blade 1,,"King Scarab
+Lightcrystal
+Hercudrome"
+70145,Tactical Blade 1,,"Rathalos Webbing [Rathalos]
+Rath Wingtalon
+LR Ore Materials"
+70657,Buster Sword 1,,"Machalite Ore
+Bealite Ore"
+70913,Chrome Razor 1,,"Toxin Sac
+Chameleos Horn [Chameleos]
+Dragonite Ore
+Bird Wyvern Gem"
+71937,Toad Bereaver 1,,"Hyper Hunter I
+Tetsucabra Claw+ [Tetsucabra]
+Paddock Oil+"
+72193,Bone Cleaver 1,,"Monster Bone S
+Jaggi Hide"
+73217,Seditious Cleaver 1,,"Hyper Hunter II
+Seregios Scraper [Seregios]
+Hyper Claw"
+73473,Jawblade 1,,"Monster Bone L
+Monster Bone S
+Wyvern Claw"
+73729,Wyvern Jawblade 1,,"Monster Keenbone
+Uragaan Carapace [Uragaan]
+High-quality Pelt"
+73985,Thrash Sword 1,,"Kecha Talon [Kecha Wacha]
+Torrent Sac
+Jumbo Bone"
+74497,Golem Blade 1,,"Monster Bone L
+Rhenoplos Scalp [Rhenoplos]
+Hercudrome"
+76033,Executioner 1,,"Monster Keenbone
+Monster Bone L
+Dragonite Ore"
+77057,Red Stripe 1,,"Sm. Hermitaur Shell [Hermitaur]
+Sharp Claw
+Brute Bone"
+77313,Red Pincer 1,,"Hermitaur Claw [Daimyo Hermitaur]
+Hermitaur Shell
+Jumbo Bone"
+77569,Ceanataur Blade 1,,"Ceanataur Leg [Shogun Ceanataur]
+Ceanataur Shell
+Whetfish"
+77825,Azure Serpentblade 1,,"Velociprey Hide [Velociprey]
+Velociprey Scale
+Iron Ore"
+78081,Saffron Fangblade 1,,"Gendrome Fang [Gendrome]
+Genprey Scale [Genprey]
+Monster Bone S"
+84737,Rusted Great Sword 1,,
+84993,Ancient Blade 1,,"Earth Crystal
+Lava Nugget
+Flame Sac"
+85505,Worn Great Sword 1,,
+85761,Epitaph Blade 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+86273,Vulcanis 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+86529,Black Blade 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+86785,Yukumo Edge 1,,"Yukumo Wood
+Iron Ore"
+87041,Yukumo Pure Edge 1,,"Yukumo Ticket
+Mizutsune Tail [Mizutsune]
+Yukumo Wood"
+87297,Larisaber 1,,"Wycademy Ticket
+Larinoth Hide [Larinoth]
+Monster Bone L"
+87553,Cheese Mixer 1,,"Bistro Ticket
+Yukumo Wood
+Carpenterbug"
+87809,Autumn Umbrella 1,,"Bronze Guild Ticket
+Yukumo Hardwood
+Armorskin
+Ioprey Scale+ [Ioprey]"
+88065,Frozen Speartuna 1,,"Speartuna
+Ice Crystal
+Bitterbug"
+88321,Wyvern's Perch 1,,"Reststool
+Poison Sac
+Yukumo Wood
+Toadstool"
+88577,Aloe Blade 1,,"Wycademy Ticket
+Sleep Herb
+Monster Bone L
+Lava Nugget"
+88833,Cat's Soul 1,,"Carbalite Ore
+Palico Ticket
+Omniplegia Sac
+Pawprint Stamp"
+89089,El Dora Blade 1,,"Extravagant Artifact
+Lightcrystal
+Black Pearl
+Dragonite Ore"
+89345,Black Belt Blade 1,,"Blackbelt Ticket
+Khezu Coin
+Rathalos Coin"
+89601,Expert Blade 1,,"Commendation G
+S.Rathalos Scale+ [Silver Rathalos]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
+92673,Fox Blade 1,,"Famitsu Ticket
+Mizutsune Scale+ [Mizutsune]
+Electroscale+ [Astalos]
+Novacrystal"
+92929,Captain Blade J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Firecell Stone
+Wyvern Gem"
+93185,Amol Saiqa 1,,"Magi Coin
+Hyper G.Magala Scale
+Gore Magala Ripclaw+ [Gore Magala]
+Firecell Stone"
+93441,Chivalry 1,,"Arena Ticket
+Hyper Gammoth Fur
+Brach Pounder [Brachydios]
+Uragaan Jaw [Uragaan]"
+93697,G Blade 1,,"Great Stone
+Akantor Scale+ [Akantor]
+Monster Hardbone
+Wyvern Gem"
+98817,Research Great Sword 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Dragonvine"
+99329,Palette Knife 1,,"Bistro Ticket G
+Pawprint Ticket
+Palico Ticket G"
+99585,Elder Blade 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+100097,Drifter's Sword 1,,"Taisha-ryu Codex
+Hyper Brach Cortex
+Brach Cortex [Brachydios]"
+100353,Garo Sword 1,,"Zaruba Fragment
+Hyper Zinogre Cortex
+Zinogre Cortex [Zinogre]"
+131329,Petrified Sword 1,,"Iron Ore
+Earth Crystal"
+131585,Obsidian Sword 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+132609,Frost Edge 1,,"Ice Crystal
+Bealite Ore
+Whetfish"
+133889,Hunter's Knife 1,,Iron Ore
+134145,Odyssey Blade 1,,"Novacrystal
+Tetsucabra Tusks+ [Tetsucabra]
+Kecha Grandbone [Kecha Wacha]
+Seltas Horn+ [Seltas]"
+134401,Hunter's Dagger 1,,"Lightcrystal
+Machalite Ore
+Paddock Oil"
+134657,Heavy Bang 1,,"Machalite Ore
+Lagiacrus Claw [Lagiacrus]
+Rath Wingtalon"
+135169,Dual Carapace 1,,"Ceanataur Claw [Shogun Ceanataur]
+Hermitaur Claw [Daimyo Hermitaur]
+Ceanataur Shell
+Hermitaur Shell"
+135425,Lava Pick 1,,"Uroktor Scale [Uroktor]
+Firestone
+Machalite Ore"
+135681,Soldier's Dagger 1,,"Jaggi Hide
+Jaggi Scale
+Disc Stone"
+136961,Serpent Bite 1,,"Velociprey Hide [Velociprey]
+Bird Wyvern Fang
+Sharp Fang"
+138241,Seditious Fang 1,,"Hyper Hunter II
+Seregios Slavescale [Seregios]
+Hyper Fang"
+138497,Bone Kris 1,,Monster Bone S
+139009,Corona 1,,"Hyper Hunter I
+Rathalos Scale+ [Rathalos]
+Rathalos Plate
+LR Rathalos Materials"
+139521,Bone Pick 1,,"Monster Bone L
+Brute Bone
+Bone Husk"
+140545,Thunderbane 1,,"Rubbery Hide [Gypceros]
+Monster Bone L
+Electro Sac [Khezu]"
+141825,Bone Tabar 1,,"Monster Bone M
+Jumbo Bone
+Machalite Ore"
+143105,Poison Axe 1,,"Rubbery Hide [Gypceros]
+Monster Bone M
+Poison Sac"
+143361,Brash Buddies 1,,"Bullfango Pelt [Bullfango]
+Rhenoplos Shell [Rhenoplos]
+Sharp Fang
+Brute Bone"
+143617,Secta Nulo 1,,"Shiny Beetle
+Bnahabra Wing [Bnahabra]
+Altaroth Jaw [Altaroth]
+Monster Fluid"
+143873,Secta Nulo (G) 1,,"Bnahabra Wing [Bnahabra]
+Paralysis Sac
+Lightcrystal"
+144129,Secta Nulo (R) 1,,"Bnahabra Wing [Bnahabra]
+Flame Sac
+Lightcrystal"
+148225,Rusted Sword 1,,
+148481,Eternal Strife 1,,"Earth Crystal
+Lava Nugget
+Flame Sac"
+148993,Worn Sword 1,,
+149249,Divine Exodus 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+149761,Tusk Gear 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+150017,Black Sword 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+150273,Yukumo Cutter 1,,"Yukumo Wood
+Iron Ore"
+150529,Yukumo Pure Cutter 1,,"Yukumo Ticket
+Mizutsune Claw [Mizutsune]
+Yukumo Wood"
+150785,Moofah Sword 1,,"Bherna Ticket
+Moofah Horn [Moofah]
+Moofah Fleeceball
+Monster Bone M"
+151041,Hero's Blade 1,,
+151297,Dragonseal Sword 1,,
+151553,Kitchen Knife 1,,"Bistro Ticket
+Lightcrystal
+Iron Ore
+Bitterbug"
+151809,Chak Chak 1,,"Weapon Codex
+Bealite Ore
+Lightcrystal
+Vivid Fluid [Nibelsnarf]"
+152065,Floral Seif 1,,"Wycademy Ticket
+Sap Plant
+Bubblefoam [Mizutsune]
+Dragonite Ore"
+152321,Ninja Sword 1,,"Bronze Guild Ticket
+Daora Webbing [Kushala Daora]
+Chameleos Webbing [Chameleos]
+Teostra Webbing [Teostra]"
+152577,Shining Wyvern Blade 1,,
+152833,Catspaw 1,,"Lightcrystal
+Pawprint Stamp
+Barrel Lid"
+153089,Melynx Tool 1,,"Hyper Hunter I
+Pawprint Stamp
+Gastronome Tuna
+Nargacuga Blackfur [Nargacuga]"
+153345,Eldora Closure 1,,"Extravagant Artifact
+Lightcrystal
+Black Pearl
+Dragonite Ore"
+153601,Black Belt Sword 1,,"Blackbelt Ticket
+Khezu Coin
+Rathalos Coin"
+156161,Inazuma Works 1,,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Kirin Thundertail [Kirin]
+Electroscale [Astalos]"
+156417,Levindicator 1,,"CoroCoro Ticket
+Uragaan Carapace [Uragaan]
+Volvidon Carapace [Volvidon]
+Thunder Sac [Khezu]"
+156929,Hero's Sword 1,,"Triforce
+Gammoth Fang+ [Gammoth]
+Malfestio Goldfeather [Malfestio]
+Brach Ebonshell+ [Brachydios]"
+158721,Razor Render 1,,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Hermitaur Hardclaw [Daimyo Hermitaur]"
+160257,Flame Syphos 1,,"Gravios Carapace [Gravios]
+Gravios Scalp
+Solar Bursa [Glavenus]"
+162049,Platinum Dawn 1,,"G.Rathian Cortex [Gold Rathian]
+S.Rath Cortex [Silver Rathalos]
+HR Rath (Rare) Materials"
+162305,Binding Blade 1,,"Eltalite Ore
+Avian Stoutbone
+Allfire Stone
+G Ore Materials"
+162561,Drome Rush Dagger 1,,"Velocidrome Talon [Velocidrome]
+Iodrome Piel [Iodrome]
+Avian Stoutbone"
+162817,Research Sword 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Rare Scarab"
+163073,Wycademy Dagger 1,,"Wycademy Ticket G
+Malfestio Grandwing [Malfestio]
+Ultimas Crystal
+Potent Hyper Extract"
+163329,Elder Sword 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+163585,Xin's Trust 1,,"Flying Xin Mark
+Hyper Hermitaur Cortex
+Ceanataur Cortex [Shogun Ceanataur]"
+163841,Falchion 1,,"Sealing Shield
+Hyper S.Rath. Scale
+Hyper Fang
+Radiant Mucus+ [Nakarkos]"
+196865,Petrified Hammer 1,,"Iron Ore
+Earth Crystal"
+197121,Obsidian Hammer 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+197377,Fist of Fury 1,,"Carbalite Ore
+Dragonite Ore
+Brach Hammer [Brachydios]
+Elder Dragon Blood"
+197889,Great Nova 1,,"Lightcrystal
+Dragonite Ore
+Thunderbug"
+198657,Iron Hammer 1,,Iron Ore
+198913,Devil Masher 1,,"Uragaan Shell [Uragaan]
+Omniplegia Sac
+Gendrome Head [Gendrome]"
+199169,Anvil Hammer 1,,"Uragaan Scute [Uragaan]
+Dragonite Ore
+Iron Ore"
+200193,War Hammer 1,,"Bealite Ore
+Iron Ore
+Brute Bone"
+200449,War Stamp 1,,"Hyper Hunter I
+Carbalite Ore
+Disc Stone"
+200705,Iron Striker 1,,"Carbalite Ore
+Bealite Ore
+Iron Ore
+Bullfango Pelt+ [Bullfango]"
+201473,Gun Hammer 1,,"Firestone
+Dragonite Ore
+Rath Marrow"
+201729,Shot Crusher 1,,"Hyper Hunter I
+Fucium Ore
+Scalding Pleura+ [Agnaktor]
+Monster Broth"
+201985,Spiked Hammer 1,,"Iron Ore
+Needleberry
+Shiny Beetle"
+202753,Frozen Core 1,,"Lightcrystal
+Machalite Ore
+Ice Crystal"
+203009,Bone Hammer 1,,"Monster Bone S
+Iron Ore"
+203265,Lobstrosity 1,,"Small Lobstershell
+Hermitaur Claw [Daimyo Hermitaur]
+Iodrome Hide [Iodrome]
+Machalite Ore"
+204289,Cyclo-Hammer 1,,"Monster Bone L
+Machalite Ore
+Sharp Claw"
+204801,Seditious Hammer 1,,"Hyper Hunter II
+Seregios Slavescale [Seregios]
+Monster Hardbone"
+205057,Skullcrusher 1,,"Hercudrome
+Monster Bone M
+Wyvern Fang
+Uroktor Scale [Uroktor]"
+205569,Conehead Hammer 1,,"Blangonga Pelt [Blangonga]
+Blango Pelt [Blango]
+Iron Ore
+Unknown Skull"
+205825,Ceanataur Head Axe 1,,"Ceanataur Shell
+Ceanataur Leg [Shogun Ceanataur]
+Bealite Ore"
+206081,Bag o' Horrors 1,,"Flabby Hide [Khezu]
+Machalite Ore
+Thunderbug"
+206337,Bone Bludgeon 1,,"Jumbo Bone
+Mystery Bone
+Iron Ore"
+207617,Revenge Hammer 1,,"Konchu Shell [Konchu]
+Bealite Ore
+Monster Bone M"
+207873,Feather Hammer 1,,"Maccao Tailspike [Great Maccao]
+Maccao Scale
+Monster Bone M"
+208129,Bull Head Hammer 1,,"Bullfango Pelt [Bullfango]
+Bullfango Head
+Brute Bone
+Carpenterbug"
+208897,Dragonhead Hammer 1,,"Wyvern Scalp [Shogun Ceanataur]
+Monster Bone L
+Unknown Skull
+Shiny Beetle"
+209153,Red Bludgeon 1,,"Rathalos Shell [Rathalos]
+Rath Marrow
+Firestone"
+209921,Kut-Ku Pick 1,,"Giant Beak [Yian Kut-Ku]
+Kut-Ku Scale
+Monster Bone L"
+214529,Rusted Hammer 1,,
+214785,Breath Core Hammer 1,,"Earth Crystal
+Lava Nugget
+Flame Sac"
+215297,Worn Hammer 1,,
+215553,Pulsating Core 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+216065,Gaiarch 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+216321,Black Hammer 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+216577,Yukumo Mallet 1,,"Yukumo Wood
+Iron Ore"
+216833,Yukumo Purehammer 1,,"Yukumo Ticket
+Bubblefoam [Mizutsune]
+Yukumo Wood"
+217089,Airship Hammer 1,,"Airship Ticket
+Firestone
+Moofah Fleeceball
+Rath Marrow"
+217345,Teddybear 1,,"Doll Parts
+Sleep Herb
+Moofah Fleeceball
+Black Pearl"
+217601,Enormous Ham 1,,"Kingmeat
+Stoutbone
+Well-done Steak"
+217857,Cactus Creamer 1,,"King Cactus
+Jumbo Bone
+Poison Sac"
+218113,Black Frying Pan 1,,"Bistro Ticket
+Dragonite Ore
+Iron Ore
+Carpenterbug"
+218369,One Star Silver Pot 1,,"Hyper Hunter I
+Bistro Ticket
+Novacrystal
+Coma Sac"
+218625,Pumpking 1,,"Bumblepumpkin
+Ivy
+Hercudrome"
+218881,Anchor Hammer 1,,
+219137,Portsmark 1,,"Bronze Guild Ticket
+Dragonbone Relic
+Lagiacrus Hide+ [Lagiacrus]
+Brach Shell [Brachydios]"
+219393,Arluq Whammer 1,,"Bherna Ticket
+Firecell Stone
+Gore Magala Feeler+ [Gore Magala]
+Rubbery Hide+"
+219649,Pride of Harth 1,,"Bherna Ticket
+Iron Ore
+Machalite Ore
+Pure Dragon Blood"
+219905,White Kitty Stamp 1,,"Lightcrystal
+Pawprint Stamp
+Paralysis Sac"
+220161,Black Kitty Stamp 1,,"Hyper Hunter I
+Nargacuga Blackfur [Nargacuga]
+Omniplegia Sac
+Barrel Lid"
+220417,Egg Hammer 1,,"Accolade
+Yukumo Ticket
+Gargwa Feather [Gargwa]
+Monster Bone+"
+220673,Graceful Death 1,,"Sinister Cloth
+Dracophage Bug
+Monster Bone+
+Striped Skin [Remobra]"
+220929,Black Belt Hammer 1,,"Blackbelt Ticket
+Najarala Coin
+Rathalos Coin"
+221185,Expert Hammer 1,,"Commendation G
+S.Rathalos Scale+ [Silver Rathalos]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
+223745,Demon Visage 1,,"Arena Ticket
+Hyper Gammoth Fur
+Rajang Blackfur [Rajang]
+Tetsucabra Tusks+ [Tetsucabra]"
+226817,Gigaton Hammer 1,,"Basarios Carapace [Basarios]
+Carbalite Ore
+Lightcrystal"
+227329,Shell Hammer 1,,"Gravios Carapace [Gravios]
+Carbalite Ore
+Fucium Ore"
+228609,Jail Hammer 1,,"Carbalite Ore
+Thunderbug
+Rubbery Hide+
+Volvidon Carapace [Volvidon]"
+229121,Blacksmith 1,,"Eltalite Ore
+Carbalite Ore
+Emperor Hopper
+G Ore Materials"
+229377,Memento Volare 1,,"Airship Ticket G
+Prized Pelt
+Eltalite Ore"
+229633,Research Hammer 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Bealite Ore"
+229889,Crystal Hammer 1,,"Lightcrystal
+Machalite Ore
+Dragonite Ore
+Kirin Thundertail [Kirin]"
+230145,Elder Hammer 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+262401,Petrified Lance 1,,"Iron Ore
+Earth Crystal"
+262657,Obsidian Lance 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+264705,Iron Lance 1,,Iron Ore
+264961,Squire Spear 1,,"Carbalite Ore
+Iron Ore
+Velociprey Hide [Velociprey]"
+265217,Estoc 1,,"Dragonite Ore
+Black Pearl
+Ice Crystal"
+265473,Paladin Lance 1,,"Dragonite Ore
+Bealite Ore
+Iron Ore"
+265729,Babel Spear 1,,"Hyper Hunter I
+Carbalite Ore
+Uragaan Shell [Uragaan]"
+265985,Growling Wyvern 1,,"Carbalite Ore
+Machalite Ore
+Uragaan Shell [Uragaan]"
+266753,Thane Lance 1,,"Iron Ore
+Earth Crystal
+Jaggi Scale"
+267521,Steel Knight's Pike 1,,"Dragonite Ore
+Machalite Ore
+Iron Ore"
+268033,Drill Lance 1,,"Machalite Ore
+Earth Crystal
+Electro Sac [Khezu]
+Monster Fluid"
+268545,Spiked Spear 1,,"Monster Bone M
+Iron Ore
+Carpenterbug"
+268801,Aqua Spear 1,,"Plesioth Fin+ [Plesioth]
+Cephalos Fin+
+Carbalite Ore"
+269057,Rockabye Spear 1,,"Plesioth Webbing [Plesioth]
+Cephalos Scale+
+Coma Sac"
+269825,Bone Lance 1,,"Monster Bone S
+Mystery Bone"
+270081,Longhorn Spear 1,,"Monster Bone L
+Jumbo Bone
+Shiny Beetle"
+270337,Giant Tusk 1,,"Hyper Hunter I
+Monster Hardbone
+Stoutbone
+Bullfango Pelt+ [Bullfango]"
+270849,Seditious Lance 1,,"Hyper Hunter II
+Seregios Scraper [Seregios]
+Hyper Monster Bone"
+271105,Barbarian Tusk 1,,"Monster Bone+
+Machalite Ore
+Monster Fluid"
+271361,Barbaroi Tusk 1,,"Monster Keenbone
+Ioprey Hide+ [Ioprey]
+Mega Demondrug
+LR Ioprey Materials"
+271617,Bone Claw Lance 1,,"Hermitaur Claw [Daimyo Hermitaur]
+Hermitaur Shell
+Sharp Claw"
+271873,Ceanataur Stinger 1,,"Ceanataur Leg [Shogun Ceanataur]
+Ceanataur Shell
+Small Ceanataur Shell [Ceanataur]"
+272385,Ploshasta 1,,"Rhenoplos Shell [Rhenoplos]
+Monster Bone S
+Bird Wyvern Fang"
+273921,Wild Boar Lance 1,,"Bullfango Pelt [Bullfango]
+Brute Bone
+Anteka Antler [Anteka]
+Carpenterbug"
+279809,Rusted Lance 1,,
+280065,Undertaker 1,,"Earth Crystal
+Lava Nugget
+Flame Sac"
+280577,Worn Spear 1,,
+280833,Skyscraper 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+281345,Blue Crater 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+281601,Black Lance 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+281857,Yukumo Lance 1,,"Yukumo Wood
+Iron Ore"
+282113,Yukumo Purelance 1,,"Yukumo Ticket
+Mizutsune Tail [Mizutsune]
+Yukumo Wood"
+282369,Fondue Lance 1,,"Bistro Ticket
+Firestone
+Paddock Oil"
+282625,Blimp Lance 1,,"Airship Ticket
+Firestone
+Moofah Fleeceball
+Rath Marrow"
+282881,Frontrider Lance 1,,"Yukumo Ticket
+Yukumo Wood
+Bealite Ore
+Hydro Hide [Ludroth]"
+283137,Native Spear 1,,"Kokoto Ticket
+Unknown Skull
+Jumbo Bone
+Iodrome Head [Iodrome]"
+283393,Vacuum Striker 1,,"Kokoto Ticket
+Pale Bone [Khezu]
+Rubbery Hide [Gypceros]"
+283649,Fragrance 1,,"Dosbiscus
+Hercudrome
+Iron Ore
+Sap Plant"
+283905,Sharq Byte 1,,"Sharqskin
+Lagiacrus Hide [Lagiacrus]
+Cephalos Fin
+Whetfish"
+284161,Plegis Needle 1,,"Bindshroom
+Hercudrome
+Bealite Ore
+Parashroom"
+284417,Guardian Lance 1,,"Kokoto Ticket
+Fucium Ore
+Rejuvenated Beak [Yian Garuga]
+Elder Dragon Blood"
+284673,Alacrantze 1,,"Toxic Kumori
+Monster Bone+
+Poison Sac"
+284929,Black Belt Lance 1,,"Blackbelt Ticket
+Najarala Coin
+Rathalos Coin"
+285185,Expert Lance 1,,"Commendation G
+S.Rathalos Scale+ [Silver Rathalos]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
+287489,Brain Fox 1,,"Famitsu Ticket
+Mizutsune Scale+ [Mizutsune]
+Rath Medulla
+Monster Keenbone"
+291329,Gravios Spear 1,,"Gravios Scalp
+Gravios Carapace [Gravios]
+Toxin Sac"
+292353,Spark Plug 1,,"Carbalite Ore
+Seltas Horn+ [Seltas]
+Fulgurbug [Zinogre]
+Thunderbug"
+292609,Shock Lance 1,,"Carbalite Ore
+Thunderbug
+Rubbery Hide+"
+292865,Dark 1,,"Hornetaur Razorwing [Hornetaur]
+Flutterfly
+Nerscylla Scishorn [Nerscylla]"
+293121,Noble Fragrance 1,,"Tough Dragonvine
+Dosbiscus
+Eltalite Ore
+Emperor Hopper"
+293377,Memento Baroni 1,,"Airship Ticket G
+Prized Pelt
+Eltalite Ore"
+293633,Research Lance 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Paddock Oil+"
+294145,Gorgonzolance 1,,"Bistro Ticket G
+Pawprint Ticket
+Palico Ticket G"
+294401,Elder Lance 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+327937,Petrified Cannon 1,,"Iron Ore
+Earth Crystal
+Stone"
+328449,Obsidian Cannon 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+328961,Crab Buster 1,,"Hermitaur Claw [Daimyo Hermitaur]
+Hermitaur Shell
+Sm. Hermitaur Shell [Hermitaur]
+Cephalos Fang [Cephadrome]"
+329985,Anteka Burst 1,,"Anteka Antler [Anteka]
+Warm Pelt
+Yukumo Wood"
+330241,Rapidcaster 1,,"Kelbi Horn [Kelbi]
+High-quality Pelt
+Bulldrome Hide+ [Bulldrome]
+Stoutbone"
+331009,Sand Diver 1,,"Cephalos Fin
+Cephalos Scale
+Iron Ore"
+331521,Arbalest 1,,"Iron Ore
+Monster Bone S"
+332033,Yian Kut-Ku Cannon 1,,"Kut-Ku Shell [Yian Kut-Ku]
+Kut-Ku Scale
+Flabby Hide [Khezu]
+Monster Bone M"
+332801,Tankmage 1,,"Rubbery Hide [Gypceros]
+Earth Crystal
+Monster Bone M"
+333569,Injector Cannon 1,,"Vespoid Wing [Vespoid]
+Hornetaur Shell [Hornetaur]
+Disc Stone
+Brute Bone"
+334081,Meteor Bazooka 1,,"Disc Stone
+Machalite Ore"
+334337,Meteor Buster 1,,"Firecell Stone
+Carbalite Ore
+Dragonite Ore
+King Scarab"
+334593,Striker's Bowgun 1,,"Novacrystal
+Machalite Ore
+Firestone
+Paddock Oil+"
+335617,Bone Shooter 1,,"Monster Bone S
+Iron Ore"
+337153,Marino Burst 1,,"Rhenoplos Shell [Rhenoplos]
+Sharp Fang
+Machalite Ore"
+338177,Shooting Star 1,,"Firecell Stone
+Novacrystal
+Monster Broth
+Uroktor Scale+ [Uroktor]"
+342785,Moofire Cannon 1,,"Bherna Ticket
+Moofah Horn [Moofah]
+Moofah Fleeceball
+Machalite Ore"
+343041,Hero Blaster 1,,"Kokoto Ticket
+Dragonbone Relic
+Firecell Stone
+Elder Dragon Blood"
+343297,Black Cannon 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+343553,Yukumo Bowgun 1,,"Yukumo Wood
+Iron Ore"
+343809,Yukumo Puregun 1,,"Yukumo Ticket
+Bubblefoam [Mizutsune]
+Yukumo Wood"
+344065,Ladybug Cannon 1,,"Great Ladybug
+Rare Scarab
+Stoutbone
+Monster Broth"
+344321,Carrozza Bazooka 1,,"Bumblepumpkin
+Yukumo Hardwood
+Carbalite Ore
+Ivy"
+344577,"Aquamatic Needler"" 1""",,"Bowgun Codex
+Dragonite Ore
+Lightcrystal
+Gunpowder"
+344833,Felyne Bowgun 1,,"Giant Acorn
+Large Barrel
+Machalite Ore
+Flame Sac"
+345089,Lunastra's Zeal 1,,"Broken Statue
+Dragonite Ore
+Earth Crystal
+Rath Marrow"
+348161,Pirate Cannon J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Firecell Stone
+Wyvern Gem"
+352257,Gravios Howl 1,,"Gravios Carapace [Gravios]
+Monster Hardbone
+Inferno Sac"
+354049,Research Cannon 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Lightcrystal"
+354305,Cannonissimo 1,,"Pub Ticket
+Nightcloak Plume [Nightcloak Malfestio]
+Dreadqueen Shard [Dreadqueen Rathian]"
+354561,Arbahefty 1,,"Splendid Beak [Yian Kut-Ku]
+Pearl Hide [Khezu]
+Rath Medulla
+Gravios Wing [Gravios]"
+354817,Magnificent El Dora Gun 1,,"Opulent Artifact
+Agnaktor Scale [Agnaktor]
+Solar Bursa [Glavenus]
+Lava Nugget"
+355073,Elder Cannon 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+459009,Petrified Shooter 1,,"Iron Ore
+Earth Crystal
+Stone"
+459777,Obsidian Shooter 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+460801,Blossomayhem 1,,"S.Rathalos Carapace [Silver Rathalos]
+G.Rathian Carapace [Gold Rathian]
+Rath Marrow"
+462593,Hunter's Rifle 1,,"Iron Ore
+Monster Bone S"
+464129,Scale Tornado 1,,"Uroktor Scale [Uroktor]
+Paddock Oil
+Iron Ore"
+464385,Khezu Syringe 1,,"Flabby Hide [Khezu]
+Machalite Ore
+Thunderbug"
+464897,Shotgun (White) 1,,"Giaprey Scale [Giaprey]
+Bird Wyvern Fang
+Machalite Ore"
+466177,Cross Bowgun 1,,"Monster Bone S
+Iron Ore"
+466433,Desert Storm 1,,"Cephalos Fin+
+Cephalos Scale+
+Monster Bone+"
+466945,Yakt Shooter 1,,"Monster Bone+
+Dragonite Ore
+Monster Fluid
+Hercudrome"
+468993,Striped Shell 1,,"Sm. Hermitaur Shell [Hermitaur]
+Brute Bone
+Iron Ore"
+469249,Lobster Gun 1,,"Commendation
+Small Lobstershell
+Hermitaur Claw [Daimyo Hermitaur]
+Iron Ore"
+469761,Demon's Isle 1,,
+470017,God's Isle 1,,
+474881,Veiled Bell 1,,"Bherna Ticket
+Dragonite Ore
+Yukumo Wood"
+475137,Airship Gun 1,,"Airship Ticket
+Firestone
+Uragaan Scute [Uragaan]
+Rath Marrow"
+475393,Black Parasol 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+475905,Yukumo Light Bowgun 1,,"Yukumo Wood
+Iron Ore"
+476161,Yukumo Pureshot 1,,"Yukumo Ticket
+Yukumo Wood
+Carbalite Ore
+Mizutsune Claw [Mizutsune]"
+476417,Gourd Shot 1,,"Bronze Guild Ticket
+Shiny Beetle
+Yukumo Hardwood
+Carbalite Ore"
+476673,Fiossidare 1,,"Wycademy Ticket
+Yukumo Wood
+Lava Nugget
+Fire Herb"
+476929,Springnight Shot 1,,"Springnight Carp
+Firestone
+Cephalos Fin
+Pin Tuna"
+477185,Beast Sniper 1,,"Great Hornfly
+Lava Nugget
+Hercudrome
+Dragonfell Berry"
+477441,Felyne Ragdoll 1,,"Palico Ticket
+Lightcrystal
+Blangonga Pelt [Blangonga]
+Flame Sac"
+477697,Melynx Ragdoll 1,,"Palico Ticket
+Lightcrystal
+Nargacuga Blackfur [Nargacuga]
+Flame Sac"
+477953,Kettleblower 1,,"Felyne Kettle
+Pawprint Stamp
+Poison Sac
+Paralysis Sac"
+478209,Eldra Musket 1,,"Extravagant Artifact
+Lightcrystal
+Black Pearl
+Dragonite Ore"
+478465,Black Belt Bowgun 1,,"Blackbelt Ticket
+Khezu Coin
+Najarala Coin"
+483841,Grenade Launcher 1,,"Basarios Wing [Basarios]
+Carbalite Ore
+Machalite Ore"
+484097,Titan Launcher 1,,"Gravios Carapace [Gravios]
+Monster Keenbone
+Carbalite Ore"
+485633,Memento Barbas 1,,"Airship Ticket G
+Velocidrome Piel [Velocidrome]
+Conflagrant Sac
+Firecell Stone"
+485889,Research Shooter 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Fulgurbug [Zinogre]"
+486401,Elder Shooter 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+524545,Petrified Saber 1,,"Iron Ore
+Earth Crystal"
+524801,Obsidian Saber 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+525313,Guardian Sword 1,,"Dragonite Ore
+Lightcrystal
+Machalite Ore"
+525569,Aqua Guardian 1,,"Hyper Hunter I
+Novacrystal
+Torrent Sac"
+525825,Chainslaughter 1,,"Carbalite Ore
+Lightcrystal
+Thunderbug"
+526593,Iron Katana 1,,Iron Ore
+527105,Eager Cleaver 1,,"Machalite Ore
+Earth Crystal
+Electro Sac [Khezu]"
+527361,Wailing Ghost 1,,"Hyper Hunter I
+Hyper Electro Sac
+Tigrex Scale [Tigrex]"
+528129,Rimeblossom 1,,"Lightcrystal
+Iron Ore
+Ice Crystal"
+528385,Yuki Ichimonji 1,,"Hyper Hunter I
+Lagombi Pelt+ [Lagombi]
+Stoutbone
+Carbalite Ore"
+528897,Toad Abetter 1,,"Hyper Hunter I
+Tetsucabra Scale+ [Tetsucabra]
+Paddock Oil+"
+529153,Plume Sword 1,,"Maccao Hide [Maccao]
+Iron Ore"
+529921,Seditious Edge 1,,"Hyper Hunter II
+Seregios Breacher [Seregios]
+Hyper Claw"
+530177,Serrated Jaw 1,,"Monster Bone S
+Iron Ore"
+530689,Rusty Claymore 1,,"Lightcrystal
+Rathalos Shell [Rathalos]
+Daora Shell [Kushala Daora]"
+530945,Canine Katana 1,,"Jaggi Scale+
+Avian Finebone
+Machalite Ore"
+531201,"Bone Katana Wolf"" 1""",,"Velociprey Hide [Velociprey]
+Machalite Ore
+Monster Bone S"
+532481,"Wyvern Blade Verde"" 1""",,"Rathian Scale [Rathian]
+Rathian Webbing
+Poison Sac"
+532737,"Wyvern Blade Flame"" 1""",,"Hyper Hunter I
+Rathalos Carapace [Rathalos]
+Rathian Carapace [Rathian]
+Inferno Sac"
+534273,Bone 1,,Monster Bone S
+534785,Bicurviscera 1,,"Hyper Hunter I
+Kecha Ear+ [Kecha Wacha]
+Hyper Claw"
+535041,Blango Destroyer 1,,"Blango Pelt [Blango]
+Sharp Claw
+Iron Ore"
+537089,Anteka Blade 1,,"Anteka Antler [Anteka]
+Warm Pelt
+Brute Bone"
+537345,Dark Scythe 1,,"Jumbo Bone
+Bulldrome Tusk [Bulldrome]
+Whetfish
+Monster Fluid"
+537601,Scythe of Menace 1,,"Rathian Shell [Rathian]
+Poison Sac
+Machalite Ore"
+538113,Crab Cutter 1,,"Hermitaur Claw [Daimyo Hermitaur]
+Sm. Hermitaur Shell [Hermitaur]
+Jumbo Bone"
+538625,Shogun Cutter 1,,"Ceanataur Claw [Shogun Ceanataur]
+Ceanataur Shell
+Small Ceanataur Shell [Ceanataur]"
+538881,Shogun Splitter 1,,"Hyper Hunter I
+Hyper Claw
+Ceanataur Leg+ [Shogun Ceanataur]"
+542721,Worn Long Sword 1,,
+542977,Oblivion 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+543489,Windeater 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+543745,Black Scythe 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+544001,Yukumo Long Sword 1,,"Yukumo Wood
+Iron Ore"
+544257,Yukumo Puresword 1,,"Yukumo Ticket
+Mizutsune Claw [Mizutsune]
+Yukumo Wood"
+544513,Cheese Knife 1,,"Bistro Ticket
+Dragonite Ore
+Paddock Oil"
+544769,Moofah Staff 1,,"Bherna Ticket
+Moofah Horn [Moofah]
+Yukumo Wood
+Iron Ore"
+545025,Centenarian Dagger 1,,"Bronze Guild Ticket
+Rath Medulla
+Fire Dragon Claw [Teostra]
+Elder Dragon Blood"
+545281,Great Hornfly Saber 1,,"Great Hornfly
+Shiny Beetle
+Vespoid Wing [Vespoid]
+Lightcrystal"
+545537,Barbarian Blade 1,,
+545793,Hairtail's Hairblade 1,,"Blue Cutthroat
+Monster Bone+
+Whetfish
+Immature Sponge [Ludroth]"
+546049,Cawscythe 1,,"Sinister Cloth
+Dracophage Bug
+Monster Bone+
+Giant Beak [Yian Kut-Ku]"
+549121,Fox Select 1,,"Famitsu Ticket
+Mizutsune Purplefur+ [Mizutsune]
+Fucium Ore
+Mystery Slime [Brachydios]"
+549377,Light Works 1,,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Zinogre Shocker+ [Zinogre]
+Lightcrystal"
+549633,Pirate Sword J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Inferno Sac
+Wyvern Gem"
+550145,Wing of Judgment 1,,"Goddess's Embrace
+Pure Dragon Blood
+Daora Webbing [Kushala Daora]
+Teostra Webbing [Teostra]"
+550401,Fan Club Bamboo Rod 1,,"Fan Club Application
+Velocidrome Hide+ [Velocidrome]
+Great Maccao Hide+ [Great Maccao]
+Fucium Ore"
+555009,Notos 1,,"Meldspar Ore
+Carbalite Ore
+Emperor Hopper"
+555521,Research Saber 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Monster Broth"
+555777,Rushin' Blue 1,,"Bistro Ticket G
+Pawprint Ticket
+Palico Ticket G"
+556033,Elder Saber 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+556289,Urano Metria 1,,"Magic Realm Key
+Hyper Azurefeather+
+Azure Plume [Malfestio]"
+590081,Petrified Axe 1,,"Iron Ore
+Earth Crystal"
+590337,Obsidian Axe 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+592641,Iron Axe 1,,Iron Ore
+592897,Elite Switch Axe 1,,"Dragonite Ore
+Shiny Beetle
+Iron Ore"
+593409,Notched Tyrant 1,,"Hyper Hunter I
+Zamtrios Tailblade [Zamtrios]
+Sharqskin Scale [Zamite]
+Paddock Oil+"
+593665,General's Strongaxe 1,,"Carbalite Ore
+Dragonite Ore
+Firestone"
+594177,Seditious Axe 1,,"Hyper Hunter II
+Seregios Breacher [Seregios]
+Monster Hardbone"
+594945,The Shredder 1,,"Electro Sac [Khezu]
+Machalite Ore
+Bealite Ore
+Rubbery Hide [Gypceros]"
+595457,Scissor Axe 1,,"Hermitaur Shell
+Hermitaur Claw [Daimyo Hermitaur]
+Iron Ore"
+595713,Exoskeleton Axe 1,,"Hornetaur Shell [Hornetaur]
+Vespoid Wing [Vespoid]
+Machalite Ore
+Carpenterbug"
+595969,Bone Axe 1,,"Monster Bone S
+Monster Fluid"
+596481,Power Gasher 1,,"Firestone
+Monster Bone L
+Shiny Beetle"
+598529,Bruiser Axe 1,,"Iodrome Hide [Iodrome]
+Ioprey Scale [Ioprey]
+Jaggi Hide
+Iron Ore"
+598785,Wild Axe 1,,"Bullfango Pelt [Bullfango]
+Brute Bone
+Iron Ore
+Carpenterbug"
+605185,Worn Switch Axe 1,,
+605441,Mundus Altus 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+605953,Rough Edge 1,,"Lightcrystal
+Bealite Ore
+Monster Fluid"
+606209,Black Axe 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+606465,Yukumo Switch Axe 1,,"Yukumo Wood
+Iron Ore"
+606721,Yukumo Pure Axe 1,,"Yukumo Ticket
+Mizutsune Tail [Mizutsune]
+Yukumo Wood"
+606977,Gouda Axe 1,,"Bistro Ticket
+Dragonite Ore
+Paddock Oil"
+607233,Wycademy Axe 1,,"Wycademy Ticket
+Dragonite Ore
+Malfestio Tailfeather [Malfestio]
+Uragaan Scute [Uragaan]"
+607489,Arctic Ledge 1,,"Pokke Ticket
+Anteka Antler [Anteka]
+Monster Bone L"
+607745,Grim Cat 1,,"Palico Ticket
+Dragonite Ore
+Shiny Beetle
+Parashroom"
+608001,Infernal Axe 1,,"Sinister Cloth
+Dracophage Bug
+Monster Bone+
+Giant Beak [Yian Kut-Ku]"
+608257,Black Belt Axe 1,,"Blackbelt Ticket
+Najarala Coin
+Rathalos Coin"
+611329,Switch Fox 1,,"Famitsu Ticket
+Mizutsune Tail [Mizutsune]
+Large Snowclod [Gammoth]
+Kecha Ear+ [Kecha Wacha]"
+611585,Raikou Works 1,,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Electroscale+ [Astalos]
+Shell Shocker [Lagiacrus]"
+611841,Pirate Axe J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Firecell Stone
+Wyvern Gem"
+616705,Research Axe 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Dragonite Ore"
+617217,Gorgonzola Axe 1,,"Bistro Ticket G
+Pawprint Ticket
+Palico Ticket G"
+617473,Elder Axe 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+655617,Petrified Gunlance 1,,"Iron Ore
+Earth Crystal"
+655873,Obsidian Gunlance 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+656129,Hard Hitter 1,,"Rubbery Hide [Gypceros]
+Poison Sac
+Lightcrystal"
+657153,Lagomberastrophe 1,,"Hyper Hunter I
+Lagombi Frozenclaw [Lagombi]
+Ice Crystal
+LR Lagombi Materials"
+658177,Blue Devil Uberlance 1,,"Hyper Hunter I
+Tetsucabra Tusks+ [Tetsucabra]
+Paddock Oil+"
+658689,Iron Gunlance 1,,"Iron Ore
+Nitroshroom"
+659713,Seditious Gunlance 1,,"Hyper Hunter II
+Seregios Slavescale [Seregios]
+Hyper Claw"
+659969,Striker's Gunlance 1,,"Dragonite Ore
+Firestone
+Machalite Ore
+Shiny Beetle"
+660225,General's Arbalance 1,,"Novacrystal
+Dragonite Ore
+Iron Ore
+Inferno Sac"
+661761,Ancient Gyrelance 1,,"Machalite Ore
+Flame Sac
+Electro Sac [Khezu]
+Rathalos Tail [Rathalos]"
+662273,Rogue Gunlance 1,,"Iron Ore
+Maccao Scale"
+662785,Genenam Lance 1,,"Gendrome Hide [Gendrome]
+Genprey Scale [Genprey]
+Paralysis Sac"
+663041,Bone Gunlance 1,,"Monster Bone S
+Iron Ore
+Popfish"
+664833,Golem Gunlance 1,,"Monster Bone L
+Shiny Beetle
+Flame Sac"
+665601,Hellsting 1,,"Blangonga Fang [Blangonga]
+Blango Pelt [Blango]
+Sharp Claw
+Ice Crystal"
+665857,Gerd Sting 1,,"Hyper Hunter I
+Blangonga Fang+ [Blangonga]
+Large Snowclod [Gammoth]"
+666113,Scissor Gunlance 1,,"Hermitaur Claw [Daimyo Hermitaur]
+Hermitaur Shell
+Flame Sac"
+666625,Fiore Nulo 1,,"Shiny Beetle
+Bnahabra Wing [Bnahabra]
+Iron Ore
+Nitroshroom"
+666881,Fiore Nulo (G) 1,,"Bnahabra Shell [Bnahabra]
+Paralysis Sac
+Lightcrystal"
+667137,Fiore Nulo (R) 1,,"Bnahabra Shell [Bnahabra]
+Flame Sac
+Lightcrystal"
+667393,Monsieur Gore 1,,"Seltas Horn+ [Seltas]
+Konchu Shell [Konchu]
+Torrent Sac"
+671489,Worn Gunlance 1,,
+671745,Obelisk 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+672257,Black Smoke Gunlance 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+672513,Yukumo Gunlance 1,,"Yukumo Wood
+Iron Ore"
+672769,Yukumo Puregunlance 1,,"Yukumo Ticket
+Bubblefoam [Mizutsune]
+Yukumo Wood"
+673025,Baa Baa Gunlance 1,,"Bherna Ticket
+Moofah Horn [Moofah]
+Moofah Fleeceball
+Monster Bone M"
+673281,Wycademy Gunlance 1,,"Wycademy Ticket
+Dragonite Ore
+Azurefeather [Malfestio]
+Lagiacrus Scale [Lagiacrus]"
+673537,Hero Gunlance 1,,"Kokoto Ticket
+Dragonbone Relic
+Firecell Stone
+Elder Dragon Blood"
+673793,Kamak Gunlance 1,,"Pokke Ticket
+Ice Crystal
+Anteka Antler [Anteka]
+Lightcrystal"
+674049,Felyoshka 1,,"Bronze Guild Ticket
+Pawprint Stamp
+Yukumo Hardwood
+Parashroom"
+674305,Bamboo Birdsbane 1,,"Footbath Ticket
+Yukumo Wood
+Fire Herb
+Hydro Hide [Ludroth]"
+674561,Cornpopper 1,,"Heftcorn
+Flame Sac
+Ivy"
+674817,Teostra Gunlance 1,,"Broken Statue
+Dragonite Ore
+Earth Crystal
+Rath Marrow"
+677889,Platinum Trophy 1,,"Famitsu Ticket
+Mizutsune Claw+ [Mizutsune]
+Rath Medulla
+Pure Scale [Shagaru Magala]"
+678145,Volt Works 1,,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Thunder Sac [Khezu]
+Kirin Thunderhorn [Kirin]"
+678401,Pirate Gunlance J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Inferno Sac
+Wyvern Gem"
+681985,Snow Gunlance 1,,"Giadrome Hide+ [Giadrome]
+Giaprey Scale+
+Earth Crystal
+Monster Bone S"
+683777,Eine Wahrheit 1,,"G.Rathian Shard [Gold Rathian]
+S.Rathalos Shard [Silver Rathalos]
+HR Rath (Rare) Materials"
+684033,Research Gunlance 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Inferno Sac"
+684289,Barbecue Gunlance 1,,"Strange Mask
+Privilege
+Hyper Flarescale
+Allfire Stone"
+684545,Elder Gunlance 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+721153,Petrified Bow 1,,"Iron Ore
+Earth Crystal"
+721409,Obsidian Bow 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+722177,Arko Nulo (W) 1,,"Lightcrystal
+Bnahabra Shell [Bnahabra]
+Monster Fluid
+Ice Crystal"
+722433,Sonic Bow 1,,"Electro Sac [Khezu]
+Vespoid Shell [Vespoid]
+Hornetaur Wing [Hornetaur]
+Shiny Beetle"
+723713,Daimyo's Warbow 1,,"Hermitaur Shell
+Cephalos Scale
+Sm. Hermitaur Shell [Hermitaur]"
+724225,Hunter's Stoutbow 1,,"Iron Ore
+Carpenterbug"
+724481,Yekla Arc 1,,"Elder Dragon Blood
+Dragonite Ore
+Machalite Ore"
+725249,Queen Blaster 1,,"Rathian Shell [Rathian]
+Rathian Webbing
+Iron Ore"
+727297,Crystalline Flower 1,,"Lightcrystal
+Machalite Ore
+Ice Crystal
+Shiny Beetle"
+728321,Hunter's Bow 1,,"Monster Bone S
+Iron Ore"
+728577,Kelbi Stingshot 1,,"High-quality Pelt
+Kelbi Horn [Kelbi]
+Rubbery Hide [Gypceros]
+Stoutbone"
+728833,Kut-Ku Stave 1,,"Kut-Ku Shell [Yian Kut-Ku]
+Kut-Ku Scale
+Shiny Beetle"
+729601,Blango Fur Bow 1,,"Blango Pelt [Blango]
+Sharp Claw
+Ice Crystal"
+730625,Worn Bow 1,,
+730881,Angelbein 1,,"Earth Crystal
+Hyper Extract
+Elder Dragon Blood"
+731393,Arca Raptora 1,,"Novacrystal
+Dragonite Ore
+Monster Broth"
+736257,Ivory Bow 1,,"Stargazer Flower
+Yukumo Wood
+Lava Nugget"
+736513,Onyx Bow 1,,"Dark Piece
+Dark Stone
+Pokke Ticket"
+736769,Yukumo Bow 1,,"Yukumo Wood
+Iron Ore"
+737025,Yukumo Purebow 1,,"Yukumo Ticket
+Mizutsune Tail [Mizutsune]
+Yukumo Wood"
+737281,Bamboo Taketori 1,,"Footbath Ticket
+Yukumo Wood
+Paddock Oil
+Sap Plant"
+737537,Seahorse Harp 1,,"Novacrystal
+Plesioth Scale+ [Plesioth]
+Lavasioth Scale+ [Lavasioth]"
+737793,Morsel Bowfish 1,,"Speartuna
+Paralysis Sac
+Earth Crystal
+Bitterbug"
+738049,Chaos Bow 1,,"Chaos Mushroom
+Poison Sac
+Paralysis Sac
+Sleep Sac [Malfestio]"
+738305,Felyne Bow 1,,"Palico Ticket
+Small Barrel
+Paralysis Sac
+Lightcrystal"
+738561,Arachnid Bow 1,,"Toxic Kumori
+Hercudrome
+Sleep Sac [Malfestio]"
+741633,Hero's Bow 1,,"Triforce
+Gammoth Fang+ [Gammoth]
+Malfestio Wing [Malfestio]
+Brach Scalp+ [Brachydios]"
+743425,Razor Striker 1,,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Ceanataur Hardclaw [Shogun Ceanataur]
+Monster Toughbone"
+746497,Wild Bow 1,,"Conga Pelt+ [Conga]
+Jumbo Bone
+Avian Finebone"
+747009,Research Bow 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Gargwa Feather [Gargwa]"
+747265,Kayamcha Slinger 1,,"Strange Mask
+Privilege
+Rubbery Finehide
+Lrg ElderDragon Bone"
+747777,Elder Bow 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+748033,Pirate Bow J 1,,"Buccaneer Ticket J
+Barroth Scalp [Barroth]
+Volvidon Carapace [Volvidon]
+Malfestio Goldfeather [Malfestio]"
+748289,Ancient Bow 1,,"Zelda Ticket
+Basarios Carapace [Basarios]
+Nerscylla Sharpclaw [Nerscylla]
+Yukumo Hardwood"
+786689,Petrified Daggers 1,,"Iron Ore
+Earth Crystal"
+786945,Obsidian Daggers 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+787201,Gelid Mind 1,,"Carbalite Ore
+Avian Finebone
+Machalite Ore
+Ice Crystal"
+787457,Twin Chainsaws 1,,"Machalite Ore
+Electro Sac [Khezu]
+Paddock Oil"
+787713,Roving Saws 1,,"Hyper Hunter I
+Thunder Sac [Khezu]
+Tetsucabra Tusks+ [Tetsucabra]
+Paddock Oil"
+788225,Insecticutters 1,,"Vespoid Wing [Vespoid]
+Hornetaur Wing [Hornetaur]
+Monster Fluid"
+788481,Insectiscythes 1,,"Hyper Hunter I
+Vespoid Carapace [Vespoid]
+Hornetaur Carapace [Hornetaur]
+Seltas Innerwing [Seltas]"
+788737,Twin Daggers 1,,"Iron Ore
+Earth Crystal"
+788993,Hurricane 1,,"Lightcrystal
+Earth Crystal
+Iron Ore"
+789249,Cleaving Jaws 1,,"Zamtrios Sawtooth [Zamtrios]
+Freezer Sac
+Torrent Sac"
+789505,Cool Cleavers 1,,"Hyper Hunter I
+Zamtrios Scale+ [Zamtrios]
+Sharqskin Scale [Zamite]
+Paddock Oil+"
+790529,Seditious Talons 1,,"Hyper Hunter II
+Seregios Carver [Seregios]
+Hyper Claw"
+790785,Dual Hatchets 1,,"Dragonite Ore
+Machalite Ore
+Shiny Beetle"
+791041,Tornado Hatchets 1,,"Hyper Hunter I
+Carbalite Ore
+Monster Broth"
+791809,Sworn Rapiers 1,,"Lightcrystal
+Dragonite Ore
+Shiny Beetle
+Black Pearl"
+792065,Dual Piercers 1,,"Great Maccao Scale [Great Maccao]
+Maccao Hide [Maccao]
+Iron Ore"
+793089,Bone Scythes 1,,"Monster Bone S
+Bird Wyvern Fang"
+793345,Twin Flames 1,,"Rathalos Scale [Rathalos]
+Rathian Scale [Rathian]
+Rath Wingtalon
+Monster Bone M"
+793601,Wyvern Strife 1,,"S.Rathalos Scale+ [Silver Rathalos]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
+793857,Talon Carvers 1,,"Tetsucabra Claw [Tetsucabra]
+Sharp Claw
+Monster Bone M"
+794113,Plesioth Cutlasses 1,,"Plesioth Scale+ [Plesioth]
+Cephalos Fin+
+Aqua Sac
+Whetfish"
+794369,Firestorm 1,,"Lavasioth Fin+ [Lavasioth]
+Plesioth Fin+ [Plesioth]
+Monster Keenbone"
+794625,Bladed Edges 1,,"Ceanataur Claw [Shogun Ceanataur]
+Ceanataur Shell
+Sharp Claw"
+794881,Bladed Pincers 1,,"Hyper Hunter I
+Hyper Claw
+Ceanataur Claw+ [Shogun Ceanataur]"
+795393,Crab Horns 1,,"Decayed Crimson Horn [Daimyo Hermitaur]
+Hermitaur Shell
+Carpenterbug"
+796161,Blazeblades 1,,"Firestone
+Monster Bone M
+Stinkhopper"
+797185,Maulagombs 1,,"Hyper Hunter I
+Lagombi Frozenclaw [Lagombi]
+Ice Crystal
+LR Lagombi Materials"
+797441,Dual Battleaxes 1,,"Rubbery Hide [Gypceros]
+Monster Bone M
+Poison Sac"
+797953,Snow Venom 1,,"Iodrome Hide [Iodrome]
+Giaprey Hide [Giaprey]
+Ioprey Fang [Ioprey]
+Bird Wyvern Fang"
+798209,Whirlitwists 1,,"Seltas Carapace [Seltas]
+Torrent Sac
+Monster Fluid"
+798465,Whirlitorture 1,,"Hyper Hunter I
+S.Queen Hardpectus [Seltas Queen]
+Seltas Carapace [Seltas]
+Fucium Ore"
+798721,Kut-Ku Pair 1,,"Kut-Ku Ear [Yian Kut-Ku]
+Kut-Ku Scale
+Brute Bone"
+801025,Twin Nails 1,,"Daora Claw [Kushala Daora]
+Fire Dragon Claw [Teostra]
+Elder Dragon Bone
+Commendation"
+803329,Worn Blades 1,,
+803585,Enduring Schism 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+803841,Hi Twin Daggers 1,,"Carbalite Ore
+Daora Webbing [Kushala Daora]
+Elder Dragon Blood"
+804097,Black Twin Daggers 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+804353,Yukumo Duo 1,,"Yukumo Wood
+Iron Ore"
+804609,Pure Yukumo Duo 1,,"Yukumo Ticket
+Bubblefoam [Mizutsune]
+Yukumo Wood"
+804865,Wycademy Blades 1,,"Wycademy Ticket
+Dragonite Ore
+Azurefeather [Malfestio]
+Lagiacrus Hide [Lagiacrus]"
+805121,Heroic Twins 1,,"Kokoto Ticket
+Commendation
+Elder Dragon Bone
+Elder Dragon Blood"
+805377,Guild Knight Sabers 1,,"Bronze Guild Ticket
+Novacrystal
+Rare Scarab
+Black Pearl"
+805633,Addled Beers 1,,"Kokoto Ticket
+Monster Bone+
+Sleep Herb"
+805889,Pokke Mittens 1,,"Pokke Ticket
+Lagombi Pelt [Lagombi]
+Iron Ore
+Ivy"
+806145,White Dango 1,,"Yukumo Riceflour
+Yukumo Ticket
+Yukumo Wood
+Honey"
+806401,Spicy Dango 1,,"Inferno Sac
+Yukumo Riceflour
+Fire Herb
+Yukumo Hardwood"
+806657,Tengu Dango 1,,"Toxin Sac
+Yukumo Riceflour
+Toadstool
+Yukumo Hardwood"
+806913,Glutton's Tools 1,,"Bistro Ticket
+Dragonite Ore
+Brute Bone"
+807169,Stewbry Stirfoils 1,,"Hyper Hunter I
+Bistro Ticket
+Agnaktor Tail [Agnaktor]
+Uragaan Jaw [Uragaan]"
+807425,Qornu Waga 1,,"Butterfly Beetle
+Hercudrome
+Dragonite Ore
+Bnahabra Wing [Bnahabra]"
+807681,Shaka Scarecrows 1,,"Pokke Ticket
+Monster Keenbone
+King Scarab
+Paralysis Sac"
+807937,Felyne and Melynx 1,,"Puppet Ticket
+Hyper Mizutsune Scale
+Hyper Narga Scale
+Omniplegia Sac"
+808193,Felyne Claws 1,,"Felyne Fur Ruby
+Pawprint Stamp
+Lagombi Frozenclaw [Lagombi]
+Glavenus Tailpiece [Glavenus]"
+808449,Daora Blades 1,,"Broken Statue
+Dragonite Ore
+Earth Crystal
+Rath Marrow"
+811009,Pirate Edges J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Firecell Stone
+Wyvern Gem"
+811521,Baki Combat Jutsu 1,,"Arena Ticket
+Hyper Gammoth Fur
+Brach Pounder [Brachydios]
+Sharp Claw"
+812033,Fan Club Fans 1,,"Fan Club Application
+Iodrome Hide+ [Iodrome]
+Great Maccao Hide+ [Great Maccao]
+Rare Scarab"
+815617,Pink Maracas 1,,"Conga Pelt+ [Conga]
+Congalala Pelt+ [Congalala]
+Stoutbone"
+815873,Giaprey Claws 1,,"Giaprey Scale+
+Giaprey Hide+
+Giadrome Claw+ [Giadrome]
+Monster Bone S"
+816897,Research Spikes 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Carbalite Ore"
+817153,Cercatore Talea 1,,"Pub Ticket
+Nightcloak Plume [Nightcloak Malfestio]
+Dreadqueen Shard [Dreadqueen Rathian]"
+817665,Luzio Saurel 1,,"Sunmarge Crystal
+Eltalite Ore
+Flood Sac"
+817921,Elder Daggers 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+818177,Jinrai Works 1,,"Dengeki Ticket XX
+Kirin Finehide [Kirin]
+Boltscale [Astalos]"
+818433,Light Sword Cypher 1,,"Option
+Gold Rajang Pelt [Rajang]
+Black Blood [Savage Deviljho]"
+852225,Petrified Horn 1,,"Iron Ore
+Earth Crystal"
+852481,Obsidian Horn 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+852993,Seditious Warhorn 1,,"Hyper Hunter II
+Seregios Carver [Seregios]
+Hyper Claw"
+853505,Kut-Ku's Song 1,,"Giant Beak [Yian Kut-Ku]
+Kut-Ku Scale
+Konchu Shell [Konchu]"
+854017,Larinoth Ocarina 1,,"Larinoth Hide [Larinoth]
+Monster Bone M
+Screamer Sac"
+854273,Iron Horn 1,,"Iron Ore
+Machalite Ore"
+855297,Metal Bagpipe 1,,"Black Pearl
+Machalite Ore
+Screamer Sac"
+855553,Heavy Bagpipe 1,,"Carbalite Ore
+Dragonite Ore
+Uragaan Jaw [Uragaan]"
+856833,Sonic Glass 1,,"Vespoid Wing [Vespoid]
+Hornetaur Wing [Hornetaur]
+Shiny Beetle"
+857089,Bone Horn 1,,"Monster Bone S
+Blue Mushroom"
+857345,Hunter's Horn 1,,"Monster Bone+
+Monster Fluid
+Shiny Beetle
+Dragon Toadstool"
+858625,Velociprey Balloon 1,,"Velociprey Scale
+Velociprey Hide [Velociprey]
+Screamer Sac"
+859649,Bull Grunt 1,,"Bullfango Pelt [Bullfango]
+Jumbo Bone
+Iron Ore"
+861697,Shell Castanet 1,,"Ceanataur Shell
+Hermitaur Shell
+Hermitaur Claw [Daimyo Hermitaur]
+Rubbery Hide [Gypceros]"
+862209,Vicello Nulo (G) 1,,"Bnahabra Wing [Bnahabra]
+Genprey Fang [Genprey]
+Lightcrystal"
+862465,Vicello Nulo (R) 1,,"Bnahabra Wing [Bnahabra]
+Fire Herb
+Lightcrystal"
+862721,Vicello Nulo (W) 1,,"Bnahabra Wing [Bnahabra]
+Snow Herb
+Lightcrystal"
+864257,Dodotto Horn 1,,"Blangonga Whisker [Blangonga]
+Blango Pelt [Blango]
+Sharp Claw
+Jumbo Bone"
+868097,Worn Horn 1,,
+868353,Avenir's Music Box 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+868865,Black Lute 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+869121,Yukumo Flute 1,,"Yukumo Wood
+Iron Ore"
+869377,Yukumo Pureflute 1,,"Yukumo Ticket
+Mizutsune Claw [Mizutsune]
+Yukumo Wood"
+869633,Bherna Chime 1,,"Bherna Ticket
+Lightcrystal
+Yukumo Wood
+Electro Sac [Khezu]"
+869889,Airship Horn 1,,"Airship Ticket
+Firestone
+Moofah Fleeceball
+Rath Marrow"
+870145,Handmade Frog 1,,"Tailed Frog
+Yukumo Wood
+Frog"
+870401,Magia Charm 1,,"Blossom Cricket
+Lightcrystal
+Hercudrome"
+870657,Swell Shell 1,,"Humspun Conch
+Vivid Fluid [Nibelsnarf]
+Earth Crystal
+Hercudrome"
+870913,Azumand Wind 1,,"Wycademy Ticket
+Sleep Herb
+Lava Nugget
+Ivy"
+871169,Poison Fungasax 1,,"Reststool
+Poison Sac
+Yukumo Wood
+Toadstool"
+871425,Cornupion 1,,"Toxic Kumori
+Monster Bone+
+Paralysis Sac"
+874241,Blitz Works 1,,"Dengeki Ticket
+Hyper Lagiacrus Hide
+Thunder Sac [Khezu]
+Zinogre Shocker [Zinogre]"
+874753,Megaphone 1,,"Fan Club Application
+Velocidrome Hide+ [Velocidrome]
+Gendrome Hide+ [Gendrome]
+Firecell Stone"
+876289,Razor Castanet 1,,"Rustrazor Hunter I
+Rustrazor Cortex [Rustrazor Ceanataur]
+Hermitaur Hardclaw [Daimyo Hermitaur]
+Rubbery Finehide"
+876545,Cloaked Lyre 1,,"Nightcloak Hunter I
+Nightcloak Plume [Nightcloak Malfestio]
+Malfestio Hrd Wingtalon [Malfestio]
+Eltalite Ore"
+877825,Basarios Rock 1,,"Basarios Carapace [Basarios]
+Machalite Ore
+Inferno Sac"
+878081,Volcanic Rock 1,,"Basarios Cortex [Basarios]
+Gravios Cortex [Gravios]
+Kut-Ku Cortex [Yian Kut-Ku]
+Machalite Ore"
+879361,War Drum 1,,"Conga Pelt+ [Conga]
+Jumbo Bone
+Brute Bone
+King Scarab"
+879617,Glass Royale 1,,"Vespoid Razorwing [Vespoid]
+Flutterfly
+Monster Essence
+Remobra Finehide [Remobra]"
+879873,Memento Mosca 1,,"Airship Ticket G
+Gargwa Finefeather [Gargwa]
+Eltalite Ore"
+880129,Research Horn 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Rare Scarab"
+880385,Elder Horn 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+917761,Petrified Rod 1,,"Iron Ore
+Earth Crystal"
+918017,Obsidian Rod 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+919297,Seditious Breaker 1,,"Hyper Hunter II
+Seregios Slavescale [Seregios]
+Hyper Claw"
+920065,Iron Bayonet 1,,"Iron Ore
+Carpenterbug"
+920321,Arcane Strike 1,,"Lightcrystal
+Rubbery Hide [Gypceros]
+Thunderbug"
+920577,Azure Bayonet 1,,"Velociprey Hide [Velociprey]
+Monster Bone S
+Iron Ore"
+920833,Heaven's Rath Glaive 1,,"S.Rathalos Scale+ [Silver Rathalos]
+G.Rathian Scale+ [Gold Rathian]
+Inferno Sac"
+921089,Crimson Fury 1,,"Iodrome Hide [Iodrome]
+Ioprey Scale [Ioprey]
+Poison Sac"
+921345,Sand Anchor 1,,"Cephalos Fin
+Cephalos Scale
+Monster Bone M"
+922113,Bone Staff 1,,"Monster Bone S
+Mystery Bone
+Iron Ore"
+922369,Sky-high Glaive 1,,"Hyper Hunter I
+Monster Keenbone
+Monster Broth
+Rhenoplos Carapace [Rhenoplos]"
+922881,Sturdy Glaive 1,,"Monster Bone+
+Machalite Ore
+Monster Fluid"
+923393,Deep Blue Glaive 1,,"Hyper Hunter I
+Monster Hardbone
+Cephalos Scale+
+Monster Broth"
+924417,Wardance Cudgel 1,,"Blango Pelt [Blango]
+Sharp Claw
+Brute Bone"
+929793,Black Rod 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+930049,Push Broom 1,,"Pokke Ticket
+Yukumo Wood
+Snowclod [Gammoth]
+Rathian Spike [Rathian]"
+930305,Magia Pitareen 1,,"Blossom Cricket
+Lightcrystal
+Hercudrome"
+930561,Garia Club 1,,"Pokke Ticket
+Monster Keenbone
+Inferno Sac
+Well-done Steak"
+930817,Acorn Rod 1,,"Spiky Acorn
+Dragonite Ore
+Small Barrel
+Yukumo Wood"
+931073,Deathport Staff 1,,"Sinister Cloth
+Dracophage Bug
+Monster Bone+
+Unknown Skull"
+932353,Conviction Glaive J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Firecell Stone
+Wyvern Gem"
+932609,Aladdin's Wand 1,,"Magi Coin
+Hyper G.Magala Scale
+Gore Magala Carapace [Gore Magala]
+Pure Scale [Shagaru Magala]"
+932865,Spear of the Beast 1,,"Ushio Coin
+Hyper Mizutsune Scale
+Elder Dragon Blood
+Gammoth Redfur [Gammoth]"
+936193,Graviafaren 1,,"Gravios Scalp
+Gravios Carapace [Gravios]
+Solar Bursa [Glavenus]"
+936705,Stealth Glaive 1,,"Nerscylla Carapace [Nerscylla]
+Spider Web"
+937473,Blossomajesty 1,,"G.Rathian Shard [Gold Rathian]
+S.Rathalos Shard [Silver Rathalos]
+HR Rath (Rare) Materials"
+937729,Boltbrute 1,,"Kirin Azure Peak [Kirin]
+Platinum Mane
+Rubbery Finehide"
+937985,Research Glaive 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Small Goldenfish"
+938241,Eldora Scepter 1,,"Opulent Artifact
+Fucium Ore
+Carbalite Ore
+Paddock Oil+"
+938497,Elder Rod 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
+983297,Petrified Strongarm 1,,"Iron Ore
+Earth Crystal"
+983553,Obsidian Strongarm 1,,"Bherna Ticket
+Commendation
+Dragonite Ore
+Shiny Beetle"
+984833,Poison Blade 1,,"Monster Bone L
+Gypceros Webbing [Gypceros]
+Poison Sac"
+985089,Elite Blade 1,,"Iron Ore
+Earth Crystal"
+985857,Blackguard 1,,"Dragonite Ore
+Firestone
+Lightcrystal
+Earth Crystal"
+986369,K. Captain's Blade 1,,"Hyper Hunter I
+Novacrystal
+Electroscale+ [Astalos]
+Wyvern Gem"
+987393,Rogue Axe 1,,"Disc Stone
+Maccao Scale
+Bird Wyvern Fang"
+988161,Bone Blade 1,,"Monster Bone S
+Iron Ore"
+988417,Poisonous Veil 1,,"Monster Bone+
+Poison Sac
+Machalite Ore
+Ioprey Fang [Ioprey]"
+990209,Desertfall 1,,"Cephalos Fin
+Cephalos Fang [Cephadrome]
+Iron Ore"
+990721,Seditious Blade 1,,"Hyper Hunter II
+Seregios Airblade [Seregios]
+Hyper Monster Bone"
+994049,Worn C. Blade 1,,
+994305,Chrono Gear 1,,"Earth Crystal
+Dragonbone Relic
+Elder Dragon Blood"
+994817,Black Strongarm 1,,"Dark Stone
+Dark Piece
+Pokke Ticket"
+995073,Pizzaxe 1,,"Bistro Ticket
+Dragonite Ore
+Paddock Oil"
+995329,Hero Strongarm 1,,"Kokoto Ticket
+Dragonbone Relic
+Firecell Stone
+Elder Dragon Blood"
+995585,Vaik Veil 1,,"Armored Bream
+Monster Bone+
+Machalite Ore
+Whetfish"
+995841,Mandible Blade 1,,"Butterfly Beetle
+Hercudrome
+Dragonite Ore
+Bnahabra Shell [Bnahabra]"
+996097,Cuddly Cat 1,,"Palico Ticket
+Dragonite Ore
+Shiny Beetle
+Genprey Fang [Genprey]"
+996353,Chameleos C. Blade 1,,"Broken Statue
+Dragonite Ore
+Earth Crystal
+Rath Marrow"
+997633,Charge Fox 1,,"Famitsu Ticket
+Mizutsune Claw+ [Mizutsune]
+Fucium Ore
+Solar Bursa [Glavenus]"
+997889,Legendary Anchor J 1,,"Pirate Ticket J
+Hyper Lavasioth Scale
+Inferno Sac
+Wyvern Gem"
+1002753,Blossomauler 1,,"G.Rathian Shard [Gold Rathian]
+S.Rathalos Shard [Silver Rathalos]
+HR Rath (Rare) Materials"
+1003009,Research Blade 1,,"Soaratorium Ticket
+Fucium Ore
+Hyper Hunter I
+Disc Stone"
+1003265,Chili Axe 1,,"Bistro Ticket G
+Pawprint Ticket
+Palico Ticket G"
+1003521,Elder Strongarm 1,,"Eltalite Ore
+Emperor Hopper
+Bherna Ticket
+Wycademy Ticket"
