@@ -138,14 +138,8 @@ Lightcrystal"
 S.Magala Scale [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Lightcrystal"
-1310898,Kushala Glare,Kushala Daora,"Daora Horn [Kushala Daora]
-Daora Shell [Kushala Daora]
-Dragonite Ore
-Hercudrome"
-1310899,Kushala Snarl,Kushala Daora,"Daora Horn [Kushala Daora]
-Daora Shell [Kushala Daora]
-Dragonite Ore
-Hercudrome"
+1310898,Kushala Glare,Kushala Daora,
+1310899,Kushala Snarl,Kushala Daora,
 1310900,Mizuha Cap,Chameleos,"Chameleos Hide [Chameleos]
 Chameleos Horn [Chameleos]
 Chameleos Webbing [Chameleos]
@@ -359,11 +353,11 @@ Rare Scarab"
 Gore Magala Scale+ [Gore Magala]
 Gore Magala Carapace [Gore Magala]
 Rare Scarab"
-1311192,EX Gore Helm,Gore Magala,"EX Gore Magala Ticket
+1311192,EX Gore Helm,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Feeler+ [Gore Magala]
 Gore Magala Scale [Gore Magala]
 S.Magala Prismwing+ [Shagaru Magala]"
-1311193,EX Gore Cap,Gore Magala,"EX Gore Magala Ticket
+1311193,EX Gore Cap,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Feeler+ [Gore Magala]
 Gore Magala Scale [Gore Magala]
 S.Magala Prismwing+ [Shagaru Magala]"
@@ -444,30 +438,28 @@ Novacrystal"
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Shell [Shagaru Magala]
 Novacrystal"
-1311272,EX Arc Helm,Shagaru Magala,"EX S.Magala Ticket
+1311272,EX Arc Helm,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 S.Magala Scale [Shagaru Magala]
 Gore Magala Wing+ [Gore Magala]"
-1311273,EX Storge Helm,Shagaru Magala,"EX S.Magala Ticket
+1311273,EX Storge Helm,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 S.Magala Scale [Shagaru Magala]
 Gore Magala Wing+ [Gore Magala]"
-1311274,EX Arc Cap,Shagaru Magala,"EX S.Magala Ticket
+1311274,EX Arc Cap,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 S.Magala Scale [Shagaru Magala]
 Gore Magala Wing+ [Gore Magala]"
-1311275,EX Storge Cap,Shagaru Magala,"EX S.Magala Ticket
+1311275,EX Storge Cap,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 S.Magala Scale [Shagaru Magala]
 Gore Magala Wing+ [Gore Magala]"
-1311280,Kushala Glare S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Horn+ [Kushala Daora]
-Daora Scale [Kushala Daora]
-Rare Scarab"
-1311281,Kushala Snarl S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Horn+ [Kushala Daora]
-Daora Scale [Kushala Daora]
-Rare Scarab"
+1311280,Kushala Glare S,Kushala Daora,
+1311281,Kushala Snarl S,Kushala Daora,
+1311282,EX Kushala Glare,Kushala Daora,
+1311283,EX Kushala Snarl,Kushala Daora,
+1311284,Kushala Glare R,Kushala Daora,
+1311285,Kushala Snarl R,Kushala Daora,
 1311286,Mizuha Cap S,Chameleos,"Chameleos Hide+ [Chameleos]
 Chameleos Spike [Chameleos]
 Chameleos Webbing [Chameleos]
@@ -476,6 +468,12 @@ Rare Scarab"
 Chameleos Spike [Chameleos]
 Chameleos Webbing [Chameleos]
 Rare Scarab"
+1311288,EX Mizuha Cap,Chameleos,"EX Chameleos Ticket [Chameleos]
+Chameleos Spike [Chameleos]
+Pure Dragon Blood"
+1311289,EX Cham Hat,Chameleos,"EX Chameleos Ticket [Chameleos]
+Chameleos Spike [Chameleos]
+Pure Dragon Blood"
 1311290,Kaiser Crown S,Teostra,"Teostra Horn+ [Teostra]
 Fire Dragon Scale+ [Teostra]
 Teostra Mane [Teostra]
@@ -484,6 +482,12 @@ Elder Dragon Blood"
 Fire Dragon Scale+ [Teostra]
 Teostra Mane [Teostra]
 Elder Dragon Blood"
+1311292,EX Kaiser Crown,Teostra,"EX Teostra Ticket [Teostra]
+Teostra Horn+ [Teostra]
+Pure Dragon Blood"
+1311293,EX Kaiser Mask,Teostra,"EX Teostra Ticket [Teostra]
+Teostra Horn+ [Teostra]
+Pure Dragon Blood"
 1311294,Silver Solhelm,Silver Rathalos,"S.Rathalos Scale+ [Silver Rathalos]
 Elder Dragon Blood
 Rath Gleam
@@ -492,10 +496,10 @@ Novacrystal"
 Elder Dragon Blood
 Rath Gleam
 Novacrystal"
-1311296,EX Silver Solhelm,Silver Rathalos,"EX S.Rathalos Ticket
+1311296,EX Silver Solhelm,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Carapace [Silver Rathalos]
 Rathalos Shell [Rathalos]"
-1311297,EX Silver Solcap,Silver Rathalos,"EX S.Rathalos Ticket
+1311297,EX Silver Solcap,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Carapace [Silver Rathalos]
 Rathalos Shell [Rathalos]"
 1311300,Golden Lunehelm,Gold Rathian,"G.Rathian Spike+ [Gold Rathian]
@@ -506,10 +510,10 @@ Inferno Sac"
 G.Rathian Carapace [Gold Rathian]
 Rath Marrow
 Inferno Sac"
-1311302,EX Golden Lunehelm,Gold Rathian,"EX G.Rathian Ticket
+1311302,EX Golden Lunehelm,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Spike+ [Gold Rathian]
 Rathian Shell [Rathian]"
-1311303,EX Golden Lunecap,Gold Rathian,"EX G.Rathian Ticket
+1311303,EX Golden Lunecap,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Spike+ [Gold Rathian]
 Rathian Shell [Rathian]"
 1311304,Divine Ire Headdress,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
@@ -810,6 +814,18 @@ Pure Dragon Blood"
 Lao-Shan Hardhorn [Lao-Shan Lung]
 Gore Magala Sensor [Gore Magala]
 Pure Dragon Blood"
+1311662,Auroros Helm GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Gore Magala Sensor [Gore Magala]"
+1311663,Borealis Crown GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Gore Magala Sensor [Gore Magala]"
+1311664,Genesis Headpiece GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Gore Magala Sensor [Gore Magala]"
+1311665,Glyph Crown GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Gore Magala Sensor [Gore Magala]"
 1311666,Auroros Helm XR,Lao-Shan Lung,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]
 Hyper Keenclaw"
@@ -888,14 +904,10 @@ Tigrex Maw"
 Deviljho Scalp [Deviljho]
 Deviljho Talon [Deviljho]
 Tigrex Maw"
-1311716,Kushala Glare X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardhorn [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Flutterfly"
-1311717,Kushala Snarl X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardhorn [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Flutterfly"
+1311716,Kushala Glare X,Kushala Daora,
+1311717,Kushala Snarl X,Kushala Daora,
+1311718,Kushala Glare XR,Kushala Daora,
+1311719,Kushala Snarl XR,Kushala Daora,
 1311720,Grand Mizuha Cap,Chameleos,"Chameleos Finehide [Chameleos]
 Chameleos Hardhorn [Chameleos]
 Chameleos Fellwing [Chameleos]
@@ -1038,6 +1050,18 @@ Viscous Dragon Blood"
 1311801,Old Fatalis Face,Fatalis,
 1311802,GX Old Fatalis Head,Fatalis,
 1311803,GX Old Fatalis Face,Fatalis,
+1311820,Auroros Helm R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Hyper Hardhorn"
+1311821,Borealis Crown R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Hyper Hardhorn"
+1311822,Genesis Headpiece R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Hyper Hardhorn"
+1311823,Glyph Crown R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Hardhorn [Lao-Shan Lung]
+Hyper Hardhorn"
 1311826,Esurient Helm XR,Savage Deviljho,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
 Deviljho Scalp [Deviljho]"
@@ -1108,6 +1132,8 @@ Gore Magala Eclipse [Gore Magala]"
 S.Magala Hardhorn [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 Gore Magala Eclipse [Gore Magala]"
+1311876,Kushala Glare GX,Kushala Daora,
+1311877,Kushala Snarl GX,Kushala Daora,
 1311882,Lavasioth Helm GX,Lavasioth,
 1311883,Lavasioth Cap GX,Lavasioth,
 1311884,GX Silver Solhelm,Silver Rathalos,"Triumph
@@ -1334,14 +1360,8 @@ S.Magala Tail [Shagaru Magala]"
 S.Magala Prismwing [Shagaru Magala]
 S.Magala Shell [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]"
-1376434,Kushala Cista,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Webbing [Kushala Daora]
-Dragonite Ore
-Elder Dragon Blood"
-1376435,Kushala Vise,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Webbing [Kushala Daora]
-Dragonite Ore
-Elder Dragon Blood"
+1376434,Kushala Cista,Kushala Daora,
+1376435,Kushala Vise,Kushala Daora,
 1376436,Mizuha Guards,Chameleos,"Chameleos Hide [Chameleos]
 Chameleos Webbing [Chameleos]
 Firestone
@@ -1567,11 +1587,11 @@ Remobra Hide+ [Remobra]"
 Gore Magala Wing+ [Gore Magala]
 Defiled Scale [Gore Magala]
 Remobra Hide+ [Remobra]"
-1376728,EX Gore Mail,Gore Magala,"EX Gore Magala Ticket
+1376728,EX Gore Mail,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Carapace [Gore Magala]
 Gore Magala Wing [Gore Magala]
 S.Magala Horn+ [Shagaru Magala]"
-1376729,EX Gore Vest,Gore Magala,"EX Gore Magala Ticket
+1376729,EX Gore Vest,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Carapace [Gore Magala]
 Gore Magala Wing [Gore Magala]
 S.Magala Horn+ [Shagaru Magala]"
@@ -1645,36 +1665,28 @@ Fucium Ore"
 S.Magala Prismwing+ [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Fucium Ore"
-1376808,EX Arc Mail,Shagaru Magala,"EX S.Magala Ticket
+1376808,EX Arc Mail,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Carapace [Shagaru Magala]
 S.Magala Prismwing [Shagaru Magala]
 Gore Magala Feeler+ [Gore Magala]"
-1376809,EX Storge Mail,Shagaru Magala,"EX S.Magala Ticket
+1376809,EX Storge Mail,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Carapace [Shagaru Magala]
 S.Magala Prismwing [Shagaru Magala]
 Gore Magala Feeler+ [Gore Magala]"
-1376810,EX Arc Vest,Shagaru Magala,"EX S.Magala Ticket
+1376810,EX Arc Vest,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Carapace [Shagaru Magala]
 S.Magala Prismwing [Shagaru Magala]
 Gore Magala Feeler+ [Gore Magala]"
-1376811,EX Storge Vest,Shagaru Magala,"EX S.Magala Ticket
+1376811,EX Storge Vest,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Carapace [Shagaru Magala]
 S.Magala Prismwing [Shagaru Magala]
 Gore Magala Feeler+ [Gore Magala]"
-1376816,Kushala Cista S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Webbing [Kushala Daora]
-Carbalite Ore
-Elder Dragon Blood"
-1376817,Kushala Vise S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Webbing [Kushala Daora]
-Carbalite Ore
-Elder Dragon Blood"
-1376818,EX Kushala Cista,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Horn+ [Kushala Daora]"
-1376819,EX Kushala Vise,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Horn+ [Kushala Daora]"
+1376816,Kushala Cista S,Kushala Daora,
+1376817,Kushala Vise S,Kushala Daora,
+1376818,EX Kushala Cista,Kushala Daora,
+1376819,EX Kushala Vise,Kushala Daora,
+1376820,Kushala Cista R,Kushala Daora,
+1376821,Kushala Vise R,Kushala Daora,
 1376822,Mizuha Guards S,Chameleos,"Chameleos Hide+ [Chameleos]
 Chameleos Webbing [Chameleos]
 Firecell Stone
@@ -1683,10 +1695,10 @@ Novacrystal"
 Chameleos Webbing [Chameleos]
 Firecell Stone
 Novacrystal"
-1376824,EX Mizuha Guards,Chameleos,"EX Chameleos Ticket
+1376824,EX Mizuha Guards,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Spike [Chameleos]"
-1376825,EX Cham Camise,Chameleos,"EX Chameleos Ticket
+1376825,EX Cham Camise,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Spike [Chameleos]"
 1376826,Kaiser Mail S,Teostra,"Teostra Powder [Teostra]
@@ -1697,10 +1709,10 @@ Elder Dragon Blood"
 Teostra Carapace [Teostra]
 Firecell Stone
 Elder Dragon Blood"
-1376828,EX Kaiser Mail,Teostra,"EX Teostra Ticket
+1376828,EX Kaiser Mail,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Horn+ [Teostra]"
-1376829,EX Kaiser Vest,Teostra,"EX Teostra Ticket
+1376829,EX Kaiser Vest,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Horn+ [Teostra]"
 1376830,Silver Solmail,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
@@ -1711,10 +1723,10 @@ Monster Hardbone"
 S.Rathalos Scale+ [Silver Rathalos]
 Rathalos Wing [Rathalos]
 Monster Hardbone"
-1376832,EX Silver Solmail,Silver Rathalos,"EX S.Rathalos Ticket
+1376832,EX Silver Solmail,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Scale+ [Silver Rathalos]
 Rathalos Webbing [Rathalos]"
-1376833,EX Silver Solvest,Silver Rathalos,"EX S.Rathalos Ticket
+1376833,EX Silver Solvest,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Scale+ [Silver Rathalos]
 Rathalos Webbing [Rathalos]"
 1376836,Golden Lunemail,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
@@ -1725,10 +1737,10 @@ Fucium Ore"
 Rath Medulla
 Rathian Spike [Rathian]
 Fucium Ore"
-1376838,EX Golden Lunemail,Gold Rathian,"EX G.Rathian Ticket
+1376838,EX Golden Lunemail,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Scale+ [Gold Rathian]
 Rathian Webbing [Rathian]"
-1376839,EX Golden Lunevest,Gold Rathian,"EX G.Rathian Ticket
+1376839,EX Golden Lunevest,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Scale+ [Gold Rathian]
 Rathian Webbing [Rathian]"
 1376840,Divine Ire Haori,Furious Rajang,"Rajang Ragehair [Furious Rajang]
@@ -2038,16 +2050,16 @@ Pure Dragon Blood"
 Lao-Shan Megaclaw [Lao-Shan Lung]
 Gammoth Cortex
 Pure Dragon Blood"
-1377198,Auroros Torso GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1377198,Auroros Torso GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1377199,Borealis Chest GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1377199,Borealis Chest GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1377200,Genesis Torso GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1377200,Genesis Torso GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1377201,Glyph Chest GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1377201,Glyph Chest GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
 1377202,Auroros Torso XR,Lao-Shan Lung,"Lao-Shan Cortex [Lao-Shan Lung]
@@ -2122,14 +2134,10 @@ Rathian Spike+ [Rathian]"
 Deviljho Ripper [Deviljho]
 Deviljho Blackpiel [Deviljho]
 Rathian Spike+ [Rathian]"
-1377252,Kushala Cista X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Fellwing [Kushala Daora]
-Ultimas Crystal
-Viscous Dragon Blood"
-1377253,Kushala Vise X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Fellwing [Kushala Daora]
-Ultimas Crystal
-Viscous Dragon Blood"
+1377252,Kushala Cista X,Kushala Daora,
+1377253,Kushala Vise X,Kushala Daora,
+1377254,Kushala Cista XR,Kushala Daora,
+1377255,Kushala Vise XR,Kushala Daora,
 1377256,Grand Mizuha Guards,Chameleos,"Chameleos Finehide [Chameleos]
 Chameleos Fellwing [Chameleos]
 Allfire Stone
@@ -2280,6 +2288,18 @@ Viscous Dragon Blood"
 1377337,Old Fatalis Skin,Fatalis,
 1377338,GX Old Fatalis Hide,Fatalis,
 1377339,GX Old Fatalis Skin,Fatalis,
+1377356,Auroros Torso R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1377357,Borealis Chest R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1377358,Genesis Torso R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1377359,Glyph Chest R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
 1377362,Esurient Mail XR,Savage Deviljho,"Hyper Deviljho Scale X
 Vile Fang [Savage Deviljho]
 Deviljho Shard [Deviljho]"
@@ -2350,12 +2370,8 @@ Gore Magala Sensor [Gore Magala]"
 S.Magala Cortex [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 Gore Magala Sensor [Gore Magala]"
-1377412,Kushala Cista GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Hardhorn [Kushala Daora]"
-1377413,Kushala Vise GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Hardhorn [Kushala Daora]"
+1377412,Kushala Cista GX,Kushala Daora,
+1377413,Kushala Vise GX,Kushala Daora,
 1377414,Mizuha Guards GX,Chameleos,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardhorn [Chameleos]"
@@ -2577,14 +2593,8 @@ Dragonite Ore"
 S.Magala Scale [Shagaru Magala]
 S.Magala Shell [Shagaru Magala]
 Dragonite Ore"
-1441970,Kushala Grip,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Claw [Kushala Daora]
-Daora Scale [Kushala Daora]
-Elder Dragon Bone"
-1441971,Kushala Embrace,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Claw [Kushala Daora]
-Daora Scale [Kushala Daora]
-Elder Dragon Bone"
+1441970,Kushala Grip,Kushala Daora,
+1441971,Kushala Embrace,Kushala Daora,
 1441972,Mizuha Sleeves,Chameleos,"Chameleos Claw [Chameleos]
 Chameleos Hide [Chameleos]
 Elder Dragon Bone
@@ -2794,11 +2804,11 @@ Gore Magala Wing [Gore Magala]"
 Gore Magala Wing+ [Gore Magala]
 Gore Magala Carapace [Gore Magala]
 Gore Magala Wing [Gore Magala]"
-1442264,EX Gore Braces,Gore Magala,"EX Gore Magala Ticket
+1442264,EX Gore Braces,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Wing+ [Gore Magala]
 Gore Magala Feeler [Gore Magala]
 S.Magala Carapace [Shagaru Magala]"
-1442265,EX Gore Guards,Gore Magala,"EX Gore Magala Ticket
+1442265,EX Gore Guards,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Wing+ [Gore Magala]
 Gore Magala Feeler [Gore Magala]
 S.Magala Carapace [Shagaru Magala]"
@@ -2878,36 +2888,28 @@ S.Magala Prismwing [Shagaru Magala]"
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Carapace [Shagaru Magala]
 S.Magala Prismwing [Shagaru Magala]"
-1442344,EX Arc Vambraces,Shagaru Magala,"EX S.Magala Ticket
+1442344,EX Arc Vambraces,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 S.Magala Horn [Shagaru Magala]
 Gore Magala Carapace [Gore Magala]"
-1442345,EX Storge Vambraces,Shagaru Magala,"EX S.Magala Ticket
+1442345,EX Storge Vambraces,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 S.Magala Horn [Shagaru Magala]
 Gore Magala Carapace [Gore Magala]"
-1442346,EX Arc Guards,Shagaru Magala,"EX S.Magala Ticket
+1442346,EX Arc Guards,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 S.Magala Horn [Shagaru Magala]
 Gore Magala Carapace [Gore Magala]"
-1442347,EX Storge Guards,Shagaru Magala,"EX S.Magala Ticket
+1442347,EX Storge Guards,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 S.Magala Horn [Shagaru Magala]
 Gore Magala Carapace [Gore Magala]"
-1442352,Kushala Grip S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Elder Dragon Bone"
-1442353,Kushala Embrace S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Elder Dragon Bone"
-1442354,EX Kushala Grip,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]"
-1442355,EX Kushala Embrace,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]"
+1442352,Kushala Grip S,Kushala Daora,
+1442353,Kushala Embrace S,Kushala Daora,
+1442354,EX Kushala Grip,Kushala Daora,
+1442355,EX Kushala Embrace,Kushala Daora,
+1442356,Kushala Grip R,Kushala Daora,
+1442357,Kushala Embrace R,Kushala Daora,
 1442358,Mizuha Sleeves S,Chameleos,"Chameleos Claw+ [Chameleos]
 Chameleos Hide+ [Chameleos]
 Elder Dragon Bone
@@ -2916,10 +2918,10 @@ Elder Dragon Blood"
 Chameleos Hide+ [Chameleos]
 Elder Dragon Bone
 Elder Dragon Blood"
-1442360,EX Mizuha Sleeves,Chameleos,"EX Chameleos Ticket
+1442360,EX Mizuha Sleeves,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Claw+ [Chameleos]"
-1442361,EX Cham Sleeves,Chameleos,"EX Chameleos Ticket
+1442361,EX Cham Sleeves,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Claw+ [Chameleos]"
 1442362,Kaiser Vambraces S,Teostra,"Teostra Carapace [Teostra]
@@ -2930,10 +2932,10 @@ Elder Dragon Blood"
 Teostra Claw+ [Teostra]
 Firecell Stone
 Elder Dragon Blood"
-1442364,EX Kaiser Vambraces,Teostra,"EX Teostra Ticket
+1442364,EX Kaiser Vambraces,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Claw+ [Teostra]"
-1442365,EX Kaiser Guards,Teostra,"EX Teostra Ticket
+1442365,EX Kaiser Guards,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Claw+ [Teostra]"
 1442366,Silver Solbraces,Silver Rathalos,"S.Rathalos Tail [Silver Rathalos]
@@ -2944,10 +2946,10 @@ Firecell Stone"
 Rath Medulla
 Rath Wingtalon
 Firecell Stone"
-1442368,EX Silver Solbraces,Silver Rathalos,"EX S.Rathalos Ticket
+1442368,EX Silver Solbraces,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Tail [Silver Rathalos]
 Rathalos Tail [Rathalos]"
-1442369,EX Silver Solguards,Silver Rathalos,"EX S.Rathalos Ticket
+1442369,EX Silver Solguards,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Tail [Silver Rathalos]
 Rathalos Tail [Rathalos]"
 1442370,Silver Solbraces R,Silver Rathalos,"Hyper S.Rath. Scale
@@ -2964,10 +2966,10 @@ Fucium Ore"
 Rath Wingtalon
 Rathian Spike+ [Rathian]
 Fucium Ore"
-1442374,EX Golden Lunebraces,Gold Rathian,"EX G.Rathian Ticket
+1442374,EX Golden Lunebraces,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Carapace [Gold Rathian]
 Rathian Spike [Rathian]"
-1442375,EX Golden Luneguards,Gold Rathian,"EX G.Rathian Ticket
+1442375,EX Golden Luneguards,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Carapace [Gold Rathian]
 Rathian Spike [Rathian]"
 1442376,Divine Ire Kote,Furious Rajang,"Rajang Ragehair [Furious Rajang]
@@ -3267,16 +3269,16 @@ Pure Dragon Blood"
 Lao-Shan Megaclaw [Lao-Shan Lung]
 Gore Magala Shredder [Gore Magala]
 Pure Dragon Blood"
-1442734,Auroros Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1442734,Auroros Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1442735,Borealis Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1442735,Borealis Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1442736,Genesis Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1442736,Genesis Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1442737,Glyph Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1442737,Glyph Gauntlets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
 1442738,Auroros Gauntlets XR,Lao-Shan Lung,"Lao-Shan Shard [Lao-Shan Lung]
@@ -3357,14 +3359,10 @@ Najarala Medulla [Najarala]"
 Deviljho Hardfang [Deviljho]
 Deviljho Flail [Deviljho]
 Najarala Medulla [Najarala]"
-1442788,Kushala Grip X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]
-Daora Shard [Kushala Daora]
-Lrg ElderDragon Bone"
-1442789,Kushala Embrace X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]
-Daora Shard [Kushala Daora]
-Lrg ElderDragon Bone"
+1442788,Kushala Grip X,Kushala Daora,
+1442789,Kushala Embrace X,Kushala Daora,
+1442790,Kushala Grip XR,Kushala Daora,
+1442791,Kushala Embrace XR,Kushala Daora,
 1442792,Grand Mizuha Sleeves,Chameleos,"Chameleos Hardclaw [Chameleos]
 Chameleos Finehide [Chameleos]
 Lrg ElderDragon Bone
@@ -3515,6 +3513,18 @@ Viscous Dragon Blood"
 1442873,Old Fatalis Fist,Fatalis,
 1442874,GX Old Fatalis Claw,Fatalis,
 1442875,GX Old Fatalis Fist,Fatalis,
+1442892,Auroros Gauntlets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Keenclaw"
+1442893,Borealis Gauntlets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Keenclaw"
+1442894,Genesis Gauntlets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Keenclaw"
+1442895,Glyph Gauntlets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Keenclaw"
 1442896,Silver Solbraces XR,Silver Rathalos,"Hyper S.Rath. Shard
 S.Rath Cortex [Silver Rathalos]
 S.Rath Lash [Silver Rathalos]"
@@ -3591,12 +3601,8 @@ Gore Magala Cortex [Gore Magala]"
 S.Magala Lightwing [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 Gore Magala Cortex [Gore Magala]"
-1442948,Kushala Grip GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]"
-1442949,Kushala Embrace GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]"
+1442948,Kushala Grip GX,Kushala Daora,
+1442949,Kushala Embrace GX,Kushala Daora,
 1442950,Mizuha Sleeves GX,Chameleos,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardclaw [Chameleos]"
@@ -3799,14 +3805,8 @@ Lightcrystal"
 S.Magala Prismwing [Shagaru Magala]
 S.Magala Shell [Shagaru Magala]
 Lightcrystal"
-1507506,Kushala Cocoon,Kushala Daora,"Daora Webbing [Kushala Daora]
-Daora Claw [Kushala Daora]
-Daora Tail [Kushala Daora]
-Firestone"
-1507507,Kushala Wind Wrap,Kushala Daora,"Daora Webbing [Kushala Daora]
-Daora Claw [Kushala Daora]
-Daora Tail [Kushala Daora]
-Firestone"
+1507506,Kushala Cocoon,Kushala Daora,
+1507507,Kushala Wind Wrap,Kushala Daora,
 1507508,Mizuha Sash,Chameleos,"Chameleos Tail [Chameleos]
 Chameleos Hide [Chameleos]
 Chameleos Claw [Chameleos]
@@ -4015,11 +4015,11 @@ Gore Magala Tail [Gore Magala]"
 Gore Magala Carapace [Gore Magala]
 Gore Magala Feeler+ [Gore Magala]
 Gore Magala Tail [Gore Magala]"
-1507800,EX Gore Faulds,Gore Magala,"EX Gore Magala Ticket
+1507800,EX Gore Faulds,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Scale+ [Gore Magala]
 Gore Magala Tail [Gore Magala]
 S.Magala Caress+ [Shagaru Magala]"
-1507801,EX Gore Coat,Gore Magala,"EX Gore Magala Ticket
+1507801,EX Gore Coat,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Scale+ [Gore Magala]
 Gore Magala Tail [Gore Magala]
 S.Magala Caress+ [Shagaru Magala]"
@@ -4099,36 +4099,28 @@ Novacrystal"
 S.Magala Carapace [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]
 Novacrystal"
-1507880,EX Arc Faulds,Shagaru Magala,"EX S.Magala Ticket
+1507880,EX Arc Faulds,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]
 Gore Magala Ripclaw+ [Gore Magala]"
-1507881,EX Storge Faulds,Shagaru Magala,"EX S.Magala Ticket
+1507881,EX Storge Faulds,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]
 Gore Magala Ripclaw+ [Gore Magala]"
-1507882,EX Arc Coat,Shagaru Magala,"EX S.Magala Ticket
+1507882,EX Arc Coat,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]
 Gore Magala Ripclaw+ [Gore Magala]"
-1507883,EX Storge Coat,Shagaru Magala,"EX S.Magala Ticket
+1507883,EX Storge Coat,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Tail [Shagaru Magala]
 Gore Magala Ripclaw+ [Gore Magala]"
-1507888,Kushala Cocoon S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Daora Tail [Kushala Daora]
-Firecell Stone"
-1507889,Kushala Wind Wrap S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Daora Tail [Kushala Daora]
-Firecell Stone"
-1507890,EX Kushala Cocoon,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]"
-1507891,EX Kushala Wind Wrap,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Claw+ [Kushala Daora]"
+1507888,Kushala Cocoon S,Kushala Daora,
+1507889,Kushala Wind Wrap S,Kushala Daora,
+1507890,EX Kushala Cocoon,Kushala Daora,
+1507891,EX Kushala Wind Wrap,Kushala Daora,
+1507892,Kushala Cocoon R,Kushala Daora,
+1507893,Kushala Wind Wrap R,Kushala Daora,
 1507894,Mizuha Sash S,Chameleos,"Chameleos Hide+ [Chameleos]
 Chameleos Tail [Chameleos]
 Chameleos Claw+ [Chameleos]
@@ -4137,10 +4129,10 @@ Novacrystal"
 Chameleos Tail [Chameleos]
 Chameleos Claw+ [Chameleos]
 Novacrystal"
-1507896,EX Mizuha Sash,Chameleos,"EX Chameleos Ticket
+1507896,EX Mizuha Sash,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Claw+ [Chameleos]"
-1507897,EX Cham Coat,Chameleos,"EX Chameleos Ticket
+1507897,EX Cham Coat,Chameleos,"EX Chameleos Ticket [Chameleos]
 Chameleos Hide+ [Chameleos]
 Chameleos Claw+ [Chameleos]"
 1507898,Kaiser Tassets S,Teostra,"Fire Dragon Scale+ [Teostra]
@@ -4151,10 +4143,10 @@ Elder Dragon Blood"
 Teostra Powder [Teostra]
 Teostra Tail [Teostra]
 Elder Dragon Blood"
-1507900,EX Kaiser Tassets,Teostra,"EX Teostra Ticket
+1507900,EX Kaiser Tassets,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Powder [Teostra]"
-1507901,EX Kaiser Coat,Teostra,"EX Teostra Ticket
+1507901,EX Kaiser Coat,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Teostra Powder [Teostra]"
 1507902,Silver Solcoil,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
@@ -4165,6 +4157,12 @@ Inferno Sac"
 Rathalos Wing [Rathalos]
 Rath Marrow
 Inferno Sac"
+1507904,EX Silver Solcoil,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
+S.Rathalos Scale+ [Silver Rathalos]
+Rath Marrow"
+1507905,EX Silver Solcoat,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
+S.Rathalos Scale+ [Silver Rathalos]
+Rath Marrow"
 1507908,Golden Lunecoil,Gold Rathian,"G.Rathian Scale+ [Gold Rathian]
 Rathian Webbing [Rathian]
 Rath Gleam
@@ -4173,6 +4171,12 @@ Firecell Stone"
 Rathian Webbing [Rathian]
 Rath Gleam
 Firecell Stone"
+1507910,EX Golden Lunecoil,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
+1507911,EX Golden Lunecoat,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
+G.Rathian Scale+ [Gold Rathian]
+Rath Marrow"
 1507912,Divine Ire Obi,Furious Rajang,"Ghoulish Gold Horn [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
 Rajang Claw+ [Rajang]
@@ -4460,16 +4464,16 @@ Pure Dragon Blood"
 Lao-Shan Megaclaw [Lao-Shan Lung]
 Gravios Cortex [Gravios]
 Pure Dragon Blood"
-1508270,Auroros Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1508270,Auroros Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1508271,Borealis Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1508271,Borealis Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1508272,Genesis Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1508272,Genesis Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
-1508273,Glyph Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1508273,Glyph Tassets GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]"
 1508274,Auroros Tassets XR,Lao-Shan Lung,"Lao-Shan Cortex [Lao-Shan Lung]
@@ -4550,14 +4554,10 @@ Narga Medulla"
 Deviljho Ripper [Deviljho]
 Deviljho Scale [Deviljho]
 Narga Medulla"
-1508324,Kushala Cocoon X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]
-Daora Lash [Kushala Daora]
-Allfire Stone"
-1508325,Kushala Wind Wrap X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]
-Daora Lash [Kushala Daora]
-Allfire Stone"
+1508324,Kushala Cocoon X,Kushala Daora,
+1508325,Kushala Wind Wrap X,Kushala Daora,
+1508326,Kushala Cocoon XR,Kushala Daora,
+1508327,Kushala Wind Wrap XR,Kushala Daora,
 1508328,Grand Mizuha Sash,Chameleos,"Chameleos Finehide [Chameleos]
 Chameleos Lash [Chameleos]
 Chameleos Hardclaw [Chameleos]
@@ -4708,6 +4708,18 @@ Viscous Dragon Blood"
 1508409,Old Fatalis Scale,Fatalis,
 1508410,GX Old Fatalis Spine,Fatalis,
 1508411,GX Old Fatalis Scale,Fatalis,
+1508428,Auroros Tassets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1508429,Borealis Tassets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1508430,Genesis Tassets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
+1508431,Glyph Tassets R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Cortex [Lao-Shan Lung]
+Hyper Solidclaw"
 1508434,Esurient Faulds XR,Savage Deviljho,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
 Deviljho Flail [Deviljho]"
@@ -4778,12 +4790,8 @@ Gore Magala Shredder [Gore Magala]"
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
 Gore Magala Shredder [Gore Magala]"
-1508484,Kushala Cocoon GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]"
-1508485,Kushala Wind Wrap GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Hardclaw [Kushala Daora]"
+1508484,Kushala Cocoon GX,Kushala Daora,
+1508485,Kushala Wind Wrap GX,Kushala Daora,
 1508486,Mizuha Sash GX,Chameleos,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardclaw [Chameleos]"
@@ -5008,14 +5016,8 @@ Monster Bone+"
 S.Magala Scale [Shagaru Magala]
 S.Magala Caress [Shagaru Magala]
 Monster Bone+"
-1573042,Kushala Crus,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Scale [Kushala Daora]
-Daora Claw [Kushala Daora]
-Dragonite Ore"
-1573043,Kushala Shank,Kushala Daora,"Daora Shell [Kushala Daora]
-Daora Scale [Kushala Daora]
-Daora Claw [Kushala Daora]
-Dragonite Ore"
+1573042,Kushala Crus,Kushala Daora,
+1573043,Kushala Shank,Kushala Daora,
 1573044,Mizuha Gaiters,Chameleos,"Chameleos Hide [Chameleos]
 Chameleos Webbing [Chameleos]
 Flabby Hide [Khezu]
@@ -5242,11 +5244,11 @@ Novacrystal"
 Gore Magala Scale+ [Gore Magala]
 Gore Magala Ripclaw+ [Gore Magala]
 Novacrystal"
-1573336,EX Gore Greaves,Gore Magala,"EX Gore Magala Ticket
+1573336,EX Gore Greaves,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Ripclaw+ [Gore Magala]
 Defiled Scale [Gore Magala]
 S.Magala Scale+ [Shagaru Magala]"
-1573337,EX Gore Leggings,Gore Magala,"EX Gore Magala Ticket
+1573337,EX Gore Leggings,Gore Magala,"EX Gore Magala Ticket [Gore Magala]
 Gore Magala Ripclaw+ [Gore Magala]
 Defiled Scale [Gore Magala]
 S.Magala Scale+ [Shagaru Magala]"
@@ -5323,36 +5325,28 @@ Monster Hardbone"
 S.Magala Scale+ [Shagaru Magala]
 S.Magala Caress+ [Shagaru Magala]
 Monster Hardbone"
-1573416,EX Arc Greaves,Shagaru Magala,"EX S.Magala Ticket
+1573416,EX Arc Greaves,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Caress+ [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Gore Magala Scale+ [Gore Magala]"
-1573417,EX Storge Greaves,Shagaru Magala,"EX S.Magala Ticket
+1573417,EX Storge Greaves,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Caress+ [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Gore Magala Scale+ [Gore Magala]"
-1573418,EX Arc Leggings,Shagaru Magala,"EX S.Magala Ticket
+1573418,EX Arc Leggings,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Caress+ [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Gore Magala Scale+ [Gore Magala]"
-1573419,EX Storge Leggings,Shagaru Magala,"EX S.Magala Ticket
+1573419,EX Storge Leggings,Shagaru Magala,"EX S.Magala Ticket [Shagaru Magala]
 S.Magala Caress+ [Shagaru Magala]
 Pure Scale [Shagaru Magala]
 Gore Magala Scale+ [Gore Magala]"
-1573424,Kushala Crus S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Daora Claw [Kushala Daora]
-Fucium Ore"
-1573425,Kushala Shank S,Kushala Daora,"Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]
-Daora Claw [Kushala Daora]
-Fucium Ore"
-1573426,EX Kushala Crus,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]"
-1573427,EX Kushala Shank,Kushala Daora,"EX Daora Ticket
-Daora Carapace [Kushala Daora]
-Daora Dragon Scale+ [Kushala Daora]"
+1573424,Kushala Crus S,Kushala Daora,
+1573425,Kushala Shank S,Kushala Daora,
+1573426,EX Kushala Crus,Kushala Daora,
+1573427,EX Kushala Shank,Kushala Daora,
+1573428,Kushala Crus R,Kushala Daora,
+1573429,Kushala Shank R,Kushala Daora,
 1573430,Mizuha Gaiters S,Chameleos,"Chameleos Hide+ [Chameleos]
 Chameleos Webbing [Chameleos]
 Pearl Hide [Khezu]
@@ -5361,6 +5355,12 @@ Fucium Ore"
 Chameleos Webbing [Chameleos]
 Pearl Hide [Khezu]
 Fucium Ore"
+1573432,EX Mizuha Gaiters,Chameleos,"EX Chameleos Ticket [Chameleos]
+Chameleos Hide+ [Chameleos]
+Pearl Hide [Khezu]"
+1573433,EX Cham Trousers,Chameleos,"EX Chameleos Ticket [Chameleos]
+Chameleos Hide+ [Chameleos]
+Pearl Hide [Khezu]"
 1573434,Kaiser Greaves S,Teostra,"Teostra Carapace [Teostra]
 Teostra Powder [Teostra]
 Firecell Stone
@@ -5369,10 +5369,10 @@ Elder Dragon Blood"
 Teostra Powder [Teostra]
 Firecell Stone
 Elder Dragon Blood"
-1573436,EX Kaiser Greaves,Teostra,"EX Teostra Ticket
+1573436,EX Kaiser Greaves,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Fire Dragon Scale+ [Teostra]"
-1573437,EX Kaiser Leggings,Teostra,"EX Teostra Ticket
+1573437,EX Kaiser Leggings,Teostra,"EX Teostra Ticket [Teostra]
 Teostra Carapace [Teostra]
 Fire Dragon Scale+ [Teostra]"
 1573438,Silver Solgreaves,Silver Rathalos,"S.Rathalos Carapace [Silver Rathalos]
@@ -5383,10 +5383,10 @@ Fucium Ore"
 S.Rathalos Scale+ [Silver Rathalos]
 Rath Gleam
 Fucium Ore"
-1573440,EX Silver Solgreaves,Silver Rathalos,"EX S.Rathalos Ticket
+1573440,EX Silver Solgreaves,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Carapace [Silver Rathalos]
 Rathalos Scale [Rathalos]"
-1573441,EX Silver Solleggings,Silver Rathalos,"EX S.Rathalos Ticket
+1573441,EX Silver Solleggings,Silver Rathalos,"EX S.Rathalos Ticket [Silver Rathalos]
 S.Rathalos Carapace [Silver Rathalos]
 Rathalos Scale [Rathalos]"
 1573444,Golden Lunegreaves,Gold Rathian,"G.Rathian Carapace [Gold Rathian]
@@ -5397,10 +5397,10 @@ Elder Dragon Blood"
 G.Rathian Scale+ [Gold Rathian]
 Monster Hardbone
 Elder Dragon Blood"
-1573446,EX Golden Lunegreaves,Gold Rathian,"EX G.Rathian Ticket
+1573446,EX Golden Lunegreaves,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Carapace [Gold Rathian]
 Rathian Scale [Rathian]"
-1573447,EX Golden Luneleggings,Gold Rathian,"EX G.Rathian Ticket
+1573447,EX Golden Luneleggings,Gold Rathian,"EX G.Rathian Ticket [Gold Rathian]
 G.Rathian Carapace [Gold Rathian]
 Rathian Scale [Rathian]"
 1573448,Divine Ire Hakama,Furious Rajang,"Rajang Ragehair [Furious Rajang]
@@ -5698,16 +5698,16 @@ Pure Dragon Blood"
 Lao-Shan Hardhorn [Lao-Shan Lung]
 Rathian Surspike [Rathian]
 Pure Dragon Blood"
-1573806,Auroros Pants GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1573806,Auroros Pants GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]"
-1573807,Borealis Hakama GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1573807,Borealis Hakama GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]"
-1573808,Genesis Pants GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1573808,Genesis Pants GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]"
-1573809,Glyph Hakama GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket
+1573809,Glyph Hakama GX,Lao-Shan Lung,"EX Lao-Shan Lung Ticket [Lao-Shan Lung]
 Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]"
 1573810,Auroros Pants XR,Lao-Shan Lung,"Lao-Shan Shard [Lao-Shan Lung]
@@ -5782,14 +5782,10 @@ Gravios Medulla [Gravios]"
 Deviljho Shard [Deviljho]
 Deviljho Tallfang [Deviljho]
 Gravios Medulla [Gravios]"
-1573860,Kushala Crus X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Meldspar Ore"
-1573861,Kushala Shank X,Kushala Daora,"Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]
-Daora Claw+ [Kushala Daora]
-Meldspar Ore"
+1573860,Kushala Crus X,Kushala Daora,
+1573861,Kushala Shank X,Kushala Daora,
+1573862,Kushala Crus XR,Kushala Daora,
+1573863,Kushala Shank XR,Kushala Daora,
 1573864,Grand Mizuha Leg Wrap,Chameleos,"Chameleos Finehide [Chameleos]
 Chameleos Fellwing [Chameleos]
 Pearl Glosshide [Khezu]
@@ -5940,6 +5936,18 @@ Viscous Dragon Blood"
 1573945,Old Fatalis Legs,Fatalis,
 1573946,GX Old Fatalis Feet,Fatalis,
 1573947,GX Old Fatalis Legs,Fatalis,
+1573964,Auroros Pants R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Hardhorn"
+1573965,Borealis Hakama R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Hardhorn"
+1573966,Genesis Pants R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Hardhorn"
+1573967,Glyph Hakama R,Lao-Shan Lung,"EX Lao-Shan Ticket S [Lao-Shan Lung]
+Lao-Shan Shard [Lao-Shan Lung]
+Hyper Hardhorn"
 1573970,Esurient Greaves XR,Savage Deviljho,"Hyper Deviljho Scale X
 Vile Fang [Savage Deviljho]
 Black Blood [Savage Deviljho]"
@@ -5994,12 +6002,8 @@ S.Magala Shard [Shagaru Magala]"
 1574013,Brachydios Leggings GX,Brachydios,
 1574014,Rathalos Greaves GX,Rathalos,
 1574015,Rathalos Leggings GX,Rathalos,
-1574020,Kushala Crus GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]"
-1574021,Kushala Shank GX,Kushala Daora,"Triumph
-Daora Cortex [Kushala Daora]
-Daora Shard [Kushala Daora]"
+1574020,Kushala Crus GX,Kushala Daora,
+1574021,Kushala Shank GX,Kushala Daora,
 1574024,Kaiser Greaves GX,Teostra,"Triumph
 Teostra Cortex [Teostra]
 Flame Shard [Teostra]"
@@ -6849,30 +6853,6 @@ Hyper Horn+"
 1311279,Storge Cap R,,"Hyper Draco. Scale
 S.Magala Scale+ [Shagaru Magala]
 Hyper Horn+"
-1311282,EX Kushala Glare,,"EX Daora Ticket
-Daora Horn+ [Kushala Daora]
-Pure Dragon Blood"
-1311283,EX Kushala Snarl,,"EX Daora Ticket
-Daora Horn+ [Kushala Daora]
-Pure Dragon Blood"
-1311284,Kushala Glare R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Horn+ [Kushala Daora]"
-1311285,Kushala Snarl R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Horn+ [Kushala Daora]"
-1311288,EX Mizuha Cap,,"EX Chameleos Ticket
-Chameleos Spike [Chameleos]
-Pure Dragon Blood"
-1311289,EX Cham Hat,,"EX Chameleos Ticket
-Chameleos Spike [Chameleos]
-Pure Dragon Blood"
-1311292,EX Kaiser Crown,,"EX Teostra Ticket
-Teostra Horn+ [Teostra]
-Pure Dragon Blood"
-1311293,EX Kaiser Mask,,"EX Teostra Ticket
-Teostra Horn+ [Teostra]
-Pure Dragon Blood"
 1311298,Silver Solhelm R,,"Hyper S.Rath. Scale
 S.Rathalos Carapace [Silver Rathalos]
 Pure Dragon Blood"
@@ -7240,18 +7220,6 @@ Garuga Auricle"
 Rejuvenated Beak
 Garuga Cortex [Yian Garuga]
 Garuga Auricle"
-1311662,Auroros Helm GX,,"EX Lao-Shan Lung Ticket
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Gore Magala Sensor [Gore Magala]"
-1311663,Borealis Crown GX,,"EX Lao-Shan Lung Ticket
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Gore Magala Sensor [Gore Magala]"
-1311664,Genesis Headpiece GX,,"EX Lao-Shan Lung Ticket
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Gore Magala Sensor [Gore Magala]"
-1311665,Glyph Crown GX,,"EX Lao-Shan Lung Ticket
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Gore Magala Sensor [Gore Magala]"
 1311670,Scholar's Beret X,,"Yukumo Ticket G
 Wycademy Ticket G
 Lagia Hardhorn [Lagiacrus]
@@ -7304,12 +7272,6 @@ Hyper Hardhorn"
 1311709,Storge Cap XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper Hardhorn"
-1311718,Kushala Glare XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Hardhorn [Kushala Daora]"
-1311719,Kushala Snarl XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Hardhorn [Kushala Daora]"
 1311728,Yaksha Mask,,"Ancient Talisman
 Radiant Mucus+ [Nakarkos]
 Allfire Stone
@@ -7480,30 +7442,12 @@ Tetsucabra Coin
 Congalala Coin"
 1311818,Candid Earring,,
 1311819,Desire Earring,,
-1311820,Auroros Helm R,,"EX Lao-Shan Ticket S
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Hyper Hardhorn"
-1311821,Borealis Crown R,,"EX Lao-Shan Ticket S
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Hyper Hardhorn"
-1311822,Genesis Headpiece R,,"EX Lao-Shan Ticket S
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Hyper Hardhorn"
-1311823,Glyph Crown R,,"EX Lao-Shan Ticket S
-Lao-Shan Hardhorn [Lao-Shan Lung]
-Hyper Hardhorn"
 1311824,Silver Solhelm XR,,"Hyper S.Rath. Shard
 S.Rath Cortex [Silver Rathalos]
 Pure Dragon Blood"
 1311825,Silver Solcap XR,,"Hyper S.Rath. Shard
 S.Rath Cortex [Silver Rathalos]
 Pure Dragon Blood"
-1311876,Kushala Glare GX,,"Triumph
-Daora Hardhorn [Kushala Daora]
-Viscous Dragon Blood"
-1311877,Kushala Snarl GX,,"Triumph
-Daora Hardhorn [Kushala Daora]
-Viscous Dragon Blood"
 1311878,Mizuha Cap GX,,"Triumph
 Chameleos Hardhorn [Chameleos]
 Viscous Dragon Blood"
@@ -8535,12 +8479,6 @@ Hyper G.Magala Scale"
 1376815,Storge Vest R,,"Hyper Draco. Scale
 S.Magala Carapace [Shagaru Magala]
 Hyper G.Magala Scale"
-1376820,Kushala Cista R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Carapace [Kushala Daora]"
-1376821,Kushala Vise R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Carapace [Kushala Daora]"
 1376834,Silver Solmail R,,"Hyper S.Rath. Scale
 S.Rathalos Scale+ [Silver Rathalos]
 Rath Gleam"
@@ -8974,12 +8912,6 @@ Hyper G.Magala Scale X"
 1377245,Storge Vest XR,,"Hyper Draco. Scale+
 S.Magala Cortex [Shagaru Magala]
 Hyper G.Magala Scale X"
-1377254,Kushala Cista XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Cortex [Kushala Daora]"
-1377255,Kushala Vise XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Cortex [Kushala Daora]"
 1377264,Yaksha Raiment,,"Ancient Talisman
 Radiant Mucus+ [Nakarkos]
 Lrg ElderDragon Bone
@@ -9136,18 +9068,6 @@ Garuga Coin"
 1377353,Black Belt Vest X,,"Expert Ticket G
 Congalala Coin
 Garuga Coin"
-1377356,Auroros Torso R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1377357,Borealis Chest R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1377358,Genesis Torso R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1377359,Glyph Chest R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
 1377360,Silver Solmail XR,,"Hyper S.Rath. Shard
 S.Rathalos Shard [Silver Rathalos]
 Firegleam Dollop"
@@ -10145,12 +10065,6 @@ Hyper Claw+"
 1442351,Storge Guards R,,"Hyper Draco. Scale
 S.Magala Scale+ [Shagaru Magala]
 Hyper Claw+"
-1442356,Kushala Grip R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Claw+ [Kushala Daora]"
-1442357,Kushala Embrace R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Claw+ [Kushala Daora]"
 1442400,Caravaneer's Armlets,,"Bherna Ticket
 S.Magala Carapace [Shagaru Magala]
 Rare Scarab"
@@ -10518,12 +10432,6 @@ Hyper Solidclaw"
 1442781,Storge Guards XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper Solidclaw"
-1442790,Kushala Grip XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Hardclaw [Kushala Daora]"
-1442791,Kushala Embrace XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Hardclaw [Kushala Daora]"
 1442800,Yaksha Braces,,"Ancient Talisman
 Radiant Mucus+ [Nakarkos]
 Allfire Stone
@@ -10680,18 +10588,6 @@ Uragaan Coin"
 1442889,Black Belt Guards X,,"Expert Ticket G
 Tetsucabra Coin
 Uragaan Coin"
-1442892,Auroros Gauntlets R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Keenclaw"
-1442893,Borealis Gauntlets R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Keenclaw"
-1442894,Genesis Gauntlets R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Keenclaw"
-1442895,Glyph Gauntlets R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Keenclaw"
 1442962,Leather Braces X,,"Prized Pelt
 Avian Stoutbone
 Bullfango Thickfur [Bullfango]"
@@ -11688,30 +11584,12 @@ Hyper G.Magala Scale"
 1507887,Storge Coat R,,"Hyper Draco. Scale
 S.Magala Carapace [Shagaru Magala]
 Hyper G.Magala Scale"
-1507892,Kushala Cocoon R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Tail [Kushala Daora]"
-1507893,Kushala Wind Wrap R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Tail [Kushala Daora]"
-1507904,EX Silver Solcoil,,"EX S.Rathalos Ticket
-S.Rathalos Scale+ [Silver Rathalos]
-Rath Marrow"
-1507905,EX Silver Solcoat,,"EX S.Rathalos Ticket
-S.Rathalos Scale+ [Silver Rathalos]
-Rath Marrow"
 1507906,Silver Solcoil R,,"Hyper S.Rath. Scale
 S.Rathalos Scale+ [Silver Rathalos]
 Rath Medulla"
 1507907,Silver Solcoat R,,"Hyper S.Rath. Scale
 S.Rathalos Scale+ [Silver Rathalos]
 Rath Medulla"
-1507910,EX Golden Lunecoil,,"EX G.Rathian Ticket
-G.Rathian Scale+ [Gold Rathian]
-Rath Marrow"
-1507911,EX Golden Lunecoat,,"EX G.Rathian Ticket
-G.Rathian Scale+ [Gold Rathian]
-Rath Marrow"
 1507943,Strange Faulds,,"Irregular Bone
 Dreadqueen Shell [Dreadqueen Rathian]
 Stoutbone
@@ -12057,12 +11935,6 @@ Hyper G.Magala Scale X"
 1508317,Storge Coat XR,,"Hyper Draco. Scale+
 S.Magala Cortex [Shagaru Magala]
 Hyper G.Magala Scale X"
-1508326,Kushala Cocoon XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Lash [Kushala Daora]"
-1508327,Kushala Wind Wrap XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Lash [Kushala Daora]"
 1508336,Yaksha Coil,,"Ancient Talisman
 Radiant Mucus+ [Nakarkos]
 Lrg ElderDragon Bone
@@ -12219,18 +12091,6 @@ Garuga Coin"
 1508425,Black Belt Coat X,,"Expert Ticket G
 Tetsucabra Coin
 Garuga Coin"
-1508428,Auroros Tassets R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1508429,Borealis Tassets R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1508430,Genesis Tassets R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
-1508431,Glyph Tassets R,,"EX Lao-Shan Ticket S
-Lao-Shan Cortex [Lao-Shan Lung]
-Hyper Solidclaw"
 1508432,Silver Solfaulds XR,,"Hyper S.Rath. Shard
 S.Rathalos Shard [Silver Rathalos]
 Rath Medulla"
@@ -13222,18 +13082,6 @@ Hyper G.Magala Scale"
 1573423,Storge Leggings R,,"Hyper Draco. Scale
 S.Magala Scale+ [Shagaru Magala]
 Hyper G.Magala Scale"
-1573428,Kushala Crus R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Dragon Scale+ [Kushala Daora]"
-1573429,Kushala Shank R,,"Pure Dragon Blood
-Hyper Ice Block
-Daora Dragon Scale+ [Kushala Daora]"
-1573432,EX Mizuha Gaiters,,"EX Chameleos Ticket
-Chameleos Hide+ [Chameleos]
-Pearl Hide [Khezu]"
-1573433,EX Cham Trousers,,"EX Chameleos Ticket
-Chameleos Hide+ [Chameleos]
-Pearl Hide [Khezu]"
 1573442,Silver Solgreaves R,,"Hyper S.Rath. Scale
 S.Rathalos Carapace [Silver Rathalos]
 Rath Gleam"
@@ -13642,12 +13490,6 @@ Hyper G.Magala Scale X"
 1573853,Storge Leggings XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper G.Magala Scale X"
-1573862,Kushala Crus XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Shard [Kushala Daora]"
-1573863,Kushala Shank XR,,"Viscous Dragon Blood
-Hyper Ice Chunk
-Daora Shard [Kushala Daora]"
 1573872,Yaksha Boots,,"Ancient Talisman
 Radiant Mucus+ [Nakarkos]
 Lrg ElderDragon Bone
@@ -13804,18 +13646,6 @@ Uragaan Coin"
 1573961,Black Belt Leggings X,,"Expert Ticket G
 Garuga Coin
 Uragaan Coin"
-1573964,Auroros Pants R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Hardhorn"
-1573965,Borealis Hakama R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Hardhorn"
-1573966,Genesis Pants R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Hardhorn"
-1573967,Glyph Hakama R,,"EX Lao-Shan Ticket S
-Lao-Shan Shard [Lao-Shan Lung]
-Hyper Hardhorn"
 1573968,Silver Solgreaves XR,,"Hyper S.Rath. Shard
 S.Rath Cortex [Silver Rathalos]
 Firegleam Dollop"

@@ -49,3 +49,21 @@ class Gathering(Base):
     item_id = Column(Integer, ForeignKey('items._id'))
 
     item = relationship("Item")
+
+class Quest(Base):
+    __tablename__ = 'quests'
+    _id = Column(Integer, primary_key=True)
+    name = Column(Text)
+
+class MonsterQuest(Base):
+    __tablename__ = 'monster_to_quest'
+    _id = Column(Integer, primary_key=True)
+    monster_id = Column(Integer, ForeignKey('monsters._id'))
+    quest_id = Column(Integer, ForeignKey('quests._id'))
+    unstable = Column(Boolean)
+
+class QuestReward(Base):
+    __tablename__ = 'quest_rewards'
+    _id = Column(Integer, primary_key=True)
+    quest_id = Column(Integer, ForeignKey('items._id'))
+    item_id = Column(Integer, ForeignKey('items._id'))

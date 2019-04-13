@@ -44,6 +44,30 @@ class MonsterChain:
                 results.append(entry)
         return results
 
+# Try to create armor to monster assocation. We don't have that in any file
+def find_embedded_monster_name(monster_data, name):
+    special_mappings = {
+        'C.Fatalis': 'Fatalis',
+        'Lao-Shan': 'Lao-Shan Lung',
+        'Kushala': 'Kushala Daora',
+        'Daora': 'Kushala Daora',
+        'S.Rathalos': 'Silver Rathalos',
+        'G.Rathian': 'Gold Rathian',
+        'S.Magala': 'Shagaru Magala'
+    }
+
+    # Check special mappings first
+    name_lower = name.lower()
+    for name, monster_name in special_mappings.items():
+        if name.lower() in name_lower:
+            return monster_name
+
+    # Check all monsters after
+    for monster in monster_data.monsters:
+        if monster.name.lower() in name_lower:
+            return monster.name
+
+
 def create_monster_armor_csv(session: sqlalchemy.orm.Session):
     "Create an armor -> monster mapping file using several heuristics."
     all_armor = (session.query(db.Item)
@@ -88,6 +112,16 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         item_to_monster_ids_multi.setdefault(reward.item_id, set())
         item_to_monster_ids_multi[reward.item_id].add(reward.monster_id)
 
+    ticket_items = session.query(db.Item).filter(db.Item.name.like('%Ticket%'))
+    for ticket in ticket_items:
+        monster_name = find_embedded_monster_name(monster_data, ticket.name)
+        if monster_name:
+            monster_id = monster_data.by_name(monster_name)._id
+            item_to_monster_ids_multi.setdefault(ticket._id, set())
+            item_to_monster_ids_multi[ticket._id].add(monster_id)
+        else:
+            print("Could not map " + ticket.name)
+
     # Try to filter only to items that drop from only a single monster. Note: Some monsters are subspecies. Use the monster chains to figure that out
     item_to_monster_ids = {}
     for item_id, monster_ids in item_to_monster_ids_multi.items():
@@ -108,13 +142,6 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
             'Components': '\n'.join(components)
         }
 
-    # Try to create armor to monster assocation. We don't have that in any file
-    def find_embedded_monster_name(name):
-        name_lower = name.lower()
-        for monster in monster_data.monsters:
-            if monster.name.lower() in name_lower:
-                return monster.name
-    
     results = []
     unresolved = []
     for armor in armor_by_id.values():
@@ -138,7 +165,7 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
             continue
 
         # First pass - check for monster name substring
-        monster_name = find_embedded_monster_name(armor.name)
+        monster_name = find_embedded_monster_name(monster_data, armor.name)
         if monster_name:
             results.append(create_result(armor, monster_name))
             continue
