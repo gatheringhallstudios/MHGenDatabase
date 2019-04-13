@@ -262,6 +262,30 @@ Item Id,Item Name,Monster,Components
 1311313,Akantor Fangs R,Akantor,
 1311314,Ukanlos Mask,Ukanlos,
 1311315,Ukanlos Fangs,Ukanlos,
+1311337,Redhelm Helm,Redhelm Arzuros,Redhelm Hunter I
+1311338,Redhelm Cap,Redhelm Arzuros,Redhelm Hunter I
+1311339,Snowbaron Helm,Snowbaron Lagombi,Snowbaron Hunter I
+1311340,Snowbaron Cap,Snowbaron Lagombi,Snowbaron Hunter I
+1311341,Stonefist Helm,Stonefist Hermitaur,Stonefist Hunter I
+1311342,Stonefist Cap,Stonefist Hermitaur,Stonefist Hunter I
+1311343,Dreadqueen Helm,Dreadqueen Rathian,Dreadqueen Hunter I
+1311344,Dreadqueen Cap,Dreadqueen Rathian,Dreadqueen Hunter I
+1311345,Drilltusk Helm,Drilltusk Tetsucabra,Drilltusk Hunter I
+1311346,Drilltusk Cap,Drilltusk Tetsucabra,Drilltusk Hunter I
+1311347,Silverwind Helm,Silverwind Nargacuga,Silverwind Hunter I
+1311348,Silverwind Cap,Silverwind Nargacuga,Silverwind Hunter I
+1311349,Crystalbeard Helm,Crystalbeard Uragaan,Crystalbeard Hunter I
+1311350,Crystalbeard Cap,Crystalbeard Uragaan,Crystalbeard Hunter I
+1311351,Deadeye Helm,Deadeye Yian Garuga,Deadeye Hunter I
+1311352,Deadeye Cap,Deadeye Yian Garuga,Deadeye Hunter I
+1311353,Dreadking Helm,Dreadking Rathalos,Dreadking Hunter I
+1311354,Dreadking Cap,Dreadking Rathalos,Dreadking Hunter I
+1311355,Thunderlord Helm,Thunderlord Zinogre,Thunderlord Hunter I
+1311356,Thunderlord Cap,Thunderlord Zinogre,Thunderlord Hunter I
+1311357,Grimclaw Helm,Grimclaw Tigrex,Grimclaw Hunter I
+1311358,Grimclaw Cap,Grimclaw Tigrex,Grimclaw Hunter I
+1311359,Hellblade Helm,Hellblade Glavenus,Hellblade Hunter I
+1311360,Hellblade Cap,Hellblade Glavenus,Hellblade Hunter I
 1311438,Conga Helm,Conga,
 1311439,Conga Cap,Conga,
 1311440,Giaprey Head,Giaprey,
@@ -444,6 +468,18 @@ Item Id,Item Name,Monster,Components
 1311801,Old Fatalis Face,Fatalis,
 1311802,GX Old Fatalis Head,Fatalis,
 1311803,GX Old Fatalis Face,Fatalis,
+1311828,Rustrazor Helm,Rustrazor Ceanataur,Rustrazor Hunter I
+1311829,Rustrazor Cap,Rustrazor Ceanataur,Rustrazor Hunter I
+1311830,Nightcloak Helm,Nightcloak Malfestio,Nightcloak Hunter I
+1311831,Nightcloak Cap,Nightcloak Malfestio,Nightcloak Hunter I
+1311832,Soulseer Helm,Soulseer Mizutsune,Soulseer Hunter I
+1311833,Soulseer Cap,Soulseer Mizutsune,Soulseer Hunter I
+1311834,Boltreaver Helm,Boltreaver Astalos,Boltreaver Hunter I
+1311835,Boltreaver Cap,Boltreaver Astalos,Boltreaver Hunter I
+1311836,Elderfrost Helm,Elderfrost Gammoth,Elderfrost Hunter I
+1311837,Elderfrost Cap,Elderfrost Gammoth,Elderfrost Hunter I
+1311838,Bloodbath Helm,Bloodbath Diablos,Bloodbath Hunter I
+1311839,Bloodbath Cap,Bloodbath Diablos,Bloodbath Hunter I
 1311842,Genprey Helm GX,Genprey,
 1311843,Genprey Cap GX,Genprey,
 1311844,Ioprey Helm GX,Ioprey,
@@ -730,6 +766,30 @@ Item Id,Item Name,Monster,Components
 1376849,Akantor Plate R,Akantor,
 1376850,Ukanlos Aegis,Ukanlos,
 1376851,Ukanlos Plate,Ukanlos,
+1376873,Redhelm Mail,Redhelm Arzuros,Redhelm Hunter I
+1376874,Redhelm Vest,Redhelm Arzuros,Redhelm Hunter I
+1376875,Snowbaron Mail,Snowbaron Lagombi,Snowbaron Hunter I
+1376876,Snowbaron Vest,Snowbaron Lagombi,Snowbaron Hunter I
+1376877,Stonefist Mail,Stonefist Hermitaur,Stonefist Hunter I
+1376878,Stonefist Vest,Stonefist Hermitaur,Stonefist Hunter I
+1376879,Dreadqueen Mail,Dreadqueen Rathian,Dreadqueen Hunter I
+1376880,Dreadqueen Vest,Dreadqueen Rathian,Dreadqueen Hunter I
+1376881,Drilltusk Mail,Drilltusk Tetsucabra,Drilltusk Hunter I
+1376882,Drilltusk Vest,Drilltusk Tetsucabra,Drilltusk Hunter I
+1376883,Silverwind Mail,Silverwind Nargacuga,Silverwind Hunter I
+1376884,Silverwind Vest,Silverwind Nargacuga,Silverwind Hunter I
+1376885,Crystalbeard Mail,Crystalbeard Uragaan,Crystalbeard Hunter I
+1376886,Crystalbeard Vest,Crystalbeard Uragaan,Crystalbeard Hunter I
+1376887,Deadeye Mail,Deadeye Yian Garuga,Deadeye Hunter I
+1376888,Deadeye Vest,Deadeye Yian Garuga,Deadeye Hunter I
+1376889,Dreadking Mail,Dreadking Rathalos,Dreadking Hunter I
+1376890,Dreadking Vest,Dreadking Rathalos,Dreadking Hunter I
+1376891,Thunderlord Mail,Thunderlord Zinogre,Thunderlord Hunter I
+1376892,Thunderlord Vest,Thunderlord Zinogre,Thunderlord Hunter I
+1376893,Grimclaw Mail,Grimclaw Tigrex,Grimclaw Hunter I
+1376894,Grimclaw Vest,Grimclaw Tigrex,Grimclaw Hunter I
+1376895,Hellblade Mail,Hellblade Glavenus,Hellblade Hunter I
+1376896,Hellblade Vest,Hellblade Glavenus,Hellblade Hunter I
 1376902,X Gammoth Jacket,Gammoth,
 1376903,X Gammoth Jersey,Gammoth,
 1376904,X Mizutsune Jacket,Mizutsune,
@@ -913,6 +973,18 @@ Item Id,Item Name,Monster,Components
 1377337,Old Fatalis Skin,Fatalis,
 1377338,GX Old Fatalis Hide,Fatalis,
 1377339,GX Old Fatalis Skin,Fatalis,
+1377364,Rustrazor Mail,Rustrazor Ceanataur,Rustrazor Hunter I
+1377365,Rustrazor Vest,Rustrazor Ceanataur,Rustrazor Hunter I
+1377366,Nightcloak Mail,Nightcloak Malfestio,Nightcloak Hunter I
+1377367,Nightcloak Vest,Nightcloak Malfestio,Nightcloak Hunter I
+1377368,Soulseer Mail,Soulseer Mizutsune,Soulseer Hunter I
+1377369,Soulseer Vest,Soulseer Mizutsune,Soulseer Hunter I
+1377370,Boltreaver Mail,Boltreaver Astalos,Boltreaver Hunter I
+1377371,Boltreaver Vest,Boltreaver Astalos,Boltreaver Hunter I
+1377372,Elderfrost Mail,Elderfrost Gammoth,Elderfrost Hunter I
+1377373,Elderfrost Vest,Elderfrost Gammoth,Elderfrost Hunter I
+1377374,Bloodbath Mail,Bloodbath Diablos,Bloodbath Hunter I
+1377375,Bloodbath Vest,Bloodbath Diablos,Bloodbath Hunter I
 1377378,Genprey Mail GX,Genprey,
 1377379,Genprey Vest GX,Genprey,
 1377380,Ioprey Mail GX,Ioprey,
@@ -1209,6 +1281,30 @@ Item Id,Item Name,Monster,Components
 1442385,Akantor Gauntlets R,Akantor,
 1442386,Ukanlos Claws,Ukanlos,
 1442387,Ukanlos Gauntlets,Ukanlos,
+1442409,Redhelm Vambraces,Redhelm Arzuros,Redhelm Hunter I
+1442410,Redhelm Guards,Redhelm Arzuros,Redhelm Hunter I
+1442411,Snowbaron Vambraces,Snowbaron Lagombi,Snowbaron Hunter I
+1442412,Snowbaron Guards,Snowbaron Lagombi,Snowbaron Hunter I
+1442413,Stonefist Vambraces,Stonefist Hermitaur,Stonefist Hunter I
+1442414,Stonefist Guards,Stonefist Hermitaur,Stonefist Hunter I
+1442415,Dreadqueen Braces,Dreadqueen Rathian,Dreadqueen Hunter I
+1442416,Dreadqueen Guards,Dreadqueen Rathian,Dreadqueen Hunter I
+1442417,Drilltusk Braces,Drilltusk Tetsucabra,Drilltusk Hunter I
+1442418,Drilltusk Guards,Drilltusk Tetsucabra,Drilltusk Hunter I
+1442419,Silverwind Braces,Silverwind Nargacuga,Silverwind Hunter I
+1442420,Silverwind Guards,Silverwind Nargacuga,Silverwind Hunter I
+1442421,Crystalbeard Braces,Crystalbeard Uragaan,Crystalbeard Hunter I
+1442422,Crystalbeard Guards,Crystalbeard Uragaan,Crystalbeard Hunter I
+1442423,Deadeye Vambraces,Deadeye Yian Garuga,Deadeye Hunter I
+1442424,Deadeye Guards,Deadeye Yian Garuga,Deadeye Hunter I
+1442425,Dreadking Braces,Dreadking Rathalos,Dreadking Hunter I
+1442426,Dreadking Guards,Dreadking Rathalos,Dreadking Hunter I
+1442427,Thunderlord Braces,Thunderlord Zinogre,Thunderlord Hunter I
+1442428,Thunderlord Guards,Thunderlord Zinogre,Thunderlord Hunter I
+1442429,Grimclaw Braces,Grimclaw Tigrex,Grimclaw Hunter I
+1442430,Grimclaw Guards,Grimclaw Tigrex,Grimclaw Hunter I
+1442431,Hellblade Braces,Hellblade Glavenus,Hellblade Hunter I
+1442432,Hellblade Guards,Hellblade Glavenus,Hellblade Hunter I
 1442510,Conga Vambraces,Conga,
 1442511,Conga Guards,Conga,
 1442512,Giaprey Claws,Giaprey,
@@ -1384,6 +1480,18 @@ Item Id,Item Name,Monster,Components
 1442873,Old Fatalis Fist,Fatalis,
 1442874,GX Old Fatalis Claw,Fatalis,
 1442875,GX Old Fatalis Fist,Fatalis,
+1442900,Rustrazor Vambraces,Rustrazor Ceanataur,Rustrazor Hunter I
+1442901,Rustrazor Guards,Rustrazor Ceanataur,Rustrazor Hunter I
+1442902,Nightcloak Vambraces,Nightcloak Malfestio,Nightcloak Hunter I
+1442903,Nightcloak Guards,Nightcloak Malfestio,Nightcloak Hunter I
+1442904,Soulseer Vambraces,Soulseer Mizutsune,Soulseer Hunter I
+1442905,Soulseer Guards,Soulseer Mizutsune,Soulseer Hunter I
+1442906,Boltreaver Vambraces,Boltreaver Astalos,Boltreaver Hunter I
+1442907,Boltreaver Guards,Boltreaver Astalos,Boltreaver Hunter I
+1442908,Elderfrost Vambraces,Elderfrost Gammoth,Elderfrost Hunter I
+1442909,Elderfrost Guards,Elderfrost Gammoth,Elderfrost Hunter I
+1442910,Bloodbath Vambraces,Bloodbath Diablos,Bloodbath Hunter I
+1442911,Bloodbath Guards,Bloodbath Diablos,Bloodbath Hunter I
 1442914,Genprey Vambraces GX,Genprey,
 1442915,Genprey Guards GX,Genprey,
 1442916,Ioprey Vambraces GX,Ioprey,
@@ -1658,6 +1766,30 @@ Item Id,Item Name,Monster,Components
 1507921,Akantor Sash R,Akantor,
 1507922,Ukanlos Cincture,Ukanlos,
 1507923,Ukanlos Sash,Ukanlos,
+1507945,Redhelm Faulds,Redhelm Arzuros,Redhelm Hunter I
+1507946,Redhelm Coat,Redhelm Arzuros,Redhelm Hunter I
+1507947,Snowbaron Faulds,Snowbaron Lagombi,Snowbaron Hunter I
+1507948,Snowbaron Coat,Snowbaron Lagombi,Snowbaron Hunter I
+1507949,Stonefist Faulds,Stonefist Hermitaur,Stonefist Hunter I
+1507950,Stonefist Coat,Stonefist Hermitaur,Stonefist Hunter I
+1507951,Dreadqueen Faulds,Dreadqueen Rathian,Dreadqueen Hunter I
+1507952,Dreadqueen Coat,Dreadqueen Rathian,Dreadqueen Hunter I
+1507953,Drilltusk Faulds,Drilltusk Tetsucabra,Drilltusk Hunter I
+1507954,Drilltusk Coat,Drilltusk Tetsucabra,Drilltusk Hunter I
+1507955,Silverwind Faulds,Silverwind Nargacuga,Silverwind Hunter I
+1507956,Silverwind Coat,Silverwind Nargacuga,Silverwind Hunter I
+1507957,Crystalbeard Faulds,Crystalbeard Uragaan,Crystalbeard Hunter I
+1507958,Crystalbeard Coat,Crystalbeard Uragaan,Crystalbeard Hunter I
+1507959,Deadeye Faulds,Deadeye Yian Garuga,Deadeye Hunter I
+1507960,Deadeye Coat,Deadeye Yian Garuga,Deadeye Hunter I
+1507961,Dreadking Faulds,Dreadking Rathalos,Dreadking Hunter I
+1507962,Dreadking Coat,Dreadking Rathalos,Dreadking Hunter I
+1507963,Thunderlord Faulds,Thunderlord Zinogre,Thunderlord Hunter I
+1507964,Thunderlord Coat,Thunderlord Zinogre,Thunderlord Hunter I
+1507965,Grimclaw Faulds,Grimclaw Tigrex,Grimclaw Hunter I
+1507966,Grimclaw Coat,Grimclaw Tigrex,Grimclaw Hunter I
+1507967,Hellblade Faulds,Hellblade Glavenus,Hellblade Hunter I
+1507968,Hellblade Coat,Hellblade Glavenus,Hellblade Hunter I
 1508046,Conga Tassets,Conga,
 1508047,Conga Coat,Conga,
 1508050,Barroth Faulds,Barroth,
@@ -1823,6 +1955,18 @@ Item Id,Item Name,Monster,Components
 1508409,Old Fatalis Scale,Fatalis,
 1508410,GX Old Fatalis Spine,Fatalis,
 1508411,GX Old Fatalis Scale,Fatalis,
+1508436,Rustrazor Faulds,Rustrazor Ceanataur,Rustrazor Hunter I
+1508437,Rustrazor Coat,Rustrazor Ceanataur,Rustrazor Hunter I
+1508438,Nightcloak Faulds,Nightcloak Malfestio,Nightcloak Hunter I
+1508439,Nightcloak Coat,Nightcloak Malfestio,Nightcloak Hunter I
+1508440,Soulseer Faulds,Soulseer Mizutsune,Soulseer Hunter I
+1508441,Soulseer Coat,Soulseer Mizutsune,Soulseer Hunter I
+1508442,Boltreaver Faulds,Boltreaver Astalos,Boltreaver Hunter I
+1508443,Boltreaver Coat,Boltreaver Astalos,Boltreaver Hunter I
+1508444,Elderfrost Faulds,Elderfrost Gammoth,Elderfrost Hunter I
+1508445,Elderfrost Coat,Elderfrost Gammoth,Elderfrost Hunter I
+1508446,Bloodbath Faulds,Bloodbath Diablos,Bloodbath Hunter I
+1508447,Bloodbath Coat,Bloodbath Diablos,Bloodbath Hunter I
 1508450,Genprey Tassets GX,Genprey,
 1508451,Genprey Coat GX,Genprey,
 1508452,Ioprey Tassets GX,Ioprey,
@@ -2104,6 +2248,30 @@ Item Id,Item Name,Monster,Components
 1573457,Akantor Boots R,Akantor,
 1573458,Ukanlos Hessian,Ukanlos,
 1573459,Ukanlos Boots,Ukanlos,
+1573481,Redhelm Greaves,Redhelm Arzuros,Redhelm Hunter I
+1573482,Redhelm Leggings,Redhelm Arzuros,Redhelm Hunter I
+1573483,Snowbaron Greaves,Snowbaron Lagombi,Snowbaron Hunter I
+1573484,Snowbaron Leggings,Snowbaron Lagombi,Snowbaron Hunter I
+1573485,Stonefist Greaves,Stonefist Hermitaur,Stonefist Hunter I
+1573486,Stonefist Leggings,Stonefist Hermitaur,Stonefist Hunter I
+1573487,Dreadqueen Greaves,Dreadqueen Rathian,Dreadqueen Hunter I
+1573488,Dreadqueen Leggings,Dreadqueen Rathian,Dreadqueen Hunter I
+1573489,Drilltusk Greaves,Drilltusk Tetsucabra,Drilltusk Hunter I
+1573490,Drilltusk Leggings,Drilltusk Tetsucabra,Drilltusk Hunter I
+1573491,Silverwind Greaves,Silverwind Nargacuga,Silverwind Hunter I
+1573492,Silverwind Leggings,Silverwind Nargacuga,Silverwind Hunter I
+1573493,Crystalbeard Greaves,Crystalbeard Uragaan,Crystalbeard Hunter I
+1573494,Crystalbeard Leggings,Crystalbeard Uragaan,Crystalbeard Hunter I
+1573495,Deadeye Greaves,Deadeye Yian Garuga,Deadeye Hunter I
+1573496,Deadeye Leggings,Deadeye Yian Garuga,Deadeye Hunter I
+1573497,Dreadking Greaves,Dreadking Rathalos,Dreadking Hunter I
+1573498,Dreadking Leggings,Dreadking Rathalos,Dreadking Hunter I
+1573499,Thunderlord Greaves,Thunderlord Zinogre,Thunderlord Hunter I
+1573500,Thunderlord Leggings,Thunderlord Zinogre,Thunderlord Hunter I
+1573501,Grimclaw Greaves,Grimclaw Tigrex,Grimclaw Hunter I
+1573502,Grimclaw Leggings,Grimclaw Tigrex,Grimclaw Hunter I
+1573503,Hellblade Greaves,Hellblade Glavenus,Hellblade Hunter I
+1573504,Hellblade Leggings,Hellblade Glavenus,Hellblade Hunter I
 1573582,Conga Greaves,Conga,
 1573583,Conga Leggings,Conga,
 1573584,Giaprey Feet,Giaprey,
@@ -2275,6 +2443,18 @@ Item Id,Item Name,Monster,Components
 1573945,Old Fatalis Legs,Fatalis,
 1573946,GX Old Fatalis Feet,Fatalis,
 1573947,GX Old Fatalis Legs,Fatalis,
+1573972,Rustrazor Greaves,Rustrazor Ceanataur,Rustrazor Hunter I
+1573973,Rustrazor Leggings,Rustrazor Ceanataur,Rustrazor Hunter I
+1573974,Nightcloak Greaves,Nightcloak Malfestio,Nightcloak Hunter I
+1573975,Nightcloak Leggings,Nightcloak Malfestio,Nightcloak Hunter I
+1573976,Soulseer Greaves,Soulseer Mizutsune,Soulseer Hunter I
+1573977,Soulseer Leggings,Soulseer Mizutsune,Soulseer Hunter I
+1573978,Boltreaver Greaves,Boltreaver Astalos,Boltreaver Hunter I
+1573979,Boltreaver Leggings,Boltreaver Astalos,Boltreaver Hunter I
+1573980,Elderfrost Greaves,Elderfrost Gammoth,Elderfrost Hunter I
+1573981,Elderfrost Leggings,Elderfrost Gammoth,Elderfrost Hunter I
+1573982,Bloodbath Greaves,Bloodbath Diablos,Bloodbath Hunter I
+1573983,Bloodbath Leggings,Bloodbath Diablos,Bloodbath Hunter I
 1573986,Genprey Greaves GX,Genprey,
 1573987,Genprey Leggings GX,Genprey,
 1573988,Ioprey Greaves GX,Ioprey,

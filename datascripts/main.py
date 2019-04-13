@@ -4,6 +4,7 @@ import json
 from os.path import join
 
 import sqlalchemy.orm
+from sqlalchemy.orm import selectinload
 
 def read_csv(location):
     "Reads a csv file as an object list without additional processing"
@@ -49,19 +50,29 @@ def save_json_asset(obj, filename):
 
 def create_monster_armor_csv(session: sqlalchemy.orm.Session):
     # We don't have an armor -> monster mapping file. Try to run a few possible heuristics
-    armor_by_id = {a._id:a for a in session.query(db.Item).filter(db.Item.type == 'Armor')}
+    all_armor = (session.query(db.Item)
+        .filter(db.Item.type == 'Armor')
+        .options(selectinload(db.Item.components))
+        .all())
+    armor_by_id = {a._id:a for a in all_armor}
     
     # Monster Items
     monster_to_id = {}
+    deviant_monster_starter_to_name = {}
     for monster in session.query(db.Monster):
         monster_to_id[monster.name] = monster._id
 
-    def create_result(armor, monster_name):
+        # Map names like "Drilltusk". Used for hooking onto deviant armor key items
+        if int(monster._class) == 2:
+            first_word, sep, rest = monster.name.partition(' ')
+            deviant_monster_starter_to_name[first_word.strip()] = monster.name
+
+    def create_result(armor, monster_name, components=[]):
         return {
             'Item Id': armor._id,
             'Item Name': armor.name,
             'Monster': monster_name,
-            'Components': None
+            'Components': '\n'.join(components)
         }
 
     # Try to create armor to monster assocation. We don't have that in any file
@@ -73,8 +84,22 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
     
     results = []
     for armor in armor_by_id.values():
+        components = list(armor.components)
+
+        key_items = list(filter(lambda c: c.key, components))
+        key_item = key_items[0].component_item if key_items else None
+
+        # Handle Deviant Armor
         if armor.rarity == 11:
-            # todo: support deviant armor
+            if not key_item: 
+                raise Exception("Key Item is required for deviant armor " + armor.name)
+            first_word, sep, rest = key_item.name.partition(' ')
+            first_word.strip()
+
+            monster_name = deviant_monster_starter_to_name[first_word]
+            result = create_result(armor, monster_name, [key_item.name])
+            
+            results.append(result)
             continue
 
         # First pass - check for monster name substring
@@ -82,9 +107,7 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         if monster_name:
             results.append(create_result(armor, monster_name))
             continue
-
         
-
     save_csv(results, 'source_data/monster_armor.csv')
 
 def bind_monster_weapons(session: sqlalchemy.orm.Session):
