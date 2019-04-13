@@ -33,3 +33,19 @@ class Component(Base):
 
     created_item = relationship("Item", foreign_keys=[created_item_id])
     component_item = relationship("Item", foreign_keys=[component_item_id])
+
+class HuntingReward(Base):
+    __tablename__ = 'hunting_rewards'
+
+    _id = Column(Integer, primary_key=True)
+    item_id = Column(Integer, ForeignKey('items._id'))
+    monster_id = Column(Integer, ForeignKey('monsters._id'))
+
+    monster = relationship("Monster")
+
+class Gathering(Base):
+    __tablename__ = 'gathering'
+    _id = Column(Integer, primary_key=True)
+    item_id = Column(Integer, ForeignKey('items._id'))
+
+    item = relationship("Item")

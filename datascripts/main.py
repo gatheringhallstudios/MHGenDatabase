@@ -57,17 +57,26 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
     armor_by_id = {a._id:a for a in all_armor}
     
     # Monster Items
-    monster_to_id = {}
+    monster_map = {}
     deviant_monster_starter_to_name = {}
     for monster in session.query(db.Monster):
-        monster_to_id[monster.name] = monster._id
+        monster_map[monster._id] = monster.name
 
         # Map names like "Drilltusk". Used for hooking onto deviant armor key items
         if int(monster._class) == 2:
             first_word, sep, rest = monster.name.partition(' ')
             deviant_monster_starter_to_name[first_word.strip()] = monster.name
 
-    def create_result(armor, monster_name, components=[]):
+    # Item to monster names. First get all, then filter to only those with a SINGLE monster association
+    item_to_monster_ids = {}
+    gather_item_ids = session.query(db.Gathering.item_id).distinct()
+    print(gather_item_ids.all())
+    for reward in session.query(db.HuntingReward).filter(~db.HuntingReward.item_id.in_(gather_item_ids)):
+        item_to_monster_ids.setdefault(reward.item_id, set())
+        item_to_monster_ids[reward.item_id].add(reward.monster_id)
+    item_to_monster_ids = {p[0]:next(iter(p[1])) for p in item_to_monster_ids.items() if len(p[1]) == 1}
+
+    def create_result(armor, monster_name=None, components=[]):
         return {
             'Item Id': armor._id,
             'Item Name': armor.name,
@@ -78,11 +87,12 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
     # Try to create armor to monster assocation. We don't have that in any file
     def find_embedded_monster_name(name):
         name_lower = name.lower()
-        for monster_name, monster_id in monster_to_id.items():
+        for monster_id, monster_name in monster_map.items():
             if monster_name.lower() in name_lower:
                 return monster_name
     
     results = []
+    unresolved = []
     for armor in armor_by_id.values():
         components = list(armor.components)
 
@@ -107,8 +117,23 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         if monster_name:
             results.append(create_result(armor, monster_name))
             continue
+
+        # Second pass, check the components, see if anything is possibly unanimaous
+        item_names = []
+        monster_ids = set()
+        for component in components:
+            item_name = component.component_item.name
+            monster_id = item_to_monster_ids.get(component.component_item_id)
+            if monster_id:
+                monster_name = monster_map[monster_id]
+                monster_ids.add(monster_id)
+                item_name = f'{item_name} [{monster_name}]'
+
+            item_names.append(item_name)
+
+        unresolved.append(create_result(armor, components=item_names))
         
-    save_csv(results, 'source_data/monster_armor.csv')
+    save_csv(results + unresolved, 'source_data/monster_armor.csv')
 
 def bind_monster_weapons(session: sqlalchemy.orm.Session):
     "Creates an association from monsters to monster items and places it in the assets folder"
