@@ -67,3 +67,16 @@ class QuestReward(Base):
     _id = Column(Integer, primary_key=True)
     quest_id = Column(Integer, ForeignKey('items._id'))
     item_id = Column(Integer, ForeignKey('items._id'))
+
+class ArmorFamily(Base):
+    __tablename__ = 'armor_families'
+    _id = Column(Integer, primary_key=True)
+    name = Column(Text)
+    armor_pieces = relationship("Armor")
+
+class Armor(Base):
+    __tablename__ = 'armor'
+    _id = Column(Integer, ForeignKey("items._id"), primary_key=True)
+    family_id = Column("family", Integer, ForeignKey("armor_families._id"))
+
+    item = relationship("Item", lazy="joined")

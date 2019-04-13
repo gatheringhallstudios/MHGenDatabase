@@ -30,7 +30,7 @@ def determine_fields(obj_list):
     return fields
 
 def save_csv(obj_list, location):
-    """Saves a dict list as a  CSV, doing some last minute validations. 
+    """Saves a dict list as a CSV, doing some last minute validations. 
     Fields are auto-determined"""
 
     fields = determine_fields(obj_list)
