@@ -16,4 +16,6 @@ class Item(Base):
     _id = Column(Integer, primary_key=True)
     name = Column(Text)
 
+    rarity = Column(Integer)
+
     type = Column(Text)
