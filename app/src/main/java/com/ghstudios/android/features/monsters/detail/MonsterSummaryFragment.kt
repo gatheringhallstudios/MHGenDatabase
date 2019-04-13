@@ -258,15 +258,19 @@ class MonsterSummaryFragment : Fragment() {
             return
         }
 
+        equipmentEmpty.visibility = View.GONE
+
         val armorBinder = ArmorSkillPointsViewBinder()
         for (armor in gear.armor) {
             val view = armorBinder.createView(equipmentList)
             armorBinder.bindView(view, armor)
             view.setOnClickListener(ArmorClickListener(context, armor.armor))
+
+            equipmentList.addView(view)
         }
 
         for (weapon in gear.weapons) {
-
+            // todo: implement
         }
     }
 

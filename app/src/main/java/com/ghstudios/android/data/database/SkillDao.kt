@@ -29,13 +29,13 @@ class SkillDao(val dbMainHelper: SQLiteOpenHelper) {
     fun queryItemToSkillTreeForItems(ids: List<Long>): List<ItemToSkillTree> {
         if (ids.isEmpty()) return emptyList()
 
-        val inClause = ids.map { "?" }.joinToString { ", " }
+        val inClause = ids.joinToString(", ") { "?" }
 
         val cursor = db.rawQuery("""
             SELECT its._id,its.skill_tree_id,st.$column_name AS sname,its.point_value,i._id AS item_id,
                 i.$column_name AS iname,i.rarity,i.type,i.icon_name,i.icon_color
             FROM items i
-                JOIN item_to_skill_tree its on a._id=its.item_id
+                JOIN item_to_skill_tree its on i._id=its.item_id
                 JOIN skill_trees st on st._id=its.skill_tree_id
             WHERE i._id in ($inClause)
         """, ids.map { it.toString() }.toTypedArray())

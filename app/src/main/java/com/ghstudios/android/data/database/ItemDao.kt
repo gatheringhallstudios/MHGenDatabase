@@ -245,7 +245,7 @@ class ItemDao(
     fun queryArmorMany(ids: List<Long>): List<Armor> {
         if (ids.isEmpty()) return emptyList()
 
-        val inClause = ids.map { "?" }.joinToString { ", " }
+        val inClause = ids.joinToString(", ") { "?" }
 
         return ArmorCursor(db.rawQuery("""
             SELECT ${armor_columns("a", "i")}
@@ -457,7 +457,7 @@ class ItemDao(
     fun queryArmorByMonster(monsterId: Long): List<Armor> {
         val entry = monsterItemIds[monsterId]
         entry ?: return emptyList()
-        return queryArmorMany(entry.armor).sortedWith(compareBy(Armor::rarity, Armor::id))
+        return queryArmorMany(entry.armor).sortedWith(compareBy(Armor::rarity, Armor::hunterType, Armor::id))
     }
 
     /**
