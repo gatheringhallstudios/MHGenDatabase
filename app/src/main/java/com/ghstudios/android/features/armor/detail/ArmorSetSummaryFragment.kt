@@ -5,19 +5,14 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.*
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
-import com.ghstudios.android.components.ColumnLabelTextCell
-import com.ghstudios.android.components.ItemRecipeCell
-import com.ghstudios.android.components.LabelTextRowCell
-import com.ghstudios.android.components.SlotsView
+import com.ghstudios.android.components.*
 import com.ghstudios.android.data.classes.Armor
 import com.ghstudios.android.data.classes.ArmorSkillPoints
 import com.ghstudios.android.data.classes.Component
@@ -103,34 +98,12 @@ class ArmorSetSummaryFragment : Fragment() {
         thunderResTextView.text = armors.sumBy { it.thunderRes }.toString()
         dragonResTextView.text = armors.sumBy { it.dragonRes }.toString()
 
-        val inflater = LayoutInflater.from(context)
+        val armorBinder = ArmorSkillPointsViewBinder()
 
         // Populate the armor piece list
         for ((idx, armorPointsEntry) in armorPoints.withIndex()) {
-            val armor = armorPointsEntry.armor
-            val skills = armorPointsEntry.skills
-
-            val armorView = inflater.inflate(R.layout.listitem_armor_piece, armorListView,false)
-            val icon: ImageView? = armorView.findViewById(R.id.icon)
-            val name: TextView? = armorView.findViewById(R.id.name)
-            val slots: SlotsView? = armorView.findViewById(R.id.slots)
-
-            AssetLoader.setIcon(icon!!,armor)
-            name?.text = armor.name
-            slots?.setSlots(armor.numSlots, 0)
-
-            val skillsTvs : Array<TextView?> = arrayOf(armorView.findViewById(R.id.skill_1),
-                    armorView.findViewById(R.id.skill_2),
-                    armorView.findViewById(R.id.skill_3),
-                    armorView.findViewById(R.id.skill_4))
-            skillsTvs.forEach { it?.visibility=View.GONE }
-
-            for((i, skill) in skills.withIndex()) {
-                    skillsTvs[i]?.visibility = View.VISIBLE
-                    val points = skill.points
-                    val skillString = skill.skillTree.name + if(points>0) "+$points" else points
-                    skillsTvs[i]?.text = skillString
-            }
+            val armorView = armorBinder.createView(armorListView)
+            armorBinder.bindView(armorView, armorPointsEntry)
 
             // clicking on the armor piece should change to the tab to that armor
             armorView.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.ghstudios.android.data.database
 
+import android.content.Context
 import android.database.sqlite.SQLiteOpenHelper
 import com.ghstudios.android.AppSettings
 import com.ghstudios.android.data.classes.*
@@ -9,9 +10,40 @@ import com.ghstudios.android.util.firstOrNull
 import com.ghstudios.android.util.forEach
 import com.ghstudios.android.util.toList
 import com.ghstudios.android.util.useCursor
+import org.json.JSONObject
 
-class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
+class MonsterItemIds(val monsterId: Long, val armor: List<Long>, val weapons: List<Long>)
+
+/**
+ * Loads the monster_items.json asset file
+ */
+fun loadMonsterItems(ctx: Context): Map<Long, MonsterItemIds> {
+    val results = mutableMapOf<Long, MonsterItemIds>()
+
+    val text = ctx.assets.open("monster_items.json").bufferedReader().readText()
+    val obj = JSONObject(text)
+    for (key in obj.keys()) {
+        val monsterId = key.toLong()
+        val monsterObj = obj.getJSONObject(key)
+        results[monsterId] = MonsterItemIds(
+                monsterId = monsterId,
+                armor = monsterObj.getJSONArray("armor").iter { getLong(it) }.toList(),
+                weapons = monsterObj.getJSONArray("weapons").iter { getLong(it) }.toList()
+        )
+    }
+
+    return results
+}
+
+
+class ItemDao(
+        val daoGroup: MHDaoGroup,
+        mAppContext: Context,
+        private val dbMainHelper: MonsterHunterDatabaseHelper
+) {
     val db get() = dbMainHelper.writableDatabase
+
+    private val monsterItemIds = loadMonsterItems(mAppContext)
 
     private val column_name
         get() = localizeColumn("name")
@@ -208,6 +240,21 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
     }
 
     /**
+     * Get multiple specific pieces of armor
+     */
+    fun queryArmorMany(ids: List<Long>): List<Armor> {
+        if (ids.isEmpty()) return emptyList()
+
+        val inClause = ids.map { "?" }.joinToString { ", " }
+
+        return ArmorCursor(db.rawQuery("""
+            SELECT ${armor_columns("a", "i")}
+            FROM armor a JOIN items i USING (_id)
+            WHERE a._id IN ($inClause)
+        """, ids.map {it.toString()}.toTypedArray())).toList { it.armor }
+    }
+
+    /**
      * Get armor for family
      */
     fun queryArmorByFamily(id: Long): List<Armor> {
@@ -401,5 +448,43 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
                 this.item = armor
             }
         }
+    }
+
+    /**
+     * Queries all armor associated with the monster.
+     * Returns empty list if there aren't any.
+     */
+    fun queryArmorByMonster(monsterId: Long): List<Armor> {
+        val entry = monsterItemIds[monsterId]
+        entry ?: return emptyList()
+        return queryArmorMany(entry.armor).sortedWith(compareBy(Armor::rarity, Armor::id))
+    }
+
+    /**
+     * Queries all armor (including armor skills) associated with the monster.
+     * Returns empty list if there aren't any.
+     */
+    fun queryArmorSkillPointsByMonster(monsterId: Long): List<ArmorSkillPoints> {
+        val armors = queryArmorByMonster(monsterId)
+        if (armors.isEmpty()) {
+            return emptyList()
+        }
+
+        val itemSkills = daoGroup.skillDao.queryItemToSkillTreeForItems(armors.map { it.id })
+        val itemSkillByItemId = itemSkills.groupBy { it.item?.id ?: -1L }
+
+        return armors.map {
+            ArmorSkillPoints(it, itemSkillByItemId[it.id] ?: emptyList())
+        }
+    }
+
+    /**
+     * Queries all weapons associated with the monster.
+     * Returns empty list if there aren't any.
+     */
+    fun queryWeaponsByMonster(monsterId: Long): List<Weapon> {
+        val entry = monsterItemIds[monsterId]
+        entry ?: return emptyList()
+        return dbMainHelper.queryWeapons(entry.weapons.toLongArray()).toList { it.weapon }
     }
 }

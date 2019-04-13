@@ -70,17 +70,25 @@ class DataManager private constructor(private val mAppContext: Context) {
 
             return sDataManager!!
         }
+
+        @JvmStatic fun get(app: Application): DataManager {
+            if (sDataManager == null) {
+                bindApplication(app)
+            }
+            return get()
+        }
     }
 
     private val mHelper = MonsterHunterDatabaseHelper.getInstance(mAppContext)
 
     // additional query objects. These handle different types of queries
-    private val metadataDao = MetadataDao(mHelper)
-    private val monsterDao = MonsterDao(mHelper)
-    private val itemDao = ItemDao(mHelper)
+    private val daoGroup = MHDaoGroup(mAppContext, mHelper)
+    private val metadataDao = daoGroup.metadataDao
+    private val monsterDao = daoGroup.monsterDao
+    private val itemDao = daoGroup.itemDao
     private val huntingRewardsDao = HuntingRewardsDao(mHelper)
     private val gatheringDao = GatheringDao(mHelper)
-    private val skillDao = SkillDao(mHelper)
+    private val skillDao = daoGroup.skillDao
 
     val asbManager = ASBManager(mAppContext, this, mHelper)
     val wishlistManager = WishlistManager(mAppContext, this, mHelper)
@@ -482,6 +490,17 @@ class DataManager private constructor(private val mAppContext: Context) {
         return cursor.toList { it.weakness }
     }
 
+
+    /********************************* MONSTER ITEM QUERIES  */
+
+    fun queryMonsterArmor(monsterId: Long): List<ArmorSkillPoints> {
+        return itemDao.queryArmorSkillPointsByMonster(monsterId)
+    }
+
+    fun queryMonsterWeapons(monsterId: Long): List<Weapon> {
+        return itemDao.queryWeaponsByMonster(monsterId)
+    }
+
     /********************************* QUEST QUERIES  */
 
     /* Get a Cursor that has a list of all Quests */
@@ -558,14 +577,7 @@ class DataManager private constructor(private val mAppContext: Context) {
 
     /* Get a specific Weapon */
     fun getWeapon(id: Long): Weapon? {
-        var weapon: Weapon? = null
-        val cursor = mHelper.queryWeapon(id)
-        cursor.moveToFirst()
-
-        if (!cursor.isAfterLast)
-            weapon = cursor.weapon
-        cursor.close()
-        return weapon
+        return mHelper.queryWeapon(id).firstOrNull { it.weapon }
     }
 
     /* Get a Cursor that has a list of Weapons based on weapon type */

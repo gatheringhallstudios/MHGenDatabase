@@ -146,6 +146,7 @@
     <string name="title_asb">Armor Set Builder</string>
     <string name="title_wishlists">Wishlists</string>
     <string name="title_talismans">Talismans</string>
+    <string name="title_equipment">Equipment</string>
 
     <string name="drawer_group_other">Other</string>
     <string name="drawer_preferences">Settings</string>
@@ -391,7 +392,6 @@
     <string name="asb_context_action_copy">Copy</string>
 
     <string name="activity_asb">Armor Set Builder</string>
-    <string name="asb_tab_equipment">Equipment</string>
     <string name="asb_title_select_armor">Select Armor</string>
     <string name="asb_title_select_head">Select Head</string>
     <string name="asb_title_select_body">Select Body</string>

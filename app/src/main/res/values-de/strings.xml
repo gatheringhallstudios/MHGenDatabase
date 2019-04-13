@@ -148,7 +148,7 @@
     <string name="asb_context_action_edit_data">Daten bearbeiten</string>
     <string name="asb_context_action_copy">Kopieren</string>
     <string name="activity_asb">Rüstungsset Builder</string>
-    <string name="asb_tab_equipment">Ausrüstung</string>
+    <string name="title_equipment">Ausrüstung</string>
     <string name="asb_empty_slot">Leerer Slot</string>
     <string name="asb_no_slots">Keine Slots</string>
     <string name="asb_action_select">Ausgewählt</string>

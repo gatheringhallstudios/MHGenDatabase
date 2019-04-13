@@ -58,9 +58,9 @@
             tools:text="Blastblight\nSevere Dragonblight" />
 
         <com.ghstudios.android.components.SectionHeaderCell
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:labelText="@string/monster_habitats" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelText="@string/monster_habitats" />
 
         <include
             android:id="@+id/habitats_empty"
@@ -68,6 +68,25 @@
 
         <LinearLayout
             android:id="@+id/habitat_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider_solid"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+        </LinearLayout>
+
+        <com.ghstudios.android.components.SectionHeaderCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="@string/title_equipment" />
+
+        <include
+            android:id="@+id/equipment_empty"
+            layout="@layout/listitem_empty"/>
+
+        <LinearLayout
+            android:id="@+id/equipment_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/divider_solid"

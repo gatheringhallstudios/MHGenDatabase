@@ -24,6 +24,8 @@ import com.ghstudios.android.mhgendatabase.R
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.ghstudios.android.*
+import com.ghstudios.android.ClickListeners.ArmorClickListener
+import com.ghstudios.android.components.ArmorSkillPointsViewBinder
 import com.ghstudios.android.data.classes.*
 
 private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weaknessRating) {
@@ -107,6 +109,9 @@ class MonsterSummaryFragment : Fragment() {
     @BindView(R.id.ailments_empty) lateinit var ailmentsEmpty: View
     @BindView(R.id.habitats_empty) lateinit var habitatsEmpty: View
 
+    @BindView(R.id.equipment_empty) lateinit var equipmentEmpty: View
+    @BindView(R.id.equipment_list) lateinit var equipmentList: LinearLayout
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_monster_summary, container, false)
@@ -127,6 +132,7 @@ class MonsterSummaryFragment : Fragment() {
         viewModel.weaknessData.observe(this, Observer(::updateWeaknesses))
         viewModel.ailmentData.observe(this, Observer(::populateAilments))
         viewModel.habitatData.observe(this, Observer(::populateHabitats))
+        viewModel.equipmentData.observe(this, Observer(::populateEquipment))
     }
 
     /**
@@ -242,6 +248,25 @@ class MonsterSummaryFragment : Fragment() {
             }
 
             habitatListView.addView(view)
+        }
+    }
+
+    private fun populateEquipment(gear: MonsterGear?) {
+        equipmentList.removeAllViews()
+        if (gear == null || gear.isEmpty()) {
+            equipmentEmpty.visibility = View.VISIBLE
+            return
+        }
+
+        val armorBinder = ArmorSkillPointsViewBinder()
+        for (armor in gear.armor) {
+            val view = armorBinder.createView(equipmentList)
+            armorBinder.bindView(view, armor)
+            view.setOnClickListener(ArmorClickListener(context, armor.armor))
+        }
+
+        for (weapon in gear.weapons) {
+
         }
     }
 

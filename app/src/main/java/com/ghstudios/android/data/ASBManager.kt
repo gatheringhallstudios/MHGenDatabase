@@ -9,20 +9,12 @@ import com.ghstudios.android.data.cursors.ASBSessionCursor
 import com.ghstudios.android.data.cursors.ASBSetCursor
 import com.ghstudios.android.data.database.MonsterHunterDatabaseHelper
 import com.ghstudios.android.data.database.S
+import com.ghstudios.android.data.util.iter
 import com.ghstudios.android.util.firstOrNull
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.FileNotFoundException
-
-/**
- * Extension used to build an iterator from a JSONArray. Each index is evaluated using transform.
- */
-fun <T> JSONArray.iter(transform: JSONArray.(Int) -> T) = sequence {
-    for (i in 0..(this@iter.length() - 1)) {
-        yield(transform(i))
-    }
-}
 
 /**
  * Creates a ContentValues object from a map of arbitrary value types.

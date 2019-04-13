@@ -5,25 +5,18 @@ import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.os.Bundle
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 
-import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListFragment
-import com.ghstudios.android.loader.ASBSessionLoader
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
 import com.ghstudios.android.data.classes.Rank
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetAddDialogFragment
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListPagerActivity
-
-import java.util.ArrayList
 
 class ASBDetailPagerActivity : BasePagerActivity() {
     companion object {
@@ -68,7 +61,7 @@ class ASBDetailPagerActivity : BasePagerActivity() {
                 title = viewModel.session.name
             })
 
-            tabs.addTab(R.string.asb_tab_equipment) { ASBFragment() }
+            tabs.addTab(R.string.title_equipment) { ASBFragment() }
             tabs.addTab(R.string.skills) { ASBSkillsListFragment() }
 
         } catch (ex: Exception) {

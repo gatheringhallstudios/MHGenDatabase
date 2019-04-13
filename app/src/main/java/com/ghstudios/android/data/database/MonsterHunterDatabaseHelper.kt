@@ -78,7 +78,7 @@ private const val DATABASE_VERSION = 13
  *
  * @param context
  */
-internal class MonsterHunterDatabaseHelper constructor(ctx: Context):
+class MonsterHunterDatabaseHelper constructor(ctx: Context):
         SQLiteAssetHelper(ctx.applicationContext, DATABASE_NAME, null, DATABASE_VERSION) {
 
     private val TAG = "MHGU-DB-Helper"

@@ -363,7 +363,7 @@
     <string name="asb_context_action_copy">Copiar</string>
 
     <string name="activity_asb">Constructor de Sets</string>
-    <string name="asb_tab_equipment">Equipo</string>
+    <string name="title_equipment">Equipo</string>
     <string name="asb_title_select_armor">Elegir Armadura</string>
     <string name="asb_title_select_head">Elegir Cabeza</string>
     <string name="asb_title_select_body">Elegir Pecho</string>

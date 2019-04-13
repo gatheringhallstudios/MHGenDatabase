@@ -36,13 +36,19 @@ data class MonsterWeaknessResult(
         val items: List<WeaknessType>
 )
 
+class MonsterGear(
+        val armor: List<ArmorSkillPoints>,
+        val weapons: List<Weapon>
+) {
+    fun isEmpty() = armor.isEmpty() && weapons.isEmpty()
+}
+
 /**
  * A viewmodel for the entirety of monster detail data.
  * This should be attached to the activty or fragment owning the viewpager.
  */
 class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
-    private val dataManager = DataManager.get()
-
+    private val dataManager = DataManager.get(app)
 
     val monsterData = MutableLiveData<Monster>()
     val weaknessData = MutableLiveData<List<MonsterWeaknessResult>>()
@@ -50,6 +56,7 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
     val habitatData = MutableLiveData<List<Habitat>>()
     val damageData = MutableLiveData<List<MonsterDamage>>()
     val statusData = MutableLiveData<List<MonsterStatus>>()
+    val equipmentData = MutableLiveData<MonsterGear>()
     val rewardLRData = MutableLiveData<List<HuntingReward>>()
     val rewardHRData = MutableLiveData<List<HuntingReward>>()
     val rewardGData = MutableLiveData<List<HuntingReward>>()
@@ -81,10 +88,21 @@ class MonsterDetailViewModel(app : Application) : AndroidViewModel(app) {
                 weaknessData.postValue(processWeaknessData(weaknessRaw))
             }
 
+            // Load basic data
             ailmentData.postValue(dataManager.queryAilmentsFromId(monsterId).toList { it.ailment })
             habitatData.postValue(dataManager.queryHabitatMonster(monsterId).toList { it.habitat })
             damageData.postValue(dataManager.queryMonsterDamageArray(monsterId))
             statusData.postValue(dataManager.queryMonsterStatus(monsterId))
+
+            // Load monster gear data
+            val monsterGear = MonsterGear(
+                    armor = dataManager.queryMonsterArmor(monsterId),
+                    weapons = dataManager.queryMonsterWeapons(monsterId))
+            if (monsterGear.isEmpty()) {
+                equipmentData.postValue(null)
+            } else {
+                equipmentData.postValue(monsterGear)
+            }
 
             if (metadata?.hasLowRank == true) rewardLRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId, "LR").toList { it.huntingReward })
             if (metadata?.hasHighRank == true) rewardHRData.postValue(dataManager.queryHuntingRewardMonsterRank(monsterId, "HR").toList { it.huntingReward })
