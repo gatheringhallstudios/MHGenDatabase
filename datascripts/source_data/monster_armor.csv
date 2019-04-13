@@ -3249,20 +3249,20 @@ Bnahabra Carapace [Bnahabra]"
 Seregios Airblade [Seregios]
 Seregios Bladescale [Seregios]
 Bnahabra Carapace [Bnahabra]"
-1311214,Golden Headdress,,"Rajang Horn+
-Gold Rajang Pelt
-Rajang Blackfur
+1311214,Golden Headdress,,"Rajang Horn+ [Rajang]
+Gold Rajang Pelt [Rajang]
+Rajang Blackfur [Rajang]
 Daora Scale [Kushala Daora]"
-1311215,Puppeteer Mask,,"Rajang Horn+
-Gold Rajang Pelt
-Rajang Blackfur
+1311215,Puppeteer Mask,,"Rajang Horn+ [Rajang]
+Gold Rajang Pelt [Rajang]
+Rajang Blackfur [Rajang]
 Daora Scale [Kushala Daora]"
-1311216,Vangis Helm,,"Deviljho Scalp
-Deviljho Hide
+1311216,Vangis Helm,,"Deviljho Scalp [Deviljho]
+Deviljho Hide [Deviljho]
 Deviljho Saliva
 Tigrex Scalp"
-1311217,Vangis Cap,,"Deviljho Scalp
-Deviljho Hide
+1311217,Vangis Cap,,"Deviljho Scalp [Deviljho]
+Deviljho Hide [Deviljho]
 Deviljho Saliva
 Tigrex Scalp"
 1311218,Guild Knight Feather,,"Bronze Guild Ticket
@@ -3555,26 +3555,26 @@ G.Rathian Spike+ [Gold Rathian]
 Rathian Shell [Rathian]"
 1311304,Divine Ire Headdress,,"Ghoulish Gold Horn [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Horn+
+Rajang Horn+ [Rajang]
 Rath Gleam"
 1311305,Crusher Mask,,"Ghoulish Gold Horn [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Horn+
+Rajang Horn+ [Rajang]
 Rath Gleam"
 1311306,Esurient Helm,,"Spattered Hide [Savage Deviljho]
-Deviljho Scale
-Deviljho Scalp
+Deviljho Scale [Deviljho]
+Deviljho Scalp [Deviljho]
 Pure Dragon Blood"
 1311307,Esurient Cap,,"Spattered Hide [Savage Deviljho]
-Deviljho Scale
-Deviljho Scalp
+Deviljho Scale [Deviljho]
+Deviljho Scalp [Deviljho]
 Pure Dragon Blood"
 1311308,Esurient Helm R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1311309,Esurient Cap R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1311316,Tempest Crown,,"Amatsu Horn [Amatsu]
 Amatsu Webbing [Amatsu]
 Amatsu Pleura [Amatsu]
@@ -3649,19 +3649,19 @@ Mizutsune Purplefur+
 Nargacuga Pelt+ [Nargacuga]"
 1311378,Bristling Mane,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Scalp
+Deviljho Scalp [Deviljho]
 Teostra Mane [Teostra]"
 1311379,Terrifying Mane,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Scalp
+Deviljho Scalp [Deviljho]
 Teostra Mane [Teostra]"
 1311380,Champion's Hair,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Fang+
+Rajang Fang+ [Rajang]
 Gammoth Redfur [Gammoth]"
 1311381,Strongman's Hair,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Fang+
+Rajang Fang+ [Rajang]
 Gammoth Redfur [Gammoth]"
 1311382,Zodias Helm,,"Pluto Stardust
 Teostra Horn+ [Teostra]
@@ -3721,20 +3721,20 @@ Novacrystal
 Rejuvenated Beak"
 1311408,Helm of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Tallfang
-Rajang Blackfur"
+Deviljho Tallfang [Deviljho]
+Rajang Blackfur [Rajang]"
 1311409,Cap of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Tallfang
-Rajang Blackfur"
+Deviljho Tallfang [Deviljho]
+Rajang Blackfur [Rajang]"
 1311410,Helm of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Tallfang
-Rajang Blackfur"
+Deviljho Tallfang [Deviljho]
+Rajang Blackfur [Rajang]"
 1311411,Cap of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Tallfang
-Rajang Blackfur"
+Deviljho Tallfang [Deviljho]
+Rajang Blackfur [Rajang]"
 1311414,Mosgharl Vizor,,"Bumblepumpkin
 Lightcrystal
 Might Seed
@@ -4013,11 +4013,11 @@ Rejuvenated Beak
 Garuga Cortex [Yian Garuga]
 Garuga Auricle"
 1311652,Gore Helm X,,"Gore Magala Sensor [Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Flutterfly"
 1311653,Gore Cap X,,"Gore Magala Sensor [Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Flutterfly"
 1311658,Auroros Helm,,"Lao-Shan Shard [Lao-Shan Lung]
@@ -4142,21 +4142,21 @@ Hyper Hardhorn"
 1311709,Storge Cap XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper Hardhorn"
-1311712,Grand God's Peer Mask,,"Rajang Hardhorn
-Gold Rajang Pelt+
-Rajang Wildpelt
-Deviljho Scale"
-1311713,Grand Hermit Mask,,"Rajang Hardhorn
-Gold Rajang Pelt+
-Rajang Wildpelt
-Deviljho Scale"
-1311714,Vangis Helm X,,"Deviljho Blackpiel
-Deviljho Scalp
-Deviljho Talon
+1311712,Grand God's Peer Mask,,"Rajang Hardhorn [Rajang]
+Gold Rajang Pelt+ [Rajang]
+Rajang Wildpelt [Rajang]
+Deviljho Scale [Deviljho]"
+1311713,Grand Hermit Mask,,"Rajang Hardhorn [Rajang]
+Gold Rajang Pelt+ [Rajang]
+Rajang Wildpelt [Rajang]
+Deviljho Scale [Deviljho]"
+1311714,Vangis Helm X,,"Deviljho Blackpiel [Deviljho]
+Deviljho Scalp [Deviljho]
+Deviljho Talon [Deviljho]
 Tigrex Maw"
-1311715,Vangis Cap X,,"Deviljho Blackpiel
-Deviljho Scalp
-Deviljho Talon
+1311715,Vangis Cap X,,"Deviljho Blackpiel [Deviljho]
+Deviljho Scalp [Deviljho]
+Deviljho Talon [Deviljho]
 Tigrex Maw"
 1311716,Kushala Glare X,,"Daora Cortex [Kushala Daora]
 Daora Hardhorn [Kushala Daora]
@@ -4285,11 +4285,11 @@ Hyper Kut-Ku Shard
 Zinogre Electrofur+ [Zinogre]
 Pure Dragon Blood"
 1311748,Shinobi Heaven Mask Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rathalos Shard [Rathalos]
 Pure Dragon Blood"
 1311749,Shinobi Land Mask Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rathalos Shard [Rathalos]
 Pure Dragon Blood"
 1311750,Kaiserin Crown,,
@@ -4332,19 +4332,19 @@ G.Rath Surspike [Gold Rathian]
 Nakarkos Skull"
 1311764,Chaos Helm,,"Diametrical Horn [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Lrg Wyvern Gem"
 1311765,Nephilim Helm,,"Diametrical Horn [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Lrg Wyvern Gem"
 1311766,Chaos Cap,,"Diametrical Horn [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Lrg Wyvern Gem"
 1311767,Nephilim Cap,,"Diametrical Horn [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Lrg Wyvern Gem"
 1311768,Grand Divine Ire Mask,,"Ghoulish Gold Gorer [Furious Rajang]
 Rajang Apoplexy [Furious Rajang]
@@ -4355,19 +4355,19 @@ Rajang Apoplexy [Furious Rajang]
 Ghoulish Gold Horn [Furious Rajang]
 Kirin Azure Peak [Kirin]"
 1311770,Esurient Helm Z,,"Bloodied Ebonhide [Savage Deviljho]
-Deviljho Shard
-Deviljho Scalp
+Deviljho Shard [Deviljho]
+Deviljho Scalp [Deviljho]
 Viscous Dragon Blood"
 1311771,Esurient Cap Z,,"Bloodied Ebonhide [Savage Deviljho]
-Deviljho Shard
-Deviljho Scalp
+Deviljho Shard [Deviljho]
+Deviljho Scalp [Deviljho]
 Viscous Dragon Blood"
 1311772,Brachydium Helm,,"Brach Warhead [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Flashpoint Slime [Raging Brachydios]
 Gravios Medulla [Gravios]"
 1311773,Brachydium Cap,,"Brach Warhead [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Flashpoint Slime [Raging Brachydios]
 Gravios Medulla [Gravios]"
 1311780,Grand Tempest Crown,,"Amatsu Hardhorn [Amatsu]
@@ -4488,10 +4488,10 @@ S.Rath Cortex [Silver Rathalos]
 Pure Dragon Blood"
 1311826,Esurient Helm XR,,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1311827,Esurient Cap XR,,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1311862,Gore Helm GX,,"Accolade XX
 Gore Magala Sensor [Gore Magala]
 Gore Magala Scale+ [Gore Magala]
@@ -4580,11 +4580,11 @@ Monster Hardbone
 Unknown Skull"
 1311899,Dober Helm X,,"Monster Slogbone
 Dragonbone Artifact
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Monster Keenbone"
 1311900,Dober Cap X,,"Monster Slogbone
 Dragonbone Artifact
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Monster Keenbone"
 1311901,Alloy Helm X,,"Meldspar Ore
 Eltalite Ore
@@ -4745,11 +4745,11 @@ Hunter's Drink"
 1311941,Derring Helm X,,"Hyper Hunter V
 Bherna Ticket G
 Prized Pelt
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1311942,Derring Cap X,,"Hyper Hunter V
 Bherna Ticket G
 Prized Pelt
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1311943,GX Kita Star Headdress,,"Kokoto Ticket G
 Trade Ticket
 Pearl Glosshide [Khezu]
@@ -4815,19 +4815,19 @@ Fatalis Shard [Fatalis]
 Fatalis Hardhorn [Fatalis]
 Rath Medulla"
 1311975,Criminal Head,,"Evidence
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1311976,Criminal Face,,"Evidence
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1311991,Garo Helm,,"Zaruba Fragment
-Gold Rajang Pelt+
+Gold Rajang Pelt+ [Rajang]
 G.Rath Surspike [Gold Rathian]
 Ahtal-Ka Fine Silk [Ahtal-Ka]"
 1311992,Garo Head,,"Zaruba Fragment
-Gold Rajang Pelt+
+Gold Rajang Pelt+ [Rajang]
 G.Rath Surspike [Gold Rathian]
 Ahtal-Ka Fine Silk [Ahtal-Ka]"
 1311993,Varia Suit Visor,,"Samus Coin
@@ -5632,21 +5632,21 @@ Sm. Hermitaur Shell [Hermitaur]"
 Seregios Slavescale [Seregios]
 Seregios Impaler [Seregios]
 Sm. Hermitaur Shell [Hermitaur]"
-1376750,Golden Haori,,"Rajang Horn+
-Gold Rajang Pelt
-Rajang Blackfur
+1376750,Golden Haori,,"Rajang Horn+ [Rajang]
+Gold Rajang Pelt [Rajang]
+Rajang Blackfur [Rajang]
 Daora Scale [Kushala Daora]"
-1376751,Puppeteer Suit,,"Rajang Horn+
-Gold Rajang Pelt
-Rajang Blackfur
+1376751,Puppeteer Suit,,"Rajang Horn+ [Rajang]
+Gold Rajang Pelt [Rajang]
+Rajang Blackfur [Rajang]
 Daora Scale [Kushala Daora]"
-1376752,Vangis Mail,,"Deviljho Tallfang
-Deviljho Talon
-Deviljho Hide
+1376752,Vangis Mail,,"Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Hide [Deviljho]
 Rathian Spike"
-1376753,Vangis Vest,,"Deviljho Tallfang
-Deviljho Talon
-Deviljho Hide
+1376753,Vangis Vest,,"Deviljho Tallfang [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Hide [Deviljho]
 Rathian Spike"
 1376754,Guild Knight Suit,,"Bronze Guild Ticket
 Rathalos Scale+ [Rathalos]
@@ -5938,26 +5938,26 @@ G.Rathian Scale+ [Gold Rathian]
 Rathian Webbing"
 1376840,Divine Ire Haori,,"Rajang Ragehair [Furious Rajang]
 Rajang Nerve [Furious Rajang]
-Rajang Fang+
+Rajang Fang+ [Rajang]
 G.Rathian Scale+ [Gold Rathian]"
 1376841,Crusher Garb,,"Rajang Ragehair [Furious Rajang]
 Rajang Nerve [Furious Rajang]
-Rajang Fang+
+Rajang Fang+ [Rajang]
 G.Rathian Scale+ [Gold Rathian]"
 1376842,Esurient Mail,,"Spattered Hide [Savage Deviljho]
-Deviljho Talon
-Deviljho Tallfang
+Deviljho Talon [Deviljho]
+Deviljho Tallfang [Deviljho]
 Pure Dragon Blood"
 1376843,Esurient Vest,,"Spattered Hide [Savage Deviljho]
-Deviljho Talon
-Deviljho Tallfang
+Deviljho Talon [Deviljho]
+Deviljho Tallfang [Deviljho]
 Pure Dragon Blood"
 1376844,Esurient Mail R,,"Hyper Deviljho Scale
 Black Blood [Savage Deviljho]
-Deviljho Scale"
+Deviljho Scale [Deviljho]"
 1376845,Esurient Vest R,,"Hyper Deviljho Scale
 Black Blood [Savage Deviljho]
-Deviljho Scale"
+Deviljho Scale [Deviljho]"
 1376852,Tempest Robe,,"Amatsu Pleura [Amatsu]
 Amatsu Carapace [Amatsu]
 Storm Vesicle [Amatsu]
@@ -6036,19 +6036,19 @@ Nargacuga Pelt+ [Nargacuga]
 High-quality Pelt"
 1376914,Ultimate Garb,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Gammoth Shell [Gammoth]"
 1376915,Ultimate Attire,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Gammoth Shell [Gammoth]"
 1376916,Champion's Body,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Horn+
+Rajang Horn+ [Rajang]
 S.Queen Hardpectus [Seltas Queen]"
 1376917,Strongman's Body,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Horn+
+Rajang Horn+ [Rajang]
 S.Queen Hardpectus [Seltas Queen]"
 1376918,Zodias Mail,,"Pluto Stardust
 Teostra Carapace [Teostra]
@@ -6108,19 +6108,19 @@ Novacrystal
 Garuga Scale+ [Yian Garuga]"
 1376944,Mail of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Firecell Stone"
 1376945,Vest of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Firecell Stone"
 1376946,Mail of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Firecell Stone"
 1376947,Vest of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Hide
+Deviljho Hide [Deviljho]
 Firecell Stone"
 1376948,Rider Jacket,,"Fan Club Invite
 Remobra Hide+ [Remobra]
@@ -6411,11 +6411,11 @@ Gendrome Hardfang [Gendrome]"
 Garuga Cortex [Yian Garuga]
 Garuga Fellwing
 Gendrome Hardfang [Gendrome]"
-1377188,Gore Mail X,,"Gore Magala Shard
+1377188,Gore Mail X,,"Gore Magala Shard [Gore Magala]
 Gore Magala Eclipse [Gore Magala]
 Defiled Scale [Gore Magala]
 Remobra Finehide [Remobra]"
-1377189,Gore Vest X,,"Gore Magala Shard
+1377189,Gore Vest X,,"Gore Magala Shard [Gore Magala]
 Gore Magala Eclipse [Gore Magala]
 Defiled Scale [Gore Magala]
 Remobra Finehide [Remobra]"
@@ -6477,11 +6477,11 @@ Pearl Glosshide [Khezu]
 Lagiacrus Hide+ [Lagiacrus]"
 1377210,Hawksuit X,,"Privilege
 Prized Pelt
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Kecha Fur [Kecha Wacha]"
 1377211,Hawkjacket X,,"Privilege
 Prized Pelt
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Kecha Fur [Kecha Wacha]"
 1377212,Scholarly Suit X,,"Wycademy Ticket G
 Larinoth Finehide [Larinoth]
@@ -6500,10 +6500,10 @@ Wycademy Ticket G
 Gammoth Fur
 Prized Pelt"
 1377220,Gore Mail XR,,"Hyper G.Magala Scale X
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Hyper Draco. Scale+"
 1377221,Gore Vest XR,,"Hyper G.Magala Scale X
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Hyper Draco. Scale+"
 1377224,Regios Mail X,,"Seregios Airblade+ [Seregios]
 Seregios Slavescale+ [Seregios]
@@ -6541,21 +6541,21 @@ Hyper G.Magala Scale X"
 1377245,Storge Vest XR,,"Hyper Draco. Scale+
 S.Magala Cortex [Shagaru Magala]
 Hyper G.Magala Scale X"
-1377248,Grand God's Peer Robe,,"Rajang Hardhorn
-Gold Rajang Pelt+
-Rajang Wildpelt
-Deviljho Scale"
-1377249,Grand Hermit Robe,,"Rajang Hardhorn
-Gold Rajang Pelt+
-Rajang Wildpelt
-Deviljho Scale"
+1377248,Grand God's Peer Robe,,"Rajang Hardhorn [Rajang]
+Gold Rajang Pelt+ [Rajang]
+Rajang Wildpelt [Rajang]
+Deviljho Scale [Deviljho]"
+1377249,Grand Hermit Robe,,"Rajang Hardhorn [Rajang]
+Gold Rajang Pelt+ [Rajang]
+Rajang Wildpelt [Rajang]
+Deviljho Scale [Deviljho]"
 1377250,Vangis Mail X,,"Deviljho Hardfang [Deviljho]
-Deviljho Ripper
-Deviljho Blackpiel
+Deviljho Ripper [Deviljho]
+Deviljho Blackpiel [Deviljho]
 Rathian Spike+"
 1377251,Vangis Vest X,,"Deviljho Hardfang [Deviljho]
-Deviljho Ripper
-Deviljho Blackpiel
+Deviljho Ripper [Deviljho]
+Deviljho Blackpiel [Deviljho]
 Rathian Spike+"
 1377252,Kushala Cista X,,"Daora Cortex [Kushala Daora]
 Daora Fellwing [Kushala Daora]
@@ -6684,11 +6684,11 @@ Hyper Gypceros Piel
 S.Queen Moonlash [Seltas Queen]
 Pure Dragon Blood"
 1377284,Shinobi Heaven Suit Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rath Medulla
 Pure Dragon Blood"
 1377285,Shinobi Land Suit Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rath Medulla
 Pure Dragon Blood"
 1377286,Kaiserin Mail,,
@@ -6731,44 +6731,44 @@ Rath Gleam
 Nakarkos Husk+ [Nakarkos]"
 1377300,Chaos Mail,,"Chaos Scale [Chaotic Gore Magala]
 Antinomic Wing [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Flutterfly"
 1377301,Nephilim Mail,,"Chaos Scale [Chaotic Gore Magala]
 Antinomic Wing [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Flutterfly"
 1377302,Chaos Vest,,"Chaos Scale [Chaotic Gore Magala]
 Antinomic Wing [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Flutterfly"
 1377303,Nephilim Vest,,"Chaos Scale [Chaotic Gore Magala]
 Antinomic Wing [Chaotic Gore Magala]
-Gore Magala Shard
+Gore Magala Shard [Gore Magala]
 Flutterfly"
 1377304,Grand Divine Ire Haori,,"Rajang Apoplexy [Furious Rajang]
-Gold Rajang Pelt+
-Rajang Hardfang
+Gold Rajang Pelt+ [Rajang]
+Rajang Hardfang [Rajang]
 G.Rathian Shard [Gold Rathian]"
 1377305,Grand Crusher Garb,,"Rajang Apoplexy [Furious Rajang]
-Gold Rajang Pelt+
-Rajang Hardfang
+Gold Rajang Pelt+ [Rajang]
+Rajang Hardfang [Rajang]
 G.Rathian Shard [Gold Rathian]"
 1377306,Esurient Mail Z,,"Bloodied Ebonhide [Savage Deviljho]
-Deviljho Ripper
+Deviljho Ripper [Deviljho]
 Black Blood [Savage Deviljho]
 Viscous Dragon Blood"
 1377307,Esurient Vest Z,,"Bloodied Ebonhide [Savage Deviljho]
-Deviljho Ripper
+Deviljho Ripper [Deviljho]
 Black Blood [Savage Deviljho]
 Viscous Dragon Blood"
 1377308,Brachydium Mail,,"Brach Warhead [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Monster Slogbone
-Glowing Slime"
+Glowing Slime [Brachydios]"
 1377309,Brachydium Vest,,"Brach Warhead [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Monster Slogbone
-Glowing Slime"
+Glowing Slime [Brachydios]"
 1377316,Grand Tempest Robe,,"Amatsu Heavypleura [Amatsu]
 Amatsu Cortex [Amatsu]
 Storm Vesicle [Amatsu]
@@ -6881,10 +6881,10 @@ S.Rathalos Shard [Silver Rathalos]
 Firegleam Dollop"
 1377362,Esurient Mail XR,,"Hyper Deviljho Scale X
 Vile Fang [Savage Deviljho]
-Deviljho Shard"
+Deviljho Shard [Deviljho]"
 1377363,Esurient Vest XR,,"Hyper Deviljho Scale X
 Vile Fang [Savage Deviljho]
-Deviljho Shard"
+Deviljho Shard [Deviljho]"
 1377398,Gore Mail GX,,"Accolade XX
 Gore Magala Cortex [Gore Magala]
 Gore Magala Wing+ [Gore Magala]
@@ -7203,19 +7203,19 @@ Fatalis Shard [Fatalis]
 Lrg ElderDragon Bone
 Rathalos Shard [Rathalos]"
 1377511,Criminal Suit,,"Evidence
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Seregios Airblade+ [Seregios]
 Rubbery Finehide"
 1377512,Criminal Body,,"Evidence
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Seregios Airblade+ [Seregios]
 Rubbery Finehide"
 1377527,Garo Plate,,"Zaruba Fragment
-Rajang Hardfang
+Rajang Hardfang [Rajang]
 G.Rathian Cortex [Gold Rathian]
 Ahtal-Ka Gold Cocoon [Ahtal-Ka]"
 1377528,Garo Mail,,"Zaruba Fragment
-Rajang Hardfang
+Rajang Hardfang [Rajang]
 G.Rathian Cortex [Gold Rathian]
 Ahtal-Ka Gold Cocoon [Ahtal-Ka]"
 1377529,Varia Suit Armor,,"Samus Coin
@@ -7960,21 +7960,21 @@ Novacrystal"
 Seregios Scraper [Seregios]
 Airblade Shard [Seregios]
 Novacrystal"
-1442286,Golden Kote,,"Rajang Horn+
+1442286,Golden Kote,,"Rajang Horn+ [Rajang]
 Rajang Tail [Rajang]
-Rajang Claw+
+Rajang Claw+ [Rajang]
 Fire Dragon Scale [Teostra]"
-1442287,Puppeteer Gloves,,"Rajang Horn+
+1442287,Puppeteer Gloves,,"Rajang Horn+ [Rajang]
 Rajang Tail [Rajang]
-Rajang Claw+
+Rajang Claw+ [Rajang]
 Fire Dragon Scale [Teostra]"
-1442288,Vangis Vambraces,,"Deviljho Scale
-Deviljho Tallfang
-Deviljho Tail
+1442288,Vangis Vambraces,,"Deviljho Scale [Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]
 Najarala Marrow [Najarala]"
-1442289,Vangis Guards,,"Deviljho Scale
-Deviljho Tallfang
-Deviljho Tail
+1442289,Vangis Guards,,"Deviljho Scale [Deviljho]
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]
 Najarala Marrow [Najarala]"
 1442290,Guild Knight Gloves,,"Bronze Guild Ticket
 Pearl Hide [Khezu]
@@ -8069,11 +8069,11 @@ Kecha Pelt+ [Kecha Wacha]"
 1442315,Gourmew Gloves S,,"Hyper Extract
 Bistro Ticket
 Pokke Ticket
-Rajang Blackfur"
+Rajang Blackfur [Rajang]"
 1442316,Gourmew Mitts S,,"Hyper Extract
 Bistro Ticket
 Pokke Ticket
-Rajang Blackfur"
+Rajang Blackfur [Rajang]"
 1442318,Scholarly Grips S,,"Wycademy Ticket
 Moofah Fleeceball
 Hyper Monster Bone
@@ -8273,19 +8273,19 @@ Rajang Nerve [Furious Rajang]
 Rajang Tail [Rajang]
 S.Rathalos Scale+ [Silver Rathalos]"
 1442378,Esurient Vambraces,,"Black Blood [Savage Deviljho]
-Deviljho Scale
-Deviljho Hide
+Deviljho Scale [Deviljho]
+Deviljho Hide [Deviljho]
 Pure Dragon Blood"
 1442379,Esurient Guards,,"Black Blood [Savage Deviljho]
-Deviljho Scale
-Deviljho Hide
+Deviljho Scale [Deviljho]
+Deviljho Hide [Deviljho]
 Pure Dragon Blood"
 1442380,Esurient Braces R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Talon"
+Deviljho Talon [Deviljho]"
 1442381,Esurient Guards R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Talon"
+Deviljho Talon [Deviljho]"
 1442388,Tempest Sleeves,,"Amatsu Claw+ [Amatsu]
 Amatsu Webbing [Amatsu]
 Storm Vesicle [Amatsu]
@@ -8319,11 +8319,11 @@ Nargacuga Marrow"
 1442396,Escadora Armguards,,"Alatreon Talon [Alatreon]
 Alatreon Scute [Alatreon]
 Elder Dragon Blood
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1442397,Escadora Arma,,"Alatreon Talon [Alatreon]
 Alatreon Scute [Alatreon]
 Elder Dragon Blood
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1442398,Escadora Armguards R,,"Alatreon Talon [Alatreon]
 Hyper Draco. Scale
 Pure Dragon Blood"
@@ -8343,11 +8343,11 @@ Monster Keenbone
 Paralysis Sac"
 1442452,Champion's Wraps,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Claw+
+Rajang Claw+ [Rajang]
 Brach Hammer [Brachydios]"
 1442453,Strongman's Wraps,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Claw+
+Rajang Claw+ [Rajang]
 Brach Hammer [Brachydios]"
 1442454,Zodias Vambraces,,"Pluto Stardust
 Teostra Claw+ [Teostra]
@@ -8407,19 +8407,19 @@ Firecell Stone
 Garuga Auricle"
 1442480,Braces of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Talon
+Deviljho Talon [Deviljho]
 Gore Magala Ripclaw+ [Gore Magala]"
 1442481,Guards of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Talon
+Deviljho Talon [Deviljho]
 Gore Magala Ripclaw+ [Gore Magala]"
 1442482,Braces of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Talon
+Deviljho Talon [Deviljho]
 Gore Magala Ripclaw+ [Gore Magala]"
 1442483,Guards of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Talon
+Deviljho Talon [Deviljho]
 Gore Magala Ripclaw+ [Gore Magala]"
 1442486,Mosgharl Creeper,,"Bumblepumpkin
 Paddock Oil
@@ -8462,11 +8462,11 @@ Kut-Ku Shell [Yian Kut-Ku]"
 1442502,Gourmew Gloves S,,"Hyper Extract
 Bistro Ticket
 Pokke Ticket
-Rajang Blackfur"
+Rajang Blackfur [Rajang]"
 1442503,Gourmew Mitts S,,"Hyper Extract
 Bistro Ticket
 Pokke Ticket
-Rajang Blackfur"
+Rajang Blackfur [Rajang]"
 1442524,Cheerful Braces,,"Commendation
 High-quality Pelt
 Dragonvine
@@ -8683,29 +8683,29 @@ Monster Slogbone"
 Garuga Cortex [Yian Garuga]
 Garuga Lash
 Monster Slogbone"
-1442724,Gore Braces X,,"Gore Magala Shredder
+1442724,Gore Braces X,,"Gore Magala Shredder [Gore Magala]
 Gore Magala Eclipse [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Gore Magala Wing+ [Gore Magala]"
-1442725,Gore Guards X,,"Gore Magala Shredder
+1442725,Gore Guards X,,"Gore Magala Shredder [Gore Magala]
 Gore Magala Eclipse [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Gore Magala Wing+ [Gore Magala]"
 1442730,Auroros Gauntlets,,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Pure Dragon Blood"
 1442731,Borealis Gauntlets,,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Pure Dragon Blood"
 1442732,Genesis Gauntlets,,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Pure Dragon Blood"
 1442733,Glyph Gauntlets,,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Pure Dragon Blood"
 1442734,Auroros Gauntlets GX,,"EX Lao-Shan Lung Ticket
 Lao-Shan Shard [Lao-Shan Lung]
@@ -8813,21 +8813,21 @@ Hyper Solidclaw"
 1442781,Storge Guards XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper Solidclaw"
-1442784,Grand God's Peer Arms,,"Rajang Hardhorn
+1442784,Grand God's Peer Arms,,"Rajang Hardhorn [Rajang]
 Rajang Tail [Rajang]
-Rajang Hardclaw
+Rajang Hardclaw [Rajang]
 Agnaktor Fin+ [Agnaktor]"
-1442785,Grand Hermit Arms,,"Rajang Hardhorn
+1442785,Grand Hermit Arms,,"Rajang Hardhorn [Rajang]
 Rajang Tail [Rajang]
-Rajang Hardclaw
+Rajang Hardclaw [Rajang]
 Agnaktor Fin+ [Agnaktor]"
-1442786,Vangis Vambraces X,,"Deviljho Shard
+1442786,Vangis Vambraces X,,"Deviljho Shard [Deviljho]
 Deviljho Hardfang [Deviljho]
-Deviljho Flail
+Deviljho Flail [Deviljho]
 Najarala Medulla [Najarala]"
-1442787,Vangis Guards X,,"Deviljho Shard
+1442787,Vangis Guards X,,"Deviljho Shard [Deviljho]
 Deviljho Hardfang [Deviljho]
-Deviljho Flail
+Deviljho Flail [Deviljho]
 Najarala Medulla [Najarala]"
 1442788,Kushala Grip X,,"Daora Cortex [Kushala Daora]
 Daora Hardclaw [Kushala Daora]
@@ -8956,11 +8956,11 @@ Hyper Najarala Cortex
 Tigrex Hardclaw
 Pure Dragon Blood"
 1442820,Shinobi Heaven Kote Goku,,"Gold Guild Ticket
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Rathian Shard [Rathian]
 Pure Dragon Blood"
 1442821,Shinobi Land Kote Goku,,"Gold Guild Ticket
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Rathian Shard [Rathian]
 Pure Dragon Blood"
 1442822,Kaiserin Arms,,
@@ -9003,42 +9003,42 @@ Rath Gleam
 Nakarkos Vertebra [Nakarkos]"
 1442836,Chaos Vambraces,,"Chaos Scale [Chaotic Gore Magala]
 S.Magala Purifier
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Contrary Scale [Chaotic Gore Magala]"
 1442837,Nephilim Vambraces,,"Chaos Scale [Chaotic Gore Magala]
 S.Magala Purifier
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Contrary Scale [Chaotic Gore Magala]"
 1442838,Chaos Guards,,"Chaos Scale [Chaotic Gore Magala]
 S.Magala Purifier
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Contrary Scale [Chaotic Gore Magala]"
 1442839,Nephilim Guards,,"Chaos Scale [Chaotic Gore Magala]
 S.Magala Purifier
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Contrary Scale [Chaotic Gore Magala]"
 1442840,Grand Divine Ire Kote,,"Rajang Apoplexy [Furious Rajang]
-Gold Rajang Pelt+
+Gold Rajang Pelt+ [Rajang]
 Rajang Tail [Rajang]
 Garuga Fellwing"
 1442841,Grand Crusher Braces,,"Rajang Apoplexy [Furious Rajang]
-Gold Rajang Pelt+
+Gold Rajang Pelt+ [Rajang]
 Rajang Tail [Rajang]
 Garuga Fellwing"
 1442842,Esurient Vambraces Z,,"Vile Fang [Savage Deviljho]
 Spattered Hide [Savage Deviljho]
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Viscous Dragon Blood"
 1442843,Esurient Guards Z,,"Vile Fang [Savage Deviljho]
 Spattered Hide [Savage Deviljho]
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Viscous Dragon Blood"
 1442844,Brachydium Vambraces,,"Brach Obliterator [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Brach Marrow [Brachydios]
 Ultimas Crystal"
 1442845,Brachydium Guards,,"Brach Obliterator [Raging Brachydios]
-Fine Brach Ebonshell
+Fine Brach Ebonshell [Brachydios]
 Brach Marrow [Brachydios]
 Ultimas Crystal"
 1442852,Grand Tempest Sleeves,,"Amatsu Hardclaw [Amatsu]
@@ -9084,11 +9084,11 @@ Dragonbone Artifact"
 1442862,Escadora Arms X,,"Alatreon Riptalon [Alatreon]
 Alatreon Pallium [Alatreon]
 Viscous Dragon Blood
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1442863,Escadora Arma X,,"Alatreon Riptalon [Alatreon]
 Alatreon Pallium [Alatreon]
 Viscous Dragon Blood
-Deviljho Scalp"
+Deviljho Scalp [Deviljho]"
 1442864,Escadora Armguards XR,,"Alatreon Riptalon [Alatreon]
 Hyper Draco. Scale+
 Viscous Dragon Blood"
@@ -9465,11 +9465,11 @@ Fatalis Cortex [Fatalis]
 Viscous Dragon Blood
 Rathian Shard [Rathian]"
 1443047,Criminal Braces,,"Evidence
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1443048,Criminal Hands,,"Evidence
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1443063,Garo Gauntlets,,"Zaruba Fragment
@@ -10239,21 +10239,21 @@ Cephalos Fin+"
 Seregios Airblade [Seregios]
 Seregios Scraper [Seregios]
 Cephalos Fin+"
-1507822,Golden Obi,,"Rajang Horn+
-Rajang Blackfur
-Rajang Fang+
+1507822,Golden Obi,,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
+Rajang Fang+ [Rajang]
 Fire Dragon Scale [Teostra]"
-1507823,Puppeteer Obi,,"Rajang Horn+
-Rajang Blackfur
-Rajang Fang+
+1507823,Puppeteer Obi,,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
+Rajang Fang+ [Rajang]
 Fire Dragon Scale [Teostra]"
-1507824,Vangis Coil,,"Deviljho Hide
-Deviljho Talon
-Deviljho Scale
+1507824,Vangis Coil,,"Deviljho Hide [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Scale [Deviljho]
 Nargacuga Marrow"
-1507825,Vangis Coat,,"Deviljho Hide
-Deviljho Talon
-Deviljho Scale
+1507825,Vangis Coat,,"Deviljho Hide [Deviljho]
+Deviljho Talon [Deviljho]
+Deviljho Scale [Deviljho]
 Nargacuga Marrow"
 1507826,Guild Knight Coat,,"Bronze Guild Ticket
 Velocidrome Hide+ [Velocidrome]
@@ -10545,26 +10545,26 @@ G.Rathian Scale+ [Gold Rathian]
 Rath Marrow"
 1507912,Divine Ire Obi,,"Ghoulish Gold Horn [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Claw+
-Gold Rajang Pelt"
+Rajang Claw+ [Rajang]
+Gold Rajang Pelt [Rajang]"
 1507913,Crusher Belt,,"Ghoulish Gold Horn [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Claw+
-Gold Rajang Pelt"
+Rajang Claw+ [Rajang]
+Gold Rajang Pelt [Rajang]"
 1507914,Esurient Faulds,,"Spattered Hide [Savage Deviljho]
-Deviljho Tallfang
-Deviljho Tail
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]
 Pure Dragon Blood"
 1507915,Esurient Coat,,"Spattered Hide [Savage Deviljho]
-Deviljho Tallfang
-Deviljho Tail
+Deviljho Tallfang [Deviljho]
+Deviljho Tail [Deviljho]
 Pure Dragon Blood"
 1507916,Esurient Faulds R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Tail"
+Deviljho Tail [Deviljho]"
 1507917,Esurient Coat R,,"Hyper Deviljho Scale
 Spattered Hide [Savage Deviljho]
-Deviljho Tail"
+Deviljho Tail [Deviljho]"
 1507924,Tempest Obi,,"Amatsu Tail [Amatsu]
 Amatsu Webbing [Amatsu]
 Amatsu Carapace [Amatsu]
@@ -10797,19 +10797,19 @@ Hercudrome"
 1508151,Gourmew Sarong X,,"Bistro Ticket G
 Potent Hyper Extract
 Pokke Ticket G
-Rajang Wildpelt"
+Rajang Wildpelt [Rajang]"
 1508152,Gourmew Apron X,,"Bistro Ticket G
 Potent Hyper Extract
 Pokke Ticket G
-Rajang Wildpelt"
+Rajang Wildpelt [Rajang]"
 1508153,Gourmew Sarong X,,"Bistro Ticket G
 Potent Hyper Extract
 Pokke Ticket G
-Rajang Wildpelt"
+Rajang Wildpelt [Rajang]"
 1508154,Gourmew Apron X,,"Bistro Ticket G
 Potent Hyper Extract
 Pokke Ticket G
-Rajang Wildpelt"
+Rajang Wildpelt [Rajang]"
 1508157,Edel Folia X,,"Bherna Ticket G
 Stargazer Flower
 Flood Sac
@@ -10943,11 +10943,11 @@ Monster Slogbone"
 1508260,Gore Faulds X,,"Gore Magala Eclipse [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Gore Magala Sensor [Gore Magala]
-Gore Magala Lash"
+Gore Magala Lash [Gore Magala]"
 1508261,Gore Coat X,,"Gore Magala Eclipse [Gore Magala]
 Gore Magala Cortex [Gore Magala]
 Gore Magala Sensor [Gore Magala]
-Gore Magala Lash"
+Gore Magala Lash [Gore Magala]"
 1508266,Auroros Tassets,,"Lao-Shan Cortex [Lao-Shan Lung]
 Lao-Shan Megaclaw [Lao-Shan Lung]
 Gravios Cortex [Gravios]
@@ -11029,11 +11029,11 @@ Wycademy Ticket G
 Mizutsune Silkfin
 Tough Dragonvine"
 1508292,Gore Faulds XR,,"Hyper G.Magala Scale X
-Gore Magala Shard
-Gore Magala Shredder"
+Gore Magala Shard [Gore Magala]
+Gore Magala Shredder [Gore Magala]"
 1508293,Gore Coat XR,,"Hyper G.Magala Scale X
-Gore Magala Shard
-Gore Magala Shredder"
+Gore Magala Shard [Gore Magala]
+Gore Magala Shredder [Gore Magala]"
 1508296,Regios Tassets X,,"Seregios Slavescale+ [Seregios]
 Seregios Airblade+ [Seregios]
 Seregios Scraper+ [Seregios]
@@ -11070,21 +11070,21 @@ Hyper G.Magala Scale X"
 1508317,Storge Coat XR,,"Hyper Draco. Scale+
 S.Magala Cortex [Shagaru Magala]
 Hyper G.Magala Scale X"
-1508320,Grand God's Peer Belt,,"Rajang Hardhorn
-Rajang Wildpelt
-Rajang Hardfang
+1508320,Grand God's Peer Belt,,"Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
+Rajang Hardfang [Rajang]
 Agnaktor Fin+ [Agnaktor]"
-1508321,Grand Hermit Belt,,"Rajang Hardhorn
-Rajang Wildpelt
-Rajang Hardfang
+1508321,Grand Hermit Belt,,"Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
+Rajang Hardfang [Rajang]
 Agnaktor Fin+ [Agnaktor]"
-1508322,Vangis Coil X,,"Deviljho Blackpiel
-Deviljho Ripper
-Deviljho Scale
+1508322,Vangis Coil X,,"Deviljho Blackpiel [Deviljho]
+Deviljho Ripper [Deviljho]
+Deviljho Scale [Deviljho]
 Narga Medulla"
-1508323,Vangis Coat X,,"Deviljho Blackpiel
-Deviljho Ripper
-Deviljho Scale
+1508323,Vangis Coat X,,"Deviljho Blackpiel [Deviljho]
+Deviljho Ripper [Deviljho]
+Deviljho Scale [Deviljho]
 Narga Medulla"
 1508324,Kushala Cocoon X,,"Daora Cortex [Kushala Daora]
 Daora Hardclaw [Kushala Daora]
@@ -11213,11 +11213,11 @@ Hyper Khezu Glosshide
 Rathalos Fellwing
 Pure Dragon Blood"
 1508356,Shinobi Heaven Belt Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rathalos Cortex [Rathalos]
 Pure Dragon Blood"
 1508357,Shinobi Land Belt Goku,,"Gold Guild Ticket
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Rathalos Cortex [Rathalos]
 Pure Dragon Blood"
 1508358,Kaiserin Faulds,,
@@ -11260,43 +11260,43 @@ S.Rathalos Shard [Silver Rathalos]
 Nakarkos Shell+ [Nakarkos]"
 1508372,Chaos Faulds,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Lash
+Gore Magala Lash [Gore Magala]
 Golden Silk [Ahtal-Ka]"
 1508373,Nephilim Tassets,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Lash
+Gore Magala Lash [Gore Magala]
 Golden Silk [Ahtal-Ka]"
 1508374,Chaos Coat,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Lash
+Gore Magala Lash [Gore Magala]
 Golden Silk [Ahtal-Ka]"
 1508375,Nephilim Coat,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Lash
+Gore Magala Lash [Gore Magala]
 Golden Silk [Ahtal-Ka]"
 1508376,Grand Divine Ire Obi,,"Ghoulish Gold Gorer [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Hardclaw
+Rajang Hardclaw [Rajang]
 S.Rathalos Shard [Silver Rathalos]"
 1508377,Grand Crusher Belt,,"Ghoulish Gold Gorer [Furious Rajang]
 Rajang Ragehair [Furious Rajang]
-Rajang Hardclaw
+Rajang Hardclaw [Rajang]
 S.Rathalos Shard [Silver Rathalos]"
 1508378,Esurient Faulds Z,,"Bloodied Ebonhide [Savage Deviljho]
 Deviljho Hardfang [Deviljho]
-Deviljho Flail
+Deviljho Flail [Deviljho]
 Viscous Dragon Blood"
 1508379,Esurient Coat Z,,"Bloodied Ebonhide [Savage Deviljho]
 Deviljho Hardfang [Deviljho]
-Deviljho Flail
+Deviljho Flail [Deviljho]
 Viscous Dragon Blood"
 1508380,Brachydium Faulds,,"Brach Obliterator [Raging Brachydios]
-Brach Cortex
-Brach Lash
+Brach Cortex [Brachydios]
+Brach Lash [Brachydios]
 Allfire Stone"
 1508381,Brachydium Coat,,"Brach Obliterator [Raging Brachydios]
-Brach Cortex
-Brach Lash
+Brach Cortex [Brachydios]
+Brach Lash [Brachydios]
 Allfire Stone"
 1508388,Grand Tempest Obi,,"Amatsu Stormtail [Amatsu]
 Amatsu Webbing [Amatsu]
@@ -11410,34 +11410,34 @@ S.Rathalos Shard [Silver Rathalos]
 Rath Medulla"
 1508434,Esurient Faulds XR,,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
-Deviljho Flail"
+Deviljho Flail [Deviljho]"
 1508435,Esurient Coat XR,,"Hyper Deviljho Scale X
 Bloodied Ebonhide [Savage Deviljho]
-Deviljho Flail"
+Deviljho Flail [Deviljho]"
 1508470,Gore Faulds GX,,"Accolade XX
-Gore Magala Shard
-Gore Magala Lash
+Gore Magala Shard [Gore Magala]
+Gore Magala Lash [Gore Magala]
 S.Magala Purifier"
 1508471,Gore Coat GX,,"Accolade XX
-Gore Magala Shard
-Gore Magala Lash
+Gore Magala Shard [Gore Magala]
+Gore Magala Lash [Gore Magala]
 S.Magala Purifier"
 1508480,Arc Faulds GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
-Gore Magala Shredder"
+Gore Magala Shredder [Gore Magala]"
 1508481,Arc Coat GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
-Gore Magala Shredder"
+Gore Magala Shredder [Gore Magala]"
 1508482,Storge Faulds GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
-Gore Magala Shredder"
+Gore Magala Shredder [Gore Magala]"
 1508483,Storge Coat GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
-Gore Magala Shredder"
+Gore Magala Shredder [Gore Magala]"
 1508484,Kushala Cocoon GX,,"Triumph
 Daora Cortex [Kushala Daora]
 Daora Hardclaw [Kushala Daora]"
@@ -12515,20 +12515,20 @@ Monster Hardbone"
 Brach Ebonshell+ [Brachydios]
 Brach Pounder [Brachydios]
 Dragonite Ore"
-1573358,Golden Hakama,,"Rajang Horn+
-Rajang Blackfur
+1573358,Golden Hakama,,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
 Remobra Hide+ [Remobra]
 Daora Scale [Kushala Daora]"
-1573359,Puppeteer Tabi,,"Rajang Horn+
-Rajang Blackfur
+1573359,Puppeteer Tabi,,"Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
 Remobra Hide+ [Remobra]
 Daora Scale [Kushala Daora]"
-1573360,Vangis Greaves,,"Deviljho Talon
-Deviljho Scale
+1573360,Vangis Greaves,,"Deviljho Talon [Deviljho]
+Deviljho Scale [Deviljho]
 Deviljho Saliva
 Uragaan Marrow"
-1573361,Vangis Leggings,,"Deviljho Talon
-Deviljho Scale
+1573361,Vangis Leggings,,"Deviljho Talon [Deviljho]
+Deviljho Scale [Deviljho]
 Deviljho Saliva
 Uragaan Marrow"
 1573362,Guild Knight Boots,,"Bronze Guild Ticket
@@ -12820,27 +12820,27 @@ Rathian Scale [Rathian]"
 G.Rathian Carapace [Gold Rathian]
 Rathian Scale [Rathian]"
 1573448,Divine Ire Hakama,,"Rajang Ragehair [Furious Rajang]
-Rajang Horn+
-Rajang Blackfur
+Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
 G.Rathian Scale+ [Gold Rathian]"
 1573449,Mind Crusher Tabi,,"Rajang Ragehair [Furious Rajang]
-Rajang Horn+
-Rajang Blackfur
+Rajang Horn+ [Rajang]
+Rajang Blackfur [Rajang]
 G.Rathian Scale+ [Gold Rathian]"
 1573450,Esurient Greaves,,"Spattered Hide [Savage Deviljho]
-Deviljho Scale
-Deviljho Talon
+Deviljho Scale [Deviljho]
+Deviljho Talon [Deviljho]
 Pure Dragon Blood"
 1573451,Esurient Leggings,,"Spattered Hide [Savage Deviljho]
-Deviljho Scale
-Deviljho Talon
+Deviljho Scale [Deviljho]
+Deviljho Talon [Deviljho]
 Pure Dragon Blood"
 1573452,Esurient Greaves R,,"Hyper Deviljho Scale
 Black Blood [Savage Deviljho]
-Deviljho Hide"
+Deviljho Hide [Deviljho]"
 1573453,Esurient Leggings R,,"Hyper Deviljho Scale
 Black Blood [Savage Deviljho]
-Deviljho Hide"
+Deviljho Hide [Deviljho]"
 1573460,Tempest Hakama,,"Amatsu Webbing [Amatsu]
 Amatsu Carapace [Amatsu]
 Amatsu Claw+ [Amatsu]
@@ -12911,19 +12911,19 @@ Gendrome Hide+ [Gendrome]
 Gore Magala Scale [Gore Magala]"
 1573522,Ultimate Pleats,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Elder Dragon Blood"
 1573523,Ultimate Walkers,,"Arena Ticket
 Hyper Gammoth Fur
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Elder Dragon Blood"
 1573524,Champion's Shorts,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Blackfur
+Rajang Blackfur [Rajang]
 Ceanataur Leg [Shogun Ceanataur]"
 1573525,Strongman's Shorts,,"Arena Ticket
 Hyper Gammoth Fur
-Rajang Blackfur
+Rajang Blackfur [Rajang]
 Ceanataur Leg [Shogun Ceanataur]"
 1573526,Zodias Greaves,,"Pluto Stardust
 Teostra Powder [Teostra]
@@ -12983,19 +12983,19 @@ Firecell Stone
 Garuga Carapace [Yian Garuga]"
 1573552,Greaves of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Novacrystal"
 1573553,Leggings of Rage,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Novacrystal"
 1573554,Greaves of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Novacrystal"
 1573555,Leggings of Anat,,"Goddess's Embrace
 Hyper Deviljho Scale
-Deviljho Scale
+Deviljho Scale [Deviljho]
 Novacrystal"
 1573558,Mosgharl Roots,,"Bumblepumpkin
 Monster Bone L
@@ -13270,12 +13270,12 @@ Garuga Cortex [Yian Garuga]
 Garuga Fellwing
 Stygian Worm"
 1573796,Gore Greaves X,,"Gore Magala Cortex [Gore Magala]
-Gore Magala Shard
-Gore Magala Shredder
+Gore Magala Shard [Gore Magala]
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573797,Gore Leggings X,,"Gore Magala Cortex [Gore Magala]
-Gore Magala Shard
-Gore Magala Shredder
+Gore Magala Shard [Gore Magala]
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573802,Auroros Pants,,"Lao-Shan Shard [Lao-Shan Lung]
 Lao-Shan Hardhorn [Lao-Shan Lung]
@@ -13399,21 +13399,21 @@ Hyper G.Magala Scale X"
 1573853,Storge Leggings XR,,"Hyper Draco. Scale+
 S.Magala Shard [Shagaru Magala]
 Hyper G.Magala Scale X"
-1573856,Grand God's Peer Feet,,"Rajang Hardhorn
-Rajang Wildpelt
+1573856,Grand God's Peer Feet,,"Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
 Kirin Finehide [Kirin]
-Deviljho Scale"
-1573857,Grand Hermit Feet,,"Rajang Hardhorn
-Rajang Wildpelt
+Deviljho Scale [Deviljho]"
+1573857,Grand Hermit Feet,,"Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
 Kirin Finehide [Kirin]
-Deviljho Scale"
-1573858,Vangis Greaves X,,"Deviljho Ripper
-Deviljho Shard
-Deviljho Tallfang
+Deviljho Scale [Deviljho]"
+1573858,Vangis Greaves X,,"Deviljho Ripper [Deviljho]
+Deviljho Shard [Deviljho]
+Deviljho Tallfang [Deviljho]
 Gravios Medulla [Gravios]"
-1573859,Vangis Leggings X,,"Deviljho Ripper
-Deviljho Shard
-Deviljho Tallfang
+1573859,Vangis Leggings X,,"Deviljho Ripper [Deviljho]
+Deviljho Shard [Deviljho]
+Deviljho Tallfang [Deviljho]
 Gravios Medulla [Gravios]"
 1573860,Kushala Crus X,,"Daora Cortex [Kushala Daora]
 Daora Shard [Kushala Daora]
@@ -13542,11 +13542,11 @@ Hyper Tetsu. Shard
 Gore Magala Eclipse [Gore Magala]
 Pure Dragon Blood"
 1573892,Shinobi Heaven Boots Goku,,"Gold Guild Ticket
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Rathian Cortex [Rathian]
 Pure Dragon Blood"
 1573893,Shinobi Land Boots Goku,,"Gold Guild Ticket
-Deviljho Shard
+Deviljho Shard [Deviljho]
 Rathian Cortex [Rathian]
 Pure Dragon Blood"
 1573894,Kaiserin Greaves,,
@@ -13589,43 +13589,43 @@ S.Rath Lash [Silver Rathalos]
 Nakarkos Vertebra [Nakarkos]"
 1573908,Chaos Greaves,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573909,Nephilim Greaves,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573910,Chaos Leggings,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573911,Nephilim Leggings,,"Antinomic Wing [Chaotic Gore Magala]
 Chaos Scale [Chaotic Gore Magala]
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Purecrystal"
 1573912,Grand Divine Ire Hakama,,"Rajang Apoplexy [Furious Rajang]
-Rajang Hardhorn
-Rajang Wildpelt
+Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
 Kut-Ku Luckear [Yian Kut-Ku]"
 1573913,Grand Mind Crusher Tabi,,"Rajang Apoplexy [Furious Rajang]
-Rajang Hardhorn
-Rajang Wildpelt
+Rajang Hardhorn [Rajang]
+Rajang Wildpelt [Rajang]
 Kut-Ku Luckear [Yian Kut-Ku]"
 1573914,Esurient Greaves Z,,"Bloodied Ebonhide [Savage Deviljho]
 Spattered Hide [Savage Deviljho]
-Deviljho Ripper
+Deviljho Ripper [Deviljho]
 Viscous Dragon Blood"
 1573915,Esurient Leggings Z,,"Bloodied Ebonhide [Savage Deviljho]
 Spattered Hide [Savage Deviljho]
-Deviljho Ripper
+Deviljho Ripper [Deviljho]
 Viscous Dragon Blood"
 1573916,Brachydium Greaves,,"Brach Obliterator [Raging Brachydios]
-Brach Cortex
-Brach Pounder+
+Brach Cortex [Brachydios]
+Brach Pounder+ [Brachydios]
 Ultimas Crystal"
 1573917,Brachydium Leggings,,"Brach Obliterator [Raging Brachydios]
-Brach Cortex
-Brach Pounder+
+Brach Cortex [Brachydios]
+Brach Pounder+ [Brachydios]
 Ultimas Crystal"
 1573924,Grand Tempest Hakama,,"Amatsu Membrane [Amatsu]
 Amatsu Cortex [Amatsu]
@@ -13744,29 +13744,29 @@ Black Blood [Savage Deviljho]"
 Vile Fang [Savage Deviljho]
 Black Blood [Savage Deviljho]"
 1574006,Gore Greaves GX,,"Accolade XX
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Defiled Scale [Gore Magala]
 S.Magala Shard [Shagaru Magala]"
 1574007,Gore Leggings GX,,"Accolade XX
-Gore Magala Shredder
+Gore Magala Shredder [Gore Magala]
 Defiled Scale [Gore Magala]
 S.Magala Shard [Shagaru Magala]"
 1574016,Arc Greaves GX,,"Accolade XX
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1574017,Arc Leggings GX,,"Accolade XX
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1574018,Storge Greaves GX,,"Accolade XX
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1574019,Storge Leggings GX,,"Accolade XX
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
-Gore Magala Shard"
+Gore Magala Shard [Gore Magala]"
 1574020,Kushala Crus GX,,"Triumph
 Daora Cortex [Kushala Daora]
 Daora Shard [Kushala Daora]"
@@ -14075,11 +14075,11 @@ Fatalis Cortex [Fatalis]
 Fatalis Fellwing [Fatalis]
 G.Rathian Shard [Gold Rathian]"
 1574119,Criminal Legs,,"Evidence
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1574120,Criminal Feet,,"Evidence
-Deviljho Blackpiel
+Deviljho Blackpiel [Deviljho]
 Seregios Slavescale+ [Seregios]
 Rubbery Finehide"
 1574135,Garo Guards,,"Zaruba Fragment
@@ -14108,11 +14108,11 @@ Firecell Stone
 Garuga Carapace [Yian Garuga]"
 1574141,Lodestar Boots,,"Sealing Shield
 Hyper S.Rath. Scale
-Rajang Blackfur
+Rajang Blackfur [Rajang]
 Warm Pelt"
 1574142,Lodestar Greaves,,"Sealing Shield
 Hyper S.Rath. Scale
-Rajang Blackfur
+Rajang Blackfur [Rajang]
 Warm Pelt"
 1574143,Hylian Footwear,,"Zelda Ticket G
 Daora Shard [Kushala Daora]
