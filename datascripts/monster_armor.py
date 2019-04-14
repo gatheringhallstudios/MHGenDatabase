@@ -49,14 +49,24 @@ class MonsterChainList:
     def __init__(self, chains):
         self.chains = chains
 
+        # Mapping for monster -> participating chain idx. Used for some lookups
+        self.monster_to_chain = {}
+        for chain in chains:
+            for monster_id in chain.ids:
+                self.monster_to_chain[monster_id] = chain
+
     def __iter__(self):
         return self.chains.__iter__()
 
     def chain_by_id(self, *ids):
         "Returns a chain containing one or more ids"
-        for chain in self.chains:
-            if chain.contains_ids(ids):
-                return chain
+        if len(ids) == 0:
+            return None
+
+        chain = self.monster_to_chain.get(ids[0])
+        if len(ids) == 1 or chain.contains_ids(ids):
+            return chain
+
         return None
 
 special_mappings = {}
@@ -160,15 +170,12 @@ def create_item_to_monster_mapping(session: sqlalchemy.orm.Session, monster_data
 
     return item_to_monster_ids
 
-def create_monster_armor_csv(session: sqlalchemy.orm.Session):
-    "Create an armor -> monster mapping file using several heuristics."
-    all_armor_families = (session.query(db.Armor)
-        .options(joinedload(db.Armor.item).selectinload(db.Item.components))
-        )
-    armor_by_id = {a._id:a for a in all_armor.all()}
+def create_monster_chains(monster_data, list_of_list_of_names):
+    return MonsterChainList([
+        MonsterChain([monster_data.by_name(name) for name in chain]) for chain in list_of_list_of_names
+    ])
 
-    monster_data = MonsterDataCollection(session)
-
+def create_subspecies_chains(monster_data):
     # Create monster chains. These list subspecies.
     # First we hardcode them with names and then turn them to MonsterChain objects
     monster_chains = [
@@ -185,31 +192,44 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         if not any(base in c for c in monster_chains):
             print(f"Added chain for deviant {deviant.name} to base monster {base}")
             monster_chains.append([base, deviant.name])
-    
-    monster_chains = MonsterChainList([
-        MonsterChain([monster_data.by_name(name) for name in chain]) for chain in monster_chains
+
+    return create_monster_chains(monster_data, monster_chains)
+
+def create_bossvariant_chains(monster_data):
+    return create_monster_chains(monster_data, [
+        ['Conga', 'Congalala'],
+        ['Hermitaur', 'Daimyo Hermitaur'],
+        ['Ceanataur', 'Shogun Ceanataur'],
+        ['Maccao', 'Great Maccao'],
+        ['Velociprey', 'Velocidrome'],
+        ['Genprey', 'Gendrome'],
+        ['Ioprey', 'Iodrome']
     ])
 
-    # Mapping for monster -> participating chain idx. Used for some lookups
-    monster_to_chain = {}
-    for chain in monster_chains:
-        for monster_id in chain.ids:
-            monster_to_chain[monster_id] = chain
+def create_monster_armor_csv(session: sqlalchemy.orm.Session):
+    "Create an armor -> monster mapping file using several heuristics."
+
+    monster_data = MonsterDataCollection(session)
+
+    monster_chains = create_subspecies_chains(monster_data)
+    monster_boss_chains = create_bossvariant_chains(monster_data)
 
     # Create mapping from item id to relevant monster id
     item_to_monster_ids = create_item_to_monster_mapping(session, monster_data, monster_chains)
 
-    def create_result(armor, monster_name=None, components=[]):
+    disqualified_families = [
+        "Hunter's ", "Bone", "Leather", "Damascus", "Chainmail"
+    ]
+
+    def create_result(armor, monster_name=None, components=None):
         return {
             'Item Id': armor._id,
             'Item Name': armor.item.name,
             'Monster': monster_name,
-            'Components': '\n'.join(components)
+            'Components': '\n'.join(components or [])
         }
 
-    results = []
-    unresolved = []
-    for armor in armor_by_id.values():
+    def process_armor(armor):
         components = list(armor.item.components)
 
         key_items = list(filter(lambda c: c.key, components))
@@ -219,13 +239,7 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         # First pass - check for monster name substring. 
         monster_name = find_embedded_monster_name(monster_data, armor.item.name)
         if monster_name:
-            results.append(create_result(armor, monster_name))
-            continue
-            # Former code - Pass if the key item is no monster, same monster or same chain
-            # monster_id = monster_data.by_name(monster_name)._id
-            # key_monster_id = item_to_monster_ids.get(key_item_id)
-            # chain = monster_chains.chain_by_id(monster_id, key_monster_id)
-            # if key_monster_id is None or key_monster_id == monster_id or chain:
+            return (monster_name, None)
 
         # Second pass, check the components, see if anything is possibly unanimaous
         item_names = []
@@ -253,7 +267,8 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         def resolve_monster_from_participant_key(participant):
             monster_id = participant[1]
             if participant[0] == 'chain':
-                monster_id = list(monster_to_chain[monster_id].by_id(monster_ids))[-1]._id
+                chain = monster_chains.chain_by_id(monster_id)
+                monster_id = list(chain.by_id(monster_ids))[-1]._id
             
             return monster_data.by_id(monster_id)
 
@@ -262,8 +277,9 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
         participations = {}
         for monster_id in monster_ids:
             key = ('monster', monster_id)
-            if monster_id in monster_to_chain:
-                key = ('chain', monster_to_chain[monster_id].ids[0])
+            chain = monster_chains.chain_by_id(monster_id)
+            if chain:
+                key = ('chain', chain.ids[0])
             participations.setdefault(key, 0)
             participations[key] += 1
 
@@ -276,8 +292,7 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
             monster = resolve_monster_from_participant_key(participant)
             key_monster_id = item_to_monster_ids.get(key_item_id)
             if count >= 2 or (len(components) < 4 and key_monster_id == monster._id):
-                results.append(create_result(armor, monster.name, components=item_names))
-                continue
+                return (monster.name, item_names)
         
         # If there's more than one participant... must be >= 2 items, or if equal take the key item one
         # Instant failure if the key is another monster
@@ -288,32 +303,56 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
             if count_best == count_second_best and key_item_id in item_to_monster_ids:
                 monster_id = item_to_monster_ids[key_item_id]
                 monster_name = monster_data.by_id(monster_id).name
-                results.append(create_result(armor, monster_name, components=item_names))
-                continue
+                return (monster_name, item_names)
             elif count_best > count_second_best:
                 monster = resolve_monster_from_participant_key(participant_best)
                 if key_item_id not in item_to_monster_ids or item_to_monster_ids[key_item_id] == monster._id:
-                    results.append(create_result(armor, monster.name, components=item_names))
-                    continue
+                    return (monster.name, item_names)
 
         # If we get here, it failed to resolve
-        unresolved.append(create_result(armor, components=item_names))
+        return (None, item_names)
+
+    all_armor_families = (
+        session.query(db.ArmorFamily)
+        .options(
+            joinedload(db.ArmorFamily.armor_pieces)
+            .joinedload(db.Armor.item)
+            .selectinload(db.Item.components))
+        ).all()
+    all_armor_families.sort(key=lambda f: f.armor_pieces[0]._id)
+
+    all_results = []
+
+    for family in all_armor_families:
+        # If this family is disqualified, add failed results and continue
+        if any((d in family.name) for d in disqualified_families):
+            print("Disqualified family - " + family.name)
+            for armor in family.armor_pieces:
+                all_results.append(create_result(armor))
+            continue
+
+        sub_results = []
+        for armor in family.armor_pieces:
+            (monster_name, components) = process_armor(armor)
+            sub_results.append([armor, monster_name, components])
+
+        # Second pass, check results of this family. They must all be same monster or it will fail
+        #monsters = set([r['Monster'] for r in results])
+        for (armor, monster_name, components) in sub_results:
+            all_results.append(create_result(armor, monster_name, components))
 
     # Assemble resolve mapping for next step (we'd have done it earlier, but resolving can happen in multiple places)
-    armor_to_monster = {}
-    for resolved_item in results:
-        armor_to_monster[resolved_item['Item Id']] = resolved_item['Monster']
 
     # Go through armor families now, find unresolved subinstances and report them
-    families = session.query(db.ArmorFamily).options(selectinload(db.ArmorFamily.armor_pieces))
-    for family in families:
-        resolved_monsters = [armor_to_monster.get(a._id) for a in family.armor_pieces]
-        unique_monsters = set(resolved_monsters)
-        if len(unique_monsters) <= 1:
-            continue
-        print(family.name + ": " + " ,".join((str(m) for m in unique_monsters)))
+    # families = session.query(db.ArmorFamily).options(selectinload(db.ArmorFamily.armor_pieces))
+    # for family in families:
+    #     resolved_monsters = [armor_to_monster.get(a._id) for a in family.armor_pieces]
+    #     unique_monsters = set(resolved_monsters)
+    #     if len(unique_monsters) <= 1:
+    #         continue
+    #     print(family.name + ": " + " ,".join((str(m) for m in unique_monsters)))
         
-    save_csv(results + unresolved, 'source_data/monster_armor.csv')
+    save_csv(all_results, 'source_data/monster_armor.csv')
 
 if __name__ == '__main__':
     session = db.read_db()
