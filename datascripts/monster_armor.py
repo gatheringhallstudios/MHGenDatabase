@@ -337,7 +337,16 @@ def create_monster_armor_csv(session: sqlalchemy.orm.Session):
             sub_results.append([armor, monster_name, components])
 
         # Second pass, check results of this family. They must all be same monster or it will fail
-        #monsters = set([r['Monster'] for r in results])
+        resolved_monsters = [r[1] for r in sub_results]
+        unique_monsters = set(resolved_monsters)
+        if len(unique_monsters) > 1:
+            resolved_monsters_str = (str(m) for m in unique_monsters)
+            print(f"Failed family - {family.name} {' ,'.join(resolved_monsters_str)}")
+            for r in sub_results:
+                r[1] = None # clear monster
+            
+  
+        # Final pass add to results
         for (armor, monster_name, components) in sub_results:
             all_results.append(create_result(armor, monster_name, components))
 

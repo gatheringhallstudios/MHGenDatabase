@@ -22,22 +22,25 @@ def bind_monster_weapons(session: sqlalchemy.orm.Session):
         monster_name = entry['Monster']
         if not monster_name:
             continue
-        if monster_name not in monster_to_id:
+        monster_names = [m.strip() for m in monster_name.split(',')]
+        if any(name not in monster_to_id for name in monster_names):
             print("No monster named " + monster_name)
             continue
-        
-        monster_id = monster_to_id[monster_name]
-        output.setdefault(monster_id, { 'armor': [], 'weapons': [] })
 
         item_entry = session.query(db.Item).\
             filter(db.Item._id == item_id).\
             one()
-        if item_entry.type == 'Weapon':
-            output[monster_id]['weapons'].append(item_id)
-        elif item_entry.type == 'Armor':
-            output[monster_id]['armor'].append(item_id)
-        else:
-            raise Exception("Cannot handle item type " + item_entry.type)
+
+        for monster_name in monster_names:
+            monster_id = monster_to_id[monster_name]
+            output.setdefault(monster_id, { 'armor': [], 'weapons': [] })
+
+            if item_entry.type == 'Weapon':
+                output[monster_id]['weapons'].append(item_id)
+            elif item_entry.type == 'Armor':
+                output[monster_id]['armor'].append(item_id)
+            else:
+                raise Exception("Cannot handle item type " + item_entry.type)
 
     # Ensure all entries are sorted
     for value in output.values():

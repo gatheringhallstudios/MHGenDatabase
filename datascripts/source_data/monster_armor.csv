@@ -6156,7 +6156,7 @@ Nargacuga Pelt+ [Nargacuga]"
 Hyper Gammoth Fur [Gammoth]
 Deviljho Scalp [Deviljho]
 Teostra Mane [Teostra]"
-1376914,Ultimate Garb,Gammoth,"Arena Ticket
+1376914,Ultimate Garb,,"Arena Ticket
 Hyper Gammoth Fur [Gammoth]
 Deviljho Hide [Deviljho]
 Gammoth Shell [Gammoth]"
@@ -6168,7 +6168,7 @@ Elder Dragon Blood"
 Hyper Gammoth Fur [Gammoth]
 Deviljho Scalp [Deviljho]
 Teostra Mane [Teostra]"
-1376915,Ultimate Attire,Gammoth,"Arena Ticket
+1376915,Ultimate Attire,,"Arena Ticket
 Hyper Gammoth Fur [Gammoth]
 Deviljho Hide [Deviljho]
 Gammoth Shell [Gammoth]"
@@ -6176,7 +6176,7 @@ Gammoth Shell [Gammoth]"
 Hyper Gammoth Fur [Gammoth]
 Deviljho Scale [Deviljho]
 Elder Dragon Blood"
-1311380,Champion's Hair,Gammoth,"Arena Ticket
+1311380,Champion's Hair,,"Arena Ticket
 Hyper Gammoth Fur [Gammoth]
 Rajang Fang+ [Rajang]
 Gammoth Redfur [Gammoth]"
@@ -6196,7 +6196,7 @@ Seregios Impaler [Seregios]"
 Hyper Gammoth Fur [Gammoth]
 Rajang Blackfur [Rajang]
 Ceanataur Leg [Shogun Ceanataur]"
-1311381,Strongman's Hair,Gammoth,"Arena Ticket
+1311381,Strongman's Hair,,"Arena Ticket
 Hyper Gammoth Fur [Gammoth]
 Rajang Fang+ [Rajang]
 Gammoth Redfur [Gammoth]"
@@ -6216,19 +6216,19 @@ Seregios Impaler [Seregios]"
 Hyper Gammoth Fur [Gammoth]
 Rajang Blackfur [Rajang]
 Ceanataur Leg [Shogun Ceanataur]"
-1311382,Zodias Helm,Teostra,"Pluto Stardust
+1311382,Zodias Helm,,"Pluto Stardust
 Teostra Horn+ [Teostra]
 Teostra Mane [Teostra]
 Teostra Gem [Teostra]"
-1376918,Zodias Mail,Teostra,"Pluto Stardust
+1376918,Zodias Mail,,"Pluto Stardust
 Teostra Carapace [Teostra]
 Teostra Webbing [Teostra]
 Daora Claw+ [Kushala Daora]"
-1442454,Zodias Vambraces,Teostra,"Pluto Stardust
+1442454,Zodias Vambraces,,"Pluto Stardust
 Teostra Claw+ [Teostra]
 Fire Dragon Scale [Teostra]
 Remobra Hide+ [Remobra]"
-1507990,Zodias Coil,Teostra,"Pluto Stardust
+1507990,Zodias Coil,,"Pluto Stardust
 Fire Dragon Scale+ [Teostra]
 Teostra Tail [Teostra]
 Pure Dragon Blood"
@@ -6236,19 +6236,19 @@ Pure Dragon Blood"
 Teostra Powder [Teostra]
 Elder Dragon Blood
 Remobra Hide+ [Remobra]"
-1311383,Zodias Cap,Teostra,"Pluto Stardust
+1311383,Zodias Cap,,"Pluto Stardust
 Teostra Horn+ [Teostra]
 Teostra Mane [Teostra]
 Teostra Gem [Teostra]"
-1376919,Zodias Vest,Teostra,"Pluto Stardust
+1376919,Zodias Vest,,"Pluto Stardust
 Teostra Carapace [Teostra]
 Teostra Webbing [Teostra]
 Daora Claw+ [Kushala Daora]"
-1442455,Zodias Guards,Teostra,"Pluto Stardust
+1442455,Zodias Guards,,"Pluto Stardust
 Teostra Claw+ [Teostra]
 Fire Dragon Scale [Teostra]
 Remobra Hide+ [Remobra]"
-1507991,Zodias Coat,Teostra,"Pluto Stardust
+1507991,Zodias Coat,,"Pluto Stardust
 Fire Dragon Scale+ [Teostra]
 Teostra Tail [Teostra]
 Pure Dragon Blood"
@@ -9771,11 +9771,11 @@ Pure Dragon Blood"
 1442822,Kaiserin Arms,Teostra,
 1508358,Kaiserin Faulds,Teostra,
 1573894,Kaiserin Greaves,Teostra,
-1311751,Kaiserin Mask,Teostra,
-1377287,Kaiserin Vest,Teostra,
+1311751,Kaiserin Mask,,
+1377287,Kaiserin Vest,,
 1442823,Kaisrein Guards,,
-1508359,Kaiserin Coat,Teostra,
-1573895,Kaiserin Leggings,Teostra,
+1508359,Kaiserin Coat,,
+1573895,Kaiserin Leggings,,
 1311752,Barmaid's Earrings,,
 1377288,Barmaid's Suit,,
 1442824,Barmaid's Gloves,,
@@ -10997,19 +10997,19 @@ S.Magala Shard [Shagaru Magala]"
 1442943,Rathalos Guards GX,Rathalos,
 1508479,Rathalos Coat GX,Rathalos,
 1574015,Rathalos Leggings GX,Rathalos,
-1311872,Arc Helm GX,Shagaru Magala,"Accolade XX
+1311872,Arc Helm GX,,"Accolade XX
 S.Magala Hardhorn [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 Gore Magala Eclipse [Gore Magala]"
-1377408,Arc Mail GX,Shagaru Magala,"Accolade XX
+1377408,Arc Mail GX,,"Accolade XX
 S.Magala Cortex [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 Gore Magala Sensor [Gore Magala]"
-1442944,Arc Vambraces GX,Shagaru Magala,"Accolade XX
+1442944,Arc Vambraces GX,,"Accolade XX
 S.Magala Lightwing [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 Gore Magala Cortex [Gore Magala]"
-1508480,Arc Faulds GX,Shagaru Magala,"Accolade XX
+1508480,Arc Faulds GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
 Gore Magala Shredder [Gore Magala]"
@@ -11017,19 +11017,19 @@ Gore Magala Shredder [Gore Magala]"
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
 Gore Magala Shard [Gore Magala]"
-1311873,Arc Cap GX,Shagaru Magala,"Accolade XX
+1311873,Arc Cap GX,,"Accolade XX
 S.Magala Hardhorn [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 Gore Magala Eclipse [Gore Magala]"
-1377409,Arc Vest GX,Shagaru Magala,"Accolade XX
+1377409,Arc Vest GX,,"Accolade XX
 S.Magala Cortex [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 Gore Magala Sensor [Gore Magala]"
-1442945,Arc Guards GX,Shagaru Magala,"Accolade XX
+1442945,Arc Guards GX,,"Accolade XX
 S.Magala Lightwing [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 Gore Magala Cortex [Gore Magala]"
-1508481,Arc Coat GX,Shagaru Magala,"Accolade XX
+1508481,Arc Coat GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
 Gore Magala Shredder [Gore Magala]"
@@ -11037,19 +11037,19 @@ Gore Magala Shredder [Gore Magala]"
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
 Gore Magala Shard [Gore Magala]"
-1311874,Storge Helm GX,Shagaru Magala,"Accolade XX
+1311874,Storge Helm GX,,"Accolade XX
 S.Magala Hardhorn [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 Gore Magala Eclipse [Gore Magala]"
-1377410,Storge Mail GX,Shagaru Magala,"Accolade XX
+1377410,Storge Mail GX,,"Accolade XX
 S.Magala Cortex [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 Gore Magala Sensor [Gore Magala]"
-1442946,Storge Braces GX,Shagaru Magala,"Accolade XX
+1442946,Storge Braces GX,,"Accolade XX
 S.Magala Lightwing [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 Gore Magala Cortex [Gore Magala]"
-1508482,Storge Faulds GX,Shagaru Magala,"Accolade XX
+1508482,Storge Faulds GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
 Gore Magala Shredder [Gore Magala]"
@@ -11057,19 +11057,19 @@ Gore Magala Shredder [Gore Magala]"
 S.Magala Purifier
 Pure Scale [Shagaru Magala]
 Gore Magala Shard [Gore Magala]"
-1311875,Storge Cap GX,Shagaru Magala,"Accolade XX
+1311875,Storge Cap GX,,"Accolade XX
 S.Magala Hardhorn [Shagaru Magala]
 S.Magala Scale+ [Shagaru Magala]
 Gore Magala Eclipse [Gore Magala]"
-1377411,Storge Vest GX,Shagaru Magala,"Accolade XX
+1377411,Storge Vest GX,,"Accolade XX
 S.Magala Cortex [Shagaru Magala]
 S.Magala Prismwing+ [Shagaru Magala]
 Gore Magala Sensor [Gore Magala]"
-1442947,Storge Guards GX,Shagaru Magala,"Accolade XX
+1442947,Storge Guards GX,,"Accolade XX
 S.Magala Lightwing [Shagaru Magala]
 S.Magala Horn+ [Shagaru Magala]
 Gore Magala Cortex [Gore Magala]"
-1508483,Storge Coat GX,Shagaru Magala,"Accolade XX
+1508483,Storge Coat GX,,"Accolade XX
 S.Magala Shard [Shagaru Magala]
 S.Magala Lash [Shagaru Magala]
 Gore Magala Shredder [Gore Magala]"
@@ -11090,13 +11090,13 @@ Gore Magala Shard [Gore Magala]"
 1311878,Mizuha Cap GX,,"Triumph
 Chameleos Hardhorn [Chameleos]
 Viscous Dragon Blood"
-1377414,Mizuha Guards GX,Chameleos,"Triumph
+1377414,Mizuha Guards GX,,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardhorn [Chameleos]"
-1442950,Mizuha Sleeves GX,Chameleos,"Triumph
+1442950,Mizuha Sleeves GX,,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardclaw [Chameleos]"
-1508486,Mizuha Sash GX,Chameleos,"Triumph
+1508486,Mizuha Sash GX,,"Triumph
 Chameleos Finehide [Chameleos]
 Chameleos Hardclaw [Chameleos]"
 1574022,Mizuha Gaiters GX,,"Triumph
@@ -12591,7 +12591,7 @@ Earth Crystal"
 1572872,Loc Lac Boots,Altaroth,"Altaroth Jaw [Altaroth]
 Monster Fluid
 Earth Crystal"
-1376340,Droth Mail,Ludroth,"Hydro Hide [Ludroth]
+1376340,Droth Mail,,"Hydro Hide [Ludroth]
 Immature Sponge [Ludroth]
 Warm Pelt
 Carpenterbug"
@@ -12599,11 +12599,11 @@ Carpenterbug"
 Monster Bone S
 Warm Pelt
 Sharp Claw"
-1572948,Droth Greaves,Ludroth,"Immature Sponge [Ludroth]
+1572948,Droth Greaves,,"Immature Sponge [Ludroth]
 Hydro Hide [Ludroth]
 Warm Pelt
 Sharp Claw"
-1376341,Droth Vest,Ludroth,"Hydro Hide [Ludroth]
+1376341,Droth Vest,,"Hydro Hide [Ludroth]
 Immature Sponge [Ludroth]
 Warm Pelt
 Carpenterbug"
@@ -12611,7 +12611,7 @@ Carpenterbug"
 Monster Bone S
 Warm Pelt
 Sharp Claw"
-1572949,Droth Leggings,Ludroth,"Immature Sponge [Ludroth]
+1572949,Droth Leggings,,"Immature Sponge [Ludroth]
 Hydro Hide [Ludroth]
 Warm Pelt
 Sharp Claw"
@@ -12646,10 +12646,10 @@ Iron Ore"
 1376467,Loc Lac Shawl S,,"Quality Stomach [Altaroth]
 Konchu Carapace [Konchu]
 Ice Crystal"
-1507539,Loc Lac Kilt S,Altaroth,"Quality Stomach [Altaroth]
+1507539,Loc Lac Kilt S,,"Quality Stomach [Altaroth]
 Jaggi Scale+
 Altaroth Jaw [Altaroth]"
-1573075,Loc Lac Boots S,Altaroth,"Quality Stomach [Altaroth]
+1573075,Loc Lac Boots S,,"Quality Stomach [Altaroth]
 Monster Broth
 Monster Fluid"
 1376522,Droth Mail S,,"Hydro Hide+ [Ludroth]
@@ -12759,10 +12759,10 @@ R.Ludroth Scale+ [Royal Ludroth]"
 1377430,Loc Lac Shawl X,,"Premium Stomach [Altaroth]
 Konchu Cortex [Konchu]
 Earth Crystal"
-1508502,Loc Lac Kilt X,Altaroth,"Premium Stomach [Altaroth]
+1508502,Loc Lac Kilt X,,"Premium Stomach [Altaroth]
 Jaggi Shard
 Altaroth Jaw [Altaroth]"
-1574038,Loc Lac Boots X,Altaroth,"Premium Stomach [Altaroth]
+1574038,Loc Lac Boots X,,"Premium Stomach [Altaroth]
 Monster Essence
 Monster Broth"
 1377539,XX Valstrax Jacket,Valstrax,
