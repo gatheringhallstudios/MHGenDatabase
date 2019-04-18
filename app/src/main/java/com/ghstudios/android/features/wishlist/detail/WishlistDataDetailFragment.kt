@@ -40,7 +40,7 @@ class WishlistDataDetailFragment : ListFragment() {
      * Returns the viewmodel owned by the activity, which has already loaded wishlist data
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(WishlistDetailViewModel::class.java);
+        ViewModelProviders.of(activity!!).get(WishlistDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

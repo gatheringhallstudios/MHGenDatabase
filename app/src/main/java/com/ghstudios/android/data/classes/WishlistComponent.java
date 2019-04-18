@@ -54,11 +54,20 @@ public class WishlistComponent {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
+	/**
+	 * Returns the quantity of this component owned by the player.
+	 * TODO: Rename field
+	 * @return
+	 */
 	public int getNotes() {
 		return notes;
 	}
-	
+
+	/**
+	 * Sets the quantity of this component owned by the player.
+	 * @param notes
+	 */
 	public void setNotes(int notes) {
 		this.notes = notes;
 	}
