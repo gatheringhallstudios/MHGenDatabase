@@ -58,6 +58,7 @@ class WishlistDetailViewModel: ViewModel() {
         loggedThread(name="Load Wishlist Detail (Partial)") {
             val items = wishlistManager.getWishlistItems(wishlistId)
             wishlistItems.postValue(items)
+            wishlistComponents.postValue(wishlistManager.getWishlistComponents(wishlistId))
         }
     }
 }

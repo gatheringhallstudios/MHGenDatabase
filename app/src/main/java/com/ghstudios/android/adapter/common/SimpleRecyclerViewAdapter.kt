@@ -14,20 +14,15 @@ import android.support.v7.util.DiffUtil
  * A simple container-only viewholder used by SimpleListDelegate and SimpleRecyclerViewAdapter.
  * Using a viewholder when using KTX allows caching to work.
  */
-class SimpleViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer {
+open class SimpleViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer {
     val context get() = itemView.context
     val resources get() = itemView.resources
 }
 
 /**
- * Defines an adapter for a simple item meant to be used via KTX.
- * For an adapter with multiple items, use a delegate instead.
- * (Once SimpleListDelegate is made, it'll become easy to swap between the two)
+ * Base class for single object type recyclerviews to use a more declarative style
  */
-abstract class SimpleRecyclerViewAdapter<T>: RecyclerView.Adapter<SimpleViewHolder>() {
-    protected abstract fun onCreateView(parent: ViewGroup): View
-    protected abstract fun bindView(viewHolder: SimpleViewHolder, data: T)
-
+abstract class BaseListRecyclerView<T, VH: RecyclerView.ViewHolder>: RecyclerView.Adapter<VH>() {
     // internal modifiable list
     private val itemSource = mutableListOf<T>()
 
@@ -36,18 +31,10 @@ abstract class SimpleRecyclerViewAdapter<T>: RecyclerView.Adapter<SimpleViewHold
      */
     open val items = Collections.unmodifiableList(itemSource)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
-        val v = onCreateView(parent)
-        return SimpleViewHolder(v)
-    }
+    protected abstract fun bindView(viewHolder: VH, data: T)
 
     override fun getItemCount(): Int {
         return items.count()
-    }
-
-    override fun onBindViewHolder(holder: SimpleViewHolder, position: Int) {
-        val item = items[position]
-        bindView(holder, item)
     }
 
     /**
@@ -58,12 +45,31 @@ abstract class SimpleRecyclerViewAdapter<T>: RecyclerView.Adapter<SimpleViewHold
         itemSource.addAll(items)
         notifyDataSetChanged()
     }
+
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val item = items[position]
+        bindView(holder, item)
+    }
+}
+
+/**
+ * Defines an adapter for a simple item meant to be used via KTX.
+ * For an adapter with multiple items, use a delegate instead.
+ * (Once SimpleListDelegate is made, it'll become easy to swap between the two)
+ */
+abstract class SimpleRecyclerViewAdapter<T>: BaseListRecyclerView<T, SimpleViewHolder>() {
+    protected abstract fun onCreateView(parent: ViewGroup): View
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
+        val v = onCreateView(parent)
+        return SimpleViewHolder(v)
+    }
 }
 
 /**
  * A subclass of the basic recyclerview adapter that performs list diffing for fast recyclerview updates.
  */
-abstract class SimpleDiffRecyclerViewAdapter<T>: SimpleRecyclerViewAdapter<T>() {
+abstract class BaseDiffRecyclerViewAdapter<T, VH: RecyclerView.ViewHolder>: BaseListRecyclerView<T, VH>() {
     // suppressed since both will be gc'd at the same time.
     @Suppress("LeakingThis")
     private val mDiffer = AsyncListDiffer(this, DiffCallback())
@@ -97,10 +103,23 @@ abstract class SimpleDiffRecyclerViewAdapter<T>: SimpleRecyclerViewAdapter<T>() 
     // internal implementation of the diff callback. Differs to an astract method.
     inner class DiffCallback : DiffUtil.ItemCallback<T>() {
         override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-            return this@SimpleDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
+            return this@BaseDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
         }
         override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-            return this@SimpleDiffRecyclerViewAdapter.areContentsTheSame(oldItem, newItem)
+            return this@BaseDiffRecyclerViewAdapter.areContentsTheSame(oldItem, newItem)
         }
     }
+}
+
+/**
+ * A version of the BaseDiffRecyclerViewAdapter that returns simple view holders
+ */
+abstract class SimpleDiffRecyclerViewAdapter<T>: BaseDiffRecyclerViewAdapter<T, SimpleViewHolder>() {
+    protected abstract fun onCreateView(parent: ViewGroup): View
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
+        val v = onCreateView(parent)
+        return SimpleViewHolder(v)
+    }
+
 }
