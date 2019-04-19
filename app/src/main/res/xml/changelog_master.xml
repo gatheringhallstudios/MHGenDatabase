@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.4.1" versioncode="23">
+        <change>Improved performance of Wishlists. Should fix crashes for some users.</change>
+    </release>
+
+    <release version="2.4.0" versioncode="22">
+        <change>New Talisman Bank Feature! Save your talismans and use in armor sets.</change>
+        <change>Wishlists can now be created from armor sets.</change>
+        <change>Many usability tweaks for wishlists and the set builder.</change>
+    </release>
+
     <release version="2.3.6" versioncode="21">
         <change>Fixed old wishlists crashing after update for some users.</change>
     </release>
