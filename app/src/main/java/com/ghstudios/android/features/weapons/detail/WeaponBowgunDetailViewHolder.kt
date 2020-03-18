@@ -59,7 +59,9 @@ class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
             view.findViewById(R.id.sleep1),
             view.findViewById(R.id.sleep2),
             view.findViewById(R.id.exhaust1),
-            view.findViewById(R.id.exhaust2)
+            view.findViewById(R.id.exhaust2),
+            view.findViewById(R.id.recov1),
+            view.findViewById(R.id.recov2)
         )
 
         internalAmmoCells = listOf(
