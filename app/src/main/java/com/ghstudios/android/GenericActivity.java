@@ -3,7 +3,6 @@ package com.ghstudios.android;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
 import com.ghstudios.android.GenericActionBarActivity;
 import com.ghstudios.android.mhgendatabase.R;
 
