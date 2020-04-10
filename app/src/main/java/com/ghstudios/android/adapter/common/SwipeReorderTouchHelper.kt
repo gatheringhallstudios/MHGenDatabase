@@ -12,7 +12,7 @@ class SwipeReorderTouchHelper(
         0, //ItemTouchHelper.UP or ItemTouchHelper.DOWN,
         ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
-    override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         // Called every time order is swapped mid-drag.
         // Update the recyclerview's backing data but don't actually call onMove until done (different callback)
         val originalIdx = viewHolder.adapterPosition
