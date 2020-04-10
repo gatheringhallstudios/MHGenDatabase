@@ -6,12 +6,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.ghstudios.android.mhgendatabase"
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
 
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
@@ -76,7 +76,7 @@ dependencies {
     /*
      * Google Support Libraries
      */
-    def google_version = "27.1.1"
+    def google_version = "28.0.0"
     implementation "com.android.support:appcompat-v7:${google_version}"
     implementation "com.android.support:design:${google_version}"
     implementation "com.android.support:cardview-v7:${google_version}"
@@ -93,14 +93,14 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
 
-    implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.google.android:flexbox:1.1.0'
 
     // Resources here https://github.com/ApmeM/android-flowlayout
-    compile 'de.cketti.library.changelog:ckchangelog:1.2.2' // Library to display a changelog on first run
+    implementation 'de.cketti.library.changelog:ckchangelog:1.2.2' // Library to display a changelog on first run
     // Integration instructions here https://github.com/cketti/ckChangeLog
-    compile project(':multilevelexpindlistview')
-    compile project(':android-sqlite-asset-helper')
-    compile project(':android-section-adapter')
+    implementation project(':multilevelexpindlistview')
+    implementation project(':android-sqlite-asset-helper')
+    implementation project(':android-section-adapter')
 
     /*
      * Butterknife (view binding)
