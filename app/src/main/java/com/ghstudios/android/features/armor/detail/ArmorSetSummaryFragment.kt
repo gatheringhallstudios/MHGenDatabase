@@ -1,13 +1,13 @@
 package com.ghstudios.android.features.armor.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.ghstudios.android.AssetLoader
@@ -60,7 +60,7 @@ class ArmorSetSummaryFragment : Fragment() {
     @BindView(R.id.dragon_res) lateinit var dragonResTextView: TextView
 
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ArmorSetDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(ArmorSetDetailViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,9 +77,9 @@ class ArmorSetSummaryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.armors.observe(this, Observer(::populateArmor))
-        viewModel.setSkills.observe(this, Observer(::populateSkills))
-        viewModel.setComponents.observe(this, Observer(::populateComponents))
+        viewModel.armors.observe(viewLifecycleOwner, Observer(::populateArmor))
+        viewModel.setSkills.observe(viewLifecycleOwner, Observer(::populateSkills))
+        viewModel.setComponents.observe(viewLifecycleOwner, Observer(::populateComponents))
     }
 
     private fun populateArmor(armorPoints: List<ArmorSkillPoints>?){
@@ -187,15 +187,15 @@ class ArmorSetSummaryFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_add_to_wishlist, menu)
+        inflater.inflate(R.menu.menu_add_to_wishlist, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.add_to_wishlist -> {
-                val fm = this.fragmentManager
+                val fm = this.parentFragmentManager
                 WishlistDataAddDialogFragment.newInstance(
                         WishlistItemType.ARMORSET,
                         viewModel.familyId,

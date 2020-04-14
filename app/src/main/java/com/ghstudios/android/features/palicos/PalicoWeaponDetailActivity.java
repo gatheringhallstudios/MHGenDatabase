@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.palicos;
 
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

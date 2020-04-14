@@ -1,9 +1,9 @@
 package com.ghstudios.android.features.skills.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AppSettings
 
 import com.ghstudios.android.data.classes.Armor
@@ -24,7 +24,7 @@ class SkillTreeDetailPagerActivity : BasePagerActivity() {
      * Viewmodel for the entirity of this skill detail, including sub fragments
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(SkillDetailViewModel::class.java)
+        ViewModelProvider(this).get(SkillDetailViewModel::class.java)
     }
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {

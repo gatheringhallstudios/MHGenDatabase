@@ -111,7 +111,6 @@ class ItemDao(val dbMainHelper: SQLiteOpenHelper) {
      * Internal helper that returns the column names for a sub-item in a combine recipe.
      */
     private fun combiningItemColumns(table: String, prefix: String): String {
-        val t = table
         val p = prefix
 
         val columns = arrayOf(

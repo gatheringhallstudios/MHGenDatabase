@@ -2,8 +2,8 @@ package com.ghstudios.android.adapter
 
 import android.content.Context
 import android.graphics.PorterDuff
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,9 +21,9 @@ import com.ghstudios.android.mhgendatabase.R
  */
 class WeaponExpandableListBowAdapter(context: Context, listener: View.OnLongClickListener) : WeaponExpandableListElementAdapter(context, listener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         val v: View
-        val viewHolder: RecyclerView.ViewHolder
+        val viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder
 
         val resource = R.layout.fragment_weapon_tree_item_bow
         v = LayoutInflater.from(parent.context)
@@ -140,7 +140,7 @@ class WeaponExpandableListBowAdapter(context: Context, listener: View.OnLongClic
         }
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         super.onBindViewHolder(viewHolder, position)
         val holder = viewHolder as WeaponBowViewHolder
         holder.bindView(mContext, getItemAt(position) as WeaponListEntry)

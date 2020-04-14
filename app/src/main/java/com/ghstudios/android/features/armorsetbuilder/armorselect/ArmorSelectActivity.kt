@@ -1,10 +1,10 @@
 package com.ghstudios.android.features.armorsetbuilder.armorselect
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
@@ -15,7 +15,7 @@ import com.ghstudios.android.mhgendatabase.R
 
 class ArmorSelectActivity : BasePagerActivity() {
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(ArmorSelectViewModel::class.java)
+        ViewModelProvider(this).get(ArmorSelectViewModel::class.java)
     }
 
     override fun onAddTabs(tabs: TabAdder) {

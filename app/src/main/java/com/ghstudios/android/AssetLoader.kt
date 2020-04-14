@@ -3,7 +3,7 @@ package com.ghstudios.android
 import android.app.Application
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.Log
 import android.widget.ImageView
 import com.ghstudios.android.data.classes.*

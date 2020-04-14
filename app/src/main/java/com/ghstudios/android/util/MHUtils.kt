@@ -1,10 +1,10 @@
 package com.ghstudios.android.util
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.*
 import android.database.Cursor
-import android.support.annotation.*
+import androidx.annotation.*
 import android.util.*
 import com.ghstudios.android.mhgendatabase.R
 

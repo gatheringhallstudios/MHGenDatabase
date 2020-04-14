@@ -1,14 +1,14 @@
 package com.ghstudios.android.features.weapons.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.constraint.Group
-import android.support.v4.app.Fragment
+import androidx.constraintlayout.widget.Group
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.components.ItemRecipeCell
@@ -40,7 +40,7 @@ class WeaponDetailFragment : Fragment() {
      * Returns the viewmodel owned by the activity, which has already loaded weapon data
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(WeaponDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(WeaponDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,11 +50,11 @@ class WeaponDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.weaponData.observe(this, Observer(::populateWeapon))
-        viewModel.createComponentData.observe(this, Observer {
+        viewModel.weaponData.observe(viewLifecycleOwner, Observer(::populateWeapon))
+        viewModel.createComponentData.observe(viewLifecycleOwner, Observer {
             populateCreateComponents(view, it)
         })
-        viewModel.improveComponentData.observe(this, Observer {
+        viewModel.improveComponentData.observe(viewLifecycleOwner, Observer {
             populateUpgradeComponents(view, it)
         })
     }

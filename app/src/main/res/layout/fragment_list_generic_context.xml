@@ -15,7 +15,7 @@
         android:listSelector="@drawable/clicked_states_white"
         android:choiceMode="multipleChoice" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="56dp"
         android:layout_height="56dp"

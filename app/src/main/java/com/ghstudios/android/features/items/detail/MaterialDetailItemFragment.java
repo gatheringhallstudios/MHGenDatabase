@@ -2,12 +2,11 @@ package com.ghstudios.android.features.items.detail;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,6 @@ import com.ghstudios.android.data.cursors.ItemToMaterialCursor;
 import com.ghstudios.android.loader.ItemToMaterialListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.ItemClickListener;
-
-import java.io.IOException;
 
 /**
  * Created by Joseph on 7/7/2016.

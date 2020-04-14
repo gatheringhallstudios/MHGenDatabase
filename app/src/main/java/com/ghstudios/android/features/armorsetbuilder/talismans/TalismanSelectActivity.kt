@@ -1,12 +1,12 @@
 package com.ghstudios.android.features.armorsetbuilder.talismans
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.Menu
 import com.ghstudios.android.GenericActivity
 import com.ghstudios.android.MenuSection
 
 class TalismanSelectActivity : GenericActivity() {
-    override fun createFragment(): Fragment {
+    override fun createFragment(): androidx.fragment.app.Fragment {
         return ASBTalismanListFragment.newInstance(select=true)
     }
 

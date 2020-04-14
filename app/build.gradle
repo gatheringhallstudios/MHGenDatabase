@@ -6,12 +6,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.ghstudios.android.mhgendatabase"
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
 
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
@@ -76,22 +76,20 @@ dependencies {
     /*
      * Google Support Libraries
      */
-    def google_version = "28.0.0"
-    implementation "com.android.support:appcompat-v7:${google_version}"
-    implementation "com.android.support:design:${google_version}"
-    implementation "com.android.support:cardview-v7:${google_version}"
-    implementation "com.android.support:gridlayout-v7:${google_version}"
-    implementation "com.android.support:recyclerview-v7:${google_version}"
-    implementation "com.android.support.constraint:constraint-layout:1.1.3"
-    implementation "com.android.support:preference-v7:${google_version}"
-    implementation "com.android.support:preference-v14:${google_version}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
 
     /*
      * lifecycle components
      */
-    def lifecycle_version = '1.1.1'
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    testImplementation "android.arch.core:core-testing:$lifecycle_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
 
     implementation 'com.google.android:flexbox:1.1.0'
 
@@ -105,8 +103,8 @@ dependencies {
     /*
      * Butterknife (view binding)
      */
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.0.0'
 
     /*
      * Adapter Delegates

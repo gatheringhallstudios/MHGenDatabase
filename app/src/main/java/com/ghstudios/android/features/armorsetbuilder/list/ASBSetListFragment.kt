@@ -1,12 +1,12 @@
 package com.ghstudios.android.features.armorsetbuilder.list
 
 import android.app.*
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.*
 import android.os.Bundle
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
@@ -35,7 +35,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
     private val asbManager = DataManager.get().asbManager
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(ASBSetListViewModel::class.java)
+        ViewModelProvider(this).get(ASBSetListViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +60,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
         ))
         handler.attachToRecyclerView(recyclerView)
 
-        viewModel.asbData.observe(this, Observer {
+        viewModel.asbData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             adapter.setItems(it)
@@ -71,7 +71,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
     fun showAddDialog() {
         val dialog = ASBSetAddDialogFragment.newInstance()
         dialog.setTargetFragment(this, REQUEST_ADD_ASB_SET)
-        dialog.show(fragmentManager, DIALOG_ADD_ASB_SET)
+        dialog.show(parentFragmentManager, DIALOG_ADD_ASB_SET)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -97,7 +97,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
 
     // Initiates an edit. Currently unused.
     fun initiateEdit(set: ASBSet) {
-        val fm = fragmentManager
+        val fm = parentFragmentManager
         val dialog = ASBSetAddDialogFragment.newInstance(
                 set.id,
                 set.name,
@@ -105,7 +105,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
                 set.hunterType
         )
         dialog.setTargetFragment(this@ASBSetListFragment, REQUEST_EDIT_ASB_SET)
-        dialog.show(fm!!, DIALOG_ADD_ASB_SET)
+        dialog.show(fm, DIALOG_ADD_ASB_SET)
     }
 
     // Initiates a copy. Currently unused. Needs to use the viewmodel

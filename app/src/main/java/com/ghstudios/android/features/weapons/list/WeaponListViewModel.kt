@@ -1,8 +1,8 @@
 package com.ghstudios.android.features.weapons.list
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.ghstudios.android.components.WeaponListEntry
 import com.ghstudios.android.data.DataManager
 

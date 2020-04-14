@@ -1,27 +1,17 @@
 package com.ghstudios.android.features.wishlist.detail
 
-import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
-import android.content.Intent
-import android.database.Cursor
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.ListFragment
-import android.support.v4.app.LoaderManager.LoaderCallbacks
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.Loader
-import android.support.v4.widget.CursorAdapter
+import androidx.fragment.app.ListFragment
+import androidx.core.content.ContextCompat
 import android.view.ContextMenu
 import android.view.ContextMenu.ContextMenuInfo
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.WishlistData
@@ -40,7 +30,7 @@ class WishlistDataDetailFragment : ListFragment() {
      * Returns the viewmodel owned by the activity, which has already loaded wishlist data
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(WishlistDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(WishlistDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +43,7 @@ class WishlistDataDetailFragment : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.wishlistItems.observe(this, Observer {
+        viewModel.wishlistItems.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             val adapter = WishlistDataListAdapter(context, it)
@@ -61,7 +51,7 @@ class WishlistDataDetailFragment : ListFragment() {
         })
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
         activity!!.menuInflater.inflate(R.menu.context_wishlist_data, menu)
     }
 
@@ -114,7 +104,7 @@ class WishlistDataDetailFragment : ListFragment() {
             root.setOnLongClickListener { view1 ->
                 val dialogDelete = WishlistDataDeleteDialogFragment.newInstance(data.id, nameText)
                 dialogDelete.setTargetFragment(null, REQUEST_WISHLIST_DATA_DELETE)
-                dialogDelete.show(fragmentManager!!, DIALOG_WISHLIST_DATA_DELETE)
+                dialogDelete.show(parentFragmentManager, DIALOG_WISHLIST_DATA_DELETE)
                 true
             }
 

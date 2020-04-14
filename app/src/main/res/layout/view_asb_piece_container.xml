@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:clickable="false">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/list_item"
         android:background="@color/background_color"
         android:clickable="false">
@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="?android:attr/selectableItemBackground"/>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/equipment_header"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/equipment_name"
                 style="@style/text_medium"
                 android:layout_width="0dp"
@@ -61,7 +61,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/decoration_header"
@@ -86,7 +86,7 @@
                 android:layout_gravity="center_vertical" />
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/decorations"

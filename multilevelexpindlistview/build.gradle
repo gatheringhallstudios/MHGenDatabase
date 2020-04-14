@@ -24,6 +24,6 @@ dependencies {
      * Google Support Libraries
      */
     def google_version = "27.1.1"
-    implementation "com.android.support:appcompat-v7:${google_version}"
-    implementation "com.android.support:recyclerview-v7:${google_version}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

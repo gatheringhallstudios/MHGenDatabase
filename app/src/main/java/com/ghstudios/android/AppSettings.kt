@@ -73,7 +73,7 @@ class AppSettings {
          */
         @JvmStatic
         val trueDataLocale: String
-            get() = sharedPreferences.getString(PROP_DATA_LOCALE, "")
+            get() = sharedPreferences.getString(PROP_DATA_LOCALE, "") ?: ""
 
         /**
          * Returns the data locale, with the empty locale resolving to the app language, or en if invalid.

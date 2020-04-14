@@ -2,8 +2,8 @@ package com.ghstudios.android.features.search
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.SearchView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -26,7 +26,7 @@ class UniversalSearchActivity : GenericActivity() {
         title = null
     }
 
-    override fun createFragment(): Fragment {
+    override fun createFragment(): androidx.fragment.app.Fragment {
         return UniversalSearchFragment()
     }
 

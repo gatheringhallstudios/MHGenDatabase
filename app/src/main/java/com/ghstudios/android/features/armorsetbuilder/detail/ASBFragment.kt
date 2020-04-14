@@ -1,12 +1,12 @@
 package com.ghstudios.android.features.armorsetbuilder.detail
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.*
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.mhgendatabase.R
@@ -24,7 +24,7 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
     override fun onChangeWeaponSlots() {
         val dialog = ASBWeaponSlotsDialogFragment.newInstance(viewModel.session.numWeaponSlots)
         dialog.setTargetFragment(this, ASBDetailPagerActivity.REQUEST_CODE_SET_WEAPON_SLOTS)
-        dialog.show(this.fragmentManager, "ASB_WEAPON_SLOTS")
+        dialog.show(this.parentFragmentManager, "ASB_WEAPON_SLOTS")
     }
 
     // called by piece container when it requests a new talisman
@@ -47,7 +47,7 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ASBDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(ASBDetailViewModel::class.java)
     }
 
     private lateinit var equipmentViews: List<ASBPieceContainer>
@@ -65,7 +65,7 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
                 view.findViewById(R.id.armor_builder_talisman))
 
         // Whenever the session changes, re-initialize the views
-        viewModel.sessionData.observe(this, Observer {
+        viewModel.sessionData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             for ((idx, equipView) in equipmentViews.withIndex()) {
@@ -73,7 +73,7 @@ class ASBFragment : Fragment(), ASBPieceContainerListener {
             }
         })
 
-        viewModel.updatePieceEvent.observe(this, Observer {
+        viewModel.updatePieceEvent.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 equipmentViews.getOrNull(it)?.updateContents()
             }

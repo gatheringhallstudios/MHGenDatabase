@@ -76,7 +76,7 @@
             android:layout_weight="0.1"
             android:src="@drawable/talisman" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/total"
             style="@style/text_small"
             android:layout_width="0dp"

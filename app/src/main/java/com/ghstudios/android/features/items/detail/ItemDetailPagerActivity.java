@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.items.detail;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
@@ -20,7 +20,7 @@ public class ItemDetailPagerActivity extends BasePagerActivity {
 
         long itemId = getIntent().getLongExtra(EXTRA_ITEM_ID, -1);
 
-        ItemDetailViewModel viewModel = ViewModelProviders.of(this).get(ItemDetailViewModel.class);
+        ItemDetailViewModel viewModel = new ViewModelProvider(this).get(ItemDetailViewModel.class);
         ItemMetadata meta = viewModel.setItem(itemId);
 
         viewModel.getItemData().observe(this, (item) -> {

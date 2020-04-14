@@ -2,19 +2,16 @@ package com.ghstudios.android.features.palicos;
 
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.core.content.ContextCompat;
+import androidx.loader.content.Loader;
+import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +27,6 @@ import com.ghstudios.android.loader.PalicoWeaponListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.ClickListeners.PalicoWeaponClickListener;
 import com.ghstudios.android.components.DrawSharpness;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Joseph on 7/9/2016.

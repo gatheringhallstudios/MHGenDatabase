@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Editext for Search -->
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recyclerview_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,13 +37,13 @@
 
         <com.ghstudios.android.DetachingRecyclerView
             android:id="@+id/content_recyclerview"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/input_search"
             app:layout_constraintBottom_toBottomOf="parent"
             android:scrollbars="vertical"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         android:id="@+id/empty_view"
@@ -51,7 +51,7 @@
         tools:visibility="visible"
         android:visibility="gone"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="56dp"
         android:layout_height="56dp"

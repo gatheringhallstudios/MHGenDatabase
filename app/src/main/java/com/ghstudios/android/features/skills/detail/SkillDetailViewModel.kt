@@ -1,7 +1,7 @@
 package com.ghstudios.android.features.skills.detail
 
-import android.arch.lifecycle.*
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import android.util.Log
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor

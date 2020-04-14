@@ -4,11 +4,11 @@ import android.content.Context
 import android.database.Cursor
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.support.v4.app.ListFragment
-import android.support.v4.app.LoaderManager.LoaderCallbacks
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.Loader
-import android.support.v4.widget.CursorAdapter
+import androidx.fragment.app.ListFragment
+import androidx.loader.app.LoaderManager.LoaderCallbacks
+import androidx.core.content.ContextCompat
+import androidx.loader.content.Loader
+import androidx.cursoradapter.widget.CursorAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,21 +46,21 @@ class WeaponSongFragment : ListFragment(), LoaderCallbacks<Cursor> {
         loaderManager.initLoader(R.id.horn_melodies_list_fragment, arguments, this)
     }
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+    override fun onCreateLoader(id: Int, args: Bundle?): androidx.loader.content.Loader<Cursor> {
         // You only ever load the runs, so assume this is the case
         mWeaponId = args!!.getLong(ARG_WEAPON_ID, -1)
 
         return HornMelodyListCursorLoader(activity, mWeaponId)
     }
 
-    override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor) {
+    override fun onLoadFinished(loader: androidx.loader.content.Loader<Cursor>, cursor: Cursor) {
         // Create an adapter to point at this cursor
         val adapter = HornMelodiesCursorAdapter(
                 activity!!, cursor as HornMelodiesCursor)
         listAdapter = adapter
     }
 
-    override fun onLoaderReset(loader: Loader<Cursor>) {
+    override fun onLoaderReset(loader: androidx.loader.content.Loader<Cursor>) {
         // Stop using the cursor (via the adapter)
         listAdapter = null
     }

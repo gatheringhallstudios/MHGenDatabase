@@ -1,10 +1,10 @@
 package com.ghstudios.android.features.decorations.list
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.ClickListeners.DecorationClickListener
 import com.ghstudios.android.RecyclerViewFragment
@@ -14,7 +14,7 @@ import com.ghstudios.android.features.decorations.detail.DecorationDetailActivit
 
 class DecorationListFragment : RecyclerViewFragment() {
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(DecorationListViewModel::class.java)
+        ViewModelProvider(this).get(DecorationListViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +52,7 @@ class DecorationListFragment : RecyclerViewFragment() {
         setAdapter(adapter)
 
         // Listen for decoration data. This updates when the filter updates as well
-        viewModel.decorationData.observe(this, Observer {
+        viewModel.decorationData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)
         })

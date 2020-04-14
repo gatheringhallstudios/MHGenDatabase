@@ -2,9 +2,9 @@ package com.ghstudios.android.features.meta
 
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.preference.ListPreference
-import android.support.v7.preference.PreferenceFragmentCompat
+import androidx.fragment.app.Fragment
+import androidx.preference.ListPreference
+import androidx.preference.PreferenceFragmentCompat
 import com.ghstudios.android.*
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.mhgendatabase.R
@@ -22,7 +22,7 @@ class PreferencesActivity : GenericActivity() {
         super.setAsTopLevel()
     }
 
-    override fun createFragment(): Fragment {
+    override fun createFragment(): androidx.fragment.app.Fragment {
         return PreferencesFragment()
     }
 }
@@ -45,7 +45,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
      * with potential bugs such as activity titles not changing.
      */
     private fun initAppLanguages() {
-        val localePref = findPreference(AppSettings.PROP_APP_LOCALE) as ListPreference
+        val localePref = findPreference<ListPreference>(AppSettings.PROP_APP_LOCALE)
+        localePref ?: return
 
         // not supported on older android versions
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
@@ -62,7 +63,8 @@ class PreferencesFragment : PreferenceFragmentCompat() {
     }
 
     private fun initDataLanguages() {
-        val localePref = findPreference(AppSettings.PROP_DATA_LOCALE) as ListPreference
+        val localePref = findPreference<ListPreference>(AppSettings.PROP_DATA_LOCALE)
+        localePref ?: return
 
         val languageCodes = listOf("") + DataManager.get().getLanguages()
         val languageNames = languageCodes.map { allLanguages.getOrElse(it) { defaultLabel } }

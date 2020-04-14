@@ -1,25 +1,20 @@
 package com.ghstudios.android.features.items.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
-import android.database.Cursor
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 
 import com.ghstudios.android.data.classes.Gathering
-import com.ghstudios.android.data.cursors.GatheringCursor
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.LocationClickListener
 import com.ghstudios.android.SectionArrayAdapter
-import com.ghstudios.android.util.applyArguments
-import com.github.monxalo.android.widget.SectionCursorAdapter
 
 /**
  * Fragment used to display locations where you can gather a specific item
@@ -29,7 +24,7 @@ class ItemLocationFragment : ListFragment() {
      * Returns the viewmodel of this subfragment, anchored to the parent activity
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ItemDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(ItemDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +36,7 @@ class ItemLocationFragment : ListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // todo: Refactor this class not to use a cursor. Returning a cursor from a viewmodel can be a source of bugs
-        viewModel.gatherData.observe(this, Observer { data ->
+        viewModel.gatherData.observe(viewLifecycleOwner, Observer { data ->
             if (data != null) {
                 val adapter = GatheringListCursorAdapter(this.context!!, data)
                 listAdapter = adapter

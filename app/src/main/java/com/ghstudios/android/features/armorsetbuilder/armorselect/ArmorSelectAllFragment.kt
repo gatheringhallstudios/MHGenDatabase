@@ -1,15 +1,15 @@
 package com.ghstudios.android.features.armorsetbuilder.armorselect
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
 import com.ghstudios.android.mhgendatabase.R
 import kotlinx.android.synthetic.main.fragment_generic_expandable_list.*
@@ -23,7 +23,7 @@ class ArmorSelectAllFragment : Fragment() {
      * ViewModel (anchored to parent)
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ArmorSelectViewModel::class.java)
+        ViewModelProvider(activity!!).get(ArmorSelectViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,7 +41,7 @@ class ArmorSelectAllFragment : Fragment() {
             viewModel.setFilter(it)
         }
 
-        viewModel.filteredArmor.observe(this, Observer {
+        viewModel.filteredArmor.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             adapterItems.clear()

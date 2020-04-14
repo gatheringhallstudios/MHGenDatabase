@@ -1,9 +1,9 @@
 package com.ghstudios.android;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import com.ghstudios.android.GenericActionBarActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.ghstudios.android.mhgendatabase.R;
 
 /*
@@ -35,10 +35,10 @@ public abstract class GenericActivity extends GenericActionBarActivity {
         }
 
         // Integrate Toolbar so sliding drawer can go over toolbar
-        android.support.v7.widget.Toolbar mtoolbar = findViewById(R.id.toolbar);
+        androidx.appcompat.widget.Toolbar mtoolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mtoolbar);
 
-        android.support.v7.app.ActionBar ab = getSupportActionBar();
+        androidx.appcompat.app.ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
         super.setupDrawer(); // Needs to be called after setContentView

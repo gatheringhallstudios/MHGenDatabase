@@ -596,7 +596,7 @@ class DataManager private constructor(private val mAppContext: Context) {
         while (!cursor.isAfterLast) {
             currentWeapon = cursor.weapon
             currentEntry = WeaponListEntry(currentWeapon)
-            weaponDict[currentWeapon!!.id] = currentEntry
+            weaponDict[currentWeapon.id] = currentEntry
             cursor.moveToNext()
         }
 
@@ -604,7 +604,7 @@ class DataManager private constructor(private val mAppContext: Context) {
         cursor.moveToFirst()
         while (!cursor.isAfterLast) {
             currentWeapon = cursor.weapon
-            currentEntry = weaponDict[currentWeapon!!.id]!!
+            currentEntry = weaponDict[currentWeapon.id]!!
 
             parent_id = currentWeapon.parentId
             if (parent_id != 0) {

@@ -11,6 +11,7 @@ import com.ghstudios.android.data.util.getInt
 import com.ghstudios.android.data.util.getLong
 import com.ghstudios.android.data.util.getString
 import com.ghstudios.android.mhgendatabase.*
+import kotlin.math.min
 
 class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
 
@@ -81,7 +82,7 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
         val talismanSkill1Points = getInt(S.COLUMN_TALISMAN_SKILL_1_POINTS)
         val talismanSkill2Id = getLong(S.COLUMN_TALISMAN_SKILL_2_ID)
         val talismanSkill2Points = getInt(S.COLUMN_TALISMAN_SKILL_2_POINTS)
-        val talismanType = getInt(S.COLUMN_TALISMAN_TYPE)
+        var talismanType = getInt(S.COLUMN_TALISMAN_TYPE)
         val talismanSlots = getInt(S.COLUMN_TALISMAN_SLOTS)
         val talismanDecoration1Id = getLong(S.COLUMN_TALISMAN_DECORATION_1_ID)
         val talismanDecoration2Id = getLong(S.COLUMN_TALISMAN_DECORATION_2_ID)
@@ -155,7 +156,7 @@ class ASBSessionCursor(c: Cursor) : CursorWrapper(c) {
 
         if (talismanExists == 1) {
             val talismanNames = context.resources.getStringArray(R.array.talisman_names)
-            val talismanType = Math.min(talismanNames.size - 1, talismanType)
+            talismanType = min(talismanNames.size - 1, talismanType)
 
             val talisman = ASBTalisman(talismanType)
 

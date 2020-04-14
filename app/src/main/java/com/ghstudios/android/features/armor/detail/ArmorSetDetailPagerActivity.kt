@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.armor.detail
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
@@ -13,7 +13,7 @@ class ArmorSetDetailPagerActivity : BasePagerActivity() {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(ArmorSetDetailViewModel::class.java)
+        ViewModelProvider(this).get(ArmorSetDetailViewModel::class.java)
     }
 
     override fun getSelectedSection() = MenuSection.ARMOR

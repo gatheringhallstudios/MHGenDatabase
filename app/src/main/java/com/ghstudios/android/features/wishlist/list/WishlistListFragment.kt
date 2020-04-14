@@ -1,16 +1,16 @@
 package com.ghstudios.android.features.wishlist.list
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.ClickListeners.WishlistClickListener
 import com.ghstudios.android.RecyclerViewFragment
@@ -69,7 +69,7 @@ class WishlistListFragment : RecyclerViewFragment() {
     }
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(WishlistListViewModel::class.java)
+        ViewModelProvider(this).get(WishlistListViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,7 +94,7 @@ class WishlistListFragment : RecyclerViewFragment() {
         ))
         handler.attachToRecyclerView(recyclerView)
 
-        viewModel.wishlistData.observe(this, Observer {
+        viewModel.wishlistData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)
             showEmptyView(show = it.isEmpty())
@@ -104,7 +104,7 @@ class WishlistListFragment : RecyclerViewFragment() {
     private fun showAddDialog() {
         val dialog = WishlistAddDialogFragment()
         dialog.setTargetFragment(this@WishlistListFragment, REQUEST_ADD)
-        dialog.show(fragmentManager, DIALOG_WISHLIST_ADD)
+        dialog.show(parentFragmentManager, DIALOG_WISHLIST_ADD)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,11 +1,11 @@
 package com.ghstudios.android.features.wishlist.detail
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
@@ -38,7 +38,7 @@ class WishlistDetailPagerActivity: BasePagerActivity() {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(WishlistDetailViewModel::class.java)
+        ViewModelProvider(this).get(WishlistDetailViewModel::class.java)
     }
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {
@@ -106,6 +106,8 @@ class WishlistDetailPagerActivity: BasePagerActivity() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
         // Return nothing if result is failed
         if (resultCode != Activity.RESULT_OK) return
 

@@ -1,16 +1,16 @@
 package com.ghstudios.android.features.quests
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.MonsterClickListener
 import com.ghstudios.android.SectionArrayAdapter
@@ -26,9 +26,9 @@ class QuestItemFragment : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(activity!!).get(QuestDetailViewModel::class.java)
-        viewModel.gatherings.observe(this,Observer<List<Gathering>>{this.populateGatherings(it)})
-        viewModel.huntingRewards.observe(this,Observer<List<HuntingReward>>{this.populateHuntingRewards(it)})
+        val viewModel = ViewModelProvider(activity!!).get(QuestDetailViewModel::class.java)
+        viewModel.gatherings.observe(viewLifecycleOwner, Observer<List<Gathering>>{this.populateGatherings(it)})
+        viewModel.huntingRewards.observe(viewLifecycleOwner, Observer<List<HuntingReward>>{this.populateHuntingRewards(it)})
     }
 
     private fun populateGatherings(gatherings:List<Gathering>?){

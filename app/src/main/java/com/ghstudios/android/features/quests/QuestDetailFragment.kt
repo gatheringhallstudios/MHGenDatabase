@@ -1,11 +1,10 @@
 package com.ghstudios.android.features.quests
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.components.TitleBarCell
@@ -52,13 +52,13 @@ class QuestDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(activity!!).get(QuestDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(activity!!).get(QuestDetailViewModel::class.java)
 
-        viewModel.quest.observe(this, Observer { quest ->
+        viewModel.quest.observe(viewLifecycleOwner, Observer { quest ->
             if (quest != null) updateUI(quest)
         })
 
-        viewModel.monsters.observe(this, Observer { monsters ->
+        viewModel.monsters.observe(viewLifecycleOwner, Observer { monsters ->
             if (monsters != null) bindMonsters(monsters)
         })
 

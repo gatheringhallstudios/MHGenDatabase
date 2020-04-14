@@ -3,10 +3,9 @@ package com.ghstudios.android
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
+import androidx.annotation.StringRes
+import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +42,7 @@ abstract class BasePagerActivity : GenericActivity() {
      */
     abstract fun onAddTabs(tabs: TabAdder)
 
-    override fun createFragment(): Fragment {
+    override fun createFragment(): androidx.fragment.app.Fragment {
         return InnerPagerFragment()
     }
 
@@ -55,9 +54,9 @@ abstract class BasePagerActivity : GenericActivity() {
                 ?: TabBehavior.AUTO
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putSerializable(ARG_TAB_BEHAVIOR, behavior)
+        outState.putSerializable(ARG_TAB_BEHAVIOR, behavior)
     }
 
     /**
@@ -105,14 +104,14 @@ abstract class BasePagerActivity : GenericActivity() {
          * @param title   The title to display for the tab
          * @param builder A lambda that builds the tab fragment
          */
-        fun addTab(title: String, icon: Drawable?, builder: () -> Fragment)
+        fun addTab(title: String, icon: Drawable?, builder: () -> androidx.fragment.app.Fragment)
 
         /**
          * Adds a tab to the fragment
          * @param titleRes The string resource to use as a title
          * @param builder  A lambda that builds the tab fragment
          */
-        fun addTab(@StringRes titleRes: Int, builder: () -> Fragment)
+        fun addTab(@StringRes titleRes: Int, builder: () -> androidx.fragment.app.Fragment)
 
         /**
          * Adds a tab to the fragment.
@@ -120,7 +119,7 @@ abstract class BasePagerActivity : GenericActivity() {
          * @param title   The title to display for the tab
          * @param builder A lambda that builds the tab fragment
          */
-        fun addTab(title: String, builder: () -> Fragment)
+        fun addTab(title: String, builder: () -> androidx.fragment.app.Fragment)
 
         /**
          * Sets the default selected tab idx
@@ -145,15 +144,15 @@ abstract class BasePagerActivity : GenericActivity() {
             private set
         private val tabs = ArrayList<PagerIconTab>()
 
-        override fun addTab(title: String, icon: Drawable?, builder: () -> Fragment) {
+        override fun addTab(title: String, icon: Drawable?, builder: () -> androidx.fragment.app.Fragment) {
             tabs.add(PagerIconTab(icon, PagerTab(title, builder)))
         }
 
-        override fun addTab(titleRes: Int, builder: () -> Fragment) {
+        override fun addTab(titleRes: Int, builder: () -> androidx.fragment.app.Fragment) {
             this.addTab(ctx.getString(titleRes), builder)
         }
 
-        override fun addTab(title: String, builder: () -> Fragment) {
+        override fun addTab(title: String, builder: () -> androidx.fragment.app.Fragment) {
             this.addTab(title, null, builder)
         }
 
@@ -174,7 +173,7 @@ abstract class BasePagerActivity : GenericActivity() {
     internal class InnerPagerFragment : Fragment() {
 
         lateinit var tabLayout: TabLayout
-        lateinit var viewPager: ViewPager
+        lateinit var viewPager: androidx.viewpager.widget.ViewPager
 
         private var initialized = false
 
