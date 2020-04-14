@@ -1,18 +1,18 @@
 package com.ghstudios.android.adapter.common
 
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 
 /**
  * ItemTouchHelper used to add swipe and reorder functionality to recyclerviews.
  */
 class SwipeReorderTouchHelper(
-        val afterSwiped: (position: RecyclerView.ViewHolder) -> Unit
+        val afterSwiped: (position: androidx.recyclerview.widget.RecyclerView.ViewHolder) -> Unit
 ) : ItemTouchHelper.SimpleCallback(
         0, //ItemTouchHelper.UP or ItemTouchHelper.DOWN,
         ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, target: androidx.recyclerview.widget.RecyclerView.ViewHolder): Boolean {
         // Called every time order is swapped mid-drag.
         // Update the recyclerview's backing data but don't actually call onMove until done (different callback)
         val originalIdx = viewHolder.adapterPosition
@@ -26,7 +26,7 @@ class SwipeReorderTouchHelper(
     /**
      * Callback called every time an item has been swiped away
      */
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
         afterSwiped(viewHolder)
     }
 }

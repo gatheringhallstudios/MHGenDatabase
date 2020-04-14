@@ -1,17 +1,16 @@
 package com.ghstudios.android.features.monsters.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.BasicItemClickListener
 import com.ghstudios.android.SectionArrayAdapter
@@ -29,7 +28,7 @@ class MonsterRewardFragment : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(activity!!).get(MonsterDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(activity!!).get(MonsterDetailViewModel::class.java)
 
         val rank = this.arguments?.get(ARG_RANK)
         if(rank == HuntingRewardListCursorLoader.RANK_LR) viewModel.rewardLRData.observe(this, Observer<List<HuntingReward>>{this.populateRewards(it)})

@@ -19,7 +19,7 @@ package com.github.monxalo.android.widget;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.support.v4.widget.CursorAdapter;
+import androidx.cursoradapter.widget.CursorAdapter;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;

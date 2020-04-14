@@ -1,8 +1,8 @@
 package com.ghstudios.android.features.search
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.ItemType

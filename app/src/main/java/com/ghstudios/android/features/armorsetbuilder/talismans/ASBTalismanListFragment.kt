@@ -1,13 +1,13 @@
 package com.ghstudios.android.features.armorsetbuilder.talismans
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.common.SwipeReorderTouchHelper
 import com.ghstudios.android.data.classes.ASBTalisman
@@ -33,7 +33,7 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
     }
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(ASBTalismanListViewModel::class.java)
+        ViewModelProvider(this).get(ASBTalismanListViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,7 +82,7 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
         setAdapter(adapter)
         handler.attachToRecyclerView(recyclerView)
 
-        viewModel.talismanData.observe(this, Observer {
+        viewModel.talismanData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             adapter.setItems(it)
             showEmptyView(show = it.isEmpty())
@@ -92,7 +92,7 @@ class ASBTalismanListFragment: RecyclerViewFragment() {
     fun showAddTalismanDialog(talisman: ASBTalisman? = null) {
         val dialog = ASBTalismanDialogFragment.newInstance(talisman)
         dialog.setTargetFragment(this, REQUEST_CODE_TALISMAN)
-        dialog.show(this.fragmentManager, "TALISMAN")
+        dialog.show(this.parentFragmentManager, "TALISMAN")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,14 +1,14 @@
 package com.ghstudios.android.features.items.list
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.RecyclerViewFragment
 
 class ItemListFragment : RecyclerViewFragment() {
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(ItemListViewModel::class.java)
+        ViewModelProvider(this).get(ItemListViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class ItemListFragment : RecyclerViewFragment() {
         val adapter = ItemListAdapter()
         setAdapter(adapter)
 
-        viewModel.itemData.observe(this, Observer {
+        viewModel.itemData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             adapter.setItems(it)

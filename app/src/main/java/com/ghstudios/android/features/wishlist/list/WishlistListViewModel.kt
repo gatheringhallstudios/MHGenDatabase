@@ -1,7 +1,7 @@
 package com.ghstudios.android.features.wishlist.list
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Wishlist
 import com.ghstudios.android.util.UndoableOperation

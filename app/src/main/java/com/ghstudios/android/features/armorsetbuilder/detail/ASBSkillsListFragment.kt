@@ -1,18 +1,18 @@
 package com.ghstudios.android.features.armorsetbuilder.detail
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
@@ -24,7 +24,7 @@ import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
  */
 class ASBSkillsListFragment : Fragment() {
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ASBDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(ASBDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,7 +37,7 @@ class ASBSkillsListFragment : Fragment() {
         val adapter = ASBSkillsAdapter(activity!!.applicationContext, calculator.results, session)
         listView.adapter = adapter
 
-        viewModel.updatePieceEvent.observe(this, Observer {
+        viewModel.updatePieceEvent.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             calculator.recalculate()
             adapter.notifyDataSetChanged()
@@ -69,8 +69,7 @@ class ASBSkillsListFragment : Fragment() {
             val talismanPoints = itemView.findViewById<TextView>(R.id.talisman)
             val totalPoints = itemView.findViewById<TextView>(R.id.total)
 
-            val data = getItem(position)
-            
+            val data = getItem(position) ?: return itemView
             treeName.text = data.skillTree.name
 
             if (data.getPoints(ArmorSet.WEAPON) != 0) {

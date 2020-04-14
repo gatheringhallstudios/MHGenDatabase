@@ -1,14 +1,14 @@
 package com.ghstudios.android.features.skills.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.ArmorClickListener
@@ -39,7 +39,7 @@ class SkillTreeArmorFragment : ListFragment() {
      * ViewModel belonging to the parent activity
      */
     private val parentViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(SkillDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(SkillDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +55,7 @@ class SkillTreeArmorFragment : ListFragment() {
         val adapter = ArmorToSkillTreeListAdapter(context!!)
         listAdapter = adapter
 
-        parentViewModel.observeArmorsWithSkill(this, mType, Observer {
+        parentViewModel.observeArmorsWithSkill(viewLifecycleOwner, mType, Observer {
             if (it != null) {
                 adapter.updateItems(it)
             }

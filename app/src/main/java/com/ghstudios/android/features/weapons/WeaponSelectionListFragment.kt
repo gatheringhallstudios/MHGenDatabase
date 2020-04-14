@@ -3,8 +3,8 @@ package com.ghstudios.android.features.weapons
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.v4.app.ListFragment
+import androidx.annotation.DrawableRes
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener

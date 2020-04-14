@@ -2,7 +2,7 @@ package com.ghstudios.android.features.search
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -129,7 +129,7 @@ class SearchResultAdapterDelegate(ctx: Context): AbsListItemAdapterDelegate<Any,
     }
 
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         private val imageView = itemView.findViewById<ImageView>(R.id.result_image)
         private val nameView = itemView.findViewById<TextView>(R.id.result_name)
         private val typeView = itemView.findViewById<TextView>(R.id.result_type)

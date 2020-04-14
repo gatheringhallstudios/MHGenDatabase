@@ -1,15 +1,14 @@
 package com.ghstudios.android.features.items.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.RecyclerViewFragment
@@ -45,8 +44,8 @@ class ItemUsageFragment : RecyclerViewFragment() {
         setAdapter(adapter)
         enableDivider()
 
-        val viewModel = ViewModelProviders.of(activity!!).get(ItemDetailViewModel::class.java)
-        viewModel.usageData.observe(this, Observer { usage ->
+        val viewModel = ViewModelProvider(activity!!).get(ItemDetailViewModel::class.java)
+        viewModel.usageData.observe(viewLifecycleOwner, Observer { usage ->
             usage ?: return@Observer
 
             adapter.items = usage.combinations + usage.crafting
@@ -73,7 +72,7 @@ class UsageAdapterDelegate : AbsListItemAdapterDelegate<Component, Any, UsageAda
         holder.bindItem(component)
     }
 
-    class UsageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class UsageViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bindItem(component: Component) {
             // Set up the text view
             val itemLayout = itemView.findViewById<LinearLayout>(R.id.listitem)

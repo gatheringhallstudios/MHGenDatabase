@@ -1,7 +1,7 @@
 package com.ghstudios.android.features.combining
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
+import androidx.lifecycle.AndroidViewModel
 import com.ghstudios.android.util.MHUtils
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.util.toList

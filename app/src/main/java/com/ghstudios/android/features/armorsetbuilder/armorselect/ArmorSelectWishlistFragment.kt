@@ -1,13 +1,12 @@
 package com.ghstudios.android.features.armorsetbuilder.armorselect
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.mhgendatabase.R
 
 /**
@@ -18,7 +17,7 @@ class ArmorSelectWishlistFragment: ListFragment() {
      * ViewModel (anchored to parent)
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(ArmorSelectViewModel::class.java)
+        ViewModelProvider(activity!!).get(ArmorSelectViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,7 +27,7 @@ class ArmorSelectWishlistFragment: ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.armorWishlistData.observe(this, Observer {
+        viewModel.armorWishlistData.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 
             val adapter = ArmorListAdapter(context!!, it)

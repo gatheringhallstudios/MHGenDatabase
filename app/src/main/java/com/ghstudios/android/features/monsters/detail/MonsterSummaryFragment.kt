@@ -1,12 +1,11 @@
 package com.ghstudios.android.features.monsters.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.annotation.DrawableRes
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.ClickListeners.LocationClickListener
 import com.ghstudios.android.components.SectionHeaderCell
@@ -115,18 +115,18 @@ class MonsterSummaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val viewModel = ViewModelProviders.of(activity!!).get(MonsterDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(activity!!).get(MonsterDetailViewModel::class.java)
 
-        viewModel.monsterData.observe(this, Observer { monster ->
+        viewModel.monsterData.observe(viewLifecycleOwner, Observer { monster ->
             if (monster == null) return@Observer
 
             headerView.setIcon(monster)
             headerView.setTitleText(monster.name)
         })
 
-        viewModel.weaknessData.observe(this, Observer(::updateWeaknesses))
-        viewModel.ailmentData.observe(this, Observer(::populateAilments))
-        viewModel.habitatData.observe(this, Observer(::populateHabitats))
+        viewModel.weaknessData.observe(viewLifecycleOwner, Observer(::updateWeaknesses))
+        viewModel.ailmentData.observe(viewLifecycleOwner, Observer(::populateAilments))
+        viewModel.habitatData.observe(viewLifecycleOwner, Observer(::populateHabitats))
     }
 
     /**

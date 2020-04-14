@@ -1,21 +1,19 @@
 package com.ghstudios.android.features.skills.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.ItemToSkillTree
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.DecorationClickListener
-import com.ghstudios.android.features.decorations.detail.DecorationDetailActivity
 import com.ghstudios.android.util.applyArguments
 
 /**
@@ -36,7 +34,7 @@ class SkillTreeDecorationFragment : ListFragment() {
      * ViewModel belonging to the parent activity
      */
     private val parentViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(SkillDetailViewModel::class.java)
+        ViewModelProvider(activity!!).get(SkillDetailViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

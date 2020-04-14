@@ -1,11 +1,10 @@
 package com.ghstudios.android.features.monsters.detail
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
@@ -15,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import butterknife.BindView
 import butterknife.ButterKnife
 
@@ -62,16 +62,16 @@ class MonsterDamageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val viewModel = ViewModelProviders.of(activity!!).get(MonsterDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(activity!!).get(MonsterDetailViewModel::class.java)
 
-        viewModel.monsterData.observe(this, Observer { monster ->
+        viewModel.monsterData.observe(viewLifecycleOwner, Observer { monster ->
             if (monster == null) return@Observer
             mMonsterLabelTextView.text = monster.name
             AssetLoader.setIcon(mMonsterIconImageView,monster)
         })
 
-        viewModel.damageData.observe(this, Observer<List<MonsterDamage>> { this.populateDamage(it) })
-        viewModel.statusData.observe(this, Observer<List<MonsterStatus>> { this.populateStatus(it) })
+        viewModel.damageData.observe(viewLifecycleOwner, Observer<List<MonsterDamage>> { this.populateDamage(it) })
+        viewModel.statusData.observe(viewLifecycleOwner, Observer<List<MonsterStatus>> { this.populateStatus(it) })
     }
 
     private fun populateDamage(damages: List<MonsterDamage>?) {

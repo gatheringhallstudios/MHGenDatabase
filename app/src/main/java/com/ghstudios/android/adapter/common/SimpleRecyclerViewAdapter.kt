@@ -1,13 +1,12 @@
 package com.ghstudios.android.adapter.common
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.extensions.LayoutContainer
 import java.util.*
-import android.support.v7.recyclerview.extensions.AsyncListDiffer
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 
 
 /**

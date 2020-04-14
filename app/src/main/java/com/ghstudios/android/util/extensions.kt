@@ -1,20 +1,20 @@
 package com.ghstudios.android.util
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.design.widget.Snackbar
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.ghstudios.android.GenericActionBarActivity
 import com.ghstudios.android.mhgendatabase.R
@@ -28,7 +28,7 @@ import com.ghstudios.android.mhgendatabase.R
  * Adds a bundle to a fragment and then returns the fragment.
  * A lambda is used to set values to the bundle
  */
-fun <T: Fragment> T.applyArguments(block: Bundle.() -> Unit): T {
+fun <T: androidx.fragment.app.Fragment> T.applyArguments(block: Bundle.() -> Unit): T {
     val bundle = Bundle()
     bundle.block()
     this.arguments = bundle
@@ -126,7 +126,7 @@ inline fun SharedPreferences.edit(block: SharedPreferences.Editor.() -> Unit) {
  *
  * This was created to allow a uniform interface between fragments and activities.
  */
-fun DialogFragment.sendDialogResult(resultCode: Int, intent: Intent) {
+fun androidx.fragment.app.DialogFragment.sendDialogResult(resultCode: Int, intent: Intent) {
     if (this.targetFragment != null) {
         targetFragment?.onActivityResult(targetRequestCode, resultCode, intent)
         return

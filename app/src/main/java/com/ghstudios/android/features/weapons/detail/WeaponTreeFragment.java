@@ -1,18 +1,13 @@
 package com.ghstudios.android.features.weapons.detail;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
-import android.util.TypedValue;
+import androidx.fragment.app.ListFragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.SectionArrayAdapter;
@@ -22,12 +17,8 @@ import com.ghstudios.android.adapter.WeaponExpandableListBowgunAdapter;
 import com.ghstudios.android.adapter.WeaponExpandableListGeneralAdapter;
 import com.ghstudios.android.components.WeaponListEntry;
 import com.ghstudios.android.data.classes.Weapon;
-import com.ghstudios.android.data.cursors.WeaponCursor;
-import com.ghstudios.android.loader.WeaponTreeListCursorLoader;
 import com.ghstudios.android.mhgendatabase.R;
-import com.ghstudios.android.ClickListeners.WeaponClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WeaponTreeFragment extends ListFragment{
@@ -45,7 +36,7 @@ public class WeaponTreeFragment extends ListFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WeaponDetailViewModel viewModel = ViewModelProviders.of(getActivity()).get(WeaponDetailViewModel.class);
+        WeaponDetailViewModel viewModel = new ViewModelProvider(getActivity()).get(WeaponDetailViewModel.class);
 
         viewModel.getFamilyTreeData().observe(this, this::populateFamilyTree);
     }

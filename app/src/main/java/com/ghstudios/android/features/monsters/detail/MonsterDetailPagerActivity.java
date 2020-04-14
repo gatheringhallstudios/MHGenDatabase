@@ -1,6 +1,6 @@
 package com.ghstudios.android.features.monsters.detail;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.ghstudios.android.data.classes.meta.MonsterMetadata;
 import com.ghstudios.android.loader.HuntingRewardListCursorLoader;

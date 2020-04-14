@@ -2,7 +2,7 @@ package com.ghstudios.android.features.quests;
 
 import com.ghstudios.android.BasePagerActivity;
 import com.ghstudios.android.MenuSection;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import com.ghstudios.android.data.classes.Quest;
 import com.ghstudios.android.mhgendatabase.R;
 

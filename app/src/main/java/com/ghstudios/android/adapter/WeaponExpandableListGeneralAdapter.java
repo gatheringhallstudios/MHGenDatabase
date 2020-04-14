@@ -1,11 +1,9 @@
 package com.ghstudios.android.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.support.v7.widget.RecyclerView;
-import android.util.LruCache;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,8 +16,6 @@ import com.ghstudios.android.ClickListeners.WeaponClickListener;
 import com.ghstudios.android.components.WeaponListEntry;
 import com.oissela.software.multilevelexpindlistview.MultiLevelExpIndListAdapter;
 import com.oissela.software.multilevelexpindlistview.Utils;
-
-import java.io.IOException;
 
 /**
  * Created by Mark on 3/3/2015.

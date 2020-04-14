@@ -1,8 +1,8 @@
 package com.ghstudios.android.features.wishlist.external
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import android.util.Log
 import com.ghstudios.android.data.classes.Wishlist
 import com.ghstudios.android.data.DataManager
@@ -64,7 +64,7 @@ class WishlistAddItemViewModel(private val app: Application) : AndroidViewModel(
             return WishlistErrorResult(app.getString(R.string.wishlist_error_name_required))
         }
 
-        val newWishlistId = wishlistManager.addWishlist(newWishlistName!!.trim())
+        val newWishlistId = wishlistManager.addWishlist(newWishlistName.trim())
         return addToWishlistRaw(newWishlistId, quantity!!, path)
     }
 

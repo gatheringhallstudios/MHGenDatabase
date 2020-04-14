@@ -2,7 +2,7 @@ package com.ghstudios.android.features.decorations.list;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.ghstudios.android.mhgendatabase.R;
 import com.ghstudios.android.features.armorsetbuilder.detail.ASBDetailPagerActivity;

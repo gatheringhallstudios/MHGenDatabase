@@ -2,15 +2,15 @@ package com.ghstudios.android.features.wishlist.external
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.util.applyArguments
@@ -49,7 +49,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(WishlistAddItemViewModel::class.java)
+        ViewModelProvider(this).get(WishlistAddItemViewModel::class.java)
     }
 
     private val TAG = javaClass.simpleName
@@ -93,7 +93,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
                 wishlistNameEntry.visibility = View.GONE
 
                 wishlistSelect.adapter = ArrayAdapter(
-                        this.context,
+                        this.context!!,
                         R.layout.support_simple_spinner_dropdown_item,
                         wishlists.map { it.name }.toTypedArray())
             }
@@ -102,7 +102,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         // Observe paths and add them to the path selection area
         // Paths require unique ids, so we assign them IDs from the ids.xml file
         // Also select the first one
-        viewModel.itemPaths.observe(this, Observer { paths ->
+        viewModel.itemPaths.observe(viewLifecycleOwner, Observer { paths ->
             if (paths == null) return@Observer // not loaded
 
             // Pre-pull radio buttons (adding programmatically has errors in older Android Versions)
@@ -143,7 +143,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
                 .create()
 
         // Handles the "ok" input option. We put it here so that we can validate w/o closing the dialog.
-        dialog.setOnShowListener { _ ->
+        dialog.setOnShowListener {
             dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                 try {
                     // get path

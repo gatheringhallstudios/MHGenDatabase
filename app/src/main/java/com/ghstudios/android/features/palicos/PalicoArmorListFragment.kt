@@ -1,16 +1,16 @@
 package com.ghstudios.android.features.palicos
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.ListFragment
+import androidx.fragment.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.data.classes.PalicoArmor
 
@@ -28,8 +28,8 @@ class PalicoArmorListFragment : ListFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProviders.of(this).get(PalicoArmorListViewModel::class.java)
-        viewModel.armors.observe(this, Observer { setupAdapter(it) })
+        val viewModel = ViewModelProvider(this).get(PalicoArmorListViewModel::class.java)
+        viewModel.armors.observe(viewLifecycleOwner, Observer { setupAdapter(it) })
         viewModel.loadList()
     }
 

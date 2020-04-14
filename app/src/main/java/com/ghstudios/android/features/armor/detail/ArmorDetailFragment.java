@@ -1,11 +1,10 @@
 package com.ghstudios.android.features.armor.detail;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +30,7 @@ import com.ghstudios.android.mhgendatabase.R;
 
 import java.util.List;
 
+import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -75,7 +75,7 @@ public class ArmorDetailFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        viewModel = ViewModelProviders.of(this).get(ArmorDetailViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ArmorDetailViewModel.class);
 
         // Check for a Item ID as an argument, and find the item
         Bundle args = getArguments();
@@ -107,9 +107,9 @@ public class ArmorDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         // bind view model data to view
-        viewModel.getArmorData().observe(this, this::populateArmor);
-        viewModel.getSkillData().observe(this, this::populateSkills);
-        viewModel.getComponentData().observe(this, this::populateRecipe);
+        viewModel.getArmorData().observe(getViewLifecycleOwner(), this::populateArmor);
+        viewModel.getSkillData().observe(getViewLifecycleOwner(), this::populateSkills);
+        viewModel.getComponentData().observe(getViewLifecycleOwner(), this::populateRecipe);
     }
 
     private void populateArmor(Armor armor) {

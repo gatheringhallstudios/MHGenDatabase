@@ -1,9 +1,8 @@
 package com.ghstudios.android.features.weapons.detail
 
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.AssetLoader
 
 import com.ghstudios.android.data.classes.Weapon
@@ -26,7 +25,7 @@ class WeaponDetailPagerActivity : BasePagerActivity() {
     internal var name: String? = null
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(WeaponDetailViewModel::class.java)
+        ViewModelProvider(this).get(WeaponDetailViewModel::class.java)
     }
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {

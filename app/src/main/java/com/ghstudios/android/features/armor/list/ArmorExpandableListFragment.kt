@@ -1,16 +1,16 @@
 package com.ghstudios.android.features.armor.list
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.view.*
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.classes.Armor
@@ -62,7 +62,7 @@ class ArmorExpandableListFragment : Fragment() {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(ArmorFamilyListViewModel::class.java)
+        ViewModelProvider(this).get(ArmorFamilyListViewModel::class.java)
     }
 
     private var adapter: ArmorFamilyListAdapter? = null
@@ -81,7 +81,7 @@ class ArmorExpandableListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.armorFamilyListData.observe(this, Observer { families ->
+        viewModel.armorFamilyListData.observe(viewLifecycleOwner, Observer { families ->
             if (families == null) return@Observer
 
             val groups = families
@@ -96,8 +96,8 @@ class ArmorExpandableListFragment : Fragment() {
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_armor_list, menu)
+        inflater.inflate(R.menu.menu_armor_list, menu)
     }
 }

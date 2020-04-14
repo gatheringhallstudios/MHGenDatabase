@@ -1,9 +1,9 @@
 package com.ghstudios.android.features.search
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.RecyclerViewFragment
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter
 
@@ -16,7 +16,7 @@ private const val SEARCH_FILTER = "SEARCH_FILTER"
  */
 class UniversalSearchFragment : RecyclerViewFragment() {
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(UniversalSearchViewModel::class.java)
+        ViewModelProvider(this).get(UniversalSearchViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class UniversalSearchFragment : RecyclerViewFragment() {
         setAdapter(adapter)
 
         // Listen for search results, and populate the adapter
-        viewModel.searchResults.observe(this, Observer { results ->
+        viewModel.searchResults.observe(viewLifecycleOwner, Observer { results ->
             adapter.items = results ?: emptyList()
             adapter.notifyDataSetChanged()
         })

@@ -1,9 +1,9 @@
 package com.ghstudios.android.features.decorations.list
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Transformations
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.ghstudios.android.data.DataManager
 import com.ghstudios.android.data.util.SearchFilter
 import com.ghstudios.android.util.toList

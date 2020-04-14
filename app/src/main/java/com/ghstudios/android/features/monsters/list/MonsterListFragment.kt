@@ -1,9 +1,9 @@
 package com.ghstudios.android.features.monsters.list
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.data.classes.MonsterClass
 import com.ghstudios.android.RecyclerViewFragment
@@ -25,7 +25,7 @@ class MonsterListFragment : RecyclerViewFragment() {
     }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(MonsterListViewModel::class.java)
+        ViewModelProvider(this).get(MonsterListViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

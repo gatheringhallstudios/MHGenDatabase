@@ -2,20 +2,15 @@ package com.ghstudios.android.features.armorsetbuilder.detail
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Intent
-import android.os.Bundle
-import android.support.v4.app.LoaderManager
-import android.support.v4.content.Loader
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 
-import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.features.armorsetbuilder.list.ASBSetListFragment
-import com.ghstudios.android.loader.ASBSessionLoader
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.MenuSection
@@ -56,7 +51,7 @@ class ASBDetailPagerActivity : BasePagerActivity() {
     }
 
     val viewModel by lazy {
-        ViewModelProviders.of(this).get(ASBDetailViewModel::class.java)
+        ViewModelProvider(this).get(ASBDetailViewModel::class.java)
     }
 
     override fun onAddTabs(tabs: BasePagerActivity.TabAdder) {
