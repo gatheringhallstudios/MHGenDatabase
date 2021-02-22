@@ -5,17 +5,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.*
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.BasePagerActivity
 import com.ghstudios.android.ClickListeners.ItemClickListener
 import com.ghstudios.android.ClickListeners.SkillClickListener
-import com.ghstudios.android.components.ColumnLabelTextCell
-import com.ghstudios.android.components.ItemRecipeCell
 import com.ghstudios.android.components.LabelTextRowCell
 import com.ghstudios.android.components.SlotsView
 import com.ghstudios.android.data.classes.Armor
@@ -26,6 +21,7 @@ import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFra
 import com.ghstudios.android.features.wishlist.external.WishlistItemType
 import com.ghstudios.android.features.wishlist.list.WishlistListFragment
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.FragmentArmorSetSummaryBinding
 
 /**
  * Figures out what kind of armor set type the entirety of the armor set uses.
@@ -41,23 +37,7 @@ fun determineArmorSetType(armor: List<Armor>): Int {
 
 class ArmorSetSummaryFragment : Fragment() {
 
-    @BindView(R.id.rare) lateinit var rareView: ColumnLabelTextCell
-    @BindView(R.id.weapon_type) lateinit var typeView: ColumnLabelTextCell
-    @BindView(R.id.defense) lateinit var defenseView: ColumnLabelTextCell
-
-    @BindView(R.id.armor_pieces_layout) lateinit var armorListView: ViewGroup
-
-    @BindView(R.id.skill_section) lateinit var skillSection: ViewGroup
-    @BindView(R.id.skill_list) lateinit var skillListView: LinearLayout
-
-    @BindView(R.id.recipe_header) lateinit var recipeHeader: View
-    @BindView(R.id.recipe) lateinit var recipeView: ItemRecipeCell
-
-    @BindView(R.id.fire_res) lateinit var fireResTextView: TextView
-    @BindView(R.id.water_res) lateinit var waterResTextView: TextView
-    @BindView(R.id.ice_res) lateinit var iceResTextView: TextView
-    @BindView(R.id.thunder_res) lateinit var thunderResTextView: TextView
-    @BindView(R.id.dragon_res) lateinit var dragonResTextView: TextView
+    private lateinit var binding: FragmentArmorSetSummaryBinding
 
     private val viewModel by lazy {
         ViewModelProvider(activity!!).get(ArmorSetDetailViewModel::class.java)
@@ -69,9 +49,8 @@ class ArmorSetSummaryFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_armor_set_summary, container,false)
-        ButterKnife.bind(this,view)
-        return view
+        binding = FragmentArmorSetSummaryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,19 +68,21 @@ class ArmorSetSummaryFragment : Fragment() {
 
         val cellDefense = armors.sumBy { it.defense }.toString() + "~" + armors.sumBy { it.maxDefense }
 
-        rareView.setValueText(armors.first().rarityString)
-        defenseView.setValueText(cellDefense)
-        typeView.setValueText(getString(when (determineArmorSetType(armors)) {
+        binding.rare.setValueText(armors.first().rarityString)
+        binding.defense.setValueText(cellDefense)
+        binding.weaponType.setValueText(getString(when (determineArmorSetType(armors)) {
             Armor.ARMOR_TYPE_BLADEMASTER -> R.string.armor_type_blade
             Armor.ARMOR_TYPE_GUNNER -> R.string.armor_type_gunner
             else -> R.string.armor_type_both
         }))
 
-        fireResTextView.text = armors.sumBy { it.fireRes }.toString()
-        waterResTextView.text = armors.sumBy { it.waterRes }.toString()
-        iceResTextView.text = armors.sumBy { it.iceRes }.toString()
-        thunderResTextView.text = armors.sumBy { it.thunderRes }.toString()
-        dragonResTextView.text = armors.sumBy { it.dragonRes }.toString()
+        with(binding.armorResits) {
+            fireRes.text = armors.sumBy { it.fireRes }.toString()
+            waterRes.text = armors.sumBy { it.waterRes }.toString()
+            iceRes.text = armors.sumBy { it.iceRes }.toString()
+            thunderRes.text = armors.sumBy { it.thunderRes }.toString()
+            dragonRes.text = armors.sumBy { it.dragonRes }.toString()
+        }
 
         val inflater = LayoutInflater.from(context)
 
@@ -110,7 +91,7 @@ class ArmorSetSummaryFragment : Fragment() {
             val armor = armorPointsEntry.armor
             val skills = armorPointsEntry.skills
 
-            val armorView = inflater.inflate(R.layout.listitem_armor_piece, armorListView,false)
+            val armorView = inflater.inflate(R.layout.listitem_armor_piece, binding.armorPiecesLayout,false)
             val icon: ImageView? = armorView.findViewById(R.id.icon)
             val name: TextView? = armorView.findViewById(R.id.name)
             val slots: SlotsView? = armorView.findViewById(R.id.slots)
@@ -138,7 +119,7 @@ class ArmorSetSummaryFragment : Fragment() {
                 activity?.setSelectedTab(idx + 1)
             }
 
-            armorListView.addView(armorView)
+            binding.armorPiecesLayout.addView(armorView)
         }
     }
 
@@ -147,12 +128,12 @@ class ArmorSetSummaryFragment : Fragment() {
      */
     private fun populateSkills(skills: List<SkillTreePoints>?){
         if (skills == null || skills.isEmpty()) {
-            skillSection.visibility = View.GONE
+            binding.skillSection.visibility = View.GONE
             return
         }
 
-        skillListView.removeAllViews()
-        skillSection.visibility = View.VISIBLE
+        binding.skillList.removeAllViews()
+        binding.skillSection.visibility = View.VISIBLE
 
         for (skill in skills) {
             val skillItem = LabelTextRowCell(context)
@@ -163,7 +144,7 @@ class ArmorSetSummaryFragment : Fragment() {
                     SkillClickListener(context, skill.skillTree.id)
             )
 
-            skillListView.addView(skillItem)
+            binding.skillList.addView(skillItem)
         }
     }
 
@@ -172,17 +153,17 @@ class ArmorSetSummaryFragment : Fragment() {
      */
     private fun populateComponents(recipe:List<Component>?){
         if (recipe == null || recipe.isEmpty()) {
-            recipeHeader.visibility = View.GONE
-            recipeView.visibility = View.GONE
+            binding.recipeHeader.visibility = View.GONE
+            binding.recipe.visibility = View.GONE
             return
         }
 
-        recipeHeader.visibility = View.VISIBLE
-        recipeView.visibility = View.VISIBLE
+        binding.recipeHeader.visibility = View.VISIBLE
+        binding.recipe.visibility = View.VISIBLE
 
         for (component in recipe) {
             val item = component.component
-            val itemCell = recipeView.addItem(item, item.name, component.quantity,component.isKey)
+            val itemCell = binding.recipe.addItem(item, item.name, component.quantity,component.isKey)
             itemCell.setOnClickListener(ItemClickListener(context!!, item))
         }
     }

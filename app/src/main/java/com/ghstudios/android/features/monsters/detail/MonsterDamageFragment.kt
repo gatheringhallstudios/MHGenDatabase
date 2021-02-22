@@ -12,16 +12,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import butterknife.BindView
-import butterknife.ButterKnife
 
 import com.ghstudios.android.*
 import com.ghstudios.android.data.classes.MonsterDamage
 import com.ghstudios.android.data.classes.MonsterStatus
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.FragmentMonsterDamageBinding
 
 class MonsterDamageFragment : Fragment() {
     companion object {
@@ -37,28 +35,12 @@ class MonsterDamageFragment : Fragment() {
         }
     }
 
-    @BindView(R.id.detail_monster_label)
-    lateinit var mMonsterLabelTextView: TextView
-
-    @BindView(R.id.detail_monster_image)
-    lateinit var mMonsterIconImageView: ImageView
-
-    @BindView(R.id.weapon_damage)
-    lateinit var mWeaponDamageTL: LinearLayout
-
-    @BindView(R.id.elemental_damage)
-    lateinit var mElementalDamageTL: LinearLayout
-
-    @BindView(R.id.status_data)
-    lateinit var mStatusTable: LinearLayout
+    private lateinit var binding: FragmentMonsterDamageBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_monster_damage, container, false)
-
-        ButterKnife.bind(this, view)
-
-        return view
+        binding = FragmentMonsterDamageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,8 +48,8 @@ class MonsterDamageFragment : Fragment() {
 
         viewModel.monsterData.observe(viewLifecycleOwner, Observer { monster ->
             if (monster == null) return@Observer
-            mMonsterLabelTextView.text = monster.name
-            AssetLoader.setIcon(mMonsterIconImageView,monster)
+            binding.header.detailMonsterLabel.text = monster.name
+            AssetLoader.setIcon(binding.header.detailMonsterImage, monster)
         })
 
         viewModel.damageData.observe(viewLifecycleOwner, Observer<List<MonsterDamage>> { this.populateDamage(it) })
@@ -77,8 +59,8 @@ class MonsterDamageFragment : Fragment() {
     private fun populateDamage(damages: List<MonsterDamage>?) {
         if (damages == null || damages.isEmpty()) return
 
-        mWeaponDamageTL.removeAllViews()
-        mElementalDamageTL.removeAllViews()
+        binding.weaponDamage.removeAllViews()
+        binding.elementalDamage.removeAllViews()
 
         val altStateColor = ContextCompat.getColor(context!!, R.color.text_color_secondary)
         val altStateSpan = ForegroundColorSpan(altStateColor)
@@ -100,7 +82,7 @@ class MonsterDamageFragment : Fragment() {
         // non-elemental table
         for (damage in damages) {
             val wdRow = inflater.inflate(
-                    R.layout.fragment_monster_damage_listitem, mWeaponDamageTL, false)
+                    R.layout.fragment_monster_damage_listitem, binding.weaponDamage, false)
 
             val body_part_tv1 = wdRow.findViewById<TextView>(R.id.body_part)
             val dummy_tv = wdRow.findViewById<TextView>(R.id.dmg1)
@@ -118,13 +100,13 @@ class MonsterDamageFragment : Fragment() {
 
             dummy_tv.text = ""
 
-            mWeaponDamageTL.addView(wdRow)
+            binding.weaponDamage.addView(wdRow)
         }
 
         // Elemental table
         for (damage in damages) {
             val edRow = inflater.inflate(
-                    R.layout.fragment_monster_damage_listitem, mElementalDamageTL, false)
+                    R.layout.fragment_monster_damage_listitem, binding.elementalDamage, false)
 
             val body_part_tv2 = edRow.findViewById<TextView>(R.id.body_part)
             val fire_tv = edRow.findViewById<TextView>(R.id.dmg1)
@@ -141,7 +123,7 @@ class MonsterDamageFragment : Fragment() {
             checkDamageValue(damage.thunder, thunder_tv, true, false)
             checkDamageValue(damage.dragon, dragon_tv, true, false)
 
-            mElementalDamageTL.addView(edRow)
+            binding.elementalDamage.addView(edRow)
         }
     }
 
@@ -161,13 +143,13 @@ class MonsterDamageFragment : Fragment() {
     private fun populateStatus(statuses: List<MonsterStatus>?) {
         if (statuses == null || statuses.isEmpty()) return
 
-        mStatusTable.removeAllViews()
+        binding.statusData.removeAllViews()
 
         val inflater = LayoutInflater.from(this.context)
 
         for (currentStatus in statuses) {
             val wdRow = inflater.inflate(
-                    R.layout.fragment_monster_status_listitem, mStatusTable, false)
+                    R.layout.fragment_monster_status_listitem, binding.statusData, false)
 
             val DefaultString = "-"
             fun valToString(v: Long, suffix: String=""): String = when(v) {
@@ -208,7 +190,7 @@ class MonsterDamageFragment : Fragment() {
                 statusImage.setImageDrawable(draw)
             }
 
-            mStatusTable.addView(wdRow)
+            binding.statusData.addView(wdRow)
         }
     }
 }

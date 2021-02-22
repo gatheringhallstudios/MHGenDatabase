@@ -6,12 +6,10 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.CellSectionHeaderBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * This is a full height, full width cell that displays a section header. Used to generate
@@ -22,7 +20,7 @@ public class SectionHeaderCell extends LinearLayout {
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.label_text) TextView labelView;
+    private CellSectionHeaderBinding binding;
 
     public SectionHeaderCell(Context context, String labelText) {
         super(context);
@@ -54,15 +52,13 @@ public class SectionHeaderCell extends LinearLayout {
     public void init(String labelText) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.cell_section_header, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellSectionHeaderBinding.inflate(inflater, this);
 
         setLabelText(labelText);
     }
 
     public void setLabelText(String labelText) {
-        labelView.setText(labelText);
+        binding.labelText.setText(labelText);
     }
 
 }

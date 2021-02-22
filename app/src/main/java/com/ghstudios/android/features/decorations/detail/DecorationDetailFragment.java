@@ -12,39 +12,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.ghstudios.android.ClickListeners.ItemClickListener;
 import com.ghstudios.android.ClickListeners.SkillClickListener;
-import com.ghstudios.android.components.ColumnLabelTextCell;
 import com.ghstudios.android.components.ItemRecipeCell;
 import com.ghstudios.android.components.LabelTextRowCell;
-import com.ghstudios.android.components.SlotsView;
-import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Component;
 import com.ghstudios.android.data.classes.Decoration;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.FragmentDecorationDetailBinding;
 
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DecorationDetailFragment extends Fragment {
     private static final String ARG_DECORATION_ID = "DECORATION_ID";
 
     private static final String DIALOG_WISHLIST_ADD = "wishlist_add";
 
-    @BindView(R.id.titlebar) TitleBarCell titleView;
-    @BindView(R.id.rare) ColumnLabelTextCell rareView;
-    @BindView(R.id.buy) ColumnLabelTextCell buyView;
-    @BindView(R.id.sell) ColumnLabelTextCell sellView;
-    @BindView(R.id.slots) SlotsView slotsReqView;
-    @BindView(R.id.skill_list) LinearLayout skillListView;
-    @BindView(R.id.recipe_list) LinearLayout recipeListView;
+    private FragmentDecorationDetailBinding binding;
 
     // stored to allow add to wishlist to work
     long decorationId;
@@ -75,12 +63,9 @@ public class DecorationDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_decoration_detail,
-                container, false);
+        binding = FragmentDecorationDetailBinding.inflate(inflater, container, false);
 
-        ButterKnife.bind(this, view);
-
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -120,18 +105,18 @@ public class DecorationDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        titleView.setIcon(decoration);
-        titleView.setTitleText(decorationName);
+        binding.titlebar.setIcon(decoration);
+        binding.titlebar.setTitleText(decorationName);
 
-        rareView.setValueText(cellRare);
-        buyView.setValueText(cellBuy);
-        sellView.setValueText(cellSell);
-        slotsReqView.setHideExtras(true);
-        slotsReqView.setSlots(decoration.getNumSlots(), decoration.getNumSlots());
+        binding.rare.setValueText(cellRare);
+        binding.buy.setValueText(cellBuy);
+        binding.sell.setValueText(cellSell);
+        binding.slotsSection.slots.setHideExtras(true);
+        binding.slotsSection.slots.setSlots(decoration.getNumSlots(), decoration.getNumSlots());
     }
 
     private void populateSkills(List<SkillPoints> skills) {
-        skillListView.removeAllViews();
+        binding.skillList.removeAllViews();
 
         for (SkillPoints skill : skills) {
             LabelTextRowCell skillItem = new LabelTextRowCell(getContext());
@@ -139,12 +124,12 @@ public class DecorationDetailFragment extends Fragment {
             skillItem.setValueText(String.valueOf(skill.getPoints()));
             skillItem.setOnClickListener(new SkillClickListener(getContext(), skill.getSkillId()));
 
-            skillListView.addView(skillItem);
+            binding.skillList.addView(skillItem);
         }
     }
 
     private void populateRecipes(Map<String, List<Component>> recipes) {
-        recipeListView.removeAllViews();
+        binding.recipeList.removeAllViews();
 
         for (List<Component> recipe : recipes.values()) {
             ItemRecipeCell cell = new ItemRecipeCell(getContext());
@@ -160,7 +145,7 @@ public class DecorationDetailFragment extends Fragment {
                 itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
             }
 
-            recipeListView.addView(cell);
+            binding.recipeList.addView(cell);
         }
     }
 

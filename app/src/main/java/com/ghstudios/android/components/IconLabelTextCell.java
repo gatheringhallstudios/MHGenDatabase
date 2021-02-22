@@ -10,15 +10,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.CellIconLabelTextBinding;
 
 /**
  * This is a full height, full width cell that displays an icon, label, and value. Used to generate
@@ -29,11 +25,7 @@ public class IconLabelTextCell extends FrameLayout {
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.generic_icon) ImageView imageView;
-    @BindView(R.id.label_text) TextView labelView;
-    @BindView(R.id.label_alt_text) TextView labelAltView;
-    @BindView(R.id.value_text) TextView valueView;
-    @BindView(R.id.key) TextView keyView;
+    private CellIconLabelTextBinding binding;
 
     boolean altEnabled = false;
 
@@ -71,9 +63,7 @@ public class IconLabelTextCell extends FrameLayout {
     public void init(Drawable drawable, String labelText, String labelAltText, boolean altTextEnabled, String valueText) {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.cell_icon_label_text, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellIconLabelTextBinding.inflate(inflater, this, true);
 
         setLeftIconDrawable(drawable);
         setLabelText(labelText);
@@ -86,22 +76,22 @@ public class IconLabelTextCell extends FrameLayout {
      * Set custom drawable for the left icon
      */
     public void setLeftIconDrawable(Drawable drawable) {
-        imageView.setImageDrawable(drawable);
+        binding.genericIcon.setImageDrawable(drawable);
 
         // Invalidate to trigger layout update
         invalidate();
     }
 
     public void setLeftIcon(ITintedIcon icon){
-        AssetLoader.setIcon(imageView,icon);
+        AssetLoader.setIcon(binding.genericIcon,icon);
     }
 
     public void setLabelText(String labelText) {
-        labelView.setText(labelText);
+        binding.labelText.setText(labelText);
     }
 
     public CharSequence getLabelText() {
-        return labelView.getText();
+        return binding.labelText.getText();
     }
 
     /**
@@ -109,7 +99,7 @@ public class IconLabelTextCell extends FrameLayout {
      * @param altTitleText
      */
     public void setLabelAltText(String altTitleText) {
-        labelAltView.setText(altTitleText);
+        binding.labelAltText.setText(altTitleText);
         updateAltTextVisibility();
     }
 
@@ -123,25 +113,25 @@ public class IconLabelTextCell extends FrameLayout {
     }
 
     public void setValueText(String valueText) {
-        valueView.setText(valueText);
+        binding.valueText.setText(valueText);
     }
 
     public void setKeyVisibility(boolean show){
         if(show)
-            keyView.setVisibility(View.VISIBLE);
+            binding.key.setVisibility(View.VISIBLE);
         else
-            keyView.setVisibility(View.GONE);
+            binding.key.setVisibility(View.GONE);
     }
 
     /**
      * Runs some logic to see if alt text should be enabled.
      */
     private void updateAltTextVisibility() {
-        CharSequence altText = labelAltView.getText();
+        CharSequence altText = binding.labelAltText.getText();
         if (altEnabled && altText != null && altText.length() > 0) {
-            labelAltView.setVisibility(VISIBLE);
+            binding.labelAltText.setVisibility(VISIBLE);
         } else {
-            labelAltView.setVisibility(GONE);
+            binding.labelAltText.setVisibility(GONE);
         }
     }
 }

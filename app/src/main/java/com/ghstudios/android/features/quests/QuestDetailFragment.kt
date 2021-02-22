@@ -20,7 +20,6 @@ import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.locations.LocationDetailPagerActivity
 
-import butterknife.ButterKnife
 import com.ghstudios.android.ClickListeners.MonsterClickListener
 import com.ghstudios.android.data.classes.MonsterToQuest
 import com.ghstudios.android.util.applyArguments

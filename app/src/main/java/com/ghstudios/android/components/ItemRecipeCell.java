@@ -12,16 +12,11 @@ import android.widget.LinearLayout;
 
 import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.ghstudios.android.mhgendatabase.databinding.CellItemRecipeBinding;
 
 public class ItemRecipeCell extends LinearLayout {
-    @BindView(R.id.title)
-    SubHeaderCell titleView;
 
-    @BindView(R.id.list)
-    LinearLayout itemsView;
+    private CellItemRecipeBinding binding;
 
     public ItemRecipeCell(Context ctx) {
         super(ctx);
@@ -53,9 +48,7 @@ public class ItemRecipeCell extends LinearLayout {
         setOrientation(VERTICAL);
 
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
-        inflater.inflate(R.layout.cell_item_recipe, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellItemRecipeBinding.inflate(inflater, this);
 
         setTitleText(title);
     }
@@ -65,11 +58,11 @@ public class ItemRecipeCell extends LinearLayout {
      * @param title
      */
     public void setTitleText(String title) {
-        titleView.setLabelText(title);
+        binding.title.setLabelText(title);
         if (title != null && !title.trim().isEmpty()) {
-            titleView.setVisibility(VISIBLE);
+            binding.title.setVisibility(VISIBLE);
         } else {
-            titleView.setVisibility(GONE);
+            binding.title.setVisibility(GONE);
         }
     }
 
@@ -80,7 +73,7 @@ public class ItemRecipeCell extends LinearLayout {
         cell.setValueText(String.valueOf(qty));
         cell.setKeyVisibility(key);
 
-        itemsView.addView(cell);
+        binding.list.addView(cell);
 
         return cell;
     }
@@ -89,6 +82,6 @@ public class ItemRecipeCell extends LinearLayout {
      * Clears all components in this recipe
      */
     public void clearItems() {
-        itemsView.removeAllViews();
+        binding.list.removeAllViews();
     }
 }

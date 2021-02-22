@@ -9,9 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.CellSubHeaderBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * This is a full height, full width cell that displays a sub header. Used to generate
@@ -22,7 +21,7 @@ public class SubHeaderCell extends FrameLayout {
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.text1) TextView labelView;
+    private CellSubHeaderBinding binding;
 
     public SubHeaderCell(Context context, String labelText) {
         super(context);
@@ -53,15 +52,13 @@ public class SubHeaderCell extends FrameLayout {
 
     public void init(String labelText) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.cell_sub_header, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellSubHeaderBinding.inflate(inflater, this);
 
         setLabelText(labelText);
     }
 
     public void setLabelText(String labelText) {
-        labelView.setText(labelText);
+        binding.header.text1.setText(labelText);
     }
 
 }

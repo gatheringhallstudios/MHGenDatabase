@@ -8,26 +8,15 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ghstudios.android.AssetLoader;
 import com.ghstudios.android.ITintedIcon;
 import com.ghstudios.android.mhgendatabase.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.ghstudios.android.mhgendatabase.databinding.CellTitleBarBinding;
 
 public class TitleBarCell extends FrameLayout {
 
-    @BindView(R.id.generic_icon)
-    ImageView imageView;
-
-    @BindView(R.id.title_text)
-    TextView titleView;
-
-    @BindView(R.id.title_alt_text)
-    TextView titleAltView;
+    private CellTitleBarBinding binding;
 
     public TitleBarCell(Context context) {
         super(context);
@@ -54,9 +43,7 @@ public class TitleBarCell extends FrameLayout {
 
     public void init(Drawable drawable, String titleText, String titleAltText) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.cell_title_bar, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellTitleBarBinding.inflate(inflater, this, true);
 
         setIconDrawable(drawable);
         setTitleText(titleText);
@@ -67,7 +54,7 @@ public class TitleBarCell extends FrameLayout {
      * Set custom drawable for the left icon
      */
     public void setIconDrawable(Drawable drawable) {
-        imageView.setImageDrawable(drawable);
+        binding.genericIcon.setImageDrawable(drawable);
 
         // Invalidate to trigger layout update
         invalidate();
@@ -77,11 +64,11 @@ public class TitleBarCell extends FrameLayout {
      * Set custom drawable for the left icon generated via the ITintedIcon interface.
      */
     public void setIcon(ITintedIcon icon){
-        AssetLoader.setIcon(imageView, icon);
+        AssetLoader.setIcon(binding.genericIcon, icon);
     }
 
     public void setIconResource(@DrawableRes int resId) {
-        imageView.setImageResource(resId);
+        binding.genericIcon.setImageResource(resId);
 
         // Invalidate to trigger layout update
         invalidate();
@@ -92,7 +79,7 @@ public class TitleBarCell extends FrameLayout {
      * @param titleText
      */
     public void setTitleText(String titleText) {
-        titleView.setText(titleText);
+        binding.titleText.setText(titleText);
     }
 
     /**
@@ -100,7 +87,7 @@ public class TitleBarCell extends FrameLayout {
      * @param altTitleText
      */
     public void setAltTitleText(String altTitleText) {
-        titleAltView.setText(altTitleText);
+        binding.titleAltText.setText(altTitleText);
         maybeEnableAltText();
     }
 
@@ -108,11 +95,11 @@ public class TitleBarCell extends FrameLayout {
      * Runs some logic to see if alt text should be enabled.
      */
     private void maybeEnableAltText() {
-        CharSequence altText = titleAltView.getText();
+        CharSequence altText = binding.titleAltText.getText();
         if (altText != null && altText.length() > 0) {
-            titleAltView.setVisibility(VISIBLE);
+            binding.titleAltText.setVisibility(VISIBLE);
         } else {
-            titleAltView.setVisibility(GONE);
+            binding.titleAltText.setVisibility(GONE);
         }
     }
 }

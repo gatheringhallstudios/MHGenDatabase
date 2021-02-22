@@ -1,13 +1,8 @@
 package com.ghstudios.android.adapter
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.ClickListeners.BasicItemClickListener
 import com.ghstudios.android.adapter.common.SimpleListDelegate
