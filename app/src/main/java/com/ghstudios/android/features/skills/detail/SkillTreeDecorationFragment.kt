@@ -66,7 +66,7 @@ class SkillTreeDecorationFragment : ListFragment() {
             notifyDataSetChanged()
         }
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val view = when (convertView) {
                 null -> {
                     val inflater = LayoutInflater.from(context)

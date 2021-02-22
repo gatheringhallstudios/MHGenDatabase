@@ -7,6 +7,7 @@
     <attr name="labelText" format="string" />>
     <attr name="labelAltText" format="string" />
     <attr name="valueText" format="string" />
+    <attr name="iconSrc" format="reference" />
 
     <declare-styleable name="SectionHeaderCell">
         <attr name="labelText" />

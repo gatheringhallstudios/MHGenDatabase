@@ -50,7 +50,7 @@ class SkillTreeArmorFragment : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState) // required for ListFragment
 
-        val mType = arguments!!.getString(ARG_TYPE)
+        val mType = arguments!!.getString(ARG_TYPE) ?: ""
 
         val adapter = ArmorToSkillTreeListAdapter(context!!)
         listAdapter = adapter
@@ -84,7 +84,7 @@ class SkillTreeArmorFragment : ListFragment() {
             }
 
             // Get the skill for the current row
-            val skill = getItem(position)
+            val skill = checkNotNull(getItem(position))
             val armor = skill.item as Armor
 
             // Set up the text view

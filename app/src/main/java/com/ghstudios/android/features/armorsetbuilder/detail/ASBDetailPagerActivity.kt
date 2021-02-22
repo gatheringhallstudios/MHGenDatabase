@@ -139,7 +139,7 @@ class ASBDetailPagerActivity : BasePagerActivity() {
 
                 // Executed after the edit dialog completes
                 REQUEST_CODE_SET_EDIT -> {
-                    val name = data.getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME)
+                    val name = data.getStringExtra(ASBSetListFragment.EXTRA_ASB_SET_NAME) ?: ""
                     val rank = data.getIntExtra(ASBSetListFragment.EXTRA_ASB_SET_RANK, -1)
                     val hunterType = data.getIntExtra(ASBSetListFragment.EXTRA_ASB_SET_HUNTER_TYPE, -1)
                     viewModel.updateSet(name, Rank.from(rank), hunterType)

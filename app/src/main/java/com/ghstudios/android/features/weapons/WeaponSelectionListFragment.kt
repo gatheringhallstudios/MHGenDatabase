@@ -53,7 +53,7 @@ class WeaponSelectionListFragment : ListFragment() {
         return v
     }
 
-    private inner class WeaponItemAdapter(items: List<WeaponSelectionItem>) : ArrayAdapter<WeaponSelectionItem>(activity, 0, items) {
+    private inner class WeaponItemAdapter(items: List<WeaponSelectionItem>) : ArrayAdapter<WeaponSelectionItem>(requireContext(), 0, items) {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             // If there's already an inflated view, reuse it
@@ -65,7 +65,7 @@ class WeaponSelectionListFragment : ListFragment() {
                 else -> convertView
             }
 
-            val item = getItem(position)
+            val item = checkNotNull(getItem(position))
 
             val textView = view.findViewById<TextView>(R.id.item_label)
             val imageView = view.findViewById<ImageView>(R.id.item_image)

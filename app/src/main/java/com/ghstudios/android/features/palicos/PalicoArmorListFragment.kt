@@ -38,7 +38,7 @@ class PalicoArmorListFragment : ListFragment() {
     }
 
     class ArmorAdapter(c: Context,items: List<PalicoArmor>) : ArrayAdapter<PalicoArmor>(c,android.R.layout.simple_list_item_1,items){
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val v:View
             if(convertView == null)
                 v = LayoutInflater.from(context).inflate(R.layout.fragment_palico_armor_listitem,parent,false)

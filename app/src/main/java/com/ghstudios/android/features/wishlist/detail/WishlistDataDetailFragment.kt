@@ -58,9 +58,9 @@ class WishlistDataDetailFragment : ListFragment() {
     private inner class WishlistDataListAdapter(
             context: Context?,
             items: List<WishlistData>
-    ) : ArrayAdapter<WishlistData>(context, R.layout.fragment_wishlist_item_listitem, items) {
+    ) : ArrayAdapter<WishlistData>(requireContext(), R.layout.fragment_wishlist_item_listitem, items) {
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val view = if (convertView == null) {
                 val inflater = LayoutInflater.from(context)
                 inflater.inflate(R.layout.fragment_wishlist_item_listitem,
