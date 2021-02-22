@@ -3,7 +3,7 @@ import com.android.builder.core.BuilderConstants
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 7

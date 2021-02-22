@@ -76,14 +76,14 @@ class WishlistDetailPagerActivity: BasePagerActivity() {
         updateUI()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         val fm = supportFragmentManager
 
         val wishlistId = viewModel.wishlistId
         val name = viewModel.wishlist.value?.name
 
-        when (item!!.itemId) {
+        when (item.itemId) {
             // Launch Rename Wishlist dialog
             R.id.wishlist_rename -> {
                 val dialog = WishlistRenameDialogFragment.newInstance(wishlistId, name)

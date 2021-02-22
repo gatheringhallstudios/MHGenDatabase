@@ -78,7 +78,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_ADD_ASB_SET -> {
-                    val name = data!!.getStringExtra(EXTRA_ASB_SET_NAME)
+                    val name = data!!.getStringExtra(EXTRA_ASB_SET_NAME) ?: ""
                     val rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1)
                     val hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1)
                     viewModel.addSet(name, Rank.from(rank), hunterType)
@@ -86,7 +86,7 @@ class ASBSetListFragment : RecyclerViewFragment() {
 
                 REQUEST_EDIT_ASB_SET -> {
                     val id = data!!.getLongExtra(EXTRA_ASB_SET_ID, -1)
-                    val name = data.getStringExtra(EXTRA_ASB_SET_NAME)
+                    val name = data.getStringExtra(EXTRA_ASB_SET_NAME) ?: ""
                     val rank = data.getIntExtra(EXTRA_ASB_SET_RANK, -1)
                     val hunterType = data.getIntExtra(EXTRA_ASB_SET_HUNTER_TYPE, -1)
                     viewModel.updateASBSet(id, name, Rank.from(rank), hunterType)

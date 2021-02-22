@@ -115,10 +115,10 @@ class ArmorListAdapter(
      */
     var onArmorSelected: ((Armor) -> Unit)? = null
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val inflater = LayoutInflater.from(parent?.context)
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val inflater = LayoutInflater.from(parent.context)
         val view = convertView ?: inflater.inflate(R.layout.listitem_armor_piece, parent, false)
-        val armorWithSkill = getItem(position)
+        val armorWithSkill = checkNotNull(getItem(position))
         bindArmorView(view, armorWithSkill)
 
         view.setOnClickListener {
