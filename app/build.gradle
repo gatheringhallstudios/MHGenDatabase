@@ -62,6 +62,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 androidExtensions {
@@ -99,12 +103,6 @@ dependencies {
     implementation project(':multilevelexpindlistview')
     implementation project(':android-sqlite-asset-helper')
     implementation project(':android-section-adapter')
-
-    /*
-     * Butterknife (view binding)
-     */
-    implementation 'com.jakewharton:butterknife:10.0.0'
-    kapt 'com.jakewharton:butterknife-compiler:10.0.0'
 
     /*
      * Adapter Delegates

@@ -41,7 +41,8 @@
             android:id="@+id/divider2"
             style="@style/SectionDivider" />
 
-        <include layout="@layout/fragment_armor_resists"
+        <include android:id="@+id/armor_resits"
+            layout="@layout/fragment_armor_resists"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"

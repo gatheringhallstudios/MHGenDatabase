@@ -10,17 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.CellColumnLabelTextBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ColumnLabelTextCell extends ConstraintLayout implements LabelValueComponent {
 
-    @BindView(R.id.label_text)
-    TextView labelView;
-
-    @BindView(R.id.value_text)
-    TextView valueView;
+    private CellColumnLabelTextBinding binding;
 
     public ColumnLabelTextCell(Context context, String labelText, String valueText) {
         super(context);
@@ -49,9 +44,7 @@ public class ColumnLabelTextCell extends ConstraintLayout implements LabelValueC
 
     public void init(String labelText, String valueText) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.cell_column_label_text, this, true);
-
-        ButterKnife.bind(this);
+        binding = CellColumnLabelTextBinding.inflate(inflater, this);
 
         setLabelText(labelText);
         setValueText(valueText);
@@ -59,26 +52,26 @@ public class ColumnLabelTextCell extends ConstraintLayout implements LabelValueC
 
     @Override
     public void setLabelText(CharSequence labelText) {
-        labelView.setText(labelText);
+        binding.labelText.setText(labelText);
         if (labelText == null || labelText.length() == 0) {
-            labelView.setVisibility(View.GONE);
+            binding.labelText.setVisibility(View.GONE);
         } else {
-            labelView.setVisibility(View.VISIBLE);
+            binding.labelText.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void setValueText(CharSequence valueText) {
-        valueView.setText(valueText);
+        binding.valueText.setText(valueText);
     }
 
     @Override
     public CharSequence getLabelText() {
-        return labelView.getText();
+        return binding.labelText.getText();
     }
 
     @Override
     public CharSequence getValueText() {
-        return valueView.getText();
+        return binding.valueText.getText();
     }
 }

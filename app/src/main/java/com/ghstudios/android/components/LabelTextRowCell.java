@@ -7,13 +7,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.CellIconLabelTextBinding;
 
 /**
  * This is a full height, full width cell that displays an icon, label, and value. Used to generate
@@ -24,10 +20,7 @@ public class LabelTextRowCell extends ConstraintLayout implements LabelValueComp
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.generic_icon) ImageView imageView;
-    @BindView(R.id.label_text) TextView labelView;
-    @BindView(R.id.label_alt_text) TextView labelAltView;
-    @BindView(R.id.value_text) TextView valueView;
+    private CellIconLabelTextBinding binding;
 
     boolean altEnabled = false;
 
@@ -60,11 +53,9 @@ public class LabelTextRowCell extends ConstraintLayout implements LabelValueComp
 
     public void init(String labelText, String labelAltText, boolean altTextEnabled, String valueText) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.cell_icon_label_text, this, true);
+        binding = CellIconLabelTextBinding.inflate(inflater, this, true);
 
-        ButterKnife.bind(this);
-
-        imageView.setVisibility(View.GONE);
+        binding.genericIcon.setVisibility(View.GONE);
         setLabelText(labelText);
         setLabelAltText(labelAltText);
         setAltTextEnabled(altTextEnabled);
@@ -73,7 +64,7 @@ public class LabelTextRowCell extends ConstraintLayout implements LabelValueComp
 
     @Override
     public void setLabelText(CharSequence labelText) {
-        labelView.setText(labelText);
+        binding.labelText.setText(labelText);
     }
 
     /**
@@ -81,7 +72,7 @@ public class LabelTextRowCell extends ConstraintLayout implements LabelValueComp
      * @param altTitleText
      */
     public void setLabelAltText(String altTitleText) {
-        labelAltView.setText(altTitleText);
+        binding.labelAltText.setText(altTitleText);
         updateAltTextVisibility();
     }
 
@@ -96,28 +87,28 @@ public class LabelTextRowCell extends ConstraintLayout implements LabelValueComp
 
     @Override
     public void setValueText(CharSequence valueText) {
-        valueView.setText(valueText);
+        binding.valueText.setText(valueText);
     }
 
     /**
      * Runs some logic to see if alt text should be enabled.
      */
     private void updateAltTextVisibility() {
-        CharSequence altText = labelAltView.getText();
+        CharSequence altText = binding.labelAltText.getText();
         if (altEnabled && altText != null && altText.length() > 0) {
-            labelAltView.setVisibility(VISIBLE);
+            binding.labelAltText.setVisibility(VISIBLE);
         } else {
-            labelAltView.setVisibility(GONE);
+            binding.labelAltText.setVisibility(GONE);
         }
     }
 
     @Override
     public CharSequence getLabelText() {
-        return labelView.getText();
+        return binding.labelText.getText();
     }
 
     @Override
     public CharSequence getValueText() {
-        return valueView.getText();
+        return binding.valueText.getText();
     }
 }

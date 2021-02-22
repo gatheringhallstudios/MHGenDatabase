@@ -21,10 +21,9 @@ import com.ghstudios.android.components.SectionHeaderCell
 import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.mhgendatabase.R
 
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.ghstudios.android.*
 import com.ghstudios.android.data.classes.*
+import com.ghstudios.android.mhgendatabase.databinding.FragmentMonsterSummaryBinding
 
 private fun imageFromWeaknessRating(weaknessRating: WeaknessRating) = when(weaknessRating) {
     WeaknessRating.WEAK -> R.drawable.effectiveness_2
@@ -95,23 +94,12 @@ class MonsterSummaryFragment : Fragment() {
 
     private val TAG = this::class.java.simpleName
 
-    @BindView(R.id.monster_header)
-    lateinit var headerView: TitleBarCell
-
-    @BindView(R.id.monster_state_list)
-    lateinit var statesListView: LinearLayout
-
-    @BindView(R.id.ailments_data) lateinit var ailmentTextView: TextView
-    @BindView(R.id.habitat_list) lateinit var habitatListView: LinearLayout
-
-    @BindView(R.id.ailments_empty) lateinit var ailmentsEmpty: View
-    @BindView(R.id.habitats_empty) lateinit var habitatsEmpty: View
+    private lateinit var binding: FragmentMonsterSummaryBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_monster_summary, container, false)
-        ButterKnife.bind(this, view)
-        return view
+        binding = FragmentMonsterSummaryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -120,8 +108,8 @@ class MonsterSummaryFragment : Fragment() {
         viewModel.monsterData.observe(viewLifecycleOwner, Observer { monster ->
             if (monster == null) return@Observer
 
-            headerView.setIcon(monster)
-            headerView.setTitleText(monster.name)
+            binding.monsterHeader.setIcon(monster)
+            binding.monsterHeader.setTitleText(monster.name)
         })
 
         viewModel.weaknessData.observe(viewLifecycleOwner, Observer(::updateWeaknesses))
@@ -134,7 +122,7 @@ class MonsterSummaryFragment : Fragment() {
      * If null or empty, then nothing is rendered regarding weaknesses
      */
     private fun updateWeaknesses(weaknesses: List<MonsterWeaknessResult>?) {
-        statesListView.removeAllViews()
+        binding.monsterStateList.removeAllViews()
         if (weaknesses == null || weaknesses.isEmpty()) return
 
         for (weakness in weaknesses) {
@@ -144,7 +132,7 @@ class MonsterSummaryFragment : Fragment() {
 
     private fun addWeakness(mWeakness: MonsterWeaknessResult) {
         val inflater = LayoutInflater.from(context)
-        val weaknessView = inflater.inflate(R.layout.fragment_monster_summary_state, statesListView, false)
+        val weaknessView = inflater.inflate(R.layout.fragment_monster_summary_state, binding.monsterStateList, false)
 
         // Set title
         val header = weaknessView.findViewById<SectionHeaderCell>(R.id.state_name)
@@ -181,7 +169,7 @@ class MonsterSummaryFragment : Fragment() {
             addIcon(itemListView, imagePath, null)
         }
 
-        statesListView.addView(weaknessView)
+        binding.monsterStateList.addView(weaknessView)
     }
 
     /**
@@ -191,15 +179,15 @@ class MonsterSummaryFragment : Fragment() {
     private fun populateAilments(ailments: List<MonsterAilment>?) {
         // if no ailments, show blank slate instead of the ailment list, and return
         if (ailments == null || ailments.isEmpty()) {
-            ailmentsEmpty.visibility = View.VISIBLE
-            ailmentTextView.visibility = View.GONE
+            binding.ailmentsEmpty.root.visibility = View.VISIBLE
+            binding.ailmentsData.visibility = View.GONE
             return
         }
 
         // hide blank slate, and make the ailment list visible
-        ailmentsEmpty.visibility = View.GONE
-        ailmentTextView.visibility = View.VISIBLE
-        ailmentTextView.text = ailments.joinToString("\n") {
+        binding.ailmentsEmpty.root.visibility = View.GONE
+        binding.ailmentsData.visibility = View.VISIBLE
+        binding.ailmentsData.text = ailments.joinToString("\n") {
             localizeAilment(context!!, it.ailment)
         }
     }
@@ -210,16 +198,16 @@ class MonsterSummaryFragment : Fragment() {
      */
     private fun populateHabitats(habitats: List<Habitat>?) {
         if (habitats == null || habitats.isEmpty()) {
-            habitatsEmpty.visibility = View.VISIBLE
+            binding.habitatsEmpty.root.visibility = View.VISIBLE
             return
         }
 
-        habitatsEmpty.visibility = View.GONE
+        binding.habitatsEmpty.root.visibility = View.GONE
         val inflater = LayoutInflater.from(context)
 
-        habitatListView.removeAllViews()
+        binding.habitatList.removeAllViews()
         for (habitat in habitats) {
-            val view = inflater.inflate(R.layout.fragment_monster_habitat_listitem, habitatListView, false)
+            val view = inflater.inflate(R.layout.fragment_monster_habitat_listitem, binding.habitatList, false)
 
             val itemLayout = view.findViewById<RelativeLayout>(R.id.listitem)
             val mapView = view.findViewById<ImageView>(R.id.mapImage)
@@ -241,7 +229,7 @@ class MonsterSummaryFragment : Fragment() {
                 itemLayout.setOnClickListener(LocationClickListener(context, locationId))
             }
 
-            habitatListView.addView(view)
+            binding.habitatList.addView(view)
         }
     }
 

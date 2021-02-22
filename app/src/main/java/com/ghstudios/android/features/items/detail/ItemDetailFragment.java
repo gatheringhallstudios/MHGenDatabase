@@ -6,35 +6,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ghstudios.android.adapter.ItemCombinationAdapterDelegate;
 import com.ghstudios.android.adapter.common.BasicListDelegationAdapter;
-import com.ghstudios.android.components.LabelValueComponent;
-import com.ghstudios.android.components.TitleBarCell;
 import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.FragmentItemDetailBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ItemDetailFragment extends Fragment {
     private static final String ARG_ITEM_ID = "ITEM_ID";
 
-    @BindView(R.id.item_title) TitleBarCell titleCell;
-
-    @BindView(R.id.carry) LabelValueComponent carryCell;
-    @BindView(R.id.buy) LabelValueComponent buyCell;
-    @BindView(R.id.sell) LabelValueComponent sellCell;
-
-    @BindView(R.id.description) TextView descriptionTextView;
-
-    @BindView(R.id.combination_section) ViewGroup combinationSection;
-    @BindView(R.id.craft_combinations) RecyclerView combinationList;
+    private FragmentItemDetailBinding binding;
 
     public static ItemDetailFragment newInstance(long itemId) {
         Bundle args = new Bundle();
@@ -47,11 +33,8 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_detail, container, false);
-
-        ButterKnife.bind(this, view);
-
-        return view;
+        binding = FragmentItemDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -68,7 +51,7 @@ public class ItemDetailFragment extends Fragment {
                 return;
             }
 
-            combinationSection.setVisibility(View.VISIBLE);
+            binding.combinationSection.setVisibility(View.VISIBLE);
 
             // DO NOT PUT ADAPTER AS AN INSTANCE VARIABLE OF THE FRAGMENT (or it'll leak)
             ItemCombinationAdapterDelegate delegate = new ItemCombinationAdapterDelegate();
@@ -76,17 +59,17 @@ public class ItemDetailFragment extends Fragment {
             BasicListDelegationAdapter<Object> adapter = new BasicListDelegationAdapter<>(delegate);
             adapter.setItems(items);
 
-            combinationList.setAdapter(adapter);
+            binding.craftCombinations.setAdapter(adapter);
         });
     }
 
     private void populateItem(Item mItem) {
         // Set title icon and image
-        titleCell.setIcon(mItem);
-        titleCell.setTitleText(mItem.getName());
-        titleCell.setAltTitleText(getString(R.string.value_rare, mItem.getRarityString()));
+        binding.itemTitle.setIcon(mItem);
+        binding.itemTitle.setTitleText(mItem.getName());
+        binding.itemTitle.setAltTitleText(getString(R.string.value_rare, mItem.getRarityString()));
 
-        descriptionTextView.setText(mItem.getDescription());
+        binding.description.setText(mItem.getDescription());
 
         String cellSell = "" + mItem.getSell() + "z";
         String cellBuy = "" + mItem.getBuy() + "z";
@@ -98,8 +81,8 @@ public class ItemDetailFragment extends Fragment {
             cellSell = "-";
         }
 
-        carryCell.setValueText(String.valueOf(mItem.getCarryCapacity()));
-        buyCell.setValueText(cellBuy);
-        sellCell.setValueText(cellSell);
+        binding.carry.setValueText(String.valueOf(mItem.getCarryCapacity()));
+        binding.buy.setValueText(cellBuy);
+        binding.sell.setValueText(cellSell);
     }
 }

@@ -27,12 +27,11 @@ import com.ghstudios.android.data.classes.Item;
 import com.ghstudios.android.data.classes.ItemToSkillTree;
 import com.ghstudios.android.features.wishlist.external.WishlistDataAddDialogFragment;
 import com.ghstudios.android.mhgendatabase.R;
+import com.ghstudios.android.mhgendatabase.databinding.FragmentArmorDetailBinding;
 
 import java.util.List;
 
 import androidx.lifecycle.ViewModelProvider;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ArmorDetailFragment extends Fragment {
     private static final String ARG_ARMOR_ID = "ARMOR_ID";
@@ -42,24 +41,7 @@ public class ArmorDetailFragment extends Fragment {
     private ArmorDetailViewModel viewModel;
     private Armor armor; // set using the viewmodel
 
-    @BindView(R.id.titlebar)
-    TitleBarCell titleBar;
-
-    @BindView(R.id.slots) SlotsView slotsReqView;
-    @BindView(R.id.defense) ColumnLabelTextCell defenseView;
-    @BindView(R.id.part) ColumnLabelTextCell partView;
-
-    @BindView(R.id.skill_section) ViewGroup skillSection;
-    @BindView(R.id.skill_list) LinearLayout skillListView;
-
-    @BindView(R.id.recipe_header) View recipeHeader;
-    @BindView(R.id.recipe) ItemRecipeCell recipeView;
-    
-    private TextView fireResTextView;
-    private TextView waterResTextView;
-    private TextView iceResTextView;
-    private TextView thunderResTextView;
-    private TextView dragonResTextView;
+    private FragmentArmorDetailBinding binding;
 
     public static ArmorDetailFragment newInstance(long armorId) {
         Bundle args = new Bundle();
@@ -90,18 +72,8 @@ public class ArmorDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_armor_detail,
-                container, false);
-
-        ButterKnife.bind(this, view);
-
-        fireResTextView = view.findViewById(R.id.fire_res);
-        waterResTextView = view.findViewById(R.id.water_res);
-        iceResTextView = view.findViewById(R.id.ice_res);
-        thunderResTextView = view.findViewById(R.id.thunder_res);
-        dragonResTextView = view.findViewById(R.id.dragon_res);
-        
-        return view;
+        binding = FragmentArmorDetailBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -117,32 +89,32 @@ public class ArmorDetailFragment extends Fragment {
 
         this.armor = armor;
 
-        titleBar.setTitleText(armor.getName());
-        titleBar.setIcon(armor);
-        titleBar.setAltTitleText(getString(R.string.value_rare, armor.getRarityString()));
+        binding.titlebar.setTitleText(armor.getName());
+        binding.titlebar.setIcon(armor);
+        binding.titlebar.setAltTitleText(getString(R.string.value_rare, armor.getRarityString()));
 
         String cellPart = "" + armor.getSlot();
         String cellDefense = "" + armor.getDefense() + "~" + armor.getMaxDefense();
 
-        slotsReqView.setSlots(armor.getNumSlots(), 0);
-        partView.setValueText(cellPart);
-        defenseView.setValueText(cellDefense);
+        binding.partSlots.slots.setSlots(armor.getNumSlots(), 0);
+        binding.part.setValueText(cellPart);
+        binding.defense.setValueText(cellDefense);
 
-        fireResTextView.setText(String.valueOf(armor.getFireRes()));
-        waterResTextView.setText(String.valueOf(armor.getWaterRes()));
-        iceResTextView.setText(String.valueOf(armor.getIceRes()));
-        thunderResTextView.setText(String.valueOf(armor.getThunderRes()));
-        dragonResTextView.setText(String.valueOf(armor.getDragonRes()));
+        binding.armorResists.fireRes.setText(String.valueOf(armor.getFireRes()));
+        binding.armorResists.waterRes.setText(String.valueOf(armor.getWaterRes()));
+        binding.armorResists.iceRes.setText(String.valueOf(armor.getIceRes()));
+        binding.armorResists.thunderRes.setText(String.valueOf(armor.getThunderRes()));
+        binding.armorResists.dragonRes.setText(String.valueOf(armor.getDragonRes()));
     }
 
     private void populateSkills(List<ItemToSkillTree> skills) {
-        skillListView.removeAllViews();
+        binding.skillList.removeAllViews();
         if (skills.size() == 0)  {
-            skillSection.setVisibility(View.GONE);
+            binding.skillSection.setVisibility(View.GONE);
             return;
         }
 
-        skillSection.setVisibility(View.VISIBLE);
+        binding.skillSection.setVisibility(View.VISIBLE);
         for (ItemToSkillTree skill : skills) {
             LabelTextRowCell skillItem = new LabelTextRowCell(getContext());
             skillItem.setLabelText(skill.getSkillTree().getName());
@@ -152,23 +124,23 @@ public class ArmorDetailFragment extends Fragment {
                     new SkillClickListener(getContext(), skill.getSkillTree().getId())
             );
 
-            skillListView.addView(skillItem);
+            binding.skillList.addView(skillItem);
         }
     }
 
     private void populateRecipe(List<Component> recipe) {
         if (recipe == null || recipe.isEmpty()) {
-            recipeHeader.setVisibility(View.GONE);
-            recipeView.setVisibility(View.GONE);
+            binding.recipeHeader.setVisibility(View.GONE);
+            binding.recipe.setVisibility(View.GONE);
             return;
         }
 
-        recipeHeader.setVisibility(View.VISIBLE);
-        recipeView.setVisibility(View.VISIBLE);
+        binding.recipeHeader.setVisibility(View.VISIBLE);
+        binding.recipe.setVisibility(View.VISIBLE);
 
         for (Component component : recipe) {
             Item item = component.getComponent();
-            View itemCell = recipeView.addItem(item, item.getName(), component.getQuantity(),component.isKey());
+            View itemCell = binding.recipe.addItem(item, item.getName(), component.getQuantity(),component.isKey());
             itemCell.setOnClickListener(new ItemClickListener(getContext(), item));
         }
     }
