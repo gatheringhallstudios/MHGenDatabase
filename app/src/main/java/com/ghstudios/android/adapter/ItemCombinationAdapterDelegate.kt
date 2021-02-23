@@ -9,7 +9,7 @@ import com.ghstudios.android.adapter.common.SimpleListDelegate
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Combining
 import com.ghstudios.android.mhgendatabase.R
-import kotlinx.android.synthetic.main.fragment_combining_listitem.*
+import com.ghstudios.android.mhgendatabase.databinding.FragmentCombiningListitemBinding
 
 /**
  * An adapter delegate that can be added to any adapter delegate adapter.
@@ -31,32 +31,35 @@ class ItemCombinationAdapterDelegate: SimpleListDelegate<Combining>() {
 
     override fun bindView(viewHolder: SimpleViewHolder, data: Combining) {
         val context = viewHolder.context
+        val binding = FragmentCombiningListitemBinding.bind(viewHolder.itemView)
+        with (binding) {
+            AssetLoader.setIcon(binding.resultIcon,data.createdItem)
+            AssetLoader.setIcon(binding.item1Icon,data.item1)
+            AssetLoader.setIcon(binding.item2Icon,data.item2)
 
-        AssetLoader.setIcon(viewHolder.result_icon,data.createdItem)
-        AssetLoader.setIcon(viewHolder.item1_icon,data.item1)
-        AssetLoader.setIcon(viewHolder.item2_icon,data.item2)
+            resultName.text = data.createdItem.name
+            item1Name.text = data.item1.name
+            item2Name.text = data.item2.name
 
-        viewHolder.result_name.text = data.createdItem.name
-        viewHolder.item1_name.text = data.item1.name
-        viewHolder.item2_name.text = data.item2.name
+            percentage.text = "${data.percentage}%"
+        }
 
-        viewHolder.percentage.text = "${data.percentage}%"
 
         val min = data.amountMadeMin
         val max = data.amountMadeMax
-        viewHolder.yield_amount.text = "x" + when (min == max) {
+        binding.yieldAmount.text = "x" + when (min == max) {
             true -> min.toString()
             false -> "$min-$max"
         }
 
-        viewHolder.item1.setOnClickListener(BasicItemClickListener(context, data.item1.id))
-        viewHolder.item2.setOnClickListener(BasicItemClickListener(context, data.item2.id))
+        binding.item1.setOnClickListener(BasicItemClickListener(context, data.item1.id))
+        binding.item2.setOnClickListener(BasicItemClickListener(context, data.item2.id))
 
         if (resultItemNavigationEnabled) {
-            viewHolder.itemView.setOnClickListener(BasicItemClickListener(context, data.createdItem.id))
+            binding.root.setOnClickListener(BasicItemClickListener(context, data.createdItem.id))
         } else {
             // disable selectable item background
-            viewHolder.itemView.setBackgroundResource(0)
+            binding.root.setBackgroundResource(0)
         }
     }
 }

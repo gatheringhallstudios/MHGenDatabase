@@ -8,8 +8,8 @@ import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Item
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.FragmentItemListitemBinding
 import com.ghstudios.android.util.setImageAsset
-import kotlinx.android.synthetic.main.fragment_item_listitem.*
 
 class ItemListAdapter : SimpleRecyclerViewAdapter<Item>() {
     override fun onCreateView(parent: ViewGroup): View {
@@ -19,11 +19,10 @@ class ItemListAdapter : SimpleRecyclerViewAdapter<Item>() {
     }
 
     override fun bindView(viewHolder: SimpleViewHolder, item: Item) {
-        val itemNameTextView = viewHolder.text1
-        val itemImageView = viewHolder.icon
+        val binding = FragmentItemListitemBinding.bind(viewHolder.itemView)
 
-        itemNameTextView.text = item.name
-        itemImageView.setImageAsset(item)
+        binding.text1.text = item.name
+        binding.icon.setImageAsset(item)
 
         val listener = ItemClickListener(viewHolder.context, item)
         viewHolder.itemView.setOnClickListener(listener)

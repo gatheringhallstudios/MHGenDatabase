@@ -9,7 +9,7 @@ import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Monster
 import com.ghstudios.android.mhgendatabase.R
-import kotlinx.android.synthetic.main.fragment_list_item_large.*
+import com.ghstudios.android.mhgendatabase.databinding.FragmentListItemLargeBinding
 
 /**
  * An adapter used to display a monster list (and only a monster list).
@@ -21,9 +21,12 @@ class MonsterListAdapter: SimpleRecyclerViewAdapter<Monster>() {
     }
 
     override fun bindView(viewHolder: SimpleViewHolder, monster: Monster) {
-        AssetLoader.setIcon(viewHolder.item_image,monster)
-        viewHolder.item_label.text = monster.name
-        viewHolder.itemView.tag = monster.id
-        viewHolder.itemView.setOnClickListener(MonsterClickListener(viewHolder.context, monster.id))
+        val binding = FragmentListItemLargeBinding.bind(viewHolder.itemView)
+        with(binding) {
+            AssetLoader.setIcon(itemImage,monster)
+            itemLabel.text = monster.name
+            root.tag = monster.id
+            root.setOnClickListener(MonsterClickListener(viewHolder.context, monster.id))
+        }
     }
 }
