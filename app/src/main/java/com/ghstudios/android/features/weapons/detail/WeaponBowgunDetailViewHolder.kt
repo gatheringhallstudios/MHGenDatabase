@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.ViewWeaponDetailBowgunBinding
 import com.ghstudios.android.util.getColorCompat
-import kotlinx.android.synthetic.main.view_weapon_detail_bowgun.view.*
 
 private fun getWaitString(context: Context, wait: Int) = when (wait) {
     0 -> context.getString(R.string.rapid_fire_short_wait)
@@ -20,79 +20,85 @@ private fun getWaitString(context: Context, wait: Int) = when (wait) {
 }
 
 class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
-    private val view: View
+    private val binding: ViewWeaponDetailBowgunBinding
     private val ammoCells: List<TextView>
     private val internalAmmoCells: List<TextView>
     private val extraAmmoCells: List<TextView>
 
-    val context get() = view.context
+    val context get() = binding.root.context
 
     init {
         val inflater = LayoutInflater.from(parent.context)
-        view = inflater.inflate(R.layout.view_weapon_detail_bowgun, parent, true)
+        binding = ViewWeaponDetailBowgunBinding.inflate(inflater, parent, true)
 
-        ammoCells = listOf(
-            view.findViewById(R.id.normal1),
-            view.findViewById(R.id.normal2),
-            view.findViewById(R.id.normal3),
-            view.findViewById(R.id.pierce1),
-            view.findViewById(R.id.pierce2),
-            view.findViewById(R.id.pierce3),
-            view.findViewById(R.id.pellet1),
-            view.findViewById(R.id.pellet2),
-            view.findViewById(R.id.pellet3),
-            view.findViewById(R.id.crag1),
-            view.findViewById(R.id.crag2),
-            view.findViewById(R.id.crag3),
-            view.findViewById(R.id.clust1),
-            view.findViewById(R.id.clust2),
-            view.findViewById(R.id.clust3),
-            view.findViewById(R.id.flaming),
-            view.findViewById(R.id.water),
-            view.findViewById(R.id.thunder),
-            view.findViewById(R.id.freeze),
-            view.findViewById(R.id.dragon),
-            view.findViewById(R.id.poison1),
-            view.findViewById(R.id.poison2),
-            view.findViewById(R.id.para1),
-            view.findViewById(R.id.para2),
-            view.findViewById(R.id.sleep1),
-            view.findViewById(R.id.sleep2),
-            view.findViewById(R.id.exhaust1),
-            view.findViewById(R.id.exhaust2),
-            view.findViewById(R.id.recov1),
-            view.findViewById(R.id.recov2)
-        )
+        ammoCells = with(binding) {
+            listOf(
+                normal1,
+                normal2,
+                normal3,
+                pierce1,
+                pierce2,
+                pierce3,
+                pellet1,
+                pellet2,
+                pellet3,
+                crag1,
+                crag2,
+                crag3,
+                clust1,
+                clust2,
+                clust3,
+                flaming,
+                water,
+                thunder,
+                freeze,
+                dragon,
+                poison1,
+                poison2,
+                para1,
+                para2,
+                sleep1,
+                sleep2,
+                exhaust1,
+                exhaust2,
+                recov1,
+                recov2
+            )
+        }
 
-        internalAmmoCells = listOf(
-                view.findViewById(R.id.internal_ammo_1),
-                view.findViewById(R.id.internal_ammo_2),
-                view.findViewById(R.id.internal_ammo_3),
-                view.findViewById(R.id.internal_ammo_4),
-                view.findViewById(R.id.internal_ammo_5)
-        )
-
-        extraAmmoCells = listOf(
-                view.findViewById(R.id.rapid_ammo_1),
-                view.findViewById(R.id.rapid_ammo_2),
-                view.findViewById(R.id.rapid_ammo_3),
-                view.findViewById(R.id.rapid_ammo_4),
-                view.findViewById(R.id.rapid_ammo_5)
-        )
+        internalAmmoCells = with(binding) {
+            listOf(
+                internalAmmo1,
+                internalAmmo2,
+                internalAmmo3,
+                internalAmmo4,
+                internalAmmo5
+            )
+        }
+        extraAmmoCells = with(binding) {
+            listOf(
+                rapidAmmo1,
+                rapidAmmo2,
+                rapidAmmo3,
+                rapidAmmo4,
+                rapidAmmo5
+            )
+        }
     }
 
     override fun bindWeapon(weapon: Weapon) {
-        // Usual weapon parameters
-        view.attack_value.text = weapon.attack.toString()
-        view.affinity_value.text = weapon.affinity + "%"
-        view.defense_value.text = weapon.defense.toString()
-        view.slots.setSlots(weapon.numSlots, 0)
+        with(binding) {
+            // Usual weapon parameters
+            attackValue.text = weapon.attack.toString()
+            affinityValue.text = weapon.affinity + "%"
+            defenseValue.text = weapon.defense.toString()
+            slots.setSlots(weapon.numSlots, 0)
 
-        // Bowgun basic data
-        view.reload_value.text = weapon.reloadSpeed
-        view.recoil_value.text = weapon.recoil
-        view.deviation_value.text = weapon.deviation
-
+            // Bowgun basic data
+            reloadValue.text = weapon.reloadSpeed
+            recoilValue.text = weapon.recoil
+            deviationValue.text = weapon.deviation
+        }
         // weapon ammo (todo: move this parsing to the weapon model)
         val ammos = weapon.ammo?.split("\\|".toRegex()) ?: emptyList()
         for ((ammoView, valueStr) in ammoCells.zip(ammos)) {
@@ -135,7 +141,7 @@ class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
     }
 
     private fun bindRapidFire(weapon: Weapon) {
-        view.weapon_extra_title.setText(R.string.rapid_fire)
+        binding.weaponExtraTitle.setText(R.string.rapid_fire)
 
         val rapid = weapon.rapidFire?.split("\\*".toRegex()) ?: emptyList()
 
@@ -158,7 +164,7 @@ class WeaponBowgunDetailViewHolder(parent: ViewGroup): WeaponDetailViewHolder {
     }
 
     private fun bindSiegeFire(weapon: Weapon) {
-        view.weapon_extra_title.setText(R.string.siege_mode)
+        binding.weaponExtraTitle.setText(R.string.siege_mode)
 
         val siege = weapon.rapidFire?.split("\\*".toRegex()) ?: emptyList()
 

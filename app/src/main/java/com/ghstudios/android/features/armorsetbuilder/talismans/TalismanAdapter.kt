@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.ghstudios.android.AssetLoader
 import com.ghstudios.android.adapter.common.SimpleDiffRecyclerViewAdapter
-import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.ASBTalisman
 import com.ghstudios.android.mhgendatabase.R
-import kotlinx.android.synthetic.main.listitem_talisman.*
+import com.ghstudios.android.mhgendatabase.databinding.ListitemTalismanBinding
 
 /**
  * A recyclerview adapter used to display talismans
@@ -34,33 +33,35 @@ class TalismanAdapter(
         }
 
         val ctx = viewHolder.context
-
-        viewHolder.icon.setImageDrawable(AssetLoader.loadIconFor(data))
-        viewHolder.slots.setSlots(data.numSlots, 0)
-        viewHolder.skill_1.apply {
+        val binding = ListitemTalismanBinding.bind(viewHolder.itemView)
+        with(binding) {
+            icon.setImageDrawable(AssetLoader.loadIconFor(data))
+            slots.setSlots(data.numSlots, 0)
+        }
+        binding.skill1.apply {
             visibility = boolToVisibility(data.firstSkill != null)
             text = data.firstSkill?.skillTree?.name ?: ""
         }
-        viewHolder.skill_1_pts.apply {
-            visibility = viewHolder.skill_1.visibility
+        binding.skill1Pts.apply {
+            visibility = binding.skill1.visibility
             text = ctx.getString(R.string.format_plus, data.firstSkill?.points)
         }
-        viewHolder.skill_2.apply {
+        binding.skill2.apply {
             visibility = boolToVisibility(data.secondSkill != null)
             text = data.secondSkill?.skillTree?.name ?: ""
         }
-        viewHolder.skill_2_pts.apply {
-            visibility = viewHolder.skill_2.visibility
+        binding.skill2Pts.apply {
+            visibility = binding.skill2.visibility
             text = ctx.getString(R.string.format_plus, data.secondSkill?.points)
         }
 
-        viewHolder.itemView.tag = data.id
-        viewHolder.itemView.setOnClickListener {
+        binding.root.tag = data.id
+        binding.root.setOnClickListener {
             onSelect.invoke(data)
         }
 
         if (onLongSelect != null) {
-            viewHolder.itemView.setOnLongClickListener {
+            binding.root.setOnLongClickListener {
                 onLongSelect.invoke(data)
                 true
             }

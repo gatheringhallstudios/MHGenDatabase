@@ -7,8 +7,8 @@ import com.ghstudios.android.adapter.common.SimpleRecyclerViewAdapter
 import com.ghstudios.android.adapter.common.SimpleViewHolder
 import com.ghstudios.android.data.classes.Decoration
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.FragmentDecorationListitemBinding
 import com.ghstudios.android.util.setImageAsset
-import kotlinx.android.synthetic.main.fragment_decoration_listitem.*
 
 /**
  * A RecyclerView adapter used to display decorations
@@ -26,42 +26,37 @@ class DecorationListAdapter(
     }
 
     override fun bindView(viewHolder: SimpleViewHolder, decoration: Decoration) {
-        // Set up the text view
-        val itemImageView = viewHolder.item_image
-        val decorationNameTextView = viewHolder.item
-        val skill1TextView = viewHolder.skill1
-        val skill1amtTextView = viewHolder.skill1_amt
-        val skill2TextView = viewHolder.skill2
-        val skill2amtTextView = viewHolder.skill2_amt
+        val binding = FragmentDecorationListitemBinding.bind(viewHolder.itemView)
 
-        itemImageView.setImageAsset(decoration)
-        decorationNameTextView.text = decoration.name
-        skill1TextView.text = decoration.skill1Name
-        skill1amtTextView.text = decoration.skill1Point.toString()
+        with(binding) {
+            itemImage.setImageAsset(decoration)
+            item.text = decoration.name
+            skill1.text = decoration.skill1Name
+            skill1Amt.text = decoration.skill1Point.toString()
+            skill2.visibility = View.GONE
+            skill2Amt.visibility = View.GONE
 
-        skill2TextView.visibility = View.GONE
-        skill2amtTextView.visibility = View.GONE
-
-        if (decoration.skill2Point != 0) {
-            skill2TextView.text = decoration.skill2Name
-            skill2amtTextView.text = decoration.skill2Point.toString()
-            skill2TextView.visibility = View.VISIBLE
-            skill2amtTextView.visibility = View.VISIBLE
+            if (decoration.skill2Point != 0) {
+                skill2.text = decoration.skill2Name
+                skill2Amt.text = decoration.skill2Point.toString()
+                skill2.visibility = View.VISIBLE
+                skill2Amt.visibility = View.VISIBLE
+            }
         }
 
-        viewHolder.itemView.tag = decoration.id
+        binding.root.tag = decoration.id
 
         val fitsInArmor = decoration.numSlots <= maxSlots
 
-        viewHolder.itemView.isEnabled = fitsInArmor
-        itemImageView.alpha = if (fitsInArmor) 1.0f else 0.5f
+        binding.root.isEnabled = fitsInArmor
+        binding.itemImage.alpha = if (fitsInArmor) 1.0f else 0.5f
 
         if (fitsInArmor) {
-            viewHolder.itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 onSelected(decoration, viewHolder.itemView)
             }
         } else {
-            viewHolder.itemView.setOnClickListener(null)
+            binding.root.setOnClickListener(null)
         }
     }
 

@@ -15,8 +15,8 @@ import com.ghstudios.android.components.ItemRecipeCell
 import com.ghstudios.android.data.classes.Component
 import com.ghstudios.android.data.classes.Weapon
 import com.ghstudios.android.mhgendatabase.R
+import com.ghstudios.android.mhgendatabase.databinding.FragmentWeaponDetailBinding
 import com.ghstudios.android.util.applyArguments
-import kotlinx.android.synthetic.main.fragment_weapon_detail.*
 
 
 /**
@@ -36,6 +36,8 @@ class WeaponDetailFragment : Fragment() {
         }
     }
 
+    private lateinit var binding: FragmentWeaponDetailBinding
+
     /**
      * Returns the viewmodel owned by the activity, which has already loaded weapon data
      */
@@ -44,7 +46,8 @@ class WeaponDetailFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_weapon_detail, container, false)
+        binding = FragmentWeaponDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,14 +69,16 @@ class WeaponDetailFragment : Fragment() {
     private fun populateWeapon(weapon: Weapon?) {
         if (weapon == null) return
 
-        with(this.titlebar) {
+        with(binding.titlebar) {
             setIcon(weapon)
             setTitleText(weapon.name)
             setAltTitleText(getString(R.string.value_rare, weapon.rarityString))
         }
-        this.weapon_description.text = weapon.description
-        this.weapon_cost_create.text = "" + weapon.creationCost + "z"
-        this.weapon_cost_upgrade.text = "" + weapon.upgradeCost + "z"
+        with(binding) {
+            weaponDescription.text = weapon.description
+            weaponCostCreate.text = "" + weapon.creationCost + "z"
+            weaponCostUpgrade.text = "" + weapon.upgradeCost + "z"
+        }
 
         // inflate the subview, depending on weapon type
         val weaponDataContainer = view!!.findViewById<ViewGroup>(R.id.weapon_detail_view)

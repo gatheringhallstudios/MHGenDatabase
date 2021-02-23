@@ -15,16 +15,15 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.AssetLoader
-import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.data.classes.Quest
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.features.locations.LocationDetailPagerActivity
 
 import com.ghstudios.android.ClickListeners.MonsterClickListener
 import com.ghstudios.android.data.classes.MonsterToQuest
+import com.ghstudios.android.mhgendatabase.databinding.FragmentQuestDetailBinding
 import com.ghstudios.android.util.applyArguments
 import com.ghstudios.android.util.setImageAsset
-import kotlinx.android.synthetic.main.fragment_quest_detail.*
 
 /**
  * Shows the main quest information.
@@ -42,10 +41,12 @@ class QuestDetailFragment : Fragment() {
         }
     }
 
+    private lateinit var binding: FragmentQuestDetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_quest_detail, container, false)
+        binding = FragmentQuestDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +63,7 @@ class QuestDetailFragment : Fragment() {
         })
 
         // Click listener for quest location
-        location_layout.setOnClickListener { v ->
+        binding.locationLayout.setOnClickListener { v ->
             // The id argument will be the Monster ID; CursorAdapter gives us this
             // for free
             val i = Intent(activity, LocationDetailPagerActivity::class.java)
@@ -81,36 +82,38 @@ class QuestDetailFragment : Fragment() {
         // Use adapter to manually populate a LinearLayout
         val adapter = MonsterToQuestListAdapter(context!!, monsters)
         for (i in 0 until adapter.count) {
-            val v = adapter.getView(i, null, monster_habitat_fragment)
-            monster_habitat_fragment.addView(v)
+            val v = adapter.getView(i, null, binding.monsterHabitatFragment)
+            binding.monsterHabitatFragment.addView(v)
         }
     }
 
     private fun updateUI(mQuest: Quest) {
         // bind title bar
-        with (this.titlebar as TitleBarCell) {
+        with (binding.titlebar) {
             setIconDrawable(AssetLoader.loadIconFor(mQuest))
             setTitleText(mQuest.name)
         }
 
-        goal.text = mQuest.goal
+        with(binding) {
+            goal.text = mQuest.goal
 
-        hub.text = AssetLoader.localizeHub(mQuest.hub)
-        level.text = mQuest.starString
-        hrp.setValueText(mQuest.hrp.toString())
-        reward.setValueText("" + mQuest.reward + "z")
-        fee.setValueText("" + mQuest.fee + "z")
+            hub.text = AssetLoader.localizeHub(mQuest.hub)
+            level.text = mQuest.starString
+            hrp.setValueText(mQuest.hrp.toString())
+            reward.setValueText("" + mQuest.reward + "z")
+            fee.setValueText("" + mQuest.fee + "z")
 
-        location.text = mQuest.location?.name
-        location.tag = mQuest.location?.id
-        location_layout.tag = mQuest.location?.id
-        subquest.text = mQuest.subGoal
-        subhrp.text = "" + mQuest.subHrp
-        subreward.text = "" + mQuest.subReward + "z"
-        description.text = mQuest.flavor
+            location.text = mQuest.location?.name
+            location.tag = mQuest.location?.id
+            locationLayout.tag = mQuest.location?.id
+            subquest.text = mQuest.subGoal
+            subhrp.text = "" + mQuest.subHrp
+            subreward.text = "" + mQuest.subReward + "z"
+            description.text = mQuest.flavor
 
-        // Get Location based on ID and set image thumbnail
-        location_image.setImageAsset(mQuest.location)
+            // Get Location based on ID and set image thumbnail
+            locationImage.setImageAsset(mQuest.location)
+        }
     }
 
     /**

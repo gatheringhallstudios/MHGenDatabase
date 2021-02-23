@@ -12,7 +12,7 @@ import com.ghstudios.android.components.IconLabelTextCell
 import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.mhgendatabase.BuildConfig
 import com.ghstudios.android.mhgendatabase.R
-import kotlinx.android.synthetic.main.fragment_about.*
+import com.ghstudios.android.mhgendatabase.databinding.FragmentAboutBinding
 
 class AboutActivity : GenericActivity() {
     override fun getSelectedSection() = 0
@@ -23,9 +23,12 @@ class AboutActivity : GenericActivity() {
 }
 
 class AboutFragment : Fragment() {
+    private lateinit var binding: FragmentAboutBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity?.title = getString(R.string.about)
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        binding = FragmentAboutBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +38,7 @@ class AboutFragment : Fragment() {
         titlebar.setAltTitleText(getString(R.string.about_version, versionName))
 
         // Make the links clickable
-        activateLinks(this.about_layout)
+        activateLinks(binding.aboutLayout)
     }
 
     /**

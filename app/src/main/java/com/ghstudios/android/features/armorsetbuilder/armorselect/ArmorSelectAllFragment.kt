@@ -11,14 +11,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.features.armor.detail.ArmorSetDetailPagerActivity
-import com.ghstudios.android.mhgendatabase.R
-import kotlinx.android.synthetic.main.fragment_generic_expandable_list.*
+import com.ghstudios.android.mhgendatabase.databinding.FragmentGenericExpandableListBinding
 
 /**
  * Creates a fragment used to display the list of all armor
  * available to insert to an ArmorSetBuilder
  */
 class ArmorSelectAllFragment : Fragment() {
+    private lateinit var binding: FragmentGenericExpandableListBinding
+
     /**
      * ViewModel (anchored to parent)
      */
@@ -27,7 +28,8 @@ class ArmorSelectAllFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_generic_expandable_list, container, false)
+        binding = FragmentGenericExpandableListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +37,7 @@ class ArmorSelectAllFragment : Fragment() {
 
         val adapterItems = mutableListOf<ArmorGroup>()
         val adapter = ArmorExpandableListAdapter(adapterItems)
-        this.expandableListView.setAdapter(adapter)
+        binding.expandableListView.setAdapter(adapter)
 
         enableFilter {
             viewModel.setFilter(it)
@@ -61,7 +63,7 @@ class ArmorSelectAllFragment : Fragment() {
     private var previousListener: TextWatcher? = null
 
     fun enableFilter(onUpdate: (String) -> Unit) {
-        val textField = input_search
+        val textField = binding.inputSearch
 
         textField.visibility = View.VISIBLE
 

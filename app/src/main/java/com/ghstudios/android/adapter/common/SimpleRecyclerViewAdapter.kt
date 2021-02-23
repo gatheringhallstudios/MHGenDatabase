@@ -3,7 +3,6 @@ package com.ghstudios.android.adapter.common
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.extensions.LayoutContainer
 import java.util.*
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
  * A simple container-only viewholder used by SimpleListDelegate and SimpleRecyclerViewAdapter.
  * Using a viewholder when using KTX allows caching to work.
  */
-open class SimpleViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer {
+open class SimpleViewHolder(containerView: View): RecyclerView.ViewHolder(containerView) {
     val context get() = itemView.context
     val resources get() = itemView.resources
 }
