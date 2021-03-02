@@ -11,14 +11,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.StringRes
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.ClickListeners.LocationClickListener
 import com.ghstudios.android.components.SectionHeaderCell
-import com.ghstudios.android.components.TitleBarCell
 import com.ghstudios.android.mhgendatabase.R
 
 import com.ghstudios.android.*
