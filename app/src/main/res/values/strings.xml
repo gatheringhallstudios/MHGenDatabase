@@ -220,6 +220,16 @@
     <string name="monster_status_duration">Duration</string>
     <string name="monster_status_damage">Damage</string>
 
+    <string name="monster_tooltip_damage_cut">Cut</string>
+    <string name="monster_tooltip_damage_impact">Impact</string>
+    <string name="monster_tooltip_damage_shot">Shot</string>
+    <string name="monster_tooltip_damage_stun">Stun</string>
+    <string name="monster_tooltip_damage_fire">Fire</string>
+    <string name="monster_tooltip_damage_water">Water</string>
+    <string name="monster_tooltip_damage_ice">Ice</string>
+    <string name="monster_tooltip_damage_thunder">Thunder</string>
+    <string name="monster_tooltip_damage_dragon">Dragon</string>
+
     <!-- Items -->
     <string name="item_detail_tab_detail">Detail</string>
     <string name="item_detail_tab_usage">Usage</string>
@@ -345,6 +355,25 @@
     <string name="weapon_melody_duration">DUR: %s</string>
     <string name="weapon_melody_extension">EXT: %s</string>
 
+    <string name="element_status_tooltip_fire">Fire</string>
+    <string name="element_status_tooltip_water">Water</string>
+    <string name="element_status_tooltip_thunder">Thunder</string>
+    <string name="element_status_tooltip_ice">Ice</string>
+    <string name="element_status_tooltip_dragon">Dragon</string>
+    <string name="element_status_tooltip_poison">Poison</string>
+    <string name="element_status_tooltip_paralysis">Paralysis</string>
+    <string name="element_status_tooltip_sleep">Sleep</string>
+    <string name="element_status_tooltip_blastblight">Blastblight</string>
+    <string name="element_status_tooltip_mount">Mount</string>
+    <string name="element_status_tooltip_exhaust">Exhaust</string>
+    <string name="element_status_tooltip_jump">Jump</string>
+    <string name="element_status_tooltip_stun">Stun</string>
+    <string name="weakness_tooltip_pitfall_trap">Pitfall trap</string>
+    <string name="weakness_tooltip_shock_trap">Shock trap</string>
+    <string name="weakness_tooltip_meat">Meat</string>
+    <string name="weakness_tooltip_flash_bomb">Flash bomb</string>
+    <string name="weakness_tooltip_sonic_bomb">Sonic bomb</string>
+    <string name="weakness_tooltip_dung_bomb">Dung bomb</string>
 
     <!-- Palicos -->
     <string name="palico_equipment_tab_detail">Detail</string>
@@ -432,6 +461,14 @@
     <string name="asb_weapon_slots_one">Weapon (One Slots)</string>
     <string name="asb_weapon_slots_two">Weapon (Two Slots)</string>
     <string name="asb_weapon_slots_three">Weapon (Three Slots)</string>
+
+    <string name="asb_tooltip_weapon">Weapon</string>
+    <string name="asb_tooltip_armor_head">Head</string>
+    <string name="asb_tooltip_armor_body">Body</string>
+    <string name="asb_tooltip_armor_arms">Arms</string>
+    <string name="asb_tooltip_armor_waist">Waist</string>
+    <string name="asb_tooltip_armor_legs">Legs</string>
+    <string name="asb_tooltip_talisman">Talisman</string>
 
     <!-- Bowgun strings -->
     <string name="siege_mode">Siege Mode</string>
