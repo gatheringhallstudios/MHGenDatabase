@@ -57,7 +57,7 @@ object AssetLoader {
      */
     @JvmStatic
     fun loadIconFor(element: ElementStatus): Drawable? {
-        val resId = ElementRegistry.get(element, default=R.color.transparent)
+        val resId = ElementRegistry.get(element, default= ElementStatusInfoNone).icon
         return ctx.getDrawableCompat(resId)
     }
 

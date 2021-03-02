@@ -12,12 +12,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.ghstudios.android.data.classes.ASBSession
 import com.ghstudios.android.mhgendatabase.R
 import com.ghstudios.android.ClickListeners.SkillClickListener
 import com.ghstudios.android.data.classes.ArmorSet
 import com.ghstudios.android.features.armorsetbuilder.ArmorSetCalculator
+import com.ghstudios.android.mhgendatabase.databinding.FragmentAsbSkillsListBinding
 
 /**
  * Fragment to display the list of skills granted from an armor set.
@@ -28,9 +30,17 @@ class ASBSkillsListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_asb_skills_list, container, false)
+        val binding = FragmentAsbSkillsListBinding.inflate(inflater, container, false).apply {
+            ViewCompat.setTooltipText(weapon, resources.getString(R.string.asb_tooltip_weapon))
+            ViewCompat.setTooltipText(helmet, resources.getString(R.string.asb_tooltip_armor_head))
+            ViewCompat.setTooltipText(body, resources.getString(R.string.asb_tooltip_armor_body))
+            ViewCompat.setTooltipText(arms, resources.getString(R.string.asb_tooltip_armor_arms))
+            ViewCompat.setTooltipText(waist, resources.getString(R.string.asb_tooltip_armor_waist))
+            ViewCompat.setTooltipText(legs, resources.getString(R.string.asb_tooltip_armor_legs))
+            ViewCompat.setTooltipText(talisman, resources.getString(R.string.asb_tooltip_talisman))
+        }
 
-        val listView = v.findViewById<View>(R.id.list) as ListView
+        val listView = binding.list
 
         val session = viewModel.session
         val calculator = ArmorSetCalculator(session)
@@ -43,7 +53,7 @@ class ASBSkillsListFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
 
-        return v
+        return binding.root
     }
 
     private class ASBSkillsAdapter(
