@@ -143,16 +143,16 @@ class MonsterSummaryFragment : Fragment() {
 
         // weakness line (element part)
         for (value in mWeakness.element) {
-            val imagePath = ElementRegistry[value.type]
+            val elementStatusInfo = ElementRegistry[value.type]
             val imageModification = imageFromWeaknessRating(value.rating)
-            addIcon(weaknessListView, imagePath, imageModification)
+            addIcon(weaknessListView, elementStatusInfo?.icon, imageModification, elementStatusInfo?.tooltipText)
         }
 
         // weakness line (status part)
         for (value in mWeakness.status) {
-            val imagePath = ElementRegistry[value.type]
+            val elementStatusInfo = ElementRegistry[value.type]
             val imageModification = imageFromWeaknessRating(value.rating)
-            addIcon(weaknessListView, imagePath, imageModification)
+            addIcon(weaknessListView, elementStatusInfo?.icon, imageModification, elementStatusInfo?.tooltipText)
         }
 
         // items line
@@ -165,8 +165,16 @@ class MonsterSummaryFragment : Fragment() {
                 WeaknessType.SONIC_BOMB -> R.drawable.item_bomb_sonic
                 WeaknessType.DUNG_BOMB -> R.drawable.item_bomb_dung
             }
+            val tooltip = when(trapType) {
+                WeaknessType.PITFALL_TRAP -> R.string.weakness_tooltip_pitfall_trap
+                WeaknessType.SHOCK_TRAP -> R.string.weakness_tooltip_shock_trap
+                WeaknessType.MEAT -> R.string.weakness_tooltip_meat
+                WeaknessType.FLASH_BOMB -> R.string.weakness_tooltip_flash_bomb
+                WeaknessType.SONIC_BOMB -> R.string.weakness_tooltip_sonic_bomb
+                WeaknessType.DUNG_BOMB -> R.string.weakness_tooltip_dung_bomb
+            }
 
-            addIcon(itemListView, imagePath, null)
+            addIcon(itemListView, imagePath, null, tooltip)
         }
 
         binding.monsterStateList.addView(weaknessView)
@@ -234,7 +242,7 @@ class MonsterSummaryFragment : Fragment() {
     }
 
     // Add small_icon to a particular LinearLayout
-    private fun addIcon(parentview: ViewGroup, @DrawableRes image: Int?, @DrawableRes mod: Int?) {
+    private fun addIcon(parentview: ViewGroup, @DrawableRes image: Int?, @DrawableRes mod: Int?, @StringRes tooltipText: Int?) {
         if (image == null) {
             Log.e(TAG, "Tried to add null image as an icon")
             return
@@ -251,6 +259,9 @@ class MonsterSummaryFragment : Fragment() {
         // Open Image
         val mainImage = ContextCompat.getDrawable(context!!, image)
         mImage.setImageDrawable(mainImage)
+        tooltipText?.let {
+            ViewCompat.setTooltipText(mImage, resources.getString(tooltipText))
+        }
 
         // Open Image Mod if applicable
         if (mod != null) {

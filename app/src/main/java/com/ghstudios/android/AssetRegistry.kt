@@ -1,7 +1,10 @@
 @file:JvmName("AssetRegistry")
 package com.ghstudios.android
 
+import android.content.res.Resources
 import android.util.Log
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.ghstudios.android.data.classes.ElementStatus
 import com.ghstudios.android.mhgendatabase.R
 
@@ -12,7 +15,7 @@ import com.ghstudios.android.mhgendatabase.R
  * @param K Type for Value
  */
 
-typealias AdderFun<T, K> = (name: T, resId: K) -> Unit
+typealias AdderFun<T, K> = (name: T, value: K) -> Unit
 
 class Registry<T, K>(val source: Map<T, K>) {
     operator fun get(key: T): K? {
@@ -35,25 +38,35 @@ private fun <T, K> createRegistry(initLambda: (AdderFun<T, K>) -> Unit): Registr
     return Registry(mutableRegistry)
 }
 
+data class ElementStatusInfo(
+    val name: String,
+    @StringRes val tooltipText: Int,
+    @DrawableRes val icon: Int
+)
+
+val ElementStatusInfoNone = ElementStatusInfo(ElementStatus.NONE.name, 0, R.color.transparent)
 
 /**
  * A mapping from an element/status enumeration to a drawable resource
  */
-val ElementRegistry = createRegistry<ElementStatus, Int> { register ->
-    register(ElementStatus.NONE, R.color.transparent)
+val ElementRegistry = createRegistry<ElementStatus, ElementStatusInfo> { register ->
+    fun registerElement(elementStatus: ElementStatus, @DrawableRes icon: Int, @StringRes tooltipText: Int) {
+        register(elementStatus, ElementStatusInfo(elementStatus.name, tooltipText, icon))
+    }
+    register(ElementStatus.NONE, ElementStatusInfoNone)
 
-    register(ElementStatus.FIRE, R.drawable.element_fire)
-    register(ElementStatus.WATER, R.drawable.element_water)
-    register(ElementStatus.THUNDER, R.drawable.element_thunder)
-    register(ElementStatus.ICE, R.drawable.element_ice)
-    register(ElementStatus.DRAGON, R.drawable.element_dragon)
+    registerElement(ElementStatus.FIRE, R.drawable.element_fire, R.string.element_status_tooltip_fire)
+    registerElement(ElementStatus.WATER, R.drawable.element_water, R.string.element_status_tooltip_water)
+    registerElement(ElementStatus.THUNDER, R.drawable.element_thunder, R.string.element_status_tooltip_thunder)
+    registerElement(ElementStatus.ICE, R.drawable.element_ice, R.string.element_status_tooltip_ice)
+    registerElement(ElementStatus.DRAGON, R.drawable.element_dragon, R.string.element_status_tooltip_dragon)
 
-    register(ElementStatus.POISON, R.drawable.status_poison)
-    register(ElementStatus.PARALYSIS, R.drawable.status_paralysis)
-    register(ElementStatus.SLEEP, R.drawable.status_sleep)
-    register(ElementStatus.BLAST, R.drawable.status_blastblight)
-    register(ElementStatus.MOUNT, R.drawable.status_mount)
-    register(ElementStatus.EXHAUST, R.drawable.status_exhaust)
-    register(ElementStatus.JUMP, R.drawable.status_jump)
-    register(ElementStatus.STUN, R.drawable.status_stun)
+    registerElement(ElementStatus.POISON, R.drawable.status_poison, R.string.element_status_tooltip_poison)
+    registerElement(ElementStatus.PARALYSIS, R.drawable.status_paralysis, R.string.element_status_tooltip_paralysis)
+    registerElement(ElementStatus.SLEEP, R.drawable.status_sleep, R.string.element_status_tooltip_sleep)
+    registerElement(ElementStatus.BLAST, R.drawable.status_blastblight, R.string.element_status_tooltip_blastblight)
+    registerElement(ElementStatus.MOUNT, R.drawable.status_mount, R.string.element_status_tooltip_mount)
+    registerElement(ElementStatus.EXHAUST, R.drawable.status_exhaust, R.string.element_status_tooltip_exhaust)
+    registerElement(ElementStatus.JUMP, R.drawable.status_jump, R.string.element_status_tooltip_jump)
+    registerElement(ElementStatus.STUN, R.drawable.status_stun, R.string.element_status_tooltip_stun)
 }

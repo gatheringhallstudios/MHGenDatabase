@@ -187,7 +187,7 @@ class MonsterDamageFragment : Fragment() {
 
             // Check which image to load
             val element = currentStatus.statusEnum
-            val imageFile = ElementRegistry.get(element, R.color.transparent)
+            val elementStatusInfo = ElementRegistry.get(element, ElementStatusInfoNone)
 
             // initialize our views
             initialView.text = initial
@@ -196,12 +196,11 @@ class MonsterDamageFragment : Fragment() {
             durationView.text = duration
             damageView.text = damage
 
-            if (imageFile != -1) {
-                val draw = ContextCompat.getDrawable(context!!, imageFile)
-                val layoutParams = statusImage.layoutParams
-                statusImage.layoutParams = layoutParams
-                statusImage.setImageDrawable(draw)
-            }
+            val draw = ContextCompat.getDrawable(context!!, elementStatusInfo.icon)
+            val layoutParams = statusImage.layoutParams
+            statusImage.layoutParams = layoutParams
+            statusImage.setImageDrawable(draw)
+            ViewCompat.setTooltipText(statusImage, resources.getString(elementStatusInfo.tooltipText))
 
             binding.statusData.addView(wdRow)
         }
