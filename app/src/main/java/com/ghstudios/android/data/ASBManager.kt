@@ -240,7 +240,7 @@ class ASBManager internal constructor(
 
         if (talisman.id == -1L) {
             // Adding talisman
-            talisman.id = (list.maxBy { it.id }?.id ?: 0) + 1
+            talisman.id = ((list.maxByOrNull { it.id + 1 }) ?: 0) as Long
             list.add(talisman)
         } else {
             // Editing talisman
