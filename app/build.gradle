@@ -5,12 +5,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.ghstudios.android.mhgendatabase"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 33
 
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
