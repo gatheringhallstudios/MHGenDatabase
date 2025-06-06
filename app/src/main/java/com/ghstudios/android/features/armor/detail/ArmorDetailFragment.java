@@ -153,17 +153,17 @@ public class ArmorDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_to_wishlist:
-                if (armor != null) {
-                    FragmentManager fm = this.getFragmentManager();
-                    WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                            .newInstance(armor.getId(), armor.getName());
-                    dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.add_to_wishlist) {
+            if (armor != null) {
+                FragmentManager fm = this.getFragmentManager();
+                WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
+                        .newInstance(armor.getId(), armor.getName());
+                dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+            }
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }

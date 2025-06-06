@@ -111,13 +111,11 @@ public class WeaponListFragment extends RecyclerViewFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.filter_final:
-                item.setChecked(!item.isChecked());
-                viewModel.setFilterFinal(item.isChecked());
-                return true;
-
-            default:
+        if (item.getItemId() == R.id.filter_final) {
+            item.setChecked(!item.isChecked());
+            viewModel.setFilterFinal(item.isChecked());
+            return true;
+        } else {
                 return false;
         }
     }

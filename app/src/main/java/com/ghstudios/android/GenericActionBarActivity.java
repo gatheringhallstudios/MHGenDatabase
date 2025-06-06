@@ -173,67 +173,50 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
         int itemId = item.getItemId();
 
         // Handle "Other" menu first.
-        switch (itemId) {
-            case R.id.settings:
-                Intent preferences = new Intent(ctx, PreferencesActivity.class);
-                startActivity(preferences);
-                return true;
-
-            case R.id.change_log:
-                ChangeLog cl = new ChangeLog(this);
-                cl.getFullLogDialog().show();
-                return true;
-
-            case R.id.about:
-                Intent about = new Intent(ctx, AboutActivity.class);
-                startActivity(about);
-                return true;
-
+        if (itemId == R.id.settings) {
+            Intent preferences = new Intent(ctx, PreferencesActivity.class);
+            startActivity(preferences);
+            return true;
+        } else if (itemId == R.id.change_log) {
+            ChangeLog cl = new ChangeLog(this);
+            cl.getFullLogDialog().show();
+            return true;
+        } else if (itemId == R.id.about) {
+            Intent about = new Intent(ctx, AboutActivity.class);
+            startActivity(about);
+            return true;
         }
 
         // Set navigation actions
         Intent intent = null;
 
-        switch (itemId) {
-            case MenuSection.MONSTERS: // Monsters
-                intent = new Intent(ctx, MonsterListPagerActivity.class);
-                break;
-            case MenuSection.WEAPONS: // Weapons
-                intent = new Intent(ctx, WeaponSelectionListActivity.class);
-                break;
-            case MenuSection.ARMOR: // Armor
-                intent = new Intent(ctx, ArmorListPagerActivity.class);
-                break;
-            case MenuSection.QUESTS: // Quests
-                intent = new Intent(ctx, QuestListPagerActivity.class);
-                break;
-            case MenuSection.ITEMS: // Items
-                intent = new Intent(ctx, ItemListActivity.class);
-                break;
-            case MenuSection.PALICOS:
-                intent = new Intent(ctx, PalicoPagerActivity.class);
-                break;
-            case MenuSection.COMBINING: // Combining
-                intent = new Intent(ctx, CombiningListActivity.class);
-                break;
-            case MenuSection.LOCATIONS: // Locations
-                intent = new Intent(ctx, LocationListActivity.class);
-                break;
-            case MenuSection.DECORATION: // Decorations
-                intent = new Intent(ctx, DecorationListActivity.class);
-                break;
-            case MenuSection.SKILL_TREES: // Skill Trees
-                intent = new Intent(ctx, SkillTreeListActivity.class);
-                break;
-            case MenuSection.ARMOR_SET_BUILDER: // Armor Set Builder
-                intent = new Intent(ctx, ASBSetListPagerActivity.class);
-                break;
-            case MenuSection.WISH_LISTS: // Wishlists
-                intent = new Intent(ctx, WishlistListActivity.class);
-                break;
-            default:
-                Log.e(TAG, "Failed navigation, invalid item id selected");
-                return false;
+        if (itemId == MenuSection.MONSTERS) {
+            intent = new Intent(ctx, MonsterListPagerActivity.class);
+        } else if (itemId == MenuSection.WEAPONS) {
+            intent = new Intent(ctx, WeaponSelectionListActivity.class);
+        } else if (itemId == MenuSection.ARMOR) {
+            intent = new Intent(ctx, ArmorListPagerActivity.class);
+        } else if (itemId == MenuSection.QUESTS) {
+            intent = new Intent(ctx, QuestListPagerActivity.class);
+        } else if (itemId == MenuSection.ITEMS) {
+            intent = new Intent(ctx, ItemListActivity.class);
+        } else if (itemId == MenuSection.PALICOS) {
+            intent = new Intent(ctx, PalicoPagerActivity.class);
+        } else if (itemId == MenuSection.COMBINING) {
+            intent = new Intent(ctx, CombiningListActivity.class);
+        } else if (itemId == MenuSection.LOCATIONS) {
+            intent = new Intent(ctx, LocationListActivity.class);
+        } else if (itemId == MenuSection.DECORATION) {
+            intent = new Intent(ctx, DecorationListActivity.class);
+        } else if (itemId == MenuSection.SKILL_TREES) {
+            intent = new Intent(ctx, SkillTreeListActivity.class);
+        } else if (itemId == MenuSection.ARMOR_SET_BUILDER) {
+            intent = new Intent(ctx, ASBSetListPagerActivity.class);
+        } else if (itemId == MenuSection.WISH_LISTS) {
+            intent = new Intent(ctx, WishlistListActivity.class);
+        } else {
+            Log.e(TAG, "Failed navigation, invalid item id selected");
+            return false;
         }
 
         // Clear the back stack whenever a nav drawer item is selected
@@ -293,23 +276,19 @@ public abstract class GenericActionBarActivity extends AppCompatActivity
             return true;
         }
 
-        // Detect home and or expansion menu item selections
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                // Detect back/up button is pressed
-                // Finish current activity and pop it off the stack.
-                // Basically a back button.
-                this.finish();
-                return true;
-
-            case R.id.universal_search:
-                Intent startSearch = new Intent(GenericActionBarActivity.this, UniversalSearchActivity.class);
-                startActivity(startSearch);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Detect back/up button is pressed
+            // Finish current activity and pop it off the stack.
+            // Basically a back button.
+            this.finish();
+            return true;
+        } else if (itemId == R.id.universal_search) {
+            Intent startSearch = new Intent(GenericActionBarActivity.this, UniversalSearchActivity.class);
+            startActivity(startSearch);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

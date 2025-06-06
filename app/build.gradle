@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 
 // This handles both kotlin and java. Use kapt instead of annotationProcessor
 apply plugin: 'kotlin-kapt'
-
 android {
+    namespace 'com.ghstudios.android.mhgendatabase'
     compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.ghstudios.android.mhgendatabase"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 35
 
         //1.00   Version Code: 1   Released 7-14-2016
         //1.0.1  Version Code: 2   Released 7-19-2016
@@ -33,8 +33,8 @@ android {
         //2.3.4  Version Code:19   Released 12-20-2018
         //2.3.5  Version Code:20   Released 12-20-2018
         //2.3.6  Version Code:21   Released 12-20-2018
-        versionCode 24
-        versionName "2.4.2"
+        versionCode 25
+        versionName "2.4.3"
 
         compileOptions {
             // we'll still be able to target lower java versions because of desugar
@@ -44,15 +44,16 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
 
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+
         sourceSets{
             //Small hack to separate icons into a different resource folder
             main.res.srcDirs += 'src/main/icon-res/'
         }
     }
 
-    lintOptions {
-        disable 'MissingTranslation'
-    }
 
     buildTypes {
         release {
@@ -64,6 +65,10 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig true
+    }
+    lint {
+        disable 'MissingTranslation'
     }
 }
 
@@ -87,9 +92,9 @@ dependencies {
      * lifecycle components
      */
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+//    testImplementation 'androidx.arch.core:core-testing:2.1.0'
 
-    implementation 'com.google.android:flexbox:1.1.0'
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
     // Resources here https://github.com/ApmeM/android-flowlayout
     implementation 'de.cketti.library.changelog:ckchangelog:1.2.2' // Library to display a changelog on first run
@@ -106,5 +111,6 @@ dependencies {
 }
 
 repositories {
+    google()
     mavenCentral()
 }

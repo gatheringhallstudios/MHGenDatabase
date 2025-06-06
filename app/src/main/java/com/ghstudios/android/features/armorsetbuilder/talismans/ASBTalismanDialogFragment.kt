@@ -219,8 +219,8 @@ class ASBTalismanDialogFragment : DialogFragment(), ASBTalismanSkillContainer.Ch
         }
 
         val spinner = view.findViewById<View>(R.id.talisman_rank_spinner) as Spinner
-        spinner.adapter = ArrayAdapter(activity!!, R.layout.support_simple_spinner_dropdown_item,
-                talismanNames)
+        spinner.adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item,
+            talismanNames)
 
         return spinner
     }

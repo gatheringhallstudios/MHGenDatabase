@@ -94,7 +94,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
 
                 wishlistSelect.adapter = ArrayAdapter(
                         this.context!!,
-                        R.layout.support_simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         wishlists.map { it.name }.toTypedArray())
             }
         })
