@@ -3,9 +3,9 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion  30
+    namespace 'com.github.monxalo.android.widget'
     defaultConfig {
         minSdkVersion 7
-        versionName "1.0"
     }
 
 }

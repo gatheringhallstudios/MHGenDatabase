@@ -94,7 +94,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
 
                 wishlistSelect.adapter = ArrayAdapter(
                         this.context!!,
-                        R.layout.support_simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         wishlists.map { it.name }.toTypedArray())
             }
         })
@@ -102,7 +102,7 @@ class WishlistDataAddDialogFragment : DialogFragment() {
         // Observe paths and add them to the path selection area
         // Paths require unique ids, so we assign them IDs from the ids.xml file
         // Also select the first one
-        viewModel.itemPaths.observe(viewLifecycleOwner, Observer { paths ->
+        viewModel.itemPaths.observe(this, Observer { paths ->
             if (paths == null) return@Observer // not loaded
 
             // Pre-pull radio buttons (adding programmatically has errors in older Android Versions)

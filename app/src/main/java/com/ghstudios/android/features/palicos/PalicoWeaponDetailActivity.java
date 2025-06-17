@@ -55,14 +55,13 @@ public class PalicoWeaponDetailActivity extends BasePagerActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_to_wishlist:
-                FragmentManager fm = getSupportFragmentManager();
-                WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                        .newInstance(id, name);
-                dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
-                return true;
-            default:
+        if (item.getItemId() == R.id.add_to_wishlist) {
+            FragmentManager fm = getSupportFragmentManager();
+            WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
+                    .newInstance(id, name);
+            dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+            return true;
+        } else {
                 return super.onOptionsItemSelected(item);
         }
     }

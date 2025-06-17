@@ -157,14 +157,13 @@ public class DecorationDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_to_wishlist:
-                FragmentManager fm = this.getFragmentManager();
-                WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
-                        .newInstance(decorationId, decorationName);
-                dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
-                return true;
-            default:
+        if (item.getItemId() == R.id.add_to_wishlist) {
+            FragmentManager fm = this.getFragmentManager();
+            WishlistDataAddDialogFragment dialogCopy = WishlistDataAddDialogFragment
+                    .newInstance(decorationId, decorationName);
+            dialogCopy.show(fm, DIALOG_WISHLIST_ADD);
+            return true;
+        } else {
                 return super.onOptionsItemSelected(item);
         }
     }

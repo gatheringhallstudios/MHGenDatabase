@@ -100,11 +100,16 @@ abstract class BaseDiffRecyclerViewAdapter<T, VH: RecyclerView.ViewHolder>: Base
 
     // internal implementation of the diff callback. Differs to an astract method.
     inner class DiffCallback : DiffUtil.ItemCallback<T>() {
-        override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-            return this@BaseDiffRecyclerViewAdapter.areItemsTheSame(oldItem, newItem)
+        override fun areItemsTheSame(oldItem: T & Any, newItem: T & Any): Boolean {
+            // It's generally safe to cast here if you know T will not be nullable
+            // or handle nullability appropriately if T can be nullable.
+            // However, since ItemCallback expects T & Any, oldItem and newItem here are non-null.
+            return this@BaseDiffRecyclerViewAdapter.areItemsTheSame(oldItem as T, newItem as T)
         }
-        override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-            return this@BaseDiffRecyclerViewAdapter.areContentsTheSame(oldItem, newItem)
+
+        override fun areContentsTheSame(oldItem: T & Any, newItem: T & Any): Boolean {
+            // Similar to above, oldItem and newItem are non-null here.
+            return this@BaseDiffRecyclerViewAdapter.areContentsTheSame(oldItem as T, newItem as T)
         }
     }
 }
