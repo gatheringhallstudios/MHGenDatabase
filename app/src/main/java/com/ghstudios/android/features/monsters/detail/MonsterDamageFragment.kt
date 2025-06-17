@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 
 import com.ghstudios.android.*
@@ -44,6 +45,18 @@ class MonsterDamageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        with(binding) {
+            ViewCompat.setTooltipText(cut, resources.getString(R.string.monster_tooltip_damage_cut))
+            ViewCompat.setTooltipText(impact, resources.getString(R.string.monster_tooltip_damage_impact))
+            ViewCompat.setTooltipText(shot, resources.getString(R.string.monster_tooltip_damage_shot))
+            ViewCompat.setTooltipText(ko, resources.getString(R.string.monster_tooltip_damage_stun))
+            ViewCompat.setTooltipText(fire, resources.getString(R.string.monster_tooltip_damage_fire))
+            ViewCompat.setTooltipText(water, resources.getString(R.string.monster_tooltip_damage_water))
+            ViewCompat.setTooltipText(ice, resources.getString(R.string.monster_tooltip_damage_ice))
+            ViewCompat.setTooltipText(thunder, resources.getString(R.string.monster_tooltip_damage_thunder))
+            ViewCompat.setTooltipText(dragon, resources.getString(R.string.monster_tooltip_damage_dragon))
+        }
+
         val viewModel = ViewModelProvider(activity!!).get(MonsterDetailViewModel::class.java)
 
         viewModel.monsterData.observe(viewLifecycleOwner, Observer { monster ->
@@ -174,7 +187,7 @@ class MonsterDamageFragment : Fragment() {
 
             // Check which image to load
             val element = currentStatus.statusEnum
-            val imageFile = ElementRegistry.get(element, R.color.transparent)
+            val elementStatusInfo = ElementRegistry.get(element, ElementStatusInfoNone)
 
             // initialize our views
             initialView.text = initial
@@ -183,12 +196,11 @@ class MonsterDamageFragment : Fragment() {
             durationView.text = duration
             damageView.text = damage
 
-            if (imageFile != -1) {
-                val draw = ContextCompat.getDrawable(context!!, imageFile)
-                val layoutParams = statusImage.layoutParams
-                statusImage.layoutParams = layoutParams
-                statusImage.setImageDrawable(draw)
-            }
+            val draw = ContextCompat.getDrawable(context!!, elementStatusInfo.icon)
+            val layoutParams = statusImage.layoutParams
+            statusImage.layoutParams = layoutParams
+            statusImage.setImageDrawable(draw)
+            ViewCompat.setTooltipText(statusImage, resources.getString(elementStatusInfo.tooltipText))
 
             binding.statusData.addView(wdRow)
         }

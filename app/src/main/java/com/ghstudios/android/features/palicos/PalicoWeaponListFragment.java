@@ -141,7 +141,7 @@ public class PalicoWeaponListFragment extends ListFragment implements
                 element_melee_text.setText(Integer.toString(wep.getElementMelee()));
                 element_ranged_text.setText(Integer.toString(wep.getElementRanged()));
 
-                int elementIconId = AssetRegistry.getElementRegistry().get(wep.getElementEnum());
+                int elementIconId = AssetRegistry.getElementRegistry().get(wep.getElementEnum()).getIcon();
                 Drawable elementIcon = ContextCompat.getDrawable(context, elementIconId);
 
                 element_melee.setImageDrawable(elementIcon);

@@ -342,4 +342,29 @@
     <string name="weapon_shelling">Geschossart</string>
     <string name="coating_elemental">Element</string>
     <string name="gather_site_fishing_burst">Angeln (Berstköder)</string>
+
+    <string name="asb_tooltip_weapon">Waffe</string>
+    <string name="asb_tooltip_armor_head">Kopf</string>
+    <string name="asb_tooltip_armor_body">Körper</string>
+    <string name="asb_tooltip_armor_arms">Arme</string>
+    <string name="asb_tooltip_armor_waist">Hüfte</string>
+    <string name="asb_tooltip_armor_legs">Beine</string>
+    <string name="asb_tooltip_talisman">Talisman</string>
+
+    <string name="monster_tooltip_damage_impact">Aufprall</string>
+    <string name="monster_tooltip_damage_fire">Feuer</string>
+    <string name="monster_tooltip_damage_water">Wasser</string>
+    <string name="monster_tooltip_damage_ice">Eis</string>
+    <string name="monster_tooltip_damage_thunder">Donner</string>
+    <string name="monster_tooltip_damage_dragon">Drachen</string>
+
+    <string name="element_status_tooltip_fire">Feuer</string>
+    <string name="element_status_tooltip_water">Wasser</string>
+    <string name="element_status_tooltip_thunder">Donner</string>
+    <string name="element_status_tooltip_ice">Eis</string>
+    <string name="element_status_tooltip_dragon">Drachen</string>
+
+    <string name="element_status_tooltip_poison">Gift</string>
+    <string name="element_status_tooltip_paralysis">Lähmung</string>
+    <string name="element_status_tooltip_exhaust">Erschöpfung</string>
 </resources>

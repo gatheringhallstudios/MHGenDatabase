@@ -466,4 +466,29 @@
         <item>Artillero</item>
     </string-array>
 
+    <string name="asb_tooltip_weapon">Arma</string>
+    <string name="asb_tooltip_armor_head">Cabeza</string>
+    <string name="asb_tooltip_armor_body">Pecho</string>
+    <string name="asb_tooltip_armor_arms">Brazos</string>
+    <string name="asb_tooltip_armor_waist">Cintura</string>
+    <string name="asb_tooltip_armor_legs">Piernas</string>
+    <string name="asb_tooltip_talisman">Amuleto</string>
+
+    <string name="monster_tooltip_damage_impact">Impacto</string>
+    <string name="monster_tooltip_damage_fire">Fuego</string>
+    <string name="monster_tooltip_damage_water">Agua</string>
+    <string name="monster_tooltip_damage_ice">Hielo</string>
+    <string name="monster_tooltip_damage_thunder">Trueno</string>
+    <string name="monster_tooltip_damage_dragon">Dragón</string>
+
+    <string name="element_status_tooltip_fire">Fuego</string>
+    <string name="element_status_tooltip_water">Agua</string>
+    <string name="element_status_tooltip_thunder">Trueno</string>
+    <string name="element_status_tooltip_ice">Hielo</string>
+    <string name="element_status_tooltip_dragon">Dragón</string>
+
+    <string name="element_status_tooltip_poison">Veneno</string>
+    <string name="element_status_tooltip_paralysis">Parálisis</string>
+    <string name="element_status_tooltip_exhaust">Fatiga</string>
+
 </resources>
