@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="2.4.4" versioncode="26">
+        <change>Update to target Android 15</change>
+    </release>
+
     <release version="2.4.2" versioncode="24">
         <change>Fixed display of recovery ammo in wishlists.</change>
     </release>
