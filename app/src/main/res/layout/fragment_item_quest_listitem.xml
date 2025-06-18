@@ -45,7 +45,7 @@
         android:orientation="horizontal"
         android:layout_weight="0.25">
         <TextView
-            android:id="@id/slot"
+            android:id="@+id/slot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/text_small_secondary"
